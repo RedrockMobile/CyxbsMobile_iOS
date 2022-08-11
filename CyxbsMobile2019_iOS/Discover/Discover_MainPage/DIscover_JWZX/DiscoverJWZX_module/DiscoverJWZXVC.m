@@ -7,7 +7,7 @@
 //
 
 #import "DiscoverJWZXVC.h"
-#import "DiscoverSAVC.h"
+#import "test1ViewController.h"
 #import "JWZXNewsViewController.h"
 #import "NewDetailViewController.h"
 
@@ -87,7 +87,7 @@
 - (void)pushToJWZXNewsController {
 //    JWZXNewsViewController *vc =
 //    [[JWZXNewsViewController alloc] initWithRootJWZXSectionModel:self.sectionNewsModel];
-    DiscoverSAVC *vc = [[DiscoverSAVC alloc] init];
+    test1ViewController *vc = [[test1ViewController alloc] init];
     
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];

@@ -104,15 +104,17 @@
     }];
 
     //如果是奖励则添加奖励图标
-//    if (_is_award) {
+    if (_is_award) {
         self.awardImgView.image = [UIImage imageNamed:@"体育奖励"];
         [self.contentView addSubview:self.awardImgView];
         [_awardImgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(self.dateLab);
             make.left.equalTo(self.dateLab.mas_right).offset(7);
         }];
-//    }
+    }
 }
+
+#pragma mark - Setter
 
 //重写setter方法
 - (void)setSa:(SportAttendanceItem *)sa{
@@ -130,13 +132,13 @@
         self.is_award = sa.is_award;
         [self configUI];
     }
-    
 }
+
+#pragma mark - Getter
 
 - (UILabel *)dateLab{
     if (!_dateLab) {
         _dateLab = [[UILabel alloc] initWithFrame:CGRectZero];
-        _dateLab.text = @"2022.07.22";
         _dateLab.font = [UIFont fontWithName:PingFangSCBold size:16];
         _dateLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B"] darkColor:[UIColor colorWithHexString:@"#F0F0F2"]];
     }
@@ -146,7 +148,6 @@
 - (UILabel *)timeLab{
     if (!_timeLab) {
         _timeLab = [[UILabel alloc] initWithFrame:CGRectZero];
-        _timeLab.text = @"19:20:22";
         _timeLab.font = [UIFont fontWithName:PingFangSCMedium size:14];
         _timeLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.8] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.4]];
     }
@@ -156,7 +157,6 @@
 - (UILabel *)spotLab{
     if (!_spotLab) {
         _spotLab = [[UILabel alloc] initWithFrame:CGRectZero];
-        _spotLab.text = @"灯光篮球场";
         _spotLab.font = [UIFont fontWithName:PingFangSCMedium size:14];
         _spotLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.8] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.4]];
     }
@@ -166,7 +166,6 @@
 - (UILabel *)typeLab{
     if (!_typeLab) {
         _typeLab = [[UILabel alloc] initWithFrame:CGRectZero];
-        _typeLab.text = @"跑步";
         _typeLab.font = [UIFont fontWithName:PingFangSCMedium size:14];
         _typeLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.8] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.4]];
     }

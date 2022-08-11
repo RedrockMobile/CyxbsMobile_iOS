@@ -51,8 +51,8 @@
     [self addFailureView];
 
     //仅测试sa
-//    [self addWrongView];
-    [self addSuccessView];
+    [self addWrongView];
+//    [self addSuccessView];
     
 }
 
@@ -224,7 +224,7 @@
     [_SABtn addTarget:self action:@selector(IDSBing) forControlEvents:UIControlEventTouchUpInside];
 }
 
-//当前数据错误，无操作
+//当前数据错误，点击进入错误页
 - (void)addWrongView{
     [self removeView];
     [self addbaseView];
@@ -238,8 +238,9 @@
         make.centerY.equalTo(self.view).offset(20);
     }];
     
-    //点击按钮无反应
+    //点击按钮进入错误页
     [_SABtn removeAllTargets];
+    [_SABtn addTarget:self action:@selector(lookData) forControlEvents:UIControlEventTouchUpInside];
 }
 
 
@@ -266,10 +267,11 @@
 
 //查看详细数据
 - (void)lookData{
-    UIViewController *vc = [self.router controllerForRouterPath:@"SportController"];
+    UIViewController *vc = [self.router controllerForRouterPath:@"SportController" parameters:@{@"sportData":self.sAModel}];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 
 //绑定成功刷新数据
 - (void)idsBindingSuccess{
@@ -281,6 +283,8 @@
         if (self.sAModel.status == 10000) {
             //得到数据后加载成功页
             [self addSuccessView];
+        }else if(self.sAModel.status == 20100){
+            NSLog(@"未绑定教务在线");
         }else{
             //获取数据错误
             [self addWrongView];

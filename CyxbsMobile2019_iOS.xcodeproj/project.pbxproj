@@ -44,8 +44,6 @@
 		14B73F81281BED7B00D08ADD /* MessagePresentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F6D281BED7B00D08ADD /* MessagePresentController.m */; };
 		14B73F84281CCC3000D08ADD /* MessageDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F83281CCC3000D08ADD /* MessageDetailVC.m */; };
 		14B73F8B2823577600D08ADD /* SSRButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F8A2823577600D08ADD /* SSRButton.m */; };
-		14CED373288A590500BADA8B /* RisingFoundationExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CED36F288A590400BADA8B /* RisingFoundationExtention.m */; };
-		14CED374288A590500BADA8B /* RisingUIKitExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CED372288A590500BADA8B /* RisingUIKitExtension.m */; };
 		14CED37D288A594600BADA8B /* RisingRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CED377288A594500BADA8B /* RisingRouter.m */; };
 		14CED37E288A594600BADA8B /* RisingRouterResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CED378288A594500BADA8B /* RisingRouterResponse.m */; };
 		14CED37F288A594600BADA8B /* RisingRouterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CED37B288A594600BADA8B /* RisingRouterRequest.m */; };
@@ -541,6 +539,10 @@
 		AAE3309925E4E5CD00324750 /* DeleteArticleTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3309825E4E5CD00324750 /* DeleteArticleTipView.m */; };
 		AAE87797286B304F0091656B /* PrivacyTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE87796286B304E0091656B /* PrivacyTipView.swift */; };
 		AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */; };
+		B042050428A4B1BB00903E86 /* RisingUIKitExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B042050128A4B1BB00903E86 /* RisingUIKitExtension.m */; };
+		B042050528A4B1BB00903E86 /* RisingFoundationExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = B042050228A4B1BB00903E86 /* RisingFoundationExtention.m */; };
+		B042050828A4B2E800903E86 /* test1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B042050728A4B2E800903E86 /* test1ViewController.m */; };
+		B042050B28A4B2F300903E86 /* test2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B042050A28A4B2F300903E86 /* test2ViewController.m */; };
 		B0F08FDD28A2497F00986EB6 /* SportAttendanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FCE28A2497F00986EB6 /* SportAttendanceModel.m */; };
 		B0F08FDE28A2497F00986EB6 /* SportAttendanceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FD128A2497F00986EB6 /* SportAttendanceItem.m */; };
 		B0F08FDF28A2497F00986EB6 /* SportAttendanceItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FD228A2497F00986EB6 /* SportAttendanceItemModel.m */; };
@@ -757,10 +759,6 @@
 		14B73F83281CCC3000D08ADD /* MessageDetailVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageDetailVC.m; sourceTree = "<group>"; };
 		14B73F892823577600D08ADD /* SSRButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSRButton.h; sourceTree = "<group>"; };
 		14B73F8A2823577600D08ADD /* SSRButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSRButton.m; sourceTree = "<group>"; };
-		14CED36F288A590400BADA8B /* RisingFoundationExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingFoundationExtention.m; sourceTree = "<group>"; };
-		14CED370288A590400BADA8B /* RisingFoundationExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingFoundationExtension.h; sourceTree = "<group>"; };
-		14CED371288A590500BADA8B /* RisingUIKitExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingUIKitExtension.h; sourceTree = "<group>"; };
-		14CED372288A590500BADA8B /* RisingUIKitExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingUIKitExtension.m; sourceTree = "<group>"; };
 		14CED376288A594500BADA8B /* RisingRouterResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingRouterResponse.h; sourceTree = "<group>"; };
 		14CED377288A594500BADA8B /* RisingRouter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingRouter.m; sourceTree = "<group>"; };
 		14CED378288A594500BADA8B /* RisingRouterResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingRouterResponse.m; sourceTree = "<group>"; };
@@ -1762,6 +1760,14 @@
 		AAE87796286B304E0091656B /* PrivacyTipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyTipView.swift; sourceTree = "<group>"; };
 		AAFD87CE24F50DB800CBBD11 /* FakeTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FakeTabBarView.h; sourceTree = "<group>"; };
 		AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FakeTabBarView.m; sourceTree = "<group>"; };
+		B042050028A4B1BB00903E86 /* RisingFoundationExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingFoundationExtension.h; sourceTree = "<group>"; };
+		B042050128A4B1BB00903E86 /* RisingUIKitExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingUIKitExtension.m; sourceTree = "<group>"; };
+		B042050228A4B1BB00903E86 /* RisingFoundationExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingFoundationExtention.m; sourceTree = "<group>"; };
+		B042050328A4B1BB00903E86 /* RisingUIKitExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingUIKitExtension.h; sourceTree = "<group>"; };
+		B042050628A4B2E800903E86 /* test1ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = test1ViewController.h; sourceTree = "<group>"; };
+		B042050728A4B2E800903E86 /* test1ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = test1ViewController.m; sourceTree = "<group>"; };
+		B042050928A4B2F300903E86 /* test2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = test2ViewController.h; sourceTree = "<group>"; };
+		B042050A28A4B2F300903E86 /* test2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = test2ViewController.m; sourceTree = "<group>"; };
 		B0F08FCC28A2497F00986EB6 /* SportAttendanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceModel.h; sourceTree = "<group>"; };
 		B0F08FCD28A2497F00986EB6 /* SportAttendanceItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceItemModel.h; sourceTree = "<group>"; };
 		B0F08FCE28A2497F00986EB6 /* SportAttendanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceModel.m; sourceTree = "<group>"; };
@@ -2754,17 +2760,6 @@
 				14B73F8A2823577600D08ADD /* SSRButton.m */,
 			);
 			path = SSRButton;
-			sourceTree = "<group>";
-		};
-		14CED375288A590F00BADA8B /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				14CED370288A590400BADA8B /* RisingFoundationExtension.h */,
-				14CED36F288A590400BADA8B /* RisingFoundationExtention.m */,
-				14CED371288A590500BADA8B /* RisingUIKitExtension.h */,
-				14CED372288A590500BADA8B /* RisingUIKitExtension.m */,
-			);
-			path = Extension;
 			sourceTree = "<group>";
 		};
 		14CED380288A594E00BADA8B /* RisingRouter */ = {
@@ -3987,7 +3982,7 @@
 				AA0DDAC8286C8B1900802324 /* MineMainPage */,
 				1A0AC5F5252B234700221514 /* Swift */,
 				1A141339235F524B0001417E /* Tools */,
-				14CED375288A590F00BADA8B /* Extension */,
+				B04204FF28A4B1BB00903E86 /* Extension */,
 				14CED380288A594E00BADA8B /* RisingRouter */,
 				FE87CE1A27E876FE008D7148 /* Marco */,
 				FE87CE1B27E98F82008D7148 /* Supporting Files */,
@@ -3996,6 +3991,10 @@
 				1A9B7678235F50A800725937 /* Info.plist */,
 				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
 				14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */,
+				B042050628A4B2E800903E86 /* test1ViewController.h */,
+				B042050728A4B2E800903E86 /* test1ViewController.m */,
+				B042050928A4B2F300903E86 /* test2ViewController.h */,
+				B042050A28A4B2F300903E86 /* test2ViewController.m */,
 			);
 			path = CyxbsMobile2019_iOS;
 			sourceTree = "<group>";
@@ -5791,6 +5790,17 @@
 			path = ArticleRemarkPraise;
 			sourceTree = "<group>";
 		};
+		B04204FF28A4B1BB00903E86 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B042050028A4B1BB00903E86 /* RisingFoundationExtension.h */,
+				B042050128A4B1BB00903E86 /* RisingUIKitExtension.m */,
+				B042050228A4B1BB00903E86 /* RisingFoundationExtention.m */,
+				B042050328A4B1BB00903E86 /* RisingUIKitExtension.h */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		B0F08FCA28A2497F00986EB6 /* Discover_SportAttendance */ = {
 			isa = PBXGroup;
 			children = (
@@ -6725,7 +6735,6 @@
 				DB34EB2A239BD4550052B65E /* LessonButtonController.m in Sources */,
 				1893DC8D26EA32F1007E871E /* MGDQueue.m in Sources */,
 				B0F08FEB28A249E200986EB6 /* DiscoverSAVC.m in Sources */,
-				14CED373288A590500BADA8B /* RisingFoundationExtention.m in Sources */,
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
 				18CDF4C1257F8DBD006E8E5C /* sendEmailModel.m in Sources */,
 				1A1691FE2430ECFE0076EDC7 /* ClassTabBar.m in Sources */,
@@ -6763,6 +6772,7 @@
 				1404747D27F46F0D00307209 /* DiscoverADController.m in Sources */,
 				FE11E82027E8712B00C4B90B /* QAListSegmentView.m in Sources */,
 				AA4CD5EF25EE7B7F002D9394 /* ArticleModel.m in Sources */,
+				B042050528A4B1BB00903E86 /* RisingFoundationExtention.m in Sources */,
 				AA0DDB80286C8B1A00802324 /* PMPEditingButton.m in Sources */,
 				FE2C135327AEF629001CF7AF /* ToDoTableView.m in Sources */,
 				18CDF674257F91BD006E8E5C /* TestCardTableViewCell.m in Sources */,
@@ -6819,6 +6829,7 @@
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				AA4FA1DF25C2DE5F005139BA /* LearnMoreViewController.m in Sources */,
 				AA7AB9652873E5EA00BA6790 /* CYSearchEndKnowledgeDetailView.m in Sources */,
+				B042050828A4B2E800903E86 /* test1ViewController.m in Sources */,
 				1893DC8926EA32A3007E871E /* MGDGCD.m in Sources */,
 				AA0DDB6C286C8B1A00802324 /* EditMyInfoModel.m in Sources */,
 				AA7ABAF72873EA6D00BA6790 /* UIView+FrameTool.m in Sources */,
@@ -6901,7 +6912,6 @@
 				AA7ABAFC2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.m in Sources */,
 				14981FF927FEAEB800AD2A29 /* JWZXDetailNewsTopView.m in Sources */,
 				EE131C212471362E00B6ED97 /* URLController.m in Sources */,
-				14CED374288A590500BADA8B /* RisingUIKitExtension.m in Sources */,
 				AA0DDB6F286C8B1A00802324 /* MineEditTextField.m in Sources */,
 				14E7E4A827F5762500B67469 /* QuestionSelectView.m in Sources */,
 				18CDF689257F91BD006E8E5C /* WeDateViewController.m in Sources */,
@@ -6987,6 +6997,7 @@
 				AA7ABAB02873EA5500BA6790 /* NewQAFollowTableView.m in Sources */,
 				18CDF681257F91BD006E8E5C /* EmptyClassPresenter.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
+				B042050428A4B1BB00903E86 /* RisingUIKitExtension.m in Sources */,
 				18CDF6AF257F91BD006E8E5C /* SCGenericChart.m in Sources */,
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
 				AA7ABA252873EA4100BA6790 /* SZHPhotoImageView.m in Sources */,
@@ -7099,6 +7110,7 @@
 				AA7ABAB82873EA5500BA6790 /* SearchBtn.m in Sources */,
 				18CDF4C6257F8DBD006E8E5C /* setEmail.m in Sources */,
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
+				B042050B28A4B2F300903E86 /* test2ViewController.m in Sources */,
 				AA7ABAA42873EA5400BA6790 /* StarPostModel.m in Sources */,
 				FE0D60452801702B00319A9E /* SchoolBusVC.m in Sources */,
 				AA0DDB54286C8B1900802324 /* MineSignView.m in Sources */,

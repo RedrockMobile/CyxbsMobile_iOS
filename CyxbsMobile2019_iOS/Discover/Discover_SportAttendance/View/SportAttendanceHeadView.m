@@ -50,6 +50,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.userInteractionEnabled = NO;
         //背景渐变色
         CAGradientLayer *gl = [CAGradientLayer layer];
         gl.frame = self.frame;
@@ -154,7 +155,7 @@
 #pragma mark - Setter
 
 - (void)loadViewWithDate:(SportAttendanceModel *)sAData Isholiday:(bool)holiday{
-    //如果数据正确且不在假期
+    //数据正确且不在假期
     if (sAData.status == 10000 && holiday == false ) {
         self.totDoneLab.text = [NSString stringWithFormat:@"%ld", sAData.run_done + sAData.other_done];
         self.totNeedLab.text = [NSString stringWithFormat:@"/%ld", sAData.run_total + sAData.other_total];
@@ -171,10 +172,8 @@
 - (void)configUI{
     self.totDoneLab.text = @"null";
 
-    
     self.runDoneLab.text = @"跑步：null";
 
-    
     self.othDoneLab.text = @"其他：null";
     
     self.awaLab.text = @"奖励:null";
