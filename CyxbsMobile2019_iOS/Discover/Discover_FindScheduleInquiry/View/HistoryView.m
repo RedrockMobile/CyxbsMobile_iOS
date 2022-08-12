@@ -20,16 +20,20 @@
 @property (nonatomic, strong)UIButton *clearHistoryItemBtn;
 @property (nonatomic, strong)UILabel *historyLabel;
 
-// 历史记录
+/// 历史记录
 @property (nonatomic, strong) UICollectionView *historyCollectionView;
-// 我的关联
+/// @"我的关联"
 @property (nonatomic, strong) UILabel *myCorrelation;
+/// 关联人数
 @property (nonatomic, strong) UILabel *correlationNumberLabel;
-@property (nonatomic, strong) UIButton *correlationBtn;
-@property (nonatomic, strong) UIImageView *correlationBackground;// 背景
-@property (nonatomic, strong) UIImageView *correlationLine;// 分隔线
-@property (nonatomic, strong) UIButton *clearCorrelationBtn;// 清除关联
-
+/// 关联背景图
+@property (nonatomic, strong) UIImageView *correlationBackground;
+/// 分隔线
+@property (nonatomic, strong) UIImageView *correlationLine;
+/// 清除关联
+@property (nonatomic, strong) UIButton *clearCorrelationBtn;
+/// 进入关联同学课表按钮
+@property (nonatomic, strong) UIButton *getInCorrelationBtn;
 @end
 
 @implementation HistoryView
@@ -302,6 +306,7 @@
 }
 
 #pragma mark - 我的关联
+//MARK: add方法
 // 显示"我的关联"Label
 - (void)addMyCorrelationLabel {
     UILabel *label = [[UILabel alloc] init];
@@ -415,15 +420,16 @@
         make.top.equalTo(self.myCorrelation.mas_bottom).mas_offset(9);
         make.left.equalTo(self.myCorrelation);
     }];
-    [self addCorrelationNumberLabel];// ?/1
-    [self addClearCorrelationBtn];  // 清除按钮
     
-    [self addSeperateLine];         // 分割线
-    [self addPeoplePicture];        // 小人
-    [self addCorrelationCentralLabel];// @“还没有关联同学哦”
-    [self addCorrelationName];      // name
-    [self addCorrelationMajor];     // major
-    [self addCorrelationNumber];    // number
+    [self addCorrelationNumberLabel];
+    [self addClearCorrelationBtn];
+    [self addSeperateLine];
+    [self addPeoplePicture];
+    [self addCorrelationCentralLabel];
+    [self addCorrelationName];
+    [self addCorrelationMajor];
+    [self addCorrelationNumber];
+    [self addGetInCorrelationBtn];
 }
 
 // 添加清除关联按钮
@@ -503,7 +509,6 @@
             label.textColor = [UIColor colorWithHexString:@"#2A4E84" alpha:1];
         }
         label.font = [UIFont fontWithName:PingFangSC size:10];
-        
         [self addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.correlationName);
@@ -512,6 +517,20 @@
     }
 }
 
+- (void)addGetInCorrelationBtn {
+    if ([NSUserDefaults.standardUserDefaults boolForKey:ClassSchedule_correlationClass_BOOL]) {
+        UIButton *btn = [[UIButton alloc] init];
+        self.getInCorrelationBtn = btn;
+        [btn setBackgroundImage:[UIImage imageNamed:@"getInImage"] forState:UIControlStateNormal];
+        [self addSubview:btn];
+        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.correlationBackground);
+            make.right.equalTo(self.correlationBackground).mas_offset(-18);
+        }];
+    }
+}
+
+//MARK: 其他方法
 // 我的关联布局，要动态变化
 - (void)correlationPosition {
     if (self.dataArray.count == 0) {
@@ -527,34 +546,14 @@
             make.top.equalTo(lastBtn.mas_bottom).mas_offset(31);
         }];
     }
-    
 }
 
 // 点击清除按钮
 - (void)clearCorrelationPeople {
-    // 弹窗
     // 1.缓存移除
     [self clearUserDefaultCorrelation];
     // 2.视图移除
     [self clearOldCorrelationPeopleView];
-    
-}
-
-// 在清除按钮中使用：改变关联视图
-- (void)clearOldCorrelationPeopleView {
-    // 删：
-    [self.correlationName removeFromSuperview];// 名字
-    [self.correlationMajor removeFromSuperview];// 专业
-    [self.correlationNumber removeFromSuperview];// 学号
-    [self.correlationNumberLabel removeFromSuperview];// ？/1
-    [self.clearCorrelationBtn removeFromSuperview];// 扫帚
-    [self.correlationPeople removeFromSuperview];// 小人
-    // 加：
-        // 1.@“还没有关联同学哦”
-    [self addCorrelationCentralLabel];// @“还没有关联同学哦”
-        // 2.小人图
-    [self addPeoplePicture];        // 小人
-    
 }
 
 // 在清除按钮中使用：移除缓存
@@ -564,5 +563,22 @@
     [NSUserDefaults.standardUserDefaults removeObjectForKey:ClassSchedule_correlationMajor_String];
     [NSUserDefaults.standardUserDefaults removeObjectForKey:ClassSchedule_correlationStuNum_String];
 }
+
+// 在清除按钮中使用：改变关联视图
+- (void)clearOldCorrelationPeopleView {
+    // 删：
+    [self.getInCorrelationBtn removeFromSuperview];
+    [self.correlationName removeFromSuperview];
+    [self.correlationMajor removeFromSuperview];
+    [self.correlationNumber removeFromSuperview];
+    [self.correlationNumberLabel removeFromSuperview];
+    [self.clearCorrelationBtn removeFromSuperview];
+    [self.correlationPeople removeFromSuperview];
+    // 加：
+    [self addCorrelationCentralLabel];
+    [self addPeoplePicture];
+    
+}
+
 
 @end
