@@ -9,7 +9,7 @@
 import UIKit
 
 
-protocol PrivacyTipViewDelegate {
+@objc protocol PrivacyTipViewDelegate {
     /// 点击后弹出 "《掌上重邮用户协议》" 的具体内容
     func showPrivacyPolicy(_ view: PrivacyTipView)
     /// 点击 “同意” 按钮后调用
@@ -19,7 +19,7 @@ protocol PrivacyTipViewDelegate {
 }
 
 /// 隐私政策提醒
-final class PrivacyTipView: UIView, UITextViewDelegate {
+@objc final class PrivacyTipView: UIView, UITextViewDelegate {
     /// 白色窗口
     private let containView = UIView.init()
     
@@ -45,7 +45,7 @@ final class PrivacyTipView: UIView, UITextViewDelegate {
     private let privacyKey = "PrivacyPolicy"
     
     /// 代理
-    var delegate: PrivacyTipViewDelegate?
+    @objc var delegate: PrivacyTipViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)

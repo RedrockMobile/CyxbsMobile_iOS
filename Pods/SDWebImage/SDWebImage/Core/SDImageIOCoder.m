@@ -13,8 +13,6 @@
 #import "UIImage+Metadata.h"
 #import "SDImageIOAnimatedCoderInternal.h"
 
-// Specify DPI for vector format in CGImageSource, like PDF
-static NSString * kSDCGImageSourceRasterizationDPI = @"kCGImageSourceRasterizationDPI";
 // Specify File Size for lossy format encoding, like JPEG
 static NSString * kSDCGImageDestinationRequestedFileSize = @"kCGImageDestinationRequestedFileSize";
 
@@ -54,31 +52,6 @@ static NSString * kSDCGImageDestinationRequestedFileSize = @"kCGImageDestination
     return coder;
 }
 
-#pragma mark - Utils
-+ (CGRect)boxRectFromPDFFData:(nonnull NSData *)data {
-    CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
-    if (!provider) {
-        return CGRectZero;
-    }
-    CGPDFDocumentRef document = CGPDFDocumentCreateWithProvider(provider);
-    CGDataProviderRelease(provider);
-    if (!document) {
-        return CGRectZero;
-    }
-    
-    // `CGPDFDocumentGetPage` page number is 1-indexed.
-    CGPDFPageRef page = CGPDFDocumentGetPage(document, 1);
-    if (!page) {
-        CGPDFDocumentRelease(document);
-        return CGRectZero;
-    }
-    
-    CGRect boxRect = CGPDFPageGetBoxRect(page, kCGPDFMediaBox);
-    CGPDFDocumentRelease(document);
-    
-    return boxRect;
-}
-
 #pragma mark - Decode
 - (BOOL)canDecodeFromData:(nullable NSData *)data {
     return YES;
@@ -115,39 +88,13 @@ static NSString * kSDCGImageDestinationRequestedFileSize = @"kCGImageDestination
         return nil;
     }
     
-    CFStringRef uttype = CGImageSourceGetType(source);
-    SDImageFormat imageFormat = [NSData sd_imageFormatFromUTType:uttype];
-    // Check vector format
-    NSDictionary *decodingOptions = nil;
-    if (imageFormat == SDImageFormatPDF) {
-        // Use 72 DPI (1:1 inch to pixel) by default, matching Apple's PDFKit behavior
-        NSUInteger rasterizationDPI = 72;
-        CGFloat maxPixelSize = MAX(thumbnailSize.width, thumbnailSize.height);
-        if (maxPixelSize > 0) {
-            // Calculate DPI based on PDF box and pixel size
-            CGRect boxRect = [self.class boxRectFromPDFFData:data];
-            CGFloat maxBoxSize = MAX(boxRect.size.width, boxRect.size.height);
-            if (maxBoxSize > 0) {
-                rasterizationDPI = rasterizationDPI * (maxPixelSize / maxBoxSize);
-            }
-        }
-        decodingOptions = @{
-            // This option will cause ImageIO return the pixel size from `CGImageSourceCopyProperties`
-            // If not provided, it always return 0 size
-            kSDCGImageSourceRasterizationDPI : @(rasterizationDPI),
-        };
-        // Already calculated DPI, avoid re-calculation based on thumbnail information
-        preserveAspectRatio = YES;
-        thumbnailSize = CGSizeZero;
-    }
-    
-    UIImage *image = [SDImageIOAnimatedCoder createFrameAtIndex:0 source:source scale:scale preserveAspectRatio:preserveAspectRatio thumbnailSize:thumbnailSize options:decodingOptions];
+    UIImage *image = [SDImageIOAnimatedCoder createFrameAtIndex:0 source:source scale:scale preserveAspectRatio:preserveAspectRatio thumbnailSize:thumbnailSize options:nil];
     CFRelease(source);
     if (!image) {
         return nil;
     }
     
-    image.sd_imageFormat = imageFormat;
+    image.sd_imageFormat = [NSData sd_imageFormatForImageData:data];
     return image;
 }
 
@@ -305,16 +252,14 @@ static NSString * kSDCGImageDestinationRequestedFileSize = @"kCGImageDestination
     }
     CGFloat pixelWidth = (CGFloat)CGImageGetWidth(imageRef);
     CGFloat pixelHeight = (CGFloat)CGImageGetHeight(imageRef);
-    CGFloat finalPixelSize = 0;
-    BOOL encodeFullImage = maxPixelSize.width == 0 || maxPixelSize.height == 0 || pixelWidth == 0 || pixelHeight == 0 || (pixelWidth <= maxPixelSize.width && pixelHeight <= maxPixelSize.height);
-    if (!encodeFullImage) {
-        // Thumbnail Encoding
+    if (maxPixelSize.width > 0 && maxPixelSize.height > 0 && pixelWidth > maxPixelSize.width && pixelHeight > maxPixelSize.height) {
         CGFloat pixelRatio = pixelWidth / pixelHeight;
         CGFloat maxPixelSizeRatio = maxPixelSize.width / maxPixelSize.height;
+        CGFloat finalPixelSize;
         if (pixelRatio > maxPixelSizeRatio) {
-            finalPixelSize = MAX(maxPixelSize.width, maxPixelSize.width / pixelRatio);
+            finalPixelSize = maxPixelSize.width;
         } else {
-            finalPixelSize = MAX(maxPixelSize.height, maxPixelSize.height * pixelRatio);
+            finalPixelSize = maxPixelSize.height;
         }
         properties[(__bridge NSString *)kCGImageDestinationImageMaxPixelSize] = @(finalPixelSize);
     }

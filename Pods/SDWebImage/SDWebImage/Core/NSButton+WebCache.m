@@ -149,7 +149,7 @@ static NSString * const SDAlternateImageOperationKey = @"NSButtonAlternateImageO
     [self sd_cancelImageLoadOperationWithKey:SDAlternateImageOperationKey];
 }
 
-#pragma mark - Private
+#pragma mar - Private
 
 - (NSURL *)sd_currentImageURL {
     return objc_getAssociatedObject(self, @selector(sd_currentImageURL));

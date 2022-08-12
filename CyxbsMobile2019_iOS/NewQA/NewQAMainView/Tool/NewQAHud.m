@@ -69,4 +69,12 @@
     }
 }
 
++ (MBProgressHUD *)showhudWithCustomView:(UIView *)customView AddView:(UIView *)superView {
+    MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:superView animated:YES];
+    hud.mode = MBProgressHUDModeCustomView;
+    [hud setColor:UIColor.clearColor];
+    hud.customView = customView;
+    return hud;
+}
+
 @end

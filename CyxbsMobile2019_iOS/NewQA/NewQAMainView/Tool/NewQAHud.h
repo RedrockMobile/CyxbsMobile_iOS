@@ -20,6 +20,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)showHudAt:(nullable UIView *)view withStr:(NSString *)title enableInteract:(BOOL)is completion:(void(^)(void))block;
 
+/// 弹出自定义View的弹窗，(可返回该弹窗，可在自定义View中设置按钮使该弹窗消失）
+/// @param customView 自定义View
+/// @param superView 弹窗应该加到的View
++ (MBProgressHUD *)showhudWithCustomView:(UIView *)customView AddView:(UIView *)superView;
+
 @end
 
 NS_ASSUME_NONNULL_END
