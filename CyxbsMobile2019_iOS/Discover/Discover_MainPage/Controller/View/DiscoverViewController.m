@@ -152,7 +152,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.navigationController.navigationBar.hidden = YES;
     
     if (self.loginStatus != AlreadyLogin) {
-        [self presentToLogin];
+//        [self presentToLogin];
         CCLog(@"needLogIn, %lud", self.loginStatus);
     } else {
         [self RequestCheckinInfo];

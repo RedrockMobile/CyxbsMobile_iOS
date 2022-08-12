@@ -24,7 +24,7 @@
 @property (nonatomic, strong) UILabel *timeLabel;
 
 @property (nonatomic, assign) bool Isholiday;
-
+@property (nonatomic, assign) bool IsLoad;
 @end
 
 @implementation SportAttendanceViewController
@@ -33,18 +33,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    //默认为错误页
+    [self addWrongView];
     //判断是否假期
     [self judgeHoliday];
-    //数据正确加载
-    if (self.sAModel.status == 10000) {
-        if (self.Isholiday) {
-            [self addHolidayView];
+    if (self.IsLoad) {
+        //数据正确加载
+        if (self.sAModel.status == 10000) {
+            if (self.Isholiday) {
+                [self addHolidayView];
+            }else{
+                [self addSussesView];
+            }
         }else{
-            [self addSussesView];
+            [self addWrongView];
         }
     }else{
-        [self addWrongView];
+        [self loadNewData];
     }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -202,16 +209,18 @@
 //加载新数据
 - (void) loadNewData{
     [self.sAModel requestSuccess:^{
-        if (self.sAModel.status == 10000) {
-            [self addSussesView];
-            //向前页面回传数据
-            [self.router sourceForRouterPath:@"test1" parameters:@{@"sportNewData":self.sAModel}];
-        }
+            if (self.Isholiday) {
+                [self addHolidayView];
+            }else{
+                [self addSussesView];
+                //向前页面回传数据
+                [self.router sourceForRouterPath:@"test1" parameters:@{@"sportNewData":self.sAModel}];
+            }
         [self.sADetails.mj_header endRefreshing];
     }
         failure:^(NSError * _Nonnull error) {
             NSLog(@"体育打卡刷新失败");
-        [self.sADetails.mj_header endRefreshing];
+            [self.sADetails.mj_header endRefreshing];
     }];
 }
 
@@ -362,6 +371,7 @@
             SportAttendanceViewController *vc = [[self alloc] init];
             SportAttendanceModel *model = request.parameters[@"sportData"];
             vc.sAModel = model;
+            vc.IsLoad = true;//数据已经尝试过加载
             response.responseController = vc;
         } break;
     }
