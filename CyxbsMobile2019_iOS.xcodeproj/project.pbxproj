@@ -541,8 +541,6 @@
 		AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */; };
 		B042050428A4B1BB00903E86 /* RisingUIKitExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B042050128A4B1BB00903E86 /* RisingUIKitExtension.m */; };
 		B042050528A4B1BB00903E86 /* RisingFoundationExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = B042050228A4B1BB00903E86 /* RisingFoundationExtention.m */; };
-		B042050828A4B2E800903E86 /* test1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B042050728A4B2E800903E86 /* test1ViewController.m */; };
-		B042050B28A4B2F300903E86 /* test2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B042050A28A4B2F300903E86 /* test2ViewController.m */; };
 		B0F08FDD28A2497F00986EB6 /* SportAttendanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FCE28A2497F00986EB6 /* SportAttendanceModel.m */; };
 		B0F08FDE28A2497F00986EB6 /* SportAttendanceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FD128A2497F00986EB6 /* SportAttendanceItem.m */; };
 		B0F08FDF28A2497F00986EB6 /* SportAttendanceItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FD228A2497F00986EB6 /* SportAttendanceItemModel.m */; };
@@ -1764,10 +1762,6 @@
 		B042050128A4B1BB00903E86 /* RisingUIKitExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingUIKitExtension.m; sourceTree = "<group>"; };
 		B042050228A4B1BB00903E86 /* RisingFoundationExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingFoundationExtention.m; sourceTree = "<group>"; };
 		B042050328A4B1BB00903E86 /* RisingUIKitExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingUIKitExtension.h; sourceTree = "<group>"; };
-		B042050628A4B2E800903E86 /* test1ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = test1ViewController.h; sourceTree = "<group>"; };
-		B042050728A4B2E800903E86 /* test1ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = test1ViewController.m; sourceTree = "<group>"; };
-		B042050928A4B2F300903E86 /* test2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = test2ViewController.h; sourceTree = "<group>"; };
-		B042050A28A4B2F300903E86 /* test2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = test2ViewController.m; sourceTree = "<group>"; };
 		B0F08FCC28A2497F00986EB6 /* SportAttendanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceModel.h; sourceTree = "<group>"; };
 		B0F08FCD28A2497F00986EB6 /* SportAttendanceItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceItemModel.h; sourceTree = "<group>"; };
 		B0F08FCE28A2497F00986EB6 /* SportAttendanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceModel.m; sourceTree = "<group>"; };
@@ -3991,10 +3985,6 @@
 				1A9B7678235F50A800725937 /* Info.plist */,
 				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
 				14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */,
-				B042050628A4B2E800903E86 /* test1ViewController.h */,
-				B042050728A4B2E800903E86 /* test1ViewController.m */,
-				B042050928A4B2F300903E86 /* test2ViewController.h */,
-				B042050A28A4B2F300903E86 /* test2ViewController.m */,
 			);
 			path = CyxbsMobile2019_iOS;
 			sourceTree = "<group>";
@@ -6829,7 +6819,6 @@
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				AA4FA1DF25C2DE5F005139BA /* LearnMoreViewController.m in Sources */,
 				AA7AB9652873E5EA00BA6790 /* CYSearchEndKnowledgeDetailView.m in Sources */,
-				B042050828A4B2E800903E86 /* test1ViewController.m in Sources */,
 				1893DC8926EA32A3007E871E /* MGDGCD.m in Sources */,
 				AA0DDB6C286C8B1A00802324 /* EditMyInfoModel.m in Sources */,
 				AA7ABAF72873EA6D00BA6790 /* UIView+FrameTool.m in Sources */,
@@ -7110,7 +7099,6 @@
 				AA7ABAB82873EA5500BA6790 /* SearchBtn.m in Sources */,
 				18CDF4C6257F8DBD006E8E5C /* setEmail.m in Sources */,
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
-				B042050B28A4B2F300903E86 /* test2ViewController.m in Sources */,
 				AA7ABAA42873EA5400BA6790 /* StarPostModel.m in Sources */,
 				FE0D60452801702B00319A9E /* SchoolBusVC.m in Sources */,
 				AA0DDB54286C8B1900802324 /* MineSignView.m in Sources */,

@@ -37,7 +37,11 @@
     [self judgeHoliday];
     //数据正确加载
     if (self.sAModel.status == 10000) {
-        [self addSussesView];
+        if (self.Isholiday) {
+            [self addHolidayView];
+        }else{
+            [self addSussesView];
+        }
     }else{
         [self addWrongView];
     }
@@ -50,8 +54,7 @@
 #pragma mark - UITableViewDataSource
 //设置每个分区的行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    //仅测试sa
-//    return 15;
+
     return self.sAModel.sAItemModel.itemAry.count;
 }
 
@@ -70,7 +73,7 @@
     //禁止点击
     cell.userInteractionEnabled =NO;
     //   显示所有内容
-    if (self.sAModel.sAItemModel.itemAry != 0 ) {
+    if (self.sAModel.sAItemModel.itemAry.count != 0) {
         cell.sa = self.sAModel.sAItemModel.itemAry[indexPath.row];
     }
     return cell;
@@ -141,11 +144,11 @@
     long year = [components year];
     
     UILabel *timeLabel = [[UILabel alloc]init];
+    timeLabel.text = @"null";
     self.timeLabel = timeLabel;
     
     if (self.Isholiday) {
         timeLabel.text = @"放假中";
-        [self addHolidayImg];
     }else{
         if (month > 1 && month < 9) {
             timeLabel.text = [NSString stringWithFormat:@"%ld年 春", year];
@@ -189,12 +192,11 @@
 - (void) judgeHoliday{
     //获取当前周数
     int count = [getNowWeek_NSString.numberValue intValue] ;
-    if (count > 50) {
+    if (count > 19) {
         _Isholiday = true;
     }else{
         _Isholiday = false;
     }
-    
 }
 
 //加载新数据
@@ -202,7 +204,8 @@
     [self.sAModel requestSuccess:^{
         if (self.sAModel.status == 10000) {
             [self addSussesView];
-            //需要回传数据!!
+            //向前页面回传数据
+            [self.router sourceForRouterPath:@"test1" parameters:@{@"sportNewData":self.sAModel}];
         }
         [self.sADetails.mj_header endRefreshing];
     }
@@ -218,9 +221,6 @@
     [self.view removeAllSubviews];
     //添加头视图
     SportAttendanceHeadView *headView = [[SportAttendanceHeadView alloc] init];
-    if (self.sAModel.run_total + self.sAModel.other_total == 0) {
-        [self addNoRunImg];
-    }
     //加载头视图
     [headView loadViewWithDate:self.sAModel Isholiday:self.Isholiday];
     [self.view addSubview:headView];
@@ -228,15 +228,16 @@
     [self addCustomTabbarView];
     //添加跑步的详情列表
     [self.view addSubview:self.sADetails];
-
-}
-
-- (void) addWrongView{
-    //添加头视图
-    SportAttendanceHeadView *headView = [[SportAttendanceHeadView alloc] init];
+    //判断是否已完成总数为0
     if (self.sAModel.run_total + self.sAModel.other_total == 0) {
         [self addNoRunImg];
     }
+}
+
+- (void) addWrongView{
+    self.sADetails.bounces = NO;
+    //添加头视图
+    SportAttendanceHeadView *headView = [[SportAttendanceHeadView alloc] init];
     //加载头视图
     [headView loadViewWithDate:self.sAModel Isholiday:self.Isholiday];
     [self.view addSubview:headView];
@@ -245,12 +246,11 @@
     //添加跑步的详情列表
     [self.view addSubview:self.sADetails];
     
-    [self.sADetails removeAllSubviews];
     UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"404"]];
-    [self.sADetails addSubview:img];
+    [self.view addSubview:img];
     [img mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.sADetails);
-        make.top.equalTo(self.sADetails).offset(SCREEN_HEIGHT/5);
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(self.view).offset(SCREEN_HEIGHT/2);
         make.width.equalTo(@170);
         make.height.equalTo(@110);
     }];
@@ -260,20 +260,19 @@
     Lab.font = [UIFont fontWithName:PingFangSCMedium size:12];
     Lab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54"] darkColor:[UIColor colorWithHexString:@"#DFDFE3"]];
     
-    [self.sADetails addSubview:Lab];
+    [self.view addSubview:Lab];
     [Lab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.sADetails);
+        make.centerX.equalTo(self.view);
         make.top.equalTo(img.mas_bottom).offset(20);
     }];
 }
 
 - (void) addNoRunImg{
-    [self.sADetails removeAllSubviews];
     UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"人在手机里"]];
-    [self.sADetails addSubview:img];
+    [self.view addSubview:img];
     [img mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.sADetails);
-        make.top.equalTo(self.sADetails).offset(SCREEN_HEIGHT/5);
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(self.view).offset(SCREEN_HEIGHT/2);
         make.width.equalTo(@170);
         make.height.equalTo(@110);
     }];
@@ -283,20 +282,31 @@
     Lab.font = [UIFont fontWithName:PingFangSCMedium size:12];
     Lab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54"] darkColor:[UIColor colorWithHexString:@"#DFDFE3"]];
     
-    [self.sADetails addSubview:Lab];
+    [self.view addSubview:Lab];
     [Lab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.sADetails);
+        make.centerX.equalTo(self.view);
         make.top.equalTo(img.mas_bottom).offset(20);
     }];
 }
 
-- (void) addHolidayImg{
-    [self.sADetails removeAllSubviews];
+- (void) addHolidayView{
+    self.sAModel = nil;
+    self.sADetails.bounces = NO;
+    //添加头视图
+    SportAttendanceHeadView *headView = [[SportAttendanceHeadView alloc] init];
+    //加载头视图
+    [headView loadViewWithDate:self.sAModel Isholiday:self.Isholiday];
+    [self.view addSubview:headView];
+    //添加返回条
+    [self addCustomTabbarView];
+    //添加跑步的详情列表
+    [self.view addSubview:self.sADetails];
+    
     UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"放假啦"]];
-    [self.sADetails addSubview:img];
+    [self.view addSubview:img];
     [img mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.sADetails);
-        make.top.equalTo(self.sADetails).offset(SCREEN_HEIGHT/5);
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(self.view).offset(SCREEN_HEIGHT/2);
         make.width.equalTo(@170);
         make.height.equalTo(@110);
     }];
@@ -306,12 +316,11 @@
     Lab.font = [UIFont fontWithName:PingFangSCMedium size:12];
     Lab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54"] darkColor:[UIColor colorWithHexString:@"#DFDFE3"]];
     
-    [self.sADetails addSubview:Lab];
+    [self.view addSubview:Lab];
     [Lab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.sADetails);
+        make.centerX.equalTo(self.view);
         make.top.equalTo(img.mas_bottom).offset(20);
     }];
-    
 }
 
 #pragma mark - RisingRouterHandler

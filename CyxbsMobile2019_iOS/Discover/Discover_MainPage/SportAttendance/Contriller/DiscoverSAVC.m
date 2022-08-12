@@ -49,15 +49,13 @@
     
     //默认为未绑定的失败页
     [self addFailureView];
-
-    //仅测试sa
-    [self addWrongView];
-//    [self addSuccessView];
     
+    [self addSuccessView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    //尝试获取数据
     [self getSportData];
 }
 
@@ -179,7 +177,7 @@
 
     //点击按钮进入详情页
     [_SABtn removeAllTargets];
-    [_SABtn addTarget:self action:@selector(lookData) forControlEvents:UIControlEventTouchUpInside];
+    [_SABtn addTarget:self action:@selector(lookDataView) forControlEvents:UIControlEventTouchUpInside];
 }
 
 //查询失败,点击进入绑定页
@@ -240,9 +238,8 @@
     
     //点击按钮进入错误页
     [_SABtn removeAllTargets];
-    [_SABtn addTarget:self action:@selector(lookData) forControlEvents:UIControlEventTouchUpInside];
+    [_SABtn addTarget:self action:@selector(lookDataView) forControlEvents:UIControlEventTouchUpInside];
 }
-
 
 //移除视图
 - (void)removeView{
@@ -266,14 +263,14 @@
 }
 
 //查看详细数据
-- (void)lookData{
+- (void)lookDataView{
     UIViewController *vc = [self.router controllerForRouterPath:@"SportController" parameters:@{@"sportData":self.sAModel}];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 
-//绑定成功刷新数据
+//绑定成功重新获取数据
 - (void)idsBindingSuccess{
     [self getSportData];
 }
@@ -325,6 +322,13 @@
             
         case RouterRequestParameters: {
             // TODO: 传回参数
+            UINavigationController *nav = (request.requestController ? request.requestController : RisingRouterRequest.useTopController).navigationController;
+            if (nav) {
+                DiscoverSAVC *vc = [nav.viewControllers objectAtIndex:nav.viewControllers.count - 2];
+                SportAttendanceModel *NewData = request.parameters[@"sportNewData"];
+                vc.sAModel = NewData;
+                NSParameterAssert(NewData);
+            }
         } break;
             
         case RouterRequestController: {
