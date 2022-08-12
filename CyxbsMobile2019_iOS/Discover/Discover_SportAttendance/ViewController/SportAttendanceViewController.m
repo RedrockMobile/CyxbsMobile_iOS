@@ -214,7 +214,7 @@
             }else{
                 [self addSussesView];
                 //向前页面回传数据
-                [self.router sourceForRouterPath:@"test1" parameters:@{@"sportNewData":self.sAModel}];
+                [self.router sourceForRouterPath:@"DiscoverSAVC" parameters:@{@"sportNewData":self.sAModel}];
             }
         [self.sADetails.mj_header endRefreshing];
     }

@@ -49,6 +49,7 @@
     
     //默认为未绑定的失败页
     [self addFailureView];
+    [self addSuccessView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -322,7 +323,7 @@
             // TODO: 传回参数
             UINavigationController *nav = (request.requestController ? request.requestController : RisingRouterRequest.useTopController).navigationController;
             if (nav) {
-                DiscoverSAVC *vc = [nav.viewControllers objectAtIndex:nav.viewControllers.count - 2];
+                DiscoverSAVC *vc = [[nav.viewControllers objectAtIndex:0].childViewControllers objectAtIndex:2];
                 SportAttendanceModel *NewData = request.parameters[@"sportNewData"];
                 vc.sAModel = NewData;
                 NSParameterAssert(NewData);
