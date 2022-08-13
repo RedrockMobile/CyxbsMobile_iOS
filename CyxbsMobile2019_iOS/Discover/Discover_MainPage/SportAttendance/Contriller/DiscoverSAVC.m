@@ -49,7 +49,6 @@
     
     //默认为未绑定的失败页
     [self addFailureView];
-    [self addSuccessView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
