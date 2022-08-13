@@ -14,6 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)showHudWith:(NSString *)title AddView:(UIView *)view;
 
+/// 需要手动调用使hud消失的文字hud（登陆界面的“登陆中...”）
++ (MBProgressHUD *)showNotHideHudWith:(NSString *)title AddView:(UIView *)view;
+
 + (void)showHudWith:(NSString *)title AddView:(UIView *)view AndToDo:(void(^)(void))block;
 
 + (void)showHudAtWindowWithStr:(NSString *)title enableInteract:(BOOL)is;

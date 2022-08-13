@@ -11,10 +11,21 @@
 #import "ForgetPwdVC.h"
 #import "UserProtocolViewController.h"  // 协议
 
+// Tool
+#import "TodoSyncTool.h"
 
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
 
-@interface LoginVC () < PrivacyTipViewDelegate>
+@interface LoginVC () <
+    UITextFieldDelegate,
+    PrivacyTipViewDelegate
+>
+
+/// 新的隐私协议弹窗
+@property (nonatomic, strong) PrivacyTipView *privacyView;
+
+/// "登陆中“弹窗
+@property (nonatomic, strong) MBProgressHUD *loginingHud;
 
 @end
 
@@ -33,7 +44,8 @@
     [self setUIData];
     // 加入Logo和忘记密码按钮
     [self setBtnSEL];
-//    PrivacyTipView *pvc
+    // 展示新协议
+    [self showPrivacyTip];
 }
 
 #pragma mark - Method
@@ -101,9 +113,9 @@
     viewFrame.size = CGSizeMake(SCREEN_WIDTH * 0.8, SCREEN_HEIGHT * 0.3);
     self.tipView.frame = viewFrame;
     self.tipView.center = CGPointMake(SCREEN_WIDTH * 0.5, SCREEN_HEIGHT * 0.5);
-    // 2 设置标题
+    // 2.设置标题
     self.tipTitleLab.text = @"错误";
-    // 3 设置正文
+    // 3.设置正文
     self.tipTextLab.numberOfLines = 2;
     self.tipTextLab.text = @"账号和密码错误，请重新输入\n或进行忘记密码操作";
     // 正文位置
@@ -115,6 +127,15 @@
     }];
 }
 
+- (void)showPrivacyTip {
+    // 弹出隐私协议窗口
+    [self.mainView addSubview:self.privacyView];
+//    if (![NSUserDefaults.standardUserDefaults boolForKey:@"ReadPrivacyTip"]) {
+//        [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"ReadPrivacyTip"];
+//        [self.mainView addSubview:self.privacyView];
+//    }
+}
+
 // MARK: SEL
 
 /// 在验证了两个输入框都有数据后，重写请求方法
@@ -122,7 +143,7 @@
     // 1.检查学号格式
     if (self.mainView.tfViewArray[0].textField.text.length != 10) {
         NSLog(@"请输入正确格式的学号");
-        [NewQAHud showHudWith:@" 请输入正确格式的学号  " AddView:self.mainView];
+        [NewQAHud showHudWith:@" 请输入正确格式的学号 " AddView:self.mainView];
         return;
     }
     
@@ -140,15 +161,40 @@
     NSLog(@"🍉stuCode：%@", pwdStr);
     // TODO: 请求验证
     // TODO: 成功:
+    // 3.1 展示hud
+    self.loginingHud = [NewQAHud showNotHideHudWith:@"登陆中..." AddView:self.mainView];
     
+    // 3.2 model
+    [LoginModel loginWithStuNum:stuIDStr
+    idNum:pwdStr
+    success:^{
+        // 3.2.1 AppDelegate
+        self.tabBarController.selectedIndex = 0;
+        // 3.2.2 隐藏hud
+        [self.loginingHud hide:YES afterDelay:0.1];
+        // 3.2.3 自己消失,进入主界面
+        [self dismissViewControllerAnimated:YES completion:nil];
+        // 3.2.4 完成登录成功后todo的一些配置
+        TodoSyncTool *todoTool = [[TodoSyncTool alloc] init];
+        [todoTool logInSuccess];
+        
+    }
+    failed:^(BOOL isNet) {
+        // 隐藏hud
+        [self.loginingHud hide:YES afterDelay:0.1];
+        // 产看是否是网络的问题
+        if (isNet) {
+            // 网络弹窗
+            self.networkWrongHud = [NewQAHud showhudWithCustomView:self.networkWrongView AddView:self.mainView];
+            
+        }else {  // 网络没问题则是账号密码有问题
+            // 1 设置弹窗内容
+            [self setFailureHudData];
+            // 2 展示弹窗并且保存该弹窗
+            self.tipHud = [NewQAHud showhudWithCustomView:self.tipView AddView:self.mainView];
+        }
+    }];
     
-    
-    
-//    // 失败:弹窗提示
-//    // 1.1 设置弹窗内容
-//    [self setFailureHudData];
-//    // 1.2 展示弹窗并且保存该弹窗
-//    self.tipHud = [NewQAHud showhudWithCustomView:self.tipView AddView:self.mainView];
 }
 
 - (void)setBtnSEL {
@@ -164,9 +210,9 @@
 - (void)agreeProtocol {
     self.mainView.agreeBtn.selected = !self.mainView.agreeBtn.selected;
     if (self.mainView.agreeBtn.selected) {
-        [self.mainView.agreeBtn setImage:[UIImage imageNamed: @"ProtocolCheckButton"] forState:UIControlStateNormal];
+        [self.mainView.agreeBtn setImage:[UIImage imageNamed:@"ProtocolCheckButton"] forState:UIControlStateNormal];
     }else {
-        [self.mainView.agreeBtn setImage:[UIImage imageNamed: @"checkMarkCircle"] forState:UIControlStateNormal];
+        [self.mainView.agreeBtn setImage:[UIImage imageNamed:@"checkMarkCircle"] forState:UIControlStateNormal];
     }
 }
 
@@ -180,12 +226,42 @@
 - (void)jumpToForgetPwdVC {
     
     ForgetPwdVC *forgetPwdVC = [[ForgetPwdVC alloc] init];
-    [self.navigationController pushViewController:forgetPwdVC animated:NO];
+    forgetPwdVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:forgetPwdVC animated:NO completion:nil];
 }
 
 /// 点击弹窗中的“确定”按钮
 - (void)dismissHUD {
     [self.tipHud hide:YES afterDelay:0.1];
+}
+
+#pragma mark - PrivacyTipViewDelegate
+
+- (void)showPrivacyPolicy:(PrivacyTipView * _Nonnull)view {
+    UserProtocolViewController *userProtocolVC = [[UserProtocolViewController alloc] init];
+    [self.navigationController presentViewController:userProtocolVC animated:YES completion:nil];
+}
+
+/// 点击 “同意” 按钮后调用
+- (void)allowBtnClik:(PrivacyTipView * _Nonnull)view {
+    self.mainView.agreeBtn.selected = YES;
+    [self.mainView.agreeBtn setImage:[UIImage imageNamed:@"ProtocolCheckButton"] forState:UIControlStateNormal];
+}
+
+/// 不同意
+- (void)notAllowBtnClik:(PrivacyTipView * _Nonnull)view {
+    self.mainView.agreeBtn.selected = NO;
+    [self.mainView.agreeBtn setImage:[UIImage imageNamed:@"checkMarkCircle"] forState:UIControlStateNormal];
+}
+
+#pragma mark - Getter
+
+- (PrivacyTipView *)privacyView {
+    if (_privacyView == nil) {
+        _privacyView = [[PrivacyTipView alloc] init];
+        _privacyView.delegate = self;
+    }
+    return _privacyView;
 }
 
 

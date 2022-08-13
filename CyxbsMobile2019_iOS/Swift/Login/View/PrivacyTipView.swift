@@ -11,11 +11,11 @@ import UIKit
 
 @objc protocol PrivacyTipViewDelegate {
     /// 点击后弹出 "《掌上重邮用户协议》" 的具体内容
-    func showPrivacyPolicy(_ view: PrivacyTipView)
+    @objc func showPrivacyPolicy(_ view: PrivacyTipView)
     /// 点击 “同意” 按钮后调用
-    func allowBtnClik(_ view: PrivacyTipView)
+    @objc func allowBtnClik(_ view: PrivacyTipView)
     /// 点击 “不同意” 按钮后调用
-    func notAllowBtnClik(_ view: PrivacyTipView)
+    @objc func notAllowBtnClik(_ view: PrivacyTipView)
 }
 
 /// 隐私政策提醒

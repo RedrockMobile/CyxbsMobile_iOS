@@ -9,9 +9,9 @@
 import UIKit
 import SwiftyJSON
 
-class LoginModel: NSObject {
+@objc class LoginModel: NSObject {
     
-    class func loginWith(stuNum: String,
+    @objc class func loginWith(stuNum: String,
                          idNum: String,
                          success: @escaping () -> Void,
                          failed: @escaping (_ isNet : Bool) -> Void) {

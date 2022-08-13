@@ -7,6 +7,7 @@
 //
 
 #import "UserItemTool.h"
+#import "LoginVC.h"
 //#import "LoginViewController.h"
 #import <UMPush/UMessage.h>
 #import "ArchiveTool.h"
@@ -38,17 +39,18 @@
 
 /// 退出登录（清除用户缓存）
 + (void)logout {
-    
-    LoginViewController *loginVC = [[LoginViewController alloc] init];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginVC];
-    navController.modalPresentationStyle = UIModalPresentationFullScreen;
+    LoginVC *loginVC = [[LoginVC alloc] init];
+    loginVC.modalPresentationStyle = UIModalPresentationFullScreen;
+//    LoginViewController *loginVC = [[LoginViewController alloc] init];
+//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+//    navController.modalPresentationStyle = UIModalPresentationFullScreen;
     UITabBarController *tabBarVC = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
     if (tabBarVC.presentedViewController) {
         [tabBarVC dismissViewControllerAnimated:YES completion:^{
-            [tabBarVC presentViewController:navController animated:YES completion:nil];
+            [tabBarVC presentViewController:loginVC animated:YES completion:nil];
         }];
     } else {
-        [tabBarVC presentViewController:navController animated:YES completion:nil];
+        [tabBarVC presentViewController:loginVC animated:YES completion:nil];
     }
     
     //假销毁单例
@@ -101,7 +103,9 @@
     [UMessage removeAlias:[UserItemTool defaultItem].stuNum type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
         
     }];
-
+    
+    // 退出后把隐私政策的已读设置成未读（有可能是另外的人和账号登陆）
+    [NSUserDefaults.standardUserDefaults setBool:NO forKey:@"ReadPrivacyTip"];
 }
 
 + (void)refresh {

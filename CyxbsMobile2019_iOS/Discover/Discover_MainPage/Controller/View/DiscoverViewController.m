@@ -17,6 +17,7 @@
 #import "CheckInViewController.h"
 #import "WeDateViewController.h"//没课约
 #import "CQUPTMapViewController.h"
+#import "LoginVC.h"
 
 #import "TODOMainViewController.h"  //邮子清单
 //#import "InstallRoomViewController.h"
@@ -267,16 +268,21 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }];
 }
 - (void)presentToLogin {
-    LoginViewController *loginVC = [[LoginViewController alloc] init];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginVC];
-    navController.modalPresentationStyle = UIModalPresentationFullScreen;
+//    LoginViewController *loginVC = [[LoginViewController alloc] init];
+//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginVC];
+//    navController.modalPresentationStyle = UIModalPresentationFullScreen;
+    LoginVC *loginVC = [[LoginVC alloc] init];
+    
     UITabBarController *tabBarVC = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
+    loginVC.modalPresentationStyle = UIModalPresentationFullScreen;
     if (tabBarVC.presentedViewController) {
         [tabBarVC dismissViewControllerAnimated:YES completion:^{
-            [tabBarVC presentViewController:navController animated:YES completion:nil];
+//            [tabBarVC presentViewController:navController animated:YES completion:nil];
+            [tabBarVC presentViewController:loginVC animated:YES completion:nil];
         }];
     } else {
-        [tabBarVC presentViewController:navController animated:YES completion:nil];
+        [tabBarVC presentViewController:loginVC animated:YES completion:nil];
+//        [tabBarVC presentViewController:navController animated:YES completion:nil];
     }
     if (self.loginStatus == LoginTimeOut) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"太久没有登录掌邮了..." message:@"\n重新登录试试吧" preferredStyle:UIAlertControllerStyleAlert];

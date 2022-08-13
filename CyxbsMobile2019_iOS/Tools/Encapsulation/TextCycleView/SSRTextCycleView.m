@@ -131,8 +131,10 @@ typedef struct {
         SSRTextCycleCell *cell = [self.textCycleView_delegate
                 textCycleView:self
                 cellForIndex:indexPath.row];
-
-        cell.ssrTextLab.text = self.textAry[indexPath.row % self.textAry.count];
+        if (self.textAry.count != 0) {
+            cell.ssrTextLab.text = self.textAry[indexPath.row % self.textAry.count];
+        }
+        
         return cell;
     }
     

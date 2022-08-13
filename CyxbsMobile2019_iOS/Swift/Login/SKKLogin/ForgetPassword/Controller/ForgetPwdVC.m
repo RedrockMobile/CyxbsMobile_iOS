@@ -11,7 +11,10 @@
 // VC
 #import "ModifyVC.h"
 
-@interface ForgetPwdVC ()
+@interface ForgetPwdVC () <
+    UITextFieldDelegate,
+    ModifyVCDelegate
+>
 
 @end
 
@@ -113,16 +116,22 @@
     }];
 }
 
+#pragma mark - ModifyVCDelegate
+- (void)dismissVC {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 // MARK: SEL
 
 /// 在验证了两个输入框都有数据后，重写请求方法
 - (void)clickBtn {
     // 1.检查学号格式
-    if (self.mainView.tfViewArray[0].textField.text.length != 10) {
-        NSLog(@"请输入正确格式的学号");
-        [NewQAHud showHudWith:@" 请输入正确格式的学号  " AddView:self.mainView];
-        return;
-    }
+//    if (self.mainView.tfViewArray[0].textField.text.length != 10) {
+//        NSLog(@"请输入正确格式的学号");
+//        [NewQAHud showHudWith:@" 请输入正确格式的学号  " AddView:self.mainView];
+//        return;
+//    }
     NSString *stuIDStr = self.mainView.tfViewArray[0].textField.text;
     NSString *stuCodeStr = self.mainView.tfViewArray[1].textField.text;
     NSString *pwdStr = self.mainView.tfViewArray[2].textField.text;
@@ -130,10 +139,12 @@
     NSLog(@"🍋stuID：%@", stuIDStr);
     NSLog(@"🍉stuCode：%@", stuCodeStr);
     NSLog(@"🍇pwdStr：%@", pwdStr);
-    // TODO: 请求验证
+    // 2.TODO: 请求验证
     // 成功:界面跳转
     ModifyVC *modifyVC = [[ModifyVC alloc] init];
-    [self.navigationController pushViewController:modifyVC animated:NO];
+    modifyVC.modifyDelegate = self;
+    modifyVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:modifyVC animated:NO completion:nil];
     // 失败:弹窗提示
 //    // 1.1 设置弹窗内容
 //    [self setFailureHudData];

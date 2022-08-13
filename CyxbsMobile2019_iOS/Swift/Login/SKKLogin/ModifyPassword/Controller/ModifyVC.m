@@ -143,6 +143,7 @@
     }else {
         // 不同的话显示提示信息
         self.PwdNotMatchLab.alpha = 1;
+        return;
     }
     
     // 1.成功，弹出弹窗，跳转到登陆界面
@@ -161,8 +162,8 @@
 /// 点击弹窗中的“确定”按钮
 - (void)dismissHUD {
     [self.tipHud hide:YES afterDelay:0.1];
-    LoginVC *loginVC = [[LoginVC alloc] init];
-    [self.navigationController pushViewController:loginVC animated:NO];
+    [self dismissViewControllerAnimated:NO completion:nil];
+    [self.modifyDelegate dismissVC];
 }
 
 #pragma mark - Getter

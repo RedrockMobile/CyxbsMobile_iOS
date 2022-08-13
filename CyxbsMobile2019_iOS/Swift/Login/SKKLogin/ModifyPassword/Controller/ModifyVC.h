@@ -10,7 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol ModifyVCDelegate <NSObject>
+
+/// 修改密码成功后使忘记密码界面消失
+- (void)dismissVC;
+
+@end
+
 @interface ModifyVC : LoginBaseVC
+
+@property (nonatomic, weak) id <ModifyVCDelegate> modifyDelegate;
 
 @end
 
