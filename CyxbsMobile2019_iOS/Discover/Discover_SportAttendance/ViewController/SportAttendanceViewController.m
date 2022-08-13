@@ -32,7 +32,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF"] darkColor:[UIColor colorWithHexString:@"#000000"]];
     //默认为错误页
     [self addWrongView];
     //判断是否假期
@@ -213,8 +213,7 @@
                 [self addHolidayView];
             }else{
                 [self addSussesView];
-                //向前页面回传数据
-                [self.router sourceForRouterPath:@"DiscoverSAVC" parameters:@{@"sportNewData":self.sAModel}];
+                //无需向前页面回传数据(返回时会自动重新网络请求)
             }
         [self.sADetails.mj_header endRefreshing];
     }
@@ -237,8 +236,9 @@
     [self addCustomTabbarView];
     //添加跑步的详情列表
     [self.view addSubview:self.sADetails];
+    self.sADetails.bounces = YES;
     //判断是否已完成总数为0
-    if (self.sAModel.run_total + self.sAModel.other_total == 0) {
+    if (self.sAModel.run_done + self.sAModel.other_done == 0) {
         [self addNoRunImg];
     }
 }
@@ -299,6 +299,8 @@
 }
 
 - (void) addHolidayView{
+    //先移除所有View
+    [self.view removeAllSubviews];
     self.sAModel = nil;
     self.sADetails.bounces = NO;
     //添加头视图
@@ -371,7 +373,7 @@
             SportAttendanceViewController *vc = [[self alloc] init];
             SportAttendanceModel *model = request.parameters[@"sportData"];
             vc.sAModel = model;
-            vc.IsLoad = true;//数据已经尝试过加载
+            vc.IsLoad = true;//数据已经在首页尝试过加载,并且是从首页直接点进来的
             response.responseController = vc;
         } break;
     }

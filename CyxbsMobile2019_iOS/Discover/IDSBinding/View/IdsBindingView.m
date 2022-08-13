@@ -21,7 +21,7 @@
     if (self) {
         //hintLabel
         self.hintLabel = [[UILabel alloc]init];
-        self.hintLabel.text = @"若要查询成绩，请输入您的统一认证码";
+        self.hintLabel.text = @"若要查询，请输入您的统一认证码";
         if (@available(iOS 11.0, *)) {
             self.hintLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]];
         } else {

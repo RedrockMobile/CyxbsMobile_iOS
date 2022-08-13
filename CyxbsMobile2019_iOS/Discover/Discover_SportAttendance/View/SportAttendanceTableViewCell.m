@@ -122,11 +122,11 @@
         _sa = sa;
         self.dateLab.text = sa.date;
         self.timeLab.text = sa.time;
-        self.spotLab.text = sa.spot;
-        self.typeLab.text = sa.type;
-        self.dateLab.text = sa.date;
-        self.timeLab.text = sa.time;
-        self.spotLab.text = sa.spot;
+        if ([sa.spot isEqualToString:@"风雨操场（乒乓球馆）"] ||[sa.spot isEqualToString:@"风雨操场（篮球馆）"]) {
+            self.spotLab.text = @"风雨操场";
+        }else{
+            self.spotLab.text = sa.spot;
+        }
         self.typeLab.text = sa.type;
         self.valid = sa.valid;
         self.is_award = sa.is_award;
