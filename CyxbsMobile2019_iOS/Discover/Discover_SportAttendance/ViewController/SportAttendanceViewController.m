@@ -261,7 +261,7 @@
         make.centerX.equalTo(self.view);
         make.top.equalTo(self.view).offset(SCREEN_HEIGHT/2);
         make.width.equalTo(@170);
-        make.height.equalTo(@110);
+        make.height.equalTo(@105);
     }];
     
     UILabel *Lab = [[UILabel alloc] init];
@@ -282,8 +282,8 @@
     [img mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
         make.top.equalTo(self.view).offset(SCREEN_HEIGHT/2);
-        make.width.equalTo(@170);
-        make.height.equalTo(@110);
+        make.width.equalTo(@171);
+        make.height.equalTo(@111);
     }];
     
     UILabel *Lab = [[UILabel alloc] init];
@@ -318,7 +318,7 @@
     [img mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);
         make.top.equalTo(self.view).offset(SCREEN_HEIGHT/2);
-        make.width.equalTo(@170);
+        make.width.equalTo(@125);
         make.height.equalTo(@110);
     }];
     
