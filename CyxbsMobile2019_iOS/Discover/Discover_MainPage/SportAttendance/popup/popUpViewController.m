@@ -42,14 +42,14 @@
 //
     UIView *learnView = [[UIView alloc]init];
     //设置圆角
-    learnView.layer.cornerRadius = 8;
+    learnView.layer.cornerRadius = 16;
     learnView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     [contentView addSubview:learnView];
     [learnView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self.view);
         make.left.equalTo(self.view).offset(15);
         make.right.equalTo(self.view).offset(-15);
-        make.height.equalTo(@425);
+        make.height.equalTo(@487);
     }];
     
     UILabel *titLab = [[UILabel alloc] init];
