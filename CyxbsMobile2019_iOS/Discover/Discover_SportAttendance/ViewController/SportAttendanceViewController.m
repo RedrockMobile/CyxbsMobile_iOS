@@ -15,7 +15,7 @@
 @interface SportAttendanceViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 /// 详细打卡记录列表
-@property (nonatomic, strong) UITableView *sADetails;
+@property (nonatomic, strong) UITableView *sADetailsTableView;
 /// SportAttendance数据模型
 @property (nonatomic, strong) SportAttendanceModel *sAModel;
 
@@ -59,15 +59,19 @@
 }
 
 #pragma mark - UITableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.sAModel.sAItemModel.itemAry.count;
+//    return 10;
+}
+
 //设置每个分区的行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-
-    return self.sAModel.sAItemModel.itemAry.count;
+    return 1;
 }
 
 //设置一行高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 92;
+    return 76;
 }
 
 //具体数据
@@ -79,6 +83,7 @@
     }
     //禁止点击
     cell.userInteractionEnabled =NO;
+    cell.backgroundColor = UIColor.clearColor;
     //   显示所有内容
     if (self.sAModel.sAItemModel.itemAry.count != 0) {
         cell.sa = self.sAModel.sAItemModel.itemAry[indexPath.row];
@@ -88,15 +93,17 @@
 
 #pragma mark - getter
 
-- (UITableView *)sADetails{
-    if (!_sADetails) {
-        _sADetails = [[UITableView alloc] initWithFrame:CGRectMake(0, 240, SCREEN_WIDTH, SCREEN_HEIGHT - 240)];
-        _sADetails.delegate = self;
-        _sADetails.dataSource = self;
-        _sADetails.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FBFCFF"] darkColor:[UIColor colorWithHexString:@"#1D1D1D"]];
-        _sADetails.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _sADetails.layer.cornerRadius = 20;
-
+- (UITableView *)sADetailsTableView{
+    if (!_sADetailsTableView) {
+        _sADetailsTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 240, SCREEN_WIDTH, SCREEN_HEIGHT - 240) style:UITableViewStyleGrouped];
+        _sADetailsTableView.delegate = self;
+        _sADetailsTableView.dataSource = self;
+        _sADetailsTableView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FBFCFF"] darkColor:[UIColor colorWithHexString:@"#1D1D1D"]];
+        _sADetailsTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _sADetailsTableView.layer.cornerRadius = 20;
+        _sADetailsTableView.sectionHeaderHeight = 0;
+        _sADetailsTableView.sectionFooterHeight = 8;
+        
         MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
         // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
         NSMutableArray *refreshingImages = [NSMutableArray array];
@@ -108,11 +115,11 @@
         [header setImages:refreshingImages forState:MJRefreshStateIdle];
         // 设置正在刷新状态的动画图片
         [header setImages:refreshingImages forState:MJRefreshStateRefreshing];
-        _sADetails.mj_header = header;
+        _sADetailsTableView.mj_header = header;
         header.lastUpdatedTimeLabel.hidden = YES;
         header.stateLabel.hidden = YES;
     }
-    return _sADetails;
+    return _sADetailsTableView;
 }
 
 - (SportAttendanceModel *)sAModel{
@@ -215,11 +222,11 @@
                 [self addSussesView];
                 //无需向前页面回传数据(返回时会自动重新网络请求)
             }
-        [self.sADetails.mj_header endRefreshing];
+        [self.sADetailsTableView.mj_header endRefreshing];
     }
         failure:^(NSError * _Nonnull error) {
             NSLog(@"体育打卡刷新失败");
-            [self.sADetails.mj_header endRefreshing];
+            [self.sADetailsTableView.mj_header endRefreshing];
     }];
 }
 
@@ -235,8 +242,8 @@
     //添加返回条
     [self addCustomTabbarView];
     //添加跑步的详情列表
-    [self.view addSubview:self.sADetails];
-    self.sADetails.bounces = YES;
+    [self.view addSubview:self.sADetailsTableView];
+    self.sADetailsTableView.bounces = YES;
     //判断是否已完成总数为0
     if (self.sAModel.run_done + self.sAModel.other_done == 0) {
         [self addNoRunImg];
@@ -244,7 +251,9 @@
 }
 
 - (void) addWrongView{
-    self.sADetails.bounces = NO;
+    //先移除所有View
+    [self.view removeAllSubviews];
+    self.sADetailsTableView.bounces = NO;
     //添加头视图
     SportAttendanceHeadView *headView = [[SportAttendanceHeadView alloc] init];
     //加载头视图
@@ -253,7 +262,7 @@
     //添加返回条
     [self addCustomTabbarView];
     //添加跑步的详情列表
-    [self.view addSubview:self.sADetails];
+    [self.view addSubview:self.sADetailsTableView];
     
     UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"404"]];
     [self.view addSubview:img];
@@ -302,7 +311,7 @@
     //先移除所有View
     [self.view removeAllSubviews];
     self.sAModel = nil;
-    self.sADetails.bounces = NO;
+    self.sADetailsTableView.bounces = NO;
     //添加头视图
     SportAttendanceHeadView *headView = [[SportAttendanceHeadView alloc] init];
     //加载头视图
@@ -311,7 +320,7 @@
     //添加返回条
     [self addCustomTabbarView];
     //添加跑步的详情列表
-    [self.view addSubview:self.sADetails];
+    [self.view addSubview:self.sADetailsTableView];
     
     UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"放假啦"]];
     [self.view addSubview:img];

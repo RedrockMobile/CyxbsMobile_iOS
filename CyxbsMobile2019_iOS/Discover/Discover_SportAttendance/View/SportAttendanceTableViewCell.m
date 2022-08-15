@@ -15,29 +15,38 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.contentView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FBFCFF"] darkColor:[UIColor colorWithHexString:@"#1D1D1D"]];
+        self.contentView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF"] darkColor:[UIColor colorWithHexString:@"#2D2D2D"]];
+        self.contentView.layer.cornerRadius = 8;
+        //设置阴影
+        self.contentView.layer.shadowOpacity = 1;
+        self.contentView.layer.shadowRadius =  14;
+        self.contentView.layer.shadowColor = [UIColor dm_colorWithLightColor: [UIColor colorWithHexString:@"#B5BCD1" alpha:0.2] darkColor: [UIColor colorWithHexString:@"#1D1D1D" alpha:0]].CGColor;
+        self.contentView.layer.shadowOffset = CGSizeMake(0, 0);
+//        self.dateLab.text = @"2022.07.22";
+//        self.timeLab.text = @"19:20:22";
+//        self.spotLab.text = @"风雨操场";
+//        self.typeLab.text = @"跑步";
+//        self.valid = true;
+//        self.is_award = false;
         [self configUI];
         }
     return self;
 }
 
+//设置两边间距
+- (void)setFrame:(CGRect)frame {
+    frame.origin.y -= 13;
+    frame.origin.x += 17;
+    frame.size.width -= 2 * 17;
+    [super setFrame:frame];
+}
+
 - (void)configUI {
-    //背景
-    UIImageView *backGround = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"sportcellbackground"]];
-    backGround.contentMode = UIViewContentModeScaleToFill;
-    [self.contentView addSubview:backGround];
-    [backGround mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.contentView).offset(-5);
-        make.left.equalTo(self.contentView).offset(5);
-        make.top.equalTo(self.contentView).offset(6);
-        make.bottom.equalTo(self.contentView);
-    }];
-    
     //打卡日期
     [self.contentView addSubview:self.dateLab];
     [_dateLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(backGround).offset(12);
-        make.left.equalTo(backGround).offset(28);
+        make.top.equalTo(self.contentView).offset(12);
+        make.left.equalTo(self.contentView).offset(13);
     }];
     
     //时间图标
@@ -75,7 +84,7 @@
     [self.contentView addSubview:self.typeLab];
     [_typeLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(_timeLab);
-        make.right.equalTo(self.contentView).offset(-35);
+        make.right.equalTo(self.contentView).offset(-11);
     }];
     
     //打卡图标
@@ -100,7 +109,7 @@
     [self.contentView addSubview:self.valiImgView];
     [_valiImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.dateLab);
-        make.right.equalTo(self.contentView).offset(-36);
+        make.right.equalTo(self.contentView).offset(-11);
     }];
 
     //如果是奖励则添加奖励图标
