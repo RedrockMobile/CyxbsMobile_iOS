@@ -18,16 +18,10 @@
         self.contentView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF"] darkColor:[UIColor colorWithHexString:@"#2D2D2D"]];
         self.contentView.layer.cornerRadius = 8;
         //设置阴影
-        self.contentView.layer.shadowOpacity = 1;
+        self.contentView.layer.shadowOpacity = 0.5;
         self.contentView.layer.shadowRadius =  14;
         self.contentView.layer.shadowColor = [UIColor dm_colorWithLightColor: [UIColor colorWithHexString:@"#B5BCD1" alpha:0.2] darkColor: [UIColor colorWithHexString:@"#1D1D1D" alpha:0]].CGColor;
         self.contentView.layer.shadowOffset = CGSizeMake(0, 0);
-//        self.dateLab.text = @"2022.07.22";
-//        self.timeLab.text = @"19:20:22";
-//        self.spotLab.text = @"风雨操场";
-//        self.typeLab.text = @"跑步";
-//        self.valid = true;
-//        self.is_award = false;
         [self configUI];
         }
     return self;

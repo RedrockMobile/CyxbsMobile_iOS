@@ -157,7 +157,7 @@
 - (void)loadViewWithDate:(SportAttendanceModel *)sAData Isholiday:(bool)holiday{
     //数据正确且不在假期
     if (sAData.status == 10000 && holiday == false ) {
-        self.totDoneLab.text = [NSString stringWithFormat:@"%ld", sAData.run_done + sAData.other_done];
+        self.totDoneLab.text = [NSString stringWithFormat:@"%ld ", sAData.run_done + sAData.other_done];
         self.totNeedLab.text = [NSString stringWithFormat:@"/%ld", sAData.run_total + sAData.other_total];
         self.runDoneLab.text = [NSString stringWithFormat:@"跑步：%ld", sAData.run_done];
         self.runNeedLab.text = [NSString stringWithFormat:@" /%ld", sAData.run_total];

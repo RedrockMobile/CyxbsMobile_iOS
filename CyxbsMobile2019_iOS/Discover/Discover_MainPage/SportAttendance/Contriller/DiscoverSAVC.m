@@ -49,7 +49,6 @@
     
     //默认为未绑定的失败页
     [self addFailureView];
-//    [self addSuccessView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -263,7 +262,6 @@
 
 //查看详细数据
 - (void)lookDataView{
-//    self.sAModel.status = 10000;
     UIViewController *vc = [self.router controllerForRouterPath:@"SportController" parameters:@{@"sportData":self.sAModel}];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];

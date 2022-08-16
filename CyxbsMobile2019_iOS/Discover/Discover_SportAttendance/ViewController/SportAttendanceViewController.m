@@ -61,7 +61,6 @@
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return self.sAModel.sAItemModel.itemAry.count;
-//    return 10;
 }
 
 //设置每个分区的行数
@@ -171,7 +170,7 @@
         }
     }
     
-    timeLabel.font = [UIFont fontWithName:PingFangSCBold size:12];
+    timeLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
     [self.backgroundView addSubview:timeLabel];
     [timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.backgroundView).offset(-16);
