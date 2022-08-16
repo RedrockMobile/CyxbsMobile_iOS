@@ -34,7 +34,7 @@
 /// 奖励
 @property (nonatomic, strong) UILabel *awaLab;
 
-///
+///图标
 @property (nonatomic, strong) UIImageView *iconImgView;
 
 @end

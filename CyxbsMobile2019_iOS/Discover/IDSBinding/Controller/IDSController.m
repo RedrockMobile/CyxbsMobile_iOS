@@ -27,6 +27,7 @@
 
 -(void)idsBindingSuccess {
     [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
     [self removeFromParentViewController];
     [self.view removeFromSuperview];
 }

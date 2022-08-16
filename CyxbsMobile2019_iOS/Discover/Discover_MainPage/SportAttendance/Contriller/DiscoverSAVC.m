@@ -249,6 +249,7 @@
 - (void)learnAbout{
     popUpViewController *vc = [[popUpViewController alloc] init];
     vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    //填充全屏(原视图不会消失)
     vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
     [self.navigationController presentViewController:vc animated:YES completion:nil];
 }

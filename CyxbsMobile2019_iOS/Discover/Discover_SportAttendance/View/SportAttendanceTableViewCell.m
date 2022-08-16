@@ -15,19 +15,20 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        //设置背景
         self.contentView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF"] darkColor:[UIColor colorWithHexString:@"#2D2D2D"]];
+        //设置圆角
         self.contentView.layer.cornerRadius = 8;
         //设置阴影
         self.contentView.layer.shadowOpacity = 0.5;
         self.contentView.layer.shadowRadius =  14;
         self.contentView.layer.shadowColor = [UIColor dm_colorWithLightColor: [UIColor colorWithHexString:@"#B5BCD1" alpha:0.2] darkColor: [UIColor colorWithHexString:@"#1D1D1D" alpha:0]].CGColor;
         self.contentView.layer.shadowOffset = CGSizeMake(0, 0);
-        [self configUI];
         }
     return self;
 }
 
-//设置两边间距
+//设置两边间距及起始高度
 - (void)setFrame:(CGRect)frame {
     frame.origin.y -= 13;
     frame.origin.x += 17;
@@ -35,6 +36,7 @@
     [super setFrame:frame];
 }
 
+#pragma mark - Method
 - (void)configUI {
     //打卡日期
     [self.contentView addSubview:self.dateLab];
