@@ -177,7 +177,7 @@
 //
     UILabel *replyLbl = [[UILabel alloc] initWithFrame:CGRectZero];
     replyLbl.text = @"回复";
-    replyLbl.font = [UIFont fontWithName:PingFangSCSemibold size:18 * fontSizeScaleRate_SE];
+    replyLbl.font = [UIFont fontWithName:PingFangSCSemiBold size:18 * fontSizeScaleRate_SE];
     replyLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     [self addSubview:replyLbl];
     [replyLbl mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -281,7 +281,7 @@
     if (!_nicknameLabel) {
         _nicknameLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _nicknameLabel.textAlignment = NSTextAlignmentLeft;
-        _nicknameLabel.font = [UIFont fontWithName:PingFangSCSemibold size: 15 ];
+        _nicknameLabel.font = [UIFont fontWithName:PingFangSCSemiBold size: 15 ];
         _nicknameLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     }
     return _nicknameLabel;

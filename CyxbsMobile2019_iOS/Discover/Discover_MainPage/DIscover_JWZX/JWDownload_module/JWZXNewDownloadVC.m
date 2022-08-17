@@ -95,7 +95,7 @@
         _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, self.downLoadTableView.width - 30, 100)];
         _titleLab.numberOfLines = 0;
         _titleLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-        _titleLab.font = [UIFont fontWithName:PingFangSCSemibold size:22];
+        _titleLab.font = [UIFont fontWithName:PingFangSCSemiBold size:22];
         
         _titleLab.text = self.detailModel.title;
         CGRect rect =

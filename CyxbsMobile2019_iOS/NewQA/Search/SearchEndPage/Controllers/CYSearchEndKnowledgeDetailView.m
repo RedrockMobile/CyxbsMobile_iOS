@@ -34,7 +34,7 @@
     //内容标题
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
     label.text = @"邮问知识库";
-    label.font = [UIFont fontWithName:PingFangSCSemibold size:21*fontSizeScaleRate_SE];
+    label.font = [UIFont fontWithName:PingFangSCSemiBold size:21*fontSizeScaleRate_SE];
     label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     [self.view addSubview:label];
     [label mas_makeConstraints:^(MASConstraintMaker *make) {

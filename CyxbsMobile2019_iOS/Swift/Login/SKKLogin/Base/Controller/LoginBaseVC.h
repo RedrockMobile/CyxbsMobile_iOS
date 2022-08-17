@@ -46,6 +46,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 三个弹窗依据封装过的第三方库展示
 @property (nonatomic, strong) MBProgressHUD *tipHud;
 
+#pragma mark - Method
+
 /// 设置UI数据（子类需要在调用 setUIIfNeeded 方法前先设置是否需要该控件）
 - (void)setUIIfNeeded;
 

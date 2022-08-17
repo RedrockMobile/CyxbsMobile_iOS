@@ -253,7 +253,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 ///设置存储、更换baseURL
 - (void)settingBaseURL{
 #ifdef DEBUG
-    [NSUserDefaults.standardUserDefaults setObject:@"https://be-dev.redrock.cqupt.edu.cn/" forKey:@"baseURL"];
+    [NSUserDefaults.standardUserDefaults setObject:@"https://be-prod.redrock.team/" forKey:@"baseURL"];
 #else
     //如果最开始无baseURL，则设置为学校服务器
     NSString *baseURL= [NSUserDefaults.standardUserDefaults objectForKey:@"baseURL"];

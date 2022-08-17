@@ -48,9 +48,9 @@
 /// 设置输入框View数据
 - (void)setTextFieldData {
     // 数组里面的每一个元素都是字典
-    NSArray *keyArray = @[@"imgStr", @"textStr", @"contentStr"];
-    NSArray *objArray0 = @[@"7", @"新的密码", @"输入你需要修改的新密码"];
-    NSArray *objArray1 = @[@"7", @"再次输入", @"再次输入新密码"];
+    NSArray *keyArray = @[@"imgStr", @"contentStr"];
+    NSArray *objArray0 = @[@"newPassword", @"输入你需要修改的新密码"];
+    NSArray *objArray1 = @[@"pwdAgain", @"再次输入新密码"];
     NSArray *tempArray = @[objArray0, objArray1];
     
     for (int i = 0; i < tempArray.count; i++) {
@@ -81,20 +81,16 @@
         // 1.1 输入框上的图标
         NSString *iconStr = self.textFieldInformationArray[i][@"imgStr"];
         self.mainView.tfViewArray[i].iconImgView.image = [UIImage imageNamed:iconStr];
-        // 1.2 输入框上方的文字
-        NSString *textStr = self.textFieldInformationArray[i][@"textStr"];
-        self.mainView.tfViewArray[i].textLab.text = textStr;
-        // 1.3 输入框里的提示内容
+        // 1.2 输入框里的提示内容
         NSString *contentStr = self.textFieldInformationArray[i][@"contentStr"];
-        self.mainView.tfViewArray[i].textField.placeholder = contentStr;
-        // 1.4 键盘上的placeholder
+        self.mainView.tfViewArray[i].placeholder = contentStr;
+        // 1.3 键盘上的placeholder
         self.mainView.tfViewArray[i].keyboardPlaceholderLab.text = contentStr;
-        // 1.5 此界面两个输入框的输入内容都是密文
-        self.mainView.tfViewArray[i].textField.secureTextEntry = YES;
+        // 1.4 此界面两个输入框的输入内容都是密文
+        self.mainView.tfViewArray[i].secureTextEntry = YES;
     }
     // 2.设置按钮
-    [self.mainView.btn setTitle:@"修 改" forState:UIControlStateNormal];
-    
+    [self.mainView.btn setTitle:@"修改" forState:UIControlStateNormal];
 }
 
 /// 成功后的弹窗数据设置
@@ -102,7 +98,7 @@
     // 1.设置弹窗主体
     // 1.1 设置尺寸
     CGRect viewFrame = self.tipView.frame;
-    viewFrame.size = CGSizeMake(SCREEN_WIDTH * 0.7, SCREEN_HEIGHT * 0.3);
+    viewFrame.size = CGSizeMake(275, 177);
     self.tipView.frame = viewFrame;
     self.tipView.center = CGPointMake(SCREEN_WIDTH * 0.5, SCREEN_HEIGHT * 0.5);
     // 2 设置标题
@@ -113,17 +109,17 @@
     // 正文位置
     [self.tipTextLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.tipView);
-        make.top.equalTo(self.tipTitleLab).offset(25);
-        make.size.mas_equalTo(CGSizeMake(250, 80));
+        make.top.equalTo(self.tipTitleLab.mas_bottom).offset(12);
+        make.size.mas_equalTo(CGSizeMake(215, 50));
     }];
 }
 
 /// 设置控件位置
 - (void)setPosition {
     [self.PwdNotMatchLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mainView.tfViewArray.lastObject).offset(10);
-        make.top.equalTo(self.mainView.tfViewArray.lastObject.mas_bottom).offset(10);
-        make.size.mas_equalTo(CGSizeMake(250, 30));
+        make.left.equalTo(self.mainView.tfViewArray.lastObject);
+        make.top.equalTo(self.mainView.tfViewArray.lastObject.mas_bottom).offset(12);
+        make.size.mas_equalTo(CGSizeMake(212, 19));
     }];
 }
 
@@ -131,8 +127,8 @@
 
 /// 在验证了两个输入框都有数据后，重写请求方法
 - (void)clickBtn {
-    NSString *newPwdStr = self.mainView.tfViewArray[0].textField.text;
-    NSString *againPwdStr = self.mainView.tfViewArray[1].textField.text;
+    NSString *newPwdStr = self.mainView.tfViewArray[0].text;
+    NSString *againPwdStr = self.mainView.tfViewArray[1].text;
     
     NSLog(@"🍋newPwdStr:%@", newPwdStr);
     NSLog(@"🍉againPwdStr:%@", againPwdStr);
@@ -172,8 +168,8 @@
     if (_PwdNotMatchLab == nil) {
         _PwdNotMatchLab = [[UILabel alloc] init];
         _PwdNotMatchLab.text = @"两次密码不一致，请重试";
-        _PwdNotMatchLab.textColor = UIColor.redColor;
-        _PwdNotMatchLab.font = [UIFont systemFontOfSize:16];
+        _PwdNotMatchLab.textColor = [UIColor colorWithHexString:@"#FF406E" alpha:1.0];
+        _PwdNotMatchLab.font = [UIFont fontWithName:PingFangSCMedium size:12];
     }
     return _PwdNotMatchLab;
 }

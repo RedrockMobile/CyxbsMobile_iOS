@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 设置这个属性自动完成顶部自定义导航条的设置
 @property (nonatomic,copy)NSString *VCTitleStr;
-/// 标题字体 Font， default is [UIFont fontWithName:PingFangSCSemibold size:21]
+/// 标题字体 Font， default is [UIFont fontWithName:PingFangSCSemiBold size:21]
 @property (nonatomic, strong) UIFont * titleFont;
 /// 标题颜色，default is [UIColor colorWithHexString:@"FFFFFF"]
 @property (nonatomic, strong) UIColor * titleColor;

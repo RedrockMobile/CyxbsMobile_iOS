@@ -23,7 +23,7 @@
     self.view.backgroundColor = UIColor.whiteColor;
     [self.view addSubview:self.mainView];
     // 验证按钮无法点击
-    [self.mainView.btn setBackgroundColor:UIColor.lightGrayColor];
+    [self.mainView.btn setBackgroundColor:[UIColor colorWithHexString:@"#C5C5C5" alpha:1.0]];
     self.mainView.btn.enabled = NO;
     // 手势取消键盘
     [self gestureDismissKeyboard];
@@ -42,9 +42,9 @@
     // 数据展示
     for (int i = 0; i < self.mainView.tfViewArray.count; i++) {
         // 2.1 添加代理
-        self.mainView.tfViewArray[i].textField.delegate = self;
+        self.mainView.tfViewArray[i].delegate = self;
         // 2.2 给键盘上方加一个提示框toolBar
-        [self addKeyBoardToolBarforTextField:self.mainView.tfViewArray[i].textField AndPlaceholder:self.mainView.tfViewArray[i].keyboardPlaceholderLab];
+        [self addKeyBoardToolBarforTextField:self.mainView.tfViewArray[i] AndPlaceholder:self.mainView.tfViewArray[i].keyboardPlaceholderLab];
     }
     // 3.提示文字
     [self.mainView addPasswordTip];
@@ -97,8 +97,8 @@
 /// 手势键盘消失方法
 - (void)dismissKeyboardWithGesture {
     for (int i = 0; i < self.mainView.tfViewArray.count; i++) {
-        if (self.mainView.tfViewArray[i].textField.isFirstResponder) {
-            [self.mainView.tfViewArray[i].textField resignFirstResponder];
+        if (self.mainView.tfViewArray[i].isFirstResponder) {
+            [self.mainView.tfViewArray[i] resignFirstResponder];
         }
     }
 }
@@ -107,7 +107,7 @@
 
 /// 返回
 - (void)clickBack {
-    [self.navigationController popViewControllerAnimated:NO];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 /// 点击按钮，具体实现由各子类决定
@@ -137,16 +137,18 @@
     int noInputCount = 0;
     for (int i = 0; i < self.mainView.tfViewArray.count; i++) {
         // 循环遍历，同时要排除正在输入的输入框
-        if (self.mainView.tfViewArray[i].textField.text.length == 0 && (![textField isEqual:self.mainView.tfViewArray[i].textField])) {
+        if (self.mainView.tfViewArray[i].text.length == 0 && (![textField isEqual:self.mainView.tfViewArray[i]])) {
             noInputCount++;
         }
     }
     // 只有当其他输入框都有数据，并且当前输入框的当前输入不为0时，按钮可点击
     if (!noInputCount && newtxt.length != 0) {
-        [self.mainView.btn setBackgroundColor:UIColor.systemBrownColor];
+        [self.mainView.btn setBackgroundColor:UIColor.clearColor];
+        [self.mainView.btn setBackgroundImage:[UIImage imageNamed:@"loginBtnImg"] forState:UIControlStateNormal];
         self.mainView.btn.enabled = YES;
     }else {
-        [self.mainView.btn setBackgroundColor:UIColor.lightGrayColor];
+        [self.mainView.btn setBackgroundImage:nil forState:UIControlStateNormal];
+        [self.mainView.btn setBackgroundColor:[UIColor colorWithHexString:@"#C5C5C5" alpha:1.0]];
         self.mainView.btn.enabled = NO;
     }
     return YES;
@@ -158,36 +160,6 @@
     [textField resignFirstResponder];
     return YES;
 }
-
-// 不一定会用到
-///// 使键盘不会挡住输入框
-//- (void)textFieldDidBeginEditing:(UITextField *)textField
-//
-//{
-//
-//    NSLog(@"textFieldDidBeginEditing");
-//    // 找到当前是哪个输入框
-//    int tfNum = 0;
-//    for (int i = 0; i < self.mainView.tfViewArray.count; i++) {
-//        if ([textField isEqual:self.mainView.tfViewArray[i].textField]) {
-//            tfNum = i;
-//        }
-//    }
-//
-//    CGRect frame = textField.frame;
-//    NSLog(@"%f", frame.origin.y);
-//    int offset = self.mainView.frame.size.height - 216.0 - (frame.origin.y + frame.size.height + self.mainView.tfViewArray[tfNum].frame.origin.y);
-//
-//
-//    NSTimeInterval animationDuration = 0.30f;
-//    [UIView animateWithDuration:animationDuration animations:^{
-//        //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
-////        if(offset > 0)
-//            self.mainView.frame = CGRectMake(0.0f, -offset, self.mainView.frame.size.width, self.mainView.frame.size.height);
-//    }];
-//
-//}
-
 
 #pragma mark - Getter
 
@@ -213,31 +185,39 @@
     if (_networkWrongView == nil) {
         _networkWrongView = [[UIView alloc] init];
         _networkWrongView.backgroundColor = UIColor.whiteColor;
+        _networkWrongView.layer.cornerRadius = 8;
         CGRect viewFrame = _networkWrongView.frame;
-        viewFrame.size = CGSizeMake(SCREEN_WIDTH * 0.7, SCREEN_HEIGHT * 0.25);
+        viewFrame.size = CGSizeMake(275, 177);
         _networkWrongView.frame = viewFrame;
         _networkWrongView.center = CGPointMake(SCREEN_WIDTH * 0.5, SCREEN_HEIGHT * 0.5);
         
         // "错误"Lab
         UILabel *wrongTitleLab = [[UILabel alloc] init];
         wrongTitleLab.text = @"错误";
-        wrongTitleLab.textColor = UIColor.yellowColor;
-        wrongTitleLab.font = [UIFont boldSystemFontOfSize:23];
+        wrongTitleLab.textColor = [UIColor colorWithHexString:@"#242424" alpha:1.0];
+        wrongTitleLab.font = [UIFont fontWithName:PingFangSCSemiBold size:18];
         wrongTitleLab.textAlignment = NSTextAlignmentCenter;
         [_networkWrongView addSubview:wrongTitleLab];
         
         // “当前网络异常 请重试“
         UILabel *textLab = [[UILabel alloc] init];
         textLab.text = @"当前网络异常\n请重试";
-        textLab.textColor = UIColor.grayColor;
-        textLab.font = [UIFont boldSystemFontOfSize:18];
+        textLab.textColor = [UIColor colorWithHexString:@"#8B8B8B" alpha:1.0];
+        textLab.font = [UIFont fontWithName:PingFangSCMedium size:16];
         textLab.textAlignment = NSTextAlignmentCenter;
         [_networkWrongView addSubview:textLab];
+        
+        // 一条横线
+        UIView *lineView = [[UIView alloc] init];
+        lineView.backgroundColor = [UIColor colorWithHexString:@"#000000" alpha:0.05];
+        
+        [_networkWrongView addSubview:lineView];
         
         // ”确定“按钮
         UIButton *sureBtn = [[UIButton alloc] init];
         [sureBtn setTitle:@"确定" forState:UIControlStateNormal];
-        [sureBtn setBackgroundColor:UIColor.systemPinkColor];
+        sureBtn.titleLabel.font = [UIFont fontWithName:PingFangSCSemiBold size:16];
+        [sureBtn setTitleColor:[UIColor colorWithHexString:@"#625AF8" alpha:1.0] forState:UIControlStateNormal];
         [sureBtn addTarget:self action:@selector(dismissNetworkHUD) forControlEvents:UIControlEventTouchUpInside];
         [_networkWrongView addSubview:sureBtn];
         
@@ -245,20 +225,26 @@
         // wrongTitleLab
         [wrongTitleLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(_networkWrongView);
-            make.top.mas_equalTo(20);
-            make.size.mas_equalTo(CGSizeMake(30, 20));
+            make.top.equalTo(_networkWrongView).offset(22);
+            make.size.mas_equalTo(CGSizeMake(36, 18));
         }];
         // textLab
         [textLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(_networkWrongView);
-            make.top.mas_equalTo(10);
-            make.size.mas_equalTo(CGSizeMake(160, 60));
+            make.top.equalTo(_networkWrongView).offset(52);
+            make.size.mas_equalTo(CGSizeMake(215, 44));
+        }];
+        // lineView
+        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.equalTo(_networkWrongView);
+            make.bottom.equalTo(_networkWrongView).offset(-56);
+            make.height.mas_equalTo(1);
         }];
         // sureBtn
         [sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(_networkWrongView);
-            make.top.equalTo(textLab.mas_bottom).offset(30);
-            make.size.mas_equalTo(CGSizeMake(80, 40));
+            make.bottom.equalTo(_networkWrongView).offset(-19);
+            make.size.mas_equalTo(CGSizeMake(32, 18));
         }];
         
     }
@@ -269,11 +255,12 @@
     if (_tipView == nil) {
         _tipView = [[UIView alloc] init];
         _tipView.backgroundColor = UIColor.whiteColor;
+        _tipView.layer.cornerRadius = 8;
         
         // 标题
         UILabel *titleLab = [[UILabel alloc] init];
-        titleLab.textColor = UIColor.blueColor;
-        titleLab.font = [UIFont boldSystemFontOfSize:23];
+        titleLab.textColor = [UIColor colorWithHexString:@"#242424" alpha:1.0];
+        titleLab.font = [UIFont fontWithName:PingFangSCSemiBold size:18];
         titleLab.textAlignment = NSTextAlignmentCenter;
         self.tipTitleLab = titleLab;
         [_tipView addSubview:self.tipTitleLab];
@@ -281,30 +268,43 @@
         // 三个弹窗的标题位置一样
         [self.tipTitleLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(_tipView);
-            make.top.mas_equalTo(20);
-            make.size.mas_equalTo(CGSizeMake(60, 30));
+            make.top.equalTo(_tipView).offset(22);
+            make.size.mas_equalTo(CGSizeMake(36, 18));
         }];
         
         // 正文
         UILabel *textLab = [[UILabel alloc] init];
-        textLab.textColor = UIColor.grayColor;
-        textLab.font = [UIFont boldSystemFontOfSize:18];
+        textLab.textColor = [UIColor colorWithHexString:@"#8B8B8B" alpha:1.0];
+        textLab.font = [UIFont fontWithName:PingFangSCMedium size:16];
         textLab.textAlignment = NSTextAlignmentCenter;
         self.tipTextLab = textLab;
         [_tipView addSubview:self.tipTextLab];
         
+        // 一条横线
+        UIView *lineView = [[UIView alloc] init];
+        lineView.backgroundColor = [UIColor colorWithHexString:@"#000000" alpha:0.05];
+        [_tipView addSubview:lineView];
+        
+        [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(275);
+            make.bottom.equalTo(_tipView).offset(-56);
+            make.height.mas_equalTo(1);
+        }];
+        
         // 按钮
         UIButton *btn = [[UIButton alloc] init];
         [btn setTitle:@"确定" forState:UIControlStateNormal];
-        [btn setBackgroundColor:UIColor.systemPinkColor];
+        btn.titleLabel.font = [UIFont fontWithName:PingFangSCSemiBold size:16];
+        [btn setTitleColor:[UIColor colorWithHexString:@"#625AF8" alpha:1.0] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(dismissHUD) forControlEvents:UIControlEventTouchUpInside];
         self.tipBtn = btn;
         [_tipView addSubview:self.tipBtn];
+        
         // 按钮始终保持和弹窗底部的约束
         [self.tipBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(_tipView).offset(-30);
             make.centerX.equalTo(_tipView);
-            make.size.mas_equalTo(CGSizeMake(80, 40));
+            make.bottom.equalTo(_tipView).offset(-19);
+            make.size.mas_equalTo(CGSizeMake(42, 18));
         }];
     }
     return _tipView;

@@ -11,16 +11,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LoginTextFieldView : UIView
+@interface LoginTextFieldView : UITextField
 
 /// 图案
 @property (nonatomic, strong) UIImageView *iconImgView;
-
-/// 文字提示
-@property (nonatomic, strong) UILabel *textLab;
-
-/// 提示框
-@property (nonatomic, strong) UITextField *textField;
 
 /// 键盘上面有一个toolBar，上面的提示文字，与输入框的placeholder相同
 @property (nonatomic, strong) UILabel *keyboardPlaceholderLab;

@@ -39,10 +39,10 @@
 /// 设置输入框View数据
 - (void)setTextFieldData {
     // 数组里面的每一个元素都是字典
-    NSArray *keyArray = @[@"imgStr", @"textStr", @"contentStr"];
-    NSArray *objArray0 = @[@"7", @"学号", @"输入您的学号"];
-    NSArray *objArray1 = @[@"7", @"统一认证码", @"输入您的统一认证码"];
-    NSArray *objArray2 = @[@"7", @"统一认证码密码", @"输入统一认证码密码"];
+    NSArray *keyArray = @[@"imgStr", @"contentStr"];
+    NSArray *objArray0 = @[@"stuID", @"请输入您的学号"];
+    NSArray *objArray1 = @[@"stuCode", @"请输入统一认证码"];
+    NSArray *objArray2 = @[@"newPassword", @"请输入统一认证码密码"];
     NSArray *tempArray = @[objArray0, objArray1, objArray2];
     
     for (int i = 0; i < tempArray.count; i++) {
@@ -73,25 +73,22 @@
         // 1.1 输入框上的图标
         NSString *iconStr = self.textFieldInformationArray[i][@"imgStr"];
         self.mainView.tfViewArray[i].iconImgView.image = [UIImage imageNamed:iconStr];
-        // 1.2 输入框上方的文字
-        NSString *textStr = self.textFieldInformationArray[i][@"textStr"];
-        self.mainView.tfViewArray[i].textLab.text = textStr;
-        // 1.3 输入框里的提示内容
+        // 1.2 输入框里的提示内容
         NSString *contentStr = self.textFieldInformationArray[i][@"contentStr"];
-        self.mainView.tfViewArray[i].textField.placeholder = contentStr;
-        // 1.4 键盘上的placeholder
+        self.mainView.tfViewArray[i].placeholder = contentStr;
+        // 1.3 键盘上的placeholder
         self.mainView.tfViewArray[i].keyboardPlaceholderLab.text = contentStr;
-        // 1.5 此界面最后输入框的输入内容是密文，其他两个是数字键盘
+        // 1.4 此界面最后输入框的输入内容是密文，其他两个是数字键盘
         if (i != 2) {
-            self.mainView.tfViewArray[i].textField.keyboardType = UIKeyboardTypeNumberPad;
+            self.mainView.tfViewArray[i].keyboardType = UIKeyboardTypeNumberPad;
         }else {
-            self.mainView.tfViewArray[i].textField.secureTextEntry = YES;
+            self.mainView.tfViewArray[i].secureTextEntry = YES;
         }
     }
     // 2.提示文字
     self.mainView.passwordTipLab.text = @"统一认证码账密为学生登录教务在线等校园服务所用账号密码";
     // 3.设置按钮
-    [self.mainView.btn setTitle:@"验 证" forState:UIControlStateNormal];
+    [self.mainView.btn setTitle:@"验证" forState:UIControlStateNormal];
 }
 
 /// 失败后的弹窗数据设置
@@ -99,20 +96,19 @@
     // 1.设置弹窗主体
     // 1.1 设置尺寸
     CGRect viewFrame = self.tipView.frame;
-    viewFrame.size = CGSizeMake(SCREEN_WIDTH * 0.8, SCREEN_HEIGHT * 0.4);
+    viewFrame.size = CGSizeMake(275, 233);
     self.tipView.frame = viewFrame;
     self.tipView.center = CGPointMake(SCREEN_WIDTH * 0.5, SCREEN_HEIGHT * 0.5);
     // 2 设置标题
     self.tipTitleLab.text = @"错误";
     // 3 设置正文
-    self.tipTextLab.numberOfLines = 5;
-    self.tipTextLab.text = @"请重新核验学号是否与统一认\n证码绑定、密码是否正确\n\n如若忘记统一认证码密码，请\n前往教务在线进行改密操作";
+    self.tipTextLab.numberOfLines = 4;
+    self.tipTextLab.text = @"请重新核验学号是否与统一认\n证码绑定、密码是否正确，如\n若忘记统一认证码密码请前往\n教务在线进行改密操作";
     // 正文位置
     [self.tipTextLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.tipView);
-        make.top.equalTo(self.tipTitleLab).offset(25);
-        make.left.right.equalTo(self.tipView);
-        make.height.mas_equalTo(140);
+        make.top.equalTo(self.tipTitleLab.mas_bottom).offset(12);
+        make.size.mas_equalTo(CGSizeMake(215, 100));
     }];
 }
 
@@ -132,9 +128,9 @@
 //        [NewQAHud showHudWith:@" 请输入正确格式的学号  " AddView:self.mainView];
 //        return;
 //    }
-    NSString *stuIDStr = self.mainView.tfViewArray[0].textField.text;
-    NSString *stuCodeStr = self.mainView.tfViewArray[1].textField.text;
-    NSString *pwdStr = self.mainView.tfViewArray[2].textField.text;
+    NSString *stuIDStr = self.mainView.tfViewArray[0].text;
+    NSString *stuCodeStr = self.mainView.tfViewArray[1].text;
+    NSString *pwdStr = self.mainView.tfViewArray[2].text;
     
     NSLog(@"🍋stuID：%@", stuIDStr);
     NSLog(@"🍉stuCode：%@", stuCodeStr);

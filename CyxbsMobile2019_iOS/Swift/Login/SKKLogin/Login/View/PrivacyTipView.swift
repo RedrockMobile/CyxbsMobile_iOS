@@ -94,7 +94,7 @@ import UIKit
         
         lbl.text = "隐私政策更新"
         lbl.textColor = UIColor(.dm ,light: UIColor(hexString: "#15315B")!, dark: UIColor(hexString: "#F0F0F2")!)
-        lbl.font = UIFont.init(name: PingFangSCSemibold, size: 18)
+        lbl.font = UIFont.init(name: PingFangSCSemiBold, size: 18)
     }
     
     func addTextField() {

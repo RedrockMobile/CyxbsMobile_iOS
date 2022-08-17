@@ -53,9 +53,9 @@
 /// 设置输入框View数据
 - (void)setTextFieldData {
     // 数组里面的每一个元素都是字典
-    NSArray *keyArray = @[@"imgStr", @"textStr", @"contentStr"];
-    NSArray *objArray0 = @[@"7", @"账号", @"输入您的学号"];
-    NSArray *objArray1 = @[@"7", @"密码", @"初始为身份证或统一认证码后6位"];
+    NSArray *keyArray = @[@"imgStr", @"contentStr"];
+    NSArray *objArray0 = @[@"7", @"输入您的学号"];
+    NSArray *objArray1 = @[@"7", @"初始为身份证或统一认证码后6位"];
     NSArray *tempArray = @[objArray0, objArray1];
     
     for (int i = 0; i < tempArray.count; i++) {
@@ -86,23 +86,23 @@
         // 1.1 输入框上的图标
         NSString *iconStr = self.textFieldInformationArray[i][@"imgStr"];
         self.mainView.tfViewArray[i].iconImgView.image = [UIImage imageNamed:iconStr];
-        // 1.2 输入框上方的文字
-        NSString *textStr = self.textFieldInformationArray[i][@"textStr"];
-        self.mainView.tfViewArray[i].textLab.text = textStr;
-        // 1.3 输入框里的提示内容
+//        // 1.2 输入框上方的文字
+//        NSString *textStr = self.textFieldInformationArray[i][@"textStr"];
+//        self.mainView.tfViewArray[i].textLab.text = textStr;
+        // 1.2 输入框里的提示内容
         NSString *contentStr = self.textFieldInformationArray[i][@"contentStr"];
-        self.mainView.tfViewArray[i].textField.placeholder = contentStr;
-        // 1.4 键盘上的placeholder
+        self.mainView.tfViewArray[i].placeholder = contentStr;
+        // 1.3 键盘上的placeholder
         self.mainView.tfViewArray[i].keyboardPlaceholderLab.text = contentStr;
     }
-    // 1.5 此界面最后输入框的输入内容是密文，第一个是数字键盘
-    self.mainView.tfViewArray[0].textField.keyboardType = UIKeyboardTypeNumberPad;
-    self.mainView.tfViewArray[1].textField.secureTextEntry = YES;
+    // 1.4 此界面最后输入框的输入内容是密文，第一个是数字键盘
+    self.mainView.tfViewArray[0].keyboardType = UIKeyboardTypeNumberPad;
+    self.mainView.tfViewArray[1].secureTextEntry = YES;
     
     // 2.提示文字
     self.mainView.passwordTipLab.text = @"研究生和20级及以后的学生默认登陆密码为统一认证码后6位，其余同学默认为身份证后6位。";
     // 3.设置按钮
-    [self.mainView.btn setTitle:@"登 陆" forState:UIControlStateNormal];
+    [self.mainView.btn setTitle:@"登陆" forState:UIControlStateNormal];
 }
 
 /// 密码错误后的弹窗数据设置
@@ -128,12 +128,10 @@
 }
 
 - (void)showPrivacyTip {
-    // 弹出隐私协议窗口
-    [self.mainView addSubview:self.privacyView];
-//    if (![NSUserDefaults.standardUserDefaults boolForKey:@"ReadPrivacyTip"]) {
-//        [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"ReadPrivacyTip"];
-//        [self.mainView addSubview:self.privacyView];
-//    }
+    // 弹出隐私协议窗口;
+    if (![NSUserDefaults.standardUserDefaults boolForKey:@"ReadPrivacyTip"]) {
+        [self.mainView addSubview:self.privacyView];
+    }
 }
 
 // MARK: SEL
@@ -141,9 +139,9 @@
 /// 在验证了两个输入框都有数据后，重写请求方法
 - (void)clickBtn {
     // 1.检查学号格式
-    if (self.mainView.tfViewArray[0].textField.text.length != 10) {
+    if (self.mainView.tfViewArray[0].text.length != 10) {
         NSLog(@"请输入正确格式的学号");
-        [NewQAHud showHudWith:@" 请输入正确格式的学号 " AddView:self.mainView];
+        [NewQAHud showHudWith:@"  请输入正确格式的学号 " AddView:self.mainView];
         return;
     }
     
@@ -154,8 +152,8 @@
     }
     
     // 3.请求验证
-    NSString *stuIDStr = self.mainView.tfViewArray[0].textField.text;
-    NSString *pwdStr = self.mainView.tfViewArray[1].textField.text;
+    NSString *stuIDStr = self.mainView.tfViewArray[0].text;
+    NSString *pwdStr = self.mainView.tfViewArray[1].text;
     
     NSLog(@"🍋stuID：%@", stuIDStr);
     NSLog(@"🍉stuCode：%@", pwdStr);
@@ -245,6 +243,7 @@
 /// 点击 “同意” 按钮后调用
 - (void)allowBtnClik:(PrivacyTipView * _Nonnull)view {
     self.mainView.agreeBtn.selected = YES;
+    [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"ReadPrivacyTip"];
     [self.mainView.agreeBtn setImage:[UIImage imageNamed:@"ProtocolCheckButton"] forState:UIControlStateNormal];
 }
 

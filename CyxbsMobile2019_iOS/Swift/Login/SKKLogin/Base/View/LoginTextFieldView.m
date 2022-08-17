@@ -13,38 +13,48 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.backgroundColor = UIColor.clearColor;
-        [self addSubview:self.iconImgView];
-        [self addSubview:self.textLab];
-        [self addSubview:self.textField];
-        [self setPosition];
+        self.backgroundColor = [UIColor colorWithHexString:@"#F1F5F9" alpha:0.8];
+        self.borderStyle = UITextBorderStyleRoundedRect;
+        self.layer.masksToBounds = YES;
+        self.layer.cornerRadius = 8;
+        self.textColor = [UIColor colorWithHexString:@"#8B8B8B" alpha:1.0];
+        self.borderStyle = UITextBorderStyleNone;
+        self.font = [UIFont fontWithName:PingFangSCMedium size:14];
+        self.textAlignment = NSTextAlignmentLeft;
+        // 左视图
+        self.leftView = self.iconImgView;
+        self.leftViewMode = UITextFieldViewModeAlways;
     }
     return self;
 }
 
 #pragma mark - Method
 
-/// 设置位置
-- (void)setPosition {
-    // textField
-    [self.textField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.right.equalTo(self);
-        make.height.mas_equalTo(50);
-    }];
+// 控制左边图片位置
+- (CGRect)leftViewRectForBounds:(CGRect)bounds {
+    CGRect iconRect = [super leftViewRectForBounds:bounds];
+    iconRect.origin.x += 15.5;
+    return iconRect;
+}
+
+// 控制placeHolder的位置，左右缩20
+- (CGRect)placeholderRectForBounds:(CGRect)bounds {
     
-    // iconImgView
-    [self.iconImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.textField).offset(3);
-        make.bottom.equalTo(self.textField.mas_top).offset(-6);
-        make.size.mas_equalTo(CGSizeMake(40, 40));
-    }];
-    
-    // textLab
-    [self.textLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.height.equalTo(self.iconImgView);
-        make.right.equalTo(self.textField);
-        make.left.equalTo(self.iconImgView.mas_right).offset(3);
-    }];
+   CGRect inset = CGRectMake(bounds.origin.x + 46, bounds.origin.y, bounds.size.width - 65, bounds.size.height);
+   return inset;
+}
+
+// 控制显示文本的位置
+- (CGRect)textRectForBounds:(CGRect)bounds {
+    CGRect inset = CGRectMake(bounds.origin.x + 46, bounds.origin.y, bounds.size.width - 65, bounds.size.height);
+
+    return inset;
+}
+
+// 控制编辑文本的位置
+- (CGRect)editingRectForBounds:(CGRect)bounds {
+   CGRect inset = CGRectMake(bounds.origin.x + 46, bounds.origin.y, bounds.size.width - 65, bounds.size.height);
+   return inset;
 }
 
 #pragma mark - Getter
@@ -56,30 +66,6 @@
     return _iconImgView;
 }
 
-- (UILabel *)textLab {
-    if (_textLab == nil) {
-        _textLab = [[UILabel alloc] init];
-        _textLab.font = [UIFont systemFontOfSize:20];
-        _textLab.textColor = UIColor.blackColor;
-        _textLab.textAlignment = NSTextAlignmentLeft;
-    }
-    return _textLab;
-}
-
-- (UITextField *)textField {
-    if (_textField == nil) {
-        _textField = [[UITextField alloc] init];
-        _textField.backgroundColor = [UIColor lightGrayColor];
-//        _textField.backgroundColor = [UIColor colorWithHexString:@"#E6E6E6" alpha:1.0];
-        _textField.borderStyle = UITextBorderStyleRoundedRect;
-        _textField.layer.masksToBounds = YES;
-        _textField.layer.cornerRadius = 10;
-        _textField.textColor = [UIColor darkGrayColor];
-        _textField.font = [UIFont systemFontOfSize:25];
-        _textField.textAlignment = NSTextAlignmentLeft;
-    }
-    return _textField;
-}
 
 - (UILabel *)keyboardPlaceholderLab {
     if (_keyboardPlaceholderLab == nil) {

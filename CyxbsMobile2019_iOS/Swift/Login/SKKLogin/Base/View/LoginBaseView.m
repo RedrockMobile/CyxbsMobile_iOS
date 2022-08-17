@@ -13,6 +13,9 @@
 /// 顶部“忘记密码”的按钮
 @property (nonatomic, strong) UILabel *ForgetPwdLab;
 
+/// COPYRIGHT@红岩网校工作站
+@property (nonatomic, strong) UILabel *RedRockSignLab;
+
 @end
 
 @implementation LoginBaseView
@@ -21,11 +24,22 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.tfViewArray = [NSMutableArray array];
+        [self addCopyRight];
     }
     return self;
 }
 
 #pragma mark - Method
+
+/// 加入底部红岩网校标识
+- (void)addCopyRight {
+    [self addSubview:self.RedRockSignLab];
+    [self.RedRockSignLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self).offset(-22);
+        make.centerX.equalTo(self);
+        make.size.mas_equalTo(CGSizeMake(142, 14));
+    }];
+}
 
 /// 添加顶部返回按钮
 - (void)addBackItem {
@@ -35,15 +49,15 @@
         
         // 设置位置
         [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self).offset(20);
-            make.top.equalTo(self).offset(30);
-            make.size.mas_equalTo(CGSizeMake(30, 30));
+            make.left.equalTo(self).offset(34);
+            make.top.equalTo(self).offset(STATUSBARHEIGHT + 11.58);
+            make.size.mas_equalTo(CGSizeMake(9, 16));
         }];
         
         [self.ForgetPwdLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(self.backBtn.mas_right).offset(15);
-            make.centerY.equalTo(self.backBtn);
-            make.size.mas_equalTo(CGSizeMake(100, 40));
+            make.centerX.equalTo(self);
+            make.top.equalTo(self).offset(STATUSBARHEIGHT + 7.5);
+            make.size.mas_equalTo(CGSizeMake(72, 25));
         }];
     }
 }
@@ -55,16 +69,27 @@
         [self addSubview:tfView];
         // 设置位置
         if (self.tfViewArray.count == 0) {
-            [tfView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerX.equalTo(self);
-                make.top.equalTo(self).offset(180);
-                make.size.mas_equalTo(CGSizeMake(280, 90));
-            }];
+            // 忘记密码的两个界面
+            if (self.isBack) {
+                [tfView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.centerX.equalTo(self);
+                    make.left.equalTo(self).offset(47);
+                    make.height.mas_equalTo(44);
+                    make.top.equalTo(self).offset(STATUSBARHEIGHT + 84);
+                }];
+            }else {
+                [tfView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.centerX.equalTo(self);
+                    make.left.equalTo(self).offset(47);
+                    make.height.mas_equalTo(44);
+                    make.top.equalTo(self).offset(STATUSBARHEIGHT + 200);
+                }];
+            }
             
         }else {
             [tfView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.equalTo(self);
-                make.top.equalTo(self.tfViewArray.lastObject.mas_bottom).offset(20);
+                make.top.equalTo(self.tfViewArray.lastObject.mas_bottom).offset(22);
                 make.size.mas_equalTo(self.tfViewArray.lastObject);
             }];
         }
@@ -78,9 +103,10 @@
         [self addSubview:self.passwordTipLab];
         [self.passwordTipLab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
-            make.top.equalTo(self.tfViewArray.lastObject.mas_bottom).offset(5);
-            make.width.equalTo(self.tfViewArray.lastObject);
-            make.height.mas_equalTo(60);
+            make.top.equalTo(self.tfViewArray.lastObject.mas_bottom).offset(14);
+            make.left.equalTo(self.tfViewArray.lastObject);
+            make.right.equalTo(self.tfViewArray.lastObject).offset(10);
+            make.height.mas_equalTo(32);
         }];
     }
 }
@@ -91,16 +117,14 @@
     if (self.isPasswordtip == YES) {
         [self.btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
-            make.top.equalTo(self.passwordTipLab.mas_bottom).offset(50);
-            make.width.equalTo(self.tfViewArray.lastObject);
-            make.height.mas_equalTo(40);
+            make.top.equalTo(self.passwordTipLab.mas_bottom).offset(28);
+            make.size.mas_equalTo(CGSizeMake(247, 51));
         }];
     }else {
         [self.btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
-            make.top.equalTo(self.tfViewArray.lastObject.mas_bottom).offset(150);
-            make.width.equalTo(self.tfViewArray.lastObject);
-            make.height.mas_equalTo(40);
+            make.top.equalTo(self.tfViewArray.lastObject.mas_bottom).offset(72);
+            make.size.mas_equalTo(CGSizeMake(247, 51));
         }];
     }
 }
@@ -110,7 +134,7 @@
 - (UIButton *)backBtn {
     if (_backBtn == nil) {
         _backBtn = [[UIButton alloc] init];
-        [_backBtn setImage:[UIImage imageNamed:@"7"] forState:UIControlStateNormal];
+        [_backBtn setImage:[UIImage imageNamed:@"backToLogin"] forState:UIControlStateNormal];
     }
     return _backBtn;
 }
@@ -120,7 +144,7 @@
         _ForgetPwdLab = [[UILabel alloc] init];
         _ForgetPwdLab.text = @"忘记密码";
         _ForgetPwdLab.textColor = UIColor.blackColor;
-        _ForgetPwdLab.font = [UIFont fontWithName:@"Helvetica-Bold" size:21.0];
+        _ForgetPwdLab.font = [UIFont fontWithName:PingFangSCBold size:18];
         
     }
     return _ForgetPwdLab;
@@ -129,10 +153,10 @@
 - (UILabel *)passwordTipLab {
     if (_passwordTipLab == nil) {
         _passwordTipLab = [[UILabel alloc] init];
-        _passwordTipLab.textColor = UIColor.grayColor;
-        _passwordTipLab.font = [UIFont systemFontOfSize:18];
+        _passwordTipLab.textColor = [UIColor colorWithHexString:@"#FFB3C5" alpha:1.0];
+        _passwordTipLab.font = [UIFont fontWithName:PingFangSCMedium size:11];
+        _passwordTipLab.numberOfLines = 0;
         _passwordTipLab.textAlignment = NSTextAlignmentLeft;
-        _passwordTipLab.numberOfLines = 2;
     }
     return _passwordTipLab;
 }
@@ -140,12 +164,22 @@
 - (UIButton *)btn {
     if (_btn == nil) {
         _btn = [[UIButton alloc] init];
-        _btn.titleLabel.font = [UIFont boldSystemFontOfSize:22];
-        [_btn setTitleColor:UIColor.blueColor forState:UIControlStateNormal];
+        _btn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
+        [_btn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         _btn.layer.masksToBounds = YES;
-        _btn.layer.cornerRadius = 10;
+        _btn.layer.cornerRadius = 25.5;
     }
     return _btn;
 }
 
+- (UILabel *)RedRockSignLab {
+    if (_RedRockSignLab == nil) {
+        _RedRockSignLab = [[UILabel alloc] init];
+        _RedRockSignLab.text = @"COPYRIGHT@红岩网校工作站";
+        _RedRockSignLab.textColor = [UIColor colorWithHexString:@"#A4A3B7" alpha:1.0];
+        _RedRockSignLab.textAlignment = NSTextAlignmentLeft;
+        _RedRockSignLab.font = [UIFont fontWithName:PingFangSCMedium size:10];
+    }
+    return _RedRockSignLab;
+}
 @end

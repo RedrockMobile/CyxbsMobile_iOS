@@ -111,7 +111,7 @@
         } else {
              pickerLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         }
-        [pickerLabel setFont: [UIFont fontWithName:PingFangSCSemibold size: 16]];
+        [pickerLabel setFont: [UIFont fontWithName:PingFangSCSemiBold size: 16]];
     }
     
     pickerLabel.text=[self pickerView:pickerView titleForRow:row forComponent:component];

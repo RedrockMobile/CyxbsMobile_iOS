@@ -51,7 +51,7 @@
     CGFloat nicknameLabelFrame_X = SCREEN_WIDTH * 0.04;
     CGFloat nicknameLabelFrame_Y = SCREEN_WIDTH * 0.0427 + 2;
     CGFloat nicknameLabelFrame_H = SCREEN_WIDTH * 0.1381 * 14.5/43.5;
-    CGRect nickName = [item.nick_name boundingRectWithSize:CGSizeMake(MAXFLOAT,nicknameLabelFrame_H) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSCSemibold size: 17]} context:nil];
+    CGRect nickName = [item.nick_name boundingRectWithSize:CGSizeMake(MAXFLOAT,nicknameLabelFrame_H) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSCSemiBold size: 17]} context:nil];
     self.nicknameLabelFrame = CGRectMake(iconImageViewFrame_X + iconImageViewFrame_W + nicknameLabelFrame_X, nicknameLabelFrame_Y, nickName.size.width, nickName.size.height);
     self.nicknameLabelFrameValue = [NSValue valueWithCGRect:self.nicknameLabelFrame];
     

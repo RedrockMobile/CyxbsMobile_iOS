@@ -54,7 +54,7 @@
     ///昵称
     _nicknameLabel = [[UILabel alloc] init];
     _nicknameLabel.textAlignment = NSTextAlignmentLeft;
-    _nicknameLabel.font = [UIFont fontWithName:PingFangSCSemibold size: 17];
+    _nicknameLabel.font = [UIFont fontWithName:PingFangSCSemiBold size: 17];
     _nicknameLabel.backgroundColor = [UIColor clearColor];
     _nicknameLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     [self.contentView addSubview:_nicknameLabel];

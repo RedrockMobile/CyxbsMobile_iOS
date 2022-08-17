@@ -20,7 +20,7 @@
 {
     self = [super init];
     if (self) {
-        self.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:15];
+        self.titleLabel.font = [UIFont fontWithName:PingFangSCSemiBold size:15];
         self.layer.masksToBounds = NO;
         [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self).offset(MAIN_SCREEN_W*0.03467);
