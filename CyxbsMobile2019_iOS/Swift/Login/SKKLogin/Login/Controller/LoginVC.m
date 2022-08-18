@@ -54,8 +54,8 @@
 - (void)setTextFieldData {
     // 数组里面的每一个元素都是字典
     NSArray *keyArray = @[@"imgStr", @"contentStr"];
-    NSArray *objArray0 = @[@"7", @"输入您的学号"];
-    NSArray *objArray1 = @[@"7", @"初始为身份证或统一认证码后6位"];
+    NSArray *objArray0 = @[@"loginStuID", @"请输入学号"];
+    NSArray *objArray1 = @[@"loginPwd", @"身份证/统一认证码后6位"];
     NSArray *tempArray = @[objArray0, objArray1];
     
     for (int i = 0; i < tempArray.count; i++) {

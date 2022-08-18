@@ -10,8 +10,14 @@
 
 @interface LoginView ()
 
-/// Logo图片
+/// Logo图片（暂时不需要）
 @property (nonatomic, strong) UIImageView *logoImgView;
+
+/// "登陆"文字
+@property (nonatomic, strong) UILabel *loginLab;
+
+/// "登陆"文字下方的欢迎文字
+@property (nonatomic, strong) UILabel *welcomeLab;
 
 @end
 
@@ -23,7 +29,7 @@
     if (self) {
         self.tfViewArray = [NSMutableArray array];
         // 加入Logo和忘记密码按钮
-        [self addSubview:self.logoImgView];
+//        [self addSubview:self.logoImgView];
         [self addSubview:self.forgetPwdBtn];
         [self addSubview:self.protocolBtn];
         [self addSubview:self.agreeBtn];
@@ -71,6 +77,10 @@
     }
     return _logoImgView;
 }
+
+//- (UILabel *)loginLab {
+//
+//}
 
 - (UIButton *)forgetPwdBtn {
     if (_forgetPwdBtn == nil) {

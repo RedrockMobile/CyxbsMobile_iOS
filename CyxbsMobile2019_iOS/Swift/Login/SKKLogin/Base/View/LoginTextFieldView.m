@@ -13,14 +13,38 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.backgroundColor = [UIColor colorWithHexString:@"#F1F5F9" alpha:0.8];
+        self.backgroundColor =
+        [UIColor dm_colorWithLightColor:
+            [UIColor colorWithHexString:@"#F1F5F9" alpha:0.8]
+                              darkColor:
+            [UIColor colorWithHexString:@"#282828" alpha:1.0]];
         self.borderStyle = UITextBorderStyleRoundedRect;
         self.layer.masksToBounds = YES;
         self.layer.cornerRadius = 8;
-        self.textColor = [UIColor colorWithHexString:@"#8B8B8B" alpha:1.0];
+        self.textColor =
+        [UIColor dm_colorWithLightColor:
+            [UIColor colorWithHexString:@"#242424" alpha:1.0]
+                              darkColor:
+            [UIColor colorWithHexString:@"#E9E9E9" alpha:1.0]];
         self.borderStyle = UITextBorderStyleNone;
-        self.font = [UIFont fontWithName:PingFangSCMedium size:14];
+        self.font = [UIFont fontWithName:PingFangSCBold size:16];
         self.textAlignment = NSTextAlignmentLeft;
+
+        // placeHolder
+        UIColor *placeHolderColor =
+        [UIColor dm_colorWithLightColor:
+            [UIColor colorWithHexString:@"#8B8B8B" alpha:1.0]
+                              darkColor:
+            [UIColor colorWithHexString:@"#C2C2C2" alpha:1.0]];
+        
+        NSAttributedString *att = [[NSAttributedString alloc] initWithString:@" " attributes:
+        @{
+            NSForegroundColorAttributeName:placeHolderColor,
+                       NSFontAttributeName:
+                [UIFont fontWithName:PingFangSCMedium size:14]
+        }];
+        self.attributedPlaceholder = att;
+        
         // 左视图
         self.leftView = self.iconImgView;
         self.leftViewMode = UITextFieldViewModeAlways;
@@ -62,6 +86,7 @@
 - (UIImageView *)iconImgView {
     if (_iconImgView == nil) {
         _iconImgView = [[UIImageView alloc] init];
+        _iconImgView.contentMode = UIViewContentModeScaleAspectFit;
     }
     return _iconImgView;
 }

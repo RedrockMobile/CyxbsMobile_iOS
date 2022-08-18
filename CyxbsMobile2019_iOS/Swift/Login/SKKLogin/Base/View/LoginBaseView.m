@@ -10,7 +10,7 @@
 
 @interface LoginBaseView ()
 
-/// 顶部“忘记密码”的按钮
+/// 顶部“忘记密码”的文字
 @property (nonatomic, strong) UILabel *ForgetPwdLab;
 
 /// COPYRIGHT@红岩网校工作站
@@ -23,6 +23,10 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor =
+        [UIColor dm_colorWithLightColor:UIColor.whiteColor
+                              darkColor:
+            [UIColor colorWithHexString:@"#191919" alpha:0.95]];
         self.tfViewArray = [NSMutableArray array];
         [self addCopyRight];
     }
@@ -143,7 +147,11 @@
     if (_ForgetPwdLab == nil) {
         _ForgetPwdLab = [[UILabel alloc] init];
         _ForgetPwdLab.text = @"忘记密码";
-        _ForgetPwdLab.textColor = UIColor.blackColor;
+        _ForgetPwdLab.textColor =
+        [UIColor dm_colorWithLightColor:
+            [UIColor colorWithHexString:@"#242424" alpha:1.0]
+                              darkColor:
+            [UIColor colorWithHexString:@"#F1F1F1" alpha:1.0]];
         _ForgetPwdLab.font = [UIFont fontWithName:PingFangSCBold size:18];
         
     }
@@ -153,7 +161,11 @@
 - (UILabel *)passwordTipLab {
     if (_passwordTipLab == nil) {
         _passwordTipLab = [[UILabel alloc] init];
-        _passwordTipLab.textColor = [UIColor colorWithHexString:@"#FFB3C5" alpha:1.0];
+        _passwordTipLab.textColor =
+        [UIColor dm_colorWithLightColor:
+            [UIColor colorWithHexString:@"#FFB3C5" alpha:1.0]
+                              darkColor:
+            [UIColor colorWithHexString:@"#FFA2BA" alpha:0.4]];
         _passwordTipLab.font = [UIFont fontWithName:PingFangSCMedium size:11];
         _passwordTipLab.numberOfLines = 0;
         _passwordTipLab.textAlignment = NSTextAlignmentLeft;
@@ -176,7 +188,11 @@
     if (_RedRockSignLab == nil) {
         _RedRockSignLab = [[UILabel alloc] init];
         _RedRockSignLab.text = @"COPYRIGHT@红岩网校工作站";
-        _RedRockSignLab.textColor = [UIColor colorWithHexString:@"#A4A3B7" alpha:1.0];
+        _RedRockSignLab.textColor =
+        [UIColor dm_colorWithLightColor:
+            [UIColor colorWithHexString:@"#A4A3B7" alpha:1.0]
+                              darkColor:
+            [UIColor colorWithHexString:@"#A4A3B7" alpha:0.5]];
         _RedRockSignLab.textAlignment = NSTextAlignmentLeft;
         _RedRockSignLab.font = [UIFont fontWithName:PingFangSCMedium size:10];
     }

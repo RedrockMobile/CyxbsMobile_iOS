@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LoginTextFieldView : UITextField
 
+/// 是否为登陆页
+@property (nonatomic, assign) bool isLoginVc;
+
 /// 图案
 @property (nonatomic, strong) UIImageView *iconImgView;
 

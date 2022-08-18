@@ -168,7 +168,11 @@
     if (_PwdNotMatchLab == nil) {
         _PwdNotMatchLab = [[UILabel alloc] init];
         _PwdNotMatchLab.text = @"两次密码不一致，请重试";
-        _PwdNotMatchLab.textColor = [UIColor colorWithHexString:@"#FF406E" alpha:1.0];
+        _PwdNotMatchLab.textColor =
+        [UIColor dm_colorWithLightColor:
+            [UIColor colorWithHexString:@"#FF406E" alpha:1.0]
+                              darkColor:
+            [UIColor colorWithHexString:@"#FF7B9B" alpha:1.0]];
         _PwdNotMatchLab.font = [UIFont fontWithName:PingFangSCMedium size:12];
     }
     return _PwdNotMatchLab;

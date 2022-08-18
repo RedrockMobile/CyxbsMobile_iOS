@@ -20,10 +20,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = UIColor.whiteColor;
+//    self.view.backgroundColor =
+//    [UIColor dm_colorWithLightColor:UIColor.whiteColor
+//                          darkColor:
+//        [UIColor colorWithHexString:@"#0E0E0E" alpha:0.95]];
+    
     [self.view addSubview:self.mainView];
     // 验证按钮无法点击
-    [self.mainView.btn setBackgroundColor:[UIColor colorWithHexString:@"#C5C5C5" alpha:1.0]];
+    [self.mainView.btn setBackgroundColor:
+     [UIColor dm_colorWithLightColor:
+         [UIColor colorWithHexString:@"#C5C5C5" alpha:1.0]
+                           darkColor:
+         [UIColor colorWithHexString:@"#4C4C4C" alpha:1.0]]];
     self.mainView.btn.enabled = NO;
     // 手势取消键盘
     [self gestureDismissKeyboard];
@@ -148,7 +156,11 @@
         self.mainView.btn.enabled = YES;
     }else {
         [self.mainView.btn setBackgroundImage:nil forState:UIControlStateNormal];
-        [self.mainView.btn setBackgroundColor:[UIColor colorWithHexString:@"#C5C5C5" alpha:1.0]];
+        [self.mainView.btn setBackgroundColor:
+         [UIColor dm_colorWithLightColor:
+             [UIColor colorWithHexString:@"#C5C5C5" alpha:1.0]
+                               darkColor:
+             [UIColor colorWithHexString:@"#4C4C4C" alpha:1.0]]];
         self.mainView.btn.enabled = NO;
     }
     return YES;

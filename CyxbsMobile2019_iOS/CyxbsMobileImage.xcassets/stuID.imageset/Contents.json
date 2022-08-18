@@ -6,12 +6,45 @@
       "scale" : "1x"
     },
     {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Group 314.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
       "filename" : "stuID@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Group 314@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
       "filename" : "stuID@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Group 314@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
