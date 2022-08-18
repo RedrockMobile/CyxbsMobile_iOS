@@ -101,7 +101,7 @@
 //苹方-简 中黑体
 #define PingFangSCMedium @"PingFangSC-Medium"
 //苹方-简 中粗体
-#define PingFangSCSemiBold @"PingFangSC-Semibold"
+#define PingFangSCSemibold @"PingFangSC-Semibold"
 /*
  下面这个for，可以打印出现有的所有字体
 for(NSString *fontFamilyName in [UIFont familyNames]){

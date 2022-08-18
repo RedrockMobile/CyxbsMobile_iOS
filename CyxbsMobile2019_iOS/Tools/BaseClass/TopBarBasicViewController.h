@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong)UIView *topBarView;
 /// 是否隐藏分割线，default is NO
 @property (nonatomic, assign, getter=isSplitLineHidden) BOOL splitLineHidden;
-/// 标题字体 Font， default is [UIFont fontWithName:PingFangSCSemiBold size:21]
+/// 标题字体 Font， default is [UIFont fontWithName:PingFangSCSemibold size:21]
 @property (nonatomic, strong) UIFont * titleFont;
 /// 标题颜色，default is Red:21 green:49 blue:91 alpha:1
 @property (nonatomic, strong) UIColor * titleColor;

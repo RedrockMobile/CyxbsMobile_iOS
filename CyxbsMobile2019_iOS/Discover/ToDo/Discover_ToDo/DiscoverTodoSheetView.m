@@ -110,7 +110,7 @@
     }];
     
     
-    btn.titleLabel.font = [UIFont fontWithName:PingFangSCSemiBold size:15];
+    btn.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:15];
     [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forState:UIControlStateNormal];
     [btn setTitle:@"取消" forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
@@ -127,7 +127,7 @@
         make.top.equalTo(self.backView).offset(0.02586206897*SCREEN_WIDTH);
     }];
     
-    btn.titleLabel.font = [UIFont fontWithName:PingFangSCSemiBold size:15];
+    btn.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:15];
     [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forState:UIControlStateNormal];
     [btn setAlpha:0.4];
     [btn setTitle:@"保存" forState:UIControlStateNormal];

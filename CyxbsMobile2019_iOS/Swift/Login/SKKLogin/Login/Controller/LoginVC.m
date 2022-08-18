@@ -86,9 +86,6 @@
         // 1.1 输入框上的图标
         NSString *iconStr = self.textFieldInformationArray[i][@"imgStr"];
         self.mainView.tfViewArray[i].iconImgView.image = [UIImage imageNamed:iconStr];
-//        // 1.2 输入框上方的文字
-//        NSString *textStr = self.textFieldInformationArray[i][@"textStr"];
-//        self.mainView.tfViewArray[i].textLab.text = textStr;
         // 1.2 输入框里的提示内容
         NSString *contentStr = self.textFieldInformationArray[i][@"contentStr"];
         self.mainView.tfViewArray[i].placeholder = contentStr;
@@ -100,9 +97,18 @@
     self.mainView.tfViewArray[1].secureTextEntry = YES;
     
     // 2.提示文字
-    self.mainView.passwordTipLab.text = @"研究生和20级及以后的学生默认登陆密码为统一认证码后6位，其余同学默认为身份证后6位。";
+    self.mainView.passwordTipLab.text = @"2020级及以后学生默认密码为统一认证码后六位，其余同学默认密码为身份证后六位。";
+    [self.mainView.passwordTipLab mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.right.equalTo(self.mainView.tfViewArray.lastObject).offset(-10);
+            make.height.mas_equalTo(34);
+    }];
     // 3.设置按钮
-    [self.mainView.btn setTitle:@"登陆" forState:UIControlStateNormal];
+    [self.mainView.btn setTitle:@"登 陆" forState:UIControlStateNormal];
+    [self.mainView.btn mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mainView).offset(30);
+    }];
+    // 4.忘记密码与同意协议的位置设置
+    [self.mainView setPositionAccordingToBtn];
 }
 
 /// 密码错误后的弹窗数据设置

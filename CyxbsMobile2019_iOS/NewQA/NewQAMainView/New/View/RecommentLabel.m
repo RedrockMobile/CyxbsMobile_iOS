@@ -20,7 +20,7 @@
             self.textColor = [UIColor colorWithRed:21.0/255.0 green:49.0/255.0 blue:91.0/255.0 alpha:1];
         }
         self.text = @"   推荐";
-        self.font = [UIFont fontWithName:PingFangSCSemiBold size: 18];
+        self.font = [UIFont fontWithName:PingFangSCSemibold size: 18];
         self.textAlignment = NSTextAlignmentLeft;
         
         _lineView = [[UIView alloc] init];

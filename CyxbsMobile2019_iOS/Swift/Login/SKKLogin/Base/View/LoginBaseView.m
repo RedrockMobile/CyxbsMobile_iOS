@@ -23,12 +23,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor =
-        [UIColor dm_colorWithLightColor:UIColor.whiteColor
-                              darkColor:
-            [UIColor colorWithHexString:@"#191919" alpha:0.95]];
         self.tfViewArray = [NSMutableArray array];
-        [self addCopyRight];
     }
     return self;
 }
@@ -48,6 +43,11 @@
 /// 添加顶部返回按钮
 - (void)addBackItem {
     if (self.isBack) {
+        self.backgroundColor =
+        [UIColor dm_colorWithLightColor:UIColor.whiteColor
+                              darkColor:
+            [UIColor colorWithHexString:@"#191919" alpha:1.0]];
+        [self addCopyRight];
         [self addSubview:self.backBtn];
         [self addSubview:self.ForgetPwdLab];
         
@@ -63,6 +63,12 @@
             make.top.equalTo(self).offset(STATUSBARHEIGHT + 7.5);
             make.size.mas_equalTo(CGSizeMake(72, 25));
         }];
+    }else {
+        self.backgroundColor =
+        [UIColor dm_colorWithLightColor:
+            [UIColor colorWithHexString:@"#F6F6F6" alpha:1.0]
+                              darkColor:
+            [UIColor colorWithHexString:@"#010101" alpha:1.0]];
     }
 }
 
@@ -70,6 +76,8 @@
 - (void)addTextField {
     for (unsigned long i = 0; i < self.textFieldCount; i++) {
         LoginTextFieldView *tfView = [[LoginTextFieldView alloc] init];
+        tfView.isLoginVC = !self.isBack;
+        [tfView setTextTield];
         [self addSubview:tfView];
         // 设置位置
         if (self.tfViewArray.count == 0) {
@@ -84,18 +92,18 @@
             }else {
                 [tfView mas_makeConstraints:^(MASConstraintMaker *make) {
                     make.centerX.equalTo(self);
-                    make.left.equalTo(self).offset(47);
+                    make.left.equalTo(self).offset(20);
                     make.height.mas_equalTo(44);
-                    make.top.equalTo(self).offset(STATUSBARHEIGHT + 200);
+                    make.top.equalTo(self).offset(STATUSBARHEIGHT + 160);
                 }];
             }
             
         }else {
-            [tfView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.centerX.equalTo(self);
-                make.top.equalTo(self.tfViewArray.lastObject.mas_bottom).offset(22);
-                make.size.mas_equalTo(self.tfViewArray.lastObject);
-            }];
+                [tfView mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.centerX.equalTo(self);
+                    make.top.equalTo(self.tfViewArray.lastObject.mas_bottom).offset(22);
+                    make.size.mas_equalTo(self.tfViewArray.lastObject);
+                }];
         }
         [self.tfViewArray addObject:tfView];
     }
@@ -105,8 +113,7 @@
 - (void)addPasswordTip {
     if (self.isPasswordtip == YES) {
         [self addSubview:self.passwordTipLab];
-        [self.passwordTipLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self);
+        [self.passwordTipLab mas_makeConstraints:^(MASConstraintMaker*make) {
             make.top.equalTo(self.tfViewArray.lastObject.mas_bottom).offset(14);
             make.left.equalTo(self.tfViewArray.lastObject);
             make.right.equalTo(self.tfViewArray.lastObject).offset(10);
@@ -122,13 +129,15 @@
         [self.btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
             make.top.equalTo(self.passwordTipLab.mas_bottom).offset(28);
-            make.size.mas_equalTo(CGSizeMake(247, 51));
+            make.left.equalTo(self).offset(64);
+            make.height.mas_equalTo(51);
         }];
     }else {
         [self.btn mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self);
             make.top.equalTo(self.tfViewArray.lastObject.mas_bottom).offset(72);
-            make.size.mas_equalTo(CGSizeMake(247, 51));
+            make.left.equalTo(self).offset(64);
+            make.height.mas_equalTo(51);
         }];
     }
 }

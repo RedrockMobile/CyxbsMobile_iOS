@@ -45,7 +45,7 @@
         
         UILabel *titleLabel = [[UILabel alloc] init];
         titleLabel.text = @"关于我们";
-        titleLabel.font = [UIFont fontWithName:PingFangSCSemiBold size:21*fontSizeScaleRate_SE];
+        titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:21*fontSizeScaleRate_SE];
         if (@available(iOS 11.0, *)) {
             titleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFEF" alpha:1]];
         } else {

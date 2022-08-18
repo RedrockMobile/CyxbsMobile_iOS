@@ -22,6 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 勾选协议按钮
 @property (nonatomic, strong) UIButton *agreeBtn;
 
+/// 需要依据登陆按钮来设置约束的，应该在加载完登陆按钮后设置位置
+- (void)setPositionAccordingToBtn;
+
 @end
 
 NS_ASSUME_NONNULL_END

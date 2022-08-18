@@ -46,7 +46,7 @@ typedef NS_ENUM(NSUInteger, SSRTopBarBaseViewTitleLabLay) {
 // MARK: Method
 
 /// 设置标题样式（默认样式如下）（只会有一个哟）
-/// [UIFont fontWithName:PingFangSCSemiBold size:22]
+/// [UIFont fontWithName:PingFangSCSemibold size:22]
 /// [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]
 /// @param title 标题
 /// @param titleLay 放置位置

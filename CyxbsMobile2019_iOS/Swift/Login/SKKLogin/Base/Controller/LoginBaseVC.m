@@ -20,10 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.view.backgroundColor =
-//    [UIColor dm_colorWithLightColor:UIColor.whiteColor
-//                          darkColor:
-//        [UIColor colorWithHexString:@"#0E0E0E" alpha:0.95]];
     
     [self.view addSubview:self.mainView];
     // 验证按钮无法点击
@@ -151,8 +147,13 @@
     }
     // 只有当其他输入框都有数据，并且当前输入框的当前输入不为0时，按钮可点击
     if (!noInputCount && newtxt.length != 0) {
-        [self.mainView.btn setBackgroundColor:UIColor.clearColor];
-        [self.mainView.btn setBackgroundImage:[UIImage imageNamed:@"loginBtnImg"] forState:UIControlStateNormal];
+        // 登陆界面的按钮是颜色填充
+        if (self.isLoginView) {
+            [self.mainView.btn setBackgroundColor:[UIColor colorWithHexString:@"#4A45DC" alpha:1.0]];
+        }else {
+            [self.mainView.btn setBackgroundColor:UIColor.clearColor];
+            [self.mainView.btn setBackgroundImage:[UIImage imageNamed:@"loginBtnImg"] forState:UIControlStateNormal];
+        }
         self.mainView.btn.enabled = YES;
     }else {
         [self.mainView.btn setBackgroundImage:nil forState:UIControlStateNormal];
@@ -207,7 +208,7 @@
         UILabel *wrongTitleLab = [[UILabel alloc] init];
         wrongTitleLab.text = @"错误";
         wrongTitleLab.textColor = [UIColor colorWithHexString:@"#242424" alpha:1.0];
-        wrongTitleLab.font = [UIFont fontWithName:PingFangSCSemiBold size:18];
+        wrongTitleLab.font = [UIFont fontWithName:PingFangSCSemibold size:18];
         wrongTitleLab.textAlignment = NSTextAlignmentCenter;
         [_networkWrongView addSubview:wrongTitleLab];
         
@@ -228,7 +229,7 @@
         // ”确定“按钮
         UIButton *sureBtn = [[UIButton alloc] init];
         [sureBtn setTitle:@"确定" forState:UIControlStateNormal];
-        sureBtn.titleLabel.font = [UIFont fontWithName:PingFangSCSemiBold size:16];
+        sureBtn.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:16];
         [sureBtn setTitleColor:[UIColor colorWithHexString:@"#625AF8" alpha:1.0] forState:UIControlStateNormal];
         [sureBtn addTarget:self action:@selector(dismissNetworkHUD) forControlEvents:UIControlEventTouchUpInside];
         [_networkWrongView addSubview:sureBtn];
@@ -272,7 +273,7 @@
         // 标题
         UILabel *titleLab = [[UILabel alloc] init];
         titleLab.textColor = [UIColor colorWithHexString:@"#242424" alpha:1.0];
-        titleLab.font = [UIFont fontWithName:PingFangSCSemiBold size:18];
+        titleLab.font = [UIFont fontWithName:PingFangSCSemibold size:18];
         titleLab.textAlignment = NSTextAlignmentCenter;
         self.tipTitleLab = titleLab;
         [_tipView addSubview:self.tipTitleLab];
@@ -306,7 +307,7 @@
         // 按钮
         UIButton *btn = [[UIButton alloc] init];
         [btn setTitle:@"确定" forState:UIControlStateNormal];
-        btn.titleLabel.font = [UIFont fontWithName:PingFangSCSemiBold size:16];
+        btn.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:16];
         [btn setTitleColor:[UIColor colorWithHexString:@"#625AF8" alpha:1.0] forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(dismissHUD) forControlEvents:UIControlEventTouchUpInside];
         self.tipBtn = btn;

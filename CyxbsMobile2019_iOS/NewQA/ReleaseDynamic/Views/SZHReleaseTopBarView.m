@@ -51,7 +51,7 @@
         _titleLbl = [[UILabel alloc] init];
         _titleLbl.text = @"发布动态";
 //        _titleLbl.font = [UIFont fontWithName:@"PingFangSC-Medium" size:21];
-        _titleLbl.font = [UIFont fontWithName:PingFangSCSemiBold size:21];
+        _titleLbl.font = [UIFont fontWithName:PingFangSCSemibold size:21];
         if (@available(iOS 11.0, *)) {
             _titleLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {

@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LoginTextFieldView : UITextField
 
 /// 是否为登陆页
-@property (nonatomic, assign) bool isLoginVc;
+@property (nonatomic, assign) bool isLoginVC;
 
 /// 图案
 @property (nonatomic, strong) UIImageView *iconImgView;
@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 键盘上面有一个toolBar，上面的提示文字，与输入框的placeholder相同
 @property (nonatomic, strong) UILabel *keyboardPlaceholderLab;
 
+/// 判断是否为登陆页面，判断完后设置属性
+- (void)setTextTield;
 @end
 
 NS_ASSUME_NONNULL_END

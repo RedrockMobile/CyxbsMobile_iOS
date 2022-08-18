@@ -50,7 +50,7 @@
         
         
         FYHCycleLabel *classLabel = [[FYHCycleLabel alloc] initWithFrame:CGRectMake(10, 10, 0.3*MAIN_SCREEN_W, 50)];
-        classLabel.cycleLabel.font = [UIFont fontWithName:PingFangSCSemiBold size:22];
+        classLabel.cycleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:22];
         classLabel.cycleLabel.textColor = [UIColor blackColor];
         [self addSubview:classLabel];
         self.classLabel = classLabel;

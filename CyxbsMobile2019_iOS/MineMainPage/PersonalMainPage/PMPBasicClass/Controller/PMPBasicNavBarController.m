@@ -126,7 +126,7 @@
 - (UILabel *)VCTitleLabel {
     if (_VCTitleLabel == nil) {
         _VCTitleLabel = [[UILabel alloc] initWithFrame:(CGRectZero)];
-        _VCTitleLabel.font = [UIFont fontWithName:PingFangSCSemiBold size:22];
+        _VCTitleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:22];
         _VCTitleLabel.textColor = UIColor.whiteColor;
         [_VCTitleLabel sizeToFit];
     }

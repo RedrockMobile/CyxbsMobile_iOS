@@ -68,7 +68,7 @@
     self.notoiceLab = [[UILabel alloc] init];
     self.notoiceLab.textAlignment = NSTextAlignmentLeft;
     self.notoiceLab.numberOfLines = 1;
-    self.notoiceLab.font = [UIFont fontWithName:PingFangSCSemiBold size: 15];
+    self.notoiceLab.font = [UIFont fontWithName:PingFangSCSemibold size: 15];
     if (@available(iOS 11.0, *)) {
         self.notoiceLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#122D55" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {

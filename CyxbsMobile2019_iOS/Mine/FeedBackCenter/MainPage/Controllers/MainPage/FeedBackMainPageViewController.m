@@ -79,7 +79,7 @@
         _commonQuestionsLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.042*SCREEN_WIDTH, Bar_H+27, 83, 28)];
         _commonQuestionsLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         _commonQuestionsLbl.text = @"常见问题";
-        _commonQuestionsLbl.font = [UIFont fontWithName:PingFangSCSemiBold size:20];
+        _commonQuestionsLbl.font = [UIFont fontWithName:PingFangSCSemibold size:20];
     }
     return _commonQuestionsLbl;
 }
