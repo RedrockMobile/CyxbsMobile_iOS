@@ -5845,20 +5845,20 @@
 		B0F08FE428A249E200986EB6 /* SportAttendance */ = {
 			isa = PBXGroup;
 			children = (
-				B0F08FFE28A2602F00986EB6 /* popup */,
-				B0F08FE528A249E200986EB6 /* Contriller */,
+				B0F08FFE28A2602F00986EB6 /* PopUpController */,
+				B0F08FE528A249E200986EB6 /* Controller */,
 				B0F08FE828A249E200986EB6 /* View */,
 			);
 			path = SportAttendance;
 			sourceTree = "<group>";
 		};
-		B0F08FE528A249E200986EB6 /* Contriller */ = {
+		B0F08FE528A249E200986EB6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				B0F08FE728A249E200986EB6 /* DiscoverSAVC.h */,
 				B0F08FE628A249E200986EB6 /* DiscoverSAVC.m */,
 			);
-			path = Contriller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		B0F08FE828A249E200986EB6 /* View */ = {
@@ -5907,13 +5907,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		B0F08FFE28A2602F00986EB6 /* popup */ = {
+		B0F08FFE28A2602F00986EB6 /* PopUpController */ = {
 			isa = PBXGroup;
 			children = (
 				B0F08FFF28A2605E00986EB6 /* popUpViewController.h */,
 				B0F0900028A2605E00986EB6 /* popUpViewController.m */,
 			);
-			path = popup;
+			path = PopUpController;
 			sourceTree = "<group>";
 		};
 		D0101D3D2433C885004337ED /* SDMask */ = {
