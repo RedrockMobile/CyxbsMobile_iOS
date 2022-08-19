@@ -217,7 +217,7 @@
     [self.sAModel requestSuccess:^{
             if (self.Isholiday) {
                 [self addHolidayView];
-            }else{
+            }else if (self.sAModel.status == 10000){
                 [self addSussesView];
                 //无需向前页面回传数据(返回时会自动重新网络请求)
             }
