@@ -26,6 +26,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self addTitle];
+        [self addSeperateLine];
         [self setUIDefaults];//对自身进行设置
         if([UserItem defaultItem].building && [UserItem defaultItem].room) {
             [self addBindingView];
@@ -42,10 +43,10 @@
     } else {
         // Fallback on earlier versions
     }
-    self.layer.shadowOpacity = 0.16f;
-    self.layer.shadowColor = [UIColor colorWithRed:174/255.0 green:182/255.0 blue:211/255.0 alpha:1].CGColor;
-    self.layer.shadowOffset = CGSizeMake(0, 5);
-    self.layer.cornerRadius = 25;
+//    self.layer.shadowOpacity = 0.16f;
+//    self.layer.shadowColor = [UIColor colorWithRed:174/255.0 green:182/255.0 blue:211/255.0 alpha:1].CGColor;
+//    self.layer.shadowOffset = CGSizeMake(0, 5);
+//    self.layer.cornerRadius = 25;
     self.clipsToBounds = YES;
 }
 -(void)addNoBindingView {
@@ -84,10 +85,17 @@
     title.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     [self addSubview:title];
 
-    
-    
 }
 
+- (void)addSeperateLine {
+    UIView *line = [[UIView alloc]init];
+    line.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:0.5]];
+    [self addSubview:line];
+    [line mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(self);
+        make.height.equalTo(@1);
+    }];
+}
 
 //MARK: 未绑定部分
 - (void)addHintLabel {

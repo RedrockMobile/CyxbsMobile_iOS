@@ -85,9 +85,7 @@
 }
 
 - (void)pushToJWZXNewsController {
-    JWZXNewsViewController *vc =
-    [[JWZXNewsViewController alloc] initWithRootJWZXSectionModel:self.sectionNewsModel];
-    
+    JWZXNewsViewController *vc = [[JWZXNewsViewController alloc] initWithRootJWZXSectionModel:self.sectionNewsModel];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
