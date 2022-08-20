@@ -71,7 +71,7 @@
              fileName:[NSString stringWithFormat:@"%ld.png", [NSDate nowTimestamp]]
              mimeType:@"image/png"];
             [body
-             appendPartWithFormData:[[UserDefaultTool getStuNum] dataValue]
+             appendPartWithFormData:[NSUserDefaults.standardUserDefaults stringForKey:@"stuNum"].dataValue
              name:@"stunum"];
         }
     }

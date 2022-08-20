@@ -5212,16 +5212,16 @@
 		AA7AB9312873E5E900BA6790 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AA7AB9322873E5E900BA6790 /* SZHHotSearchButton.h */,
-				AA7AB9332873E5E900BA6790 /* SearchTopView.h */,
-				AA7AB9342873E5E900BA6790 /* SZHHotSearchView.m */,
-				AA7AB9352873E5E900BA6790 /* SZHSearchTableViewCell.m */,
 				AA7AB9362873E5E900BA6790 /* SearchBeiginView.h */,
-				AA7AB9372873E5E900BA6790 /* SZHHotSearchView.h */,
-				AA7AB9382873E5E900BA6790 /* SearchTopView.m */,
-				AA7AB9392873E5E900BA6790 /* SZHHotSearchButton.m */,
-				AA7AB93A2873E5E900BA6790 /* SZHSearchTableViewCell.h */,
 				AA7AB93B2873E5E900BA6790 /* SearchBeiginView.m */,
+				AA7AB9332873E5E900BA6790 /* SearchTopView.h */,
+				AA7AB9382873E5E900BA6790 /* SearchTopView.m */,
+				AA7AB9322873E5E900BA6790 /* SZHHotSearchButton.h */,
+				AA7AB9392873E5E900BA6790 /* SZHHotSearchButton.m */,
+				AA7AB9372873E5E900BA6790 /* SZHHotSearchView.h */,
+				AA7AB9342873E5E900BA6790 /* SZHHotSearchView.m */,
+				AA7AB93A2873E5E900BA6790 /* SZHSearchTableViewCell.h */,
+				AA7AB9352873E5E900BA6790 /* SZHSearchTableViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";

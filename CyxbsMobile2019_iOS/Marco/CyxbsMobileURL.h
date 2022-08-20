@@ -9,6 +9,6 @@
 #ifndef CyxbsMobileURL_h
 #define CyxbsMobileURL_h
 
-
+#define Cyxbs_check_API_Get @"https://be-prod.redrock.team/cloud-manager/check"
 
 #endif /* CyxbsMobileURL_h */

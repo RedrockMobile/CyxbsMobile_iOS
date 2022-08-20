@@ -89,7 +89,7 @@
             else{
                 self.dayLabels[i].textColor = [UIColor colorWithHexString:@"#8395A4"];
             }
-            [UserDefaultTool saveValue:[NSString stringWithFormat:@"%d",i] forKey:@"weekDayNum"];
+//            [UserDefaultTool saveValue:[NSString stringWithFormat:@"%d",i] forKey:@"weekDayNum"];
         }
     }
 }

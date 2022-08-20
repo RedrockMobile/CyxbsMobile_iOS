@@ -127,6 +127,9 @@
 #pragma mark - <TextCycleViewDelegate>
 
 - (void)textCycleView:(SSRTextCycleView *)view didSelectedAtIndex:(NSInteger)index {
+    if (index == 0) {
+        return;
+    }
     JWZXNew *aNew = self.sectionNewsModel
         .newsAry[index % self.sectionNewsModel.newsAry.count];
     
