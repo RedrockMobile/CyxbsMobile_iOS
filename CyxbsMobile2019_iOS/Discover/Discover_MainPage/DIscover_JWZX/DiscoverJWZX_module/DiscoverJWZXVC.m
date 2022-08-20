@@ -80,11 +80,16 @@
         self.textCycleView.textAry = mtAry.copy;
     }
      failure:^(NSError * _Nonnull error) {
-        
+        dispatch_after(5, dispatch_get_main_queue(), ^{
+            [self request];
+        });
     }];
 }
 
 - (void)pushToJWZXNewsController {
+    if (!self.sectionNewsModel.newsAry || self.sectionNewsModel.newsAry.count == 1) {
+        return;
+    }
     JWZXNewsViewController *vc = [[JWZXNewsViewController alloc] initWithRootJWZXSectionModel:self.sectionNewsModel];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
@@ -127,9 +132,10 @@
 #pragma mark - <TextCycleViewDelegate>
 
 - (void)textCycleView:(SSRTextCycleView *)view didSelectedAtIndex:(NSInteger)index {
-    if (index == 0) {
+    if (!self.sectionNewsModel.newsAry || self.sectionNewsModel.newsAry.count == 1) {
         return;
     }
+    
     JWZXNew *aNew = self.sectionNewsModel
         .newsAry[index % self.sectionNewsModel.newsAry.count];
     

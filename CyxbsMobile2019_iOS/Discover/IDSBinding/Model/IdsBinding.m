@@ -22,7 +22,7 @@
     NSDictionary *paramters = @{
         @"idsPassword":self.idsPassword,
         @"idsNum":self.idsNum};
-    
+    RisingDetailLog(@"😀%@", Discover_POST_idsBinding_API);
     [HttpTool.shareTool
      request:Discover_POST_idsBinding_API
      type:HttpToolRequestTypePost

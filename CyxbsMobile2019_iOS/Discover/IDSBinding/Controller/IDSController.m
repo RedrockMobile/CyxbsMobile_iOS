@@ -42,8 +42,8 @@
 
 //MARK: - IdsBindingViewDelegate
 - (void)touchBindingButton {
-    NSString *bindingNum = self.idsBindgView.accountfield.text;
-    NSString *bindingPasswd = self.idsBindgView.passTextfield.text;
+    NSString *bindingNum = [NSString stringWithString:self.idsBindgView.accountfield.text];
+    NSString *bindingPasswd = [NSString stringWithString:self.idsBindgView.passTextfield.text];
     if(![bindingNum isEqual: @""] && ![bindingPasswd isEqual: @""]) {
         self.loadHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         self.loadHud.labelText = @"正在验证";

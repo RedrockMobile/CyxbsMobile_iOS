@@ -257,7 +257,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 #ifdef DEBUG
     // 测试环境
     baseURL = @"https://be-dev.redrock.cqupt.edu.cn/";
-    baseURL = @"https://be-prod.redrock.team/";
+//    baseURL = @"https://be-prod.redrock.team/";
 #else
     // 正式环境
     baseURL = @"https://be-prod.redrock.cqupt.edu.cn/";
