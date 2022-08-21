@@ -145,7 +145,7 @@
     // 网络请求
     NSDictionary *parameters =
     @{@"stu_num":self.stuIDStr, @"new_password":newPwdStr, @"code":self.code};
-    [HttpTool.shareTool request:Mine_POST_changePassword_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:parameters
+    [HttpTool.shareTool request:Mine_POST_changePassword_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerJSON bodyParameters:parameters
         progress:nil
         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         // 2.成功，弹出弹窗，跳转到登陆界面

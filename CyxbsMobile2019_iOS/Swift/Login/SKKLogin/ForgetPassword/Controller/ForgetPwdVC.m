@@ -144,7 +144,7 @@
     [HttpTool.shareTool
      request:Mine_POST_UserSecretIds_API
      type:HttpToolRequestTypePost
-     serializer:HttpToolRequestSerializerHTTP
+     serializer:HttpToolRequestSerializerJSON
      bodyParameters:parameters
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
