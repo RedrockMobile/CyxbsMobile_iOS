@@ -144,20 +144,22 @@
 
 /// 在验证了两个输入框都有数据后，重写请求方法
 - (void)clickBtn {
-    // 1.检查学号格式
+    // 1.首先先使键盘消失
+    [self dismissKeyboardWithGesture];
+    // 2.检查学号格式
     if (self.mainView.tfViewArray[0].text.length != 10) {
         NSLog(@"请输入正确格式的学号");
         [NewQAHud showHudWith:@"  请输入正确格式的学号 " AddView:self.mainView];
         return;
     }
     
-    // 2.检查有没有勾选
+    // 3.检查有没有勾选
     if (!self.mainView.agreeBtn.selected) {
         [NewQAHud showHudWith:@"请阅读并同意《掌上重邮用户协议》" AddView:self.mainView];
         return;
     }
     
-    // 3.请求验证
+    // 4.请求验证
     NSString *stuIDStr = self.mainView.tfViewArray[0].text;
     NSString *pwdStr = self.mainView.tfViewArray[1].text;
     
@@ -165,20 +167,20 @@
     NSLog(@"🍉stuCode：%@", pwdStr);
     // TODO: 请求验证
     // TODO: 成功:
-    // 3.1 展示hud
+    // 4.1 展示hud
     self.loginingHud = [NewQAHud showNotHideHudWith:@"登陆中..." AddView:self.mainView];
     
-    // 3.2 model
+    // 4.2 model
     [LoginModel loginWithStuNum:stuIDStr
     idNum:pwdStr
     success:^{
-        // 3.2.1 AppDelegate
+        // 4.2.1 AppDelegate
         self.tabBarController.selectedIndex = 0;
-        // 3.2.2 隐藏hud
+        // 4.2.2 隐藏hud
         [self.loginingHud hide:YES afterDelay:0.1];
-        // 3.2.3 自己消失,进入主界面
+        // 4.2.3 自己消失,进入主界面
         [self dismissViewControllerAnimated:YES completion:nil];
-        // 3.2.4 完成登录成功后todo的一些配置
+        // 4.2.4 完成登录成功后todo的一些配置
         TodoSyncTool *todoTool = [[TodoSyncTool alloc] init];
         [todoTool logInSuccess];
         

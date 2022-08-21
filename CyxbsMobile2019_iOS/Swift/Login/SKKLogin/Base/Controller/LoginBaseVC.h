@@ -54,6 +54,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 点击按钮
 - (void)clickBtn;
 
+/// 手势键盘消失方法
+- (void)dismissKeyboardWithGesture;
 @end
 
 NS_ASSUME_NONNULL_END

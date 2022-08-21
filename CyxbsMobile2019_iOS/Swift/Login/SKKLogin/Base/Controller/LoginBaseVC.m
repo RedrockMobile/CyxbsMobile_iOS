@@ -267,12 +267,19 @@
 - (UIView *)tipView {
     if (_tipView == nil) {
         _tipView = [[UIView alloc] init];
-        _tipView.backgroundColor = UIColor.whiteColor;
+        _tipView.backgroundColor =
+        [UIColor dm_colorWithLightColor:UIColor.whiteColor
+                              darkColor:
+            [UIColor colorWithHexString:@"#3B3B3B" alpha:0.3]];
         _tipView.layer.cornerRadius = 8;
         
         // 标题
         UILabel *titleLab = [[UILabel alloc] init];
-        titleLab.textColor = [UIColor colorWithHexString:@"#242424" alpha:1.0];
+        titleLab.textColor =
+        [UIColor dm_colorWithLightColor:
+            [UIColor colorWithHexString:@"#242424" alpha:1.0]
+                              darkColor:
+            [UIColor colorWithHexString:@"#F1F1F1" alpha:1.0]];
         titleLab.font = [UIFont fontWithName:PingFangSCSemibold size:18];
         titleLab.textAlignment = NSTextAlignmentCenter;
         self.tipTitleLab = titleLab;
@@ -287,7 +294,11 @@
         
         // 正文
         UILabel *textLab = [[UILabel alloc] init];
-        textLab.textColor = [UIColor colorWithHexString:@"#8B8B8B" alpha:1.0];
+        textLab.textColor =
+        [UIColor dm_colorWithLightColor:
+            [UIColor colorWithHexString:@"#8B8B8B" alpha:1.0]
+                              darkColor:
+            [UIColor colorWithHexString:@"#C2C2C2" alpha:1.0]];
         textLab.font = [UIFont fontWithName:PingFangSCMedium size:16];
         textLab.textAlignment = NSTextAlignmentCenter;
         self.tipTextLab = textLab;
@@ -295,7 +306,11 @@
         
         // 一条横线
         UIView *lineView = [[UIView alloc] init];
-        lineView.backgroundColor = [UIColor colorWithHexString:@"#000000" alpha:0.05];
+        lineView.backgroundColor =
+        [UIColor dm_colorWithLightColor:
+            [UIColor colorWithHexString:@"#000000" alpha:0.05]
+                              darkColor:
+            [UIColor colorWithHexString:@"#FFFFFF" alpha:0.05]];
         [_tipView addSubview:lineView];
         
         [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -308,7 +323,13 @@
         UIButton *btn = [[UIButton alloc] init];
         [btn setTitle:@"确定" forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:16];
-        [btn setTitleColor:[UIColor colorWithHexString:@"#625AF8" alpha:1.0] forState:UIControlStateNormal];
+        [btn setTitleColor:
+         [UIColor dm_colorWithLightColor:
+             [UIColor colorWithHexString:@"#625AF8" alpha:1.0]
+                               darkColor:
+             [UIColor colorWithHexString:@"#948FFF" alpha:1.0]]
+        forState:UIControlStateNormal];
+        
         [btn addTarget:self action:@selector(dismissHUD) forControlEvents:UIControlEventTouchUpInside];
         self.tipBtn = btn;
         [_tipView addSubview:self.tipBtn];

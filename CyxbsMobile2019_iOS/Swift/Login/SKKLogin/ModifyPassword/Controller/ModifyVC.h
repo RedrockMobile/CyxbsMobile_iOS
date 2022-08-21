@@ -19,6 +19,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ModifyVC : LoginBaseVC
 
+/// 学号信息
+@property (nonatomic, strong) NSString *stuIDStr;
+
+/// 验证码
+@property (nonatomic, strong) NSNumber *code;
+
 @property (nonatomic, weak) id <ModifyVCDelegate> modifyDelegate;
 
 @end

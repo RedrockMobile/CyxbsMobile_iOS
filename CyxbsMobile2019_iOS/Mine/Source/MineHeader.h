@@ -37,6 +37,14 @@
 /// 上传用户信息。未使用
 #define Mine_GET_upLoadUserInfo_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke/Person/SetInfo"]
 
+#pragma mark - 修改密码
+
+/// 通过教务在线ids登录获取验证码
+#define Mine_POST_UserSecretIds_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/valid/ids"]
+
+/// 通过验证码更改密码
+#define Mine_POST_ChangePassword_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/password/valid"]
+
 #pragma mark - CheckIn
 /// 获取签到信息
 #define Mine_POST_checkInInfo_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-intergral/QA/User/getScoreStatus"]

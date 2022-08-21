@@ -122,7 +122,9 @@
 
 /// 在验证了两个输入框都有数据后，重写请求方法
 - (void)clickBtn {
-    // 1.检查学号格式
+    // 1.首先先使键盘消失
+    [self dismissKeyboardWithGesture];
+//    // 1.检查学号格式
 //    if (self.mainView.tfViewArray[0].textField.text.length != 10) {
 //        NSLog(@"请输入正确格式的学号");
 //        [NewQAHud showHudWith:@" 请输入正确格式的学号  " AddView:self.mainView];
@@ -136,16 +138,31 @@
     NSLog(@"🍉stuCode：%@", stuCodeStr);
     NSLog(@"🍇pwdStr：%@", pwdStr);
     // 2.TODO: 请求验证
-    // 成功:界面跳转
-    ModifyVC *modifyVC = [[ModifyVC alloc] init];
-    modifyVC.modifyDelegate = self;
-    modifyVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:modifyVC animated:NO completion:nil];
-    // 失败:弹窗提示
-//    // 1.1 设置弹窗内容
-//    [self setFailureHudData];
-//    // 1.2 展示弹窗并且保存该弹窗
-//    self.tipHud = [NewQAHud showhudWithCustomView:self.tipView AddView:self.mainView];
+    NSDictionary *parameters =
+    @{@"stu_num":stuIDStr, @"ids_num":stuCodeStr, @"password":pwdStr};
+    
+    [HttpTool.shareTool
+     request:Mine_POST_UserSecretIds_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:parameters
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        // 成功:界面跳转
+        ModifyVC *modifyVC = [[ModifyVC alloc] init];
+        modifyVC.code = object[@"data"][@"code"];
+        modifyVC.stuIDStr = stuIDStr;
+        modifyVC.modifyDelegate = self;
+        modifyVC.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:modifyVC animated:NO completion:nil];
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        // 失败:弹窗提示
+        // 1.1 设置弹窗内容
+        [self setFailureHudData];
+        // 1.2 展示弹窗并且保存该弹窗
+        self.tipHud = [NewQAHud showhudWithCustomView:self.tipView AddView:self.mainView];
+    }];
 }
 
 /// 点击弹窗中的“确定”按钮

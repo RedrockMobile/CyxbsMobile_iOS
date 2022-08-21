@@ -85,7 +85,11 @@
 
 + (MBProgressHUD *)showhudWithCustomView:(UIView *)customView AddView:(UIView *)superView {
     MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:superView animated:YES];
-    hud.backgroundColor = [UIColor colorWithHexString:@"#1C1C1C" alpha:0.3];
+    hud.backgroundColor =
+    [UIColor dm_colorWithLightColor:
+        [UIColor colorWithHexString:@"#1C1C1C" alpha:0.3]
+                          darkColor:
+        [UIColor colorWithHexString:@"#000000" alpha:0.3]];
     hud.mode = MBProgressHUDModeCustomView;
     [hud setColor:UIColor.clearColor];
     hud.customView = customView;

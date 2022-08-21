@@ -142,10 +142,9 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 
 /// 登录接口
 #define Mine_POST_logIn_API @"https://be-prod.redrock.cqupt.edu.cn/magipoke/token"
+
 /// 刷新token
-
 #define Mine_POST_refreshToken_API @"https://be-prod.redrock.cqupt.edu.cn/magipoke/token/refresh"
-
 
 /// 上传头像
 #define Mine_GET_upLoadProfile_API @"https://cyxbsmobile.redrock.team/app/index.php/Home/Photo/uploadArticle"

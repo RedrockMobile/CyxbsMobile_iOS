@@ -127,11 +127,12 @@
 
 /// 在验证了两个输入框都有数据后，重写请求方法
 - (void)clickBtn {
+    // 1.首先先使键盘消失
+    [self dismissKeyboardWithGesture];
     NSString *newPwdStr = self.mainView.tfViewArray[0].text;
     NSString *againPwdStr = self.mainView.tfViewArray[1].text;
     
     NSLog(@"🍋newPwdStr:%@", newPwdStr);
-    NSLog(@"🍉againPwdStr:%@", againPwdStr);
     // 两次密码相同
     if ([newPwdStr isEqualToString:againPwdStr]) {
         self.PwdNotMatchLab.alpha = 0;
@@ -141,18 +142,26 @@
         self.PwdNotMatchLab.alpha = 1;
         return;
     }
-    
-    // 1.成功，弹出弹窗，跳转到登陆界面
-    // 1.1 设置弹窗内容
-    [self setSuccessHudData];
-    // 1.2 展示弹窗并且保存该弹窗
-    self.tipHud = [NewQAHud showhudWithCustomView:self.tipView AddView:self.mainView];
-    // 15秒后自动关闭并跳转到登陆界面
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(dismissHUD) userInfo:nil repeats:NO];
-    NSRunLoop *runloop=[NSRunLoop currentRunLoop];
-    [runloop addTimer:self.timer forMode:NSRunLoopCommonModes];
-//    2. 失败网络错误的弹窗
-//    self.networkWrongHud = [HudView showhudWithCustomView:self.networkWrongView AddView:self.mainView];
+    // 网络请求
+    NSDictionary *parameters =
+    @{@"stu_num":self.stuIDStr, @"new_password":newPwdStr, @"code":self.code};
+    [HttpTool.shareTool request:Mine_POST_changePassword_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerHTTP bodyParameters:parameters
+        progress:nil
+        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        // 2.成功，弹出弹窗，跳转到登陆界面
+        // 2.1 设置弹窗内容
+        [self setSuccessHudData];
+        // 2.2 展示弹窗并且保存该弹窗
+        self.tipHud = [NewQAHud showhudWithCustomView:self.tipView AddView:self.mainView];
+        // 15秒后自动关闭并跳转到登陆界面
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(dismissHUD) userInfo:nil repeats:NO];
+        NSRunLoop *runloop=[NSRunLoop currentRunLoop];
+        [runloop addTimer:self.timer forMode:NSRunLoopCommonModes];
+    }
+        failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        // 3. 失败网络错误的弹窗
+        self.networkWrongHud = [NewQAHud showhudWithCustomView:self.networkWrongView AddView:self.mainView];
+    }];
 }
 
 /// 点击弹窗中的“确定”按钮
