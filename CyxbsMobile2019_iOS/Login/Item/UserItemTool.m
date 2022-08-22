@@ -136,8 +136,8 @@
         item = [UserItem mj_objectWithKeyValues:jsonObject];
         [UserItemTool archive:item];
         // 保存token和refreshToken
-        [UserDefaultTool saveToken:object[@"data"][@"token"]];
-        [UserDefaultTool saveRefreshToken:object[@"data"][@"refreshToken"]];
+        [NSUserDefaults.standardUserDefaults setValue:object[@"data"][@"token"] forKey:@"token"];
+        [NSUserDefaults.standardUserDefaults setValue:object[@"data"][@"refreshToken"] forKey:@"refreshToken"];
         
         NSLog(@"token:%@", [UserItemTool defaultItem].token);
 
@@ -178,5 +178,22 @@
     }];
 }
 
++ (void)checkVisibleAPI:(void (^)(NSString *url))success {
+    [HttpTool.shareTool
+     request:Cyxbs_check_API_Get
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSString *baseURL = [NSString stringWithFormat:@"https://%@/", object[@"data"][@"base_url"]];
+        if (success) {
+            success(baseURL);
+        }
+    }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+}
 
 @end

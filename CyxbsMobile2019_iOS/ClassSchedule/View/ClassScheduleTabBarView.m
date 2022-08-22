@@ -12,6 +12,8 @@
 #import "FakeTabBarView.h"
 //#import <UserNotifications/UserNotifications.h>
 #import "LocalNotiManager.h"
+#import "UserDefaultTool.h"
+
 @interface ClassScheduleTabBarView ()
 
 @property (nonatomic, weak) UIView *bottomCoverView;

@@ -39,7 +39,7 @@ const NSTimeInterval aWeekTimeInterval = 7 * 24 * 60 * 60;
 
 + (NSString * _Nullable)stringForSchoolWeek:(NSInteger)week {
     NSArray *weekArray = @[@"第一周", @"第二周", @"第三周", @"第四周", @"第五周", @"第六周", @"第七周", @"第八周", @"第九周", @"第十周", @"第十一周", @"第十二周", @"第十三周", @"第十四周", @"第十五周", @"第十六周", @"第十七周", @"第十八周", @"第十九周", @"第二十周", @"第二十一周", @"第二十二周", @"第二十三周", @"第二十四周", @"第二十五周"];
-    return week > weekArray.count ? nil : weekArray[week];
+    return week >= 22 ? @"放假诶～" : weekArray[week];
 }
 
 - (NSString *)stringForFastival {

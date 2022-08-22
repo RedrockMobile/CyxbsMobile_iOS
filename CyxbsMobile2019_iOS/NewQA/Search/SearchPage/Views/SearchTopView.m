@@ -108,10 +108,9 @@
                   NSFontAttributeName:self.searchTextfield.font
                      }];
             self.searchTextfield.attributedPlaceholder = attrString;
-//            self.searchTextfield.placeholder = [NSString stringWithFormat:@"大家都在搜%@",self.placeholderArray[self.i]];
           } completion:nil];
         //以此不断循环轮播内容
-        if (self.i == 2) {
+        if (self.i == self.placeholderArray.count - 1) {
             self.i = -1;
         }
     }
@@ -171,7 +170,7 @@
 }
 
 - (NSArray *)placeholderArray{
-    if (_placeholderArray == nil) {
+    if (_placeholderArray == nil || _placeholderArray.count == 0) {
         _placeholderArray = @[@"红岩",@"考研",@"啦啦操"];
     }
     return _placeholderArray;

@@ -12,17 +12,7 @@
 // "我的"接口
 #pragma mark - API
 
-///测试环境
-//#define CyxbsMobileBaseURL_1 @"https://be-dev.redrock.cqupt.edu.cn/"
-//#define CyxbsMobileBaseURL_2 @"https://be-dev.redrock.cqupt.edu.cn/"
-
-//#define CyxbsMobileBaseURL_1 @"https://be-prod.redrock.team/"
 #define CyxbsMobileBaseURL_1 [NSUserDefaults.standardUserDefaults objectForKey:@"baseURL"]
-//#define CyxbsMobileBaseURL_2 @"https://be-prod.redrock.team/"
-#define CyxbsMobileBaseURL_2 [NSUserDefaults.standardUserDefaults objectForKey:@"baseURL"]
-
-
-
 
 /// 登录接口
 #define Mine_POST_logIn_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke/token"]
