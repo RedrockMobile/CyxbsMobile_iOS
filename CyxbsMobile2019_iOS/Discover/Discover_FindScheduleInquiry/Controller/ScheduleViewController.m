@@ -34,6 +34,12 @@
 @end
 
 @implementation ScheduleViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self addHistoryView];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     if (@available(iOS 11.0, *)) {
@@ -152,6 +158,13 @@
     [self.view addSubview:view];
     view.btnClickedDelegate = self;
     
+    if ([NSUserDefaults.standardUserDefaults boolForKey:ClassSchedule_correlationClass_BOOL]) {
+        self.historyView.noLabel.text = @"";
+        self.historyView.correlationName.text = [NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationName_String];
+        self.historyView.correlationMajor.text = [NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationMajor_String];
+        self.historyView.correlationNumber.text = [NSUserDefaults.standardUserDefaults objectForKey:ClassSchedule_correlationStuNum_String];
+        self.historyView.correlationPeople.image = [UIImage imageNamed:@"addPeopleClass_selected"];
+    }
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.self.searchBackView.mas_bottom).offset(9);
@@ -219,7 +232,10 @@
            ChooseStudentListViewController *studentListVC = [[ChooseStudentListViewController alloc]initWithClassmatesList:classmatesList];
            studentListVC.peopleType = self.peopleType;
            [self.delegate pushToController: studentListVC];
-           //跳转后刷新历史记录表
+           // 跳转到界面后
+           // 1.如果点击就刷新为点击人名string
+           
+           // 2.如果未点击就为搜索string
            [self.historyView addHistoryBtnWithString:string reLayout:YES];
            
        } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {

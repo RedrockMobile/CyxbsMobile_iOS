@@ -91,4 +91,6 @@
 
 #import "MineMainPageHeader.h"
 
+#import "FindScheduleHeader.h"
+
 #endif /* CyxbsMobilePathAndKey_h */

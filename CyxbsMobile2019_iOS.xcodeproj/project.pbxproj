@@ -351,6 +351,8 @@
 		73AAA1D526C918250084E44D /* PurchaseInfoOrderIDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1C226C918240084E44D /* PurchaseInfoOrderIDView.m */; };
 		73AAA1D626C918250084E44D /* DetailsBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1C726C918240084E44D /* DetailsBaseTableViewCell.m */; };
 		73AAA1D726C918250084E44D /* DetailsCustomizeNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1C826C918240084E44D /* DetailsCustomizeNavigationBar.m */; };
+		7AA2BEC0289E56AB00415A6C /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AA2BEBF289E56AB00415A6C /* AlertView.m */; };
+		7AB78E3B2897A16200215FB6 /* HistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AB78E3A2897A16200215FB6 /* HistoryCell.m */; };
 		7F101AC2260613E800F2034C /* YYZTopicGroupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101AB7260613E800F2034C /* YYZTopicGroupVC.m */; };
 		7F101AC3260613E800F2034C /* YYZTopicDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101AB8260613E800F2034C /* YYZTopicDetailVC.m */; };
 		7F101AC5260613E800F2034C /* YYZTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101ABF260613E800F2034C /* YYZTopicCell.m */; };
@@ -1369,6 +1371,9 @@
 		73AAA1C826C918240084E44D /* DetailsCustomizeNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsCustomizeNavigationBar.m; sourceTree = "<group>"; };
 		73AAA1C926C918240084E44D /* DetailsBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsBaseTableViewCell.h; sourceTree = "<group>"; };
 		7A64BFF32892826F007CCB1E /* NewQAHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAHeader.h; sourceTree = "<group>"; };
+		7AA2BEBE289E56AB00415A6C /* AlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
+		7AA2BEBF289E56AB00415A6C /* AlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
+		7AA2BEC4289EBF8400415A6C /* FindScheduleHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindScheduleHeader.h; sourceTree = "<group>"; };
 		7AA4C469288D23A700E204C8 /* MineHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineHeader.h; sourceTree = "<group>"; };
 		7AA4C46E288FCEA800E204C8 /* ClassScheduleHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassScheduleHeader.h; sourceTree = "<group>"; };
 		7AA4C4712891230900E204C8 /* ChangePasswordHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangePasswordHeader.h; sourceTree = "<group>"; };
@@ -1384,6 +1389,8 @@
 		7AA4C4842892217100E204C8 /* MapHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapHeader.h; sourceTree = "<group>"; };
 		7AA4C48628922F9A00E204C8 /* ToDoHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoHeader.h; sourceTree = "<group>"; };
 		7AA4C4882892368C00E204C8 /* MineMainPageHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineMainPageHeader.h; sourceTree = "<group>"; };
+		7AB78E392897A16200215FB6 /* HistoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HistoryCell.h; sourceTree = "<group>"; };
+		7AB78E3A2897A16200215FB6 /* HistoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HistoryCell.m; sourceTree = "<group>"; };
 		7F101AB7260613E800F2034C /* YYZTopicGroupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicGroupVC.m; sourceTree = "<group>"; };
 		7F101AB8260613E800F2034C /* YYZTopicDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicDetailVC.m; sourceTree = "<group>"; };
 		7F101AB9260613E800F2034C /* YYZTopicGroupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZTopicGroupVC.h; sourceTree = "<group>"; };
@@ -3376,10 +3383,10 @@
 			children = (
 				18CDF514257F91BC006E8E5C /* ScheduleInquiryViewController.h */,
 				18CDF518257F91BC006E8E5C /* ScheduleInquiryViewController.m */,
-				18CDF517257F91BC006E8E5C /* ChooseStudentListViewController.h */,
-				18CDF515257F91BC006E8E5C /* ChooseStudentListViewController.m */,
 				18CDF519257F91BC006E8E5C /* ScheduleViewController.h */,
 				18CDF516257F91BC006E8E5C /* ScheduleViewController.m */,
+				18CDF517257F91BC006E8E5C /* ChooseStudentListViewController.h */,
+				18CDF515257F91BC006E8E5C /* ChooseStudentListViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3400,6 +3407,10 @@
 			children = (
 				18CDF522257F91BC006E8E5C /* HistoryView.h */,
 				18CDF521257F91BC006E8E5C /* HistoryView.m */,
+				7AA2BEBE289E56AB00415A6C /* AlertView.h */,
+				7AA2BEBF289E56AB00415A6C /* AlertView.m */,
+				7AB78E392897A16200215FB6 /* HistoryCell.h */,
+				7AB78E3A2897A16200215FB6 /* HistoryCell.m */,
 				18CDF523257F91BC006E8E5C /* PeopleListCellTableViewCell.h */,
 				18CDF520257F91BC006E8E5C /* PeopleListCellTableViewCell.m */,
 			);
@@ -4873,6 +4884,7 @@
 				7AA4C47628921BF400E204C8 /* SchoolCalendarHeader.h */,
 				7AA4C4822892213200E204C8 /* VolunteerHeader.h */,
 				7AA4C48628922F9A00E204C8 /* ToDoHeader.h */,
+				7AA2BEC4289EBF8400415A6C /* FindScheduleHeader.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -6781,6 +6793,7 @@
 				AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */,
 				4931630D26CD7B6800140412 /* StampCenterCollectionHeaderView.m in Sources */,
 				18CDF675257F91BD006E8E5C /* PointAndDottedLineView.m in Sources */,
+				7AB78E3B2897A16200215FB6 /* HistoryCell.m in Sources */,
 				AA0DDB69286C8B1A00802324 /* FansAndFollowingSegmentView.m in Sources */,
 				D0101D592433C885004337ED /* SDMaskController.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
@@ -6903,6 +6916,7 @@
 				FE2C136827AEF629001CF7AF /* TodoSyncMsg.m in Sources */,
 				FE0D60462801702B00319A9E /* SchoolBusBottomView.m in Sources */,
 				18CDF71B257F91BE006E8E5C /* VolunteerLoginView.m in Sources */,
+				7AA2BEC0289E56AB00415A6C /* AlertView.m in Sources */,
 				AA7ABABC2873EA5500BA6790 /* ShareBtn.m in Sources */,
 				DB4064FC2466D889006CE5BC /* DLReminderModel.m in Sources */,
 				AA7ABAB42873EA5500BA6790 /* GroupBtn.m in Sources */,

@@ -20,9 +20,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong)NSMutableArray <UIButton*>*buttonArray;//每一个button
 @property (nonatomic, weak)id <HistoryViewDelegate>btnClickedDelegate;
+
 @property (nonatomic, copy)NSString *UserDefaultKey;
+/// 姓名
+@property (nonatomic, strong) UILabel *correlationName;
+///专业
+@property (nonatomic, strong) UILabel *correlationMajor;
+/// 学号
+@property (nonatomic, strong) UILabel *correlationNumber;
+/// 没有关联时label
+@property (nonatomic, strong) UILabel *noLabel;
+/// 图片小人
+@property (nonatomic, strong) UIImageView *correlationPeople;
 - (void)addHistoryBtnWithString:(NSString*)string reLayout:(BOOL)is;
+
 - (instancetype)initWithUserDefaultKey:(NSString*)key;
+
 @end
 
 NS_ASSUME_NONNULL_END
