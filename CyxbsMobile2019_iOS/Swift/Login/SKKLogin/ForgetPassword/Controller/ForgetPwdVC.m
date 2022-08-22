@@ -96,7 +96,7 @@
     // 1.设置弹窗主体
     // 1.1 设置尺寸
     CGRect viewFrame = self.tipView.frame;
-    viewFrame.size = CGSizeMake(275, 233);
+    viewFrame.size = CGSizeMake(275, 233);  // // 0.731  0.349
     self.tipView.frame = viewFrame;
     self.tipView.center = CGPointMake(SCREEN_WIDTH * 0.5, SCREEN_HEIGHT * 0.5);
     // 2 设置标题
@@ -139,8 +139,7 @@
     NSLog(@"🍇pwdStr：%@", pwdStr);
     // 2.TODO: 请求验证
     NSDictionary *parameters =
-    @{@"stu_num":stuIDStr, @"ids_num":stuCodeStr, @"password":pwdStr};
-    
+    @{@"stu_num" : stuIDStr, @"ids_num" : stuCodeStr, @"password" : pwdStr};
     [HttpTool.shareTool
      request:Mine_POST_UserSecretIds_API
      type:HttpToolRequestTypePost
@@ -157,6 +156,7 @@
         [self presentViewController:modifyVC animated:NO completion:nil];
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"🥐%@", error);
         // 失败:弹窗提示
         // 1.1 设置弹窗内容
         [self setFailureHudData];

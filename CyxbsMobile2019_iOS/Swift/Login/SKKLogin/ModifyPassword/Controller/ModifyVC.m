@@ -98,7 +98,7 @@
     // 1.设置弹窗主体
     // 1.1 设置尺寸
     CGRect viewFrame = self.tipView.frame;
-    viewFrame.size = CGSizeMake(275, 177);
+    viewFrame.size = CGSizeMake(275, 177);  // 0.731 0.265
     self.tipView.frame = viewFrame;
     self.tipView.center = CGPointMake(SCREEN_WIDTH * 0.5, SCREEN_HEIGHT * 0.5);
     // 2 设置标题
@@ -144,22 +144,27 @@
     }
     // 网络请求
     NSDictionary *parameters =
-    @{@"stu_num":self.stuIDStr, @"new_password":newPwdStr, @"code":self.code};
-    [HttpTool.shareTool request:Mine_POST_changePassword_API type:HttpToolRequestTypePost serializer:HttpToolRequestSerializerJSON bodyParameters:parameters
-        progress:nil
-        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+    @{@"stu_num" : self.stuIDStr, @"new_password" : newPwdStr, @"code" : self.code};
+    [HttpTool.shareTool
+     request:Mine_POST_SureChangePassword_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerJSON
+     bodyParameters:parameters
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         // 2.成功，弹出弹窗，跳转到登陆界面
         // 2.1 设置弹窗内容
         [self setSuccessHudData];
         // 2.2 展示弹窗并且保存该弹窗
         self.tipHud = [NewQAHud showhudWithCustomView:self.tipView AddView:self.mainView];
-        // 15秒后自动关闭并跳转到登陆界面
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:15.0 target:self selector:@selector(dismissHUD) userInfo:nil repeats:NO];
+        // 2秒后自动关闭并跳转到登陆界面
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(dismissHUD) userInfo:nil repeats:NO];
         NSRunLoop *runloop=[NSRunLoop currentRunLoop];
         [runloop addTimer:self.timer forMode:NSRunLoopCommonModes];
     }
-        failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         // 3. 失败网络错误的弹窗
+        NSLog(@"%@", error);
         self.networkWrongHud = [NewQAHud showhudWithCustomView:self.networkWrongView AddView:self.mainView];
     }];
 }

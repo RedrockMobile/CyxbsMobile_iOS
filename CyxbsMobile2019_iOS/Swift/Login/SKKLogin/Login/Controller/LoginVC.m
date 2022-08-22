@@ -127,7 +127,7 @@
     // 正文位置
     [self.tipTextLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.tipView);
-        make.top.equalTo(self.tipTitleLab).offset(25);
+        make.centerY.equalTo(self.tipView);
         make.left.right.equalTo(self.tipView);
         make.height.mas_equalTo(140);
     }];

@@ -99,6 +99,8 @@
     }else {
         iconRect = [super leftViewRectForBounds:bounds];
         iconRect.origin.x += 15.5;
+        iconRect.size.width += 1;
+        iconRect.size.height += 2;
     }
     return iconRect;
 }

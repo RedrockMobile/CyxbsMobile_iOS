@@ -43,7 +43,7 @@
 #define Mine_POST_UserSecretIds_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/valid/ids"]
 
 /// 通过验证码更改密码
-#define Mine_POST_ChangePassword_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/password/valid"]
+#define Mine_POST_SureChangePassword_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"user-secret/user/password/valid"]
 
 #pragma mark - CheckIn
 /// 获取签到信息

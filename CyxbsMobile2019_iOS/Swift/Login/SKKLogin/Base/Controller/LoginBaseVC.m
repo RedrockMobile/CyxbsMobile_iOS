@@ -197,7 +197,10 @@
 - (UIView *)networkWrongView {
     if (_networkWrongView == nil) {
         _networkWrongView = [[UIView alloc] init];
-        _networkWrongView.backgroundColor = UIColor.whiteColor;
+        _networkWrongView.backgroundColor =
+        [UIColor dm_colorWithLightColor:UIColor.whiteColor
+                              darkColor:
+            [UIColor colorWithHexString:@"#3B3B3B" alpha:1.0]];
         _networkWrongView.layer.cornerRadius = 8;
         CGRect viewFrame = _networkWrongView.frame;
         viewFrame.size = CGSizeMake(275, 177);
@@ -207,7 +210,10 @@
         // "错误"Lab
         UILabel *wrongTitleLab = [[UILabel alloc] init];
         wrongTitleLab.text = @"错误";
-        wrongTitleLab.textColor = [UIColor colorWithHexString:@"#242424" alpha:1.0];
+        wrongTitleLab.textColor = [UIColor dm_colorWithLightColor:
+                                   [UIColor colorWithHexString:@"#242424" alpha:1.0]
+                                                     darkColor:
+                                   [UIColor colorWithHexString:@"#F1F1F1" alpha:1.0]];
         wrongTitleLab.font = [UIFont fontWithName:PingFangSCSemibold size:18];
         wrongTitleLab.textAlignment = NSTextAlignmentCenter;
         [_networkWrongView addSubview:wrongTitleLab];
@@ -215,14 +221,22 @@
         // “当前网络异常 请重试“
         UILabel *textLab = [[UILabel alloc] init];
         textLab.text = @"当前网络异常\n请重试";
-        textLab.textColor = [UIColor colorWithHexString:@"#8B8B8B" alpha:1.0];
+        textLab.textColor =
+        [UIColor dm_colorWithLightColor:
+            [UIColor colorWithHexString:@"#8B8B8B" alpha:1.0]
+                              darkColor:
+            [UIColor colorWithHexString:@"#C2C2C2" alpha:1.0]];
         textLab.font = [UIFont fontWithName:PingFangSCMedium size:16];
         textLab.textAlignment = NSTextAlignmentCenter;
         [_networkWrongView addSubview:textLab];
         
         // 一条横线
         UIView *lineView = [[UIView alloc] init];
-        lineView.backgroundColor = [UIColor colorWithHexString:@"#000000" alpha:0.05];
+        lineView.backgroundColor =
+        [UIColor dm_colorWithLightColor:
+            [UIColor colorWithHexString:@"#000000" alpha:0.05]
+                              darkColor:
+            [UIColor colorWithHexString:@"#FFFFFF" alpha:0.05]];
         
         [_networkWrongView addSubview:lineView];
         
@@ -230,7 +244,11 @@
         UIButton *sureBtn = [[UIButton alloc] init];
         [sureBtn setTitle:@"确定" forState:UIControlStateNormal];
         sureBtn.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:16];
-        [sureBtn setTitleColor:[UIColor colorWithHexString:@"#625AF8" alpha:1.0] forState:UIControlStateNormal];
+        [sureBtn setTitleColor:
+         [UIColor dm_colorWithLightColor:
+             [UIColor colorWithHexString:@"#625AF8" alpha:1.0]
+                               darkColor:
+             [UIColor colorWithHexString:@"#948FFF" alpha:1.0]] forState:UIControlStateNormal];
         [sureBtn addTarget:self action:@selector(dismissNetworkHUD) forControlEvents:UIControlEventTouchUpInside];
         [_networkWrongView addSubview:sureBtn];
         
@@ -270,7 +288,7 @@
         _tipView.backgroundColor =
         [UIColor dm_colorWithLightColor:UIColor.whiteColor
                               darkColor:
-            [UIColor colorWithHexString:@"#3B3B3B" alpha:0.3]];
+            [UIColor colorWithHexString:@"#3B3B3B" alpha:1.0]];
         _tipView.layer.cornerRadius = 8;
         
         // 标题
