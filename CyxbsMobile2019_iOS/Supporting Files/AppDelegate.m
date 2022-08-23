@@ -252,23 +252,20 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
 ///设置存储、更换baseURL
 - (void)settingBaseURL{
-#ifdef DEBUG
-    [NSUserDefaults.standardUserDefaults setObject:@"https://be-dev.redrock.cqupt.edu.cn/" forKey:@"baseURL"];
-#else
-    //如果最开始无baseURL，则设置为学校服务器
-    NSString *baseURL= [NSUserDefaults.standardUserDefaults objectForKey:@"baseURL"];
-    if (baseURL == nil || [baseURL isEqualToString:@""]) {
-//        baseURL = @"https://be-prod.redrock.team/";
+    NSString *baseURL;
+    #ifdef DEBUG
+        // 测试环境
+        baseURL = @"https://be-dev.redrock.cqupt.edu.cn/";
+    //    baseURL = @"https://be-prod.redrock.team/";
+    #else
+        // 正式环境
         baseURL = @"https://be-prod.redrock.cqupt.edu.cn/";
-        [NSUserDefaults.standardUserDefaults setObject:baseURL forKey:@"baseURL"];
-    }
-    //更新baseURL
-    [[HttpClient defaultClient] baseUrlRequestSuccess:^(NSString *str) {
-        [NSUserDefaults.standardUserDefaults setObject:str forKey:@"baseURL"];
-    }];
-//    @"https://be-dev.redrock.cqupt.edu.cn/"
-//    NS，，，，，，，，Log(@"baseURL%@",CyxbsMobileBaseURL_1);
-#endif
+    #endif
+//        [NSUserDefaults.standardUserDefaults setObject:baseURL forKey:@"baseURL"];
+//        [UserItemTool checkVisibleAPI:^(NSString * _Nonnull url) {
+//            // 容灾环境
+//            [NSUserDefaults.standardUserDefaults setObject:url forKey:@"baseURL"];
+//        }];
     
 }
 
