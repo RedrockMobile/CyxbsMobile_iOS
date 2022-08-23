@@ -539,14 +539,6 @@
 		AAE3309925E4E5CD00324750 /* DeleteArticleTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3309825E4E5CD00324750 /* DeleteArticleTipView.m */; };
 		AAE87797286B304F0091656B /* PrivacyTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE87796286B304E0091656B /* PrivacyTipView.swift */; };
 		AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */; };
-		B51C500E28A5FFC00011465E /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500828A5FFBF0011465E /* LoginVC.m */; };
-		B51C500F28A5FFC00011465E /* ModifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500928A5FFBF0011465E /* ModifyVC.m */; };
-		B51C501028A5FFC00011465E /* ForgetPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500A28A5FFBF0011465E /* ForgetPwdVC.m */; };
-		B51C501128A5FFC00011465E /* LoginBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500D28A5FFC00011465E /* LoginBaseVC.m */; };
-		B51C501628A5FFCE0011465E /* LoginTextFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501228A5FFCE0011465E /* LoginTextFieldView.m */; };
-		B51C501728A5FFCE0011465E /* LoginBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501428A5FFCE0011465E /* LoginBaseView.m */; };
-		B51C501D28A625330011465E /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501C28A625330011465E /* LoginView.m */; };
-		B51C502D28A6493D0011465E /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500828A5FFBF0011465E /* LoginVC.m */; };
 		B042050428A4B1BB00903E86 /* RisingUIKitExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B042050128A4B1BB00903E86 /* RisingUIKitExtension.m */; };
 		B042050528A4B1BB00903E86 /* RisingFoundationExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = B042050228A4B1BB00903E86 /* RisingFoundationExtention.m */; };
 		B0F08FDD28A2497F00986EB6 /* SportAttendanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FCE28A2497F00986EB6 /* SportAttendanceModel.m */; };
@@ -562,6 +554,14 @@
 		B0F08FFA28A24F9000986EB6 /* IdsBindingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FF728A24F9000986EB6 /* IdsBindingView.m */; };
 		B0F08FFD28A2509900986EB6 /* RisingRouter+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FFB28A2509800986EB6 /* RisingRouter+Extension.m */; };
 		B0F0900128A2605E00986EB6 /* popUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F0900028A2605E00986EB6 /* popUpViewController.m */; };
+		B51C500E28A5FFC00011465E /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500828A5FFBF0011465E /* LoginVC.m */; };
+		B51C500F28A5FFC00011465E /* ModifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500928A5FFBF0011465E /* ModifyVC.m */; };
+		B51C501028A5FFC00011465E /* ForgetPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500A28A5FFBF0011465E /* ForgetPwdVC.m */; };
+		B51C501128A5FFC00011465E /* LoginBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500D28A5FFC00011465E /* LoginBaseVC.m */; };
+		B51C501628A5FFCE0011465E /* LoginTextFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501228A5FFCE0011465E /* LoginTextFieldView.m */; };
+		B51C501728A5FFCE0011465E /* LoginBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501428A5FFCE0011465E /* LoginBaseView.m */; };
+		B51C501D28A625330011465E /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501C28A625330011465E /* LoginView.m */; };
+		B51C502D28A6493D0011465E /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500828A5FFBF0011465E /* LoginVC.m */; };
 		D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */; };
 		D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D422433C885004337ED /* UIResponder+SDMask.m */; };
 		D0101D592433C885004337ED /* SDMaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D452433C885004337ED /* SDMaskController.m */; };
@@ -1766,20 +1766,6 @@
 		AAE87796286B304E0091656B /* PrivacyTipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyTipView.swift; sourceTree = "<group>"; };
 		AAFD87CE24F50DB800CBBD11 /* FakeTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FakeTabBarView.h; sourceTree = "<group>"; };
 		AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FakeTabBarView.m; sourceTree = "<group>"; };
-		B51C500628A5FFBF0011465E /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
-		B51C500728A5FFBF0011465E /* LoginBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginBaseVC.h; sourceTree = "<group>"; };
-		B51C500828A5FFBF0011465E /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
-		B51C500928A5FFBF0011465E /* ModifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyVC.m; sourceTree = "<group>"; };
-		B51C500A28A5FFBF0011465E /* ForgetPwdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdVC.m; sourceTree = "<group>"; };
-		B51C500B28A5FFBF0011465E /* ModifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyVC.h; sourceTree = "<group>"; };
-		B51C500C28A5FFC00011465E /* ForgetPwdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdVC.h; sourceTree = "<group>"; };
-		B51C500D28A5FFC00011465E /* LoginBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginBaseVC.m; sourceTree = "<group>"; };
-		B51C501228A5FFCE0011465E /* LoginTextFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTextFieldView.m; sourceTree = "<group>"; };
-		B51C501328A5FFCE0011465E /* LoginBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginBaseView.h; sourceTree = "<group>"; };
-		B51C501428A5FFCE0011465E /* LoginBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginBaseView.m; sourceTree = "<group>"; };
-		B51C501528A5FFCE0011465E /* LoginTextFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTextFieldView.h; sourceTree = "<group>"; };
-		B51C501B28A625330011465E /* LoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
-		B51C501C28A625330011465E /* LoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		B042050028A4B1BB00903E86 /* RisingFoundationExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingFoundationExtension.h; sourceTree = "<group>"; };
 		B042050128A4B1BB00903E86 /* RisingUIKitExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingUIKitExtension.m; sourceTree = "<group>"; };
 		B042050228A4B1BB00903E86 /* RisingFoundationExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingFoundationExtention.m; sourceTree = "<group>"; };
@@ -1811,6 +1797,20 @@
 		B0F08FFC28A2509800986EB6 /* RisingRouter+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RisingRouter+Extension.h"; sourceTree = "<group>"; };
 		B0F08FFF28A2605E00986EB6 /* popUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = popUpViewController.h; sourceTree = "<group>"; };
 		B0F0900028A2605E00986EB6 /* popUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = popUpViewController.m; sourceTree = "<group>"; };
+		B51C500628A5FFBF0011465E /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
+		B51C500728A5FFBF0011465E /* LoginBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginBaseVC.h; sourceTree = "<group>"; };
+		B51C500828A5FFBF0011465E /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
+		B51C500928A5FFBF0011465E /* ModifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyVC.m; sourceTree = "<group>"; };
+		B51C500A28A5FFBF0011465E /* ForgetPwdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdVC.m; sourceTree = "<group>"; };
+		B51C500B28A5FFBF0011465E /* ModifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyVC.h; sourceTree = "<group>"; };
+		B51C500C28A5FFC00011465E /* ForgetPwdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdVC.h; sourceTree = "<group>"; };
+		B51C500D28A5FFC00011465E /* LoginBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginBaseVC.m; sourceTree = "<group>"; };
+		B51C501228A5FFCE0011465E /* LoginTextFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTextFieldView.m; sourceTree = "<group>"; };
+		B51C501328A5FFCE0011465E /* LoginBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginBaseView.h; sourceTree = "<group>"; };
+		B51C501428A5FFCE0011465E /* LoginBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginBaseView.m; sourceTree = "<group>"; };
+		B51C501528A5FFCE0011465E /* LoginTextFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTextFieldView.h; sourceTree = "<group>"; };
+		B51C501B28A625330011465E /* LoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
+		B51C501C28A625330011465E /* LoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+SDMask.m"; sourceTree = "<group>"; };
 		D0101D402433C885004337ED /* NSLayoutConstraint+SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+SDMask.h"; sourceTree = "<group>"; };
 		D0101D412433C885004337ED /* SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMask.h; sourceTree = "<group>"; };
@@ -5781,43 +5781,6 @@
 			path = ArticleRemarkPraise;
 			sourceTree = "<group>";
 		};
-		B51C501F28A625DA0011465E /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				B51C502028A625EE0011465E /* Controller */,
-				B51C502128A6260D0011465E /* View */,
-				B51C502228A626170011465E /* Model */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		B51C502028A625EE0011465E /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				B51C500628A5FFBF0011465E /* LoginVC.h */,
-				B51C500828A5FFBF0011465E /* LoginVC.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		B51C502128A6260D0011465E /* View */ = {
-			isa = PBXGroup;
-			children = (
-				B51C501B28A625330011465E /* LoginView.h */,
-				B51C501C28A625330011465E /* LoginView.m */,
-				AAE87796286B304E0091656B /* PrivacyTipView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		B51C502228A626170011465E /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1A79956B252B5BC300603253 /* LoginModel.swift */,
-                );
-            path = Model;
-            sourceTree = "<group>";
-        };
 		B04204FF28A4B1BB00903E86 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -5851,69 +5814,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		B51C502328A6264C0011465E /* ForgetPassword */ = {
-			isa = PBXGroup;
-			children = (
-				B51C502428A626710011465E /* Controller */,
-			);
-			path = ForgetPassword;
-			sourceTree = "<group>";
-		};
-		B51C502428A626710011465E /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				B51C500C28A5FFC00011465E /* ForgetPwdVC.h */,
-				B51C500A28A5FFBF0011465E /* ForgetPwdVC.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		B51C502528A6268C0011465E /* ModifyPassword */ = {
-			isa = PBXGroup;
-			children = (
-				B51C502628A626A80011465E /* Controller */,
-			);
-			path = ModifyPassword;
-			sourceTree = "<group>";
-		};
-		B51C502628A626A80011465E /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				B51C500B28A5FFBF0011465E /* ModifyVC.h */,
-				B51C500928A5FFBF0011465E /* ModifyVC.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		B51C502728A626CE0011465E /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				B51C502828A626D40011465E /* Controller */,
-				B51C502928A626DE0011465E /* View */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
-		B51C502828A626D40011465E /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				B51C500728A5FFBF0011465E /* LoginBaseVC.h */,
-				B51C500D28A5FFC00011465E /* LoginBaseVC.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		B51C502928A626DE0011465E /* View */ = {
-			isa = PBXGroup;
-			children = (
-				B51C501328A5FFCE0011465E /* LoginBaseView.h */,
-				B51C501428A5FFCE0011465E /* LoginBaseView.m */,
-				B51C501528A5FFCE0011465E /* LoginTextFieldView.h */,
-				B51C501228A5FFCE0011465E /* LoginTextFieldView.m */,
-                );
-            path = View;
-            sourceTree = "<group>";
-        };
 		B0F08FCF28A2497F00986EB6 /* SportAttendanceItem */ = {
 			isa = PBXGroup;
 			children = (
@@ -5934,38 +5834,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		B51C502E28A7A4950011465E /* User */ = {
-			isa = PBXGroup;
-			children = (
-				1A4A466924C97D610033734E /* UserProtocol */,
-				1A5A5EE223600FE600543BAE /* Item */,
-			);
-			path = User;
-			sourceTree = "<group>";
-		};
-		B51C502F28A7A4FA0011465E /* OldLogin */ = {
-			isa = PBXGroup;
-			children = (
-				7FA2499F265A4FC6001B49FC /* Controller */,
-				1A799569252B5B3400603253 /* View */,
-				1A5A5ED823600C9100543BAE /* LoginViewController.xib */,
-			);
-			path = OldLogin;
-			sourceTree = "<group>";
-		};
-		B5C06B1528A2343C00AA609E /* SKKLogin */ = {
-			isa = PBXGroup;
-			children = (
-				B51C502728A626CE0011465E /* Base */,
-				B51C501F28A625DA0011465E /* Login */,
-				B51C502328A6264C0011465E /* ForgetPassword */,
-				B51C502528A6268C0011465E /* ModifyPassword */,
-				B51C502E28A7A4950011465E /* User */,
-			);
-			path = SKKLogin;
-   
-            sourceTree = "<group>";
-        };
 		B0F08FDA28A2497F00986EB6 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -6047,6 +5915,137 @@
 				B0F0900028A2605E00986EB6 /* popUpViewController.m */,
 			);
 			path = PopUpController;
+			sourceTree = "<group>";
+		};
+		B51C501F28A625DA0011465E /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B51C502028A625EE0011465E /* Controller */,
+				B51C502128A6260D0011465E /* View */,
+				B51C502228A626170011465E /* Model */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		B51C502028A625EE0011465E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B51C500628A5FFBF0011465E /* LoginVC.h */,
+				B51C500828A5FFBF0011465E /* LoginVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B51C502128A6260D0011465E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B51C501B28A625330011465E /* LoginView.h */,
+				B51C501C28A625330011465E /* LoginView.m */,
+				AAE87796286B304E0091656B /* PrivacyTipView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B51C502228A626170011465E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1A79956B252B5BC300603253 /* LoginModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B51C502328A6264C0011465E /* ForgetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				B51C502428A626710011465E /* Controller */,
+			);
+			path = ForgetPassword;
+			sourceTree = "<group>";
+		};
+		B51C502428A626710011465E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B51C500C28A5FFC00011465E /* ForgetPwdVC.h */,
+				B51C500A28A5FFBF0011465E /* ForgetPwdVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B51C502528A6268C0011465E /* ModifyPassword */ = {
+			isa = PBXGroup;
+			children = (
+				B51C502628A626A80011465E /* Controller */,
+			);
+			path = ModifyPassword;
+			sourceTree = "<group>";
+		};
+		B51C502628A626A80011465E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B51C500B28A5FFBF0011465E /* ModifyVC.h */,
+				B51C500928A5FFBF0011465E /* ModifyVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B51C502728A626CE0011465E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				B51C502828A626D40011465E /* Controller */,
+				B51C502928A626DE0011465E /* View */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		B51C502828A626D40011465E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B51C500728A5FFBF0011465E /* LoginBaseVC.h */,
+				B51C500D28A5FFC00011465E /* LoginBaseVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B51C502928A626DE0011465E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B51C501328A5FFCE0011465E /* LoginBaseView.h */,
+				B51C501428A5FFCE0011465E /* LoginBaseView.m */,
+				B51C501528A5FFCE0011465E /* LoginTextFieldView.h */,
+				B51C501228A5FFCE0011465E /* LoginTextFieldView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B51C502E28A7A4950011465E /* User */ = {
+			isa = PBXGroup;
+			children = (
+				1A4A466924C97D610033734E /* UserProtocol */,
+				1A5A5EE223600FE600543BAE /* Item */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		B51C502F28A7A4FA0011465E /* OldLogin */ = {
+			isa = PBXGroup;
+			children = (
+				7FA2499F265A4FC6001B49FC /* Controller */,
+				1A799569252B5B3400603253 /* View */,
+				1A5A5ED823600C9100543BAE /* LoginViewController.xib */,
+			);
+			path = OldLogin;
+			sourceTree = "<group>";
+		};
+		B5C06B1528A2343C00AA609E /* SKKLogin */ = {
+			isa = PBXGroup;
+			children = (
+				B51C502728A626CE0011465E /* Base */,
+				B51C501F28A625DA0011465E /* Login */,
+				B51C502328A6264C0011465E /* ForgetPassword */,
+				B51C502528A6268C0011465E /* ModifyPassword */,
+				B51C502E28A7A4950011465E /* User */,
+			);
+			path = SKKLogin;
 			sourceTree = "<group>";
 		};
 		D0101D3D2433C885004337ED /* SDMask */ = {
@@ -7608,7 +7607,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 67QNT8WT7R;
+				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -7664,7 +7663,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 67QNT8WT7R;
+				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
