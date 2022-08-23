@@ -13,12 +13,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import <WCDB.h>
-
 NS_ASSUME_NONNULL_BEGIN
-
-/// 数据库
-FOUNDATION_EXPORT WCTDatabase *schoolLessonDB;
 
 /// 数据表名
 FOUNDATION_EXPORT NSString *SchoolLessonTableName;
@@ -42,8 +37,12 @@ FOUNDATION_EXPORT NSString *SchoolLessonTableName;
 /// 在星期几1-7
 @property (nonatomic) NSInteger inWeek;
 
+/// 存储period
+@property (nonatomic) NSInteger period_location;
+/// 存储period
+@property (nonatomic) NSUInteger period_lenth;
 /// 第几-几节课，中午为4-5，晚上为8-9
-@property (nonatomic) NSRange period;
+@property (nonatomic, readonly) NSRange period;
 
 // !!!: Source
 

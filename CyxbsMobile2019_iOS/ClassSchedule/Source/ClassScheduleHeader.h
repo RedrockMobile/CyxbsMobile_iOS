@@ -12,8 +12,16 @@
 // “课表”、“备忘”接口
 #pragma mark - API
 
-//查课表数据，POST，参数：@{@"stu_num"]:学号}
-#define ClassSchedule_POST_keBiao_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/kebiao"]
+// 学生课表
+#define RisingSchedule_POST_stuSchedule_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/kebiao"]
+
+// 老师课表
+#define RisingSchedule_POST_teaSchedule_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-teakb/api/teaKb"]
+
+// 课表事务
+#define RisingSchedule_POST_perTransaction_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"/magipoke-reminder/Person/getTransaction"]
+
+
 
 //加备忘，POST
 #define ClassSchedule_POST_addRemind_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/addTransaction"
@@ -26,9 +34,6 @@
 
 //删除备忘，POST
 #define ClassSchedule_POST_deleteRemind_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/deleteTransaction"
-
-//查老师课表数据，POST，参数： @{ @"teaName": 姓名, @"tea": 工号？}
-#define ClassSchedule_POST_teaKeBiao_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-teakb/api/teaKb"]
 
 /// 空教室接口
 #define ClassSchedule_POST_emptyClass_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/roomEmpty"]

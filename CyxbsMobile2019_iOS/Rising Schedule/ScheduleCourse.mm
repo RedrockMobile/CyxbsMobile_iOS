@@ -8,54 +8,13 @@
 
 #import "ScheduleCourse.h"
 
+#import "ScheduleCourse+WCTTableCoding.h"
+
 NSString *SchoolLessonTableName = @"school_lesson";
 
-WCTDatabase *schoolLessonDB;
+#pragma mark - SchoolLesson (WCTTableCoding)
 
-#pragma mark - SchoolLesson ()
-
-@interface ScheduleCourse ()
-
-/// 存储period
-@property (nonatomic) NSInteger period_location;
-
-/// 存储period
-@property (nonatomic) NSInteger period_lenth;
-
-@end
-
-@interface ScheduleCourse (Rising) <
-    WCTTableCoding
->
-
-WCDB_PROPERTY(inSection)
-WCDB_PROPERTY(inWeek)
-WCDB_PROPERTY(period_location)
-WCDB_PROPERTY(period_lenth)
-
-WCDB_PROPERTY(course)
-WCDB_PROPERTY(courseNike)
-WCDB_PROPERTY(classRoom)
-WCDB_PROPERTY(classRoomNike)
-
-WCDB_PROPERTY(courseID)
-WCDB_PROPERTY(rawWeek)
-WCDB_PROPERTY(type)
-
-WCDB_PROPERTY(sno)
-WCDB_PROPERTY(teacher)
-WCDB_PROPERTY(lesson)
-
-@end
-
-#pragma mark - SchoolLesson (Rising)
-
-/**
- * 因为period_location和period_lenth在这个文件里，
- * 所以这个implementation只能写在这个.m
- */
-
-@implementation ScheduleCourse (Rising)
+@implementation ScheduleCourse (WCTTableCoding)
 
 WCDB_IMPLEMENTATION(ScheduleCourse)
 
@@ -90,14 +49,6 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
 }
 
 #pragma mark - System
-
-- (void)initialize {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        schoolLessonDB = [[WCTDatabase alloc] initWithPath:ScheduleCourse.databasePath];
-        [schoolLessonDB createTableAndIndexesOfName:SchoolLessonTableName withClass:ScheduleCourse.class];
-    });
-}
 
 - (instancetype) initWithDictionary:(NSDictionary *)dic {
     self = [super init];
@@ -149,7 +100,7 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
     _period.location = period_location;
 }
 
-- (void)setPeriod_lenth:(NSInteger)period_lenth {
+- (void)setPeriod_lenth:(NSUInteger)period_lenth {
     _period_lenth = period_lenth;
     _period.length = period_lenth;
 }
