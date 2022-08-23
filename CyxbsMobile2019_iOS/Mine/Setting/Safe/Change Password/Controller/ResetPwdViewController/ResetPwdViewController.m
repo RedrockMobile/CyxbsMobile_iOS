@@ -108,7 +108,7 @@
 
 ///更新密码的缓存
 - (void)updatePassword {
-    [UserDefaultTool saveIdNum:_resetView.passwordField1.text];
+    [NSUserDefaults.standardUserDefaults setValue:_resetView.passwordField1.text forKey:@"idNum"];
 }
 
 ///弹窗：提示修改成功

@@ -37,15 +37,11 @@ static UserItem *item = nil;
         @"headImgUrl":@"photo_src",
         @"realName":@"username"
     };
-    /*
-     "photo_thumbnail_src"
-     stunum
-     */
 }
 
 - (NSString *)stuNum {
     if (_stuNum == nil || [_stuNum isEqualToString:@""]) {
-        _stuNum = [UserDefaultTool getStuNum];
+        _stuNum = [NSUserDefaults.standardUserDefaults stringForKey:@"stuNum"];
     }
     return _stuNum;
 }

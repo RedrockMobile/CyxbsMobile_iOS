@@ -30,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 刷新Token
 + (void)refresh;
 
++ (void)checkVisibleAPI:(void (^)(NSString *url))success;
 
 @end
 

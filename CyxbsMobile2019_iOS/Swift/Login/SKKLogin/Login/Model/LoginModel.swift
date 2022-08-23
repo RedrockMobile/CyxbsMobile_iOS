@@ -38,8 +38,8 @@ import SwiftyJSON
                 item.token = token
                 item.refreshToken = refreshToken
                 item.firstLogin = true
-                UserDefaultTool.saveStuNum(stuNum)
-                UserDefaultTool.saveIdNum(idNum)
+                UserDefaults.standard.set(stuNum, forKey: "stuNum")
+                UserDefaults.standard.set(idNum, forKey: "idNum")
                 
                 // 解码用户信息并保存
                 let userInfo_Base64 = token.split(separator: ".")[0]

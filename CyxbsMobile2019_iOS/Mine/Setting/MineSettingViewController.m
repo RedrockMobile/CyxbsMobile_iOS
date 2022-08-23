@@ -203,7 +203,7 @@
 /// @param sender 开关
 - (void)switchedRemindEveryDay:(UISwitch *)sender {
     if (sender.on) {            // 打开开关
-        [UserDefaultTool saveValue:@"test" forKey:@"Mine_RemindEveryDay"];
+//        [UserDefaultTool saveValue:@"test" forKey:@"Mine_RemindEveryDay"];
     } else {                    // 关闭开关
         
         NSArray *idStrArr = @[@"每天晚上推送课表0",@"每天晚上推送课表1",@"每天晚上推送课表2",
@@ -230,7 +230,7 @@
 /// @param sender 开关
 - (void)switchedRemindBeforeClass:(UISwitch *)sender{
     if (sender.on) {            // 打开开关
-        [UserDefaultTool saveValue:@"test" forKey:@"Mine_RemindBeforeClass"];
+//        [UserDefaultTool saveValue:@"test" forKey:@"Mine_RemindBeforeClass"];
         //通知WYCClassBookViewController要课前提醒
         [[NSNotificationCenter defaultCenter] postNotificationName:@"remindBeforeClass" object:nil];
     } else {                    // 关闭开关

@@ -139,8 +139,6 @@
     }
     self.enterButtonArray = array;
     
-    
-
     for (EnterButton *enterButton in self.enterButtonArray) {
         if ([enterButton.label.text isEqual: @"空教室"]) {
             [enterButton.imageButton addTarget:self action:@selector(touchFindClass) forControlEvents:UIControlEventTouchUpInside];
@@ -158,8 +156,12 @@
         [enterButton.imageButton addTarget:self action:@selector(touchSchoolCalender) forControlEvents:UIControlEventTouchUpInside];
         }else if([enterButton.label.text isEqual:@"重邮地图"]){
         [enterButton.imageButton addTarget:self action:@selector(touchMap) forControlEvents:UIControlEventTouchUpInside];
-        }else if([enterButton.label.text isEqualToString:@"邮子清单"]){
+        }
+        else if([enterButton.label.text isEqualToString:@"邮子清单"]){
             [enterButton.imageButton addTarget:self action:@selector(touchToDOListSender) forControlEvents:UIControlEventTouchUpInside];
+        }
+        else if([enterButton.label.text isEqualToString:@"体育打卡"]){
+            [enterButton.imageButton addTarget:self action:@selector(touchSportAttendanceSender) forControlEvents:UIControlEventTouchUpInside];
         }
         [self addSubview:enterButton];
     }
@@ -246,5 +248,12 @@
     if ([self.delegate respondsToSelector:@selector(touchToDOList)]) {
         [self.delegate touchToDOList];
     }
+}
+    
+- (void)touchSportAttendanceSender{
+    if ([self.delegate respondsToSelector:@selector(touchSportAttendance)]) {
+        [self.delegate touchSportAttendance];
+    }
+    
 }
 @end

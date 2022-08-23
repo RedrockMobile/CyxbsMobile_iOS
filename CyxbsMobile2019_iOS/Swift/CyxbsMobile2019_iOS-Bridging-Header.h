@@ -15,7 +15,7 @@
 #import <MJExtension.h>
 #import "HttpClient.h"
 #import "UITextView+Placeholder.h"
-#import "UserDefaultTool.h"
+//#import "UserDefaultTool.h"
 #import "UserItemTool.h"
 #import "BaseViewController.h"
 #import "NSDate+Timestamp.h"

@@ -11,8 +11,8 @@
 @implementation changePassword
 
 - (void)changePasswordWithNewPassword:(NSString *)password :(NSString *)stuId :(NSString *)code{
-    if([UserDefaultTool getIdNum] != nil){
-        NSDictionary *param = @{@"origin_password":[UserDefaultTool getIdNum],@"new_password":password};
+    if([NSUserDefaults.standardUserDefaults stringForKey:@"idNum"] != nil){
+        NSDictionary *param = @{@"origin_password":[NSUserDefaults.standardUserDefaults stringForKey:@"idNum"],@"new_password":password};
         
         [HttpTool.shareTool
          request:Mine_POST_changePassword_API

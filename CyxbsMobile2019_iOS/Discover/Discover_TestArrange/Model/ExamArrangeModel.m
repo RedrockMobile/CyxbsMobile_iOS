@@ -23,7 +23,7 @@
      request:Discover_POST_examArrange_API
      type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerHTTP
-     bodyParameters:@{@"stuNum":[UserDefaultTool getStuNum]}
+     bodyParameters:@{@"stuNum":UserItemTool.defaultItem.stuNum}
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         ExamArrangeData *data = [[ExamArrangeData alloc] initWithDic:object];
