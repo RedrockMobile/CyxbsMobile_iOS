@@ -73,7 +73,7 @@
     self.date = dic[@"date"];
     self.content = dic[@"content"];
     // 测试数据:ID = 10276请求会出现
-    if (dic[@"files"]) {
+    if (dic[@"files"] && ![dic[@"files"] isKindOfClass:NSNull.class]) {
         NSMutableArray <JWZXNewsAnnexModel *> *annexMA = NSMutableArray.array;
         for (NSDictionary *annexDit in dic[@"files"]) {
             JWZXNewsAnnexModel *anAnnexModel = [[JWZXNewsAnnexModel alloc] initWithDictionary:annexDit];

@@ -1,17 +1,50 @@
 {
   "images" : [
     {
-      "filename" : "组 14.png",
+      "filename" : "组 14@3x 1-1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "组 14@2x.png",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "shilian@2x 1.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "组 14@3x 1@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "组 14@3x.png",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "shilian@2x 1@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "组 14@3x 1@3x-1.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "shilian@2x 1@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

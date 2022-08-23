@@ -15,9 +15,9 @@
 #import "IdsBinding.h"
 #import "GPA.h"
 #import "GPAItem.h"
-#import "IdsBindingView.h"
+#import "IDSController.h"
 
-@interface ScoreViewController ()<SCChartDataSource, UITableViewDelegate, UITableViewDataSource,IdsBindingViewDelegate>
+@interface ScoreViewController ()<SCChartDataSource, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, weak)UserInfoView *userInfoView;
 @property (nonatomic, weak)UIScrollView *contentView;
 @property (nonatomic, weak)UIView *twoTitleView;//学风成绩平均绩点
@@ -26,10 +26,8 @@
 @property (nonatomic, weak)UIView *termBackView;
 @property (nonatomic, weak)UILabel *termLabel;//"学期成绩"
 @property (nonatomic, weak)UITableView *tableView;//每学年的成绩
-@property(nonatomic, weak)IdsBindingView *idsBindgView;
 @property (nonatomic, strong) IdsBinding * idsBindingModel;//ids绑定
 @property (nonatomic, strong) MBProgressHUD *loadHud;
-
 @property (nonatomic,assign)float tableViewCurrentHeight;//tableView的当前高度
 
 @property (nonatomic)GPA *gpaModel;
@@ -46,13 +44,10 @@
     [self addUserInfoView];
     [self tryIDSBinding];
     self.tableViewCurrentHeight = [DetailScorePerYearCell plainHeight];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingError) name:@"IdsBindingUnknownError" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(idsBindingError) name:@"IdsBinding_passwordError" object:nil];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(expandSubjectScoreTableView:) name:@"expandSubjectScoreTableView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(contractSubjectScoreTableView:) name:@"contractSubjectScoreTableView" object:nil];
-    
 }
+
 -(void)tryIDSBinding {
     NSString *idsPasswd = [NSUserDefaults.standardUserDefaults objectForKey:@"idsPasswd"];
     if ([UserItem defaultItem].idsBindingSuccess) {
@@ -66,14 +61,14 @@
         [self addIdsBindingView];//提示用户绑定统一认证码的title;
     }
 }
+
 -(void)addIdsBindingView {
-    IdsBindingView *bindingView = [[IdsBindingView alloc]initWithFrame:CGRectMake(0, self.userInfoView.height, self.view.width, 600)];
-    bindingView.delegate = self;
-    self.idsBindgView = bindingView;
-    [self.view addSubview:bindingView];
-    
-    
+    UIViewController *vc = [self.router controllerForRouterPath:@"IDSController"];
+    vc.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    [self addChildViewController:vc];
+    [self.view addSubview:vc.view];
 }
+
 -(void)expandSubjectScoreTableView:(NSNotification *)notification {
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
@@ -83,6 +78,7 @@
     [self.tableView setHeight:self.tableViewCurrentHeight];
         self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+20);
 }
+
 -(void)contractSubjectScoreTableView:(NSNotification *)notification {
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
@@ -93,6 +89,7 @@
 
     self.contentView.contentSize = CGSizeMake(0,self.tableView.height + self.tableView.frame.origin.y+20);
 }
+
 -(void)requestGPASucceed {
 //    [self.tableView reloadData];
     //GPA请求成功后进行对象归档
@@ -113,17 +110,9 @@
     [self.chartView removeFromSuperview];
     [self addChartView];
 }
--(void) idsBindingError {
-    [self.loadHud hide:YES];
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.idsBindgView animated:YES];
-    hud.mode = MBProgressHUDModeText;
-    hud.labelText = @"绑定失败";
-    [hud hide:YES afterDelay:1.0];
-}
+
 -(void)idsBindingSuccess {
-    [self.idsBindgView removeFromSuperview];
-//    GPAItem *gpaItem = [[GPAItem alloc]init];
-//    self.gpaItem = gpaItem;
+//    [self.idsBindgView removeFromSuperview];
     NSLog(@"解档");
     NSLog(@"a = %@, b = %@",self.gpaItem.termGrades.a_credit,self.gpaItem.termGrades.b_credit);
     self.gpaItem = [NSKeyedUnarchiver unarchiveObjectWithFile:[[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:@"gpaItemObject.archiver"]];
@@ -132,22 +121,18 @@
 //    NSLog(@"%@,%@",self.gpaItem.termGrades.a_credit,self.gpaItem.termGrades.b_credit);
 
     [self.loadHud hide:YES];
-      [self addTwoTitleView];
-      [self addChartView];
-      [self addABScoreView];//AB学分
-      [self addTermScoreView];//“学期成绩”
-      [self addTableView];
+    [self addTwoTitleView];
+    [self addChartView];
+    [self addABScoreView];//AB学分
+    [self addTermScoreView];//“学期成绩”
+    [self addTableView];
       
-      [self requestGPA];
+    [self requestGPA];
       // Do any additional setup after loading the view.
-      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestGPASucceed) name:@"GPASucceed" object:nil];
-
-    
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestGPASucceed) name:@"GPASucceed" object:nil];
 }
 
-
-- (void) addContentView {
+- (void)addContentView {
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height)];
     self.contentView = scrollView;
     [scrollView setBounces:NO];
@@ -158,17 +143,20 @@
     }
     [self.view addSubview:scrollView];
 }
+
 - (void)addUserInfoView {
     UserInfoView *userInfoView  = [[UserInfoView alloc]initWithFrame:CGRectMake(0, 0, self.view.width,86)];
     self.userInfoView = userInfoView;
     [self.contentView addSubview:userInfoView];
 }
+
 - (void)addTwoTitleView {
     ScoreTwoTitleView *view = [[ScoreTwoTitleView alloc]initWithFrame:CGRectMake(0, self.userInfoView.origin.y + self.userInfoView.height + 2, self.view.width, 128)];
     self.twoTitleView = view;
 //    view.backgroundColor = UIColor.greenColor;
     [self.contentView addSubview:view];
 }
+
 - (void)addChartView {
     SCChart *chartView = [[SCChart alloc]initwithSCChartDataFrame:CGRectMake(0, self.twoTitleView.origin.y + self.twoTitleView.height + 2, self.view.width, 180) withSource:self withStyle:SCChartLineStyle];
     
@@ -192,6 +180,7 @@
     self.ABScoreView.BScore.text = self.gpaItem.termGrades.b_credit.stringValue;
     [self.contentView addSubview:view];
 }
+
 - (void)addTermScoreView {
     UIView *termBackView = [[UIView alloc]initWithFrame:CGRectMake(0, self.ABScoreView.origin.y + self.ABScoreView.height + 2, self.view.width, 53)];
     self.termBackView = termBackView;
@@ -211,13 +200,13 @@
     termLabel.text = @"学期成绩";
     self.termLabel = termLabel;
     [self.termBackView addSubview:termLabel];
-    
 }
 
 -(void)requestGPA {
     self.gpaModel = [[GPA alloc]init];
     [self.gpaModel fetchData];
 }
+
 - (void)addTableView {
     int plainCellHeight = 143;
     UITableView *tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, self.termBackView.origin.y + self.termBackView.size.height, self.view.width,plainCellHeight * self.gpaItem.termGrades.termGrades.count+25) style:UITableViewStylePlain];
@@ -228,22 +217,7 @@
     tableView.scrollEnabled = NO;
     [self.contentView addSubview:tableView];
 }
-//MARK: - IdsBindingViewDelegate
-- (void)touchBindingButton {
-    NSString *bindingNum = self.idsBindgView.accountfield.text;
-    NSString *bindingPasswd = self.idsBindgView.passTextfield.text;
-    if(![bindingNum isEqual: @""] && ![bindingPasswd isEqual: @""]) {
-        self.loadHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-         self.loadHud.labelText = @"正在验证";
-        IdsBinding *binding = [[IdsBinding alloc]initWithIdsNum:bindingNum isPassword:bindingPasswd];
-        [binding fetchData];
-    }else {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.idsBindgView animated:YES];
-        hud.mode = MBProgressHUDModeText;
-        hud.labelText = @"请输入统一认证码和密码呦～";
-        [hud hide:YES afterDelay:2.0];
-    }
-}
+
 //MARK: - 折线图代理
 
 - (NSArray *)getXTitles:(int)num {
@@ -272,7 +246,7 @@
 
 - (NSArray *)SCChart_ColorArray:(SCChart *)chart {
     if (@available(iOS 11.0, *)) {
-        return [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2921D1" alpha:1] darkColor:[UIColor colorWithHexString:@"#736CFF" alpha:1]];
+        return @[[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2921D1" alpha:1] darkColor:[UIColor colorWithHexString:@"#736CFF" alpha:1]]];
     } else {
         // Fallback on earlier versions
         return @[[UIColor colorWithHexString:@"#2921D1"]];
@@ -307,6 +281,7 @@
     }
     return 0;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DetailScorePerYearCell *cell = [[DetailScorePerYearCell alloc]init];
     if(self.gpaItem.termGrades.termGrades[indexPath.row].term) {
@@ -332,6 +307,7 @@
     cell.selectionStyle  = UITableViewCellSelectionStyleNone;
     return cell;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     DetailScorePerYearCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     if(cell.tableViewIsOpen) {
@@ -339,6 +315,7 @@
     }
     return DetailScorePerYearCell.plainHeight;
 }
+
 -(NSString*)getTermTitleWithString:(NSString*)string {
     NSNumber *startYear = [string substringToIndex:4].numberValue;
     NSNumber *endYear = [NSNumber numberWithInt:startYear.intValue+1];
@@ -347,6 +324,14 @@
     }else {
         return [NSString stringWithFormat:@"%@-%@第二学期",startYear,endYear];
     }
-    
 }
+
+#pragma mark - lan加载
+- (GPAItem *)gpaItem{
+    if (!_gpaItem) {
+        _gpaItem = [[GPAItem alloc] init];
+    }
+    return _gpaItem;
+}
+
 @end

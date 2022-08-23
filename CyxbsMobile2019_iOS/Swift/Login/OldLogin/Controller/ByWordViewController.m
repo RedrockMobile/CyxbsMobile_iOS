@@ -186,7 +186,7 @@
             {
                 UILabel *tipsLable = [[UILabel alloc]init];
                 tipsLable.text = @"密保答案错误";
-                tipsLable.font =[UIFont fontWithName:nil size:12];
+                tipsLable.font =[UIFont fontWithName:PingFangSC size:12];
                 tipsLable.textColor = [UIColor colorWithRed:11/225.0 green:204/225.0 blue:240/225.0 alpha:1.0];
                 [self.view addSubview:tipsLable];
                 [tipsLable mas_makeConstraints:^(MASConstraintMaker *make)
@@ -253,7 +253,7 @@
 //获取密保问题
 -(void) get1{
     NSString *num = [[NSString alloc] init];
-    NSString *stuNum = [UserDefaultTool getStuNum];
+    NSString *stuNum = UserItemTool.defaultItem.stuNum;
     if(self.idString!=nil)
         num = self.idString;
     else

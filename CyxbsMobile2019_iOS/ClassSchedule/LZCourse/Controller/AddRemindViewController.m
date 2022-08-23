@@ -15,6 +15,8 @@
 #import "CoverView.h"
 #import "ORWInputTextView.h"
 #import "RemindNotification.h"
+#import "UserDefaultTool.h"
+
 @interface AddRemindViewController ()<UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate,UITextViewDelegate,TimeChooseScrollViewDelegate,SaveDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

@@ -118,13 +118,13 @@ static RemindNotification *_instance;
             identifier = [identifier stringByAppendingString:[NSString stringWithFormat:@"%@",dateDic[@"class"]]];
             [identifierArray addObject:identifier];
             
-            if ([[UserDefaultTool valueWithKey:@"nowWeek"] intValue] - [weekArray[j] intValue] <= 0&&updateDic[@"time"]!=nil) {
-                lessonDateStr = [self calculateLessonDateWithWeek:weekArray[j] nowWeek:[NSString stringWithFormat:@"%@",[UserDefaultTool valueWithKey:@"nowWeek"]] day:[NSString stringWithFormat:@"%@",dateDic[@"day"]] class:[NSString  stringWithFormat:@"%@",dateDic[@"class"]]];
-                
-                comp = [self calculateNotificationTimeWithIntervalTime:[NSString stringWithFormat:@"%@",updateDic[@"time"]] LessonDate:lessonDateStr];
-                
-                [self addNotificationWithTitle:[NSString stringWithFormat:@"%@", updateDic[@"title"]] Content:[NSString stringWithFormat:@"%@", updateDic[@"content"]] Identifier:identifier components:comp];
-            }
+//            if ([[UserDefaultTool valueWithKey:@"nowWeek"] intValue] - [weekArray[j] intValue] <= 0&&updateDic[@"time"]!=nil) {
+//                lessonDateStr = [self calculateLessonDateWithWeek:weekArray[j] nowWeek:[NSString stringWithFormat:@"%@",[UserDefaultTool valueWithKey:@"nowWeek"]] day:[NSString stringWithFormat:@"%@",dateDic[@"day"]] class:[NSString  stringWithFormat:@"%@",dateDic[@"class"]]];
+//
+//                comp = [self calculateNotificationTimeWithIntervalTime:[NSString stringWithFormat:@"%@",updateDic[@"time"]] LessonDate:lessonDateStr];
+//
+//                [self addNotificationWithTitle:[NSString stringWithFormat:@"%@", updateDic[@"title"]] Content:[NSString stringWithFormat:@"%@", updateDic[@"content"]] Identifier:identifier components:comp];
+//            }
             
         }
     }
@@ -153,7 +153,7 @@ static RemindNotification *_instance;
     NSMutableArray *identifiers = [[NSMutableArray alloc] init];
     NSDateComponents *comp = [[NSDateComponents alloc] init];
     
-    nowWeekStr = [NSString stringWithFormat:@"%@",[UserDefaultTool valueWithKey:@"nowWeek"]];
+//    nowWeekStr = [NSString stringWithFormat:@"%@",[UserDefaultTool valueWithKey:@"nowWeek"]];
     [self creatIdentifiers];
     
     for (NSInteger i = 0; i < self.newEventCount; i++) {

@@ -21,6 +21,8 @@
 
 #import "TODOMainViewController.h"  //邮子清单
 //#import "InstallRoomViewController.h"
+#import "SportAttendanceViewController.h"//体育打卡详情页面
+#import "DiscoverSAVC.h"//体育打卡发现页
 #import "ScheduleInquiryViewController.h"
 #import "JWZXNewsViewController.h"
 #import "ClassScheduleTabBarView.h"
@@ -37,14 +39,15 @@
 #import "VolunteerItem.h"
 #import "QueryViewController.h"
 #import "ArchiveTool.h"
-#import "DiscoverTodoView.h"
-#import "DiscoverTodoSheetView.h"
+//#import "DiscoverTodoView.h"
+//#import "DiscoverTodoSheetView.h"
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
+#import "UserDefaultTool.h"
 
 //Tool
 #import "NewQAHud.h"
-#import "TodoSyncTool.h"
-#import "TodoSyncMsg.h"
+//#import "TodoSyncTool.h"
+//#import "TodoSyncMsg.h"
 
 
 typedef NS_ENUM(NSUInteger, LoginStates) {
@@ -59,10 +62,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     UIPickerViewDelegate,
     UIPickerViewDataSource,
     ElectricityViewDelegate,
-    VolunteerViewDelegate,
-    DiscoverTodoViewDelegate,
-    DiscoverTodoSheetViewDelegate,
-    DiscoverTodoViewDataSource
+    VolunteerViewDelegate
+//    DiscoverTodoViewDelegate,
+//    DiscoverTodoSheetViewDelegate,
+//    DiscoverTodoViewDataSource
 >
 
 @property (nonatomic, assign, readonly) LoginStates loginStatus;
@@ -115,10 +118,10 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 @property(nonatomic,strong)UIWindow *window;
 
-@property(nonatomic, strong)DiscoverTodoView* todoView;
-
-@property(nonatomic, strong)TodoSyncTool* todoSyncTool;
-
+//@property(nonatomic, strong)DiscoverTodoView* todoView;
+//
+//@property(nonatomic, strong)TodoSyncTool* todoSyncTool;
+@property(nonatomic, strong)DiscoverSAVC * sportVC;
 
 @end
 
@@ -182,7 +185,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         }
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentMySchedul) name:@"DiscoverVCShouldPresentMySchedul" object:nil];
     }
-    [self.todoView reloadData];
+//    [self.todoView reloadData];
 }
 - (void)presentMySchedul{
     ClassScheduleTabBarView *classTabBarView = ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView;
@@ -192,11 +195,12 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.todoSyncTool = [TodoSyncTool share];
+//    self.todoSyncTool = [TodoSyncTool share];
     [self requestData];
     [self addContentView];
     [self addFinderView];
-    [self addTodoView];
+//    [self addTodoView];
+    [self addSportView];
     [self addEleView];
     [self addVolView];
     [self layoutSubviews];
@@ -220,7 +224,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFinderViewUI) name:@"customizeMainPageViewSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];//监听键盘出现
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];//监听键盘消失
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(todoSyncToolDidSync:) name:TodoSyncToolSyncNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(todoSyncToolDidSync:) name:TodoSyncToolSyncNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backToThisController) name:@"logout" object:nil];
 }
 - (void)loginSucceed {
@@ -244,13 +248,19 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         make.bottom.equalTo(self.finderView.enterButtonArray.firstObject.mas_bottom).offset(20);
     }];
     
-    [self.todoView mas_makeConstraints:^(MASConstraintMaker *make) {
+//    [self.todoView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.equalTo(self.view);
+//        make.top.equalTo(self.finderView.mas_bottom).offset(20);
+//    }];
+    
+    [self.sportVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
         make.top.equalTo(self.finderView.mas_bottom).offset(20);
+        make.height.equalTo(@152);
     }];
     
     [self.eleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.todoView.mas_bottom);
+        make.top.equalTo(self.sportVC.view.mas_bottom).offset(-1);
         make.width.equalTo(self.contentView);
         make.height.equalTo(@152);
     }];
@@ -374,6 +384,14 @@ static int requestCheckinInfo = 0;
 
 }
 
+- (void)addSportView {
+    UIViewController *vc = [self.router controllerForRouterPath:@"DiscoverSAVC"];
+    vc.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    self.sportVC = (DiscoverSAVC *)vc;
+    [self addChildViewController:vc];
+    [self.view addSubview:vc.view];
+}
+
 #pragma mark - 即将更改的东西
 - (void)UpdateBannerViewUI {
     NSMutableArray *urlStrings = [NSMutableArray array];
@@ -406,16 +424,16 @@ static int requestCheckinInfo = 0;
     self.colorView.backgroundColor = self.volView.backgroundColor;
     [self.contentView addSubview:self.colorView];
 }
-/// 添加todo的view
-- (void)addTodoView {
-    DiscoverTodoView* todoView = [[DiscoverTodoView alloc] init];
-    [self.contentView addSubview:todoView];
-    self.todoView = todoView;
-    
-    todoView.delegate = self;
-    todoView.dataSource = self;
-    [todoView reloadData];
-}
+///// 添加todo的view
+//- (void)addTodoView {
+//    DiscoverTodoView* todoView = [[DiscoverTodoView alloc] init];
+//    [self.contentView addSubview:todoView];
+//    self.todoView = todoView;
+//
+//    todoView.delegate = self;
+//    todoView.dataSource = self;
+//    [todoView reloadData];
+//}
 - (void)bindingVolunteerButton {
     ///需要在此处判断一下是否已经登陆了志愿者的界面，如果登陆了，则直接跳QueryViewController，如果未登陆的话则跳登陆的viewController
     if (![NSUserDefaults.standardUserDefaults objectForKey:@"volunteer_information"]) {
@@ -764,48 +782,48 @@ static int requestCheckinInfo = 0;
     [viewController viewWillLayoutSubviews];
 }
 
-//MARK: - DiscoverTodoView的代理方法：
-- (void)addBtnClickedTodoView:(DiscoverTodoView *)todoView {
-    //隐藏底部课表的tabBar
-    [UIView animateWithDuration:0.5 animations:^{
-        self.tabBarController.tabBar.alpha = 0;
-    }];
-    
-    DiscoverTodoSheetView* sheetView = [[DiscoverTodoSheetView alloc] init];
-    [self.view addSubview:sheetView];
-    
-    sheetView.delegate = self;
-    //调用show方法让它弹出来
-    [sheetView show];
-}
-
-- (void)todoView:(DiscoverTodoView *)todoView didAlterWithModel:(TodoDataModel *)model {
-    [self.todoSyncTool alterTodoWithModel:model needRecord:YES];
-}
-
-- (void)localBtnClickedTodoView:(DiscoverTodoView *)todoView {
-    CCLog(@"强推");
-    [self.todoSyncTool forcePushLocalData];
-}
-
-- (void)cloudBtnClickedTodoView:(DiscoverTodoView *)todoView {
-    CCLog(@"下载");
-    [self.todoSyncTool forceLoadServerData];
-}
-//MARK:- DiscoverTodoView的数据源方法：
-- (NSArray<TodoDataModel *> *)dataModelToShowForDiscoverTodoView:(DiscoverTodoView *)view {
-    return [self.todoSyncTool getTodoForDiscoverMainPage];
-}
-
-//MARK: - DiscoverTodoSheetView的代理方法：
-- (void)sheetViewSaveBtnClicked:(TodoDataModel *)dataModel {
-    //显示底部课表的tabBar
-    [UIView animateWithDuration:0.5 animations:^{
-        self.tabBarController.tabBar.alpha = 1;
-    }];
-    
-    [self.todoSyncTool saveTodoWithModel:dataModel needRecord:YES];
-}
+////MARK: - DiscoverTodoView的代理方法：
+//- (void)addBtnClickedTodoView:(DiscoverTodoView *)todoView {
+//    //隐藏底部课表的tabBar
+//    [UIView animateWithDuration:0.5 animations:^{
+//        self.tabBarController.tabBar.alpha = 0;
+//    }];
+//
+//    DiscoverTodoSheetView* sheetView = [[DiscoverTodoSheetView alloc] init];
+//    [self.view addSubview:sheetView];
+//
+//    sheetView.delegate = self;
+//    //调用show方法让它弹出来
+//    [sheetView show];
+//}
+//
+//- (void)todoView:(DiscoverTodoView *)todoView didAlterWithModel:(TodoDataModel *)model {
+//    [self.todoSyncTool alterTodoWithModel:model needRecord:YES];
+//}
+//
+//- (void)localBtnClickedTodoView:(DiscoverTodoView *)todoView {
+//    CCLog(@"强推");
+//    [self.todoSyncTool forcePushLocalData];
+//}
+//
+//- (void)cloudBtnClickedTodoView:(DiscoverTodoView *)todoView {
+//    CCLog(@"下载");
+//    [self.todoSyncTool forceLoadServerData];
+//}
+////MARK:- DiscoverTodoView的数据源方法：
+//- (NSArray<TodoDataModel *> *)dataModelToShowForDiscoverTodoView:(DiscoverTodoView *)view {
+//    return [self.todoSyncTool getTodoForDiscoverMainPage];
+//}
+//
+////MARK: - DiscoverTodoSheetView的代理方法：
+//- (void)sheetViewSaveBtnClicked:(TodoDataModel *)dataModel {
+//    //显示底部课表的tabBar
+//    [UIView animateWithDuration:0.5 animations:^{
+//        self.tabBarController.tabBar.alpha = 1;
+//    }];
+//
+//    [self.todoSyncTool saveTodoWithModel:dataModel needRecord:YES];
+//}
 - (void)sheetViewCancelBtnClicked {
     //显示底部课表的tabBar
     [UIView animateWithDuration:0.5 animations:^{
@@ -814,37 +832,37 @@ static int requestCheckinInfo = 0;
 }
 
 
-//MARK: - 监听TodoSyncTool的通知
-- (void)todoSyncToolDidSync:(NSNotification*)noti {
-    TodoSyncMsg* msg = noti.object;
-    NSString *str;
-    switch (msg.syncState) {
-        case TodoSyncStateSuccess:
-            str = @"和服务器数据同步成功";
-            break;
-        case TodoSyncStateFailure:
-            str = @" 网络错误，待接入网络时，再和服务器同步数据 ";
-            break;
-        case TodoSyncStateConflict:
-            str = @" 产生了冲突 ";
-            break;
-        case TodoSyncStateUnexpectedError:
-            str = @" 网络错误，待接入网络时，再和服务器同步数据 ";
-            break;
-    }
-    
-//    [NewQAHud showHudAtWindowWithStr:str enableInteract:YES];
-    
-    if (msg.syncState==TodoSyncStateConflict) {
-        [self.todoView showConflictWithServerTime:msg.serverLastSyncTime localTime:msg.clientLastSyncTime];
-    }else {
-        [self.todoView removeConflictView];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.todoView reloadData];
-        });
-    }
-}
-
+////MARK: - 监听TodoSyncTool的通知
+//- (void)todoSyncToolDidSync:(NSNotification*)noti {
+//    TodoSyncMsg* msg = noti.object;
+//    NSString *str;
+//    switch (msg.syncState) {
+//        case TodoSyncStateSuccess:
+//            str = @"和服务器数据同步成功";
+//            break;
+//        case TodoSyncStateFailure:
+//            str = @" 网络错误，待接入网络时，再和服务器同步数据 ";
+//            break;
+//        case TodoSyncStateConflict:
+//            str = @" 产生了冲突 ";
+//            break;
+//        case TodoSyncStateUnexpectedError:
+//            str = @" 网络错误，待接入网络时，再和服务器同步数据 ";
+//            break;
+//    }
+//
+////    [NewQAHud showHudAtWindowWithStr:str enableInteract:YES];
+//
+//    if (msg.syncState==TodoSyncStateConflict) {
+//        [self.todoView showConflictWithServerTime:msg.serverLastSyncTime localTime:msg.clientLastSyncTime];
+//    }else {
+//        [self.todoView removeConflictView];
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [self.todoView reloadData];
+//        });
+//    }
+//}
+//
 
 //MARK: - FinderView代理
 - (void)touchWriteButton {
@@ -878,7 +896,6 @@ static int requestCheckinInfo = 0;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-
 - (void)touchSchedule {
     NSLog(@"点击了空课表");
     ScheduleInquiryViewController *vc = [[ScheduleInquiryViewController alloc]init];
@@ -893,6 +910,7 @@ static int requestCheckinInfo = 0;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 - (void)touchNoClassAppointment {
     NSLog(@"点击了没课约");
     UserItem *item = [[UserItem alloc] init];
@@ -900,33 +918,45 @@ static int requestCheckinInfo = 0;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 - (void)touchMyTest {
     NSLog(@"点击了我的考试");
     TestArrangeViewController *vc = [[TestArrangeViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 - (void)touchSchoolCalender {
     NSLog(@"点击了校历");
     CalendarViewController *vc = [[CalendarViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 - (void)touchMap {
     NSLog(@"点击了重邮地图");
     CQUPTMapViewController * vc = [[CQUPTMapViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 - (void)touchEmptyClass {
     NSLog(@"点击了空教室");
     EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 - (void)touchToDOList{
     NSLog(@"点击了邮子清单");
     TODOMainViewController *vc = [[TODOMainViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)touchSportAttendance {
+    NSLog(@"点击了体育打卡");
+    SportAttendanceViewController *vc = [[SportAttendanceViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

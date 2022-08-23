@@ -13,6 +13,7 @@
 #import "ResetPwdViewController.h"
 //#import "YYZSendVC.h"
 #import "YYZGetIdVC.h"
+#import "UserDefaultTool.h"
 
 #define kRateX [UIScreen mainScreen].bounds.size.width/375   //以iPhoneX为基准
 #define kRateY [UIScreen mainScreen].bounds.size.height/812  //以iPhoneX为基准
@@ -207,7 +208,7 @@
         else{
             UILabel *tipsLable = [[UILabel alloc]init];
             tipsLable.text = @"验证码有误或过期，请重新获取。 ";
-            tipsLable.font =[UIFont fontWithName:nil size:12];
+            tipsLable.font =[UIFont fontWithName:PingFangSC size:12];
             tipsLable.textColor = [UIColor colorWithRed:11/225.0 green:204/225.0 blue:240/225.0 alpha:1.0];
             [self.view addSubview:tipsLable];
             [tipsLable mas_makeConstraints:^(MASConstraintMaker *make) {

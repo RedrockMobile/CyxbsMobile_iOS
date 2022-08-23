@@ -13,6 +13,9 @@
 @implementation JWZXNewsModel
 
 - (instancetype)initWithRootNews:(JWZXSectionNews *)sectionNews {
+    if (sectionNews == nil) {
+        return nil;
+    }
     self = [super init];
     if (self) {
         self.sectionNewsAry = [NSMutableArray arrayWithArray:@[sectionNews]];

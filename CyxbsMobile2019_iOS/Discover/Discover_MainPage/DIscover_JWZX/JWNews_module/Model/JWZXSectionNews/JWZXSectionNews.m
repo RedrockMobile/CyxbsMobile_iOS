@@ -17,6 +17,7 @@
 + (void)requestWithPage:(NSInteger)page
                 success:(void (^)(JWZXSectionNews * _Nullable))success
                 failure:(void (^)(NSError * _Nonnull))failure {
+    RisingDetailLog(@"🥹%@", Discover_GET_NewsPage_API);
     [HttpTool.shareTool
      request:Discover_GET_NewsPage_API
      type:HttpToolRequestTypeGet

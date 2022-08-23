@@ -19,6 +19,7 @@
 #include "ArchiveTool.h"
 #import <sqlite3.h>
 #import <Bugly/Bugly.h>
+#import "UserDefaultTool.h"
 
 #define BUGLY_APP_ID @"41e7a3c1b3"
 #define SQLITE_THREADSAFE 1
@@ -253,20 +254,19 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 ///设置存储、更换baseURL
 - (void)settingBaseURL{
     NSString *baseURL;
-    #ifdef DEBUG
-        // 测试环境
-        baseURL = @"https://be-dev.redrock.cqupt.edu.cn/";
-    //    baseURL = @"https://be-prod.redrock.team/";
-    #else
-        // 正式环境
-        baseURL = @"https://be-prod.redrock.cqupt.edu.cn/";
-    #endif
-//        [NSUserDefaults.standardUserDefaults setObject:baseURL forKey:@"baseURL"];
-//        [UserItemTool checkVisibleAPI:^(NSString * _Nonnull url) {
-//            // 容灾环境
-//            [NSUserDefaults.standardUserDefaults setObject:url forKey:@"baseURL"];
-//        }];
-    
+#ifdef DEBUG
+    // 测试环境
+    baseURL = @"https://be-dev.redrock.cqupt.edu.cn/";
+//    baseURL = @"https://be-prod.redrock.team/";
+#else
+    // 正式环境
+    baseURL = @"https://be-prod.redrock.cqupt.edu.cn/";
+#endif
+    [NSUserDefaults.standardUserDefaults setObject:baseURL forKey:@"baseURL"];
+    [UserItemTool checkVisibleAPI:^(NSString * _Nonnull url) {
+        // 容灾环境
+        [NSUserDefaults.standardUserDefaults setObject:url forKey:@"baseURL"];
+    }];
 }
 
 ///检查是否有最新的掌邮，并提示用户获取

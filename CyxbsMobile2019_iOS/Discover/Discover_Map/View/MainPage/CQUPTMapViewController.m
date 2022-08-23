@@ -15,6 +15,7 @@
 #import "CQUPTMapProgressView.h"
 #import "CQUPTVRMapController.h"
 #import <SDImageCache.h>
+#import "UserDefaultTool.h"
 
 @interface CQUPTMapViewController () <CQUPTMapViewProtocol, CQUPTMapContentViewDelegate>
 

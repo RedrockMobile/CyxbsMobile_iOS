@@ -12,8 +12,8 @@
 
 + (void)CheckInSucceeded:(void (^)(void))succeded Failed:(void (^)(NSError * _Nonnull))failed {
     NSDictionary *params = @{
-        @"stunum": [UserDefaultTool getStuNum],
-        @"idnum": [UserDefaultTool getIdNum]
+        @"stunum": UserItemTool.defaultItem.stuNum,
+        @"idnum": [NSUserDefaults.standardUserDefaults stringForKey:@"idNum"]
     };
     
     [HttpTool.shareTool

@@ -13,6 +13,7 @@
 #import "CQUPTMapPlaceItem.h"
 #import "CQUPTMapSearchItem.h"
 #import "CQUPTMapContentView.h"
+#import "UserDefaultTool.h"
 
 @interface CQUPTMapSearchView () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
