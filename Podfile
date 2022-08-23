@@ -39,6 +39,8 @@ target 'CyxbsMobile2019_iOS' do
 
 	# 基于iOS11.0的黑暗适配
 	pod 'FluentDarkModeKit'
+
+	pod 'IGListKit'
       
   # For Swift:
   

@@ -21,6 +21,241 @@
 		14981FF627FEA8F200AD2A29 /* JWZXNewsAnnexModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FF527FEA8F200AD2A29 /* JWZXNewsAnnexModel.m */; };
 		14981FF927FEAEB800AD2A29 /* JWZXDetailNewsTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FF827FEAEB800AD2A29 /* JWZXDetailNewsTopView.m */; };
 		14981FFC27FEB41B00AD2A29 /* JWZXDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FFB27FEB41B00AD2A29 /* JWZXDetailView.m */; };
+		14B4678628B4C4D9003D288B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 14B4665E28B4C4D9003D288B /* LICENSE */; };
+		14B4678728B4C4D9003D288B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 14B4665F28B4C4D9003D288B /* README.md */; };
+		14B4678828B4C4D9003D288B /* statement_drop_index.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4666328B4C4D9003D288B /* statement_drop_index.cpp */; };
+		14B4678928B4C4D9003D288B /* column.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4666528B4C4D9003D288B /* column.cpp */; };
+		14B4678A28B4C4D9003D288B /* order_term.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4666628B4C4D9003D288B /* order_term.cpp */; };
+		14B4678B28B4C4D9003D288B /* handle_statement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4666928B4C4D9003D288B /* handle_statement.cpp */; };
+		14B4678C28B4C4D9003D288B /* clause_join.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4666A28B4C4D9003D288B /* clause_join.cpp */; };
+		14B4678D28B4C4D9003D288B /* statement_create_index.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4666E28B4C4D9003D288B /* statement_create_index.cpp */; };
+		14B4678E28B4C4D9003D288B /* module_argument.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4667128B4C4D9003D288B /* module_argument.cpp */; };
+		14B4678F28B4C4D9003D288B /* foreign_key.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4667428B4C4D9003D288B /* foreign_key.cpp */; };
+		14B4679028B4C4D9003D288B /* statement_pragma.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4667528B4C4D9003D288B /* statement_pragma.cpp */; };
+		14B4679128B4C4D9003D288B /* statement_savepoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4667628B4C4D9003D288B /* statement_savepoint.cpp */; };
+		14B4679228B4C4D9003D288B /* statement_explain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4667728B4C4D9003D288B /* statement_explain.cpp */; };
+		14B4679328B4C4D9003D288B /* conflict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4667828B4C4D9003D288B /* conflict.cpp */; };
+		14B4679428B4C4D9003D288B /* statement_alter_table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4667928B4C4D9003D288B /* statement_alter_table.cpp */; };
+		14B4679528B4C4D9003D288B /* literal_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4667A28B4C4D9003D288B /* literal_value.cpp */; };
+		14B4679628B4C4D9003D288B /* statement_create_virtual_table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4667B28B4C4D9003D288B /* statement_create_virtual_table.cpp */; };
+		14B4679728B4C4D9003D288B /* statement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4667C28B4C4D9003D288B /* statement.cpp */; };
+		14B4679828B4C4D9003D288B /* subquery.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4667D28B4C4D9003D288B /* subquery.cpp */; };
+		14B4679928B4C4D9003D288B /* fts_modules.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4668228B4C4D9003D288B /* fts_modules.cpp */; };
+		14B4679A28B4C4D9003D288B /* fts_module.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4668328B4C4D9003D288B /* fts_module.cpp */; };
+		14B4679B28B4C4D9003D288B /* column_type.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4668428B4C4D9003D288B /* column_type.cpp */; };
+		14B4679C28B4C4D9003D288B /* expr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4668628B4C4D9003D288B /* expr.cpp */; };
+		14B4679D28B4C4D9003D288B /* constraint_table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4668728B4C4D9003D288B /* constraint_table.cpp */; };
+		14B4679E28B4C4D9003D288B /* statement_insert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4668B28B4C4D9003D288B /* statement_insert.cpp */; };
+		14B4679F28B4C4D9003D288B /* statement_update.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4668D28B4C4D9003D288B /* statement_update.cpp */; };
+		14B467A028B4C4D9003D288B /* statement_vacuum.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4669328B4C4D9003D288B /* statement_vacuum.cpp */; };
+		14B467A128B4C4D9003D288B /* pragma.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4669428B4C4D9003D288B /* pragma.cpp */; };
+		14B467A228B4C4D9003D288B /* statement_rollback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4669528B4C4D9003D288B /* statement_rollback.cpp */; };
+		14B467A328B4C4D9003D288B /* handle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4669A28B4C4D9003D288B /* handle.cpp */; };
+		14B467A428B4C4D9003D288B /* statement_reindex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4669B28B4C4D9003D288B /* statement_reindex.cpp */; };
+		14B467A528B4C4D9003D288B /* column_def.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4669D28B4C4D9003D288B /* column_def.cpp */; };
+		14B467A628B4C4D9003D288B /* statement_select.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4669E28B4C4D9003D288B /* statement_select.cpp */; };
+		14B467A728B4C4D9003D288B /* column_index.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B466A028B4C4D9003D288B /* column_index.cpp */; };
+		14B467A828B4C4D9003D288B /* statement_attach.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B466A328B4C4D9003D288B /* statement_attach.cpp */; };
+		14B467A928B4C4D9003D288B /* statement_drop_table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B466A528B4C4D9003D288B /* statement_drop_table.cpp */; };
+		14B467AA28B4C4D9003D288B /* statement_create_table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B466A928B4C4D9003D288B /* statement_create_table.cpp */; };
+		14B467AB28B4C4D9003D288B /* statement_detach.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B466AA28B4C4D9003D288B /* statement_detach.cpp */; };
+		14B467AC28B4C4D9003D288B /* statement_transaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B466AB28B4C4D9003D288B /* statement_transaction.cpp */; };
+		14B467AD28B4C4D9003D288B /* describable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B466AC28B4C4D9003D288B /* describable.cpp */; };
+		14B467AE28B4C4D9003D288B /* statement_delete.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B466AD28B4C4D9003D288B /* statement_delete.cpp */; };
+		14B467AF28B4C4D9003D288B /* statement_release.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B466AF28B4C4D9003D288B /* statement_release.cpp */; };
+		14B467B028B4C4D9003D288B /* order.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B466B128B4C4D9003D288B /* order.cpp */; };
+		14B467B128B4C4D9003D288B /* column_result.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B466B228B4C4D9003D288B /* column_result.cpp */; };
+		14B467B228B4C4D9003D288B /* WCTTransaction.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466BC28B4C4D9003D288B /* WCTTransaction.mm */; };
+		14B467B328B4C4D9003D288B /* WCTDatabase+Transaction.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466BF28B4C4D9003D288B /* WCTDatabase+Transaction.mm */; };
+		14B467B428B4C4D9003D288B /* WCTDatabase+RepairKit.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466C328B4C4D9003D288B /* WCTDatabase+RepairKit.mm */; };
+		14B467B528B4C4D9003D288B /* WCTDatabase+Database.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466C528B4C4D9003D288B /* WCTDatabase+Database.mm */; };
+		14B467B628B4C4DA003D288B /* WCTDatabase+File.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466C628B4C4D9003D288B /* WCTDatabase+File.mm */; };
+		14B467B728B4C4DA003D288B /* WCTTransaction+Compatible.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466C928B4C4D9003D288B /* WCTTransaction+Compatible.mm */; };
+		14B467B828B4C4DA003D288B /* WCTStatistics+Compatible.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466CC28B4C4D9003D288B /* WCTStatistics+Compatible.mm */; };
+		14B467B928B4C4DA003D288B /* WCTCompatible.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466CD28B4C4D9003D288B /* WCTCompatible.mm */; };
+		14B467BA28B4C4DA003D288B /* WCTStatement+Compatible.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466CF28B4C4D9003D288B /* WCTStatement+Compatible.mm */; };
+		14B467BB28B4C4DA003D288B /* WCTDatabase+Compatible.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466D228B4C4D9003D288B /* WCTDatabase+Compatible.mm */; };
+		14B467BC28B4C4DA003D288B /* WCTCore.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466D528B4C4D9003D288B /* WCTCore.mm */; };
+		14B467BD28B4C4DA003D288B /* WCTDatabase+Core.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466D728B4C4D9003D288B /* WCTDatabase+Core.mm */; };
+		14B467BE28B4C4DA003D288B /* WCTInterface+Core.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466D928B4C4D9003D288B /* WCTInterface+Core.mm */; };
+		14B467BF28B4C4DA003D288B /* WCTValue.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466DA28B4C4D9003D288B /* WCTValue.mm */; };
+		14B467C028B4C4DA003D288B /* WCTStatement.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466DB28B4C4D9003D288B /* WCTStatement.mm */; };
+		14B467C128B4C4DA003D288B /* WCTDatabase+Statistics.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466E228B4C4D9003D288B /* WCTDatabase+Statistics.mm */; };
+		14B467C228B4C4DA003D288B /* WCTError.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466E328B4C4D9003D288B /* WCTError.mm */; };
+		14B467C328B4C4DA003D288B /* WCTChainCall+Statistics.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466E428B4C4D9003D288B /* WCTChainCall+Statistics.mm */; };
+		14B467C428B4C4DA003D288B /* WCTStatistics.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466E728B4C4D9003D288B /* WCTStatistics.mm */; };
+		14B467C528B4C4DA003D288B /* WCTTransaction+Statistics.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466EB28B4C4D9003D288B /* WCTTransaction+Statistics.mm */; };
+		14B467C628B4C4DA003D288B /* WCTInterface.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466EF28B4C4D9003D288B /* WCTInterface.mm */; };
+		14B467C728B4C4DA003D288B /* WCTTable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466F028B4C4D9003D288B /* WCTTable.mm */; };
+		14B467C828B4C4DA003D288B /* WCTDatabase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466F128B4C4D9003D288B /* WCTDatabase.mm */; };
+		14B467C928B4C4DA003D288B /* WCTTokenizer+WCDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466F728B4C4D9003D288B /* WCTTokenizer+WCDB.mm */; };
+		14B467CA28B4C4DA003D288B /* WCTTokenizer+Apple.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466F828B4C4D9003D288B /* WCTTokenizer+Apple.mm */; };
+		14B467CB28B4C4DA003D288B /* WCTDatabase+FTS.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466FA28B4C4D9003D288B /* WCTDatabase+FTS.mm */; };
+		14B467CC28B4C4DA003D288B /* WCTInterface+ChainCall.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B466FF28B4C4D9003D288B /* WCTInterface+ChainCall.mm */; };
+		14B467CD28B4C4DA003D288B /* WCTTable+ChainCall.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4670028B4C4D9003D288B /* WCTTable+ChainCall.mm */; };
+		14B467CE28B4C4DA003D288B /* WCTSelectBase+NoARC.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4670328B4C4D9003D288B /* WCTSelectBase+NoARC.mm */; };
+		14B467CF28B4C4DA003D288B /* WCTMultiSelect.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4670528B4C4D9003D288B /* WCTMultiSelect.mm */; };
+		14B467D028B4C4DA003D288B /* WCTDelete.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4670628B4C4D9003D288B /* WCTDelete.mm */; };
+		14B467D128B4C4DA003D288B /* WCTUpdate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4670728B4C4D9003D288B /* WCTUpdate.mm */; };
+		14B467D228B4C4DA003D288B /* WCTChainCall.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4670928B4C4D9003D288B /* WCTChainCall.mm */; };
+		14B467D328B4C4DA003D288B /* WCTRowSelect.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4670A28B4C4D9003D288B /* WCTRowSelect.mm */; };
+		14B467D428B4C4DA003D288B /* WCTInsert.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4670D28B4C4D9003D288B /* WCTInsert.mm */; };
+		14B467D528B4C4DA003D288B /* WCTSelectBase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4671428B4C4D9003D288B /* WCTSelectBase.mm */; };
+		14B467D628B4C4DA003D288B /* WCTSelect.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4671928B4C4D9003D288B /* WCTSelect.mm */; };
+		14B467D728B4C4DA003D288B /* WCTDatabase+Table.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4672028B4C4D9003D288B /* WCTDatabase+Table.mm */; };
+		14B467D828B4C4DA003D288B /* WCTTransaction+Table.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4672128B4C4D9003D288B /* WCTTransaction+Table.mm */; };
+		14B467D928B4C4DA003D288B /* WCTInterface+Table.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4672228B4C4D9003D288B /* WCTInterface+Table.mm */; };
+		14B467DA28B4C4DA003D288B /* WCTRuntimeObjCAccessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4672628B4C4D9003D288B /* WCTRuntimeObjCAccessor.mm */; };
+		14B467DB28B4C4DA003D288B /* WCTRuntimeBaseAccessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4672728B4C4D9003D288B /* WCTRuntimeBaseAccessor.mm */; };
+		14B467DC28B4C4DA003D288B /* WCTConstraintBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4673128B4C4D9003D288B /* WCTConstraintBinding.mm */; };
+		14B467DD28B4C4DA003D288B /* WCTIndexBInding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4673228B4C4D9003D288B /* WCTIndexBInding.mm */; };
+		14B467DE28B4C4DA003D288B /* WCTColumnBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4673428B4C4D9003D288B /* WCTColumnBinding.mm */; };
+		14B467DF28B4C4DA003D288B /* WCTBinding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4673628B4C4D9003D288B /* WCTBinding.mm */; };
+		14B467E028B4C4DA003D288B /* WCTAnyProperty.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4673E28B4C4D9003D288B /* WCTAnyProperty.mm */; };
+		14B467E128B4C4DA003D288B /* WCTSelectBase+WCTExpr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4674128B4C4D9003D288B /* WCTSelectBase+WCTExpr.mm */; };
+		14B467E228B4C4DA003D288B /* WCTExpr.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4674728B4C4D9003D288B /* WCTExpr.mm */; };
+		14B467E328B4C4DA003D288B /* WCTResult.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4674828B4C4D9003D288B /* WCTResult.mm */; };
+		14B467E428B4C4DA003D288B /* WCTProperty.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4674928B4C4D9003D288B /* WCTProperty.mm */; };
+		14B467E528B4C4DA003D288B /* WCTPropertyBase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4674A28B4C4D9003D288B /* WCTPropertyBase.mm */; };
+		14B467E628B4C4DA003D288B /* WCTInterface+Convenient.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4674C28B4C4D9003D288B /* WCTInterface+Convenient.mm */; };
+		14B467E728B4C4DA003D288B /* WCTTable+Convenient.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4674D28B4C4D9003D288B /* WCTTable+Convenient.mm */; };
+		14B467E828B4C4DA003D288B /* NSNumber+WCTColumnCoding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4675128B4C4D9003D288B /* NSNumber+WCTColumnCoding.mm */; };
+		14B467E928B4C4DA003D288B /* NSObject+WCTColumnCoding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4675328B4C4D9003D288B /* NSObject+WCTColumnCoding.mm */; };
+		14B467EA28B4C4DA003D288B /* NSDate+WCTColumnCoding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4675728B4C4D9003D288B /* NSDate+WCTColumnCoding.mm */; };
+		14B467EB28B4C4DA003D288B /* WCTSequence.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4675828B4C4D9003D288B /* WCTSequence.mm */; };
+		14B467EC28B4C4DA003D288B /* WCTMaster.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4675928B4C4D9003D288B /* WCTMaster.mm */; };
+		14B467ED28B4C4DA003D288B /* NSString+WCTColumnCoding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4675A28B4C4D9003D288B /* NSString+WCTColumnCoding.mm */; };
+		14B467EE28B4C4DA003D288B /* NSData+WCTColumnCoding.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B4675B28B4C4D9003D288B /* NSData+WCTColumnCoding.mm */; };
+		14B467EF28B4C4DA003D288B /* database_config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4675D28B4C4D9003D288B /* database_config.cpp */; };
+		14B467F028B4C4DA003D288B /* database_sql.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4676228B4C4D9003D288B /* database_sql.cpp */; };
+		14B467F128B4C4DA003D288B /* tokenizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4676628B4C4D9003D288B /* tokenizer.cpp */; };
+		14B467F228B4C4DA003D288B /* database_file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4676728B4C4D9003D288B /* database_file.cpp */; };
+		14B467F328B4C4DA003D288B /* database_repair_kit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4676828B4C4D9003D288B /* database_repair_kit.cpp */; };
+		14B467F428B4C4DA003D288B /* core_base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4676928B4C4D9003D288B /* core_base.cpp */; };
+		14B467F528B4C4DA003D288B /* database.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4676A28B4C4D9003D288B /* database.cpp */; };
+		14B467F628B4C4DA003D288B /* database_transaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4676B28B4C4D9003D288B /* database_transaction.cpp */; };
+		14B467F728B4C4DA003D288B /* config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4676C28B4C4D9003D288B /* config.cpp */; };
+		14B467F828B4C4DA003D288B /* transaction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4676E28B4C4D9003D288B /* transaction.cpp */; };
+		14B467F928B4C4DA003D288B /* statement_recyclable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4676F28B4C4D9003D288B /* statement_recyclable.cpp */; };
+		14B467FA28B4C4DA003D288B /* handle_recyclable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4677028B4C4D9003D288B /* handle_recyclable.cpp */; };
+		14B467FB28B4C4DA003D288B /* handle_pool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4677128B4C4D9003D288B /* handle_pool.cpp */; };
+		14B467FC28B4C4DA003D288B /* error.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4677628B4C4D9003D288B /* error.cpp */; };
+		14B467FD28B4C4DA003D288B /* spin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4677928B4C4D9003D288B /* spin.cpp */; };
+		14B467FE28B4C4DA003D288B /* rwlock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4677D28B4C4D9003D288B /* rwlock.cpp */; };
+		14B467FF28B4C4DA003D288B /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4677E28B4C4D9003D288B /* file.cpp */; };
+		14B4680028B4C4DA003D288B /* ticker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4678028B4C4D9003D288B /* ticker.cpp */; };
+		14B4680128B4C4DA003D288B /* path.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4678228B4C4D9003D288B /* path.cpp */; };
+		14B4681928B4C4E9003D288B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 14B4680328B4C4E8003D288B /* LICENSE */; };
+		14B4681A28B4C4E9003D288B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 14B4680428B4C4E8003D288B /* README.md */; };
+		14B4681B28B4C4E9003D288B /* sqliterk_util.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4680628B4C4E8003D288B /* sqliterk_util.c */; };
+		14B4681C28B4C4E9003D288B /* sqliterk_btree.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4680728B4C4E8003D288B /* sqliterk_btree.c */; };
+		14B4681D28B4C4E9003D288B /* sqliterk_pager.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4680A28B4C4E8003D288B /* sqliterk_pager.c */; };
+		14B4681E28B4C4E9003D288B /* sqliterk_column.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4680C28B4C4E8003D288B /* sqliterk_column.c */; };
+		14B4681F28B4C4E9003D288B /* sqliterk_values.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4680D28B4C4E8003D288B /* sqliterk_values.c */; };
+		14B4682028B4C4E9003D288B /* sqliterk_api.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4680E28B4C4E8003D288B /* sqliterk_api.c */; };
+		14B4682128B4C4E9003D288B /* sqliterk_output.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 14B4680F28B4C4E8003D288B /* sqliterk_output.cpp */; };
+		14B4682228B4C4E9003D288B /* sqliterk.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4681028B4C4E8003D288B /* sqliterk.c */; };
+		14B4682328B4C4E9003D288B /* sqliterk_crypto.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4681228B4C4E8003D288B /* sqliterk_crypto.c */; };
+		14B4682428B4C4E9003D288B /* sqliterk_os.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4681528B4C4E8003D288B /* sqliterk_os.c */; };
+		14B468B728B4C4F1003D288B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 14B4682628B4C4F1003D288B /* LICENSE */; };
+		14B468B828B4C4F1003D288B /* sqlite3rbu.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4682B28B4C4F1003D288B /* sqlite3rbu.c */; };
+		14B468B928B4C4F1003D288B /* fts3_porter.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4683028B4C4F1003D288B /* fts3_porter.c */; };
+		14B468BA28B4C4F1003D288B /* fts3_hash.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4683128B4C4F1003D288B /* fts3_hash.c */; };
+		14B468BB28B4C4F1003D288B /* fts3.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4683328B4C4F1003D288B /* fts3.c */; };
+		14B468BC28B4C4F1003D288B /* fts3_unicode2.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4683428B4C4F1003D288B /* fts3_unicode2.c */; };
+		14B468BD28B4C4F1003D288B /* fts3_tokenizer.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4683528B4C4F1003D288B /* fts3_tokenizer.c */; };
+		14B468BE28B4C4F1003D288B /* fts3_icu.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4683628B4C4F1003D288B /* fts3_icu.c */; };
+		14B468BF28B4C4F1003D288B /* fts3_expr.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4683728B4C4F1003D288B /* fts3_expr.c */; };
+		14B468C028B4C4F1003D288B /* fts3_snippet.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4683828B4C4F1003D288B /* fts3_snippet.c */; };
+		14B468C128B4C4F1003D288B /* fts3_tokenizer1.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4683928B4C4F1003D288B /* fts3_tokenizer1.c */; };
+		14B468C228B4C4F1003D288B /* fts3_write.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4683A28B4C4F1003D288B /* fts3_write.c */; };
+		14B468C328B4C4F1003D288B /* fts3_aux.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4683C28B4C4F1003D288B /* fts3_aux.c */; };
+		14B468C428B4C4F1003D288B /* fts3_unicode.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4683D28B4C4F1003D288B /* fts3_unicode.c */; };
+		14B468C528B4C4F1003D288B /* fts3_tokenize_vtab.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4683F28B4C4F1003D288B /* fts3_tokenize_vtab.c */; };
+		14B468C628B4C4F1003D288B /* rtree.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4684328B4C4F1003D288B /* rtree.c */; };
+		14B468C728B4C4F1003D288B /* icu.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4684728B4C4F1003D288B /* icu.c */; };
+		14B468C828B4C4F1003D288B /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 14B4684A28B4C4F1003D288B /* README.md */; };
+		14B468C928B4C4F1003D288B /* parse.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4684C28B4C4F1003D288B /* parse.c */; };
+		14B468CA28B4C4F1003D288B /* fts5.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4684D28B4C4F1003D288B /* fts5.c */; };
+		14B468CB28B4C4F1003D288B /* opcodes.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4684E28B4C4F1003D288B /* opcodes.c */; };
+		14B468CC28B4C4F1003D288B /* printf.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4685028B4C4F1003D288B /* printf.c */; };
+		14B468CD28B4C4F1003D288B /* btree.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4685128B4C4F1003D288B /* btree.c */; };
+		14B468CE28B4C4F1003D288B /* dbstat.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4685228B4C4F1003D288B /* dbstat.c */; };
+		14B468CF28B4C4F1003D288B /* mutex_unix.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4685428B4C4F1003D288B /* mutex_unix.c */; };
+		14B468D028B4C4F1003D288B /* mem2.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4685528B4C4F1003D288B /* mem2.c */; };
+		14B468D128B4C4F1003D288B /* table.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4685828B4C4F1003D288B /* table.c */; };
+		14B468D228B4C4F1003D288B /* treeview.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4685928B4C4F1003D288B /* treeview.c */; };
+		14B468D328B4C4F1003D288B /* auth.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4685A28B4C4F1003D288B /* auth.c */; };
+		14B468D428B4C4F1003D288B /* util.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4685C28B4C4F1003D288B /* util.c */; };
+		14B468D528B4C4F1003D288B /* pragma.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4685D28B4C4F1003D288B /* pragma.c */; };
+		14B468D628B4C4F1003D288B /* crypto_libtomcrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4685F28B4C4F1003D288B /* crypto_libtomcrypt.c */; };
+		14B468D728B4C4F1003D288B /* memjournal.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4686028B4C4F1003D288B /* memjournal.c */; };
+		14B468D828B4C4F1003D288B /* insert.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4686128B4C4F1003D288B /* insert.c */; };
+		14B468D928B4C4F1003D288B /* vdbeapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4686228B4C4F1003D288B /* vdbeapi.c */; };
+		14B468DA28B4C4F1003D288B /* ctime.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4686328B4C4F1003D288B /* ctime.c */; };
+		14B468DB28B4C4F1003D288B /* crypto_cc.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4686528B4C4F1003D288B /* crypto_cc.c */; };
+		14B468DC28B4C4F1003D288B /* rowset.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4686628B4C4F1003D288B /* rowset.c */; };
+		14B468DD28B4C4F1003D288B /* vdbeblob.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4686728B4C4F1003D288B /* vdbeblob.c */; };
+		14B468DE28B4C4F1003D288B /* mutex_wcdb.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4686828B4C4F1003D288B /* mutex_wcdb.c */; };
+		14B468DF28B4C4F1003D288B /* where.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4686928B4C4F1003D288B /* where.c */; };
+		14B468E028B4C4F1003D288B /* vdbetrace.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4686A28B4C4F1003D288B /* vdbetrace.c */; };
+		14B468E128B4C4F1003D288B /* fkey.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4686B28B4C4F1003D288B /* fkey.c */; };
+		14B468E228B4C4F1003D288B /* bitvec.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4686D28B4C4F1003D288B /* bitvec.c */; };
+		14B468E328B4C4F1003D288B /* whereexpr.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4686E28B4C4F1003D288B /* whereexpr.c */; };
+		14B468E428B4C4F1003D288B /* mem5.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4686F28B4C4F1003D288B /* mem5.c */; };
+		14B468E528B4C4F1003D288B /* mem1.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4687028B4C4F1003D288B /* mem1.c */; };
+		14B468E628B4C4F1003D288B /* os_unix.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4687228B4C4F1003D288B /* os_unix.c */; };
+		14B468E728B4C4F1003D288B /* mutex.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4687328B4C4F1003D288B /* mutex.c */; };
+		14B468E828B4C4F1003D288B /* func.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4687428B4C4F1003D288B /* func.c */; };
+		14B468E928B4C4F1003D288B /* resolve.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4687528B4C4F1003D288B /* resolve.c */; };
+		14B468EA28B4C4F1003D288B /* vtab.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4687728B4C4F1003D288B /* vtab.c */; };
+		14B468EB28B4C4F1003D288B /* vdbemem.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4687928B4C4F1003D288B /* vdbemem.c */; };
+		14B468EC28B4C4F1003D288B /* wherecode.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4687A28B4C4F1003D288B /* wherecode.c */; };
+		14B468ED28B4C4F1003D288B /* wal.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4687B28B4C4F1003D288B /* wal.c */; };
+		14B468EE28B4C4F1003D288B /* select.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4687C28B4C4F1003D288B /* select.c */; };
+		14B468EF28B4C4F1003D288B /* update.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4687D28B4C4F1003D288B /* update.c */; };
+		14B468F028B4C4F1003D288B /* loadext.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4687E28B4C4F1003D288B /* loadext.c */; };
+		14B468F128B4C4F1003D288B /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4687F28B4C4F1003D288B /* random.c */; };
+		14B468F228B4C4F1003D288B /* queue.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4688028B4C4F1003D288B /* queue.c */; };
+		14B468F328B4C4F1003D288B /* vdbeaux.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4688228B4C4F1003D288B /* vdbeaux.c */; };
+		14B468F428B4C4F1003D288B /* hash.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4688328B4C4F1003D288B /* hash.c */; };
+		14B468F528B4C4F1003D288B /* os_wcdb.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4688428B4C4F1003D288B /* os_wcdb.c */; };
+		14B468F628B4C4F1003D288B /* pager.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4688528B4C4F1003D288B /* pager.c */; };
+		14B468F728B4C4F1003D288B /* callback.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4688728B4C4F1003D288B /* callback.c */; };
+		14B468F828B4C4F1003D288B /* pcache1.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4688828B4C4F1003D288B /* pcache1.c */; };
+		14B468F928B4C4F1003D288B /* mutex_noop.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4688928B4C4F1003D288B /* mutex_noop.c */; };
+		14B468FA28B4C4F1003D288B /* walker.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4688A28B4C4F1003D288B /* walker.c */; };
+		14B468FB28B4C4F1003D288B /* complete.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4688B28B4C4F1003D288B /* complete.c */; };
+		14B468FC28B4C4F1003D288B /* mem0.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4688D28B4C4F1003D288B /* mem0.c */; };
+		14B468FD28B4C4F1003D288B /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4688E28B4C4F1003D288B /* main.c */; };
+		14B468FE28B4C4F1003D288B /* prepare.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4689028B4C4F1003D288B /* prepare.c */; };
+		14B468FF28B4C4F1003D288B /* vdbesort.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4689228B4C4F1003D288B /* vdbesort.c */; };
+		14B4690028B4C4F1003D288B /* build.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4689328B4C4F1003D288B /* build.c */; };
+		14B4690128B4C4F1003D288B /* alter.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4689528B4C4F1003D288B /* alter.c */; };
+		14B4690228B4C4F1003D288B /* legacy.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4689828B4C4F1003D288B /* legacy.c */; };
+		14B4690328B4C4F1003D288B /* btmutex.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4689928B4C4F1003D288B /* btmutex.c */; };
+		14B4690428B4C4F1003D288B /* malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4689A28B4C4F1003D288B /* malloc.c */; };
+		14B4690528B4C4F1003D288B /* status.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4689B28B4C4F1003D288B /* status.c */; };
+		14B4690628B4C4F1003D288B /* attach.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4689C28B4C4F1003D288B /* attach.c */; };
+		14B4690728B4C4F1003D288B /* tokenize.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4689D28B4C4F1003D288B /* tokenize.c */; };
+		14B4690828B4C4F1003D288B /* utf.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4689E28B4C4F1003D288B /* utf.c */; };
+		14B4690928B4C4F1003D288B /* analyze.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B4689F28B4C4F1003D288B /* analyze.c */; };
+		14B4690A28B4C4F1003D288B /* date.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B468A028B4C4F1003D288B /* date.c */; };
+		14B4690B28B4C4F1003D288B /* delete.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B468A128B4C4F1003D288B /* delete.c */; };
+		14B4690C28B4C4F1003D288B /* os.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B468A328B4C4F1003D288B /* os.c */; };
+		14B4690D28B4C4F1003D288B /* vdbe.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B468A428B4C4F1003D288B /* vdbe.c */; };
+		14B4690E28B4C4F1003D288B /* trigger.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B468A628B4C4F1003D288B /* trigger.c */; };
+		14B4690F28B4C4F1003D288B /* fault.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B468A728B4C4F1003D288B /* fault.c */; };
+		14B4691028B4C4F1003D288B /* vacuum.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B468A828B4C4F1003D288B /* vacuum.c */; };
+		14B4691128B4C4F1003D288B /* global.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B468A928B4C4F1003D288B /* global.c */; };
+		14B4691228B4C4F1003D288B /* mem3.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B468AA28B4C4F1003D288B /* mem3.c */; };
+		14B4691328B4C4F1003D288B /* crypto.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B468AB28B4C4F1003D288B /* crypto.c */; };
+		14B4691428B4C4F1003D288B /* notify.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B468AD28B4C4F1003D288B /* notify.c */; };
+		14B4691528B4C4F1003D288B /* backup.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B468AE28B4C4F1003D288B /* backup.c */; };
+		14B4691628B4C4F1003D288B /* threads.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B468B228B4C4F1003D288B /* threads.c */; };
+		14B4691728B4C4F1003D288B /* crypto_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B468B328B4C4F1003D288B /* crypto_impl.c */; };
+		14B4691828B4C4F1003D288B /* expr.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B468B428B4C4F1003D288B /* expr.c */; };
+		14B4691928B4C4F1003D288B /* pcache.c in Sources */ = {isa = PBXBuildFile; fileRef = 14B468B528B4C4F1003D288B /* pcache.c */; };
 		14B73F27281BE6C200D08ADD /* CyxbsMobileImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */; };
 		14B73F6E281BED7B00D08ADD /* MessageSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F2C281BED7B00D08ADD /* MessageSettingCell.m */; };
 		14B73F6F281BED7B00D08ADD /* MessageSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F30281BED7B00D08ADD /* MessageSettingVC.m */; };
@@ -711,6 +946,439 @@
 		14981FF827FEAEB800AD2A29 /* JWZXDetailNewsTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWZXDetailNewsTopView.m; sourceTree = "<group>"; };
 		14981FFA27FEB41B00AD2A29 /* JWZXDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXDetailView.h; sourceTree = "<group>"; };
 		14981FFB27FEB41B00AD2A29 /* JWZXDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWZXDetailView.m; sourceTree = "<group>"; };
+		14B4665E28B4C4D9003D288B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		14B4665F28B4C4D9003D288B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		14B4666328B4C4D9003D288B /* statement_drop_index.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_drop_index.cpp; sourceTree = "<group>"; };
+		14B4666428B4C4D9003D288B /* statement_attach.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_attach.hpp; sourceTree = "<group>"; };
+		14B4666528B4C4D9003D288B /* column.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = column.cpp; sourceTree = "<group>"; };
+		14B4666628B4C4D9003D288B /* order_term.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = order_term.cpp; sourceTree = "<group>"; };
+		14B4666728B4C4D9003D288B /* statement_drop_table.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_drop_table.hpp; sourceTree = "<group>"; };
+		14B4666828B4C4D9003D288B /* statement_create_table.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_create_table.hpp; sourceTree = "<group>"; };
+		14B4666928B4C4D9003D288B /* handle_statement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = handle_statement.cpp; sourceTree = "<group>"; };
+		14B4666A28B4C4D9003D288B /* clause_join.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clause_join.cpp; sourceTree = "<group>"; };
+		14B4666B28B4C4D9003D288B /* statement_transaction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_transaction.hpp; sourceTree = "<group>"; };
+		14B4666C28B4C4D9003D288B /* statement_detach.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_detach.hpp; sourceTree = "<group>"; };
+		14B4666D28B4C4D9003D288B /* statement_delete.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_delete.hpp; sourceTree = "<group>"; };
+		14B4666E28B4C4D9003D288B /* statement_create_index.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_create_index.cpp; sourceTree = "<group>"; };
+		14B4666F28B4C4D9003D288B /* describable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = describable.hpp; sourceTree = "<group>"; };
+		14B4667028B4C4D9003D288B /* statement_release.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_release.hpp; sourceTree = "<group>"; };
+		14B4667128B4C4D9003D288B /* module_argument.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = module_argument.cpp; sourceTree = "<group>"; };
+		14B4667228B4C4D9003D288B /* column_result.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = column_result.hpp; sourceTree = "<group>"; };
+		14B4667328B4C4D9003D288B /* order.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = order.hpp; sourceTree = "<group>"; };
+		14B4667428B4C4D9003D288B /* foreign_key.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = foreign_key.cpp; sourceTree = "<group>"; };
+		14B4667528B4C4D9003D288B /* statement_pragma.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_pragma.cpp; sourceTree = "<group>"; };
+		14B4667628B4C4D9003D288B /* statement_savepoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_savepoint.cpp; sourceTree = "<group>"; };
+		14B4667728B4C4D9003D288B /* statement_explain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_explain.cpp; sourceTree = "<group>"; };
+		14B4667828B4C4D9003D288B /* conflict.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = conflict.cpp; sourceTree = "<group>"; };
+		14B4667928B4C4D9003D288B /* statement_alter_table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_alter_table.cpp; sourceTree = "<group>"; };
+		14B4667A28B4C4D9003D288B /* literal_value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = literal_value.cpp; sourceTree = "<group>"; };
+		14B4667B28B4C4D9003D288B /* statement_create_virtual_table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_create_virtual_table.cpp; sourceTree = "<group>"; };
+		14B4667C28B4C4D9003D288B /* statement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement.cpp; sourceTree = "<group>"; };
+		14B4667D28B4C4D9003D288B /* subquery.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = subquery.cpp; sourceTree = "<group>"; };
+		14B4667E28B4C4D9003D288B /* statement_rollback.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_rollback.hpp; sourceTree = "<group>"; };
+		14B4667F28B4C4D9003D288B /* statement_vacuum.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_vacuum.hpp; sourceTree = "<group>"; };
+		14B4668028B4C4D9003D288B /* pragma.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = pragma.hpp; sourceTree = "<group>"; };
+		14B4668128B4C4D9003D288B /* abstract.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = abstract.h; sourceTree = "<group>"; };
+		14B4668228B4C4D9003D288B /* fts_modules.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fts_modules.cpp; sourceTree = "<group>"; };
+		14B4668328B4C4D9003D288B /* fts_module.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fts_module.cpp; sourceTree = "<group>"; };
+		14B4668428B4C4D9003D288B /* column_type.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = column_type.cpp; sourceTree = "<group>"; };
+		14B4668528B4C4D9003D288B /* statement_reindex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_reindex.hpp; sourceTree = "<group>"; };
+		14B4668628B4C4D9003D288B /* expr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = expr.cpp; sourceTree = "<group>"; };
+		14B4668728B4C4D9003D288B /* constraint_table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = constraint_table.cpp; sourceTree = "<group>"; };
+		14B4668828B4C4D9003D288B /* handle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = handle.hpp; sourceTree = "<group>"; };
+		14B4668928B4C4D9003D288B /* statement_select.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_select.hpp; sourceTree = "<group>"; };
+		14B4668A28B4C4D9003D288B /* column_def.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = column_def.hpp; sourceTree = "<group>"; };
+		14B4668B28B4C4D9003D288B /* statement_insert.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_insert.cpp; sourceTree = "<group>"; };
+		14B4668C28B4C4D9003D288B /* column_index.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = column_index.hpp; sourceTree = "<group>"; };
+		14B4668D28B4C4D9003D288B /* statement_update.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_update.cpp; sourceTree = "<group>"; };
+		14B4668E28B4C4D9003D288B /* declare.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = declare.hpp; sourceTree = "<group>"; };
+		14B4668F28B4C4D9003D288B /* literal_value.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = literal_value.hpp; sourceTree = "<group>"; };
+		14B4669028B4C4D9003D288B /* statement_create_virtual_table.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_create_virtual_table.hpp; sourceTree = "<group>"; };
+		14B4669128B4C4D9003D288B /* subquery.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = subquery.hpp; sourceTree = "<group>"; };
+		14B4669228B4C4D9003D288B /* statement.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement.hpp; sourceTree = "<group>"; };
+		14B4669328B4C4D9003D288B /* statement_vacuum.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_vacuum.cpp; sourceTree = "<group>"; };
+		14B4669428B4C4D9003D288B /* pragma.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = pragma.cpp; sourceTree = "<group>"; };
+		14B4669528B4C4D9003D288B /* statement_rollback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_rollback.cpp; sourceTree = "<group>"; };
+		14B4669628B4C4D9003D288B /* fts_modules.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fts_modules.hpp; sourceTree = "<group>"; };
+		14B4669728B4C4D9003D288B /* column_type.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = column_type.hpp; sourceTree = "<group>"; };
+		14B4669828B4C4D9003D288B /* fts_module.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fts_module.hpp; sourceTree = "<group>"; };
+		14B4669928B4C4D9003D288B /* constraint_table.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = constraint_table.hpp; sourceTree = "<group>"; };
+		14B4669A28B4C4D9003D288B /* handle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = handle.cpp; sourceTree = "<group>"; };
+		14B4669B28B4C4D9003D288B /* statement_reindex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_reindex.cpp; sourceTree = "<group>"; };
+		14B4669C28B4C4D9003D288B /* expr.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = expr.hpp; sourceTree = "<group>"; };
+		14B4669D28B4C4D9003D288B /* column_def.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = column_def.cpp; sourceTree = "<group>"; };
+		14B4669E28B4C4D9003D288B /* statement_select.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_select.cpp; sourceTree = "<group>"; };
+		14B4669F28B4C4D9003D288B /* statement_insert.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_insert.hpp; sourceTree = "<group>"; };
+		14B466A028B4C4D9003D288B /* column_index.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = column_index.cpp; sourceTree = "<group>"; };
+		14B466A128B4C4D9003D288B /* statement_update.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_update.hpp; sourceTree = "<group>"; };
+		14B466A228B4C4D9003D288B /* statement_drop_index.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_drop_index.hpp; sourceTree = "<group>"; };
+		14B466A328B4C4D9003D288B /* statement_attach.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_attach.cpp; sourceTree = "<group>"; };
+		14B466A428B4C4D9003D288B /* order_term.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = order_term.hpp; sourceTree = "<group>"; };
+		14B466A528B4C4D9003D288B /* statement_drop_table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_drop_table.cpp; sourceTree = "<group>"; };
+		14B466A628B4C4D9003D288B /* column.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = column.hpp; sourceTree = "<group>"; };
+		14B466A728B4C4D9003D288B /* handle_statement.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = handle_statement.hpp; sourceTree = "<group>"; };
+		14B466A828B4C4D9003D288B /* clause_join.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = clause_join.hpp; sourceTree = "<group>"; };
+		14B466A928B4C4D9003D288B /* statement_create_table.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_create_table.cpp; sourceTree = "<group>"; };
+		14B466AA28B4C4D9003D288B /* statement_detach.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_detach.cpp; sourceTree = "<group>"; };
+		14B466AB28B4C4D9003D288B /* statement_transaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_transaction.cpp; sourceTree = "<group>"; };
+		14B466AC28B4C4D9003D288B /* describable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = describable.cpp; sourceTree = "<group>"; };
+		14B466AD28B4C4D9003D288B /* statement_delete.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_delete.cpp; sourceTree = "<group>"; };
+		14B466AE28B4C4D9003D288B /* statement_create_index.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_create_index.hpp; sourceTree = "<group>"; };
+		14B466AF28B4C4D9003D288B /* statement_release.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_release.cpp; sourceTree = "<group>"; };
+		14B466B028B4C4D9003D288B /* module_argument.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = module_argument.hpp; sourceTree = "<group>"; };
+		14B466B128B4C4D9003D288B /* order.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = order.cpp; sourceTree = "<group>"; };
+		14B466B228B4C4D9003D288B /* column_result.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = column_result.cpp; sourceTree = "<group>"; };
+		14B466B328B4C4D9003D288B /* foreign_key.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = foreign_key.hpp; sourceTree = "<group>"; };
+		14B466B428B4C4D9003D288B /* statement_pragma.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_pragma.hpp; sourceTree = "<group>"; };
+		14B466B528B4C4D9003D288B /* statement_savepoint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_savepoint.hpp; sourceTree = "<group>"; };
+		14B466B628B4C4D9003D288B /* statement_explain.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_explain.hpp; sourceTree = "<group>"; };
+		14B466B728B4C4D9003D288B /* statement_alter_table.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_alter_table.hpp; sourceTree = "<group>"; };
+		14B466B828B4C4D9003D288B /* conflict.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = conflict.hpp; sourceTree = "<group>"; };
+		14B466BB28B4C4D9003D288B /* WCTTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTTransaction.h; sourceTree = "<group>"; };
+		14B466BC28B4C4D9003D288B /* WCTTransaction.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTTransaction.mm; sourceTree = "<group>"; };
+		14B466BD28B4C4D9003D288B /* WCTTransaction+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTTransaction+Private.h"; sourceTree = "<group>"; };
+		14B466BE28B4C4D9003D288B /* WCTDatabase+Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTDatabase+Transaction.h"; sourceTree = "<group>"; };
+		14B466BF28B4C4D9003D288B /* WCTDatabase+Transaction.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTDatabase+Transaction.mm"; sourceTree = "<group>"; };
+		14B466C128B4C4D9003D288B /* WCTDatabase+File.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTDatabase+File.h"; sourceTree = "<group>"; };
+		14B466C228B4C4D9003D288B /* WCTDatabase+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTDatabase+Private.h"; sourceTree = "<group>"; };
+		14B466C328B4C4D9003D288B /* WCTDatabase+RepairKit.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTDatabase+RepairKit.mm"; sourceTree = "<group>"; };
+		14B466C428B4C4D9003D288B /* WCTDatabase+RepairKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTDatabase+RepairKit.h"; sourceTree = "<group>"; };
+		14B466C528B4C4D9003D288B /* WCTDatabase+Database.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTDatabase+Database.mm"; sourceTree = "<group>"; };
+		14B466C628B4C4D9003D288B /* WCTDatabase+File.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTDatabase+File.mm"; sourceTree = "<group>"; };
+		14B466C728B4C4D9003D288B /* WCTDatabase+Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTDatabase+Database.h"; sourceTree = "<group>"; };
+		14B466C928B4C4D9003D288B /* WCTTransaction+Compatible.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTTransaction+Compatible.mm"; sourceTree = "<group>"; };
+		14B466CA28B4C4D9003D288B /* WCTStatistics+Compatible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTStatistics+Compatible.h"; sourceTree = "<group>"; };
+		14B466CB28B4C4D9003D288B /* WCTTransaction+Compatible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTTransaction+Compatible.h"; sourceTree = "<group>"; };
+		14B466CC28B4C4D9003D288B /* WCTStatistics+Compatible.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTStatistics+Compatible.mm"; sourceTree = "<group>"; };
+		14B466CD28B4C4D9003D288B /* WCTCompatible.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTCompatible.mm; sourceTree = "<group>"; };
+		14B466CE28B4C4D9003D288B /* WCTCompatible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTCompatible.h; sourceTree = "<group>"; };
+		14B466CF28B4C4D9003D288B /* WCTStatement+Compatible.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTStatement+Compatible.mm"; sourceTree = "<group>"; };
+		14B466D028B4C4D9003D288B /* WCTStatement+Compatible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTStatement+Compatible.h"; sourceTree = "<group>"; };
+		14B466D128B4C4D9003D288B /* WCTDatabase+Compatible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTDatabase+Compatible.h"; sourceTree = "<group>"; };
+		14B466D228B4C4D9003D288B /* WCTDatabase+Compatible.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTDatabase+Compatible.mm"; sourceTree = "<group>"; };
+		14B466D428B4C4D9003D288B /* WCTCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTCore.h; sourceTree = "<group>"; };
+		14B466D528B4C4D9003D288B /* WCTCore.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTCore.mm; sourceTree = "<group>"; };
+		14B466D628B4C4D9003D288B /* WCTStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTStatement.h; sourceTree = "<group>"; };
+		14B466D728B4C4D9003D288B /* WCTDatabase+Core.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTDatabase+Core.mm"; sourceTree = "<group>"; };
+		14B466D828B4C4D9003D288B /* WCTDatabase+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTDatabase+Core.h"; sourceTree = "<group>"; };
+		14B466D928B4C4D9003D288B /* WCTInterface+Core.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTInterface+Core.mm"; sourceTree = "<group>"; };
+		14B466DA28B4C4D9003D288B /* WCTValue.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTValue.mm; sourceTree = "<group>"; };
+		14B466DB28B4C4D9003D288B /* WCTStatement.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTStatement.mm; sourceTree = "<group>"; };
+		14B466DC28B4C4D9003D288B /* WCTCore+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTCore+Private.h"; sourceTree = "<group>"; };
+		14B466DD28B4C4D9003D288B /* WCTStatement+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTStatement+Private.h"; sourceTree = "<group>"; };
+		14B466DE28B4C4D9003D288B /* WCTValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTValue.h; sourceTree = "<group>"; };
+		14B466DF28B4C4D9003D288B /* WCTInterface+Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTInterface+Core.h"; sourceTree = "<group>"; };
+		14B466E128B4C4D9003D288B /* WCTDatabase+Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTDatabase+Statistics.h"; sourceTree = "<group>"; };
+		14B466E228B4C4D9003D288B /* WCTDatabase+Statistics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTDatabase+Statistics.mm"; sourceTree = "<group>"; };
+		14B466E328B4C4D9003D288B /* WCTError.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTError.mm; sourceTree = "<group>"; };
+		14B466E428B4C4D9003D288B /* WCTChainCall+Statistics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTChainCall+Statistics.mm"; sourceTree = "<group>"; };
+		14B466E528B4C4D9003D288B /* WCTError+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTError+Private.h"; sourceTree = "<group>"; };
+		14B466E628B4C4D9003D288B /* WCTChainCall+Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTChainCall+Statistics.h"; sourceTree = "<group>"; };
+		14B466E728B4C4D9003D288B /* WCTStatistics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTStatistics.mm; sourceTree = "<group>"; };
+		14B466E828B4C4D9003D288B /* WCTTransaction+Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTTransaction+Statistics.h"; sourceTree = "<group>"; };
+		14B466E928B4C4D9003D288B /* WCTError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTError.h; sourceTree = "<group>"; };
+		14B466EA28B4C4D9003D288B /* WCTStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTStatistics.h; sourceTree = "<group>"; };
+		14B466EB28B4C4D9003D288B /* WCTTransaction+Statistics.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTTransaction+Statistics.mm"; sourceTree = "<group>"; };
+		14B466ED28B4C4D9003D288B /* WCTDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTDatabase.h; sourceTree = "<group>"; };
+		14B466EE28B4C4D9003D288B /* WCTTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTTable.h; sourceTree = "<group>"; };
+		14B466EF28B4C4D9003D288B /* WCTInterface.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTInterface.mm; sourceTree = "<group>"; };
+		14B466F028B4C4D9003D288B /* WCTTable.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTTable.mm; sourceTree = "<group>"; };
+		14B466F128B4C4D9003D288B /* WCTDatabase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTDatabase.mm; sourceTree = "<group>"; };
+		14B466F228B4C4D9003D288B /* WCTDeclare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTDeclare.h; sourceTree = "<group>"; };
+		14B466F328B4C4D9003D288B /* WCTInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTInterface.h; sourceTree = "<group>"; };
+		14B466F528B4C4D9003D288B /* WCTTokenizer+WCDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTTokenizer+WCDB.h"; sourceTree = "<group>"; };
+		14B466F628B4C4D9003D288B /* WCTDatabase+FTS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTDatabase+FTS.h"; sourceTree = "<group>"; };
+		14B466F728B4C4D9003D288B /* WCTTokenizer+WCDB.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTTokenizer+WCDB.mm"; sourceTree = "<group>"; };
+		14B466F828B4C4D9003D288B /* WCTTokenizer+Apple.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTTokenizer+Apple.mm"; sourceTree = "<group>"; };
+		14B466F928B4C4D9003D288B /* WCTTokenizer+Apple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTTokenizer+Apple.h"; sourceTree = "<group>"; };
+		14B466FA28B4C4D9003D288B /* WCTDatabase+FTS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTDatabase+FTS.mm"; sourceTree = "<group>"; };
+		14B466FC28B4C4D9003D288B /* WCTDelete+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTDelete+Private.h"; sourceTree = "<group>"; };
+		14B466FD28B4C4D9003D288B /* WCTMultiSelect+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTMultiSelect+Private.h"; sourceTree = "<group>"; };
+		14B466FE28B4C4D9003D288B /* WCTChainCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTChainCall.h; sourceTree = "<group>"; };
+		14B466FF28B4C4D9003D288B /* WCTInterface+ChainCall.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTInterface+ChainCall.mm"; sourceTree = "<group>"; };
+		14B4670028B4C4D9003D288B /* WCTTable+ChainCall.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTTable+ChainCall.mm"; sourceTree = "<group>"; };
+		14B4670128B4C4D9003D288B /* WCTSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTSelect.h; sourceTree = "<group>"; };
+		14B4670228B4C4D9003D288B /* WCTUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTUpdate.h; sourceTree = "<group>"; };
+		14B4670328B4C4D9003D288B /* WCTSelectBase+NoARC.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTSelectBase+NoARC.mm"; sourceTree = "<group>"; };
+		14B4670428B4C4D9003D288B /* WCTRowSelect+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTRowSelect+Private.h"; sourceTree = "<group>"; };
+		14B4670528B4C4D9003D288B /* WCTMultiSelect.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTMultiSelect.mm; sourceTree = "<group>"; };
+		14B4670628B4C4D9003D288B /* WCTDelete.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTDelete.mm; sourceTree = "<group>"; };
+		14B4670728B4C4D9003D288B /* WCTUpdate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTUpdate.mm; sourceTree = "<group>"; };
+		14B4670828B4C4D9003D288B /* WCTInsert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTInsert.h; sourceTree = "<group>"; };
+		14B4670928B4C4D9003D288B /* WCTChainCall.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTChainCall.mm; sourceTree = "<group>"; };
+		14B4670A28B4C4D9003D288B /* WCTRowSelect.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTRowSelect.mm; sourceTree = "<group>"; };
+		14B4670B28B4C4D9003D288B /* WCTSelectBase+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTSelectBase+Private.h"; sourceTree = "<group>"; };
+		14B4670C28B4C4D9003D288B /* WCTSelectBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTSelectBase.h; sourceTree = "<group>"; };
+		14B4670D28B4C4D9003D288B /* WCTInsert.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTInsert.mm; sourceTree = "<group>"; };
+		14B4670E28B4C4D9003D288B /* WCTInsert+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTInsert+Private.h"; sourceTree = "<group>"; };
+		14B4670F28B4C4D9003D288B /* WCTSelect+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTSelect+Private.h"; sourceTree = "<group>"; };
+		14B4671028B4C4D9003D288B /* WCTInterface+ChainCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTInterface+ChainCall.h"; sourceTree = "<group>"; };
+		14B4671128B4C4D9003D288B /* WCTUpdate+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTUpdate+Private.h"; sourceTree = "<group>"; };
+		14B4671228B4C4D9003D288B /* WCTRowSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTRowSelect.h; sourceTree = "<group>"; };
+		14B4671328B4C4D9003D288B /* WCTDelete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTDelete.h; sourceTree = "<group>"; };
+		14B4671428B4C4D9003D288B /* WCTSelectBase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTSelectBase.mm; sourceTree = "<group>"; };
+		14B4671528B4C4D9003D288B /* WCTMultiSelect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTMultiSelect.h; sourceTree = "<group>"; };
+		14B4671628B4C4D9003D288B /* WCTSelectBase+NoARC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTSelectBase+NoARC.h"; sourceTree = "<group>"; };
+		14B4671728B4C4D9003D288B /* WCTTable+ChainCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTTable+ChainCall.h"; sourceTree = "<group>"; };
+		14B4671828B4C4D9003D288B /* WCTChainCall+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTChainCall+Private.h"; sourceTree = "<group>"; };
+		14B4671928B4C4D9003D288B /* WCTSelect.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTSelect.mm; sourceTree = "<group>"; };
+		14B4671B28B4C4D9003D288B /* WCTTable+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTTable+Private.h"; sourceTree = "<group>"; };
+		14B4671C28B4C4D9003D288B /* WCTInterface+Table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTInterface+Table.h"; sourceTree = "<group>"; };
+		14B4671D28B4C4D9003D288B /* WCTDatabase+Table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTDatabase+Table.h"; sourceTree = "<group>"; };
+		14B4671E28B4C4D9003D288B /* WCTTable+Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTTable+Database.h"; sourceTree = "<group>"; };
+		14B4671F28B4C4D9003D288B /* WCTTransaction+Table.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTTransaction+Table.h"; sourceTree = "<group>"; };
+		14B4672028B4C4D9003D288B /* WCTDatabase+Table.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTDatabase+Table.mm"; sourceTree = "<group>"; };
+		14B4672128B4C4D9003D288B /* WCTTransaction+Table.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTTransaction+Table.mm"; sourceTree = "<group>"; };
+		14B4672228B4C4D9003D288B /* WCTInterface+Table.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTInterface+Table.mm"; sourceTree = "<group>"; };
+		14B4672428B4C4D9003D288B /* WCTORM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTORM.h; sourceTree = "<group>"; };
+		14B4672628B4C4D9003D288B /* WCTRuntimeObjCAccessor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTRuntimeObjCAccessor.mm; sourceTree = "<group>"; };
+		14B4672728B4C4D9003D288B /* WCTRuntimeBaseAccessor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTRuntimeBaseAccessor.mm; sourceTree = "<group>"; };
+		14B4672828B4C4D9003D288B /* WCTRuntimeObjCAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTRuntimeObjCAccessor.h; sourceTree = "<group>"; };
+		14B4672928B4C4D9003D288B /* WCTObjCAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTObjCAccessor.h; sourceTree = "<group>"; };
+		14B4672A28B4C4D9003D288B /* WCTRuntimeBaseAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTRuntimeBaseAccessor.h; sourceTree = "<group>"; };
+		14B4672B28B4C4D9003D288B /* WCTRuntimeCppAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTRuntimeCppAccessor.h; sourceTree = "<group>"; };
+		14B4672C28B4C4D9003D288B /* WCTCppAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTCppAccessor.h; sourceTree = "<group>"; };
+		14B4672D28B4C4D9003D288B /* WCTBaseAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTBaseAccessor.h; sourceTree = "<group>"; };
+		14B4672F28B4C4D9003D288B /* WCTColumnBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTColumnBinding.h; sourceTree = "<group>"; };
+		14B4673028B4C4D9003D288B /* WCTBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTBinding.h; sourceTree = "<group>"; };
+		14B4673128B4C4D9003D288B /* WCTConstraintBinding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTConstraintBinding.mm; sourceTree = "<group>"; };
+		14B4673228B4C4D9003D288B /* WCTIndexBInding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTIndexBInding.mm; sourceTree = "<group>"; };
+		14B4673328B4C4D9003D288B /* WCTIndexBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTIndexBinding.h; sourceTree = "<group>"; };
+		14B4673428B4C4D9003D288B /* WCTColumnBinding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTColumnBinding.mm; sourceTree = "<group>"; };
+		14B4673528B4C4D9003D288B /* WCTConstraintBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTConstraintBinding.h; sourceTree = "<group>"; };
+		14B4673628B4C4D9003D288B /* WCTBinding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTBinding.mm; sourceTree = "<group>"; };
+		14B4673828B4C4D9003D288B /* WCTMacroHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTMacroHelper.h; sourceTree = "<group>"; };
+		14B4673928B4C4D9003D288B /* WCTIndexMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTIndexMacro.h; sourceTree = "<group>"; };
+		14B4673A28B4C4D9003D288B /* WCTCodingMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTCodingMacro.h; sourceTree = "<group>"; };
+		14B4673B28B4C4D9003D288B /* WCTConstraintMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTConstraintMacro.h; sourceTree = "<group>"; };
+		14B4673C28B4C4D9003D288B /* WCTPropertyMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTPropertyMacro.h; sourceTree = "<group>"; };
+		14B4673E28B4C4D9003D288B /* WCTAnyProperty.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTAnyProperty.mm; sourceTree = "<group>"; };
+		14B4673F28B4C4D9003D288B /* WCTProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTProperty.h; sourceTree = "<group>"; };
+		14B4674028B4C4D9003D288B /* WCTSelectBase+WCTExpr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTSelectBase+WCTExpr.h"; sourceTree = "<group>"; };
+		14B4674128B4C4D9003D288B /* WCTSelectBase+WCTExpr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTSelectBase+WCTExpr.mm"; sourceTree = "<group>"; };
+		14B4674228B4C4D9003D288B /* WCTExpr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTExpr.h; sourceTree = "<group>"; };
+		14B4674328B4C4D9003D288B /* WCTPropertyBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTPropertyBase.h; sourceTree = "<group>"; };
+		14B4674428B4C4D9003D288B /* WCTCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTCoding.h; sourceTree = "<group>"; };
+		14B4674528B4C4D9003D288B /* WCTResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTResult.h; sourceTree = "<group>"; };
+		14B4674628B4C4D9003D288B /* WCTAnyProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTAnyProperty.h; sourceTree = "<group>"; };
+		14B4674728B4C4D9003D288B /* WCTExpr.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTExpr.mm; sourceTree = "<group>"; };
+		14B4674828B4C4D9003D288B /* WCTResult.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTResult.mm; sourceTree = "<group>"; };
+		14B4674928B4C4D9003D288B /* WCTProperty.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTProperty.mm; sourceTree = "<group>"; };
+		14B4674A28B4C4D9003D288B /* WCTPropertyBase.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTPropertyBase.mm; sourceTree = "<group>"; };
+		14B4674C28B4C4D9003D288B /* WCTInterface+Convenient.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTInterface+Convenient.mm"; sourceTree = "<group>"; };
+		14B4674D28B4C4D9003D288B /* WCTTable+Convenient.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "WCTTable+Convenient.mm"; sourceTree = "<group>"; };
+		14B4674E28B4C4D9003D288B /* WCTTable+Convenient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTTable+Convenient.h"; sourceTree = "<group>"; };
+		14B4674F28B4C4D9003D288B /* WCTInterface+Convenient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTInterface+Convenient.h"; sourceTree = "<group>"; };
+		14B4675128B4C4D9003D288B /* NSNumber+WCTColumnCoding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSNumber+WCTColumnCoding.mm"; sourceTree = "<group>"; };
+		14B4675228B4C4D9003D288B /* WCTSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTSequence.h; sourceTree = "<group>"; };
+		14B4675328B4C4D9003D288B /* NSObject+WCTColumnCoding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSObject+WCTColumnCoding.mm"; sourceTree = "<group>"; };
+		14B4675428B4C4D9003D288B /* WCTSequence+WCTTableCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTSequence+WCTTableCoding.h"; sourceTree = "<group>"; };
+		14B4675528B4C4D9003D288B /* WCTMaster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTMaster.h; sourceTree = "<group>"; };
+		14B4675628B4C4D9003D288B /* WCTMaster+WCTTableCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WCTMaster+WCTTableCoding.h"; sourceTree = "<group>"; };
+		14B4675728B4C4D9003D288B /* NSDate+WCTColumnCoding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSDate+WCTColumnCoding.mm"; sourceTree = "<group>"; };
+		14B4675828B4C4D9003D288B /* WCTSequence.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTSequence.mm; sourceTree = "<group>"; };
+		14B4675928B4C4D9003D288B /* WCTMaster.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WCTMaster.mm; sourceTree = "<group>"; };
+		14B4675A28B4C4D9003D288B /* NSString+WCTColumnCoding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSString+WCTColumnCoding.mm"; sourceTree = "<group>"; };
+		14B4675B28B4C4D9003D288B /* NSData+WCTColumnCoding.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSData+WCTColumnCoding.mm"; sourceTree = "<group>"; };
+		14B4675D28B4C4D9003D288B /* database_config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_config.cpp; sourceTree = "<group>"; };
+		14B4675E28B4C4D9003D288B /* transaction.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = transaction.hpp; sourceTree = "<group>"; };
+		14B4675F28B4C4D9003D288B /* statement_recyclable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = statement_recyclable.hpp; sourceTree = "<group>"; };
+		14B4676028B4C4D9003D288B /* handle_recyclable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = handle_recyclable.hpp; sourceTree = "<group>"; };
+		14B4676128B4C4D9003D288B /* handle_pool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = handle_pool.hpp; sourceTree = "<group>"; };
+		14B4676228B4C4D9003D288B /* database_sql.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_sql.cpp; sourceTree = "<group>"; };
+		14B4676328B4C4D9003D288B /* core_base.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = core_base.hpp; sourceTree = "<group>"; };
+		14B4676428B4C4D9003D288B /* database.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = database.hpp; sourceTree = "<group>"; };
+		14B4676528B4C4D9003D288B /* config.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = config.hpp; sourceTree = "<group>"; };
+		14B4676628B4C4D9003D288B /* tokenizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tokenizer.cpp; sourceTree = "<group>"; };
+		14B4676728B4C4D9003D288B /* database_file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_file.cpp; sourceTree = "<group>"; };
+		14B4676828B4C4D9003D288B /* database_repair_kit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_repair_kit.cpp; sourceTree = "<group>"; };
+		14B4676928B4C4D9003D288B /* core_base.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = core_base.cpp; sourceTree = "<group>"; };
+		14B4676A28B4C4D9003D288B /* database.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database.cpp; sourceTree = "<group>"; };
+		14B4676B28B4C4D9003D288B /* database_transaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = database_transaction.cpp; sourceTree = "<group>"; };
+		14B4676C28B4C4D9003D288B /* config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = config.cpp; sourceTree = "<group>"; };
+		14B4676D28B4C4D9003D288B /* tokenizer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = tokenizer.hpp; sourceTree = "<group>"; };
+		14B4676E28B4C4D9003D288B /* transaction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = transaction.cpp; sourceTree = "<group>"; };
+		14B4676F28B4C4D9003D288B /* statement_recyclable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = statement_recyclable.cpp; sourceTree = "<group>"; };
+		14B4677028B4C4D9003D288B /* handle_recyclable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = handle_recyclable.cpp; sourceTree = "<group>"; };
+		14B4677128B4C4D9003D288B /* handle_pool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = handle_pool.cpp; sourceTree = "<group>"; };
+		14B4677328B4C4D9003D288B /* timed_queue.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = timed_queue.hpp; sourceTree = "<group>"; };
+		14B4677428B4C4D9003D288B /* concurrent_list.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = concurrent_list.hpp; sourceTree = "<group>"; };
+		14B4677528B4C4D9003D288B /* utility.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = utility.hpp; sourceTree = "<group>"; };
+		14B4677628B4C4D9003D288B /* error.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = error.cpp; sourceTree = "<group>"; };
+		14B4677728B4C4D9003D288B /* rwlock.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = rwlock.hpp; sourceTree = "<group>"; };
+		14B4677828B4C4D9003D288B /* file.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = file.hpp; sourceTree = "<group>"; };
+		14B4677928B4C4D9003D288B /* spin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = spin.cpp; sourceTree = "<group>"; };
+		14B4677A28B4C4D9003D288B /* ticker.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ticker.hpp; sourceTree = "<group>"; };
+		14B4677B28B4C4D9003D288B /* path.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = path.hpp; sourceTree = "<group>"; };
+		14B4677C28B4C4D9003D288B /* error.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = error.hpp; sourceTree = "<group>"; };
+		14B4677D28B4C4D9003D288B /* rwlock.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rwlock.cpp; sourceTree = "<group>"; };
+		14B4677E28B4C4D9003D288B /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
+		14B4677F28B4C4D9003D288B /* spin.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = spin.hpp; sourceTree = "<group>"; };
+		14B4678028B4C4D9003D288B /* ticker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ticker.cpp; sourceTree = "<group>"; };
+		14B4678128B4C4D9003D288B /* recyclable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = recyclable.hpp; sourceTree = "<group>"; };
+		14B4678228B4C4D9003D288B /* path.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = path.cpp; sourceTree = "<group>"; };
+		14B4678328B4C4D9003D288B /* thread_local.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = thread_local.hpp; sourceTree = "<group>"; };
+		14B4678428B4C4D9003D288B /* macro.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = macro.hpp; sourceTree = "<group>"; };
+		14B4678528B4C4D9003D288B /* WCDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCDB.h; sourceTree = "<group>"; };
+		14B4680328B4C4E8003D288B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		14B4680428B4C4E8003D288B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		14B4680628B4C4E8003D288B /* sqliterk_util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqliterk_util.c; sourceTree = "<group>"; };
+		14B4680728B4C4E8003D288B /* sqliterk_btree.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqliterk_btree.c; sourceTree = "<group>"; };
+		14B4680828B4C4E8003D288B /* sqliterk_crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqliterk_crypto.h; sourceTree = "<group>"; };
+		14B4680928B4C4E8003D288B /* SQLiteRepairKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteRepairKit.h; sourceTree = "<group>"; };
+		14B4680A28B4C4E8003D288B /* sqliterk_pager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqliterk_pager.c; sourceTree = "<group>"; };
+		14B4680B28B4C4E8003D288B /* sqliterk_os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqliterk_os.h; sourceTree = "<group>"; };
+		14B4680C28B4C4E8003D288B /* sqliterk_column.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqliterk_column.c; sourceTree = "<group>"; };
+		14B4680D28B4C4E8003D288B /* sqliterk_values.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqliterk_values.c; sourceTree = "<group>"; };
+		14B4680E28B4C4E8003D288B /* sqliterk_api.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqliterk_api.c; sourceTree = "<group>"; };
+		14B4680F28B4C4E8003D288B /* sqliterk_output.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sqliterk_output.cpp; sourceTree = "<group>"; };
+		14B4681028B4C4E8003D288B /* sqliterk.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqliterk.c; sourceTree = "<group>"; };
+		14B4681128B4C4E8003D288B /* sqliterk_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqliterk_util.h; sourceTree = "<group>"; };
+		14B4681228B4C4E8003D288B /* sqliterk_crypto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqliterk_crypto.c; sourceTree = "<group>"; };
+		14B4681328B4C4E8003D288B /* sqliterk_btree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqliterk_btree.h; sourceTree = "<group>"; };
+		14B4681428B4C4E8003D288B /* sqliterk_values.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqliterk_values.h; sourceTree = "<group>"; };
+		14B4681528B4C4E8003D288B /* sqliterk_os.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqliterk_os.c; sourceTree = "<group>"; };
+		14B4681628B4C4E8003D288B /* sqliterk_column.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqliterk_column.h; sourceTree = "<group>"; };
+		14B4681728B4C4E8003D288B /* sqliterk_pager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqliterk_pager.h; sourceTree = "<group>"; };
+		14B4681828B4C4E8003D288B /* sqliterk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqliterk.h; sourceTree = "<group>"; };
+		14B4682628B4C4F1003D288B /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		14B4682728B4C4F1003D288B /* fts5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fts5.h; sourceTree = "<group>"; };
+		14B4682828B4C4F1003D288B /* parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parse.h; sourceTree = "<group>"; };
+		14B4682B28B4C4F1003D288B /* sqlite3rbu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sqlite3rbu.c; sourceTree = "<group>"; };
+		14B4682C28B4C4F1003D288B /* sqlite3rbu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3rbu.h; sourceTree = "<group>"; };
+		14B4682E28B4C4F1003D288B /* sqlite3userauth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3userauth.h; sourceTree = "<group>"; };
+		14B4683028B4C4F1003D288B /* fts3_porter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fts3_porter.c; sourceTree = "<group>"; };
+		14B4683128B4C4F1003D288B /* fts3_hash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fts3_hash.c; sourceTree = "<group>"; };
+		14B4683228B4C4F1003D288B /* fts3Int.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fts3Int.h; sourceTree = "<group>"; };
+		14B4683328B4C4F1003D288B /* fts3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fts3.c; sourceTree = "<group>"; };
+		14B4683428B4C4F1003D288B /* fts3_unicode2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fts3_unicode2.c; sourceTree = "<group>"; };
+		14B4683528B4C4F1003D288B /* fts3_tokenizer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fts3_tokenizer.c; sourceTree = "<group>"; };
+		14B4683628B4C4F1003D288B /* fts3_icu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fts3_icu.c; sourceTree = "<group>"; };
+		14B4683728B4C4F1003D288B /* fts3_expr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fts3_expr.c; sourceTree = "<group>"; };
+		14B4683828B4C4F1003D288B /* fts3_snippet.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fts3_snippet.c; sourceTree = "<group>"; };
+		14B4683928B4C4F1003D288B /* fts3_tokenizer1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fts3_tokenizer1.c; sourceTree = "<group>"; };
+		14B4683A28B4C4F1003D288B /* fts3_write.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fts3_write.c; sourceTree = "<group>"; };
+		14B4683B28B4C4F1003D288B /* fts3_hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fts3_hash.h; sourceTree = "<group>"; };
+		14B4683C28B4C4F1003D288B /* fts3_aux.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fts3_aux.c; sourceTree = "<group>"; };
+		14B4683D28B4C4F1003D288B /* fts3_unicode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fts3_unicode.c; sourceTree = "<group>"; };
+		14B4683E28B4C4F1003D288B /* fts3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fts3.h; sourceTree = "<group>"; };
+		14B4683F28B4C4F1003D288B /* fts3_tokenize_vtab.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fts3_tokenize_vtab.c; sourceTree = "<group>"; };
+		14B4684028B4C4F1003D288B /* fts3_tokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fts3_tokenizer.h; sourceTree = "<group>"; };
+		14B4684228B4C4F1003D288B /* rtree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rtree.h; sourceTree = "<group>"; };
+		14B4684328B4C4F1003D288B /* rtree.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rtree.c; sourceTree = "<group>"; };
+		14B4684428B4C4F1003D288B /* sqlite3rtree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3rtree.h; sourceTree = "<group>"; };
+		14B4684628B4C4F1003D288B /* sqliteicu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqliteicu.h; sourceTree = "<group>"; };
+		14B4684728B4C4F1003D288B /* icu.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = icu.c; sourceTree = "<group>"; };
+		14B4684828B4C4F1003D288B /* opcodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opcodes.h; sourceTree = "<group>"; };
+		14B4684928B4C4F1003D288B /* keywordhash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keywordhash.h; sourceTree = "<group>"; };
+		14B4684A28B4C4F1003D288B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		14B4684B28B4C4F1003D288B /* sqlite3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3.h; sourceTree = "<group>"; };
+		14B4684C28B4C4F1003D288B /* parse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = parse.c; sourceTree = "<group>"; };
+		14B4684D28B4C4F1003D288B /* fts5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fts5.c; sourceTree = "<group>"; };
+		14B4684E28B4C4F1003D288B /* opcodes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = opcodes.c; sourceTree = "<group>"; };
+		14B4685028B4C4F1003D288B /* printf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = printf.c; sourceTree = "<group>"; };
+		14B4685128B4C4F1003D288B /* btree.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = btree.c; sourceTree = "<group>"; };
+		14B4685228B4C4F1003D288B /* dbstat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = dbstat.c; sourceTree = "<group>"; };
+		14B4685328B4C4F1003D288B /* sqliteLimit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqliteLimit.h; sourceTree = "<group>"; };
+		14B4685428B4C4F1003D288B /* mutex_unix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mutex_unix.c; sourceTree = "<group>"; };
+		14B4685528B4C4F1003D288B /* mem2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mem2.c; sourceTree = "<group>"; };
+		14B4685628B4C4F1003D288B /* vxworks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vxworks.h; sourceTree = "<group>"; };
+		14B4685728B4C4F1003D288B /* os_common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = os_common.h; sourceTree = "<group>"; };
+		14B4685828B4C4F1003D288B /* table.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = table.c; sourceTree = "<group>"; };
+		14B4685928B4C4F1003D288B /* treeview.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = treeview.c; sourceTree = "<group>"; };
+		14B4685A28B4C4F1003D288B /* auth.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = auth.c; sourceTree = "<group>"; };
+		14B4685B28B4C4F1003D288B /* hwtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hwtime.h; sourceTree = "<group>"; };
+		14B4685C28B4C4F1003D288B /* util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = util.c; sourceTree = "<group>"; };
+		14B4685D28B4C4F1003D288B /* pragma.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pragma.c; sourceTree = "<group>"; };
+		14B4685E28B4C4F1003D288B /* whereInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = whereInt.h; sourceTree = "<group>"; };
+		14B4685F28B4C4F1003D288B /* crypto_libtomcrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypto_libtomcrypt.c; sourceTree = "<group>"; };
+		14B4686028B4C4F1003D288B /* memjournal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = memjournal.c; sourceTree = "<group>"; };
+		14B4686128B4C4F1003D288B /* insert.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = insert.c; sourceTree = "<group>"; };
+		14B4686228B4C4F1003D288B /* vdbeapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vdbeapi.c; sourceTree = "<group>"; };
+		14B4686328B4C4F1003D288B /* ctime.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ctime.c; sourceTree = "<group>"; };
+		14B4686428B4C4F1003D288B /* sqliteInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqliteInt.h; sourceTree = "<group>"; };
+		14B4686528B4C4F1003D288B /* crypto_cc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypto_cc.c; sourceTree = "<group>"; };
+		14B4686628B4C4F1003D288B /* rowset.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rowset.c; sourceTree = "<group>"; };
+		14B4686728B4C4F1003D288B /* vdbeblob.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vdbeblob.c; sourceTree = "<group>"; };
+		14B4686828B4C4F1003D288B /* mutex_wcdb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mutex_wcdb.c; sourceTree = "<group>"; };
+		14B4686928B4C4F1003D288B /* where.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = where.c; sourceTree = "<group>"; };
+		14B4686A28B4C4F1003D288B /* vdbetrace.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vdbetrace.c; sourceTree = "<group>"; };
+		14B4686B28B4C4F1003D288B /* fkey.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fkey.c; sourceTree = "<group>"; };
+		14B4686C28B4C4F1003D288B /* btreeInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btreeInt.h; sourceTree = "<group>"; };
+		14B4686D28B4C4F1003D288B /* bitvec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitvec.c; sourceTree = "<group>"; };
+		14B4686E28B4C4F1003D288B /* whereexpr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = whereexpr.c; sourceTree = "<group>"; };
+		14B4686F28B4C4F1003D288B /* mem5.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mem5.c; sourceTree = "<group>"; };
+		14B4687028B4C4F1003D288B /* mem1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mem1.c; sourceTree = "<group>"; };
+		14B4687128B4C4F1003D288B /* os.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = os.h; sourceTree = "<group>"; };
+		14B4687228B4C4F1003D288B /* os_unix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = os_unix.c; sourceTree = "<group>"; };
+		14B4687328B4C4F1003D288B /* mutex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mutex.c; sourceTree = "<group>"; };
+		14B4687428B4C4F1003D288B /* func.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = func.c; sourceTree = "<group>"; };
+		14B4687528B4C4F1003D288B /* resolve.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = resolve.c; sourceTree = "<group>"; };
+		14B4687628B4C4F1003D288B /* vdbe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vdbe.h; sourceTree = "<group>"; };
+		14B4687728B4C4F1003D288B /* vtab.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vtab.c; sourceTree = "<group>"; };
+		14B4687828B4C4F1003D288B /* vdbeInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vdbeInt.h; sourceTree = "<group>"; };
+		14B4687928B4C4F1003D288B /* vdbemem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vdbemem.c; sourceTree = "<group>"; };
+		14B4687A28B4C4F1003D288B /* wherecode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wherecode.c; sourceTree = "<group>"; };
+		14B4687B28B4C4F1003D288B /* wal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wal.c; sourceTree = "<group>"; };
+		14B4687C28B4C4F1003D288B /* select.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = select.c; sourceTree = "<group>"; };
+		14B4687D28B4C4F1003D288B /* update.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = update.c; sourceTree = "<group>"; };
+		14B4687E28B4C4F1003D288B /* loadext.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = loadext.c; sourceTree = "<group>"; };
+		14B4687F28B4C4F1003D288B /* random.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = random.c; sourceTree = "<group>"; };
+		14B4688028B4C4F1003D288B /* queue.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = queue.c; sourceTree = "<group>"; };
+		14B4688128B4C4F1003D288B /* pcache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcache.h; sourceTree = "<group>"; };
+		14B4688228B4C4F1003D288B /* vdbeaux.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vdbeaux.c; sourceTree = "<group>"; };
+		14B4688328B4C4F1003D288B /* hash.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hash.c; sourceTree = "<group>"; };
+		14B4688428B4C4F1003D288B /* os_wcdb.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = os_wcdb.c; sourceTree = "<group>"; };
+		14B4688528B4C4F1003D288B /* pager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pager.c; sourceTree = "<group>"; };
+		14B4688628B4C4F1003D288B /* crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypto.h; sourceTree = "<group>"; };
+		14B4688728B4C4F1003D288B /* callback.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = callback.c; sourceTree = "<group>"; };
+		14B4688828B4C4F1003D288B /* pcache1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pcache1.c; sourceTree = "<group>"; };
+		14B4688928B4C4F1003D288B /* mutex_noop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mutex_noop.c; sourceTree = "<group>"; };
+		14B4688A28B4C4F1003D288B /* walker.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = walker.c; sourceTree = "<group>"; };
+		14B4688B28B4C4F1003D288B /* complete.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = complete.c; sourceTree = "<group>"; };
+		14B4688C28B4C4F1003D288B /* btree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = btree.h; sourceTree = "<group>"; };
+		14B4688D28B4C4F1003D288B /* mem0.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mem0.c; sourceTree = "<group>"; };
+		14B4688E28B4C4F1003D288B /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		14B4688F28B4C4F1003D288B /* msvc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = msvc.h; sourceTree = "<group>"; };
+		14B4689028B4C4F1003D288B /* prepare.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = prepare.c; sourceTree = "<group>"; };
+		14B4689128B4C4F1003D288B /* sqlcipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlcipher.h; sourceTree = "<group>"; };
+		14B4689228B4C4F1003D288B /* vdbesort.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vdbesort.c; sourceTree = "<group>"; };
+		14B4689328B4C4F1003D288B /* build.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = build.c; sourceTree = "<group>"; };
+		14B4689428B4C4F1003D288B /* mutex_wcdb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mutex_wcdb.h; sourceTree = "<group>"; };
+		14B4689528B4C4F1003D288B /* alter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = alter.c; sourceTree = "<group>"; };
+		14B4689628B4C4F1003D288B /* sqlite3ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sqlite3ext.h; sourceTree = "<group>"; };
+		14B4689728B4C4F1003D288B /* pragma.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pragma.h; sourceTree = "<group>"; };
+		14B4689828B4C4F1003D288B /* legacy.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = legacy.c; sourceTree = "<group>"; };
+		14B4689928B4C4F1003D288B /* btmutex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = btmutex.c; sourceTree = "<group>"; };
+		14B4689A28B4C4F1003D288B /* malloc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = malloc.c; sourceTree = "<group>"; };
+		14B4689B28B4C4F1003D288B /* status.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = status.c; sourceTree = "<group>"; };
+		14B4689C28B4C4F1003D288B /* attach.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = attach.c; sourceTree = "<group>"; };
+		14B4689D28B4C4F1003D288B /* tokenize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tokenize.c; sourceTree = "<group>"; };
+		14B4689E28B4C4F1003D288B /* utf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = utf.c; sourceTree = "<group>"; };
+		14B4689F28B4C4F1003D288B /* analyze.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = analyze.c; sourceTree = "<group>"; };
+		14B468A028B4C4F1003D288B /* date.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = date.c; sourceTree = "<group>"; };
+		14B468A128B4C4F1003D288B /* delete.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = delete.c; sourceTree = "<group>"; };
+		14B468A228B4C4F1003D288B /* os_setup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = os_setup.h; sourceTree = "<group>"; };
+		14B468A328B4C4F1003D288B /* os.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = os.c; sourceTree = "<group>"; };
+		14B468A428B4C4F1003D288B /* vdbe.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vdbe.c; sourceTree = "<group>"; };
+		14B468A528B4C4F1003D288B /* mutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mutex.h; sourceTree = "<group>"; };
+		14B468A628B4C4F1003D288B /* trigger.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = trigger.c; sourceTree = "<group>"; };
+		14B468A728B4C4F1003D288B /* fault.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fault.c; sourceTree = "<group>"; };
+		14B468A828B4C4F1003D288B /* vacuum.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vacuum.c; sourceTree = "<group>"; };
+		14B468A928B4C4F1003D288B /* global.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = global.c; sourceTree = "<group>"; };
+		14B468AA28B4C4F1003D288B /* mem3.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mem3.c; sourceTree = "<group>"; };
+		14B468AB28B4C4F1003D288B /* crypto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypto.c; sourceTree = "<group>"; };
+		14B468AC28B4C4F1003D288B /* pager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pager.h; sourceTree = "<group>"; };
+		14B468AD28B4C4F1003D288B /* notify.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = notify.c; sourceTree = "<group>"; };
+		14B468AE28B4C4F1003D288B /* backup.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = backup.c; sourceTree = "<group>"; };
+		14B468AF28B4C4F1003D288B /* os_wcdb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = os_wcdb.h; sourceTree = "<group>"; };
+		14B468B028B4C4F1003D288B /* hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hash.h; sourceTree = "<group>"; };
+		14B468B128B4C4F1003D288B /* queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = queue.h; sourceTree = "<group>"; };
+		14B468B228B4C4F1003D288B /* threads.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = threads.c; sourceTree = "<group>"; };
+		14B468B328B4C4F1003D288B /* crypto_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypto_impl.c; sourceTree = "<group>"; };
+		14B468B428B4C4F1003D288B /* expr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = expr.c; sourceTree = "<group>"; };
+		14B468B528B4C4F1003D288B /* pcache.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pcache.c; sourceTree = "<group>"; };
+		14B468B628B4C4F1003D288B /* wal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wal.h; sourceTree = "<group>"; };
 		14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CyxbsMobileImage.xcassets; sourceTree = "<group>"; };
 		14B73F2C281BED7B00D08ADD /* MessageSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageSettingCell.m; sourceTree = "<group>"; };
 		14B73F2D281BED7B00D08ADD /* MessageSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageSettingCell.h; sourceTree = "<group>"; };
@@ -2481,6 +3149,710 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		14B4665C28B4C4BD003D288B /* Rising Pods */ = {
+			isa = PBXGroup;
+			children = (
+				14B4682528B4C4F1003D288B /* WCDBOptimizedSQLCipher */,
+				14B4680228B4C4E8003D288B /* SQLiteRepairKit */,
+				14B4665D28B4C4D9003D288B /* WCDB */,
+			);
+			name = "Rising Pods";
+			sourceTree = "<group>";
+		};
+		14B4665D28B4C4D9003D288B /* WCDB */ = {
+			isa = PBXGroup;
+			children = (
+				14B4665E28B4C4D9003D288B /* LICENSE */,
+				14B4665F28B4C4D9003D288B /* README.md */,
+				14B4666028B4C4D9003D288B /* objc */,
+			);
+			path = WCDB;
+			sourceTree = "<group>";
+		};
+		14B4666028B4C4D9003D288B /* objc */ = {
+			isa = PBXGroup;
+			children = (
+				14B4666128B4C4D9003D288B /* WCDB */,
+			);
+			path = objc;
+			sourceTree = "<group>";
+		};
+		14B4666128B4C4D9003D288B /* WCDB */ = {
+			isa = PBXGroup;
+			children = (
+				14B4666228B4C4D9003D288B /* abstract */,
+				14B466B928B4C4D9003D288B /* interface */,
+				14B4675C28B4C4D9003D288B /* core */,
+				14B4677228B4C4D9003D288B /* util */,
+				14B4678528B4C4D9003D288B /* WCDB.h */,
+			);
+			path = WCDB;
+			sourceTree = "<group>";
+		};
+		14B4666228B4C4D9003D288B /* abstract */ = {
+			isa = PBXGroup;
+			children = (
+				14B4666328B4C4D9003D288B /* statement_drop_index.cpp */,
+				14B4666428B4C4D9003D288B /* statement_attach.hpp */,
+				14B4666528B4C4D9003D288B /* column.cpp */,
+				14B4666628B4C4D9003D288B /* order_term.cpp */,
+				14B4666728B4C4D9003D288B /* statement_drop_table.hpp */,
+				14B4666828B4C4D9003D288B /* statement_create_table.hpp */,
+				14B4666928B4C4D9003D288B /* handle_statement.cpp */,
+				14B4666A28B4C4D9003D288B /* clause_join.cpp */,
+				14B4666B28B4C4D9003D288B /* statement_transaction.hpp */,
+				14B4666C28B4C4D9003D288B /* statement_detach.hpp */,
+				14B4666D28B4C4D9003D288B /* statement_delete.hpp */,
+				14B4666E28B4C4D9003D288B /* statement_create_index.cpp */,
+				14B4666F28B4C4D9003D288B /* describable.hpp */,
+				14B4667028B4C4D9003D288B /* statement_release.hpp */,
+				14B4667128B4C4D9003D288B /* module_argument.cpp */,
+				14B4667228B4C4D9003D288B /* column_result.hpp */,
+				14B4667328B4C4D9003D288B /* order.hpp */,
+				14B4667428B4C4D9003D288B /* foreign_key.cpp */,
+				14B4667528B4C4D9003D288B /* statement_pragma.cpp */,
+				14B4667628B4C4D9003D288B /* statement_savepoint.cpp */,
+				14B4667728B4C4D9003D288B /* statement_explain.cpp */,
+				14B4667828B4C4D9003D288B /* conflict.cpp */,
+				14B4667928B4C4D9003D288B /* statement_alter_table.cpp */,
+				14B4667A28B4C4D9003D288B /* literal_value.cpp */,
+				14B4667B28B4C4D9003D288B /* statement_create_virtual_table.cpp */,
+				14B4667C28B4C4D9003D288B /* statement.cpp */,
+				14B4667D28B4C4D9003D288B /* subquery.cpp */,
+				14B4667E28B4C4D9003D288B /* statement_rollback.hpp */,
+				14B4667F28B4C4D9003D288B /* statement_vacuum.hpp */,
+				14B4668028B4C4D9003D288B /* pragma.hpp */,
+				14B4668128B4C4D9003D288B /* abstract.h */,
+				14B4668228B4C4D9003D288B /* fts_modules.cpp */,
+				14B4668328B4C4D9003D288B /* fts_module.cpp */,
+				14B4668428B4C4D9003D288B /* column_type.cpp */,
+				14B4668528B4C4D9003D288B /* statement_reindex.hpp */,
+				14B4668628B4C4D9003D288B /* expr.cpp */,
+				14B4668728B4C4D9003D288B /* constraint_table.cpp */,
+				14B4668828B4C4D9003D288B /* handle.hpp */,
+				14B4668928B4C4D9003D288B /* statement_select.hpp */,
+				14B4668A28B4C4D9003D288B /* column_def.hpp */,
+				14B4668B28B4C4D9003D288B /* statement_insert.cpp */,
+				14B4668C28B4C4D9003D288B /* column_index.hpp */,
+				14B4668D28B4C4D9003D288B /* statement_update.cpp */,
+				14B4668E28B4C4D9003D288B /* declare.hpp */,
+				14B4668F28B4C4D9003D288B /* literal_value.hpp */,
+				14B4669028B4C4D9003D288B /* statement_create_virtual_table.hpp */,
+				14B4669128B4C4D9003D288B /* subquery.hpp */,
+				14B4669228B4C4D9003D288B /* statement.hpp */,
+				14B4669328B4C4D9003D288B /* statement_vacuum.cpp */,
+				14B4669428B4C4D9003D288B /* pragma.cpp */,
+				14B4669528B4C4D9003D288B /* statement_rollback.cpp */,
+				14B4669628B4C4D9003D288B /* fts_modules.hpp */,
+				14B4669728B4C4D9003D288B /* column_type.hpp */,
+				14B4669828B4C4D9003D288B /* fts_module.hpp */,
+				14B4669928B4C4D9003D288B /* constraint_table.hpp */,
+				14B4669A28B4C4D9003D288B /* handle.cpp */,
+				14B4669B28B4C4D9003D288B /* statement_reindex.cpp */,
+				14B4669C28B4C4D9003D288B /* expr.hpp */,
+				14B4669D28B4C4D9003D288B /* column_def.cpp */,
+				14B4669E28B4C4D9003D288B /* statement_select.cpp */,
+				14B4669F28B4C4D9003D288B /* statement_insert.hpp */,
+				14B466A028B4C4D9003D288B /* column_index.cpp */,
+				14B466A128B4C4D9003D288B /* statement_update.hpp */,
+				14B466A228B4C4D9003D288B /* statement_drop_index.hpp */,
+				14B466A328B4C4D9003D288B /* statement_attach.cpp */,
+				14B466A428B4C4D9003D288B /* order_term.hpp */,
+				14B466A528B4C4D9003D288B /* statement_drop_table.cpp */,
+				14B466A628B4C4D9003D288B /* column.hpp */,
+				14B466A728B4C4D9003D288B /* handle_statement.hpp */,
+				14B466A828B4C4D9003D288B /* clause_join.hpp */,
+				14B466A928B4C4D9003D288B /* statement_create_table.cpp */,
+				14B466AA28B4C4D9003D288B /* statement_detach.cpp */,
+				14B466AB28B4C4D9003D288B /* statement_transaction.cpp */,
+				14B466AC28B4C4D9003D288B /* describable.cpp */,
+				14B466AD28B4C4D9003D288B /* statement_delete.cpp */,
+				14B466AE28B4C4D9003D288B /* statement_create_index.hpp */,
+				14B466AF28B4C4D9003D288B /* statement_release.cpp */,
+				14B466B028B4C4D9003D288B /* module_argument.hpp */,
+				14B466B128B4C4D9003D288B /* order.cpp */,
+				14B466B228B4C4D9003D288B /* column_result.cpp */,
+				14B466B328B4C4D9003D288B /* foreign_key.hpp */,
+				14B466B428B4C4D9003D288B /* statement_pragma.hpp */,
+				14B466B528B4C4D9003D288B /* statement_savepoint.hpp */,
+				14B466B628B4C4D9003D288B /* statement_explain.hpp */,
+				14B466B728B4C4D9003D288B /* statement_alter_table.hpp */,
+				14B466B828B4C4D9003D288B /* conflict.hpp */,
+			);
+			path = abstract;
+			sourceTree = "<group>";
+		};
+		14B466B928B4C4D9003D288B /* interface */ = {
+			isa = PBXGroup;
+			children = (
+				14B466BA28B4C4D9003D288B /* transaction */,
+				14B466C028B4C4D9003D288B /* database */,
+				14B466C828B4C4D9003D288B /* compatible */,
+				14B466D328B4C4D9003D288B /* core */,
+				14B466E028B4C4D9003D288B /* statictics */,
+				14B466EC28B4C4D9003D288B /* declare */,
+				14B466F428B4C4D9003D288B /* fts */,
+				14B466FB28B4C4D9003D288B /* chaincall */,
+				14B4671A28B4C4D9003D288B /* table */,
+				14B4672328B4C4D9003D288B /* orm */,
+				14B4674B28B4C4D9003D288B /* convenient */,
+				14B4675028B4C4D9003D288B /* builtin */,
+			);
+			path = interface;
+			sourceTree = "<group>";
+		};
+		14B466BA28B4C4D9003D288B /* transaction */ = {
+			isa = PBXGroup;
+			children = (
+				14B466BB28B4C4D9003D288B /* WCTTransaction.h */,
+				14B466BC28B4C4D9003D288B /* WCTTransaction.mm */,
+				14B466BD28B4C4D9003D288B /* WCTTransaction+Private.h */,
+				14B466BE28B4C4D9003D288B /* WCTDatabase+Transaction.h */,
+				14B466BF28B4C4D9003D288B /* WCTDatabase+Transaction.mm */,
+			);
+			path = transaction;
+			sourceTree = "<group>";
+		};
+		14B466C028B4C4D9003D288B /* database */ = {
+			isa = PBXGroup;
+			children = (
+				14B466C128B4C4D9003D288B /* WCTDatabase+File.h */,
+				14B466C228B4C4D9003D288B /* WCTDatabase+Private.h */,
+				14B466C328B4C4D9003D288B /* WCTDatabase+RepairKit.mm */,
+				14B466C428B4C4D9003D288B /* WCTDatabase+RepairKit.h */,
+				14B466C528B4C4D9003D288B /* WCTDatabase+Database.mm */,
+				14B466C628B4C4D9003D288B /* WCTDatabase+File.mm */,
+				14B466C728B4C4D9003D288B /* WCTDatabase+Database.h */,
+			);
+			path = database;
+			sourceTree = "<group>";
+		};
+		14B466C828B4C4D9003D288B /* compatible */ = {
+			isa = PBXGroup;
+			children = (
+				14B466C928B4C4D9003D288B /* WCTTransaction+Compatible.mm */,
+				14B466CA28B4C4D9003D288B /* WCTStatistics+Compatible.h */,
+				14B466CB28B4C4D9003D288B /* WCTTransaction+Compatible.h */,
+				14B466CC28B4C4D9003D288B /* WCTStatistics+Compatible.mm */,
+				14B466CD28B4C4D9003D288B /* WCTCompatible.mm */,
+				14B466CE28B4C4D9003D288B /* WCTCompatible.h */,
+				14B466CF28B4C4D9003D288B /* WCTStatement+Compatible.mm */,
+				14B466D028B4C4D9003D288B /* WCTStatement+Compatible.h */,
+				14B466D128B4C4D9003D288B /* WCTDatabase+Compatible.h */,
+				14B466D228B4C4D9003D288B /* WCTDatabase+Compatible.mm */,
+			);
+			path = compatible;
+			sourceTree = "<group>";
+		};
+		14B466D328B4C4D9003D288B /* core */ = {
+			isa = PBXGroup;
+			children = (
+				14B466D428B4C4D9003D288B /* WCTCore.h */,
+				14B466D528B4C4D9003D288B /* WCTCore.mm */,
+				14B466D628B4C4D9003D288B /* WCTStatement.h */,
+				14B466D728B4C4D9003D288B /* WCTDatabase+Core.mm */,
+				14B466D828B4C4D9003D288B /* WCTDatabase+Core.h */,
+				14B466D928B4C4D9003D288B /* WCTInterface+Core.mm */,
+				14B466DA28B4C4D9003D288B /* WCTValue.mm */,
+				14B466DB28B4C4D9003D288B /* WCTStatement.mm */,
+				14B466DC28B4C4D9003D288B /* WCTCore+Private.h */,
+				14B466DD28B4C4D9003D288B /* WCTStatement+Private.h */,
+				14B466DE28B4C4D9003D288B /* WCTValue.h */,
+				14B466DF28B4C4D9003D288B /* WCTInterface+Core.h */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		14B466E028B4C4D9003D288B /* statictics */ = {
+			isa = PBXGroup;
+			children = (
+				14B466E128B4C4D9003D288B /* WCTDatabase+Statistics.h */,
+				14B466E228B4C4D9003D288B /* WCTDatabase+Statistics.mm */,
+				14B466E328B4C4D9003D288B /* WCTError.mm */,
+				14B466E428B4C4D9003D288B /* WCTChainCall+Statistics.mm */,
+				14B466E528B4C4D9003D288B /* WCTError+Private.h */,
+				14B466E628B4C4D9003D288B /* WCTChainCall+Statistics.h */,
+				14B466E728B4C4D9003D288B /* WCTStatistics.mm */,
+				14B466E828B4C4D9003D288B /* WCTTransaction+Statistics.h */,
+				14B466E928B4C4D9003D288B /* WCTError.h */,
+				14B466EA28B4C4D9003D288B /* WCTStatistics.h */,
+				14B466EB28B4C4D9003D288B /* WCTTransaction+Statistics.mm */,
+			);
+			path = statictics;
+			sourceTree = "<group>";
+		};
+		14B466EC28B4C4D9003D288B /* declare */ = {
+			isa = PBXGroup;
+			children = (
+				14B466ED28B4C4D9003D288B /* WCTDatabase.h */,
+				14B466EE28B4C4D9003D288B /* WCTTable.h */,
+				14B466EF28B4C4D9003D288B /* WCTInterface.mm */,
+				14B466F028B4C4D9003D288B /* WCTTable.mm */,
+				14B466F128B4C4D9003D288B /* WCTDatabase.mm */,
+				14B466F228B4C4D9003D288B /* WCTDeclare.h */,
+				14B466F328B4C4D9003D288B /* WCTInterface.h */,
+			);
+			path = declare;
+			sourceTree = "<group>";
+		};
+		14B466F428B4C4D9003D288B /* fts */ = {
+			isa = PBXGroup;
+			children = (
+				14B466F528B4C4D9003D288B /* WCTTokenizer+WCDB.h */,
+				14B466F628B4C4D9003D288B /* WCTDatabase+FTS.h */,
+				14B466F728B4C4D9003D288B /* WCTTokenizer+WCDB.mm */,
+				14B466F828B4C4D9003D288B /* WCTTokenizer+Apple.mm */,
+				14B466F928B4C4D9003D288B /* WCTTokenizer+Apple.h */,
+				14B466FA28B4C4D9003D288B /* WCTDatabase+FTS.mm */,
+			);
+			path = fts;
+			sourceTree = "<group>";
+		};
+		14B466FB28B4C4D9003D288B /* chaincall */ = {
+			isa = PBXGroup;
+			children = (
+				14B466FC28B4C4D9003D288B /* WCTDelete+Private.h */,
+				14B466FD28B4C4D9003D288B /* WCTMultiSelect+Private.h */,
+				14B466FE28B4C4D9003D288B /* WCTChainCall.h */,
+				14B466FF28B4C4D9003D288B /* WCTInterface+ChainCall.mm */,
+				14B4670028B4C4D9003D288B /* WCTTable+ChainCall.mm */,
+				14B4670128B4C4D9003D288B /* WCTSelect.h */,
+				14B4670228B4C4D9003D288B /* WCTUpdate.h */,
+				14B4670328B4C4D9003D288B /* WCTSelectBase+NoARC.mm */,
+				14B4670428B4C4D9003D288B /* WCTRowSelect+Private.h */,
+				14B4670528B4C4D9003D288B /* WCTMultiSelect.mm */,
+				14B4670628B4C4D9003D288B /* WCTDelete.mm */,
+				14B4670728B4C4D9003D288B /* WCTUpdate.mm */,
+				14B4670828B4C4D9003D288B /* WCTInsert.h */,
+				14B4670928B4C4D9003D288B /* WCTChainCall.mm */,
+				14B4670A28B4C4D9003D288B /* WCTRowSelect.mm */,
+				14B4670B28B4C4D9003D288B /* WCTSelectBase+Private.h */,
+				14B4670C28B4C4D9003D288B /* WCTSelectBase.h */,
+				14B4670D28B4C4D9003D288B /* WCTInsert.mm */,
+				14B4670E28B4C4D9003D288B /* WCTInsert+Private.h */,
+				14B4670F28B4C4D9003D288B /* WCTSelect+Private.h */,
+				14B4671028B4C4D9003D288B /* WCTInterface+ChainCall.h */,
+				14B4671128B4C4D9003D288B /* WCTUpdate+Private.h */,
+				14B4671228B4C4D9003D288B /* WCTRowSelect.h */,
+				14B4671328B4C4D9003D288B /* WCTDelete.h */,
+				14B4671428B4C4D9003D288B /* WCTSelectBase.mm */,
+				14B4671528B4C4D9003D288B /* WCTMultiSelect.h */,
+				14B4671628B4C4D9003D288B /* WCTSelectBase+NoARC.h */,
+				14B4671728B4C4D9003D288B /* WCTTable+ChainCall.h */,
+				14B4671828B4C4D9003D288B /* WCTChainCall+Private.h */,
+				14B4671928B4C4D9003D288B /* WCTSelect.mm */,
+			);
+			path = chaincall;
+			sourceTree = "<group>";
+		};
+		14B4671A28B4C4D9003D288B /* table */ = {
+			isa = PBXGroup;
+			children = (
+				14B4671B28B4C4D9003D288B /* WCTTable+Private.h */,
+				14B4671C28B4C4D9003D288B /* WCTInterface+Table.h */,
+				14B4671D28B4C4D9003D288B /* WCTDatabase+Table.h */,
+				14B4671E28B4C4D9003D288B /* WCTTable+Database.h */,
+				14B4671F28B4C4D9003D288B /* WCTTransaction+Table.h */,
+				14B4672028B4C4D9003D288B /* WCTDatabase+Table.mm */,
+				14B4672128B4C4D9003D288B /* WCTTransaction+Table.mm */,
+				14B4672228B4C4D9003D288B /* WCTInterface+Table.mm */,
+			);
+			path = table;
+			sourceTree = "<group>";
+		};
+		14B4672328B4C4D9003D288B /* orm */ = {
+			isa = PBXGroup;
+			children = (
+				14B4672428B4C4D9003D288B /* WCTORM.h */,
+				14B4672528B4C4D9003D288B /* accessor */,
+				14B4672E28B4C4D9003D288B /* binding */,
+				14B4673728B4C4D9003D288B /* macro */,
+				14B4673D28B4C4D9003D288B /* coding */,
+			);
+			path = orm;
+			sourceTree = "<group>";
+		};
+		14B4672528B4C4D9003D288B /* accessor */ = {
+			isa = PBXGroup;
+			children = (
+				14B4672628B4C4D9003D288B /* WCTRuntimeObjCAccessor.mm */,
+				14B4672728B4C4D9003D288B /* WCTRuntimeBaseAccessor.mm */,
+				14B4672828B4C4D9003D288B /* WCTRuntimeObjCAccessor.h */,
+				14B4672928B4C4D9003D288B /* WCTObjCAccessor.h */,
+				14B4672A28B4C4D9003D288B /* WCTRuntimeBaseAccessor.h */,
+				14B4672B28B4C4D9003D288B /* WCTRuntimeCppAccessor.h */,
+				14B4672C28B4C4D9003D288B /* WCTCppAccessor.h */,
+				14B4672D28B4C4D9003D288B /* WCTBaseAccessor.h */,
+			);
+			path = accessor;
+			sourceTree = "<group>";
+		};
+		14B4672E28B4C4D9003D288B /* binding */ = {
+			isa = PBXGroup;
+			children = (
+				14B4672F28B4C4D9003D288B /* WCTColumnBinding.h */,
+				14B4673028B4C4D9003D288B /* WCTBinding.h */,
+				14B4673128B4C4D9003D288B /* WCTConstraintBinding.mm */,
+				14B4673228B4C4D9003D288B /* WCTIndexBInding.mm */,
+				14B4673328B4C4D9003D288B /* WCTIndexBinding.h */,
+				14B4673428B4C4D9003D288B /* WCTColumnBinding.mm */,
+				14B4673528B4C4D9003D288B /* WCTConstraintBinding.h */,
+				14B4673628B4C4D9003D288B /* WCTBinding.mm */,
+			);
+			path = binding;
+			sourceTree = "<group>";
+		};
+		14B4673728B4C4D9003D288B /* macro */ = {
+			isa = PBXGroup;
+			children = (
+				14B4673828B4C4D9003D288B /* WCTMacroHelper.h */,
+				14B4673928B4C4D9003D288B /* WCTIndexMacro.h */,
+				14B4673A28B4C4D9003D288B /* WCTCodingMacro.h */,
+				14B4673B28B4C4D9003D288B /* WCTConstraintMacro.h */,
+				14B4673C28B4C4D9003D288B /* WCTPropertyMacro.h */,
+			);
+			path = macro;
+			sourceTree = "<group>";
+		};
+		14B4673D28B4C4D9003D288B /* coding */ = {
+			isa = PBXGroup;
+			children = (
+				14B4673E28B4C4D9003D288B /* WCTAnyProperty.mm */,
+				14B4673F28B4C4D9003D288B /* WCTProperty.h */,
+				14B4674028B4C4D9003D288B /* WCTSelectBase+WCTExpr.h */,
+				14B4674128B4C4D9003D288B /* WCTSelectBase+WCTExpr.mm */,
+				14B4674228B4C4D9003D288B /* WCTExpr.h */,
+				14B4674328B4C4D9003D288B /* WCTPropertyBase.h */,
+				14B4674428B4C4D9003D288B /* WCTCoding.h */,
+				14B4674528B4C4D9003D288B /* WCTResult.h */,
+				14B4674628B4C4D9003D288B /* WCTAnyProperty.h */,
+				14B4674728B4C4D9003D288B /* WCTExpr.mm */,
+				14B4674828B4C4D9003D288B /* WCTResult.mm */,
+				14B4674928B4C4D9003D288B /* WCTProperty.mm */,
+				14B4674A28B4C4D9003D288B /* WCTPropertyBase.mm */,
+			);
+			path = coding;
+			sourceTree = "<group>";
+		};
+		14B4674B28B4C4D9003D288B /* convenient */ = {
+			isa = PBXGroup;
+			children = (
+				14B4674C28B4C4D9003D288B /* WCTInterface+Convenient.mm */,
+				14B4674D28B4C4D9003D288B /* WCTTable+Convenient.mm */,
+				14B4674E28B4C4D9003D288B /* WCTTable+Convenient.h */,
+				14B4674F28B4C4D9003D288B /* WCTInterface+Convenient.h */,
+			);
+			path = convenient;
+			sourceTree = "<group>";
+		};
+		14B4675028B4C4D9003D288B /* builtin */ = {
+			isa = PBXGroup;
+			children = (
+				14B4675128B4C4D9003D288B /* NSNumber+WCTColumnCoding.mm */,
+				14B4675228B4C4D9003D288B /* WCTSequence.h */,
+				14B4675328B4C4D9003D288B /* NSObject+WCTColumnCoding.mm */,
+				14B4675428B4C4D9003D288B /* WCTSequence+WCTTableCoding.h */,
+				14B4675528B4C4D9003D288B /* WCTMaster.h */,
+				14B4675628B4C4D9003D288B /* WCTMaster+WCTTableCoding.h */,
+				14B4675728B4C4D9003D288B /* NSDate+WCTColumnCoding.mm */,
+				14B4675828B4C4D9003D288B /* WCTSequence.mm */,
+				14B4675928B4C4D9003D288B /* WCTMaster.mm */,
+				14B4675A28B4C4D9003D288B /* NSString+WCTColumnCoding.mm */,
+				14B4675B28B4C4D9003D288B /* NSData+WCTColumnCoding.mm */,
+			);
+			path = builtin;
+			sourceTree = "<group>";
+		};
+		14B4675C28B4C4D9003D288B /* core */ = {
+			isa = PBXGroup;
+			children = (
+				14B4675D28B4C4D9003D288B /* database_config.cpp */,
+				14B4675E28B4C4D9003D288B /* transaction.hpp */,
+				14B4675F28B4C4D9003D288B /* statement_recyclable.hpp */,
+				14B4676028B4C4D9003D288B /* handle_recyclable.hpp */,
+				14B4676128B4C4D9003D288B /* handle_pool.hpp */,
+				14B4676228B4C4D9003D288B /* database_sql.cpp */,
+				14B4676328B4C4D9003D288B /* core_base.hpp */,
+				14B4676428B4C4D9003D288B /* database.hpp */,
+				14B4676528B4C4D9003D288B /* config.hpp */,
+				14B4676628B4C4D9003D288B /* tokenizer.cpp */,
+				14B4676728B4C4D9003D288B /* database_file.cpp */,
+				14B4676828B4C4D9003D288B /* database_repair_kit.cpp */,
+				14B4676928B4C4D9003D288B /* core_base.cpp */,
+				14B4676A28B4C4D9003D288B /* database.cpp */,
+				14B4676B28B4C4D9003D288B /* database_transaction.cpp */,
+				14B4676C28B4C4D9003D288B /* config.cpp */,
+				14B4676D28B4C4D9003D288B /* tokenizer.hpp */,
+				14B4676E28B4C4D9003D288B /* transaction.cpp */,
+				14B4676F28B4C4D9003D288B /* statement_recyclable.cpp */,
+				14B4677028B4C4D9003D288B /* handle_recyclable.cpp */,
+				14B4677128B4C4D9003D288B /* handle_pool.cpp */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		14B4677228B4C4D9003D288B /* util */ = {
+			isa = PBXGroup;
+			children = (
+				14B4677328B4C4D9003D288B /* timed_queue.hpp */,
+				14B4677428B4C4D9003D288B /* concurrent_list.hpp */,
+				14B4677528B4C4D9003D288B /* utility.hpp */,
+				14B4677628B4C4D9003D288B /* error.cpp */,
+				14B4677728B4C4D9003D288B /* rwlock.hpp */,
+				14B4677828B4C4D9003D288B /* file.hpp */,
+				14B4677928B4C4D9003D288B /* spin.cpp */,
+				14B4677A28B4C4D9003D288B /* ticker.hpp */,
+				14B4677B28B4C4D9003D288B /* path.hpp */,
+				14B4677C28B4C4D9003D288B /* error.hpp */,
+				14B4677D28B4C4D9003D288B /* rwlock.cpp */,
+				14B4677E28B4C4D9003D288B /* file.cpp */,
+				14B4677F28B4C4D9003D288B /* spin.hpp */,
+				14B4678028B4C4D9003D288B /* ticker.cpp */,
+				14B4678128B4C4D9003D288B /* recyclable.hpp */,
+				14B4678228B4C4D9003D288B /* path.cpp */,
+				14B4678328B4C4D9003D288B /* thread_local.hpp */,
+				14B4678428B4C4D9003D288B /* macro.hpp */,
+			);
+			path = util;
+			sourceTree = "<group>";
+		};
+		14B4680228B4C4E8003D288B /* SQLiteRepairKit */ = {
+			isa = PBXGroup;
+			children = (
+				14B4680328B4C4E8003D288B /* LICENSE */,
+				14B4680428B4C4E8003D288B /* README.md */,
+				14B4680528B4C4E8003D288B /* repair */,
+			);
+			path = SQLiteRepairKit;
+			sourceTree = "<group>";
+		};
+		14B4680528B4C4E8003D288B /* repair */ = {
+			isa = PBXGroup;
+			children = (
+				14B4680628B4C4E8003D288B /* sqliterk_util.c */,
+				14B4680728B4C4E8003D288B /* sqliterk_btree.c */,
+				14B4680828B4C4E8003D288B /* sqliterk_crypto.h */,
+				14B4680928B4C4E8003D288B /* SQLiteRepairKit.h */,
+				14B4680A28B4C4E8003D288B /* sqliterk_pager.c */,
+				14B4680B28B4C4E8003D288B /* sqliterk_os.h */,
+				14B4680C28B4C4E8003D288B /* sqliterk_column.c */,
+				14B4680D28B4C4E8003D288B /* sqliterk_values.c */,
+				14B4680E28B4C4E8003D288B /* sqliterk_api.c */,
+				14B4680F28B4C4E8003D288B /* sqliterk_output.cpp */,
+				14B4681028B4C4E8003D288B /* sqliterk.c */,
+				14B4681128B4C4E8003D288B /* sqliterk_util.h */,
+				14B4681228B4C4E8003D288B /* sqliterk_crypto.c */,
+				14B4681328B4C4E8003D288B /* sqliterk_btree.h */,
+				14B4681428B4C4E8003D288B /* sqliterk_values.h */,
+				14B4681528B4C4E8003D288B /* sqliterk_os.c */,
+				14B4681628B4C4E8003D288B /* sqliterk_column.h */,
+				14B4681728B4C4E8003D288B /* sqliterk_pager.h */,
+				14B4681828B4C4E8003D288B /* sqliterk.h */,
+			);
+			path = repair;
+			sourceTree = "<group>";
+		};
+		14B4682528B4C4F1003D288B /* WCDBOptimizedSQLCipher */ = {
+			isa = PBXGroup;
+			children = (
+				14B4682628B4C4F1003D288B /* LICENSE */,
+				14B4682728B4C4F1003D288B /* fts5.h */,
+				14B4682828B4C4F1003D288B /* parse.h */,
+				14B4682928B4C4F1003D288B /* ext */,
+				14B4684828B4C4F1003D288B /* opcodes.h */,
+				14B4684928B4C4F1003D288B /* keywordhash.h */,
+				14B4684A28B4C4F1003D288B /* README.md */,
+				14B4684B28B4C4F1003D288B /* sqlite3.h */,
+				14B4684C28B4C4F1003D288B /* parse.c */,
+				14B4684D28B4C4F1003D288B /* fts5.c */,
+				14B4684E28B4C4F1003D288B /* opcodes.c */,
+				14B4684F28B4C4F1003D288B /* src */,
+			);
+			path = WCDBOptimizedSQLCipher;
+			sourceTree = "<group>";
+		};
+		14B4682928B4C4F1003D288B /* ext */ = {
+			isa = PBXGroup;
+			children = (
+				14B4682A28B4C4F1003D288B /* rbu */,
+				14B4682D28B4C4F1003D288B /* userauth */,
+				14B4682F28B4C4F1003D288B /* fts3 */,
+				14B4684128B4C4F1003D288B /* rtree */,
+				14B4684528B4C4F1003D288B /* icu */,
+			);
+			path = ext;
+			sourceTree = "<group>";
+		};
+		14B4682A28B4C4F1003D288B /* rbu */ = {
+			isa = PBXGroup;
+			children = (
+				14B4682B28B4C4F1003D288B /* sqlite3rbu.c */,
+				14B4682C28B4C4F1003D288B /* sqlite3rbu.h */,
+			);
+			path = rbu;
+			sourceTree = "<group>";
+		};
+		14B4682D28B4C4F1003D288B /* userauth */ = {
+			isa = PBXGroup;
+			children = (
+				14B4682E28B4C4F1003D288B /* sqlite3userauth.h */,
+			);
+			path = userauth;
+			sourceTree = "<group>";
+		};
+		14B4682F28B4C4F1003D288B /* fts3 */ = {
+			isa = PBXGroup;
+			children = (
+				14B4683028B4C4F1003D288B /* fts3_porter.c */,
+				14B4683128B4C4F1003D288B /* fts3_hash.c */,
+				14B4683228B4C4F1003D288B /* fts3Int.h */,
+				14B4683328B4C4F1003D288B /* fts3.c */,
+				14B4683428B4C4F1003D288B /* fts3_unicode2.c */,
+				14B4683528B4C4F1003D288B /* fts3_tokenizer.c */,
+				14B4683628B4C4F1003D288B /* fts3_icu.c */,
+				14B4683728B4C4F1003D288B /* fts3_expr.c */,
+				14B4683828B4C4F1003D288B /* fts3_snippet.c */,
+				14B4683928B4C4F1003D288B /* fts3_tokenizer1.c */,
+				14B4683A28B4C4F1003D288B /* fts3_write.c */,
+				14B4683B28B4C4F1003D288B /* fts3_hash.h */,
+				14B4683C28B4C4F1003D288B /* fts3_aux.c */,
+				14B4683D28B4C4F1003D288B /* fts3_unicode.c */,
+				14B4683E28B4C4F1003D288B /* fts3.h */,
+				14B4683F28B4C4F1003D288B /* fts3_tokenize_vtab.c */,
+				14B4684028B4C4F1003D288B /* fts3_tokenizer.h */,
+			);
+			path = fts3;
+			sourceTree = "<group>";
+		};
+		14B4684128B4C4F1003D288B /* rtree */ = {
+			isa = PBXGroup;
+			children = (
+				14B4684228B4C4F1003D288B /* rtree.h */,
+				14B4684328B4C4F1003D288B /* rtree.c */,
+				14B4684428B4C4F1003D288B /* sqlite3rtree.h */,
+			);
+			path = rtree;
+			sourceTree = "<group>";
+		};
+		14B4684528B4C4F1003D288B /* icu */ = {
+			isa = PBXGroup;
+			children = (
+				14B4684628B4C4F1003D288B /* sqliteicu.h */,
+				14B4684728B4C4F1003D288B /* icu.c */,
+			);
+			path = icu;
+			sourceTree = "<group>";
+		};
+		14B4684F28B4C4F1003D288B /* src */ = {
+			isa = PBXGroup;
+			children = (
+				14B4685028B4C4F1003D288B /* printf.c */,
+				14B4685128B4C4F1003D288B /* btree.c */,
+				14B4685228B4C4F1003D288B /* dbstat.c */,
+				14B4685328B4C4F1003D288B /* sqliteLimit.h */,
+				14B4685428B4C4F1003D288B /* mutex_unix.c */,
+				14B4685528B4C4F1003D288B /* mem2.c */,
+				14B4685628B4C4F1003D288B /* vxworks.h */,
+				14B4685728B4C4F1003D288B /* os_common.h */,
+				14B4685828B4C4F1003D288B /* table.c */,
+				14B4685928B4C4F1003D288B /* treeview.c */,
+				14B4685A28B4C4F1003D288B /* auth.c */,
+				14B4685B28B4C4F1003D288B /* hwtime.h */,
+				14B4685C28B4C4F1003D288B /* util.c */,
+				14B4685D28B4C4F1003D288B /* pragma.c */,
+				14B4685E28B4C4F1003D288B /* whereInt.h */,
+				14B4685F28B4C4F1003D288B /* crypto_libtomcrypt.c */,
+				14B4686028B4C4F1003D288B /* memjournal.c */,
+				14B4686128B4C4F1003D288B /* insert.c */,
+				14B4686228B4C4F1003D288B /* vdbeapi.c */,
+				14B4686328B4C4F1003D288B /* ctime.c */,
+				14B4686428B4C4F1003D288B /* sqliteInt.h */,
+				14B4686528B4C4F1003D288B /* crypto_cc.c */,
+				14B4686628B4C4F1003D288B /* rowset.c */,
+				14B4686728B4C4F1003D288B /* vdbeblob.c */,
+				14B4686828B4C4F1003D288B /* mutex_wcdb.c */,
+				14B4686928B4C4F1003D288B /* where.c */,
+				14B4686A28B4C4F1003D288B /* vdbetrace.c */,
+				14B4686B28B4C4F1003D288B /* fkey.c */,
+				14B4686C28B4C4F1003D288B /* btreeInt.h */,
+				14B4686D28B4C4F1003D288B /* bitvec.c */,
+				14B4686E28B4C4F1003D288B /* whereexpr.c */,
+				14B4686F28B4C4F1003D288B /* mem5.c */,
+				14B4687028B4C4F1003D288B /* mem1.c */,
+				14B4687128B4C4F1003D288B /* os.h */,
+				14B4687228B4C4F1003D288B /* os_unix.c */,
+				14B4687328B4C4F1003D288B /* mutex.c */,
+				14B4687428B4C4F1003D288B /* func.c */,
+				14B4687528B4C4F1003D288B /* resolve.c */,
+				14B4687628B4C4F1003D288B /* vdbe.h */,
+				14B4687728B4C4F1003D288B /* vtab.c */,
+				14B4687828B4C4F1003D288B /* vdbeInt.h */,
+				14B4687928B4C4F1003D288B /* vdbemem.c */,
+				14B4687A28B4C4F1003D288B /* wherecode.c */,
+				14B4687B28B4C4F1003D288B /* wal.c */,
+				14B4687C28B4C4F1003D288B /* select.c */,
+				14B4687D28B4C4F1003D288B /* update.c */,
+				14B4687E28B4C4F1003D288B /* loadext.c */,
+				14B4687F28B4C4F1003D288B /* random.c */,
+				14B4688028B4C4F1003D288B /* queue.c */,
+				14B4688128B4C4F1003D288B /* pcache.h */,
+				14B4688228B4C4F1003D288B /* vdbeaux.c */,
+				14B4688328B4C4F1003D288B /* hash.c */,
+				14B4688428B4C4F1003D288B /* os_wcdb.c */,
+				14B4688528B4C4F1003D288B /* pager.c */,
+				14B4688628B4C4F1003D288B /* crypto.h */,
+				14B4688728B4C4F1003D288B /* callback.c */,
+				14B4688828B4C4F1003D288B /* pcache1.c */,
+				14B4688928B4C4F1003D288B /* mutex_noop.c */,
+				14B4688A28B4C4F1003D288B /* walker.c */,
+				14B4688B28B4C4F1003D288B /* complete.c */,
+				14B4688C28B4C4F1003D288B /* btree.h */,
+				14B4688D28B4C4F1003D288B /* mem0.c */,
+				14B4688E28B4C4F1003D288B /* main.c */,
+				14B4688F28B4C4F1003D288B /* msvc.h */,
+				14B4689028B4C4F1003D288B /* prepare.c */,
+				14B4689128B4C4F1003D288B /* sqlcipher.h */,
+				14B4689228B4C4F1003D288B /* vdbesort.c */,
+				14B4689328B4C4F1003D288B /* build.c */,
+				14B4689428B4C4F1003D288B /* mutex_wcdb.h */,
+				14B4689528B4C4F1003D288B /* alter.c */,
+				14B4689628B4C4F1003D288B /* sqlite3ext.h */,
+				14B4689728B4C4F1003D288B /* pragma.h */,
+				14B4689828B4C4F1003D288B /* legacy.c */,
+				14B4689928B4C4F1003D288B /* btmutex.c */,
+				14B4689A28B4C4F1003D288B /* malloc.c */,
+				14B4689B28B4C4F1003D288B /* status.c */,
+				14B4689C28B4C4F1003D288B /* attach.c */,
+				14B4689D28B4C4F1003D288B /* tokenize.c */,
+				14B4689E28B4C4F1003D288B /* utf.c */,
+				14B4689F28B4C4F1003D288B /* analyze.c */,
+				14B468A028B4C4F1003D288B /* date.c */,
+				14B468A128B4C4F1003D288B /* delete.c */,
+				14B468A228B4C4F1003D288B /* os_setup.h */,
+				14B468A328B4C4F1003D288B /* os.c */,
+				14B468A428B4C4F1003D288B /* vdbe.c */,
+				14B468A528B4C4F1003D288B /* mutex.h */,
+				14B468A628B4C4F1003D288B /* trigger.c */,
+				14B468A728B4C4F1003D288B /* fault.c */,
+				14B468A828B4C4F1003D288B /* vacuum.c */,
+				14B468A928B4C4F1003D288B /* global.c */,
+				14B468AA28B4C4F1003D288B /* mem3.c */,
+				14B468AB28B4C4F1003D288B /* crypto.c */,
+				14B468AC28B4C4F1003D288B /* pager.h */,
+				14B468AD28B4C4F1003D288B /* notify.c */,
+				14B468AE28B4C4F1003D288B /* backup.c */,
+				14B468AF28B4C4F1003D288B /* os_wcdb.h */,
+				14B468B028B4C4F1003D288B /* hash.h */,
+				14B468B128B4C4F1003D288B /* queue.h */,
+				14B468B228B4C4F1003D288B /* threads.c */,
+				14B468B328B4C4F1003D288B /* crypto_impl.c */,
+				14B468B428B4C4F1003D288B /* expr.c */,
+				14B468B528B4C4F1003D288B /* pcache.c */,
+				14B468B628B4C4F1003D288B /* wal.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		14B73F29281BED7B00D08ADD /* Discover_MineMessage */ = {
 			isa = PBXGroup;
 			children = (
@@ -3982,6 +5354,7 @@
 				FE87CE1B27E98F82008D7148 /* Supporting Files */,
 				1451EA55282A294200A5BB55 /* CyxbsMobileTool */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
+				14B4665C28B4C4BD003D288B /* Rising Pods */,
 				1A9B7678235F50A800725937 /* Info.plist */,
 				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
 				14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */,
@@ -6547,17 +7920,23 @@
 				1A3106312377173B00A56468 /* Impact.ttf in Resources */,
 				DB34EB3F239BD4850052B65E /* Main.storyboard in Resources */,
 				73A1588A26C2475A00287C9F /* DIN-Medium.otf in Resources */,
+				14B4678728B4C4D9003D288B /* README.md in Resources */,
 				EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */,
 				1A5A5EDB23600C9100543BAE /* LoginViewController.xib in Resources */,
 				DB34EB2C239BD4550052B65E /* DetailRemindTableViewCell.xib in Resources */,
 				DB34EB20239BD4550052B65E /* DetailPageController.xib in Resources */,
+				14B4681A28B4C4E9003D288B /* README.md in Resources */,
 				1A9B7677235F50A800725937 /* LaunchScreen.storyboard in Resources */,
 				DB34EB1F239BD4550052B65E /* DetailLessonController.xib in Resources */,
 				DB34EB27239BD4550052B65E /* AddRemindViewController.xib in Resources */,
+				14B468C828B4C4F1003D288B /* README.md in Resources */,
 				7F101AC6260613E800F2034C /* YYZTopicCell.xib in Resources */,
 				18CDF687257F91BD006E8E5C /* EmptyClassTableViewCell.xib in Resources */,
 				DB34EB2B239BD4550052B65E /* RemindTableViewCell.xib in Resources */,
 				492C19AE26CE458000C485D9 /* Bauhaus-93.ttf in Resources */,
+				14B4678628B4C4D9003D288B /* LICENSE in Resources */,
+				14B4681928B4C4E9003D288B /* LICENSE in Resources */,
+				14B468B728B4C4F1003D288B /* LICENSE in Resources */,
 				FED345E8273D5DD8004073C0 /* GPAUnavailableViewController.xib in Resources */,
 				AA0DEF6A2668C88D00284112 /* 掌邮工具类.md in Resources */,
 				49343A2426D4EAB2001A2892 /* CommonQuestionCell.xib in Resources */,
@@ -6665,6 +8044,7 @@
 			files = (
 				AA0DDB66286C8B1A00802324 /* BaseTableViewCell.m in Sources */,
 				145AF3E5281BDA0000AABC53 /* NSString+UILabel.m in Sources */,
+				14B468D928B4C4F1003D288B /* vdbeapi.c in Sources */,
 				AA0DDB83286C8B1A00802324 /* PMPHomePageViewController.m in Sources */,
 				DB34EB3B239BD4550052B65E /* WeekChooseButton.m in Sources */,
 				18CDF6A1257F91BD006E8E5C /* CQUPTMapAllImageCollectionViewCell.m in Sources */,
@@ -6678,33 +8058,53 @@
 				14B73F6E281BED7B00D08ADD /* MessageSettingCell.m in Sources */,
 				AA7AB96B2873E5EA00BA6790 /* SegmentBarView.m in Sources */,
 				18CDF70E257F91BE006E8E5C /* YearTableViewCell.m in Sources */,
+				14B467A528B4C4D9003D288B /* column_def.cpp in Sources */,
 				DB4064FB2466D889006CE5BC /* DLWeeklSelectView.m in Sources */,
 				646B1967282AA9420015DF28 /* BusGuideViewController.m in Sources */,
 				14B73F72281BED7B00D08ADD /* ActiveMessageCell.m in Sources */,
 				FE2C135027AEF629001CF7AF /* TodoTableViewCell.m in Sources */,
+				14B4679428B4C4D9003D288B /* statement_alter_table.cpp in Sources */,
 				14D03A0B27FE69A800D6AE93 /* SSRTopBarBaseView.m in Sources */,
 				18CDF66E257F91BD006E8E5C /* EnterButton.m in Sources */,
 				18CDF710257F91BE006E8E5C /* QueryLoginViewController.m in Sources */,
 				18CDF676257F91BD006E8E5C /* TestArrangeViewController.m in Sources */,
 				18CDF4C4257F8DBD006E8E5C /* SetQuestionView.m in Sources */,
+				14B467E628B4C4DA003D288B /* WCTInterface+Convenient.mm in Sources */,
 				AA0DDB7C286C8B1A00802324 /* PMPIDCardTableViewCell.m in Sources */,
+				14B467AC28B4C4D9003D288B /* statement_transaction.cpp in Sources */,
+				14B468E528B4C4F1003D288B /* mem1.c in Sources */,
 				D0101F62243587A1004337ED /* UIScrollView+GKGestureHandle.m in Sources */,
 				AA0DDB74286C8B1A00802324 /* PMPDynamicTableViewController.m in Sources */,
 				D0101D5B2433C885004337ED /* SDMaskGuidBGView.m in Sources */,
 				AAE3307225E367E400324750 /* MainPageTableViewCell.m in Sources */,
+				14B4681C28B4C4E9003D288B /* sqliterk_btree.c in Sources */,
+				14B468CF28B4C4F1003D288B /* mutex_unix.c in Sources */,
+				14B467BE28B4C4DA003D288B /* WCTInterface+Core.mm in Sources */,
+				14B4682028B4C4E9003D288B /* sqliterk_api.c in Sources */,
 				73AAA1D726C918250084E44D /* DetailsCustomizeNavigationBar.m in Sources */,
+				14B4690028B4C4F1003D288B /* build.c in Sources */,
 				AA7ABAA02873EA5400BA6790 /* ReportModel.m in Sources */,
+				14B4690128B4C4F1003D288B /* alter.c in Sources */,
 				AA7AB95D2873E5EA00BA6790 /* SZHHotSearchView.m in Sources */,
 				B0F08FE028A2497F00986EB6 /* SportAttendanceHeadView.m in Sources */,
 				14981FF627FEA8F200AD2A29 /* JWZXNewsAnnexModel.m in Sources */,
 				187DF4BB260310DD000BCDE9 /* UIScrollView+Empty.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
+				14B4679828B4C4D9003D288B /* subquery.cpp in Sources */,
 				646B199D28313CDB0015DF28 /* StationView.m in Sources */,
+				14B467BC28B4C4DA003D288B /* WCTCore.mm in Sources */,
+				14B4691728B4C4F1003D288B /* crypto_impl.c in Sources */,
+				14B468C028B4C4F1003D288B /* fts3_snippet.c in Sources */,
 				FE2C135827AEF629001CF7AF /* ToDoDetailBar.m in Sources */,
 				18CDF6A6257F91BD006E8E5C /* JWZXNewsViewController.m in Sources */,
 				18CDF70D257F91BE006E8E5C /* QueryTableViewCell.m in Sources */,
+				14B4678E28B4C4D9003D288B /* module_argument.cpp in Sources */,
+				14B467CE28B4C4DA003D288B /* WCTSelectBase+NoARC.mm in Sources */,
 				49252DAA26D39CC9003A8A7F /* FeedBackMainPageViewController.m in Sources */,
 				49A50B6726D83B9600B25DDF /* CommonQuestionDetailVC.m in Sources */,
+				14B467E528B4C4DA003D288B /* WCTPropertyBase.mm in Sources */,
+				14B468C228B4C4F1003D288B /* fts3_write.c in Sources */,
+				14B4678828B4C4D9003D288B /* statement_drop_index.cpp in Sources */,
 				AA7ABAC32873EA5500BA6790 /* MGDCurrentTimeStr.m in Sources */,
 				AAE3309025E3D59100324750 /* ShareViewPlus.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
@@ -6719,6 +8119,8 @@
 				1A30F3AD23D33F1300FBBD83 /* CheckInModel.m in Sources */,
 				DB34EB31239BD4550052B65E /* RemindMatter.m in Sources */,
 				18CDF6B0257F91BD006E8E5C /* SCChartLabel.m in Sources */,
+				14B467B828B4C4DA003D288B /* WCTStatistics+Compatible.mm in Sources */,
+				14B4680128B4C4DA003D288B /* path.cpp in Sources */,
 				AA7AB9692873E5EA00BA6790 /* QASearchResultRootView.m in Sources */,
 				DB34EB34239BD4550052B65E /* LessonButton.m in Sources */,
 				18CDF6BD257F91BE006E8E5C /* Credits.m in Sources */,
@@ -6730,12 +8132,18 @@
 				1A1691FE2430ECFE0076EDC7 /* ClassTabBar.m in Sources */,
 				AA7ABA272873EA4100BA6790 /* CYRleaseSaveDraftAlertBtn.m in Sources */,
 				73AAA1CD26C918250084E44D /* DetailsMainViewController.m in Sources */,
+				14B4679D28B4C4D9003D288B /* constraint_table.cpp in Sources */,
+				14B467E728B4C4DA003D288B /* WCTTable+Convenient.mm in Sources */,
+				14B4682328B4C4E9003D288B /* sqliterk_crypto.c in Sources */,
 				187DF4BE260310DD000BCDE9 /* FTEmptyView.m in Sources */,
 				14B73F81281BED7B00D08ADD /* MessagePresentController.m in Sources */,
 				AA4FA1FA25C2E2E5005139BA /* PraiseTableViewCell.m in Sources */,
+				14B467E828B4C4DA003D288B /* NSNumber+WCTColumnCoding.mm in Sources */,
 				AA4FF36525879CD500C31286 /* MineSettingViewController.m in Sources */,
+				14B467DC28B4C4DA003D288B /* WCTConstraintBinding.mm in Sources */,
 				14B73F76281BED7B00D08ADD /* SystemMessageCell.m in Sources */,
 				AA0DDB53286C8B1900802324 /* MineMSSEnterBtn.m in Sources */,
+				14B467DD28B4C4DA003D288B /* WCTIndexBInding.mm in Sources */,
 				14B73F7B281BED7B00D08ADD /* MineMessageMoreVC.m in Sources */,
 				1A344BBA23E96BF50014A3B4 /* MineAboutContentView.m in Sources */,
 				AA7AB9602873E5EA00BA6790 /* SZHHotSearchButton.m in Sources */,
@@ -6746,14 +8154,19 @@
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
 				AA7ABAAD2873EA5500BA6790 /* FunctionBtn.m in Sources */,
 				AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */,
+				14B4681F28B4C4E9003D288B /* sqliterk_values.c in Sources */,
 				4931630D26CD7B6800140412 /* StampCenterCollectionHeaderView.m in Sources */,
+				14B468E228B4C4F1003D288B /* bitvec.c in Sources */,
 				18CDF675257F91BD006E8E5C /* PointAndDottedLineView.m in Sources */,
+				14B467CD28B4C4DA003D288B /* WCTTable+ChainCall.mm in Sources */,
 				AA0DDB69286C8B1A00802324 /* FansAndFollowingSegmentView.m in Sources */,
 				D0101D592433C885004337ED /* SDMaskController.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
+				14B4679728B4C4D9003D288B /* statement.cpp in Sources */,
 				18CDF6D1257F91BE006E8E5C /* MGDSliderBar.m in Sources */,
 				AA7ABABF2873EA5500BA6790 /* NewQANoDataView.m in Sources */,
 				18CDF670257F91BD006E8E5C /* VolunteerView.m in Sources */,
+				14B468D228B4C4F1003D288B /* treeview.c in Sources */,
 				14B73F8B2823577600D08ADD /* SSRButton.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				FE2C136027AEF629001CF7AF /* DiscoverTodoSelectTimeView.m in Sources */,
@@ -6768,18 +8181,27 @@
 				18CDF674257F91BD006E8E5C /* TestCardTableViewCell.m in Sources */,
 				735BC55026D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.m in Sources */,
 				AA7ABAFE2873EA6D00BA6790 /* DynamicDetailTopBarView.m in Sources */,
+				14B468B928B4C4F1003D288B /* fts3_porter.c in Sources */,
 				AA7ABA9F2873EA5400BA6790 /* HotSearchModel.m in Sources */,
+				14B468BC28B4C4F1003D288B /* fts3_unicode2.c in Sources */,
 				FE2C136527AEF629001CF7AF /* TodoDateTool.m in Sources */,
+				14B468DA28B4C4F1003D288B /* ctime.c in Sources */,
 				AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */,
 				AA7AB9632873E5EA00BA6790 /* CYSearchEndKnowledgeDetailModel.m in Sources */,
 				18CDF68D257F91BD006E8E5C /* CQUPTMapPresenter.m in Sources */,
+				14B467F728B4C4DA003D288B /* config.cpp in Sources */,
+				14B467CC28B4C4DA003D288B /* WCTInterface+ChainCall.mm in Sources */,
 				646B1975282CDF840015DF28 /* StationsCollectionViewCell.m in Sources */,
+				14B467C428B4C4DA003D288B /* WCTStatistics.mm in Sources */,
 				AA0DDB6D286C8B1A00802324 /* EditMyInfoViewController.m in Sources */,
 				18CDF66B257F91BD006E8E5C /* DiscoverADs.m in Sources */,
 				D0101F66243587A1004337ED /* GKWebImageManager.m in Sources */,
 				18CDF714257F91BE006E8E5C /* QueryHeader.m in Sources */,
+				14B4691428B4C4F1003D288B /* notify.c in Sources */,
 				14B73F70281BED7B00D08ADD /* ActiveMessageModel.m in Sources */,
 				18CDF717257F91BE006E8E5C /* ActivityItem.m in Sources */,
+				14B467C128B4C4DA003D288B /* WCTDatabase+Statistics.mm in Sources */,
+				14B467D628B4C4DA003D288B /* WCTSelect.mm in Sources */,
 				AAE3304725E2A0D800324750 /* ArticleViewController.m in Sources */,
 				D0101D6A24352092004337ED /* UITextView+Placeholder.m in Sources */,
 				AA7ABAF82873EA6D00BA6790 /* DKSKeyboardView.m in Sources */,
@@ -6787,26 +8209,38 @@
 				18CDF6AC257F91BD006E8E5C /* SCTool.m in Sources */,
 				14B73F80281BED7B00D08ADD /* MessagePresentView.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
+				14B467A028B4C4D9003D288B /* statement_vacuum.cpp in Sources */,
 				AA7ABAAB2873EA5500BA6790 /* MGDClickParams.m in Sources */,
 				DB4064FE2466D889006CE5BC /* DLNextButton.m in Sources */,
+				14B468CD28B4C4F1003D288B /* btree.c in Sources */,
 				735BC54726D3BF3000F22678 /* FeedBackDetailsModel.m in Sources */,
 				D0101D5A2433C885004337ED /* SDMaskNotificationName.m in Sources */,
+				14B467F528B4C4DA003D288B /* database.cpp in Sources */,
 				18CDF690257F91BD006E8E5C /* CQUPTMapDataItem.m in Sources */,
+				14B468ED28B4C4F1003D288B /* wal.c in Sources */,
 				B0F08FDD28A2497F00986EB6 /* SportAttendanceModel.m in Sources */,
 				AA3F82DA24E8E03C00B65042 /* ClassDetailView.m in Sources */,
 				AA5368F02589E28800236CB5 /* QuitTipView.m in Sources */,
 				7311328A26CCEC2400EF88C1 /* TopView.m in Sources */,
+				14B467F928B4C4DA003D288B /* statement_recyclable.cpp in Sources */,
 				646B1984282E8F000015DF28 /* StationGuideView.m in Sources */,
 				AA7AB96C2873E5EA00BA6790 /* QASearchResultTopView.m in Sources */,
+				14B468D628B4C4F1003D288B /* crypto_libtomcrypt.c in Sources */,
 				18CDF718257F91BE006E8E5C /* VolunteeringEventItem.m in Sources */,
 				B0F08FE128A2497F00986EB6 /* SportAttendanceTableViewCell.m in Sources */,
 				14B73F7C281BED7B00D08ADD /* MineMessageModel.m in Sources */,
 				AA7ABAF42873EA6D00BA6790 /* DynamicDetailAddPhotoController.m in Sources */,
 				AA0DDB7E286C8B1A00802324 /* PMPHomePageHeaderView.m in Sources */,
+				14B467D028B4C4DA003D288B /* WCTDelete.mm in Sources */,
+				14B4679628B4C4D9003D288B /* statement_create_virtual_table.cpp in Sources */,
+				14B468DF28B4C4F1003D288B /* where.c in Sources */,
+				14B467FC28B4C4DA003D288B /* error.cpp in Sources */,
 				AA0DDB5E286C8B1A00802324 /* AuthenticViewController.m in Sources */,
 				AA0DDB58286C8B1A00802324 /* UIScrollView+JHContentExtension.m in Sources */,
 				AA7ABAFB2873EA6D00BA6790 /* zhPopupController.m in Sources */,
+				14B467A328B4C4D9003D288B /* handle.cpp in Sources */,
 				AA0DDB82286C8B1A00802324 /* IDCardTableViewCell.m in Sources */,
+				14B4678F28B4C4D9003D288B /* foreign_key.cpp in Sources */,
 				AA7AB9662873E5EA00BA6790 /* QASearchResultVC.m in Sources */,
 				14FBBD58280591E200D5B05D /* NewDownloadCell.m in Sources */,
 				DB4064F82466D889006CE5BC /* DLWeekButton.m in Sources */,
@@ -6820,9 +8254,15 @@
 				AA4FA1DF25C2DE5F005139BA /* LearnMoreViewController.m in Sources */,
 				AA7AB9652873E5EA00BA6790 /* CYSearchEndKnowledgeDetailView.m in Sources */,
 				1893DC8926EA32A3007E871E /* MGDGCD.m in Sources */,
+				14B467C828B4C4DA003D288B /* WCTDatabase.mm in Sources */,
+				14B468EE28B4C4F1003D288B /* select.c in Sources */,
+				14B4690F28B4C4F1003D288B /* fault.c in Sources */,
 				AA0DDB6C286C8B1A00802324 /* EditMyInfoModel.m in Sources */,
+				14B467EC28B4C4DA003D288B /* WCTMaster.mm in Sources */,
+				14B4691328B4C4F1003D288B /* crypto.c in Sources */,
 				AA7ABAF72873EA6D00BA6790 /* UIView+FrameTool.m in Sources */,
 				18CDF682257F91BD006E8E5C /* EmptyClassItem.m in Sources */,
+				14B467C928B4C4DA003D288B /* WCTTokenizer+WCDB.mm in Sources */,
 				18CDF688257F91BD006E8E5C /* EmptyClassContentView.m in Sources */,
 				FE2C135527AEF629001CF7AF /* ToDoDetailTitleView.m in Sources */,
 				14B73F79281BED7B00D08ADD /* MessageMoreModel.m in Sources */,
@@ -6832,6 +8272,8 @@
 				18CDF4BA257F8DBD006E8E5C /* ChangePwdViewController.m in Sources */,
 				AA7ABAFD2873EA6D00BA6790 /* NoComentView.m in Sources */,
 				DB4064F92466D889006CE5BC /* DLTimeSelectView.m in Sources */,
+				14B467E128B4C4DA003D288B /* WCTSelectBase+WCTExpr.mm in Sources */,
+				14B4678D28B4C4D9003D288B /* statement_create_index.cpp in Sources */,
 				AAE3309925E4E5CD00324750 /* DeleteArticleTipView.m in Sources */,
 				AA7ABA9C2873EA5400BA6790 /* NewCountModel.m in Sources */,
 				AA7ABAB72873EA5500BA6790 /* ReportView.m in Sources */,
@@ -6852,30 +8294,46 @@
 				7FBF3A13257CBCCC0077494E /* YYZpopView.m in Sources */,
 				1A1691F82430DEE70076EDC7 /* ClassScheduleTabBarView.m in Sources */,
 				18CDF6A5257F91BD006E8E5C /* CQUPTMapDetailView.m in Sources */,
+				14B467EE28B4C4DA003D288B /* NSData+WCTColumnCoding.mm in Sources */,
+				14B468F828B4C4F1003D288B /* pcache1.c in Sources */,
 				1A141321235F521C0001417E /* BaseViewController.m in Sources */,
+				14B467D928B4C4DA003D288B /* WCTInterface+Table.mm in Sources */,
 				7F101AC2260613E800F2034C /* YYZTopicGroupVC.m in Sources */,
 				1451EA53282A09B800A5BB55 /* UserPublishModel.m in Sources */,
+				14B468C128B4C4F1003D288B /* fts3_tokenizer1.c in Sources */,
 				D0101F6A243587A1004337ED /* GKPanGestureRecognizer.m in Sources */,
+				14B467AD28B4C4D9003D288B /* describable.cpp in Sources */,
 				18CDF4B7257F8DBD006E8E5C /* SetQuestionViewController.m in Sources */,
+				14B467D128B4C4DA003D288B /* WCTUpdate.mm in Sources */,
 				FE2C135127AEF629001CF7AF /* ToDoEmptyCell.m in Sources */,
 				4931630B26CD7B6800140412 /* GoodsCollectionViewCell.m in Sources */,
 				DB4065032466D889006CE5BC /* DLReminderView.m in Sources */,
+				14B468D528B4C4F1003D288B /* pragma.c in Sources */,
 				DB4064F72466D889006CE5BC /* DLReminderSetDetailVC.m in Sources */,
 				18CDF6BF257F91BE006E8E5C /* GPA.m in Sources */,
 				AA9ABE9024EB63BF00D16BE0 /* ClassDetailViewShower.m in Sources */,
+				14B468DD28B4C4F1003D288B /* vdbeblob.c in Sources */,
 				18CDF694257F91BD006E8E5C /* CQUPTMapSearchItem.m in Sources */,
 				AAC7CA3B25F89C9D00E6B5D5 /* MainPageModel.m in Sources */,
 				4931630E26CD7B6800140412 /* StampCenterSecondHeaderView.m in Sources */,
 				18CDF71F257F91BE006E8E5C /* VolunteerInfoView.m in Sources */,
 				18CDF722257F91BE006E8E5C /* FinderToolViewItem.m in Sources */,
 				FE2C136827AEF629001CF7AF /* TodoSyncMsg.m in Sources */,
+				14B4678C28B4C4D9003D288B /* clause_join.cpp in Sources */,
+				14B467D728B4C4DA003D288B /* WCTDatabase+Table.mm in Sources */,
+				14B4691928B4C4F1003D288B /* pcache.c in Sources */,
+				14B467FF28B4C4DA003D288B /* file.cpp in Sources */,
 				FE0D60462801702B00319A9E /* SchoolBusBottomView.m in Sources */,
 				18CDF71B257F91BE006E8E5C /* VolunteerLoginView.m in Sources */,
+				14B4690E28B4C4F1003D288B /* trigger.c in Sources */,
 				AA7ABABC2873EA5500BA6790 /* ShareBtn.m in Sources */,
 				DB4064FC2466D889006CE5BC /* DLReminderModel.m in Sources */,
 				AA7ABAB42873EA5500BA6790 /* GroupBtn.m in Sources */,
+				14B467DB28B4C4DA003D288B /* WCTRuntimeBaseAccessor.mm in Sources */,
 				AA7ABAF32873EA6D00BA6790 /* DynamicDetailMainVC.m in Sources */,
 				AAC7CA0B25F7725200E6B5D5 /* MainPage2RequestModel.m in Sources */,
+				14B467ED28B4C4DA003D288B /* NSString+WCTColumnCoding.mm in Sources */,
+				14B4690928B4C4F1003D288B /* analyze.c in Sources */,
 				DB34EB30239BD4550052B65E /* LessonMatter.m in Sources */,
 				18CDF67D257F91BD006E8E5C /* PeopleListCellTableViewCell.m in Sources */,
 				AA4CD60A25EF6747002D9394 /* IgnoreDataModel.m in Sources */,
@@ -6883,9 +8341,15 @@
 				18CDF71E257F91BE006E8E5C /* LogOutView.m in Sources */,
 				147E2CEB28240C3A00DCC312 /* HttpTool.m in Sources */,
 				AAE87797286B304F0091656B /* PrivacyTipView.swift in Sources */,
+				14B467BF28B4C4DA003D288B /* WCTValue.mm in Sources */,
+				14B467BA28B4C4DA003D288B /* WCTStatement+Compatible.mm in Sources */,
 				DB34EB25239BD4550052B65E /* DetailViewController.m in Sources */,
+				14B467E028B4C4DA003D288B /* WCTAnyProperty.mm in Sources */,
+				14B467F128B4C4DA003D288B /* tokenizer.cpp in Sources */,
 				18CDF4BE257F8DBD006E8E5C /* questionItem.m in Sources */,
+				14B468C928B4C4F1003D288B /* parse.c in Sources */,
 				AA0DDB63286C8B1A00802324 /* IDDataManager.m in Sources */,
+				14B467C028B4C4DA003D288B /* WCTStatement.mm in Sources */,
 				18CDF69C257F91BD006E8E5C /* CQUPTMapViewController.m in Sources */,
 				AA7ABA962873EA5400BA6790 /* NewQAMainVC.m in Sources */,
 				FE2C135627AEF629001CF7AF /* ToDoDetailRepeatView.m in Sources */,
@@ -6897,20 +8361,26 @@
 				1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */,
 				FE2C135F27AEF629001CF7AF /* DiscoverTodoSheetView.m in Sources */,
 				FE2C136727AEF629001CF7AF /* TodoSyncTool.m in Sources */,
+				14B468C628B4C4F1003D288B /* rtree.c in Sources */,
 				AAC7CA1725F778AF00E6B5D5 /* RemarkModel.m in Sources */,
+				14B467EB28B4C4DA003D288B /* WCTSequence.mm in Sources */,
 				AA7ABAFC2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.m in Sources */,
 				14981FF927FEAEB800AD2A29 /* JWZXDetailNewsTopView.m in Sources */,
+				14B467E428B4C4DA003D288B /* WCTProperty.mm in Sources */,
 				EE131C212471362E00B6ED97 /* URLController.m in Sources */,
 				AA0DDB6F286C8B1A00802324 /* MineEditTextField.m in Sources */,
 				14E7E4A827F5762500B67469 /* QuestionSelectView.m in Sources */,
 				18CDF689257F91BD006E8E5C /* WeDateViewController.m in Sources */,
+				14B468BE28B4C4F1003D288B /* fts3_icu.c in Sources */,
 				DB34EACE239BD4550052B65E /* DateModle.m in Sources */,
 				AA49098624F3B6B4007CB3BC /* ClassSchedulInterController.m in Sources */,
 				4931630926CD7B6800140412 /* TaskTableViewCellWithProgress.m in Sources */,
 				18CDF6B4257F91BD006E8E5C /* UICountingLabel.m in Sources */,
 				7F9A212726218E8800CA86B2 /* YYZTopicModel.m in Sources */,
+				14B468C728B4C4F1003D288B /* icu.c in Sources */,
 				18CDF712257F91BE006E8E5C /* TimeTableViewController.m in Sources */,
 				18CDF711257F91BE006E8E5C /* ActivityTableViewController.m in Sources */,
+				14B4690328B4C4F1003D288B /* btmutex.c in Sources */,
 				AA0DDB70286C8B1A00802324 /* EditMyInfoContentView.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
 				AA7ABAA62873EA5500BA6790 /* FuncView.m in Sources */,
@@ -6918,9 +8388,11 @@
 				18CDF665257F91BD006E8E5C /* PickerModel.m in Sources */,
 				73AAA1D626C918250084E44D /* DetailsBaseTableViewCell.m in Sources */,
 				AA7ABA292873EA4100BA6790 /* CircleLabelBtn.m in Sources */,
+				14B467A828B4C4D9003D288B /* statement_attach.cpp in Sources */,
 				73AAA1D526C918250084E44D /* PurchaseInfoOrderIDView.m in Sources */,
 				14FBBD4E2805489A00D5B05D /* SSRTextCycleCell.m in Sources */,
 				AA0DDB75286C8B1A00802324 /* JHPageController.m in Sources */,
+				14B467EF28B4C4DA003D288B /* database_config.cpp in Sources */,
 				AA7ABAAA2873EA5500BA6790 /* MGDClickCoreLayer.m in Sources */,
 				14CED37F288A594600BADA8B /* RisingRouterRequest.m in Sources */,
 				18CDF6AA257F91BD006E8E5C /* JWZXNewsCell.m in Sources */,
@@ -6932,22 +8404,29 @@
 				18CDF66C257F91BD006E8E5C /* DiscoverADModel.m in Sources */,
 				18CDF685257F91BD006E8E5C /* EmptyClassTableViewCell.m in Sources */,
 				18CDF663257F91BD006E8E5C /* ElectricFeeItem.m in Sources */,
+				14B4679228B4C4D9003D288B /* statement_explain.cpp in Sources */,
 				AA289B0F24EF9CFA00FDF70C /* NoteDataModel.m in Sources */,
+				14B4690828B4C4F1003D288B /* utf.c in Sources */,
 				18CDF4BD257F8DBD006E8E5C /* questionModel.m in Sources */,
 				AA0DDB7F286C8B1A00802324 /* PMPTextButton.m in Sources */,
 				AA7ABAB62873EA5500BA6790 /* NewQAPostDetailLabel.m in Sources */,
 				14CED37E288A594600BADA8B /* RisingRouterResponse.m in Sources */,
 				7311328926CCEC2400EF88C1 /* PopupView.m in Sources */,
 				AA0DDB7B286C8B1A00802324 /* PMPInfoModel.m in Sources */,
+				14B467F028B4C4DA003D288B /* database_sql.cpp in Sources */,
 				AA0DDB64286C8B1A00802324 /* SQLCodeCreater.m in Sources */,
 				1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */,
 				AA7ABAF12873EA6D00BA6790 /* DynamicDetailCommentTableCellModel.m in Sources */,
 				1A4A466C24C97E2A0033734E /* UserProtocolViewController.m in Sources */,
+				14B467CF28B4C4DA003D288B /* WCTMultiSelect.mm in Sources */,
+				14B467E328B4C4DA003D288B /* WCTResult.mm in Sources */,
 				1893DC9126EA3375007E871E /* MGDGroup.m in Sources */,
 				73AAA1CF26C918250084E44D /* DetailsGoodsTableView.m in Sources */,
 				4931631326CD7B6800140412 /* TableHeaderView.m in Sources */,
 				1451EA58282BAF0C00A5BB55 /* MessageDetailTitleView.m in Sources */,
 				DB34EB24239BD4550052B65E /* LessonController.m in Sources */,
+				14B468D028B4C4F1003D288B /* mem2.c in Sources */,
+				14B468CE28B4C4F1003D288B /* dbstat.c in Sources */,
 				AA7ABAA72873EA5500BA6790 /* NewQACellCollectionView.m in Sources */,
 				FE2C136227AEF629001CF7AF /* TodoConflictStateView.m in Sources */,
 				AA0DDB77286C8B1A00802324 /* JHMenuView.m in Sources */,
@@ -6959,8 +8438,10 @@
 				DB34EADB239BD4550052B65E /* LessonRemindNotification.m in Sources */,
 				AA0DDB7A286C8B1A00802324 /* IDModel.m in Sources */,
 				D0101D5E2433C885004337ED /* SDMaskModel.m in Sources */,
+				14B467F628B4C4DA003D288B /* database_transaction.cpp in Sources */,
 				1404746C27F446DF00307209 /* DiscoverADBannerView.m in Sources */,
 				AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */,
+				14B467D828B4C4DA003D288B /* WCTTransaction+Table.mm in Sources */,
 				18CDF6A3257F91BD006E8E5C /* CQUPTMapDetailTagsCollectionViewCell.m in Sources */,
 				AA0DDB71286C8B1A00802324 /* UserInformationIntorductionView.m in Sources */,
 				AA0DDB6E286C8B1A00802324 /* PMPDatePicker.m in Sources */,
@@ -6968,57 +8449,81 @@
 				18CDF68B257F91BD006E8E5C /* ChoosePeopleListView.m in Sources */,
 				AA7ABAC42873EA5500BA6790 /* NewQATool.m in Sources */,
 				AA57588C24EF5841002F6F6D /* NoticeWaySelectView.m in Sources */,
+				14B468E628B4C4F1003D288B /* os_unix.c in Sources */,
+				14B467DA28B4C4DA003D288B /* WCTRuntimeObjCAccessor.mm in Sources */,
 				AA7ABAC52873EA5500BA6790 /* MGDRefreshTool.m in Sources */,
 				646B199A28313CB20015DF28 /* StationScrollView.m in Sources */,
 				AA7ABA9A2873EA5400BA6790 /* DeletePostModel.m in Sources */,
+				14B4690628B4C4F1003D288B /* attach.c in Sources */,
 				18CDF6AB257F91BD006E8E5C /* SCLineChart.m in Sources */,
 				18CDF6B3257F91BD006E8E5C /* SCBarChart.m in Sources */,
 				18CDF66D257F91BD006E8E5C /* ElectricityView.m in Sources */,
 				646B198D282FFC460015DF28 /* BusMAPointAnnotation.m in Sources */,
 				AAC7CA2025F7797000E6B5D5 /* RemarkParseModel.m in Sources */,
+				14B468CA28B4C4F1003D288B /* fts5.c in Sources */,
 				18CDF707257F91BE006E8E5C /* AllYearsViewController.m in Sources */,
 				AA7ABAA92873EA5500BA6790 /* ShareView.m in Sources */,
 				493162DE26CD7B6300140412 /* StampTaskData.m in Sources */,
 				18CDF683257F91BD006E8E5C /* EmptyClassModel.m in Sources */,
 				7FBF39F4257B79F30077494E /* ByPasswordViewController.m in Sources */,
+				14B468F628B4C4F1003D288B /* pager.c in Sources */,
 				DB4065022466D889006CE5BC /* DLReminderView+Reset.m in Sources */,
 				14E7E4B227F57FC800B67469 /* FeedBackQuestionButton.m in Sources */,
+				14B468E828B4C4F1003D288B /* func.c in Sources */,
 				AA7ABAB02873EA5500BA6790 /* NewQAFollowTableView.m in Sources */,
 				18CDF681257F91BD006E8E5C /* EmptyClassPresenter.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
 				B042050428A4B1BB00903E86 /* RisingUIKitExtension.m in Sources */,
+				14B468F328B4C4F1003D288B /* vdbeaux.c in Sources */,
 				18CDF6AF257F91BD006E8E5C /* SCGenericChart.m in Sources */,
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
 				AA7ABA252873EA4100BA6790 /* SZHPhotoImageView.m in Sources */,
 				1A5A5EE52360100B00543BAE /* UserItem.m in Sources */,
 				AA7ABAF22873EA6D00BA6790 /* DynamicDetailViewModel.m in Sources */,
 				73AAA1D026C918250084E44D /* DetailsTaskTableViewCell.m in Sources */,
+				14B468E428B4C4F1003D288B /* mem5.c in Sources */,
 				18CDF6B5257F91BD006E8E5C /* SCBar.m in Sources */,
+				14B468FA28B4C4F1003D288B /* walker.c in Sources */,
 				AA7AB95A2873E5EA00BA6790 /* SZHSearchDataModel.m in Sources */,
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
+				14B468EB28B4C4F1003D288B /* vdbemem.c in Sources */,
+				14B4679F28B4C4D9003D288B /* statement_update.cpp in Sources */,
+				14B4690428B4C4F1003D288B /* malloc.c in Sources */,
+				14B467B728B4C4DA003D288B /* WCTTransaction+Compatible.mm in Sources */,
+				14B468CC28B4C4F1003D288B /* printf.c in Sources */,
+				14B4679B28B4C4D9003D288B /* column_type.cpp in Sources */,
 				18CDF4C0257F8DBD006E8E5C /* sendCodeModel.m in Sources */,
 				18CDF6BA257F91BD006E8E5C /* TermGrade.m in Sources */,
 				147842F227F080A7002359BA /* NSDate+Day.m in Sources */,
+				14B468FF28B4C4F1003D288B /* vdbesort.c in Sources */,
+				14B4691128B4C4F1003D288B /* global.c in Sources */,
+				14B468E028B4C4F1003D288B /* vdbetrace.c in Sources */,
 				18CDF708257F91BE006E8E5C /* QueryViewController.m in Sources */,
 				D0101F68243587A1004337ED /* UIImage+GKDecoder.m in Sources */,
 				FE2C136127AEF629001CF7AF /* DiscoverTodoSetRemindBasicView.m in Sources */,
+				14B4681B28B4C4E9003D288B /* sqliterk_util.c in Sources */,
 				AA0DDB57286C8B1A00802324 /* UIView+JHFrameExtension.m in Sources */,
 				DB34EB32239BD4550052B65E /* LessonNumLabel.m in Sources */,
 				1A1691FB2430ECA70076EDC7 /* ClassTabBarController.m in Sources */,
 				646B1978282CE0340015DF28 /* StationsGuideTableViewCell.m in Sources */,
 				AA7ABA9B2873EA5400BA6790 /* PostModel.m in Sources */,
 				18CDF6B1257F91BD006E8E5C /* SCPieChart.m in Sources */,
+				14B4678A28B4C4D9003D288B /* order_term.cpp in Sources */,
 				18CDF716257F91BE006E8E5C /* VolunteerUnbinding.m in Sources */,
 				18CDF6BC257F91BE006E8E5C /* TermGrades.m in Sources */,
 				1AFE535124F7571300F42A74 /* IntroductionController.m in Sources */,
 				735BC53C26D3B33E00F22678 /* FeedBackDetailsViewController.m in Sources */,
+				14B468C428B4C4F1003D288B /* fts3_unicode.c in Sources */,
 				AA7AB95E2873E5EA00BA6790 /* SZHSearchTableViewCell.m in Sources */,
+				14B467C628B4C4DA003D288B /* WCTInterface.mm in Sources */,
 				18CDF68A257F91BD006E8E5C /* PeopleListTableViewCell.m in Sources */,
 				DB4065012466D889006CE5BC /* DLTimeSelectedButton.m in Sources */,
+				14B467D228B4C4DA003D288B /* WCTChainCall.mm in Sources */,
 				18CDF668257F91BD006E8E5C /* JWZXNew.m in Sources */,
 				AA0DDB81286C8B1A00802324 /* PMPDynamicTableViewCell.m in Sources */,
 				4931630A26CD7B6800140412 /* TaskTableViewCell.m in Sources */,
 				18CDF699257F91BD006E8E5C /* CQUPTMapContentView.m in Sources */,
+				14B468B828B4C4F1003D288B /* sqlite3rbu.c in Sources */,
 				AA4FA1F425C2E1E3005139BA /* PraiseViewController.m in Sources */,
 				AA7ABAF92873EA6D00BA6790 /* UIColor+SYColor.m in Sources */,
 				AA7ABAB32873EA5500BA6790 /* NewQAHeadrView.m in Sources */,
@@ -7026,6 +8531,7 @@
 				B0F08FDE28A2497F00986EB6 /* SportAttendanceItem.m in Sources */,
 				14E7E4A927F5762500B67469 /* QuestionButton.m in Sources */,
 				18CDF6B2257F91BD006E8E5C /* SCColor.m in Sources */,
+				14B4690B28B4C4F1003D288B /* delete.c in Sources */,
 				18CDF6D3257F91BE006E8E5C /* HeaderGifRefresh.m in Sources */,
 				7F318CA2257F5ACD009FE4EA /* YYZGetIdVC.m in Sources */,
 				AA7ABAF52873EA6D00BA6790 /* SHPopMenu.m in Sources */,
@@ -7037,24 +8543,35 @@
 				18CDF664257F91BD006E8E5C /* ElectricFeeModel.m in Sources */,
 				DB4064FA2466D889006CE5BC /* DLTextFiled.m in Sources */,
 				AA0DDB5F286C8B1A00802324 /* IDMsgDisplayView.m in Sources */,
+				14B4678928B4C4D9003D288B /* column.cpp in Sources */,
+				14B4679128B4C4D9003D288B /* statement_savepoint.cpp in Sources */,
 				B0F08FDF28A2497F00986EB6 /* SportAttendanceItemModel.m in Sources */,
 				147842EA27F0758F002359BA /* UIView+Frame.m in Sources */,
 				18CDF67E257F91BD006E8E5C /* HistoryView.m in Sources */,
+				14B468F928B4C4F1003D288B /* mutex_noop.c in Sources */,
 				7F101AC3260613E800F2034C /* YYZTopicDetailVC.m in Sources */,
 				14D03A0F27FE725E00D6AE93 /* JWZXDetailNewsModel.m in Sources */,
 				14B73F77281BED7B00D08ADD /* SystemMessageView.m in Sources */,
 				AA7ABAC62873EA5500BA6790 /* NewQAHud.m in Sources */,
+				14B468E328B4C4F1003D288B /* whereexpr.c in Sources */,
 				FED345E2273D51DA004073C0 /* EmptyClassUnavailableViewController.m in Sources */,
 				18CDF6AD257F91BD006E8E5C /* SCCircleChart.m in Sources */,
 				DB34EB36239BD4550052B65E /* ChooseButton.m in Sources */,
+				14B468FE28B4C4F1003D288B /* prepare.c in Sources */,
+				14B467BD28B4C4DA003D288B /* WCTDatabase+Core.mm in Sources */,
 				647AC3102828012F009A2E35 /* SchoolBusMapSideBar.m in Sources */,
 				AAC7CA0125F5130900E6B5D5 /* PraiseParseModel.m in Sources */,
 				18CDF69F257F91BD006E8E5C /* CQUPTMapSearchView.m in Sources */,
 				4931630C26CD7B6800140412 /* GotoButton.m in Sources */,
 				AA7AB95C2873E5EA00BA6790 /* SearchBeginVC.m in Sources */,
+				14B468F128B4C4F1003D288B /* random.c in Sources */,
 				AA0DDB76286C8B1A00802324 /* JHMenuItem.m in Sources */,
+				14B4682128B4C4E9003D288B /* sqliterk_output.cpp in Sources */,
 				18CDF693257F91BD006E8E5C /* CQUPTMapHotPlaceItem.m in Sources */,
 				DB34EB21239BD4550052B65E /* DetailRemindViewController.m in Sources */,
+				14B4682428B4C4E9003D288B /* sqliterk_os.c in Sources */,
+				14B467B928B4C4DA003D288B /* WCTCompatible.mm in Sources */,
+				14B467A128B4C4D9003D288B /* pragma.cpp in Sources */,
 				DB34EB29239BD4550052B65E /* WeekChooseViewController.m in Sources */,
 				7FBF39F2257B79F30077494E /* FindPasswordView.swift in Sources */,
 				D0101F65243587A1004337ED /* GKPhoto.m in Sources */,
@@ -7064,15 +8581,20 @@
 				AA0DDB59286C8B1A00802324 /* PMPGestureScrollView.m in Sources */,
 				14B73F75281BED7B00D08ADD /* SystemMessage.m in Sources */,
 				18CDF692257F91BD006E8E5C /* CQUPTMapPlaceDetailItem.m in Sources */,
+				14B4690228B4C4F1003D288B /* legacy.c in Sources */,
 				AA0DDB5C286C8B1A00802324 /* PMPBasicTableViewCell.m in Sources */,
 				4999FA8326D44EA8005D0ADE /* HintView.m in Sources */,
 				18CDF6C1257F91BE006E8E5C /* ABScoreView.m in Sources */,
 				18CDF6D2257F91BE006E8E5C /* MGDSliderContentView.m in Sources */,
 				18CDF6D0257F91BE006E8E5C /* MGDSliderBarItem.m in Sources */,
+				14B4680028B4C4DA003D288B /* ticker.cpp in Sources */,
 				14FBBD552805907E00D5B05D /* JWZXNewDownloadVC.m in Sources */,
 				AA7ABAA22873EA5400BA6790 /* FollowGroupModel.m in Sources */,
+				14B467CB28B4C4DA003D288B /* WCTDatabase+FTS.mm in Sources */,
 				18CDF715257F91BE006E8E5C /* VolunteerActivity.m in Sources */,
 				AA7ABA9D2873EA5400BA6790 /* PostFocusModel.m in Sources */,
+				14B4691628B4C4F1003D288B /* threads.c in Sources */,
+				14B468BB28B4C4F1003D288B /* fts3.c in Sources */,
 				18CDF71A257F91BE006E8E5C /* ActivityView.m in Sources */,
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,
 				D0101D5F2433C885004337ED /* SDMaskBindingEvent.m in Sources */,
@@ -7081,44 +8603,72 @@
 				18CDF71C257F91BE006E8E5C /* YearChooseBar.m in Sources */,
 				18CDF6C2257F91BE006E8E5C /* UserInfoView.m in Sources */,
 				DB34EB37239BD4550052B65E /* LZWeekScrollView.m in Sources */,
+				14B467F328B4C4DA003D288B /* database_repair_kit.cpp in Sources */,
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
 				735BC54D26D3C05900F22678 /* FeedBackReplyTableViewCell.m in Sources */,
 				FE2C136327AEF629001CF7AF /* YearBtnsView.m in Sources */,
 				1A79956C252B5BC300603253 /* LoginModel.swift in Sources */,
 				18FE64F625FDA186008748AE /* UIControl+MGD.m in Sources */,
 				AA0DDB87286C8E8100802324 /* AFHTTPSessionManager+compatibility.m in Sources */,
+				14B468C328B4C4F1003D288B /* fts3_aux.c in Sources */,
 				73AAA1D226C918250084E44D /* SegmentView.m in Sources */,
 				B0F08FF928A24F9000986EB6 /* IdsBinding.m in Sources */,
 				7311328B26CCEC2400EF88C1 /* BottomView.m in Sources */,
+				14B4679C28B4C4D9003D288B /* expr.cpp in Sources */,
 				1ADFA1AA23841CB700E97365 /* EditMyInfoPercentDrivenController.m in Sources */,
+				14B467FA28B4C4DA003D288B /* handle_recyclable.cpp in Sources */,
 				AA4B0FB324D3E09B00221B5A /* TopBarScrollView.m in Sources */,
+				14B4691028B4C4F1003D288B /* vacuum.c in Sources */,
+				14B467C528B4C4DA003D288B /* WCTTransaction+Statistics.mm in Sources */,
+				14B467A428B4C4D9003D288B /* statement_reindex.cpp in Sources */,
+				14B467D328B4C4DA003D288B /* WCTRowSelect.mm in Sources */,
 				AA7AB95B2873E5EA00BA6790 /* SearchEndNoResultCV.m in Sources */,
 				18CDF696257F91BD006E8E5C /* FYHCycleLabel.m in Sources */,
+				14B467AE28B4C4D9003D288B /* statement_delete.cpp in Sources */,
 				AA0DDB61286C8B1A00802324 /* IDCardAnimationView.m in Sources */,
+				14B4690528B4C4F1003D288B /* status.c in Sources */,
+				14B467DE28B4C4DA003D288B /* WCTColumnBinding.mm in Sources */,
 				18CDF4C8257F8DBD006E8E5C /* ResetPwdView.m in Sources */,
 				AA7ABAB82873EA5500BA6790 /* SearchBtn.m in Sources */,
 				18CDF4C6257F8DBD006E8E5C /* setEmail.m in Sources */,
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
 				AA7ABAA42873EA5400BA6790 /* StarPostModel.m in Sources */,
+				14B468EF28B4C4F1003D288B /* update.c in Sources */,
 				FE0D60452801702B00319A9E /* SchoolBusVC.m in Sources */,
 				AA0DDB54286C8B1900802324 /* MineSignView.m in Sources */,
 				DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */,
 				14FBBD41280505CC00D5B05D /* SSRTextCycleView.m in Sources */,
 				18CDF66F257F91BD006E8E5C /* FinderView.m in Sources */,
 				AA7ABA982873EA5400BA6790 /* PostItem.m in Sources */,
+				14B468F028B4C4F1003D288B /* loadext.c in Sources */,
+				14B467DF28B4C4DA003D288B /* WCTBinding.mm in Sources */,
+				14B467F228B4C4DA003D288B /* database_file.cpp in Sources */,
+				14B4679E28B4C4D9003D288B /* statement_insert.cpp in Sources */,
+				14B468C528B4C4F1003D288B /* fts3_tokenize_vtab.c in Sources */,
 				DB34EB23239BD4550052B65E /* TimeChooseViewController.m in Sources */,
 				1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */,
+				14B467B128B4C4D9003D288B /* column_result.cpp in Sources */,
 				18CDF720257F91BE006E8E5C /* VolunteerLabel.m in Sources */,
+				14B468BD28B4C4F1003D288B /* fts3_tokenizer.c in Sources */,
 				14B73F7D281BED7B00D08ADD /* MineMessageTopView.m in Sources */,
 				AA9ABE9324EB8ADB00D16BE0 /* LessonViewForAWeek.m in Sources */,
+				14B4690728B4C4F1003D288B /* tokenize.c in Sources */,
 				FE2C135A27AEF629001CF7AF /* TodoTitleInputTextField.m in Sources */,
 				1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */,
+				14B4681D28B4C4E9003D288B /* sqliterk_pager.c in Sources */,
 				AA7ABABE2873EA5500BA6790 /* NewQAMainTableView.m in Sources */,
+				14B4679A28B4C4D9003D288B /* fts_module.cpp in Sources */,
 				FE2C135927AEF629001CF7AF /* ToDoDetailReminderTimeView.m in Sources */,
 				D0101F63243587A1004337ED /* GKScrollView.m in Sources */,
 				18CDF4C7257F8DBD006E8E5C /* sendCodeView.m in Sources */,
+				14B468DC28B4C4F1003D288B /* rowset.c in Sources */,
+				14B4691228B4C4F1003D288B /* mem3.c in Sources */,
+				14B468F528B4C4F1003D288B /* os_wcdb.c in Sources */,
+				14B4679328B4C4D9003D288B /* conflict.cpp in Sources */,
+				14B467C728B4C4DA003D288B /* WCTTable.mm in Sources */,
 				AA7ABA242873EA4100BA6790 /* SZHReleaseDynamic.m in Sources */,
 				49628E3226D52C6000805A08 /* FeedBackVC.m in Sources */,
+				14B468BA28B4C4F1003D288B /* fts3_hash.c in Sources */,
 				AA7AB95F2873E5EA00BA6790 /* SearchTopView.m in Sources */,
 				18CDF697257F91BD006E8E5C /* CQUPTVRMapController.m in Sources */,
 				FEBA676427E9BAC000C4D231 /* updatePopView.m in Sources */,
@@ -7127,14 +8677,17 @@
 				AA7ABA972873EA5400BA6790 /* NewQAMainVC+delegateMethod.m in Sources */,
 				1490FC8B28031BC200958892 /* FinderTopView.m in Sources */,
 				AA7ABAF02873EA6D00BA6790 /* DynamicDetailRequestDataModel.m in Sources */,
+				14B468BF28B4C4F1003D288B /* fts3_expr.c in Sources */,
 				DB34EB38239BD4550052B65E /* MainView.m in Sources */,
 				18CDF70F257F91BE006E8E5C /* BackgroundTableViewCell.m in Sources */,
 				1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */,
 				DB34EB3A239BD4550052B65E /* CoverView.m in Sources */,
+				14B467D428B4C4DA003D288B /* WCTInsert.mm in Sources */,
 				AA7ABAA32873EA5400BA6790 /* GroupModel.m in Sources */,
 				18CDF68F257F91BD006E8E5C /* CQUPTMapPlaceRect.m in Sources */,
 				AA4CD60425EF6311002D9394 /* IgnoreModel.m in Sources */,
 				18CDF70A257F91BE006E8E5C /* ActivityTableViewCell.m in Sources */,
+				14B467B528B4C4D9003D288B /* WCTDatabase+Database.mm in Sources */,
 				AA0DDB65286C8B1A00802324 /* FansAndFollowersModel.m in Sources */,
 				647AC30A2826CCB0009A2E35 /* StationData.m in Sources */,
 				DB34EB22239BD4550052B65E /* AddRemindViewController.m in Sources */,
@@ -7144,16 +8697,22 @@
 				AA0DDB7D286C8B1A00802324 /* PMPAvatarImgView.m in Sources */,
 				735BC52A26D387C200F22678 /* HistoricalFeedBackViewController.m in Sources */,
 				73AAA1D126C918250084E44D /* DetailsTasksTableView.m in Sources */,
+				14B4691828B4C4F1003D288B /* expr.c in Sources */,
+				14B468D128B4C4F1003D288B /* table.c in Sources */,
 				14CED37D288A594600BADA8B /* RisingRouter.m in Sources */,
 				AAC7CA1125F7753E00E6B5D5 /* PraiseModel.m in Sources */,
 				AA7ABAB22873EA5500BA6790 /* TopFollowView.m in Sources */,
 				14FBBD3B2805050300D5B05D /* DiscoverJWZXVC.m in Sources */,
 				AAE3304D25E2A1C600324750 /* RemarkViewController.m in Sources */,
+				14B467B228B4C4D9003D288B /* WCTTransaction.mm in Sources */,
+				14B467FD28B4C4DA003D288B /* spin.cpp in Sources */,
 				D0101D5C2433C885004337ED /* SDMaskGuidController.m in Sources */,
+				14B4679928B4C4D9003D288B /* fts_modules.cpp in Sources */,
 				DB34EB26239BD4550052B65E /* DetailPageController.m in Sources */,
 				6464F93426E4F6EE008562C5 /* BuyModel.m in Sources */,
 				AA5D39B824F74A9800AB2DF5 /* LocalNotiManager.m in Sources */,
 				14B73F78281BED7B00D08ADD /* SystemMessageVC.m in Sources */,
+				14B468FC28B4C4F1003D288B /* mem0.c in Sources */,
 				14981FFC27FEB41B00AD2A29 /* JWZXDetailView.m in Sources */,
 				AA7ABA232873EA4100BA6790 /* ReleaseDynamicModel.m in Sources */,
 				AA7ABAC02873EA5500BA6790 /* RecommentLabel.m in Sources */,
@@ -7162,51 +8721,69 @@
 				735BC53526D392D400F22678 /* FeedBackTableViewCell.m in Sources */,
 				D0101F64243587A1004337ED /* GKPhotoBrowser.m in Sources */,
 				18CDF666257F91BD006E8E5C /* JWZXNewsModel.m in Sources */,
+				14B468F728B4C4F1003D288B /* callback.c in Sources */,
+				14B468D828B4C4F1003D288B /* insert.c in Sources */,
+				14B467B028B4C4D9003D288B /* order.cpp in Sources */,
 				18CDF684257F91BD006E8E5C /* EmptyClassCollectionViewCell.m in Sources */,
 				18CDF662257F91BD006E8E5C /* DiscoverViewController.m in Sources */,
 				AA19FCB82663A266004E9F5D /* DeviceUtils.swift in Sources */,
 				AA3F82E024E992C000B65042 /* LessonView.m in Sources */,
+				14B468F428B4C4F1003D288B /* hash.c in Sources */,
 				735BC53826D399DB00F22678 /* FeedBackModel.m in Sources */,
 				491DAE5726E207C600693AAA /* CommonQuestionData.m in Sources */,
 				1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */,
+				14B468E928B4C4F1003D288B /* resolve.c in Sources */,
 				AAE3305325E2A41900324750 /* ArticleTableViewCell.m in Sources */,
+				14B467F428B4C4DA003D288B /* core_base.cpp in Sources */,
 				1A344BB723E96AD80014A3B4 /* MineAboutController.m in Sources */,
 				18CDF691257F91BD006E8E5C /* CQUPTMapStarPlaceItem.m in Sources */,
 				AA0DDB72286C8B1A00802324 /* PMPPickerView.m in Sources */,
+				14B467E928B4C4DA003D288B /* NSObject+WCTColumnCoding.mm in Sources */,
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
 				AA7ABA992873EA5400BA6790 /* GroupItem.m in Sources */,
 				AA0DDB60286C8B1A00802324 /* SegmentedPageView.m in Sources */,
 				FE2C136627AEF629001CF7AF /* TodoDataModel.m in Sources */,
 				AA7ABAFF2873EA6D00BA6790 /* DynamicSpecificCell.m in Sources */,
+				14B467B428B4C4D9003D288B /* WCTDatabase+RepairKit.mm in Sources */,
 				AA0DDB68286C8B1A00802324 /* FansTableViewCell.m in Sources */,
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,
 				AA0DDB62286C8B1A00802324 /* IDDisplayView.m in Sources */,
+				14B468FB28B4C4F1003D288B /* complete.c in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
 				18CDF678257F91BD006E8E5C /* ChooseStudentListViewController.m in Sources */,
 				4931631226CD7B6800140412 /* StampCenterMainScrollView.m in Sources */,
 				18CDF4BC257F8DBD006E8E5C /* selfSafeViewController.m in Sources */,
+				14B467EA28B4C4DA003D288B /* NSDate+WCTColumnCoding.mm in Sources */,
 				18CDF698257F91BD006E8E5C /* CQUPTMapHotPlaceButton.m in Sources */,
+				14B4682228B4C4E9003D288B /* sqliterk.c in Sources */,
 				AA7AB9642873E5EA00BA6790 /* SearchEndModel.m in Sources */,
 				187DF4BD260310DD000BCDE9 /* LYEmptyView.m in Sources */,
 				7FBF39F6257B79F30077494E /* ByWordViewController.m in Sources */,
 				FE2C135727AEF629001CF7AF /* ToDoDetailCurrencyView.m in Sources */,
 				D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */,
+				14B468DB28B4C4F1003D288B /* crypto_cc.c in Sources */,
 				AA0DDB56286C8B1900802324 /* MineTopBlurView.m in Sources */,
 				18CDF709257F91BE006E8E5C /* segmentTableViewCell.m in Sources */,
+				14B468D428B4C4F1003D288B /* util.c in Sources */,
 				AA7ABAAE2873EA5500BA6790 /* MGDCircleLayer.m in Sources */,
 				14B73F7E281BED7B00D08ADD /* MineMessageVC.m in Sources */,
 				B0F08FEC28A249E200986EB6 /* DataContentView.m in Sources */,
+				14B4690D28B4C4F1003D288B /* vdbe.c in Sources */,
 				14B73F74281BED7B00D08ADD /* SystemMsgModel.m in Sources */,
 				AA7ABAC22873EA5500BA6790 /* PostArchiveTool.m in Sources */,
 				AA7ABA282873EA4100BA6790 /* SZHCircleLabelView.m in Sources */,
+				14B467A728B4C4D9003D288B /* column_index.cpp in Sources */,
 				147842EE27F07A5A002359BA /* UIColor+Color.m in Sources */,
 				AA7ABAC12873EA5500BA6790 /* MGDStatusBarHeight.m in Sources */,
+				14B4678B28B4C4D9003D288B /* handle_statement.cpp in Sources */,
 				B0F08FE328A2497F00986EB6 /* SportAttendanceViewController.m in Sources */,
 				7FBF39F3257B79F30077494E /* LoginViewController.swift in Sources */,
 				735BC53226D38EA600F22678 /* HistoricalFeedBackTableView.m in Sources */,
 				AA536DDA258C3F7C00F69E73 /* TopBarBasicViewController.m in Sources */,
+				14B468EC28B4C4F1003D288B /* wherecode.c in Sources */,
 				73AAA1CC26C918250084E44D /* DetailsGoodsModel.m in Sources */,
 				AA4CD61025EF7E0F002D9394 /* NothingStateView.m in Sources */,
+				14B468D328B4C4F1003D288B /* auth.c in Sources */,
 				DB4065002466D889006CE5BC /* DLHistodyButton.m in Sources */,
 				AA0DDB51286C8B1900802324 /* MineViewController.m in Sources */,
 				18CDF4BF257F8DBD006E8E5C /* questionAndAnswerModel.m in Sources */,
@@ -7214,20 +8791,27 @@
 				FE2C135B27AEF629001CF7AF /* DiscoverTodoTableViewCell.m in Sources */,
 				AA86E38B2635B04A00756F05 /* ColorManager.m in Sources */,
 				738C15B126E0B35600E24F8C /* FeedBackDefaultView.m in Sources */,
+				14B468CB28B4C4F1003D288B /* opcodes.c in Sources */,
 				AA7ABA9E2873EA5400BA6790 /* ShieldModel.m in Sources */,
+				14B467B628B4C4DA003D288B /* WCTDatabase+File.mm in Sources */,
 				FE0D60472801702B00319A9E /* SchoolBusMapView.m in Sources */,
 				AA0DDB79286C8B1A00802324 /* PMPFansFollowsAndPraiseModel.m in Sources */,
 				D0101D5D2433C885004337ED /* SDMaskView.m in Sources */,
+				14B4690C28B4C4F1003D288B /* os.c in Sources */,
 				AA7AB96E2873E5EA00BA6790 /* SZHArchiveTool.m in Sources */,
 				B0F08FF828A24F9000986EB6 /* IDSController.m in Sources */,
 				18CDF69B257F91BD006E8E5C /* CQUPTMapMyStarButton.m in Sources */,
 				1A14136C235F524B0001417E /* UIViewController+BackButtonHandler.m in Sources */,
 				14B73F7A281BED7B00D08ADD /* MessageMoreCell.m in Sources */,
+				14B467C228B4C4DA003D288B /* WCTError.mm in Sources */,
 				18CDF69D257F91BD006E8E5C /* CQUPTMapSearchResultCell.m in Sources */,
 				AA7ABA2A2873EA4100BA6790 /* SZHReleasView.m in Sources */,
+				14B4691528B4C4F1003D288B /* backup.c in Sources */,
 				DB34EB2E239BD4550052B65E /* RemindTableViewCell.m in Sources */,
+				14B467B328B4C4D9003D288B /* WCTDatabase+Transaction.mm in Sources */,
 				7311328626CCEC2400EF88C1 /* Goods.m in Sources */,
 				AAE3308725E3AD5E00324750 /* MainPageNumBtn.m in Sources */,
+				14B467AB28B4C4D9003D288B /* statement_detach.cpp in Sources */,
 				AA7AB96A2873E5EA00BA6790 /* QASegementBarBtn.m in Sources */,
 				18CDF71D257F91BE006E8E5C /* GestureTableView.m in Sources */,
 				1A141368235F524B0001417E /* HttpClient.m in Sources */,
@@ -7241,20 +8825,31 @@
 				FE2C135427AEF629001CF7AF /* ToDoDetailRemarkView.m in Sources */,
 				49628E3C26D52E6C00805A08 /* TypeButton.m in Sources */,
 				18CDF6A4257F91BD006E8E5C /* CollectionViewSpaceLayout.m in Sources */,
+				14B468E128B4C4F1003D288B /* fkey.c in Sources */,
+				14B4690A28B4C4F1003D288B /* date.c in Sources */,
 				18CDF6BE257F91BE006E8E5C /* SingleGrade.m in Sources */,
+				14B4679528B4C4D9003D288B /* literal_value.cpp in Sources */,
 				14E7E4B327F57FC800B67469 /* FeedBackSelectView.m in Sources */,
+				14B467F828B4C4DA003D288B /* transaction.cpp in Sources */,
+				14B4679028B4C4D9003D288B /* statement_pragma.cpp in Sources */,
 				AA7ABAB12873EA5500BA6790 /* NewQAContentScrollView.m in Sources */,
 				18CDF4B8257F8DBD006E8E5C /* setEmailViewController.m in Sources */,
+				14B467A928B4C4D9003D288B /* statement_drop_table.cpp in Sources */,
 				AA0DDB52286C8B1900802324 /* MineUserInfoModel.m in Sources */,
+				14B468E728B4C4F1003D288B /* mutex.c in Sources */,
 				18CDF677257F91BD006E8E5C /* ScorePresentAnimation.m in Sources */,
 				AA7ABAA82873EA5500BA6790 /* NewQASelectorView.m in Sources */,
 				AA536DFC258C544800F69E73 /* IgnoreTableViewCell.m in Sources */,
 				AA0DDB6A286C8B1A00802324 /* PMPFansAndFollowingViewController.m in Sources */,
+				14B467FB28B4C4DA003D288B /* handle_pool.cpp in Sources */,
+				14B467AA28B4C4D9003D288B /* statement_create_table.cpp in Sources */,
 				18CDF4C5257F8DBD006E8E5C /* QuestionView.m in Sources */,
 				AAAA1D9024FE39F500DB9A81 /* NextLessonFinder.m in Sources */,
 				AA0DDB5D286C8B1A00802324 /* PMPBasicActionView.m in Sources */,
+				14B4681E28B4C4E9003D288B /* sqliterk_column.c in Sources */,
 				646B199728311B0E0015DF28 /* StationGuideBar.m in Sources */,
 				18CDF6B9257F91BD006E8E5C /* Credit.m in Sources */,
+				14B468D728B4C4F1003D288B /* memjournal.c in Sources */,
 				18CDF673257F91BD006E8E5C /* ExamArrangeDataItem.m in Sources */,
 				73AAA1D426C918250084E44D /* PurchaseInfoGoodsInfoView.m in Sources */,
 				AA7ABA2C2873EA4100BA6790 /* SZHReleaseTopBarView.m in Sources */,
@@ -7262,18 +8857,25 @@
 				AA0DDB67286C8B1A00802324 /* FollowersTableViewCell.m in Sources */,
 				FE2C134F27AEF629001CF7AF /* ToDoDetaileViewController.m in Sources */,
 				646B1990283001A60015DF28 /* StationMAPointAnnotation.m in Sources */,
+				14B468EA28B4C4F1003D288B /* vtab.c in Sources */,
 				187DF4C5260310FA000BCDE9 /* UITextView+WZB.m in Sources */,
+				14B467FE28B4C4DA003D288B /* rwlock.cpp in Sources */,
 				4931631E26CD7B7900140412 /* StampCenterVC.m in Sources */,
 				18CDF695257F91BD006E8E5C /* CQUPTMapPlaceItem.m in Sources */,
+				14B467E228B4C4DA003D288B /* WCTExpr.mm in Sources */,
 				AA7ABA2B2873EA4100BA6790 /* originPhotoView.m in Sources */,
 				18CDF69A257F91BD006E8E5C /* CQUPTMapProgressView.m in Sources */,
 				18CDF70C257F91BE006E8E5C /* TimeTableViewCell.m in Sources */,
 				18CDF679257F91BD006E8E5C /* ScheduleViewController.m in Sources */,
 				1404747227F459B500307209 /* DiscoverADItem.m in Sources */,
+				14B468FD28B4C4F1003D288B /* main.c in Sources */,
 				B0F0900128A2605E00986EB6 /* popUpViewController.m in Sources */,
 				49343A2326D4EAB2001A2892 /* CommonQuestionCell.m in Sources */,
 				14B73F71281BED7B00D08ADD /* ActiveMessage.m in Sources */,
+				14B468F228B4C4F1003D288B /* queue.c in Sources */,
+				14B467AF28B4C4D9003D288B /* statement_release.cpp in Sources */,
 				AA0DDB5B286C8B1A00802324 /* PMPBasicNavBarController.m in Sources */,
+				14B467D528B4C4DA003D288B /* WCTSelectBase.mm in Sources */,
 				73AAA1CB26C918250084E44D /* DetailsTaskModel.m in Sources */,
 				D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */,
 				18CDF4BB257F8DBD006E8E5C /* ResetPwdViewController.m in Sources */,
@@ -7281,16 +8883,22 @@
 				7311328826CCEC2400EF88C1 /* ContentScrollView.m in Sources */,
 				18CDF4C9257F8DBD006E8E5C /* safePopView.m in Sources */,
 				AA7ABABA2873EA5500BA6790 /* SelfFuncView.m in Sources */,
+				14B467A228B4C4D9003D288B /* statement_rollback.cpp in Sources */,
+				14B467CA28B4C4DA003D288B /* WCTTokenizer+Apple.mm in Sources */,
 				AA7ABAB92873EA5500BA6790 /* PostTableViewCellFrame.m in Sources */,
 				18CDF4B9257F8DBD006E8E5C /* sendCodeViewController.m in Sources */,
+				14B467C328B4C4DA003D288B /* WCTChainCall+Statistics.mm in Sources */,
 				FE2C134E27AEF629001CF7AF /* TODOMainViewController.m in Sources */,
 				735BC54426D3B64500F22678 /* FeedBackDetailsTableViewCell.m in Sources */,
+				14B468DE28B4C4F1003D288B /* mutex_wcdb.c in Sources */,
 				FE2C135E27AEF629001CF7AF /* DiscoverTodoSelectRepeatView.m in Sources */,
+				14B467A628B4C4D9003D288B /* statement_select.cpp in Sources */,
 				AA7ABABB2873EA5500BA6790 /* GroupFollowBtn.m in Sources */,
 				18CDF68E257F91BD006E8E5C /* CQUPTMapModel.m in Sources */,
 				7311328726CCEC2400EF88C1 /* Balance.m in Sources */,
 				18CDF4C3257F8DBD006E8E5C /* questionAndEmail.m in Sources */,
 				738C15CA26E2176700E24F8C /* ImgViewCollectionViewCell.m in Sources */,
+				14B467BB28B4C4DA003D288B /* WCTDatabase+Compatible.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
