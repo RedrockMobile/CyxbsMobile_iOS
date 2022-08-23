@@ -23,8 +23,16 @@ NS_ASSUME_NONNULL_BEGIN
 /// 0代表整周
 @property (nonatomic, readonly) NSUInteger nowWeek;
 
-/// 课程
-@property (nonatomic, readonly) NSArray <NSArray <ScheduleCourse *> *> *courseAry;
+/// 课程数组
+@property (nonatomic, readonly, nonnull) NSMutableArray <NSMutableArray <ScheduleCourse *> *> *courseAry;
+
+/// 新增一节课，同时在整周添加
+/// @param course 课程
+- (void)appendCourse:(ScheduleCourse *)course inWeeks:(NSArray <NSNumber *> *)weeks;
+
+/// 删除一节课，同时在整周删除
+/// @param course 课程
+- (void)removeCourse:(ScheduleCourse *)course;
 
 @end
 

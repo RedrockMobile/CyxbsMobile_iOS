@@ -18,6 +18,10 @@ ScheduleModelRequestType teacher = @"tea";
 
 @implementation ScheduleInteractorRequest
 
++ (NSString *)databasePath {
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"school_lesson_database"];
+}
+
 - (void)request:(NSDictionary
                  <ScheduleModelRequestType,NSArray
                  <NSString *> *> *)requestDictionary
@@ -67,12 +71,6 @@ ScheduleModelRequestType teacher = @"tea";
                         
                         // 2.转模型，并实现快速表
                         ScheduleCourse *lesson = [[ScheduleCourse alloc] initWithDictionary:ScheduleCourseDic];
-                        
-                        /// int a[25][7][12];
-                        /// for (int i = 0; i < lesson.period.lenth; i++) {
-                        ///     if object[@"stunum"] = usertool.stu
-                        ///     self.a[lesson.inSection][lesson.inWeek][lesson.period.location + i] = TODO
-                        /// }
                         
                         // WCDB存
                         // TODO: [self saveLesson:lesson];

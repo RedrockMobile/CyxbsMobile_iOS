@@ -13,29 +13,26 @@
 
 #import <Foundation/Foundation.h>
 
+#import <IGListDiffable.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
-/// 数据表名
-FOUNDATION_EXPORT NSString *SchoolLessonTableName;
+typedef NSString * ScheduleCourseType;
 
 #pragma mark - SchoolLesson
 
 @interface ScheduleCourse : NSObject <
-    NSCopying
+    NSCopying,
+    IGListDiffable
 >
-
-// !!!: Save
-
-/// 存储路径，都是一样的
-@property (nonatomic, readonly, class) NSString *databasePath;
 
 // !!!: Time
 
-/// 在第几周1-24
-@property (nonatomic) NSInteger inSection;
-
 /// 在星期几1-7
 @property (nonatomic) NSInteger inWeek;
+
+/// 所在周散列表
+@property (nonatomic, copy) NSSet <NSNumber *> *inSections;
 
 /// 存储period
 @property (nonatomic) NSInteger period_location;
@@ -65,8 +62,8 @@ FOUNDATION_EXPORT NSString *SchoolLessonTableName;
 /// 循环周期
 @property (nonatomic, copy) NSString *rawWeek;
 
-/// 选修类型：@“必须" 或 @“选须"
-@property (nonatomic, copy) NSString *type;
+/// 选修类型
+@property (nonatomic, copy) ScheduleCourseType type;
 
 /// 老师
 @property (nonatomic, copy) NSString *teacher;
@@ -81,5 +78,14 @@ FOUNDATION_EXPORT NSString *SchoolLessonTableName;
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
 
 @end
+
+/// 必修
+FOUNDATION_EXPORT ScheduleCourseType required;
+
+/// 选修
+FOUNDATION_EXPORT ScheduleCourseType elective;
+
+/// 事务
+FOUNDATION_EXPORT ScheduleCourseType transaction;
 
 NS_ASSUME_NONNULL_END

@@ -18,6 +18,9 @@ typedef NSString * ScheduleModelRequestType;
 
 #pragma mark - Method
 
+/// 存储路径，都是一样的
+@property (nonatomic, readonly, class) NSString *databasePath;
+
 /// 请求数据
 /// @param requestDictionary 一种字典，记录如下
 /// 1) 个人课表 @{student : @[@"2021215154"]}

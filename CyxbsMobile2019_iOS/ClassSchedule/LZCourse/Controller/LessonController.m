@@ -289,7 +289,7 @@
     NSDictionary *parameter = @{@"stuNum":stuNum,@"forceFetch":@"true"};
     
     [HttpTool.shareTool
-     request:ClassSchedule_POST_keBiao_API
+     request:RisingSchedule_POST_stuSchedule_API
      type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:parameter

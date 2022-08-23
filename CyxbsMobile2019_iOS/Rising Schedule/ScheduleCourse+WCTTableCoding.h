@@ -15,7 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ScheduleCourse (WCTTableCoding) <WCTTableCoding>
 
 WCDB_PROPERTY(inSection)
-WCDB_PROPERTY(inWeek)
 WCDB_PROPERTY(period_location)
 WCDB_PROPERTY(period_lenth)
 
