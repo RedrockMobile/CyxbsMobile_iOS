@@ -41,6 +41,7 @@ target 'CyxbsMobile2019_iOS' do
 	pod 'FluentDarkModeKit'
 
 	pod 'IGListKit'
+	pod ‘WCDB'
       
   # For Swift:
   
