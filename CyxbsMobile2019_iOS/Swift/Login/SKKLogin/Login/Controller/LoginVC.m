@@ -116,7 +116,7 @@
     // 1.设置弹窗主体
     // 1.1 设置尺寸
     CGRect viewFrame = self.tipView.frame;
-    viewFrame.size = CGSizeMake(SCREEN_WIDTH * 0.8, SCREEN_HEIGHT * 0.3);
+    viewFrame.size = CGSizeMake(275, 177);
     self.tipView.frame = viewFrame;
     self.tipView.center = CGPointMake(SCREEN_WIDTH * 0.5, SCREEN_HEIGHT * 0.5);
     // 2.设置标题
@@ -127,9 +127,8 @@
     // 正文位置
     [self.tipTextLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.tipView);
-        make.centerY.equalTo(self.tipView);
-        make.left.right.equalTo(self.tipView);
-        make.height.mas_equalTo(140);
+        make.top.equalTo(self.tipTitleLab.mas_bottom).offset(12);
+        make.size.mas_equalTo(CGSizeMake(215, 50));
     }];
 }
 
