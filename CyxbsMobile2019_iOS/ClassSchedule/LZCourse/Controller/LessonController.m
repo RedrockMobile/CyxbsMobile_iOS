@@ -354,7 +354,7 @@
     NSString *remindPath = [path stringByAppendingPathComponent:@"remind.plist"];
     
     [HttpTool.shareTool
-     request:ClassSchedule_POST_getRemind_API
+     request:RisingSchedule_POST_perTransaction_API
      type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:@{@"stuNum":stuNum,@"idNum":idNum}
@@ -417,15 +417,15 @@
         NSMutableDictionary *realParameters;
         NSString *path = [NSString string];
         if ([type isEqualToString:@"edit"]) {
-            path = ClassSchedule_POST_editRemind_API;
+            path = RisingSchedule_POST_editTransaction_API;
             realParameters = jsonParameters;
         }
         else if ([type isEqualToString:@"delete"]) {
-            path = ClassSchedule_POST_deleteRemind_API;
+            path = RisingSchedule_POST_deleteTransaction_API;
             realParameters = parameters;
         }
         else if ([type isEqualToString:@"add"]) {
-            path = ClassSchedule_POST_addRemind_API;
+            path = RisingSchedule_POST_addTransaction_API;
             realParameters = jsonParameters;
         }
         

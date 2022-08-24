@@ -155,7 +155,9 @@ bodyConstructing:(void (^)(id<AFMultipartFormData> _Nonnull))block
     [self.sessionManager
      POST:URLString
      parameters:parameters
-     headers:nil
+     headers:@{
+        @"App-Version" : @"100000"
+    }
      constructingBodyWithBlock:block
      progress:uploadProgress
      success:success
@@ -166,7 +168,6 @@ bodyConstructing:(void (^)(id<AFMultipartFormData> _Nonnull))block
 
 - (AFJSONRequestSerializer *)defaultJSONRequest {
     if (_defaultJSONRequest == nil) {
-        _defaultJSONRequest = AFJSONRequestSerializer.serializer;
         _defaultJSONRequest = AFJSONRequestSerializer.serializer;
         _defaultJSONRequest.timeoutInterval = 15;
         _defaultJSONRequest.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[]];
@@ -181,7 +182,6 @@ bodyConstructing:(void (^)(id<AFMultipartFormData> _Nonnull))block
 - (AFHTTPRequestSerializer *)HTTPRequest {
     if (_HTTPRequest == nil) {
         _HTTPRequest = AFHTTPRequestSerializer.serializer;
-        _HTTPRequest = AFHTTPRequestSerializer.serializer;
         _HTTPRequest.timeoutInterval = 15;
         NSString *token = UserItem.defaultItem.token;
         if (token) {
@@ -193,7 +193,6 @@ bodyConstructing:(void (^)(id<AFMultipartFormData> _Nonnull))block
 
 - (AFPropertyListRequestSerializer *)propertyListRequest {
     if (_propertyListRequest == nil) {
-        _propertyListRequest = AFPropertyListRequestSerializer.serializer;
         _propertyListRequest = AFPropertyListRequestSerializer.serializer;
         _propertyListRequest.timeoutInterval = 15;
         NSString *token = UserItem.defaultItem.token;

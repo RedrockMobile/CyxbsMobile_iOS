@@ -18,22 +18,19 @@
 // 老师课表
 #define RisingSchedule_POST_teaSchedule_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-teakb/api/teaKb"]
 
-// 课表事务
-#define RisingSchedule_POST_perTransaction_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"/magipoke-reminder/Person/getTransaction"]
+// 请求事务
+#define RisingSchedule_POST_perTransaction_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-reminder/Person/getTransaction"]
+
+// 添加事务
+#define RisingSchedule_POST_addTransaction_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-reminder/Person/addTransaction"]
+
+// 更改事务
+#define RisingSchedule_POST_editTransaction_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-reminder/Person/editTransaction"]
+
+// 删除事务
+#define RisingSchedule_POST_deleteTransaction_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-reminder/Person/deleteTransaction"]
 
 
-
-//加备忘，POST
-#define ClassSchedule_POST_addRemind_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/addTransaction"
-
-//获得备忘，POST
-#define ClassSchedule_POST_getRemind_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/getTransaction"
-
-//编辑备忘，POST
-#define ClassSchedule_POST_editRemind_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/editTransaction"
-
-//删除备忘，POST
-#define ClassSchedule_POST_deleteRemind_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/deleteTransaction"
 
 /// 空教室接口
 #define ClassSchedule_POST_emptyClass_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/roomEmpty"]

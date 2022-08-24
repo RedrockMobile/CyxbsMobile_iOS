@@ -42,8 +42,8 @@ ScheduleModelRequestType teacher = @"teacher";
         success:(void (^)(void))success
         failure:(void (^)(NSError * _Nonnull))failure {
     
-    __block NSDictionary *APIDictionary;
-    __block NSDictionary *KeyDictionary;
+    static NSDictionary *APIDictionary;
+    static NSDictionary *KeyDictionary;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -69,7 +69,7 @@ ScheduleModelRequestType teacher = @"teacher";
              type:HttpToolRequestTypePost
              serializer:HttpToolRequestSerializerHTTP
              bodyParameters:@{
-                KeyDictionary[key] : num.copy
+                KeyDictionary[key] : num.copy,
             }
              progress:nil
              success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable object) {
@@ -104,6 +104,11 @@ ScheduleModelRequestType teacher = @"teacher";
             }];
         }
     }];
+}
+
+- (void)requestCustomSuccess:(void (^)(void))success
+                     failure:(void (^)(NSError * _Nonnull))failure {
+    return [self request:@{custom : @[@""]} success:success failure:failure];
 }
 
 @end

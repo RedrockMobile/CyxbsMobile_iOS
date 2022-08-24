@@ -6,12 +6,14 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-/**课表重构测试模型
- * 一节课对应的存储内容
- * 采用WCDB
+/**一类课ScheduleCourse模型
+ * 时刻注意你的inSections散列表
+ * 特别是在自定义课表的时候，
  */
 
 #import <Foundation/Foundation.h>
+
+//#import "ScheduleCourse+WCTTableCoding.h"
 
 #import <IGListDiffable.h>
 

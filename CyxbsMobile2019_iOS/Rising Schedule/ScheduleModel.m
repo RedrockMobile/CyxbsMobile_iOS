@@ -77,6 +77,9 @@
         _nowWeek = nowWeek;
         
         [NSUserDefaults.standardUserDefaults setInteger:_nowWeek forKey:RisingClassSchedule_nowWeek_Integer];
+        
+        NSTimeInterval beforNow = (_nowWeek - 1) * 7 * 24 * 60 * 60 + NSDate.today.weekday * 24 * 60 * 60;
+        _startDate = [NSDate dateWithTimeIntervalSinceNow:-beforNow];
     });
 }
 

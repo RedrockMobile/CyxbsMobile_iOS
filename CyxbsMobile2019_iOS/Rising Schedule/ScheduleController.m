@@ -24,7 +24,7 @@
     ScheduleInteractorRequest *request = [ScheduleInteractorRequest requestBindingModel:m];
     [request
      request:@{
-        student : @[@"2021215154"]
+        
     }
      success:^{
         

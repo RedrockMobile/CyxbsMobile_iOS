@@ -33,6 +33,8 @@ WCDB_PROPERTY(sno)
 WCDB_PROPERTY(teacher)
 WCDB_PROPERTY(lesson)
 
+
+
 @end
 
 NS_ASSUME_NONNULL_END
