@@ -10,7 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class SchedulePresenter;
+
 @interface ScheduleController : UIViewController
+
+/// 掉用者
+@property (nonatomic, weak) SchedulePresenter *presenter;
 
 @end
 

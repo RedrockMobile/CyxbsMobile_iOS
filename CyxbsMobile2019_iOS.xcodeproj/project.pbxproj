@@ -13,6 +13,7 @@
 		1451EA53282A09B800A5BB55 /* UserPublishModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451EA52282A09B800A5BB55 /* UserPublishModel.m */; };
 		1451EA58282BAF0C00A5BB55 /* MessageDetailTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451EA57282BAF0C00A5BB55 /* MessageDetailTitleView.m */; };
 		145AF3E5281BDA0000AABC53 /* NSString+UILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 145AF3E3281BDA0000AABC53 /* NSString+UILabel.m */; };
+		146AA0C528B65FA800391FD0 /* SchedulePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 146AA0C428B65FA800391FD0 /* SchedulePresenter.m */; };
 		147842EA27F0758F002359BA /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842E927F0758F002359BA /* UIView+Frame.m */; };
 		147842EE27F07A5A002359BA /* UIColor+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842ED27F07A59002359BA /* UIColor+Color.m */; };
 		147842F227F080A7002359BA /* NSDate+Day.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842F127F080A7002359BA /* NSDate+Day.m */; };
@@ -700,6 +701,8 @@
 		1451EA57282BAF0C00A5BB55 /* MessageDetailTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageDetailTitleView.m; sourceTree = "<group>"; };
 		145AF3E3281BDA0000AABC53 /* NSString+UILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UILabel.m"; sourceTree = "<group>"; };
 		145AF3E4281BDA0000AABC53 /* NSString+UILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UILabel.h"; sourceTree = "<group>"; };
+		146AA0C328B65FA800391FD0 /* SchedulePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchedulePresenter.h; sourceTree = "<group>"; };
+		146AA0C428B65FA800391FD0 /* SchedulePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchedulePresenter.m; sourceTree = "<group>"; };
 		147842E827F0758F002359BA /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		147842E927F0758F002359BA /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		147842EC27F07A59002359BA /* UIColor+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Color.h"; sourceTree = "<group>"; };
@@ -2508,6 +2511,8 @@
 		14B4691D28B4C9D9003D288B /* Rising Schedule */ = {
 			isa = PBXGroup;
 			children = (
+				146AA0C328B65FA800391FD0 /* SchedulePresenter.h */,
+				146AA0C428B65FA800391FD0 /* SchedulePresenter.m */,
 				14F8763828B5B5FA0067642F /* ScheduleController.h */,
 				14F8763928B5B5FA0067642F /* ScheduleController.m */,
 				14B46E6828B4E504003D288B /* ScheduleInteractorRequest.h */,
@@ -7023,6 +7028,7 @@
 				18CDF6B3257F91BD006E8E5C /* SCBarChart.m in Sources */,
 				18CDF66D257F91BD006E8E5C /* ElectricityView.m in Sources */,
 				646B198D282FFC460015DF28 /* BusMAPointAnnotation.m in Sources */,
+				146AA0C528B65FA800391FD0 /* SchedulePresenter.m in Sources */,
 				AAC7CA2025F7797000E6B5D5 /* RemarkParseModel.m in Sources */,
 				18CDF707257F91BE006E8E5C /* AllYearsViewController.m in Sources */,
 				AA7ABAA92873EA5500BA6790 /* ShareView.m in Sources */,
