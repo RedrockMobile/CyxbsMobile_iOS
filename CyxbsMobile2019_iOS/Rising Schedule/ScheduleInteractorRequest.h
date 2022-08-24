@@ -6,6 +6,12 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
+/**课表Request业务
+ * 创建该业务并绑定所需业务模型
+ * 利用该业务进行网络CRUD行为
+ * 禁止在绑定后指定其他绑定对象
+ */
+
 #import <Foundation/Foundation.h>
 
 #import "ScheduleModel.h"
@@ -14,12 +20,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef NSString * ScheduleModelRequestType;
 
+#pragma mark - ScheduleInteractorRequest
+
 @interface ScheduleInteractorRequest : NSObject
 
-#pragma mark - Method
+/// 绑定模型
+@property (nonatomic, readonly) ScheduleModel *bindModel;
 
-/// 存储路径，都是一样的
-@property (nonatomic, readonly, class) NSString *databasePath;
+- (instancetype)init NS_UNAVAILABLE;
+
++ (instancetype)new NS_UNAVAILABLE;
+
+/// 根据绑定模型创建该业务
+/// @param model 被绑定的模型
++ (instancetype)requestBindingModel:(ScheduleModel *)model;
+
+#pragma mark - Method
 
 /// 请求数据
 /// @param requestDictionary 一种字典，记录如下
@@ -32,7 +48,7 @@ typedef NSString * ScheduleModelRequestType;
 - (void)request:(NSDictionary
                  <ScheduleModelRequestType, NSArray
                  <NSString *> *> *)requestDictionary
-        success:(void (^)(NSProgress *progress))success
+        success:(void (^)(void))success
         failure:(void (^)(NSError *error))failure;
 
 @end

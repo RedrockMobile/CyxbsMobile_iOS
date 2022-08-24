@@ -10,97 +10,91 @@
 
 #pragma mark - ClassScheduleRequestType
 
-ScheduleModelRequestType student = @"stu_num";
+ScheduleModelRequestType student = @"student";
 
 ScheduleModelRequestType custom = @"custom";
 
-ScheduleModelRequestType teacher = @"tea";
+ScheduleModelRequestType teacher = @"teacher";
+
+#pragma mark - ScheduleInteractorRequest
 
 @implementation ScheduleInteractorRequest
 
-+ (NSString *)databasePath {
-    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"school_lesson_database"];
+#pragma mark - Init
+
++ (instancetype)requestBindingModel:(ScheduleModel *)model {
+    if (!model) {
+        NSParameterAssert(model);
+        model = [[ScheduleModel alloc] init];
+    }
+    
+    ScheduleInteractorRequest *request = [[self alloc] init];
+    request->_bindModel = model;
+    
+    return request;
 }
+
+#pragma mark - Method
 
 - (void)request:(NSDictionary
                  <ScheduleModelRequestType,NSArray
                  <NSString *> *> *)requestDictionary
-        success:(void (^)(NSProgress *progress))success
+        success:(void (^)(void))success
         failure:(void (^)(NSError * _Nonnull))failure {
     
-    __block NSDictionary *apiDic = @{
-        student : RisingSchedule_POST_stuSchedule_API,
-        teacher : RisingSchedule_POST_teaSchedule_API,
-        custom : RisingSchedule_POST_perTransaction_API
-    };
+    __block NSDictionary *APIDictionary;
+    __block NSDictionary *KeyDictionary;
     
-    __block NSInteger count = 0;
-    __block NSInteger current = 0;
-    
-    [requestDictionary enumerateKeysAndObjectsUsingBlock:^(ScheduleModelRequestType  _Nonnull key, NSArray<NSString *> * _Nonnull obj, BOOL * _Nonnull stop) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        APIDictionary = @{
+            student : RisingSchedule_POST_stuSchedule_API,
+            teacher : RisingSchedule_POST_teaSchedule_API,
+            custom : RisingSchedule_POST_perTransaction_API
+        };
+        
+        KeyDictionary = @{
+            student : @"stu_num",
+            teacher : @"tea",
+            custom : @"stu_num"
+        };
+    });
+        
+    [requestDictionary enumerateKeysAndObjectsUsingBlock:^(ScheduleModelRequestType _Nonnull key, NSArray<NSString *> * _Nonnull obj, BOOL * __unused stop) {
         
         for (NSString *num in obj) {
-            count += 1;
             
             [HttpTool.shareTool
-             request:apiDic[key]
+             request:APIDictionary[key]
              type:HttpToolRequestTypePost
              serializer:HttpToolRequestSerializerHTTP
              bodyParameters:@{
-                key : num
+                KeyDictionary[key] : num.copy
             }
              progress:nil
-             success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-                current += 1;
-                
-//                [self onceSave:object];
+             success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable object) {
                 
                 NSArray *lessonAry = [object objectForKey:@"data"];
-                NSString *stuNum = object[@"stuNum"];
                 
-                for (NSDictionary *oneLessonDic in lessonAry) {
-                    for (NSNumber *weekOfLesson in oneLessonDic[@"week"]) {
-                        // 1.先copy一份，确保dic为一节课的所有信息
-                        NSMutableDictionary *ScheduleCourseDic = oneLessonDic.mutableCopy;
-                        
-                        ScheduleCourseDic[@"week"] = weekOfLesson;
-                        ScheduleCourseDic[@"sno"] = stuNum;
-                        if ([key isEqualToString:custom]) {
-                            ScheduleCourseDic[@"type"] = @"自定义";
-                        }
-                        
-                        // 2.转模型，并实现快速表
-                        ScheduleCourse *lesson = [[ScheduleCourse alloc] initWithDictionary:ScheduleCourseDic];
-                        
-                        // WCDB存
-                        // TODO: [self saveLesson:lesson];
-                        NSString *currentNum = (count == 1 ? stuNum : UserItemTool.defaultItem.stuNum);
-                        
-//                        [self.model[weekOfLesson.unsignedLongValue] addObject:lesson];
-                    }
-                    // 整周课表的存储
-                    NSMutableDictionary *ScheduleCourseDic = oneLessonDic.mutableCopy;
+                BOOL check = (!object || !lessonAry || lessonAry.count == 0);
+                if (check) {
+                    NSAssert(check, @"\n🔴%s data : %@", __func__, lessonAry);
+                }
+                
+                NSString *stuNum = object[@"stuNum"];
+                NSInteger nowWeek = [object[@"nowWeek"] longValue];
+                self.bindModel.nowWeek = nowWeek;
+                
+                for (NSDictionary *courceDictionary in lessonAry) {
                     
-                    ScheduleCourseDic[@"week"] = @0ull;
-                    ScheduleCourseDic[@"sno"] = stuNum;
-                    if ([key isEqualToString:custom]) {
-                        ScheduleCourseDic[@"type"] = @"自定义";
-                    }
+                    ScheduleCourse *course = [[ScheduleCourse alloc] initWithDictionary:courceDictionary];
+                    course.sno = stuNum.copy;
                     
-                    ScheduleCourse *lesson = [[ScheduleCourse alloc] initWithDictionary:ScheduleCourseDic];
-                    
-                    // WCDB存
-                    // TODO: [self saveLesson:lesson];
-                    NSString *currentNum = (count == 1 ? stuNum : UserItemTool.defaultItem.stuNum);
-                    
-//                    [self.model[0] addObject:lesson];
+                    [self.bindModel appendCourse:course];
                 }
                 
                 if (success) {
-                    NSProgress *progress = [[NSProgress alloc] init];
-                    progress.totalUnitCount = count;
-                    progress.completedUnitCount = current;
-                    success(progress);
+                    success();
                 }
             }
              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

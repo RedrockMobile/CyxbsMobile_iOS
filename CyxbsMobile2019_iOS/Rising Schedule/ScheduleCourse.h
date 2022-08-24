@@ -22,7 +22,6 @@ typedef NSString * ScheduleCourseType;
 #pragma mark - SchoolLesson
 
 @interface ScheduleCourse : NSObject <
-    NSCopying,
     IGListDiffable
 >
 

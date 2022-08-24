@@ -11,6 +11,6 @@
 
 #define RisingClassSchedule_classBegin_String @"RisingClassSchedule_classBegin"
 
-#define RisingClassSchedule_nowWeek_String @"RisingClassSchedule_nowWeek"
+#define RisingClassSchedule_nowWeek_Integer @"RisingClassSchedule_nowWeek"
 
 #endif /* RisingScheduleHeader_h */

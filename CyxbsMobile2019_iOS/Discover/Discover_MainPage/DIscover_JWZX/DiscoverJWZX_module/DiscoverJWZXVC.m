@@ -15,6 +15,8 @@
 
 #import "JWZXNewsModel.h"
 
+#import "ScheduleController.h"
+
 #pragma mark - DiscoverJWZXVC ()
 
 /// 暴露在外面的教务新闻VC
@@ -90,8 +92,11 @@
     if (!self.sectionNewsModel.newsAry || self.sectionNewsModel.newsAry.count == 1) {
         return;
     }
-    JWZXNewsViewController *vc = [[JWZXNewsViewController alloc] initWithRootJWZXSectionModel:self.sectionNewsModel];
-    vc.hidesBottomBarWhenPushed = YES;
+//    JWZXNewsViewController *vc = [[JWZXNewsViewController alloc] initWithRootJWZXSectionModel:self.sectionNewsModel];
+//    vc.hidesBottomBarWhenPushed = YES;
+    
+    UIViewController *vc = [[ScheduleController alloc] init];
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 

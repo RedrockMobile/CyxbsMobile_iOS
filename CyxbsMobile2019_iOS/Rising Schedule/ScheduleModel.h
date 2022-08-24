@@ -17,20 +17,21 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ScheduleModel : NSObject
 
 /// 开始的时间
-@property (nonatomic, readonly) NSDate *startDate;
+@property (nonatomic, readonly, nonnull) NSDate *startDate;
 
 /// 当周
 /// 0代表整周
-@property (nonatomic, readonly) NSUInteger nowWeek;
+/// setter里面为once
+@property (nonatomic) NSUInteger nowWeek;
 
 /// 课程数组
 @property (nonatomic, readonly, nonnull) NSMutableArray <NSMutableArray <ScheduleCourse *> *> *courseAry;
 
-/// 新增一节课，同时在整周添加
+/// 新增一类课，同时在整周添加
 /// @param course 课程
-- (void)appendCourse:(ScheduleCourse *)course inWeeks:(NSArray <NSNumber *> *)weeks;
+- (void)appendCourse:(ScheduleCourse *)course;
 
-/// 删除一节课，同时在整周删除
+/// 删除一类课，同时在整周删除
 /// @param course 课程
 - (void)removeCourse:(ScheduleCourse *)course;
 
