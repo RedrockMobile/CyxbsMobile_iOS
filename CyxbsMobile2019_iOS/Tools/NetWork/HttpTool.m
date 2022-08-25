@@ -167,13 +167,12 @@ bodyConstructing:(void (^)(id<AFMultipartFormData> _Nonnull))block
 - (AFJSONRequestSerializer *)defaultJSONRequest {
     if (_defaultJSONRequest == nil) {
         _defaultJSONRequest = AFJSONRequestSerializer.serializer;
-        _defaultJSONRequest = AFJSONRequestSerializer.serializer;
         _defaultJSONRequest.timeoutInterval = 15;
         _defaultJSONRequest.HTTPMethodsEncodingParametersInURI = [NSSet setWithArray:@[]];
-        NSString *token = UserItem.defaultItem.token;
-        if (token) {
-            [_defaultJSONRequest setValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"authorization"];
-        }
+    }
+    NSString *token = UserItem.defaultItem.token;
+    if (token) {
+        [_defaultJSONRequest setValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"authorization"];
     }
     return _defaultJSONRequest;
 }
@@ -181,12 +180,11 @@ bodyConstructing:(void (^)(id<AFMultipartFormData> _Nonnull))block
 - (AFHTTPRequestSerializer *)HTTPRequest {
     if (_HTTPRequest == nil) {
         _HTTPRequest = AFHTTPRequestSerializer.serializer;
-        _HTTPRequest = AFHTTPRequestSerializer.serializer;
         _HTTPRequest.timeoutInterval = 15;
-        NSString *token = UserItem.defaultItem.token;
-        if (token) {
-            [_HTTPRequest setValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"authorization"];
-        }
+    }
+    NSString *token = UserItem.defaultItem.token;
+    if (token) {
+        [_HTTPRequest setValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"authorization"];
     }
     return _HTTPRequest;
 }
@@ -194,12 +192,11 @@ bodyConstructing:(void (^)(id<AFMultipartFormData> _Nonnull))block
 - (AFPropertyListRequestSerializer *)propertyListRequest {
     if (_propertyListRequest == nil) {
         _propertyListRequest = AFPropertyListRequestSerializer.serializer;
-        _propertyListRequest = AFPropertyListRequestSerializer.serializer;
         _propertyListRequest.timeoutInterval = 15;
-        NSString *token = UserItem.defaultItem.token;
-        if (token) {
-            [_propertyListRequest setValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"authorization"];
-        }
+    }
+    NSString *token = UserItem.defaultItem.token;
+    if (token) {
+        [_propertyListRequest setValue:[NSString stringWithFormat:@"Bearer %@",token] forHTTPHeaderField:@"authorization"];
     }
     return _propertyListRequest;
 }

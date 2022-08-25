@@ -43,6 +43,10 @@
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"ids绑定请求失败");
+        NSLog(@"🔴%@:\n%@", self.class, error);
+        NSData *edata = error.userInfo[@"com.alamofire.serialization.response.error.data"];
+        NSString *errorstr =[[NSString alloc] initWithData:edata encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",errorstr);
         [[NSNotificationCenter defaultCenter]postNotificationName:@"IdsBinding_Error" object:nil];
         }];
 }
