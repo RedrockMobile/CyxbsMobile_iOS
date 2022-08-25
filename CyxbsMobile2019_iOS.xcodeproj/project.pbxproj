@@ -3763,7 +3763,7 @@
 			isa = PBXGroup;
 			children = (
 				B51C502F28A7A4FA0011465E /* OldLogin */,
-				B5C06B1528A2343C00AA609E /* SKKLogin */,
+				B5C06B1528A2343C00AA609E /* NewLogin */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -6036,7 +6036,7 @@
 			path = OldLogin;
 			sourceTree = "<group>";
 		};
-		B5C06B1528A2343C00AA609E /* SKKLogin */ = {
+		B5C06B1528A2343C00AA609E /* NewLogin */ = {
 			isa = PBXGroup;
 			children = (
 				B51C502728A626CE0011465E /* Base */,
@@ -6045,7 +6045,7 @@
 				B51C502528A6268C0011465E /* ModifyPassword */,
 				B51C502E28A7A4950011465E /* User */,
 			);
-			path = SKKLogin;
+			path = NewLogin;
 			sourceTree = "<group>";
 		};
 		D0101D3D2433C885004337ED /* SDMask */ = {
@@ -7606,7 +7606,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
@@ -7643,7 +7643,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.3.5;
+				MARKETING_VERSION = 6.3.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -7662,7 +7662,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
@@ -7699,7 +7699,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.3.5;
+				MARKETING_VERSION = 6.3.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
