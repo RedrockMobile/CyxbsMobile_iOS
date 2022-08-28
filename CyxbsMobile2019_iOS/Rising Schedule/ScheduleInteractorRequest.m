@@ -10,11 +10,11 @@
 
 #pragma mark - ClassScheduleRequestType
 
-ScheduleModelRequestType student = @"student";
+ScheduleModelRequestType ScheduleModelRequestStudent = @"student";
 
-ScheduleModelRequestType custom = @"custom";
+ScheduleModelRequestType ScheduleModelRequestCustom = @"custom";
 
-ScheduleModelRequestType teacher = @"teacher";
+ScheduleModelRequestType ScheduleModelRequestTeacher = @"teacher";
 
 #pragma mark - ScheduleInteractorRequest
 
@@ -48,15 +48,15 @@ ScheduleModelRequestType teacher = @"teacher";
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         APIDictionary = @{
-            student : RisingSchedule_POST_stuSchedule_API,
-            teacher : RisingSchedule_POST_teaSchedule_API,
-            custom : RisingSchedule_POST_perTransaction_API
+            ScheduleModelRequestStudent : RisingSchedule_POST_stuSchedule_API,
+            ScheduleModelRequestTeacher : RisingSchedule_POST_teaSchedule_API,
+            ScheduleModelRequestCustom : RisingSchedule_POST_perTransaction_API
         };
         
         KeyDictionary = @{
-            student : @"stu_num",
-            teacher : @"tea",
-            custom : @"stu_num"
+            ScheduleModelRequestStudent : @"stu_num",
+            ScheduleModelRequestTeacher : @"tea",
+            ScheduleModelRequestCustom : @"stu_num"
         };
     });
         
@@ -108,7 +108,26 @@ ScheduleModelRequestType teacher = @"teacher";
 
 - (void)requestCustomSuccess:(void (^)(void))success
                      failure:(void (^)(NSError * _Nonnull))failure {
-    return [self request:@{custom : @[@""]} success:success failure:failure];
+    return
+    [self request:@{ScheduleModelRequestCustom : @[@"Rising"]} success:success failure:failure];
+}
+
+- (void)appendCustom:(ScheduleCourse *)course
+             success:(void (^)(void))success
+             failure:(void (^)(NSError *error))failure {
+    
+}
+
+- (void)editCustom:(ScheduleCourse *)course
+           success:(void (^)(void))success
+           failure:(void (^)(NSError * _Nonnull))failure {
+    
+}
+
+- (void)deleteCustom:(ScheduleCourse *)course
+             success:(void (^)(void))success
+             failure:(void (^)(NSError * _Nonnull))failure {
+    
 }
 
 @end

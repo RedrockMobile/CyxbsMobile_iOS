@@ -17,6 +17,7 @@
 		147842EA27F0758F002359BA /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842E927F0758F002359BA /* UIView+Frame.m */; };
 		147842EE27F07A5A002359BA /* UIColor+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842ED27F07A59002359BA /* UIColor+Color.m */; };
 		147842F227F080A7002359BA /* NSDate+Day.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842F127F080A7002359BA /* NSDate+Day.m */; };
+		1478633D28BB567A00C1E54B /* ScheduleCombineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1478633C28BB567A00C1E54B /* ScheduleCombineModel.m */; };
 		147E2CEB28240C3A00DCC312 /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 147E2CEA28240C3A00DCC312 /* HttpTool.m */; };
 		1490FC8B28031BC200958892 /* FinderTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1490FC8A28031BC200958892 /* FinderTopView.m */; };
 		14981FF627FEA8F200AD2A29 /* JWZXNewsAnnexModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FF527FEA8F200AD2A29 /* JWZXNewsAnnexModel.m */; };
@@ -709,6 +710,8 @@
 		147842ED27F07A59002359BA /* UIColor+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Color.m"; sourceTree = "<group>"; };
 		147842F027F080A6002359BA /* NSDate+Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Day.h"; sourceTree = "<group>"; };
 		147842F127F080A7002359BA /* NSDate+Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Day.m"; sourceTree = "<group>"; };
+		1478633B28BB567A00C1E54B /* ScheduleCombineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCombineModel.h; sourceTree = "<group>"; };
+		1478633C28BB567A00C1E54B /* ScheduleCombineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCombineModel.m; sourceTree = "<group>"; };
 		147E2CE928240C3A00DCC312 /* HttpTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpTool.h; sourceTree = "<group>"; };
 		147E2CEA28240C3A00DCC312 /* HttpTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
 		1490FC8928031BC200958892 /* FinderTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinderTopView.h; sourceTree = "<group>"; };
@@ -2519,6 +2522,8 @@
 				14B46E6928B4E504003D288B /* ScheduleInteractorRequest.m */,
 				14F8763528B5B04A0067642F /* ScheduleInteractorWCDB.h */,
 				14F8763628B5B04A0067642F /* ScheduleInteractorWCDB.mm */,
+				1478633B28BB567A00C1E54B /* ScheduleCombineModel.h */,
+				1478633C28BB567A00C1E54B /* ScheduleCombineModel.m */,
 				14B46E6428B4D5D7003D288B /* ScheduleModel.h */,
 				14B46E6328B4D5D7003D288B /* ScheduleModel.m */,
 				14B46E5F28B4D282003D288B /* ScheduleCourse.h */,
@@ -7317,6 +7322,7 @@
 				18CDF66A257F91BD006E8E5C /* DiscoverAD.m in Sources */,
 				AA0DDB67286C8B1A00802324 /* FollowersTableViewCell.m in Sources */,
 				FE2C134F27AEF629001CF7AF /* ToDoDetaileViewController.m in Sources */,
+				1478633D28BB567A00C1E54B /* ScheduleCombineModel.m in Sources */,
 				646B1990283001A60015DF28 /* StationMAPointAnnotation.m in Sources */,
 				187DF4C5260310FA000BCDE9 /* UITextView+WZB.m in Sources */,
 				4931631E26CD7B7900140412 /* StampCenterVC.m in Sources */,

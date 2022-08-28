@@ -13,13 +13,9 @@
 
 #import <Foundation/Foundation.h>
 
-//#import "ScheduleCourse+WCTTableCoding.h"
-
 #import <IGListDiffable.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef NSString * ScheduleCourseType;
 
 #pragma mark - SchoolLesson
 
@@ -64,7 +60,7 @@ typedef NSString * ScheduleCourseType;
 @property (nonatomic, copy) NSString *rawWeek;
 
 /// 选修类型
-@property (nonatomic, copy) ScheduleCourseType type;
+@property (nonatomic, copy) NSString *type;
 
 /// 老师
 @property (nonatomic, copy) NSString *teacher;
@@ -79,14 +75,5 @@ typedef NSString * ScheduleCourseType;
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
 
 @end
-
-/// 必修
-FOUNDATION_EXPORT ScheduleCourseType required;
-
-/// 选修
-FOUNDATION_EXPORT ScheduleCourseType elective;
-
-/// 事务
-FOUNDATION_EXPORT ScheduleCourseType transaction;
 
 NS_ASSUME_NONNULL_END

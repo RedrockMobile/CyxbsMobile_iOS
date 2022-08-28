@@ -10,12 +10,6 @@
 
 #import "ScheduleCourse+WCTTableCoding.h"
 
-ScheduleCourseType required = @"必修";
-
-ScheduleCourseType elective = @"选修";
-
-ScheduleCourseType transaction = @"事务";
-
 #pragma mark - SchoolLesson (WCTTableCoding)
 
 @implementation ScheduleCourse (WCTTableCoding)

@@ -96,9 +96,9 @@ typedef NSString * ScheduleModelRequestType;
 #pragma mark - ScheduleModelRequestType
 
 /// 学生
-FOUNDATION_EXPORT ScheduleModelRequestType student;
+FOUNDATION_EXPORT ScheduleModelRequestType ScheduleModelRequestStudent;
 
 /// 老师
-FOUNDATION_EXPORT ScheduleModelRequestType teacher;
+FOUNDATION_EXPORT ScheduleModelRequestType ScheduleModelRequestTeacher;
 
 NS_ASSUME_NONNULL_END

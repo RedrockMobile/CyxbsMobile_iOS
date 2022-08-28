@@ -8,6 +8,16 @@
 
 #import "ScheduleModel.h"
 
+
+#pragma mark - ScheduleModel ()
+
+@interface ScheduleModel ()
+
+/// 原本的数组
+@property (nonatomic, weak) NSMutableArray <ScheduleCourse *> *originAry;
+
+@end
+
 #pragma mark - ScheduleModel
 
 @implementation ScheduleModel
