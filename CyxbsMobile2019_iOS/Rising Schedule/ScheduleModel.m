@@ -8,13 +8,15 @@
 
 #import "ScheduleModel.h"
 
-
 #pragma mark - ScheduleModel ()
 
 @interface ScheduleModel ()
 
-/// 原本的数组
-@property (nonatomic, weak) NSMutableArray <ScheduleCourse *> *originAry;
+/// combine映射表
+@property (nonatomic, strong) NSMutableDictionary <NSString *, ScheduleCombineModel *> *map;
+
+/// combine状态
+@property (nonatomic, strong) NSMutableDictionary <NSString *, NSNumber *> *status;
 
 @end
 
@@ -40,11 +42,8 @@
 
 #pragma mark - Method
 
-- (void)appendCourse:(ScheduleCourse *)course {
-    if (!course) {
-        NSParameterAssert(course);
-        return;
-    }
+- (void)_appendCourse:(ScheduleCourse *)course {
+    NSParameterAssert(course);
     
     [course.inSections enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, BOOL * __unused stop) {
         NSUInteger section = obj.unsignedLongValue;
@@ -59,11 +58,8 @@
     [_courseAry[0] addObject:course];
 }
 
-- (void)removeCourse:(ScheduleCourse *)course {
-    if (!course) {
-        NSParameterAssert(course);
-        return;
-    }
+- (void)_removeCourse:(ScheduleCourse *)course {
+    NSParameterAssert(course);
     
     [course.inSections enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, BOOL * __unused stop) {
         NSUInteger section = obj.unsignedLongValue;
@@ -72,6 +68,52 @@
     }];
     
     [_courseAry[0] removeObject:course];
+}
+
+- (void)combineModel:(ScheduleCombineModel *)model {
+    NSParameterAssert(model);
+    NSAssert(!self.status[model.identifier], @"\n🔴%s status : %d, map : %@", __func__,  [self.status[model.identifier] boolValue], self.map);
+    
+    self.map[model.identifier] = model;
+    self.status[model.identifier] = @YES;
+    
+    for (ScheduleCourse *course in model.courseAry) {
+        [self _appendCourse:course];
+    }
+    
+    return;
+}
+
+- (void)recombineWithIdentifier:(NSString *)identifier {
+    NSParameterAssert(identifier);
+    
+    ScheduleCombineModel *model = self.map[identifier];
+    NSParameterAssert(model);
+    
+    if ([self.status[identifier] isEqualToNumber:@YES]) {
+        [self separateModel:model];
+    }
+    
+    self.status[model.identifier] = @YES;
+    
+    for (ScheduleCourse *course in model.courseAry) {
+        [self _appendCourse:course];
+    }
+    
+    return;
+}
+
+- (void)separateModel:(ScheduleCombineModel *)model {
+    NSParameterAssert(model);
+    NSAssert(self.map[model.identifier], @"\n🔴%s id : %@, map : %@", __func__, model.identifier, self.map);
+    
+    self.status[model.identifier] = @NO;
+    
+    for (ScheduleCourse *course in model.courseAry) {
+        [self _removeCourse:course];
+    }
+    
+    return;
 }
 
 #pragma mark - Setter

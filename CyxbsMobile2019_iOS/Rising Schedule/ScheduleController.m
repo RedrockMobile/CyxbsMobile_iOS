@@ -18,20 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    ScheduleModel *m = [[ScheduleModel alloc] init];
-    
-    ScheduleInteractorRequest *request = [ScheduleInteractorRequest requestBindingModel:m];
-    [request
-     request:@{
         
-    }
-     success:^{
-        
-    }
-     failure:^(NSError * _Nonnull error) {
-        
-    }];
+    ScheduleInteractorRequest *a;
 }
 
 @end

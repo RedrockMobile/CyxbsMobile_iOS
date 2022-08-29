@@ -20,26 +20,12 @@ ScheduleModelRequestType ScheduleModelRequestTeacher = @"teacher";
 
 @implementation ScheduleInteractorRequest
 
-#pragma mark - Init
-
-+ (instancetype)requestBindingModel:(ScheduleModel *)model {
-    if (!model) {
-        NSParameterAssert(model);
-        model = [[ScheduleModel alloc] init];
-    }
-    
-    ScheduleInteractorRequest *request = [[self alloc] init];
-    request->_bindModel = model;
-    
-    return request;
-}
-
 #pragma mark - Method
 
-- (void)request:(NSDictionary
++ (void)request:(NSDictionary
                  <ScheduleModelRequestType,NSArray
                  <NSString *> *> *)requestDictionary
-        success:(void (^)(void))success
+        success:(void (^)(ScheduleCombineModel *))success
         failure:(void (^)(NSError * _Nonnull))failure {
     
     static NSDictionary *APIDictionary;
@@ -83,18 +69,24 @@ ScheduleModelRequestType ScheduleModelRequestTeacher = @"teacher";
                 
                 NSString *stuNum = object[@"stuNum"];
                 NSInteger nowWeek = [object[@"nowWeek"] longValue];
-                self.bindModel.nowWeek = nowWeek;
+                ScheduleCombineModel *model =
+                [ScheduleCombineModel
+                 combineWithSno:stuNum
+                 type:([key isEqualToString:ScheduleModelRequestCustom] ?
+                       ScheduleCombineCustom :
+                       ScheduleCombineSystem)];
                 
                 for (NSDictionary *courceDictionary in lessonAry) {
                     
                     ScheduleCourse *course = [[ScheduleCourse alloc] initWithDictionary:courceDictionary];
                     course.sno = stuNum.copy;
                     
-                    [self.bindModel appendCourse:course];
+                    [model.courseAry addObject:course];
                 }
                 
+                
                 if (success) {
-                    success();
+                    success(model);
                 }
             }
              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -109,7 +101,12 @@ ScheduleModelRequestType ScheduleModelRequestTeacher = @"teacher";
 - (void)requestCustomSuccess:(void (^)(void))success
                      failure:(void (^)(NSError * _Nonnull))failure {
     return
-    [self request:@{ScheduleModelRequestCustom : @[@"Rising"]} success:success failure:failure];
+    [self.class request:@{ScheduleModelRequestCustom : @[@"Rising"]} success:^(ScheduleCombineModel * _Nonnull combineModel) {
+        self->_customCombineModel = combineModel;
+        if (success) {
+            success();
+        }
+    } failure:failure];
 }
 
 - (void)appendCustom:(ScheduleCourse *)course

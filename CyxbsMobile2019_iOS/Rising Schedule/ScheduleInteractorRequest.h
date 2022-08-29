@@ -7,18 +7,18 @@
 //
 
 /**课表Request业务
- * 创建该业务并绑定所需业务模型
+ * 可以不创建该业务直接类方法请求不同数据
+ * 自定义时创建该业务并绑定combine模型
  * 利用该业务进行网络CRUD行为
- * 禁止在绑定后指定其他绑定对象
  *
- * 该对象强持有数据模型，但不推荐使用该类去访问对象
+ * 该对象强持有combine模型，但有可能在- request后被改变
  * 但可以在合适的时候通过该类去获取到所绑定的对象
- * 该对象的CRUD行为会对bindModel产生影响
+ * 使用时，请务必注意是否需要自定义类型
  */
 
 #import <Foundation/Foundation.h>
 
-#import "ScheduleModel.h"
+#import "ScheduleCombineModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,16 +28,16 @@ typedef NSString * ScheduleModelRequestType;
 
 @interface ScheduleInteractorRequest : NSObject
 
-/// 绑定模型
-@property (nonatomic, strong, readonly) ScheduleModel *bindModel;
+/// 自定义combine模型
+@property (nonatomic, strong, readonly) ScheduleCombineModel *customCombineModel;
 
 - (instancetype)init NS_UNAVAILABLE;
 
 + (instancetype)new NS_UNAVAILABLE;
 
-/// 根据绑定模型创建该业务
-/// @param model 被绑定的模型
-+ (instancetype)requestBindingModel:(ScheduleModel *)model;
+/// 初始化一个自定义绑定模型
+/// @param model 自定义绑定模型
++ (instancetype)requestWithCustomCombineModel:(ScheduleCombineModel *)model;
 
 #pragma mark - Method
 
@@ -49,10 +49,10 @@ typedef NSString * ScheduleModelRequestType;
 /// 4) 混合课表 @{student : @[@"2021215154"], teacher : @[@"040107"]}
 /// @param success 成功返回
 /// @param failure 失败返回
-- (void)request:(NSDictionary
++ (void)request:(NSDictionary
                  <ScheduleModelRequestType, NSArray
                  <NSString *> *> *)requestDictionary
-        success:(void (^)(void))success
+        success:(void (^)(ScheduleCombineModel *combineModel))success
         failure:(void (^)(NSError *error))failure;
 
 /// 请求事务
