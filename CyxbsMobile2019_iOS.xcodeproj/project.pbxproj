@@ -554,6 +554,14 @@
 		B0F08FFA28A24F9000986EB6 /* IdsBindingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FF728A24F9000986EB6 /* IdsBindingView.m */; };
 		B0F08FFD28A2509900986EB6 /* RisingRouter+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FFB28A2509800986EB6 /* RisingRouter+Extension.m */; };
 		B0F0900128A2605E00986EB6 /* popUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F0900028A2605E00986EB6 /* popUpViewController.m */; };
+		B51C500E28A5FFC00011465E /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500828A5FFBF0011465E /* LoginVC.m */; };
+		B51C500F28A5FFC00011465E /* ModifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500928A5FFBF0011465E /* ModifyVC.m */; };
+		B51C501028A5FFC00011465E /* ForgetPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500A28A5FFBF0011465E /* ForgetPwdVC.m */; };
+		B51C501128A5FFC00011465E /* LoginBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500D28A5FFC00011465E /* LoginBaseVC.m */; };
+		B51C501628A5FFCE0011465E /* LoginTextFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501228A5FFCE0011465E /* LoginTextFieldView.m */; };
+		B51C501728A5FFCE0011465E /* LoginBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501428A5FFCE0011465E /* LoginBaseView.m */; };
+		B51C501D28A625330011465E /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501C28A625330011465E /* LoginView.m */; };
+		B51C502D28A6493D0011465E /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500828A5FFBF0011465E /* LoginVC.m */; };
 		D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */; };
 		D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D422433C885004337ED /* UIResponder+SDMask.m */; };
 		D0101D592433C885004337ED /* SDMaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D452433C885004337ED /* SDMaskController.m */; };
@@ -1789,6 +1797,20 @@
 		B0F08FFC28A2509800986EB6 /* RisingRouter+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RisingRouter+Extension.h"; sourceTree = "<group>"; };
 		B0F08FFF28A2605E00986EB6 /* popUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = popUpViewController.h; sourceTree = "<group>"; };
 		B0F0900028A2605E00986EB6 /* popUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = popUpViewController.m; sourceTree = "<group>"; };
+		B51C500628A5FFBF0011465E /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
+		B51C500728A5FFBF0011465E /* LoginBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginBaseVC.h; sourceTree = "<group>"; };
+		B51C500828A5FFBF0011465E /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
+		B51C500928A5FFBF0011465E /* ModifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyVC.m; sourceTree = "<group>"; };
+		B51C500A28A5FFBF0011465E /* ForgetPwdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdVC.m; sourceTree = "<group>"; };
+		B51C500B28A5FFBF0011465E /* ModifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyVC.h; sourceTree = "<group>"; };
+		B51C500C28A5FFC00011465E /* ForgetPwdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdVC.h; sourceTree = "<group>"; };
+		B51C500D28A5FFC00011465E /* LoginBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginBaseVC.m; sourceTree = "<group>"; };
+		B51C501228A5FFCE0011465E /* LoginTextFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTextFieldView.m; sourceTree = "<group>"; };
+		B51C501328A5FFCE0011465E /* LoginBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginBaseView.h; sourceTree = "<group>"; };
+		B51C501428A5FFCE0011465E /* LoginBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginBaseView.m; sourceTree = "<group>"; };
+		B51C501528A5FFCE0011465E /* LoginTextFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTextFieldView.h; sourceTree = "<group>"; };
+		B51C501B28A625330011465E /* LoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
+		B51C501C28A625330011465E /* LoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+SDMask.m"; sourceTree = "<group>"; };
 		D0101D402433C885004337ED /* NSLayoutConstraint+SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+SDMask.h"; sourceTree = "<group>"; };
 		D0101D412433C885004337ED /* SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMask.h; sourceTree = "<group>"; };
@@ -3740,10 +3762,8 @@
 		1A0AC602252B259B00221514 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				7FA2499F265A4FC6001B49FC /* Controller */,
-				1A79956A252B5B3B00603253 /* Model */,
-				1A799569252B5B3400603253 /* View */,
-				1A5A5ED823600C9100543BAE /* LoginViewController.xib */,
+				B51C502F28A7A4FA0011465E /* OldLogin */,
+				B5C06B1528A2343C00AA609E /* NewLogin */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -3886,15 +3906,6 @@
 			path = UserProtocol;
 			sourceTree = "<group>";
 		};
-		1A5A5ED423600BA300543BAE /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				1A4A466924C97D610033734E /* UserProtocol */,
-				1A5A5EE223600FE600543BAE /* Item */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
 		1A5A5EE223600FE600543BAE /* Item */ = {
 			isa = PBXGroup;
 			children = (
@@ -3927,19 +3938,10 @@
 			isa = PBXGroup;
 			children = (
 				7FBF39E7257B79F20077494E /* FindPasswordView.swift */,
-				AAE87796286B304E0091656B /* PrivacyTipView.swift */,
 				7FBF3A11257CBCCC0077494E /* YYZpopView.h */,
 				7FBF3A12257CBCCC0077494E /* YYZpopView.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		1A79956A252B5B3B00603253 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1A79956B252B5BC300603253 /* LoginModel.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		1A9B765E235F50A600725937 = {
@@ -3971,7 +3973,6 @@
 				18CDF4D4257F91BC006E8E5C /* Discover */,
 				1817F00C2594D5C500FE1304 /* NewQA */,
 				DB34EA28239BD4540052B65E /* ClassSchedule */,
-				1A5A5ED423600BA300543BAE /* Login */,
 				1A14132A235F523B0001417E /* Mine */,
 				AA0DDAC8286C8B1900802324 /* MineMainPage */,
 				1A0AC5F5252B234700221514 /* Swift */,
@@ -5916,6 +5917,137 @@
 			path = PopUpController;
 			sourceTree = "<group>";
 		};
+		B51C501F28A625DA0011465E /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B51C502028A625EE0011465E /* Controller */,
+				B51C502128A6260D0011465E /* View */,
+				B51C502228A626170011465E /* Model */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		B51C502028A625EE0011465E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B51C500628A5FFBF0011465E /* LoginVC.h */,
+				B51C500828A5FFBF0011465E /* LoginVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B51C502128A6260D0011465E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B51C501B28A625330011465E /* LoginView.h */,
+				B51C501C28A625330011465E /* LoginView.m */,
+				AAE87796286B304E0091656B /* PrivacyTipView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B51C502228A626170011465E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1A79956B252B5BC300603253 /* LoginModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B51C502328A6264C0011465E /* ForgetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				B51C502428A626710011465E /* Controller */,
+			);
+			path = ForgetPassword;
+			sourceTree = "<group>";
+		};
+		B51C502428A626710011465E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B51C500C28A5FFC00011465E /* ForgetPwdVC.h */,
+				B51C500A28A5FFBF0011465E /* ForgetPwdVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B51C502528A6268C0011465E /* ModifyPassword */ = {
+			isa = PBXGroup;
+			children = (
+				B51C502628A626A80011465E /* Controller */,
+			);
+			path = ModifyPassword;
+			sourceTree = "<group>";
+		};
+		B51C502628A626A80011465E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B51C500B28A5FFBF0011465E /* ModifyVC.h */,
+				B51C500928A5FFBF0011465E /* ModifyVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B51C502728A626CE0011465E /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				B51C502828A626D40011465E /* Controller */,
+				B51C502928A626DE0011465E /* View */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		B51C502828A626D40011465E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B51C500728A5FFBF0011465E /* LoginBaseVC.h */,
+				B51C500D28A5FFC00011465E /* LoginBaseVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B51C502928A626DE0011465E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B51C501328A5FFCE0011465E /* LoginBaseView.h */,
+				B51C501428A5FFCE0011465E /* LoginBaseView.m */,
+				B51C501528A5FFCE0011465E /* LoginTextFieldView.h */,
+				B51C501228A5FFCE0011465E /* LoginTextFieldView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B51C502E28A7A4950011465E /* User */ = {
+			isa = PBXGroup;
+			children = (
+				1A4A466924C97D610033734E /* UserProtocol */,
+				1A5A5EE223600FE600543BAE /* Item */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		B51C502F28A7A4FA0011465E /* OldLogin */ = {
+			isa = PBXGroup;
+			children = (
+				7FA2499F265A4FC6001B49FC /* Controller */,
+				1A799569252B5B3400603253 /* View */,
+				1A5A5ED823600C9100543BAE /* LoginViewController.xib */,
+			);
+			path = OldLogin;
+			sourceTree = "<group>";
+		};
+		B5C06B1528A2343C00AA609E /* NewLogin */ = {
+			isa = PBXGroup;
+			children = (
+				B51C502728A626CE0011465E /* Base */,
+				B51C501F28A625DA0011465E /* Login */,
+				B51C502328A6264C0011465E /* ForgetPassword */,
+				B51C502528A6268C0011465E /* ModifyPassword */,
+				B51C502E28A7A4950011465E /* User */,
+			);
+			path = NewLogin;
+			sourceTree = "<group>";
+		};
 		D0101D3D2433C885004337ED /* SDMask */ = {
 			isa = PBXGroup;
 			children = (
@@ -6666,6 +6798,7 @@
 				AA0DDB66286C8B1A00802324 /* BaseTableViewCell.m in Sources */,
 				145AF3E5281BDA0000AABC53 /* NSString+UILabel.m in Sources */,
 				AA0DDB83286C8B1A00802324 /* PMPHomePageViewController.m in Sources */,
+				B51C501128A5FFC00011465E /* LoginBaseVC.m in Sources */,
 				DB34EB3B239BD4550052B65E /* WeekChooseButton.m in Sources */,
 				18CDF6A1257F91BD006E8E5C /* CQUPTMapAllImageCollectionViewCell.m in Sources */,
 				18CDF4C2257F8DBD006E8E5C /* changePassword.m in Sources */,
@@ -6762,6 +6895,7 @@
 				1404747D27F46F0D00307209 /* DiscoverADController.m in Sources */,
 				FE11E82027E8712B00C4B90B /* QAListSegmentView.m in Sources */,
 				AA4CD5EF25EE7B7F002D9394 /* ArticleModel.m in Sources */,
+				B51C500E28A5FFC00011465E /* LoginVC.m in Sources */,
 				B042050528A4B1BB00903E86 /* RisingFoundationExtention.m in Sources */,
 				AA0DDB80286C8B1A00802324 /* PMPEditingButton.m in Sources */,
 				FE2C135327AEF629001CF7AF /* ToDoTableView.m in Sources */,
@@ -6771,6 +6905,7 @@
 				AA7ABA9F2873EA5400BA6790 /* HotSearchModel.m in Sources */,
 				FE2C136527AEF629001CF7AF /* TodoDateTool.m in Sources */,
 				AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */,
+				B51C501028A5FFC00011465E /* ForgetPwdVC.m in Sources */,
 				AA7AB9632873E5EA00BA6790 /* CYSearchEndKnowledgeDetailModel.m in Sources */,
 				18CDF68D257F91BD006E8E5C /* CQUPTMapPresenter.m in Sources */,
 				646B1975282CDF840015DF28 /* StationsCollectionViewCell.m in Sources */,
@@ -6814,6 +6949,7 @@
 				18CDF6C3257F91BE006E8E5C /* DetailScorePerYearCell.m in Sources */,
 				18CDF6A0257F91BD006E8E5C /* CQUPTMapMoreImageViewController.m in Sources */,
 				185AFA5627022258007F40F9 /* MGDCommen.swift in Sources */,
+				B51C501628A5FFCE0011465E /* LoginTextFieldView.m in Sources */,
 				18CDF6B6257F91BD006E8E5C /* SCPieChartDataItem.m in Sources */,
 				73AAA1CE26C918250084E44D /* DetailsGoodsTableViewCell.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
@@ -6857,6 +6993,7 @@
 				1451EA53282A09B800A5BB55 /* UserPublishModel.m in Sources */,
 				D0101F6A243587A1004337ED /* GKPanGestureRecognizer.m in Sources */,
 				18CDF4B7257F8DBD006E8E5C /* SetQuestionViewController.m in Sources */,
+				B51C501728A5FFCE0011465E /* LoginBaseView.m in Sources */,
 				FE2C135127AEF629001CF7AF /* ToDoEmptyCell.m in Sources */,
 				4931630B26CD7B6800140412 /* GoodsCollectionViewCell.m in Sources */,
 				DB4065032466D889006CE5BC /* DLReminderView.m in Sources */,
@@ -7133,6 +7270,7 @@
 				DB34EB3A239BD4550052B65E /* CoverView.m in Sources */,
 				AA7ABAA32873EA5400BA6790 /* GroupModel.m in Sources */,
 				18CDF68F257F91BD006E8E5C /* CQUPTMapPlaceRect.m in Sources */,
+				B51C500F28A5FFC00011465E /* ModifyVC.m in Sources */,
 				AA4CD60425EF6311002D9394 /* IgnoreModel.m in Sources */,
 				18CDF70A257F91BE006E8E5C /* ActivityTableViewCell.m in Sources */,
 				AA0DDB65286C8B1A00802324 /* FansAndFollowersModel.m in Sources */,
@@ -7236,6 +7374,7 @@
 				AA7AB9682873E5EA00BA6790 /* QAVerticalScrollView.m in Sources */,
 				AAE3305925E2A42B00324750 /* RemarkTableViewCell.m in Sources */,
 				18CDF70B257F91BE006E8E5C /* HeaderTableViewCell.m in Sources */,
+				B51C501D28A625330011465E /* LoginView.m in Sources */,
 				DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */,
 				B0F08FFA28A24F9000986EB6 /* IdsBindingView.m in Sources */,
 				FE2C135427AEF629001CF7AF /* ToDoDetailRemarkView.m in Sources */,
@@ -7302,6 +7441,7 @@
 				1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */,
 				1893DC9626EA3887007E871E /* MGDTimer.m in Sources */,
 				185AFA5727022258007F40F9 /* MGDCommen.swift in Sources */,
+				B51C502D28A6493D0011465E /* LoginVC.m in Sources */,
 				1893DC9226EA3375007E871E /* MGDGroup.m in Sources */,
 				1893DC8A26EA32A3007E871E /* MGDGCD.m in Sources */,
 			);
@@ -7466,8 +7606,8 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 67QNT8WT7R;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -7503,8 +7643,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.3.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs123;
+				MARKETING_VERSION = 6.3.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";
@@ -7522,8 +7662,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 67QNT8WT7R;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -7559,8 +7699,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.3.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs123;
+				MARKETING_VERSION = 6.3.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";

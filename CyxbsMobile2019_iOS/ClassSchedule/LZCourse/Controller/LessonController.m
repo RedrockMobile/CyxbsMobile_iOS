@@ -10,7 +10,7 @@
 #import "LessonButtonController.h"
 #import "DetailViewController.h"
 #import "AddRemindViewController.h"
-//#import "LoginViewController.h"
+#import "LoginVC.h"
 #import "RemindNotification.h"
 #import "UIFont+AdaptiveFont.h"
 #import "MainView.h"
@@ -93,15 +93,15 @@
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"是否登录" message:@"马上登录拯救课表菌" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"我再看看" style:UIAlertActionStyleCancel handler:nil];
     UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"马上登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        LoginViewController *loginViewController = [[LoginViewController alloc]init];
-        UINavigationController *navC =[[UINavigationController alloc]initWithRootViewController:loginViewController];
+        LoginVC *loginVC = [[LoginVC alloc] init];
+        loginVC.modalPresentationStyle = UIModalPresentationFullScreen;
 
 //        loginViewController.loginSuccessHandler = ^(BOOL success) {
 //            if (success) {
 ////                [self afterLogin];
 //            }
 //        };
-        [self.navigationController presentViewController:navC animated:YES completion:nil];
+        [self.navigationController presentViewController:loginVC animated:YES completion:nil];
     }];
     [alertController addAction:cancelAction];
     [alertController addAction:loginAction];
