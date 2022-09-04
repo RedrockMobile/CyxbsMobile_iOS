@@ -8,14 +8,6 @@
 
 #import "ScheduleInteractorRequest.h"
 
-#pragma mark - ClassScheduleRequestType
-
-ScheduleModelRequestType ScheduleModelRequestStudent = @"student";
-
-ScheduleModelRequestType ScheduleModelRequestCustom = @"custom";
-
-ScheduleModelRequestType ScheduleModelRequestTeacher = @"teacher";
-
 #pragma mark - ScheduleInteractorRequest
 
 @implementation ScheduleInteractorRequest
@@ -27,35 +19,17 @@ ScheduleModelRequestType ScheduleModelRequestTeacher = @"teacher";
                  <NSString *> *> *)requestDictionary
         success:(void (^)(ScheduleCombineModel *))success
         failure:(void (^)(NSError * _Nonnull))failure {
-    
-    static NSDictionary *APIDictionary;
-    static NSDictionary *KeyDictionary;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        APIDictionary = @{
-            ScheduleModelRequestStudent : RisingSchedule_POST_stuSchedule_API,
-            ScheduleModelRequestTeacher : RisingSchedule_POST_teaSchedule_API,
-            ScheduleModelRequestCustom : RisingSchedule_POST_perTransaction_API
-        };
-        
-        KeyDictionary = @{
-            ScheduleModelRequestStudent : @"stu_num",
-            ScheduleModelRequestTeacher : @"tea",
-            ScheduleModelRequestCustom : @"stu_num"
-        };
-    });
         
     [requestDictionary enumerateKeysAndObjectsUsingBlock:^(ScheduleModelRequestType _Nonnull key, NSArray<NSString *> * _Nonnull obj, BOOL * __unused stop) {
         
         for (NSString *num in obj) {
             
             [HttpTool.shareTool
-             request:APIDictionary[key]
+             request:API_forScheduleModelRequestType(key)
              type:HttpToolRequestTypePost
              serializer:HttpToolRequestSerializerHTTP
              bodyParameters:@{
-                KeyDictionary[key] : num.copy,
+                KeyInParameterForScheduleModelRequestType(key) : num.copy,
             }
              progress:nil
              success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable object) {

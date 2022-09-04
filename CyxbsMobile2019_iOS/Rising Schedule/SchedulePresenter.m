@@ -25,7 +25,7 @@
 
 + (NSArray<NSString *> *)routerPath {
     return @[
-        @"SchedulePresenter"
+        ScheduleRouterName
     ];
 }
 
@@ -57,6 +57,10 @@
         completion(response);
     }
 }
+
+@end
+
+@implementation RisingRouterRequest (ScheduleRouterProtocol)
 
 
 

@@ -20,9 +20,9 @@
 
 #import "ScheduleCombineModel.h"
 
-NS_ASSUME_NONNULL_BEGIN
+#import "ScheduleRequestType.h"
 
-typedef NSString * ScheduleModelRequestType;
+NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - ScheduleInteractorRequest
 
@@ -92,13 +92,5 @@ typedef NSString * ScheduleModelRequestType;
              failure:(void (^)(NSError *error))failure;
 
 @end
-
-#pragma mark - ScheduleModelRequestType
-
-/// 学生
-FOUNDATION_EXPORT ScheduleModelRequestType ScheduleModelRequestStudent;
-
-/// 老师
-FOUNDATION_EXPORT ScheduleModelRequestType ScheduleModelRequestTeacher;
 
 NS_ASSUME_NONNULL_END

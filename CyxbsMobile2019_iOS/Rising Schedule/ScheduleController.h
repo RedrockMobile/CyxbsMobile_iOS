@@ -17,6 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 掉用者
 @property (nonatomic, weak) SchedulePresenter *presenter;
 
+/// 新增事务手势
+/// (默认为NO）
+@property (nonatomic) BOOL allowCustomPan;
+
 @end
 
 NS_ASSUME_NONNULL_END
