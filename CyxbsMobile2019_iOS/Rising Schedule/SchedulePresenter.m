@@ -8,11 +8,7 @@
 
 #import "SchedulePresenter.h"
 
-#pragma mark - SchedulePresenter ()
-
-@interface SchedulePresenter ()
-
-@end
+#pragma mark - SchedulePresenter
 
 @implementation SchedulePresenter
 
@@ -25,11 +21,18 @@
 }
 
 + (void)responseRequest:(RisingRouterRequest *)request completion:(RisingRouterResponseBlock)completion {
-    
-    RisingRouterResponse *response = [[RisingRouterResponse alloc] init];
-    
-    ScheduleController *vc = [[self alloc] init];
     NSDictionary *params = request.parameters;
+    
+    // schedule presenter
+    SchedulePresenter *presenter = [[SchedulePresenter alloc] init];
+    presenter.firstRequetDic = params[@"requestModel"];
+        
+    // view controller
+    ScheduleController *vc = [[self alloc] init];
+    vc.presenter = presenter;
+    
+    // router response
+    RisingRouterResponse *response = [[RisingRouterResponse alloc] init];
     
     switch (request.requestType) {
         case RouterRequestController: {

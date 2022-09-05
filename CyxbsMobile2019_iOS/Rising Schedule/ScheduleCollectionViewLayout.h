@@ -6,6 +6,10 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
+/**ScheduleCollectionViewLayout视图布局
+ * 设置所有陈列出来的属性，来达到最佳的视觉效果
+ */
+
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN

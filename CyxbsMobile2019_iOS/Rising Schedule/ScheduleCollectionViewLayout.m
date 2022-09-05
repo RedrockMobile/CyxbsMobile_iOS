@@ -30,6 +30,8 @@
 
 @implementation ScheduleCollectionViewLayout
 
+#pragma mark - UICollectionViewLayout
+
 - (NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
     
     NSMutableArray *result = NSMutableArray.array;

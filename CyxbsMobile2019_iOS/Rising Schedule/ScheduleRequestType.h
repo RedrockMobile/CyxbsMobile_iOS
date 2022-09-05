@@ -6,6 +6,11 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
+/**ScheduleModelRequestType请求式
+ * 为了满足各种业务，这里成列了各种KEY
+ * KEY为所有有关课表展示业务的请求
+ */
+
 #ifndef ScheduleRequestType_h
 #define ScheduleRequestType_h
 

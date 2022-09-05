@@ -6,6 +6,12 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
+/**ScheduleCourse (WCTTableCoding)
+ * 这里列举了所有WCDB使用到的字段
+ * WCDB业务将对这些字段进行改变
+ * 而自己本身并不会对数据库进行操作
+ */
+
 #import "ScheduleCourse.h"
 
 #import <WCDB.h>
@@ -32,8 +38,6 @@ WCDB_PROPERTY(type)
 WCDB_PROPERTY(sno)
 WCDB_PROPERTY(teacher)
 WCDB_PROPERTY(lesson)
-
-
 
 @end
 

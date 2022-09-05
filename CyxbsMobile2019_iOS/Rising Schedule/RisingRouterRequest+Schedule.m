@@ -10,6 +10,8 @@
 
 #import "ScheduleRouterProtocol.h"
 
+#pragma mark - ScheduleRouterParameter
+
 @interface ScheduleRouterParameter : NSObject <ScheduleRouterProtocol>
 
 /// 参数
@@ -35,14 +37,23 @@
     };
 }
 
-- (nonnull id<ScheduleRouterProtocol>  _Nonnull (^)(NSDictionary<ScheduleModelRequestType,NSArray<NSString *> *> * _Nonnull))request {
+- (nonnull id<ScheduleRouterProtocol> _Nonnull (^)(NSDictionary<ScheduleModelRequestType,NSArray<NSString *> *> * _Nonnull))request {
     return ^id<ScheduleRouterProtocol> (NSDictionary<ScheduleModelRequestType,NSArray<NSString *> *> * dic){
         self.dic[@"requestModel"] = dic;
         return self;
     };
 }
 
+- (id<ScheduleRouterProtocol> _Nonnull (^)(BOOL))needCustomFirst {
+    return ^id<ScheduleRouterProtocol> (BOOL needCustomFirst) {
+        self.dic[@"custom"] = @(YES);
+        return self;
+    };
+}
+
 @end
+
+#pragma mark - RisingRouterRequest (Schedule)
 
 @implementation RisingRouterRequest (Schedule)
 

@@ -8,6 +8,8 @@
 
 #import "ScheduleController.h"
 
+#import "SchedulePresenter.h"
+
 #import "ScheduleCollectionViewLayout.h"
 
 #import "ScheduleModel.h"
@@ -29,6 +31,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.model = [[ScheduleModel alloc] init];
+    
+    self.presenter.interactoerMain =
+    [ScheduleInteractorMain
+     interactorWithCollectionView:self.collectionView
+     scheduleModel:self.model
+     request:self.presenter.firstRequetDic];
 }
 
 #pragma mark - Method
@@ -47,9 +56,19 @@
         
         _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
         _collectionView.directionalLockEnabled = YES;
-        
+        _collectionView.pagingEnabled = YES;
     }
     return _collectionView;
+}
+
+#pragma mark - Setter
+
+- (void)setPresenter:(SchedulePresenter *)presenter {
+    _presenter = presenter;
+    
+    if (_collectionView) {
+        [self.collectionView reloadData];
+    }
 }
 
 @end

@@ -54,6 +54,9 @@
                     
                     ScheduleCourse *course = [[ScheduleCourse alloc] initWithDictionary:courceDictionary];
                     course.sno = stuNum.copy;
+                    if ([key isEqualToString:ScheduleModelRequestCustom]) {
+                        course.type = @"事务";
+                    }
                     
                     [model.courseAry addObject:course];
                 }

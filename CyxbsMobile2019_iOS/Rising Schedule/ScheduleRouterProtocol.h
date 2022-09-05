@@ -6,6 +6,12 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
+/**ScheduleRouterProtocol协议
+ * 需要到课表业务的请引入这个协议
+ * 并且只能使用RisingRouterRequest
+ * 请查看“RisingRouterRequest+Schedule.h”扩展提供的API
+ */
+
 #import <Foundation/Foundation.h>
 
 #import "RisingRouterRequest+Schedule.h"
@@ -31,6 +37,9 @@ static NSString *ScheduleRouterName = @"SchedulePresenter";
    (NSDictionary
     <ScheduleModelRequestType, NSArray
     <NSString *> *> *))request;
+
+/// 是否第一次需要事务
+- (id <ScheduleRouterProtocol> (^) (BOOL))needCustomFirst;
 
 @end
 

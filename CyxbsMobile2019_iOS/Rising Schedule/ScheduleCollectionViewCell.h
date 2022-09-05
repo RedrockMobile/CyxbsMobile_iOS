@@ -6,6 +6,11 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
+/**ScheduleCollectionViewCellDrawType课程表视图
+ * 请在每次dequeueReusable后设置所有值
+ * 否则会在下一次复用的时候，用上一次的值
+ */
+
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -35,6 +40,9 @@ typedef NS_ENUM(NSUInteger, ScheduleCollectionViewCellDrawType) {
 
 /// 细节(计算属性)
 @property (nonatomic, copy) NSString *courseContent;
+
+/// 多人标识
+@property (nonatomic) BOOL multipleSign;
 
 - (instancetype)init NS_UNAVAILABLE;
 
