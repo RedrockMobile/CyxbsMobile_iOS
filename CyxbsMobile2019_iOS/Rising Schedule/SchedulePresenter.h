@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDictionary *firstRequetDic;
 
 /// 主业务(由控制器创建)
-@property (nonatomic, strong, nullable) ScheduleInteractorMain *interactoerMain;
+@property (nonatomic, strong) ScheduleInteractorMain *interactoerMain;
 
 @end
 

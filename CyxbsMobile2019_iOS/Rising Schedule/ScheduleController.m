@@ -30,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = UIColor.whiteColor;
     
     self.model = [[ScheduleModel alloc] init];
     
@@ -38,6 +39,10 @@
      interactorWithCollectionView:self.collectionView
      scheduleModel:self.model
      request:self.presenter.firstRequetDic];
+    
+    ((ScheduleCollectionViewLayout *)self.collectionView.collectionViewLayout).delegate = self.presenter.interactoerMain;
+    
+    [self.view addSubview:self.collectionView];
 }
 
 #pragma mark - Method

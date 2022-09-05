@@ -10,15 +10,11 @@
 
 #import "ScheduleInteractorRequest.h"
 
-#import "ScheduleCollectionViewLayout.h"
-
 #import "ScheduleCollectionViewCell.h"
 
 #pragma mark - ScheduleInteractorMain ()
 
-@interface ScheduleInteractorMain () <
-    ScheduleCollectionViewLayoutDelegate
->
+@interface ScheduleInteractorMain ()
 
 /// 视图
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -45,6 +41,9 @@
     
     ScheduleInteractorMain *interactor = [[ScheduleInteractorMain alloc] init];
     
+    view.delegate = interactor;
+    view.dataSource = interactor;
+    
     interactor.collectionView = view;
     interactor.model = model;
     
@@ -61,7 +60,8 @@
     [ScheduleInteractorRequest
      request:dic
      success:^(ScheduleCombineModel * _Nonnull combineModel) {
-        
+        [self.model combineModel:combineModel];
+        [self.collectionView reloadData];
     }
      failure:^(NSError * _Nonnull error) {
         
@@ -82,6 +82,9 @@
     ScheduleCourse *course = self.model.courseAry[indexPath.section][indexPath.row];
     
     ScheduleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ScheduleCollectionViewCellReuseIdentifier forIndexPath:indexPath];
+    
+    cell.courseTitle = course.course;
+    cell.courseContent = course.classRoom;
     
     if (course.period.location <= 4) {
         cell.drawType = ScheduleCollectionViewCellDrawMorning;

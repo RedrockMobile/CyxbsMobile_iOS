@@ -28,8 +28,10 @@
     presenter.firstRequetDic = params[@"requestModel"];
         
     // view controller
-    ScheduleController *vc = [[self alloc] init];
+    ScheduleController *vc = [[ScheduleController alloc] init];
     vc.presenter = presenter;
+    vc.hidesBottomBarWhenPushed = YES;
+    presenter.controller = vc;
     
     // router response
     RisingRouterResponse *response = [[RisingRouterResponse alloc] init];

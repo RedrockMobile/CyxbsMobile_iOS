@@ -50,24 +50,19 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
 - (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
     CGRect frame = layoutAttributes.frame;
     
-    self.multyView.right = self.contentView.SuperRight - 5;
+    self.multyView.right = frame.size.width - 5;
     
-    [self.titleLab stretchRight_toPointX:self.contentView.SuperRight offset:8];
-    [self.titleLab sizeToFit];
+    self.titleLab.width = frame.size.width - 2 * self.titleLab.left;
     
+    self.contentLab.left = self.titleLab.left;
     self.contentLab.width = self.titleLab.width;
-    self.contentLab.top = self.titleLab.bottom;
-    [self.contentLab sizeToFit];
-    self.contentLab.numberOfLines = (self.contentLab.bottom + 8 >= frame.size.height) ? 1 : 3;
-    [self.contentLab sizeToFit];
-    self.contentLab.bottom = frame.size.height - 8;
 }
 
 #pragma mark - Getter
 
 - (UILabel *)titleLab {
     if (_titleLab == nil) {
-        _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(8, 8, CGFLOAT_MIN, CGFLOAT_MIN)];
+        _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(8, 8, -1, -1)];
         _titleLab.backgroundColor = UIColor.clearColor;
         _titleLab.numberOfLines = 3;
         _titleLab.font = [UIFont fontWithName:PingFangSC size:10];
@@ -78,7 +73,7 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
 
 - (UILabel *)contentLab {
     if (_contentLab == nil) {
-        _contentLab = [[UILabel alloc] initWithFrame:CGRectMake(self.titleLab.x, CGFLOAT_MIN, CGFLOAT_MIN, CGFLOAT_MIN)];
+        _contentLab = [[UILabel alloc] init];
         _contentLab.backgroundColor = UIColor.clearColor;
         _contentLab.numberOfLines = 3;
         _contentLab.font = [UIFont fontWithName:PingFangSC size:10];
@@ -89,7 +84,7 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
 
 - (UIView *)multyView {
     if (_multyView == nil) {
-        _multyView = [[UIView alloc] initWithFrame:CGRectMake(CGFLOAT_MAX, 4, 8, 2)];
+        _multyView = [[UIView alloc] initWithFrame:CGRectMake(-1, 4, 8, 2)];
         _multyView.layer.cornerRadius = _multyView.height / 2;
         _multyView.clipsToBounds = YES;
         _multyView.alpha = 0;
@@ -109,10 +104,17 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
 
 - (void)setCourseTitle:(NSString *)courseTitle {
     self.titleLab.text = courseTitle.copy;
+    CGFloat width = self.titleLab.width;
+    [self.titleLab sizeToFit];
+    self.titleLab.width = width;
 }
 
 - (void)setCourseContent:(NSString *)courseContent {
     self.contentLab.text = courseContent.copy;
+    CGFloat width = self.contentLab.width;
+    [self.contentLab sizeToFit];
+    self.contentLab.width = width;
+    self.contentLab.bottom = self.contentView.SuperBottom - 8;
 }
 
 - (void)setMultipleSign:(BOOL)multipleSign {
@@ -134,56 +136,56 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
         /*ScheduleCollectionViewCellDrawMorning*/
         case ScheduleCollectionViewCellDrawMorning: {
             self.contentView.backgroundColor =
-            [UIColor dm_colorWithLightColor:UIColorHex("#F9E7D8")
-                                  darkColor:UIColorHex("#26FFCCA1")];
+            [UIColor dm_colorWithLightColor:UIColorHex(#F9E7D8)
+                                  darkColor:UIColorHex(#26FFCCA1)];
             
             self.titleLab.textColor = self.contentLab.textColor = self.multyView.backgroundColor =
-            [UIColor dm_colorWithLightColor:UIColorHex("#FF8015")
-                                  darkColor:UIColorHex("#CCF0F0F2")];
+            [UIColor dm_colorWithLightColor:UIColorHex(#FF8015)
+                                  darkColor:UIColorHex(#CCF0F0F2)];
         } break;
             
         /*ScheduleCollectionViewCellDrawAfternoon*/
         case ScheduleCollectionViewCellDrawAfternoon: {
             self.contentView.backgroundColor =
-            [UIColor dm_colorWithLightColor:UIColorHex("#F9E3E4")
-                                  darkColor:UIColorHex("#26FF979B")];
+            [UIColor dm_colorWithLightColor:UIColorHex(#F9E3E4)
+                                  darkColor:UIColorHex(#26FF979B)];
             
             self.titleLab.textColor = self.contentLab.textColor = self.multyView.backgroundColor =
-            [UIColor dm_colorWithLightColor:UIColorHex("#FF6262")
-                                  darkColor:UIColorHex("#CCF0F0F2")];
+            [UIColor dm_colorWithLightColor:UIColorHex(#FF6262)
+                                  darkColor:UIColorHex(#CCF0F0F2)];
         } break;
             
         /*ScheduleCollectionViewCellDrawNight*/
         case ScheduleCollectionViewCellDrawNight: {
             self.contentView.backgroundColor =
-            [UIColor dm_colorWithLightColor:UIColorHex("#DDE3F8")
-                                  darkColor:UIColorHex("#269BB2FB")];
+            [UIColor dm_colorWithLightColor:UIColorHex(#DDE3F8)
+                                  darkColor:UIColorHex(#269BB2FB)];
             
             self.titleLab.textColor = self.contentLab.textColor = self.multyView.backgroundColor =
-            [UIColor dm_colorWithLightColor:UIColorHex("#4066EA")
-                                  darkColor:UIColorHex("#CCF0F0F2")];
+            [UIColor dm_colorWithLightColor:UIColorHex(#4066EA)
+                                  darkColor:UIColorHex(#CCF0F0F2)];
         } break;
             
         /*ScheduleCollectionViewCellDrawOthers*/
         case ScheduleCollectionViewCellDrawOthers: {
             self.contentView.backgroundColor =
-            [UIColor dm_colorWithLightColor:UIColorHex("#DFF3FC")
-                                  darkColor:UIColorHex("#2690DBFB")];
+            [UIColor dm_colorWithLightColor:UIColorHex(#DFF3FC)
+                                  darkColor:UIColorHex(#2690DBFB)];
             
             self.titleLab.textColor = self.contentLab.textColor = self.multyView.backgroundColor =
-            [UIColor dm_colorWithLightColor:UIColorHex("#06A3FC")
-                                  darkColor:UIColorHex("#CCF0F0F2")];
+            [UIColor dm_colorWithLightColor:UIColorHex(#06A3FC)
+                                  darkColor:UIColorHex(#CCF0F0F2)];
         } break;
             
         /*ScheduleCollectionViewCellDrawCustom*/
         case ScheduleCollectionViewCellDrawCustom: {
             self.contentView.backgroundColor =
-            [UIColor dm_colorWithLightColor:UIColorHex("#E9ECF0")
-                                  darkColor:UIColorHex("#3C4E70")];
+            [UIColor dm_colorWithLightColor:UIColorHex(#E9ECF0)
+                                  darkColor:UIColorHex(#3C4E70)];
             
             self.titleLab.textColor = self.contentLab.textColor = self.multyView.backgroundColor =
-            [UIColor dm_colorWithLightColor:UIColorHex("#4D4D4D")
-                                  darkColor:UIColorHex("#CCF0F0F2")];
+            [UIColor dm_colorWithLightColor:UIColorHex(#4D4D4D)
+                                  darkColor:UIColorHex(#CCF0F0F2)];
         } break;
     }
 }

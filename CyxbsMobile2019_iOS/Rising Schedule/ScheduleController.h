@@ -22,11 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ScheduleController : UIViewController
 
 /// 掉用者
-@property (nonatomic, strong, nonnull) SchedulePresenter *presenter;
+@property (nonatomic, strong) SchedulePresenter *presenter;
 
 /// 新增事务手势
 /// (默认为NO）
-@property (nonatomic) BOOL allowCustomPan;
+@property (nonatomic) BOOL allowCustomPan; // TODO: gesture when pan empty collection view
 
 @end
 

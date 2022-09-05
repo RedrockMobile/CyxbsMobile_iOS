@@ -16,13 +16,16 @@
 
 #import "ScheduleModel.h"
 
+#import "ScheduleCollectionViewLayout.h"
+
 #import "ScheduleRequestType.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ScheduleInteractorMain : NSObject <
     UICollectionViewDelegate,
-    UICollectionViewDataSource
+    UICollectionViewDataSource,
+    ScheduleCollectionViewLayoutDelegate
 >
 
 /// 控制器

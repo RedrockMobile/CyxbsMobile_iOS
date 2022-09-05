@@ -15,7 +15,7 @@
 
 #import "JWZXNewsModel.h"
 
-#import "ScheduleController.h"
+#import "ScheduleRouterProtocol.h"
 
 #pragma mark - DiscoverJWZXVC ()
 
@@ -95,9 +95,18 @@
 //    JWZXNewsViewController *vc = [[JWZXNewsViewController alloc] initWithRootJWZXSectionModel:self.sectionNewsModel];
 //    vc.hidesBottomBarWhenPushed = YES;
     
-    UIViewController *vc = [[ScheduleController alloc] init];
+    // Rising FIXME: vc
     
-    [self.navigationController pushViewController:vc animated:YES];
+    RisingRouterRequest *request =
+    [RisingRouterRequest requestWithScheduleBolck:^(id<ScheduleRouterProtocol> _Nonnull make) {
+        make
+        .request(@{
+            ScheduleModelRequestStudent : @[@"2021215154"]
+        })
+        .allowCustomPan(NO);
+    }];
+    
+    [self.router handleRequest:request complition:nil];
 }
 
 #pragma mark - Getter

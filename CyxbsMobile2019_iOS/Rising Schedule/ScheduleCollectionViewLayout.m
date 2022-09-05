@@ -100,7 +100,7 @@
 
 - (void)_calculateLayoutIfNeeded {
     
-    self.sections = [self.collectionView.dataSource performSelector:@selector(numberOfSectionsInCollectionView:)]
+    self.sections = [self.collectionView.dataSource performSelector:@selector(numberOfSectionsInCollectionView:) withObject:self.collectionView]
     ? [self.collectionView.dataSource numberOfSectionsInCollectionView:self.collectionView]
     : [self.collectionView numberOfSections];
     
