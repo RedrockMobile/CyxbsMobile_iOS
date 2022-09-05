@@ -10,6 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 复用标志
+FOUNDATION_EXPORT NSString *ScheduleCollectionViewCellReuseIdentifier;
+
 #pragma mark - ENUM(ScheduleCollectionViewCellDrawType)
 
 typedef NS_ENUM(NSUInteger, ScheduleCollectionViewCellDrawType) {
@@ -20,15 +23,22 @@ typedef NS_ENUM(NSUInteger, ScheduleCollectionViewCellDrawType) {
     ScheduleCollectionViewCellDrawCustom     // 事务
 };
 
-/// 复用标志
-FOUNDATION_EXPORT NSString *ScheduleCollectionViewCellReuseIdentifier;
-
 #pragma mark - ScheduleCollectionViewCell
 
 @interface ScheduleCollectionViewCell : UICollectionViewCell
 
 /// 绘制类型
 @property (nonatomic) ScheduleCollectionViewCellDrawType drawType;
+
+/// 标题(计算属性)
+@property (nonatomic, copy) NSString *courseTitle;
+
+/// 细节(计算属性)
+@property (nonatomic, copy) NSString *courseContent;
+
+- (instancetype)init NS_UNAVAILABLE;
+
++ (instancetype)new NS_UNAVAILABLE;
 
 @end
 
