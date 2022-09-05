@@ -17,6 +17,7 @@
 		1466282928C4B1EC00AF584F /* ScheduleCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466282828C4B1EC00AF584F /* ScheduleCollectionViewLayout.m */; };
 		1466282C28C4EFE400AF584F /* ScheduleRequestType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466282B28C4EFE400AF584F /* ScheduleRequestType.m */; };
 		1466283128C4FA3800AF584F /* RisingRouterRequest+Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466283028C4FA3800AF584F /* RisingRouterRequest+Schedule.m */; };
+		1466283428C5CA4600AF584F /* ScheduleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466283328C5CA4600AF584F /* ScheduleCollectionViewCell.m */; };
 		146AA0C528B65FA800391FD0 /* SchedulePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 146AA0C428B65FA800391FD0 /* SchedulePresenter.m */; };
 		147842EA27F0758F002359BA /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842E927F0758F002359BA /* UIView+Frame.m */; };
 		147842EE27F07A5A002359BA /* UIColor+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842ED27F07A59002359BA /* UIColor+Color.m */; };
@@ -715,6 +716,8 @@
 		1466282D28C4EFF400AF584F /* ScheduleRequestType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleRequestType.h; sourceTree = "<group>"; };
 		1466282F28C4FA3800AF584F /* RisingRouterRequest+Schedule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RisingRouterRequest+Schedule.h"; sourceTree = "<group>"; };
 		1466283028C4FA3800AF584F /* RisingRouterRequest+Schedule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RisingRouterRequest+Schedule.m"; sourceTree = "<group>"; };
+		1466283228C5CA4600AF584F /* ScheduleCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionViewCell.h; sourceTree = "<group>"; };
+		1466283328C5CA4600AF584F /* ScheduleCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCollectionViewCell.m; sourceTree = "<group>"; };
 		146AA0C328B65FA800391FD0 /* SchedulePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchedulePresenter.h; sourceTree = "<group>"; };
 		146AA0C428B65FA800391FD0 /* SchedulePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchedulePresenter.m; sourceTree = "<group>"; };
 		147842E827F0758F002359BA /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
@@ -2534,6 +2537,8 @@
 				146AA0C428B65FA800391FD0 /* SchedulePresenter.m */,
 				14F8763828B5B5FA0067642F /* ScheduleController.h */,
 				14F8763928B5B5FA0067642F /* ScheduleController.m */,
+				1466283228C5CA4600AF584F /* ScheduleCollectionViewCell.h */,
+				1466283328C5CA4600AF584F /* ScheduleCollectionViewCell.m */,
 				1466282728C4B1EC00AF584F /* ScheduleCollectionViewLayout.h */,
 				1466282828C4B1EC00AF584F /* ScheduleCollectionViewLayout.m */,
 				1466282428C4B1BD00AF584F /* ScheduleInteractorMain.h */,
@@ -7135,6 +7140,7 @@
 				4931630C26CD7B6800140412 /* GotoButton.m in Sources */,
 				AA7AB95C2873E5EA00BA6790 /* SearchBeginVC.m in Sources */,
 				AA0DDB76286C8B1A00802324 /* JHMenuItem.m in Sources */,
+				1466283428C5CA4600AF584F /* ScheduleCollectionViewCell.m in Sources */,
 				18CDF693257F91BD006E8E5C /* CQUPTMapHotPlaceItem.m in Sources */,
 				DB34EB21239BD4550052B65E /* DetailRemindViewController.m in Sources */,
 				DB34EB29239BD4550052B65E /* WeekChooseViewController.m in Sources */,

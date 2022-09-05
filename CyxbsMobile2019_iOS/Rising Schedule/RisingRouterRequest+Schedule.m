@@ -10,13 +10,69 @@
 
 #import "ScheduleRouterProtocol.h"
 
+@interface ScheduleRouterParameter : NSObject <ScheduleRouterProtocol>
+
+/// 参数
+@property (nonatomic, strong) NSMutableDictionary *dic;
+
+@end
+
+@implementation ScheduleRouterParameter
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _dic = NSMutableDictionary.dictionary;
+    }
+    return self;
+}
+
+- (nonnull id<ScheduleRouterProtocol> _Nonnull (^)(BOOL))allowCustomPan {
+    return ^id<ScheduleRouterProtocol> (BOOL needPan) {
+        self.dic[@"allowCustomPan"] = @(needPan);
+        self.dic[@"viewController"] = @YES;
+        return self;
+    };
+}
+
+- (nonnull id<ScheduleRouterProtocol>  _Nonnull (^)(NSDictionary<ScheduleModelRequestType,NSArray<NSString *> *> * _Nonnull))request {
+    return ^id<ScheduleRouterProtocol> (NSDictionary<ScheduleModelRequestType,NSArray<NSString *> *> * dic){
+        self.dic[@"requestModel"] = dic;
+        return self;
+    };
+}
+
+@end
+
 @implementation RisingRouterRequest (Schedule)
 
 + (instancetype)requestWithScheduleBolck:(void (^)(id<ScheduleRouterProtocol> _Nonnull))block {
-    NSMutableDictionary *dic = NSMutableDictionary.dictionary;
-    RisingRouterRequest *request = [RisingRouterRequest requestWithRouterPath:ScheduleRouterName parameters:dic];
+    RisingRouterRequest *request;
     
+    if (block) {
+        
+        ScheduleRouterParameter *parameter = [[ScheduleRouterParameter alloc] init];
+        block(parameter);
+        
+        request = [RisingRouterRequest requestWithRouterPath:ScheduleRouterName parameters:parameter.dic];
+        
+    } else {
+        
+        request =
+        [RisingRouterRequest
+         requestWithRouterPath:ScheduleRouterName
+         parameters:@{
+            @"allowCustomPan" : @YES,
+            @"viewController" : @YES,
+            @"requestModel" : @{
+                ScheduleModelRequestStudent : @[UserItemTool.defaultItem.stuNum]
+            }
+        }];
+        
+    }
+        
     return request;
 }
 
 @end
+

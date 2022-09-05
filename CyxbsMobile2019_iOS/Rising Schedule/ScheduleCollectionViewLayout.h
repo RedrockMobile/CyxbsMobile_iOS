@@ -43,6 +43,18 @@ NS_ASSUME_NONNULL_BEGIN
 /// 代理
 @property (nonatomic, weak) id <ScheduleCollectionViewLayoutDelegate> delegate;
 
+/// 行间距
+@property (nonatomic) CGFloat lineSpacing;
+
+/// 列间距
+@property (nonatomic) CGFloat columnSpacing;
+
+/// 前部装饰视图宽
+@property (nonatomic) CGFloat widthForLeadingSupplementaryView;
+
+/// 头部装饰视图高
+@property (nonatomic) CGFloat heightForTopSupplementaryView;
+
 @end
 
 NS_ASSUME_NONNULL_END

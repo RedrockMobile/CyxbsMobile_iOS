@@ -8,14 +8,9 @@
 
 #import "SchedulePresenter.h"
 
-#import "ScheduleController.h"
-
 #pragma mark - SchedulePresenter ()
 
 @interface SchedulePresenter ()
-
-/// 控制器
-@property (nonatomic, strong) ScheduleController *controller;
 
 @end
 
