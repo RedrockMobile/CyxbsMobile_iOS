@@ -7,6 +7,9 @@
 
 #import "RisingUIKitExtension.h"
 
+NSString *const UICollectionElementKindSectionLeading = @"UICollectionElementKindSectionLeading";
+NSString *const UICollectionElementKindSectionTrailing = @"UICollectionElementKindSectionTrailing";
+
 @implementation UIApplication (Rising)
 
 + (UIViewController *)topViewController {

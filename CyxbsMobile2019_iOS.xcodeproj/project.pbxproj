@@ -10,6 +10,7 @@
 		1404746C27F446DF00307209 /* DiscoverADBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404746B27F446DF00307209 /* DiscoverADBannerView.m */; };
 		1404747227F459B500307209 /* DiscoverADItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404747127F459B500307209 /* DiscoverADItem.m */; };
 		1404747D27F46F0D00307209 /* DiscoverADController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404747C27F46F0D00307209 /* DiscoverADController.m */; };
+		1431D5EC28C7842400B09087 /* NSString+Translation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1431D5EB28C7842400B09087 /* NSString+Translation.m */; };
 		1451EA53282A09B800A5BB55 /* UserPublishModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451EA52282A09B800A5BB55 /* UserPublishModel.m */; };
 		1451EA58282BAF0C00A5BB55 /* MessageDetailTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451EA57282BAF0C00A5BB55 /* MessageDetailTitleView.m */; };
 		145AF3E5281BDA0000AABC53 /* NSString+UILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 145AF3E3281BDA0000AABC53 /* NSString+UILabel.m */; };
@@ -703,6 +704,8 @@
 		1404747127F459B500307209 /* DiscoverADItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverADItem.m; sourceTree = "<group>"; };
 		1404747B27F46F0D00307209 /* DiscoverADController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverADController.h; sourceTree = "<group>"; };
 		1404747C27F46F0D00307209 /* DiscoverADController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverADController.m; sourceTree = "<group>"; };
+		1431D5EA28C7842400B09087 /* NSString+Translation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Translation.h"; sourceTree = "<group>"; };
+		1431D5EB28C7842400B09087 /* NSString+Translation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Translation.m"; sourceTree = "<group>"; };
 		1451EA51282A09B800A5BB55 /* UserPublishModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserPublishModel.h; sourceTree = "<group>"; };
 		1451EA52282A09B800A5BB55 /* UserPublishModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserPublishModel.m; sourceTree = "<group>"; };
 		1451EA56282BAF0C00A5BB55 /* MessageDetailTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDetailTitleView.h; sourceTree = "<group>"; };
@@ -5876,9 +5879,11 @@
 			isa = PBXGroup;
 			children = (
 				B042050028A4B1BB00903E86 /* RisingFoundationExtension.h */,
-				B042050128A4B1BB00903E86 /* RisingUIKitExtension.m */,
 				B042050228A4B1BB00903E86 /* RisingFoundationExtention.m */,
+				1431D5EA28C7842400B09087 /* NSString+Translation.h */,
+				1431D5EB28C7842400B09087 /* NSString+Translation.m */,
 				B042050328A4B1BB00903E86 /* RisingUIKitExtension.h */,
+				B042050128A4B1BB00903E86 /* RisingUIKitExtension.m */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -6975,6 +6980,7 @@
 				DB34EB30239BD4550052B65E /* LessonMatter.m in Sources */,
 				18CDF67D257F91BD006E8E5C /* PeopleListCellTableViewCell.m in Sources */,
 				AA4CD60A25EF6747002D9394 /* IgnoreDataModel.m in Sources */,
+				1431D5EC28C7842400B09087 /* NSString+Translation.m in Sources */,
 				B0F08FFD28A2509900986EB6 /* RisingRouter+Extension.m in Sources */,
 				18CDF71E257F91BE006E8E5C /* LogOutView.m in Sources */,
 				147E2CEB28240C3A00DCC312 /* HttpTool.m in Sources */,

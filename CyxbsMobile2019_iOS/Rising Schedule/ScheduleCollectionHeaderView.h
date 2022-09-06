@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class ScheduleCollectionHeaderView;
 
 /// 复用标志
-FOUNDATION_EXPORT NSString *ScheduleCollectionHeaderViewReuseIdentifier;
+UIKIT_EXTERN NSString *ScheduleCollectionHeaderViewReuseIdentifier;
 
 #pragma mark - ScheduleCollectionHeaderViewDataSource
 

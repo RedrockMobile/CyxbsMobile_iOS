@@ -14,6 +14,9 @@ UIKIT_STATIC_INLINE NSIndexPath *IndexPathForRange(NSRange range) {
     return [NSIndexPath indexPathForItem:range.length inSection:range.location];
 }
 
+UIKIT_EXTERN NSString *const UICollectionElementKindSectionLeading;
+UIKIT_EXTERN NSString *const UICollectionElementKindSectionTrailing;
+
 @interface UIApplication (Rising)
 
 @property (nonatomic, readonly, class) UIViewController *topViewController;

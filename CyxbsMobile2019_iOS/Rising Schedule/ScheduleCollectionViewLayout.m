@@ -30,6 +30,18 @@
 
 @implementation ScheduleCollectionViewLayout
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _attributes = NSMutableDictionary.dictionary;
+        _supplementaryAttributes = @{
+            UICollectionElementKindSectionHeader : NSMutableDictionary.dictionary,
+            UICollectionElementKindSectionLeading : NSMutableDictionary.dictionary
+        }.mutableCopy;
+    }
+    return self;
+}
+
 #pragma mark - UICollectionViewLayout
 
 - (NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
@@ -37,6 +49,15 @@
     NSMutableArray *result = NSMutableArray.array;
     
     for (NSInteger section = 0; section < self.sections; section++) {
+        // SupplementaryView attributes
+        for (NSString *elementKind in _supplementaryAttributes.allKeys) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:section];
+            UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForSupplementaryViewOfKind:elementKind atIndexPath:indexPath];
+            if (CGRectIntersectsRect(attributes.frame, rect)) {
+                [result addObject:attributes];
+            }
+        }
+        // Cell attributes
         NSUInteger itemCount = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:section];
         for (NSInteger item = 0; item < itemCount; item++) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
@@ -54,7 +75,7 @@
     NSParameterAssert(indexPath);
     
     UICollectionViewLayoutAttributes *attributes = _attributes[indexPath];
-    if (attributes != nil) {
+    if (attributes) {
         return attributes;
     }
 
@@ -75,6 +96,44 @@
     }
     
     _attributes[indexPath] = attributes;
+    
+    return attributes;
+}
+
+- (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
+    NSParameterAssert(indexPath);
+    
+    UICollectionViewLayoutAttributes *attributes = _supplementaryAttributes[elementKind][indexPath];
+    if (attributes && [elementKind isEqualToString:UICollectionElementKindSectionLeading]) {
+        return attributes;
+    }
+    
+    if (attributes == nil) {
+        attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
+        _supplementaryAttributes[elementKind][indexPath] = attributes;
+        
+        if ([elementKind isEqualToString:UICollectionElementKindSectionLeading]) {
+            CGFloat x = indexPath.section * self.collectionView.width;
+            CGFloat height = (self.itemSize.height + self.lineSpacing) * 12;
+            
+            CGRect frame = CGRectMake(x, self.heightForTopSupplementaryView, self.widthForLeadingSupplementaryView, height);
+            
+            attributes.frame = frame;
+            
+            return attributes;
+        }
+    }
+    
+    if ([elementKind isEqualToString:UICollectionElementKindSectionHeader]) {
+        CGFloat x = indexPath.section * self.collectionView.width;
+        CGFloat y = self.collectionView.contentOffset.y;
+        
+        CGRect frame = CGRectMake(x, y, self.collectionView.width, self.heightForTopSupplementaryView);
+        
+        attributes.frame = frame;
+        
+        return attributes;
+    }
     
     return attributes;
 }

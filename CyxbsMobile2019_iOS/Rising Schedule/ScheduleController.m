@@ -55,7 +55,7 @@
     if (_collectionView == nil) {
         ScheduleCollectionViewLayout *layout = [[ScheduleCollectionViewLayout alloc] init];
         layout.widthForLeadingSupplementaryView = 30;
-        layout.heightForTopSupplementaryView = 40;
+        layout.heightForTopSupplementaryView = 50;
         layout.lineSpacing = 2;
         layout.columnSpacing = 2;
         

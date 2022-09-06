@@ -8,6 +8,19 @@
 
 #import "ScheduleCollectionLeadingView.h"
 
+NSString *ScheduleCollectionLeadingViewReuseIdentifier = @"ScheduleCollectionLeadingView";
+
 @implementation ScheduleCollectionLeadingView
+
+#pragma mark - Life cycle
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.backgroundColor = UIColor.blueColor;
+    }
+    return self;
+}
+
 
 @end

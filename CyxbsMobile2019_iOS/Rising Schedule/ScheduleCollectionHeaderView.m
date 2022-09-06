@@ -57,7 +57,12 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
 #pragma mark - Method
 
 - (void)sizeToFit {
-    self.titleLab.width = self.width - 2 * self.titleLab.left;
+    self.titleLab.width = self.width;
+    if (self.onlyShowTitle) {
+        self.titleLab.centerY = self.height / 2;
+    } else {
+        self.titleLab.top = 6;
+    }
     
     self.contentLab.width = self.titleLab.width;
     self.contentLab.bottom = self.SuperBottom - 3;
@@ -74,7 +79,7 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
 
 - (UILabel *)titleLab {
     if (_titleLab == nil) {
-        _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(11, 6, -1, 20)];
+        _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, -2, -1, 20)];
         _titleLab.backgroundColor = UIColor.clearColor;
         _titleLab.textAlignment = NSTextAlignmentCenter;
         _titleLab.font = [UIFont fontWithName:PingFangSC size:12];
@@ -91,7 +96,7 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
         _contentLab.backgroundColor = UIColor.clearColor;
         _contentLab.textAlignment = NSTextAlignmentCenter;
         _contentLab.font = [UIFont fontWithName:PingFangSC size:11];
-        _titleLab.textColor =
+        _contentLab.textColor =
         [UIColor dm_colorWithLightColor:UIColorHex(#606E8A)
                               darkColor:UIColorHex(#868686)];
     }
@@ -111,6 +116,9 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
 /// 视图
 @property (nonatomic, strong) NSArray <ScheduleCollectionHeaderViewSigleView *> *views;
 
+/// 下标
+@property (nonatomic, strong) UICollectionViewLayoutAttributes *attributes;
+
 @end
 
 @implementation ScheduleCollectionHeaderView
@@ -120,7 +128,8 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = UIColor.clearColor;
+        self.backgroundColor = UIColor.redColor;
+        self.layer.zPosition = 1;
         
         NSMutableArray <ScheduleCollectionHeaderViewSigleView *> *array = NSMutableArray.array;
         for (NSInteger i = 0; i <= 7; i++) {
@@ -128,32 +137,50 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
             [array addObject:view];
             [self addSubview:view];
         }
+        self.views = array.copy;
     }
     return self;
+}
+
+- (void)sizeToFit {
+    self.views[0].frame = CGRectMake(0, 0, self.widthForLeadingView, _attributes.frame.size.height);
+    [self.views[0] sizeToFit];
+    
+    CGFloat width = (self.width - self.widthForLeadingView) / 7 - self.columnSpacing;
+    
+    for (NSInteger i = 1; i <= 7; i++) {
+        self.views[i].frame = CGRectMake(self.views[i - 1].right + self.columnSpacing, 0, width, _attributes.frame.size.height);
+        [self.views[i] sizeToFit];
+    }
 }
 
 #pragma mark - Method
 
 - (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
-    CGRect frame = layoutAttributes.frame;
+    _attributes = layoutAttributes;
     
-    self.views[0].frame = CGRectMake(0, 0, self.widthForLeadingView, frame.size.height);
-    [self.views[0] setTitle:@"整学期" content:nil];
+    [self.views[0] setTitle:@"学期" content:nil];
     
-    CGFloat width = (frame.size.width - self.widthForLeadingView) / 7 - self.columnSpacing;
     for (NSInteger i = 1; i <= 7; i++) {
-        self.views[i].frame = CGRectMake(self.views[i - 1].right + self.columnSpacing, 0, width, frame.size.height);
-        NSString *title = [NSString stringWithFormat:@"周%ld", i];
+        
+        NSString *title = [NSString stringWithFormat:@"周%@",
+                           (i == 7 ? @"日"
+                           : [NSString translation:(@(i).stringValue)])];
         [self.views[i] setTitle:title content:nil];
     }
-    // Source
-    if (self.delegate) {
-        BOOL needSource = [self.delegate scheduleCollectionHeaderView:self needSourceInSection:layoutAttributes.indexPath.section];
+}
+
+#pragma mark - Setter
+
+- (void)setDelegate:(id<ScheduleCollectionHeaderViewDataSource>)delegate {
+    _delegate = delegate;
+    
+    if (delegate) {
+        BOOL needSource = [delegate scheduleCollectionHeaderView:self needSourceInSection: _attributes.indexPath.section];
         if (needSource) {
-            [self.views[0] setTitle:[self.delegate scheduleCollectionHeaderView:self leadingTitleInSection:layoutAttributes.indexPath.section] content:nil];
+            [self.views[0] setTitle:[delegate scheduleCollectionHeaderView:self leadingTitleInSection:_attributes.indexPath.section] content:nil];
             for (NSInteger i = 1; i <= 7; i++) {
-                NSString *title = [NSString stringWithFormat:@"周%ld", i];
-                [self.views[i] setTitle:title content:[self.delegate scheduleCollectionHeaderView:self contentDateAtIndexPath:[NSIndexPath indexPathForItem:i inSection:layoutAttributes.indexPath.section]]];
+                [self.views[i] setTitle:self.views[i].titleLab.text content:[delegate scheduleCollectionHeaderView:self contentDateAtIndexPath:[NSIndexPath indexPathForItem:i inSection:_attributes.indexPath.section]]];
             }
         }
     }

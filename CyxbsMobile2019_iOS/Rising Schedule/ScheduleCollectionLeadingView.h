@@ -10,6 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 复用标志
+UIKIT_EXTERN NSString *ScheduleCollectionLeadingViewReuseIdentifier;
+
 #pragma mark - ScheduleCollectionLeadingView
 
 @interface ScheduleCollectionLeadingView : UICollectionReusableView

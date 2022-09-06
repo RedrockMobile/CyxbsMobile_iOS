@@ -16,7 +16,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /// 复用标志
-FOUNDATION_EXPORT NSString *ScheduleCollectionViewCellReuseIdentifier;
+UIKIT_EXTERN NSString *ScheduleCollectionViewCellReuseIdentifier;
 
 #pragma mark - ENUM(ScheduleCollectionViewCellDrawType)
 

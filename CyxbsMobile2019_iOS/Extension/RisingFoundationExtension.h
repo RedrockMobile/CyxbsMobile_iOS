@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "NSString+Translation.h"
+
 #ifndef RisingFoundationExtension_h
 #define RisingFoundationExtension_h
 

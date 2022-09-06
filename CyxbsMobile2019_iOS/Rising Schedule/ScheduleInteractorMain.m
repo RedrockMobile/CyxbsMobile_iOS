@@ -12,9 +12,15 @@
 
 #import "ScheduleCollectionViewCell.h"
 
+#import "ScheduleCollectionHeaderView.h"
+
+#import "ScheduleCollectionLeadingView.h"
+
 #pragma mark - ScheduleInteractorMain ()
 
-@interface ScheduleInteractorMain ()
+@interface ScheduleInteractorMain () <
+    ScheduleCollectionHeaderViewDataSource
+>
 
 /// 视图
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -38,6 +44,8 @@
     NSParameterAssert(dic);
     
     [view registerClass:ScheduleCollectionViewCell.class forCellWithReuseIdentifier:ScheduleCollectionViewCellReuseIdentifier];
+    [view registerClass:ScheduleCollectionHeaderView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleCollectionHeaderViewReuseIdentifier];
+    [view registerClass:ScheduleCollectionLeadingView.class forSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleCollectionLeadingViewReuseIdentifier];
     
     ScheduleInteractorMain *interactor = [[ScheduleInteractorMain alloc] init];
     
@@ -109,10 +117,33 @@
     return cell;
 }
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    
+    ScheduleCollectionViewLayout *layout = (ScheduleCollectionViewLayout *)collectionView.collectionViewLayout;
+    
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+
+        ScheduleCollectionHeaderView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleCollectionHeaderViewReuseIdentifier forIndexPath:indexPath];
+ 
+        view.widthForLeadingView = layout.widthForLeadingSupplementaryView;
+        view.columnSpacing = layout.columnSpacing;
+        view.delegate = self;
+        [view sizeToFit];
+        
+        return view;
+    } else if ([kind isEqualToString:UICollectionElementKindSectionLeading]) {
+        ScheduleCollectionLeadingView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleCollectionLeadingViewReuseIdentifier forIndexPath:indexPath];
+        
+        return view;
+    }
+    
+    return nil;
+}
+
 #pragma mark - <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    // TODO: select a course
 }
 
 #pragma mark - <ScheduleCollectionViewLayoutDelegate>
@@ -125,6 +156,36 @@
 - (NSRange)collectionView:(nonnull UICollectionView *)collectionView layout:(nonnull ScheduleCollectionViewLayout *)layout rangeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     ScheduleCourse *course = self.model.courseAry[indexPath.section][indexPath.row];
     return course.period;
+}
+
+
+#pragma mark - <ScheduleCollectionHeaderViewDataSource>
+
+- (BOOL)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view needSourceInSection:(NSInteger)section {
+    return section ? YES : NO;
+}
+
+
+- (nonnull NSString *)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view leadingTitleInSection:(NSInteger)section {
+    if (section == 0) {
+        return @"整学期";
+    }
+    NSString *title = [NSString stringWithFormat:@"%ld", section];
+    return title;
+}
+
+
+- (BOOL)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view isCurrentDateAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    return indexPath.section % 2;
+}
+
+
+- (NSString * _Nullable)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view contentDateAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        return nil;
+    }
+    NSString *title = [NSString stringWithFormat:@"%ld %ld", indexPath.section, indexPath.item];
+    return title;
 }
 
 @end
