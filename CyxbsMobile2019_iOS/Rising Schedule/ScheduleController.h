@@ -24,6 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 掉用者
 @property (nonatomic, strong) SchedulePresenter *presenter;
 
+/// 是否是push布局
+/// (区别在于是否是全屏布局)
+@property (nonatomic) BOOL isPushStyle;
+
 /// 新增事务手势
 /// (默认为NO）
 @property (nonatomic) BOOL allowCustomPan; // TODO: gesture when pan empty collection view

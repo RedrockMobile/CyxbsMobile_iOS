@@ -64,6 +64,8 @@
 		14E7E4B227F57FC800B67469 /* FeedBackQuestionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4AE27F57FC800B67469 /* FeedBackQuestionButton.m */; };
 		14E7E4B327F57FC800B67469 /* FeedBackSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4AF27F57FC800B67469 /* FeedBackSelectView.m */; };
 		14F0D3D02831DB670046D8F5 /* JWZXSectionNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F0D3CF2831DB670046D8F5 /* JWZXSectionNews.m */; };
+		14F2794828C6D51600F41F60 /* ScheduleCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F2794728C6D51600F41F60 /* ScheduleCollectionHeaderView.m */; };
+		14F2794B28C6D52A00F41F60 /* ScheduleCollectionLeadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F2794A28C6D52A00F41F60 /* ScheduleCollectionLeadingView.m */; };
 		14F8763728B5B04A0067642F /* ScheduleInteractorWCDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14F8763628B5B04A0067642F /* ScheduleInteractorWCDB.mm */; };
 		14F8763A28B5B5FA0067642F /* ScheduleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8763928B5B5FA0067642F /* ScheduleController.m */; };
 		14FBBD3B2805050300D5B05D /* DiscoverJWZXVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FBBD3A2805050300D5B05D /* DiscoverJWZXVC.m */; };
@@ -814,6 +816,10 @@
 		14F0D3CE2831DB670046D8F5 /* JWZXSectionNews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXSectionNews.h; sourceTree = "<group>"; };
 		14F0D3CF2831DB670046D8F5 /* JWZXSectionNews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWZXSectionNews.m; sourceTree = "<group>"; };
 		14F0D3D128329EAF0046D8F5 /* JWZXHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXHeader.h; sourceTree = "<group>"; };
+		14F2794628C6D51600F41F60 /* ScheduleCollectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionHeaderView.h; sourceTree = "<group>"; };
+		14F2794728C6D51600F41F60 /* ScheduleCollectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCollectionHeaderView.m; sourceTree = "<group>"; };
+		14F2794928C6D52A00F41F60 /* ScheduleCollectionLeadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionLeadingView.h; sourceTree = "<group>"; };
+		14F2794A28C6D52A00F41F60 /* ScheduleCollectionLeadingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCollectionLeadingView.m; sourceTree = "<group>"; };
 		14F8763528B5B04A0067642F /* ScheduleInteractorWCDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleInteractorWCDB.h; sourceTree = "<group>"; };
 		14F8763628B5B04A0067642F /* ScheduleInteractorWCDB.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ScheduleInteractorWCDB.mm; sourceTree = "<group>"; };
 		14F8763828B5B5FA0067642F /* ScheduleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleController.h; sourceTree = "<group>"; };
@@ -2537,6 +2543,10 @@
 				146AA0C428B65FA800391FD0 /* SchedulePresenter.m */,
 				14F8763828B5B5FA0067642F /* ScheduleController.h */,
 				14F8763928B5B5FA0067642F /* ScheduleController.m */,
+				14F2794628C6D51600F41F60 /* ScheduleCollectionHeaderView.h */,
+				14F2794728C6D51600F41F60 /* ScheduleCollectionHeaderView.m */,
+				14F2794928C6D52A00F41F60 /* ScheduleCollectionLeadingView.h */,
+				14F2794A28C6D52A00F41F60 /* ScheduleCollectionLeadingView.m */,
 				1466283228C5CA4600AF584F /* ScheduleCollectionViewCell.h */,
 				1466283328C5CA4600AF584F /* ScheduleCollectionViewCell.m */,
 				1466282728C4B1EC00AF584F /* ScheduleCollectionViewLayout.h */,
@@ -6789,6 +6799,7 @@
 				49252DAA26D39CC9003A8A7F /* FeedBackMainPageViewController.m in Sources */,
 				49A50B6726D83B9600B25DDF /* CommonQuestionDetailVC.m in Sources */,
 				AA7ABAC32873EA5500BA6790 /* MGDCurrentTimeStr.m in Sources */,
+				14F2794B28C6D52A00F41F60 /* ScheduleCollectionLeadingView.m in Sources */,
 				AAE3309025E3D59100324750 /* ShareViewPlus.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
 				738C15B426E0BDFE00E24F8C /* HistoricalFBDefaultView.m in Sources */,
@@ -7266,6 +7277,7 @@
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
 				AA7ABA992873EA5400BA6790 /* GroupItem.m in Sources */,
 				AA0DDB60286C8B1A00802324 /* SegmentedPageView.m in Sources */,
+				14F2794828C6D51600F41F60 /* ScheduleCollectionHeaderView.m in Sources */,
 				FE2C136627AEF629001CF7AF /* TodoDataModel.m in Sources */,
 				AA7ABAFF2873EA6D00BA6790 /* DynamicSpecificCell.m in Sources */,
 				AA0DDB68286C8B1A00802324 /* FansTableViewCell.m in Sources */,

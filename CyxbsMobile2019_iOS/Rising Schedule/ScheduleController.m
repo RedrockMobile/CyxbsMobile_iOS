@@ -59,7 +59,11 @@
         layout.lineSpacing = 2;
         layout.columnSpacing = 2;
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:layout];
+        CGFloat top = 64;
+        if (self.isPushStyle) {
+            top += STATUSBARHEIGHT;
+        }
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, top, self.view.width, self.view.height - top) collectionViewLayout:layout];
         _collectionView.directionalLockEnabled = YES;
         _collectionView.pagingEnabled = YES;
     }

@@ -46,7 +46,14 @@
 
 - (id<ScheduleRouterProtocol> _Nonnull (^)(BOOL))needCustomFirst {
     return ^id<ScheduleRouterProtocol> (BOOL needCustomFirst) {
-        self.dic[@"custom"] = @(YES);
+        self.dic[@"custom"] = @(needCustomFirst);
+        return self;
+    };
+}
+
+- (id<ScheduleRouterProtocol> _Nonnull (^)(BOOL))isPushStyle {
+    return ^id<ScheduleRouterProtocol> (BOOL isPushStyle) {
+        self.dic[@"pushStyle"] = @(isPushStyle);
         return self;
     };
 }

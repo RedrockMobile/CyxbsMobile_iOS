@@ -25,13 +25,26 @@
     
     // schedule presenter
     SchedulePresenter *presenter = [[SchedulePresenter alloc] init];
-    presenter.firstRequetDic = params[@"requestModel"];
+    
+    // requestModel in parameter
+    NSMutableDictionary *dic =
+    params[@"requestModel"]
+    ? [params[@"requestModel"] mutableCopy]
+    : @{
+        ScheduleModelRequestStudent : @[UserItemTool.defaultItem.stuNum]
+    }.mutableCopy;
+    if (params[@"custom"]) {
+        dic[ScheduleModelRequestCustom] = @[@"Rising"];
+    }
+    presenter.firstRequetDic = dic;
         
     // view controller
     ScheduleController *vc = [[ScheduleController alloc] init];
+    presenter.controller = vc;
+
     vc.presenter = presenter;
     vc.hidesBottomBarWhenPushed = YES;
-    presenter.controller = vc;
+    vc.isPushStyle = params[@"pushStyle"] ? [params[@"pushStyle"] boolValue] : YES;
     
     // router response
     RisingRouterResponse *response = [[RisingRouterResponse alloc] init];

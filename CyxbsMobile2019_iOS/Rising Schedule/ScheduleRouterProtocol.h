@@ -32,14 +32,17 @@ static NSString *ScheduleRouterName = @"SchedulePresenter";
 /// 是否需要事务手势
 - (id <ScheduleRouterProtocol> (^) (BOOL))allowCustomPan;
 
+/// 是否第一次需要事务
+- (id <ScheduleRouterProtocol> (^) (BOOL))needCustomFirst;
+
+/// 是否是push布局
+- (id <ScheduleRouterProtocol> (^) (BOOL))isPushStyle;
+
 /// 设置请求学生信息
 - (id <ScheduleRouterProtocol> (^)
    (NSDictionary
     <ScheduleModelRequestType, NSArray
     <NSString *> *> *))request;
-
-/// 是否第一次需要事务
-- (id <ScheduleRouterProtocol> (^) (BOOL))needCustomFirst;
 
 @end
 

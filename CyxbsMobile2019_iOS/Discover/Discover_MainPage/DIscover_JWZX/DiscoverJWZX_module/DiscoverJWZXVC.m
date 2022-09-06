@@ -103,7 +103,8 @@
         .request(@{
             ScheduleModelRequestStudent : @[@"2021215154"]
         })
-        .allowCustomPan(NO);
+        .allowCustomPan(NO)
+        .isPushStyle(YES);
     }];
     
     [self.router handleRequest:request complition:nil];
