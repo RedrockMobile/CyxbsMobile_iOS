@@ -87,10 +87,10 @@
         NSRange range = [self.delegate collectionView:self.collectionView layout:self rangeForItemAtIndexPath:indexPath];
         
         CGFloat x = section * self.collectionView.bounds.size.width + self.widthForLeadingSupplementaryView + (week - 1) * (self.itemSize.width + self.columnSpacing);
-        CGFloat y = self.heightForTopSupplementaryView + (range.location - 1) * (self.itemSize.height + self.lineSpacing);
+        CGFloat y = self.heightForHeaderSupplementaryView + (range.location - 1) * (self.itemSize.height + self.lineSpacing);
         CGFloat height = range.length * self.itemSize.height + (range.length - 1) * self.columnSpacing;
         
-        CGRect frame = CGRectMake(x, y + self.heightForBreathBelowHeaderView, self.itemSize.width, height);
+        CGRect frame = CGRectMake(x, y, self.itemSize.width, height);
         
         attributes.frame = frame;
     }
@@ -116,7 +116,7 @@
             CGFloat x = indexPath.section * self.collectionView.width;
             CGFloat height = (self.itemSize.height + self.lineSpacing) * 12;
             
-            CGRect frame = CGRectMake(x, self.heightForTopSupplementaryView + self.heightForBreathBelowHeaderView, self.widthForLeadingSupplementaryView, height);
+            CGRect frame = CGRectMake(x, self.heightForHeaderSupplementaryView, self.widthForLeadingSupplementaryView, height);
             
             attributes.frame = frame;
             
@@ -128,7 +128,7 @@
         CGFloat x = indexPath.section * self.collectionView.width;
         CGFloat y = self.collectionView.contentOffset.y;
         
-        CGRect frame = CGRectMake(x, y, self.collectionView.width, self.heightForTopSupplementaryView);
+        CGRect frame = CGRectMake(x, y, self.collectionView.width, self.heightForHeaderSupplementaryView);
         
         attributes.frame = frame;
         
@@ -142,7 +142,7 @@
     
     NSInteger itemCount = 12;
     
-    CGSize contentSize = CGSizeMake(self.sections * self.collectionView.bounds.size.width, self.heightForTopSupplementaryView + itemCount * (self.itemSize.height + self.lineSpacing));
+    CGSize contentSize = CGSizeMake(self.sections * self.collectionView.bounds.size.width, self.heightForHeaderSupplementaryView + itemCount * (self.itemSize.height + self.lineSpacing));
     
     return contentSize;
 }

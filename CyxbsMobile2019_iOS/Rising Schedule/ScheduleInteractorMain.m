@@ -126,6 +126,7 @@
         ScheduleCollectionHeaderView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleCollectionHeaderViewReuseIdentifier forIndexPath:indexPath];
  
         view.widthForLeadingView = layout.widthForLeadingSupplementaryView;
+        view.heightForBreathBelowHeaderView = 10;
         view.columnSpacing = layout.columnSpacing;
         view.delegate = self;
         [view sizeToFit];

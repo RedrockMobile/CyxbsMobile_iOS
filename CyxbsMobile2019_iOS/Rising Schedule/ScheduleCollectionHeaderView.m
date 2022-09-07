@@ -155,7 +155,9 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = UIColor.clearColor;
+        self.backgroundColor =
+        [UIColor dm_colorWithLightColor:UIColorHex(#FFFFFF)
+                              darkColor:UIColorHex(#1D1D1D)];
         self.layer.zPosition = 1;
         
         NSMutableArray <ScheduleCollectionHeaderViewSigleView *> *array = NSMutableArray.array;
@@ -170,13 +172,13 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
 }
 
 - (void)sizeToFit {
-    self.views[0].frame = CGRectMake(0, 0, self.widthForLeadingView, _attributes.frame.size.height);
+    self.views[0].frame = CGRectMake(0, 0, self.widthForLeadingView, _attributes.frame.size.height - self.heightForBreathBelowHeaderView);
     [self.views[0] sizeToFit];
     
     CGFloat width = (_attributes.frame.size.width - self.widthForLeadingView) / 7 - self.columnSpacing;
     
     for (NSInteger i = 1; i <= 7; i++) {
-        self.views[i].frame = CGRectMake(self.views[i - 1].right, 0, width, _attributes.frame.size.height);
+        self.views[i].frame = CGRectMake(self.views[i - 1].right, 0, width, _attributes.frame.size.height - self.heightForBreathBelowHeaderView);
         self.views[i].left += (i == 1 ? 0 : self.columnSpacing);
         [self.views[i] sizeToFit];
     }
@@ -194,7 +196,7 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
         NSString *title = [NSString stringWithFormat:@"周%@",
                            (i == 7 ? @"日"
                            : [NSString translation:(@(i).stringValue)])];
-        [self.views[i] setTitle:title content:nil];
+        [self.views[i] setTitle:title content:self.views[i].contentLab.text];
     }
 }
 

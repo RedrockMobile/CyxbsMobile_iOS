@@ -58,6 +58,9 @@ UIKIT_EXTERN NSString *ScheduleCollectionHeaderViewReuseIdentifier;
 /// 月份所占空间
 @property (nonatomic) CGFloat widthForLeadingView;
 
+/// 头部视图下方残留
+@property (nonatomic) CGFloat heightForBreathBelowHeaderView;
+
 /// 列间距
 @property (nonatomic) CGFloat columnSpacing;
 

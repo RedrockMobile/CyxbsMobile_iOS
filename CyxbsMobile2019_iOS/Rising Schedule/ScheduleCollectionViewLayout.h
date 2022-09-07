@@ -57,10 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) CGFloat widthForLeadingSupplementaryView;
 
 /// 头部装饰视图高
-@property (nonatomic) CGFloat heightForTopSupplementaryView;
-
-/// 头部视图下方残留
-@property (nonatomic) CGFloat heightForBreathBelowHeaderView;
+@property (nonatomic) CGFloat heightForHeaderSupplementaryView;
 
 @end
 
