@@ -90,7 +90,7 @@
         CGFloat y = self.heightForTopSupplementaryView + (range.location - 1) * (self.itemSize.height + self.lineSpacing);
         CGFloat height = range.length * self.itemSize.height + (range.length - 1) * self.columnSpacing;
         
-        CGRect frame = CGRectMake(x, y, self.itemSize.width, height);
+        CGRect frame = CGRectMake(x, y + self.heightForBreathBelowHeaderView, self.itemSize.width, height);
         
         attributes.frame = frame;
     }
@@ -116,7 +116,7 @@
             CGFloat x = indexPath.section * self.collectionView.width;
             CGFloat height = (self.itemSize.height + self.lineSpacing) * 12;
             
-            CGRect frame = CGRectMake(x, self.heightForTopSupplementaryView, self.widthForLeadingSupplementaryView, height);
+            CGRect frame = CGRectMake(x, self.heightForTopSupplementaryView + self.heightForBreathBelowHeaderView, self.widthForLeadingSupplementaryView, height);
             
             attributes.frame = frame;
             

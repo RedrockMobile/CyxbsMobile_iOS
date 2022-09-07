@@ -134,6 +134,9 @@
     } else if ([kind isEqualToString:UICollectionElementKindSectionLeading]) {
         ScheduleCollectionLeadingView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleCollectionLeadingViewReuseIdentifier forIndexPath:indexPath];
         
+        view.lineSpacing = layout.lineSpacing;
+        [view sizeToFit];
+        
         return view;
     }
     
@@ -168,15 +171,15 @@
 
 - (nonnull NSString *)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view leadingTitleInSection:(NSInteger)section {
     if (section == 0) {
-        return @"整学期";
+        return @"学期";
     }
-    NSString *title = [NSString stringWithFormat:@"%ld", section];
+    NSString *title = [NSString stringWithFormat:@"%ld月", section];
     return title;
 }
 
 
 - (BOOL)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view isCurrentDateAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    return indexPath.section % 2;
+    return indexPath.item % 2;
 }
 
 
@@ -184,7 +187,7 @@
     if (indexPath.section == 0) {
         return nil;
     }
-    NSString *title = [NSString stringWithFormat:@"%ld %ld", indexPath.section, indexPath.item];
+    NSString *title = [NSString stringWithFormat:@"%ld日", indexPath.item];
     return title;
 }
 

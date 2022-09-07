@@ -57,6 +57,7 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
 #pragma mark - Method
 
 - (void)sizeToFit {
+    self.titleLab.left = 0;
     self.titleLab.width = self.width;
     if (self.onlyShowTitle) {
         self.titleLab.centerY = self.height / 2;
@@ -64,6 +65,7 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
         self.titleLab.top = 6;
     }
     
+    self.contentLab.left = 0;
     self.contentLab.width = self.titleLab.width;
     self.contentLab.bottom = self.SuperBottom - 3;
 }
@@ -103,6 +105,29 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
     return _contentLab;
 }
 
+#pragma mark - Setter
+
+- (void)setIsCurrent:(BOOL)isCurrent {
+    if (_isCurrent == isCurrent) {
+        return;
+    }
+    _isCurrent = isCurrent;
+    
+    if (isCurrent) {
+        self.backgroundColor =
+        [UIColor dm_colorWithLightColor:UIColorHex(#2A4E84)
+                              darkColor:UIColorHex(#CC5A5A5A)];
+        self.titleLab.textColor =
+        [UIColor dm_colorWithLightColor:UIColorHex(#FFFFFF)
+                              darkColor:UIColorHex(#F0F0F2)];
+    } else {
+        self.backgroundColor = UIColor.clearColor;
+        self.titleLab.textColor =
+        [UIColor dm_colorWithLightColor:UIColorHex(#15315B)
+                              darkColor:UIColorHex(#F0F0F2)];
+    }
+}
+
 @end
 
 // !!!: Inner Class End
@@ -116,10 +141,12 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
 /// 视图
 @property (nonatomic, strong) NSArray <ScheduleCollectionHeaderViewSigleView *> *views;
 
-/// 下标
+/// 布局信息
 @property (nonatomic, strong) UICollectionViewLayoutAttributes *attributes;
 
 @end
+
+#pragma mark - ScheduleCollectionHeaderView
 
 @implementation ScheduleCollectionHeaderView
 
@@ -128,7 +155,7 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = UIColor.redColor;
+        self.backgroundColor = UIColor.clearColor;
         self.layer.zPosition = 1;
         
         NSMutableArray <ScheduleCollectionHeaderViewSigleView *> *array = NSMutableArray.array;
@@ -146,10 +173,11 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
     self.views[0].frame = CGRectMake(0, 0, self.widthForLeadingView, _attributes.frame.size.height);
     [self.views[0] sizeToFit];
     
-    CGFloat width = (self.width - self.widthForLeadingView) / 7 - self.columnSpacing;
+    CGFloat width = (_attributes.frame.size.width - self.widthForLeadingView) / 7 - self.columnSpacing;
     
     for (NSInteger i = 1; i <= 7; i++) {
-        self.views[i].frame = CGRectMake(self.views[i - 1].right + self.columnSpacing, 0, width, _attributes.frame.size.height);
+        self.views[i].frame = CGRectMake(self.views[i - 1].right, 0, width, _attributes.frame.size.height);
+        self.views[i].left += (i == 1 ? 0 : self.columnSpacing);
         [self.views[i] sizeToFit];
     }
 }
@@ -177,10 +205,16 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
     
     if (delegate) {
         BOOL needSource = [delegate scheduleCollectionHeaderView:self needSourceInSection: _attributes.indexPath.section];
+        
         if (needSource) {
             [self.views[0] setTitle:[delegate scheduleCollectionHeaderView:self leadingTitleInSection:_attributes.indexPath.section] content:nil];
+            
             for (NSInteger i = 1; i <= 7; i++) {
-                [self.views[i] setTitle:self.views[i].titleLab.text content:[delegate scheduleCollectionHeaderView:self contentDateAtIndexPath:[NSIndexPath indexPathForItem:i inSection:_attributes.indexPath.section]]];
+                NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:_attributes.indexPath.section];
+                
+                [self.views[i] setTitle:self.views[i].titleLab.text content:[delegate scheduleCollectionHeaderView:self contentDateAtIndexPath:indexPath]];
+                
+                self.views[i].isCurrent = [self.delegate scheduleCollectionHeaderView:self isCurrentDateAtIndexPath:indexPath];
             }
         }
     }
