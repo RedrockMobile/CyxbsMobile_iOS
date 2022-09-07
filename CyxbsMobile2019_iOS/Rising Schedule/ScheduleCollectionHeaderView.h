@@ -6,6 +6,12 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
+/**ScheduleCollectionHeaderViewDataSource头视图
+ * 请在每次使用时赋值**所有**属性
+ * 代理必须需要，否则没有数据用于驱动
+ * 必须执行- sizeToFit来保证UI正确
+ */
+
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN

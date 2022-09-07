@@ -188,9 +188,7 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
 
 - (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
     _attributes = layoutAttributes;
-    
-    [self.views[0] setTitle:@"学期" content:nil];
-    
+        
     for (NSInteger i = 1; i <= 7; i++) {
         
         NSString *title = [NSString stringWithFormat:@"周%@",
@@ -217,6 +215,15 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
                 [self.views[i] setTitle:self.views[i].titleLab.text content:[delegate scheduleCollectionHeaderView:self contentDateAtIndexPath:indexPath]];
                 
                 self.views[i].isCurrent = [self.delegate scheduleCollectionHeaderView:self isCurrentDateAtIndexPath:indexPath];
+            }
+        } else {
+            [self.views[0] setTitle:@"学期" content:nil];
+            
+            for (NSInteger i = 1; i <= 7; i++) {
+                NSString *title = [NSString stringWithFormat:@"周%@",
+                                   (i == 7 ? @"日"
+                                   : [NSString translation:(@(i).stringValue)])];
+                [self.views[i] setTitle:title content:nil];
             }
         }
     }

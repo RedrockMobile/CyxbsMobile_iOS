@@ -53,11 +53,13 @@
 
 - (UICollectionView *)collectionView {
     if (_collectionView == nil) {
+        CGFloat width = self.view.width;
+        
         ScheduleCollectionViewLayout *layout = [[ScheduleCollectionViewLayout alloc] init];
         layout.widthForLeadingSupplementaryView = 30;
-        layout.heightForHeaderSupplementaryView = 60;
         layout.lineSpacing = 2;
         layout.columnSpacing = 2;
+        layout.heightForHeaderSupplementaryView = 10 + ((width - layout.widthForLeadingSupplementaryView) / 7 - layout.columnSpacing) / 46 * 50;
         
         CGFloat top = 64;
         if (self.isPushStyle) {

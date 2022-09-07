@@ -6,6 +6,11 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
+/**ScheduleCollectionLeadingView前驱视图
+ * 请在每次使用时赋值**所有**属性
+ * 必须执行- sizeToFit来保证UI正确
+ */
+
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
