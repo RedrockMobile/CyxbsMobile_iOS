@@ -8,6 +8,16 @@
 
 #import "ScheduleCollectionViewLayout.h"
 
+@interface ScheduleCollectionViewLayoutInvalidationContext : UICollectionViewLayoutInvalidationContext
+
+@property (nonatomic) BOOL invalidateSupplementaryAttributes;
+
+@end
+
+@implementation ScheduleCollectionViewLayoutInvalidationContext
+
+@end
+
 #pragma mark - ScheduleCollectionViewLayout ()
 
 @interface ScheduleCollectionViewLayout ()
@@ -42,7 +52,7 @@
     return self;
 }
 
-#pragma mark - UICollectionViewLayout
+#pragma mark - LayoutAttributes
 
 - (NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
     
@@ -104,24 +114,23 @@
     NSParameterAssert(indexPath);
     
     UICollectionViewLayoutAttributes *attributes = _supplementaryAttributes[elementKind][indexPath];
-    if (attributes && [elementKind isEqualToString:UICollectionElementKindSectionLeading]) {
+
+    if (attributes != nil) {
         return attributes;
     }
     
-    if (attributes == nil) {
-        attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
-        _supplementaryAttributes[elementKind][indexPath] = attributes;
+    attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
+    _supplementaryAttributes[elementKind][indexPath] = attributes;
+    
+    if ([elementKind isEqualToString:UICollectionElementKindSectionLeading]) {
+        CGFloat x = indexPath.section * self.collectionView.width;
+        CGFloat height = (self.itemSize.height + self.lineSpacing) * 12;
         
-        if ([elementKind isEqualToString:UICollectionElementKindSectionLeading]) {
-            CGFloat x = indexPath.section * self.collectionView.width;
-            CGFloat height = (self.itemSize.height + self.lineSpacing) * 12;
-            
-            CGRect frame = CGRectMake(x, self.heightForHeaderSupplementaryView, self.widthForLeadingSupplementaryView, height);
-            
-            attributes.frame = frame;
-            
-            return attributes;
-        }
+        CGRect frame = CGRectMake(x, self.heightForHeaderSupplementaryView, self.widthForLeadingSupplementaryView, height);
+        
+        attributes.frame = frame;
+        
+        return attributes;
     }
     
     if ([elementKind isEqualToString:UICollectionElementKindSectionHeader]) {
@@ -137,6 +146,8 @@
     
     return attributes;
 }
+
+#pragma mark - Others
 
 - (CGSize)collectionViewContentSize {
     
@@ -155,6 +166,30 @@
     [self _calculateLayoutIfNeeded];
 }
 
+#pragma mark - LayoutInvalidationContext
+
++ (Class)invalidationContextClass {
+    return ScheduleCollectionViewLayoutInvalidationContext.class;
+}
+
+- (UICollectionViewLayoutInvalidationContext *)invalidationContextForBoundsChange:(CGRect)newBounds {
+    
+    ScheduleCollectionViewLayoutInvalidationContext *context =
+    (ScheduleCollectionViewLayoutInvalidationContext *)[super invalidationContextForBoundsChange:newBounds];
+    
+    context.invalidateSupplementaryAttributes = YES;
+    
+    return context;
+}
+
+- (void)invalidateLayoutWithContext:(ScheduleCollectionViewLayoutInvalidationContext *)context {
+    if (context.invalidateSupplementaryAttributes) {
+        [self _resetSupplementaryAttributes];
+    }
+    
+    [super invalidateLayoutWithContext:context];
+}
+
 #pragma mark - Private API
 
 - (void)_calculateLayoutIfNeeded {
@@ -166,6 +201,10 @@
     CGFloat width = (self.collectionView.bounds.size.width - self.widthForLeadingSupplementaryView) / 7 - self.columnSpacing;
     
     self.itemSize = CGSizeMake(width, width / 46 * 50);
+}
+
+- (void)_resetSupplementaryAttributes {
+    [_supplementaryAttributes[UICollectionElementKindSectionHeader] removeAllObjects];
 }
 
 @end

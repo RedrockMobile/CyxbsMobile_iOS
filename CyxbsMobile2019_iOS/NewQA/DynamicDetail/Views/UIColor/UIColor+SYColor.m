@@ -44,12 +44,6 @@
     return [UIColor colorWithLightColor:[UIColor colorWithHexString:lightColor alpha:lightAlpha] DarkColor:[UIColor colorWithHexString:darkColor alpha:darkAlpha]];
 }
 
-///十六进制字符串获取颜色
-/// @param color 16进制色值  支持@“#123456”、 @“0X123456”、 @“123456”三种格式
-+ (UIColor *)colorWithHexString:(NSString *)color{
-    return [self colorWithHexString:color alpha:1.0f];
-}
-
 
 /// 十六进制字符串获取颜色
 /// @param color 16进制色值  支持@“#123456”、 @“0X123456”、 @“123456”三种格式

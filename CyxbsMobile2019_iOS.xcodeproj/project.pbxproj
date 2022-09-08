@@ -30,7 +30,7 @@
 		14981FF927FEAEB800AD2A29 /* JWZXDetailNewsTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FF827FEAEB800AD2A29 /* JWZXDetailNewsTopView.m */; };
 		14981FFC27FEB41B00AD2A29 /* JWZXDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FFB27FEB41B00AD2A29 /* JWZXDetailView.m */; };
 		14B46E6128B4D283003D288B /* ScheduleCourse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6028B4D283003D288B /* ScheduleCourse.mm */; };
-		14B46E6528B4D5D7003D288B /* ScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6328B4D5D7003D288B /* ScheduleModel.m */; };
+		14B46E6528B4D5D7003D288B /* ScheduleModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6328B4D5D7003D288B /* ScheduleModel.mm */; };
 		14B46E6A28B4E504003D288B /* ScheduleInteractorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6928B4E504003D288B /* ScheduleInteractorRequest.m */; };
 		14B73F27281BE6C200D08ADD /* CyxbsMobileImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */; };
 		14B73F6E281BED7B00D08ADD /* MessageSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F2C281BED7B00D08ADD /* MessageSettingCell.m */; };
@@ -746,7 +746,7 @@
 		14B46E5F28B4D282003D288B /* ScheduleCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleCourse.h; sourceTree = "<group>"; };
 		14B46E6028B4D283003D288B /* ScheduleCourse.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ScheduleCourse.mm; sourceTree = "<group>"; };
 		14B46E6228B4D4A1003D288B /* ScheduleCourse+WCTTableCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScheduleCourse+WCTTableCoding.h"; sourceTree = "<group>"; };
-		14B46E6328B4D5D7003D288B /* ScheduleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleModel.m; sourceTree = "<group>"; };
+		14B46E6328B4D5D7003D288B /* ScheduleModel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ScheduleModel.mm; sourceTree = "<group>"; };
 		14B46E6428B4D5D7003D288B /* ScheduleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleModel.h; sourceTree = "<group>"; };
 		14B46E6728B4D69A003D288B /* RisingScheduleHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RisingScheduleHeader.h; sourceTree = "<group>"; };
 		14B46E6828B4E504003D288B /* ScheduleInteractorRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleInteractorRequest.h; sourceTree = "<group>"; };
@@ -2563,7 +2563,7 @@
 				14F8763528B5B04A0067642F /* ScheduleInteractorWCDB.h */,
 				14F8763628B5B04A0067642F /* ScheduleInteractorWCDB.mm */,
 				14B46E6428B4D5D7003D288B /* ScheduleModel.h */,
-				14B46E6328B4D5D7003D288B /* ScheduleModel.m */,
+				14B46E6328B4D5D7003D288B /* ScheduleModel.mm */,
 				1478633B28BB567A00C1E54B /* ScheduleCombineModel.h */,
 				1478633C28BB567A00C1E54B /* ScheduleCombineModel.m */,
 				14B46E5F28B4D282003D288B /* ScheduleCourse.h */,
@@ -7234,7 +7234,7 @@
 				AA7ABAF02873EA6D00BA6790 /* DynamicDetailRequestDataModel.m in Sources */,
 				DB34EB38239BD4550052B65E /* MainView.m in Sources */,
 				18CDF70F257F91BE006E8E5C /* BackgroundTableViewCell.m in Sources */,
-				14B46E6528B4D5D7003D288B /* ScheduleModel.m in Sources */,
+				14B46E6528B4D5D7003D288B /* ScheduleModel.mm in Sources */,
 				1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */,
 				DB34EB3A239BD4550052B65E /* CoverView.m in Sources */,
 				AA7ABAA32873EA5400BA6790 /* GroupModel.m in Sources */,

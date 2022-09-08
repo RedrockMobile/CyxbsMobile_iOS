@@ -8,6 +8,13 @@
 
 #import "ScheduleModel.h"
 
+#import <map>
+
+struct ScheduleCombineEntry {
+    ScheduleCombineModel *model;
+    BOOL isUsing;
+};
+
 #pragma mark - ScheduleModel ()
 
 @interface ScheduleModel ()

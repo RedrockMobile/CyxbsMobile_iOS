@@ -10,12 +10,18 @@
 
 NSString *ScheduleCollectionLeadingViewReuseIdentifier = @"ScheduleCollectionLeadingView";
 
+// !!!: Inner Class Begin
+
+#pragma mark - ScheduleCollectionLeadingViewSigleView
+
 @interface ScheduleCollectionLeadingViewSigleView : UIView
 
 /// 时间
 @property (nonatomic, strong) UILabel *timeLab;
 
 @end
+
+#pragma mark - ScheduleCollectionLeadingViewSigleView
 
 @implementation ScheduleCollectionLeadingViewSigleView
 
@@ -49,6 +55,7 @@ NSString *ScheduleCollectionLeadingViewReuseIdentifier = @"ScheduleCollectionLea
 
 @end
 
+// !!!: Inner Class End
 
 
 

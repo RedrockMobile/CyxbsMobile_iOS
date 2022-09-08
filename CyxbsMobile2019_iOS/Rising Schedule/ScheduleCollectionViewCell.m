@@ -137,44 +137,44 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
         case ScheduleCollectionViewCellDrawMorning: {
             self.contentView.backgroundColor =
             [UIColor dm_colorWithLightColor:UIColorHex(#F9E7D8)
-                                  darkColor:UIColorHex(#26FFCCA1)];
+                                  darkColor:UIColorHex(#FFCCA126)];
             
             self.titleLab.textColor = self.contentLab.textColor = self.multyView.backgroundColor =
             [UIColor dm_colorWithLightColor:UIColorHex(#FF8015)
-                                  darkColor:UIColorHex(#CCF0F0F2)];
+                                  darkColor:UIColorHex(#F0F0F2CC)];
         } break;
             
         /*ScheduleCollectionViewCellDrawAfternoon*/
         case ScheduleCollectionViewCellDrawAfternoon: {
             self.contentView.backgroundColor =
             [UIColor dm_colorWithLightColor:UIColorHex(#F9E3E4)
-                                  darkColor:UIColorHex(#26FF979B)];
+                                  darkColor:UIColorHex(#FF979B26)];
             
             self.titleLab.textColor = self.contentLab.textColor = self.multyView.backgroundColor =
             [UIColor dm_colorWithLightColor:UIColorHex(#FF6262)
-                                  darkColor:UIColorHex(#CCF0F0F2)];
+                                  darkColor:UIColorHex(#F0F0F2CC)];
         } break;
             
         /*ScheduleCollectionViewCellDrawNight*/
         case ScheduleCollectionViewCellDrawNight: {
             self.contentView.backgroundColor =
             [UIColor dm_colorWithLightColor:UIColorHex(#DDE3F8)
-                                  darkColor:UIColorHex(#269BB2FB)];
+                                  darkColor:UIColorHex(#9BB2FB26)];
             
             self.titleLab.textColor = self.contentLab.textColor = self.multyView.backgroundColor =
             [UIColor dm_colorWithLightColor:UIColorHex(#4066EA)
-                                  darkColor:UIColorHex(#CCF0F0F2)];
+                                  darkColor:UIColorHex(#F0F0F2CC)];
         } break;
             
         /*ScheduleCollectionViewCellDrawOthers*/
         case ScheduleCollectionViewCellDrawOthers: {
             self.contentView.backgroundColor =
             [UIColor dm_colorWithLightColor:UIColorHex(#DFF3FC)
-                                  darkColor:UIColorHex(#2690DBFB)];
+                                  darkColor:UIColorHex(#90DBFB26)];
             
             self.titleLab.textColor = self.contentLab.textColor = self.multyView.backgroundColor =
             [UIColor dm_colorWithLightColor:UIColorHex(#06A3FC)
-                                  darkColor:UIColorHex(#CCF0F0F2)];
+                                  darkColor:UIColorHex(#F0F0F2CC)];
         } break;
             
         /*ScheduleCollectionViewCellDrawCustom*/
@@ -185,7 +185,7 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
             
             self.titleLab.textColor = self.contentLab.textColor = self.multyView.backgroundColor =
             [UIColor dm_colorWithLightColor:UIColorHex(#4D4D4D)
-                                  darkColor:UIColorHex(#CCF0F0F2)];
+                                  darkColor:UIColorHex(#F0F0F2CC)];
         } break;
     }
 }

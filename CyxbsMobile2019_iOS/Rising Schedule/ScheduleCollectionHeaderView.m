@@ -116,7 +116,7 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
     if (isCurrent) {
         self.backgroundColor =
         [UIColor dm_colorWithLightColor:UIColorHex(#2A4E84)
-                              darkColor:UIColorHex(#CC5A5A5A)];
+                              darkColor:UIColorHex(#5A5A5ACC)];
         self.titleLab.textColor =
         [UIColor dm_colorWithLightColor:UIColorHex(#FFFFFF)
                               darkColor:UIColorHex(#F0F0F2)];
@@ -141,6 +141,9 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
 /// 视图
 @property (nonatomic, strong) NSArray <ScheduleCollectionHeaderViewSigleView *> *views;
 
+/// 当天背景view
+@property (nonatomic, strong) UIView *currentBackgroundView;
+
 /// 布局信息
 @property (nonatomic, strong) UICollectionViewLayoutAttributes *attributes;
 
@@ -160,6 +163,8 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
                               darkColor:UIColorHex(#1D1D1D)];
         self.layer.zPosition = 1;
         
+        [self addSubview:self.currentBackgroundView];
+        
         NSMutableArray <ScheduleCollectionHeaderViewSigleView *> *array = NSMutableArray.array;
         for (NSInteger i = 0; i <= 7; i++) {
             ScheduleCollectionHeaderViewSigleView *view = [[ScheduleCollectionHeaderViewSigleView alloc] init];
@@ -172,15 +177,21 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
 }
 
 - (void)sizeToFit {
+    CGFloat width = (_attributes.frame.size.width - self.widthForLeadingView) / 7 - self.columnSpacing;
+    
+    self.currentBackgroundView.frame = CGRectMake(-1, 0, width, _attributes.frame.size.height);
+    
     self.views[0].frame = CGRectMake(0, 0, self.widthForLeadingView, _attributes.frame.size.height - self.heightForBreathBelowHeaderView);
     [self.views[0] sizeToFit];
-    
-    CGFloat width = (_attributes.frame.size.width - self.widthForLeadingView) / 7 - self.columnSpacing;
     
     for (NSInteger i = 1; i <= 7; i++) {
         self.views[i].frame = CGRectMake(self.views[i - 1].right, 0, width, _attributes.frame.size.height - self.heightForBreathBelowHeaderView);
         self.views[i].left += (i == 1 ? 0 : self.columnSpacing);
         [self.views[i] sizeToFit];
+        
+        if (self.views[i].isCurrent) {
+            self.currentBackgroundView.left = self.views[i].left;
+        }
     }
 }
 
@@ -198,10 +209,24 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
     }
 }
 
+#pragma mark - Getter
+
+- (UIView *)currentBackgroundView {
+    if (_currentBackgroundView == nil) {
+        _currentBackgroundView = [[UIView alloc] init];
+        _currentBackgroundView.backgroundColor =
+        [UIColor dm_colorWithLightColor:UIColorHex(#E8F0FC80)
+                              darkColor:UIColorHex(#00000040)];
+        _currentBackgroundView.alpha = 0;
+    }
+    return _currentBackgroundView;
+}
+
 #pragma mark - Setter
 
 - (void)setDelegate:(id<ScheduleCollectionHeaderViewDataSource>)delegate {
     _delegate = delegate;
+    self.currentBackgroundView.alpha = 0;
     
     if (delegate) {
         BOOL needSource = [delegate scheduleCollectionHeaderView:self needSourceInSection: _attributes.indexPath.section];
@@ -214,7 +239,12 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
                 
                 [self.views[i] setTitle:self.views[i].titleLab.text content:[delegate scheduleCollectionHeaderView:self contentDateAtIndexPath:indexPath]];
                 
-                self.views[i].isCurrent = [self.delegate scheduleCollectionHeaderView:self isCurrentDateAtIndexPath:indexPath];
+                BOOL isCurrent = [self.delegate scheduleCollectionHeaderView:self isCurrentDateAtIndexPath:indexPath];
+                
+                self.views[i].isCurrent = isCurrent;
+                
+                self.currentBackgroundView.alpha =
+                (BOOL)self.currentBackgroundView.alpha | isCurrent;
             }
         } else {
             [self.views[0] setTitle:@"学期" content:nil];
