@@ -169,7 +169,6 @@
     return section ? YES : NO;
 }
 
-
 - (nonnull NSString *)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view leadingTitleInSection:(NSInteger)section {
     if (section == 0) {
         return @"学期";
@@ -178,11 +177,9 @@
     return title;
 }
 
-
 - (BOOL)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view isCurrentDateAtIndexPath:(nonnull NSIndexPath *)indexPath {
     return indexPath.item % 2;
 }
-
 
 - (NSString * _Nullable)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view contentDateAtIndexPath:(nonnull NSIndexPath *)indexPath {
     if (indexPath.section == 0) {

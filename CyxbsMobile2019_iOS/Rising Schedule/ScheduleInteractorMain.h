@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ScheduleInteractorMain : NSObject <
     UICollectionViewDelegate,
     UICollectionViewDataSource,
-    ScheduleCollectionViewLayoutDelegate
+    ScheduleCollectionViewLayoutDataSource
 >
 
 /// 控制器

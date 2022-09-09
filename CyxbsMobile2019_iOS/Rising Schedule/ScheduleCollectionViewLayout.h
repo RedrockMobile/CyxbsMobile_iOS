@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - ScheduleCollectionViewLayoutDelegate
 
-@protocol ScheduleCollectionViewLayoutDelegate <NSObject>
+@protocol ScheduleCollectionViewLayoutDataSource <NSObject>
 
 @required
 
@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ScheduleCollectionViewLayout : UICollectionViewLayout
 
 /// 代理
-@property (nonatomic, weak) id <ScheduleCollectionViewLayoutDelegate> delegate;
+@property (nonatomic, weak) id <ScheduleCollectionViewLayoutDataSource> delegate;
 
 /// 行间距
 @property (nonatomic) CGFloat lineSpacing;
