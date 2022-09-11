@@ -20,6 +20,8 @@
 
 #import "ScheduleCombineModel.h"
 
+#import "ScheduleDiffProtocol.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - ScheduleModel

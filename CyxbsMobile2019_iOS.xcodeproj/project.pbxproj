@@ -711,6 +711,7 @@
 		1435612F28CCA93500EF6987 /* ScheduleInteractorDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleInteractorDelegate.m; sourceTree = "<group>"; };
 		1435613128CD7F9800EF6987 /* RisingRouter+Schedule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RisingRouter+Schedule.h"; sourceTree = "<group>"; };
 		1435613228CD7F9800EF6987 /* RisingRouter+Schedule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RisingRouter+Schedule.m"; sourceTree = "<group>"; };
+		1435613428CDC76F00EF6987 /* ScheduleDiffProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleDiffProtocol.h; sourceTree = "<group>"; };
 		1451EA51282A09B800A5BB55 /* UserPublishModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserPublishModel.h; sourceTree = "<group>"; };
 		1451EA52282A09B800A5BB55 /* UserPublishModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserPublishModel.m; sourceTree = "<group>"; };
 		1451EA56282BAF0C00A5BB55 /* MessageDetailTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDetailTitleView.h; sourceTree = "<group>"; };
@@ -2567,6 +2568,7 @@
 				14B46E6928B4E504003D288B /* ScheduleInteractorRequest.m */,
 				14F8763528B5B04A0067642F /* ScheduleInteractorWCDB.h */,
 				14F8763628B5B04A0067642F /* ScheduleInteractorWCDB.mm */,
+				1435613428CDC76F00EF6987 /* ScheduleDiffProtocol.h */,
 				14B46E6428B4D5D7003D288B /* ScheduleModel.h */,
 				14B46E6328B4D5D7003D288B /* ScheduleModel.m */,
 				1478633B28BB567A00C1E54B /* ScheduleCombineModel.h */,

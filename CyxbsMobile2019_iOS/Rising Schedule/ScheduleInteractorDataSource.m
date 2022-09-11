@@ -50,12 +50,15 @@
     return _model.courseAry.count;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView
+     numberOfItemsInSection:(NSInteger)section {
     return _model.courseAry[section].count;
 }
 
-- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ScheduleCourse *course = _model.courseAry[indexPath.section][indexPath.row];
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                           cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    ScheduleCourse *course = _model.courseAry[indexPath.section][indexPath.item];
     
     ScheduleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ScheduleCollectionViewCellReuseIdentifier forIndexPath:indexPath];
     
@@ -85,7 +88,9 @@
     return cell;
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
+           viewForSupplementaryElementOfKind:(NSString *)kind
+                                 atIndexPath:(NSIndexPath *)indexPath {
     
     ScheduleCollectionViewLayout *layout = (ScheduleCollectionViewLayout *)collectionView.collectionViewLayout;
     
@@ -114,24 +119,49 @@
 
 #pragma mark - <ScheduleCollectionViewLayoutDelegate>
 
-- (NSUInteger)collectionView:(nonnull UICollectionView *)collectionView layout:(nonnull ScheduleCollectionViewLayout *)layout weekForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    ScheduleCourse *course = _model.courseAry[indexPath.section][indexPath.row];
+- (NSUInteger)collectionView:(nonnull UICollectionView *)collectionView
+                      layout:(nonnull ScheduleCollectionViewLayout *)layout
+      weekForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    ScheduleCourse *course = _model.courseAry[indexPath.section][indexPath.item];
     return course.inWeek;
 }
 
-- (NSRange)collectionView:(nonnull UICollectionView *)collectionView layout:(nonnull ScheduleCollectionViewLayout *)layout rangeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    ScheduleCourse *course = _model.courseAry[indexPath.section][indexPath.row];
+- (NSRange)collectionView:(nonnull UICollectionView *)collectionView
+                   layout:(nonnull ScheduleCollectionViewLayout *)layout
+  rangeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    ScheduleCourse *course = _model.courseAry[indexPath.section][indexPath.item];
     return course.period;
 }
 
+- (NSComparisonResult)collectionView:(UICollectionView *)collectionView
+                              layout:(ScheduleCollectionViewLayout *)layout
+                     originIndexPath:(NSIndexPath *)originIndexPath
+               conflictWithIndexPath:(NSIndexPath *)conflictIndexPath
+                   relayoutWithBlock:(void (^)(NSRange originRange, NSRange comflictRange))block {
+    
+    ScheduleCourse *originCourse = _model.courseAry[originIndexPath.section][originIndexPath.item];
+    ScheduleCourse *conflictCourse = _model.courseAry[conflictIndexPath.section][originIndexPath.item];
+    
+    if (NSEqualRanges(originCourse.period, conflictCourse.period)) {
+        return NSOrderedSame;
+    }
+    
+    
+    
+    return NSOrderedSame;
+}
 
 #pragma mark - <ScheduleCollectionHeaderViewDataSource>
 
-- (BOOL)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view needSourceInSection:(NSInteger)section {
+- (BOOL)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
+                 needSourceInSection:(NSInteger)section {
     return section ? YES : NO;
 }
 
-- (nonnull NSString *)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view leadingTitleInSection:(NSInteger)section {
+- (nonnull NSString *)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
+                             leadingTitleInSection:(NSInteger)section {
     if (section == 0) {
         return @"学期";
     }
@@ -139,11 +169,13 @@
     return title;
 }
 
-- (BOOL)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view isCurrentDateAtIndexPath:(nonnull NSIndexPath *)indexPath {
+- (BOOL)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
+            isCurrentDateAtIndexPath:(nonnull NSIndexPath *)indexPath {
     return indexPath.item % 2;
 }
 
-- (NSString * _Nullable)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view contentDateAtIndexPath:(nonnull NSIndexPath *)indexPath {
+- (NSString * _Nullable)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
+                              contentDateAtIndexPath:(nonnull NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         return nil;
     }

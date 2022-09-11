@@ -60,26 +60,27 @@
     // schedule presenter
     SchedulePresenter *presenter = [[SchedulePresenter alloc] init];
     
-    // requestModel in parameter
-    NSMutableDictionary *dic =
-    params[@"requestModel"]
-    ? [params[@"requestModel"] mutableCopy]
-    : @{
-        ScheduleModelRequestStudent : @[UserItemTool.defaultItem.stuNum]
-    }.mutableCopy;
-    if (params[@"custom"]) {
-        dic[ScheduleModelRequestCustom] = @[@"Rising"];
-    }
-        
-    // view controller
-    ScheduleController *vc = [[ScheduleController alloc] initWithPresenter:self];
-    presenter.controller = vc;
-
-    vc.hidesBottomBarWhenPushed = YES;
-    vc.isPushStyle = params[@"pushStyle"] ? [params[@"pushStyle"] boolValue] : YES;
-    
     // router response
     RisingRouterResponse *response = [[RisingRouterResponse alloc] init];
+    
+    __block UIViewController *vc;
+    BOOL pushSyle = YES;
+    BOOL pan = NO;
+    ScheduleRequestDictionary *dic;
+    if (params[@"pushStyle"]) {
+        vc = presenter.controller;
+        pushSyle = [params[@"pushStyle"] boolValue];
+    }
+    if (params[@"panAllowed"]) {
+        vc = presenter.controller;
+        pan = [params[@"panAllowed"] boolValue];
+    }
+    if (params[@"request"]) {
+        dic = params[@"request"];
+    }
+    
+    vc = [presenter controllerWithStylePush:pushSyle panAllowed:pan];
+    [presenter parameterWithRequest:dic];
     
     switch (request.requestType) {
         case RouterRequestController: {

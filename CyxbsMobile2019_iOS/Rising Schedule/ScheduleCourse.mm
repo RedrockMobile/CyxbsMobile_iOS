@@ -76,27 +76,4 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
     return NSMakeRange(_period_location, _period_lenth);
 }
 
-#pragma mark - <IGListDiffable>
-
-- (nonnull id<NSObject>)diffIdentifier {
-    return self;
-}
-
-- (BOOL)isEqualToDiffableObject:(nullable id<IGListDiffable>)object {
-    
-    BOOL check = (!object || ![object.diffIdentifier isKindOfClass:ScheduleCourse.class]);
-    if (check) {
-        NSAssert(!check, @"\n🔴%s object : %@", __func__, object);
-        return NO;
-    }
-    
-    ScheduleCourse *anotherCourse = (ScheduleCourse *)object;
-    
-    return self.inWeek == anotherCourse.inWeek
-        && NSEqualRanges(self.period, anotherCourse.period)
-
-        && [self.sno isEqualToString:anotherCourse.sno]
-        && [self.courseID isEqualToString:anotherCourse.courseID];
-}
-
 @end

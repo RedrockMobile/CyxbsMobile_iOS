@@ -38,6 +38,15 @@ NS_ASSUME_NONNULL_BEGIN
                    layout:(ScheduleCollectionViewLayout *)layout
   rangeForItemAtIndexPath:(NSIndexPath *)indexPath;
 
+
+
+
+- (NSComparisonResult)collectionView:(UICollectionView *)collectionView
+                              layout:(ScheduleCollectionViewLayout *)layout
+                     originIndexPath:(NSIndexPath *)originIndexPath
+               conflictWithIndexPath:(NSIndexPath *)conflictIndexPath
+                   relayoutWithBlock:(void (^)(NSRange originRange, NSRange comflictRange))block;
+
 @end
 
 #pragma mark - ScheduleCollectionViewLayout

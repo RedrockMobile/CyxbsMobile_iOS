@@ -13,15 +13,11 @@
 
 #import <Foundation/Foundation.h>
 
-#import <IGListDiffable.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - SchoolLesson
 
-@interface ScheduleCourse : NSObject <
-    IGListDiffable
->
+@interface ScheduleCourse : NSObject
 
 // !!!: Time
 
