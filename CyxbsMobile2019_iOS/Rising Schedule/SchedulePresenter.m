@@ -15,16 +15,16 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.delegateInteractor = [[ScheduleInteractorDelegate alloc] init];
-        self.dataSourceInteractor = [[ScheduleInteractorDataSource alloc] init];
+        self.delegateService = [[ScheduleServiceDelegate alloc] init];
+        self.dataSourceService = [[ScheduleServiceDataSource alloc] init];
         
-        self.dataSourceInteractor.model = self.delegateInteractor.model;
+        self.dataSourceService.model = self.delegateService.model;
     }
     return self;
 }
 
 - (void)parameterWithRequest:(ScheduleRequestDictionary *)request {
-    self.delegateInteractor.parameterIfNeeded = request;
+    self.delegateService.parameterIfNeeded = request;
 }
 
 - (UIViewController *)controllerWithStylePush:(BOOL)push panAllowed:(BOOL)pan {

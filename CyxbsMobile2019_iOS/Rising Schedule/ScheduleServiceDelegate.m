@@ -1,22 +1,22 @@
 //
-//  ScheduleInteractorDelegate.m
+//  ScheduleServiceDelegate.m
 //  CyxbsMobile2019_iOS
 //
 //  Created by SSR on 2022/9/10.
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-#import "ScheduleInteractorDelegate.h"
+#import "ScheduleServiceDelegate.h"
 
 #import "ScheduleInteractorRequest.h"
 
-#pragma mark - ScheduleInteractorDelegate ()
+#pragma mark - ScheduleServiceDelegate ()
 
-@interface ScheduleInteractorDelegate ()
+@interface ScheduleServiceDelegate ()
 
 @end
 
-@implementation ScheduleInteractorDelegate
+@implementation ScheduleServiceDelegate
 
 - (instancetype)init {
     self = [super init];

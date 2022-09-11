@@ -1,5 +1,5 @@
 //
-//  ScheduleInteractorDelegate.h
+//  ScheduleServiceDelegate.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by SSR on 2022/9/10.
@@ -14,7 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ScheduleInteractorDelegate : NSObject <
+@interface ScheduleServiceDelegate : NSObject <
     UICollectionViewDelegate
 >
 

@@ -1,12 +1,12 @@
 //
-//  ScheduleInteractorDataSource.m
+//  ScheduleServiceDataSource.m
 //  CyxbsMobile2019_iOS
 //
 //  Created by SSR on 2022/9/4.
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-#import "ScheduleInteractorDataSource.h"
+#import "ScheduleServiceDataSource.h"
 
 #import "ScheduleCollectionViewCell.h"
 
@@ -14,9 +14,9 @@
 
 #import "ScheduleCollectionLeadingView.h"
 
-#pragma mark - ScheduleInteractorDataSource ()
+#pragma mark - ScheduleServiceDataSource ()
 
-@interface ScheduleInteractorDataSource () <
+@interface ScheduleServiceDataSource () <
     ScheduleCollectionHeaderViewDataSource
 >
 
@@ -25,9 +25,9 @@
 
 @end
 
-#pragma mark - ScheduleInteractorDataSource
+#pragma mark - ScheduleServiceDataSource
 
-@implementation ScheduleInteractorDataSource
+@implementation ScheduleServiceDataSource
 
 #pragma mark - Setter
 

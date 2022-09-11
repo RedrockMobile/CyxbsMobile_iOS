@@ -17,9 +17,9 @@
 
 #import "ScheduleController.h"
 
-#import "ScheduleInteractorDataSource.h"
+#import "ScheduleServiceDataSource.h"
 
-#import "ScheduleInteractorDelegate.h"
+#import "ScheduleServiceDelegate.h"
 
 #import "ScheduleRouterProtocol.h"
 
@@ -36,10 +36,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) ScheduleController *controller;
 
 /// dataSource业务
-@property (nonatomic, strong, nonnull) ScheduleInteractorDataSource *dataSourceInteractor;
+@property (nonatomic, strong, nonnull) ScheduleServiceDataSource *dataSourceService;
 
 /// 响应式业务
-@property (nonatomic, strong, nonnull) ScheduleInteractorDelegate *delegateInteractor;
+@property (nonatomic, strong, nonnull) ScheduleServiceDelegate *delegateService;
 
 @end
 

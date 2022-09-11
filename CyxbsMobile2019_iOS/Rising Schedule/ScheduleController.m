@@ -38,13 +38,13 @@
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.whiteColor;
     
-    [self.presenter.dataSourceInteractor setCollectionView:self.collectionView diff:NO];
-    ((ScheduleCollectionViewLayout *)self.collectionView.collectionViewLayout).dataSource = self.presenter.dataSourceInteractor;
-    self.presenter.delegateInteractor.collectionView = self.collectionView;
+    [self.presenter.dataSourceService setCollectionView:self.collectionView diff:NO];
+    ((ScheduleCollectionViewLayout *)self.collectionView.collectionViewLayout).dataSource = self.presenter.dataSourceService;
+    self.presenter.delegateService.collectionView = self.collectionView;
     
     [self.view addSubview:self.collectionView];
     
-    [self.presenter.delegateInteractor requestAndReloadData];
+    [self.presenter.delegateService requestAndReloadData];
 }
 
 #pragma mark - Getter
