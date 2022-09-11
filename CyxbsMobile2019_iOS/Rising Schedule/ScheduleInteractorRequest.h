@@ -49,9 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 4) 混合课表 @{student : @[@"2021215154"], teacher : @[@"040107"]}
 /// @param success 成功返回
 /// @param failure 失败返回
-+ (void)request:(NSDictionary
-                 <ScheduleModelRequestType, NSArray
-                 <NSString *> *> *)requestDictionary
++ (void)request:(ScheduleRequestDictionary *)requestDictionary
         success:(void (^)(ScheduleCombineModel *combineModel))success
         failure:(void (^)(NSError *error))failure;
 

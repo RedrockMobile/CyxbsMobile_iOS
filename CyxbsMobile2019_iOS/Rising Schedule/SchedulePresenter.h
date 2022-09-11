@@ -17,7 +17,9 @@
 
 #import "ScheduleController.h"
 
-#import "ScheduleInteractorMain.h"
+#import "ScheduleInteractorDataSource.h"
+
+#import "ScheduleInteractorDelegate.h"
 
 #import "ScheduleRouterProtocol.h"
 
@@ -26,17 +28,18 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - SchedulePresenter
 
 @interface SchedulePresenter : NSObject <
-    RisingRouterHandler
+    RisingRouterHandler,
+    ScheduleRouterProtocol
 >
 
 /// 控制器
 @property (nonatomic, weak) ScheduleController *controller;
 
-/// 请求
-@property (nonatomic, strong) NSDictionary *firstRequetDic;
+/// dataSource业务
+@property (nonatomic, strong, nonnull) ScheduleInteractorDataSource *dataSourceInteractor;
 
-/// 主业务(由控制器创建)
-@property (nonatomic, strong) ScheduleInteractorMain *interactoerMain;
+/// 响应式业务
+@property (nonatomic, strong, nonnull) ScheduleInteractorDelegate *delegateInteractor;
 
 @end
 

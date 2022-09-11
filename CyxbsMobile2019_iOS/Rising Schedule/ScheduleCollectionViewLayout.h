@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ScheduleCollectionViewLayout : UICollectionViewLayout
 
 /// 代理
-@property (nonatomic, weak) id <ScheduleCollectionViewLayoutDataSource> delegate;
+@property (nonatomic, weak) id <ScheduleCollectionViewLayoutDataSource> dataSource;
 
 /// 行间距
 @property (nonatomic) CGFloat lineSpacing;

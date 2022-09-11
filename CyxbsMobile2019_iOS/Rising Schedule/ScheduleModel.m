@@ -8,10 +8,10 @@
 
 #import "ScheduleModel.h"
 
-struct ScheduleCombineEntry {
+typedef struct _ScheduleCombineEntry {
     ScheduleCombineModel *model;
     BOOL isUsing;
-};
+} ScheduleCombineEntry;
 
 #pragma mark - ScheduleModel ()
 

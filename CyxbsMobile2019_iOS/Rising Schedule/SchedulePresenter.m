@@ -12,6 +12,40 @@
 
 @implementation SchedulePresenter
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.delegateInteractor = [[ScheduleInteractorDelegate alloc] init];
+        self.dataSourceInteractor = [[ScheduleInteractorDataSource alloc] init];
+        
+        self.dataSourceInteractor.model = self.delegateInteractor.model;
+    }
+    return self;
+}
+
+- (void)parameterWithRequest:(ScheduleRequestDictionary *)request {
+    self.delegateInteractor.parameterIfNeeded = request;
+}
+
+- (UIViewController *)controllerWithStylePush:(BOOL)push panAllowed:(BOOL)pan {
+    ScheduleController *controller = [[ScheduleController alloc] initWithPresenter:self];
+    controller.hidesBottomBarWhenPushed = YES;
+    self.controller = controller;
+    return controller;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 #pragma mark - RisingRouterHandler
 
 + (NSArray<NSString *> *)routerPath {
@@ -36,13 +70,11 @@
     if (params[@"custom"]) {
         dic[ScheduleModelRequestCustom] = @[@"Rising"];
     }
-    presenter.firstRequetDic = dic;
         
     // view controller
-    ScheduleController *vc = [[ScheduleController alloc] init];
+    ScheduleController *vc = [[ScheduleController alloc] initWithPresenter:self];
     presenter.controller = vc;
 
-    vc.presenter = presenter;
     vc.hidesBottomBarWhenPushed = YES;
     vc.isPushStyle = params[@"pushStyle"] ? [params[@"pushStyle"] boolValue] : YES;
     
@@ -70,11 +102,5 @@
         completion(response);
     }
 }
-
-@end
-
-@implementation RisingRouterRequest (ScheduleRouterProtocol)
-
-
 
 @end

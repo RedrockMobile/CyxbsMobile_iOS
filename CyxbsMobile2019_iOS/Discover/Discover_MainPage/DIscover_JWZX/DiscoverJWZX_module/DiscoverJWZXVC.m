@@ -97,17 +97,15 @@
     
     // Rising FIXME: vc
     
-    RisingRouterRequest *request =
-    [RisingRouterRequest requestWithScheduleBolck:^(id<ScheduleRouterProtocol> _Nonnull make) {
-        make
-        .request(@{
-            ScheduleModelRequestStudent : @[@"2021215154"]
-        })
-        .allowCustomPan(NO)
-        .isPushStyle(YES);
+    __block UIViewController *controller;
+    [self.router handleScheduleBlock:^(id<ScheduleRouterProtocol>  _Nonnull make) {
+        [make parameterWithRequest:@{
+                    ScheduleModelRequestStudent : @[@"2021215154"]
+        }];
+        controller = [make controllerWithStylePush:YES panAllowed:NO];
     }];
     
-    [self.router handleRequest:request complition:nil];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark - Getter

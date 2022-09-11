@@ -40,8 +40,9 @@ target 'CyxbsMobile2019_iOS' do
 	# 基于iOS11.0的黑暗适配
 	pod 'FluentDarkModeKit'
 
-	pod 'IGListKit'
-	pod ‘WCDB'
+	pod 'IGListKit' # SSR引入，暂时无项目使用
+	pod 'WCDB'
+	pod 'CTMediator'
       
   # For Swift:
   

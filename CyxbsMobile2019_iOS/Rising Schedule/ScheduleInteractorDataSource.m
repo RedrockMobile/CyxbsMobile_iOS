@@ -1,14 +1,12 @@
 //
-//  ScheduleInteractorMain.m
+//  ScheduleInteractorDataSource.m
 //  CyxbsMobile2019_iOS
 //
 //  Created by SSR on 2022/9/4.
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-#import "ScheduleInteractorMain.h"
-
-#import "ScheduleInteractorRequest.h"
+#import "ScheduleInteractorDataSource.h"
 
 #import "ScheduleCollectionViewCell.h"
 
@@ -16,78 +14,48 @@
 
 #import "ScheduleCollectionLeadingView.h"
 
-#pragma mark - ScheduleInteractorMain ()
+#pragma mark - ScheduleInteractorDataSource ()
 
-@interface ScheduleInteractorMain () <
+@interface ScheduleInteractorDataSource () <
     ScheduleCollectionHeaderViewDataSource
 >
 
-/// 视图
-@property (nonatomic, strong) UICollectionView *collectionView;
-
-/// 数据源
-@property (nonatomic, strong) ScheduleModel *model;
+/// 视图不同
+@property (nonatomic) BOOL diff;
 
 @end
 
-#pragma mark - ScheduleInteractorMain
+#pragma mark - ScheduleInteractorDataSource
 
-@implementation ScheduleInteractorMain
+@implementation ScheduleInteractorDataSource
 
-+ (instancetype)interactorWithCollectionView:(UICollectionView *)view
-                               scheduleModel:(ScheduleModel *)model
-                                     request:(nonnull NSDictionary
-                                              <ScheduleModelRequestType,NSArray
-                                              <NSString *> *> *)dic {
+#pragma mark - Setter
+
+- (void)setCollectionView:(UICollectionView *)view diff:(BOOL)diff{
     NSParameterAssert(view);
-    NSParameterAssert(model);
-    NSParameterAssert(dic);
     
     [view registerClass:ScheduleCollectionViewCell.class forCellWithReuseIdentifier:ScheduleCollectionViewCellReuseIdentifier];
     [view registerClass:ScheduleCollectionHeaderView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleCollectionHeaderViewReuseIdentifier];
     [view registerClass:ScheduleCollectionLeadingView.class forSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleCollectionLeadingViewReuseIdentifier];
     
-    ScheduleInteractorMain *interactor = [[ScheduleInteractorMain alloc] init];
-    
-    view.delegate = interactor;
-    view.dataSource = interactor;
-    
-    interactor.collectionView = view;
-    interactor.model = model;
-    
-    [interactor _request:dic];
-    
-    return interactor;
-}
-
-#pragma mark - Method
-
-- (void)_request:(NSDictionary
-                  <ScheduleModelRequestType, NSArray
-                  <NSString *> *> *)dic {
-    [ScheduleInteractorRequest
-     request:dic
-     success:^(ScheduleCombineModel * _Nonnull combineModel) {
-        [self.model combineModel:combineModel];
-        [self.collectionView reloadData];
-    }
-     failure:^(NSError * _Nonnull error) {
-        
-    }];
+    view.dataSource = self;
 }
 
 #pragma mark - <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return self.model.courseAry.count;
+    if (!_model) {
+        return 0;
+    }
+    return _model.courseAry.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.model.courseAry[section].count;
+    return _model.courseAry[section].count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ScheduleCourse *course = self.model.courseAry[indexPath.section][indexPath.row];
+    ScheduleCourse *course = _model.courseAry[indexPath.section][indexPath.row];
     
     ScheduleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ScheduleCollectionViewCellReuseIdentifier forIndexPath:indexPath];
     
@@ -106,7 +74,7 @@
         cell.drawType = ScheduleCollectionViewCellDrawCustom;
     }
     
-    if (self.showWithDifferentStu) {
+    if (_diff) {
         if (![course.sno isEqualToString:UserItemTool.defaultItem.stuNum]) {
             cell.drawType = ScheduleCollectionViewCellDrawCustom;
         }
@@ -144,21 +112,15 @@
     return nil;
 }
 
-#pragma mark - <UICollectionViewDelegate>
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    // TODO: select a course
-}
-
 #pragma mark - <ScheduleCollectionViewLayoutDelegate>
 
 - (NSUInteger)collectionView:(nonnull UICollectionView *)collectionView layout:(nonnull ScheduleCollectionViewLayout *)layout weekForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    ScheduleCourse *course = self.model.courseAry[indexPath.section][indexPath.row];
+    ScheduleCourse *course = _model.courseAry[indexPath.section][indexPath.row];
     return course.inWeek;
 }
 
 - (NSRange)collectionView:(nonnull UICollectionView *)collectionView layout:(nonnull ScheduleCollectionViewLayout *)layout rangeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    ScheduleCourse *course = self.model.courseAry[indexPath.section][indexPath.row];
+    ScheduleCourse *course = _model.courseAry[indexPath.section][indexPath.row];
     return course.period;
 }
 

@@ -39,6 +39,7 @@
                 BOOL check = (!object || !lessonAry || lessonAry.count == 0);
                 if (check) {
                     NSAssert(check, @"\n🔴%s data : %@", __func__, lessonAry);
+                    return;
                 }
                 
                 NSString *stuNum = object[@"stuNum"];

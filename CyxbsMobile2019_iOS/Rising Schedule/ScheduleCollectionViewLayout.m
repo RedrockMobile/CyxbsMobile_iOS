@@ -8,6 +8,8 @@
 
 #import "ScheduleCollectionViewLayout.h"
 
+// !!!: Inner Class Begin
+
 #pragma mark - ScheduleCollectionViewLayoutInvalidationContext
 
 @interface ScheduleCollectionViewLayoutInvalidationContext : UICollectionViewLayoutInvalidationContext
@@ -19,7 +21,7 @@
 @property (nonatomic) BOOL invalidateLeadingSupplementaryAttributes;
 
 /// 是否立刻重新布局课表视图
-@property (nonatomic) BOOL invalidateItemAttributes;
+@property (nonatomic) BOOL invalidateAllAttributes;
 
 @end
 
@@ -28,6 +30,12 @@
 @implementation ScheduleCollectionViewLayoutInvalidationContext
 
 @end
+
+// !!!: Inner Class End
+
+
+
+
 
 #pragma mark - ScheduleCollectionViewLayout ()
 
@@ -63,13 +71,13 @@
     return self;
 }
 
-#pragma mark - LayoutAttributes
+#pragma mark - Ask LayoutAttributes
 
 - (NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
     
     NSMutableArray *result = NSMutableArray.array;
     
-    for (NSInteger section = 0; section < self.sections; section++) {
+    for (NSInteger section = 0; section < _sections; section++) {
         // SupplementaryView attributes
         for (NSString *elementKind in _supplementaryAttributes.allKeys) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:section];
@@ -102,16 +110,16 @@
 
     attributes = [self.class.layoutAttributesClass layoutAttributesForCellWithIndexPath:indexPath];
     
-    if (self.delegate) {
+    if (self.dataSource) {
         NSUInteger section = indexPath.section;
-        NSUInteger week = [self.delegate collectionView:self.collectionView layout:self weekForItemAtIndexPath:indexPath];
-        NSRange range = [self.delegate collectionView:self.collectionView layout:self rangeForItemAtIndexPath:indexPath];
+        NSUInteger week = [self.dataSource collectionView:self.collectionView layout:self weekForItemAtIndexPath:indexPath];
+        NSRange range = [self.dataSource collectionView:self.collectionView layout:self rangeForItemAtIndexPath:indexPath];
         
-        CGFloat x = section * self.collectionView.bounds.size.width + self.widthForLeadingSupplementaryView + (week - 1) * (self.itemSize.width + self.columnSpacing);
-        CGFloat y = self.heightForHeaderSupplementaryView + (range.location - 1) * (self.itemSize.height + self.lineSpacing);
-        CGFloat height = range.length * self.itemSize.height + (range.length - 1) * self.columnSpacing;
+        CGFloat x = section * self.collectionView.bounds.size.width + self.widthForLeadingSupplementaryView + (week - 1) * (_itemSize.width + self.columnSpacing);
+        CGFloat y = self.heightForHeaderSupplementaryView + (range.location - 1) * (_itemSize.height + self.lineSpacing);
+        CGFloat height = range.length * _itemSize.height + (range.length - 1) * self.columnSpacing;
         
-        CGRect frame = CGRectMake(x, y, self.itemSize.width, height);
+        CGRect frame = CGRectMake(x, y, _itemSize.width, height);
         
         attributes.frame = frame;
     }
@@ -132,6 +140,7 @@
     
     attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
     _supplementaryAttributes[elementKind][indexPath] = attributes;
+    
     // Header Element
     if ([elementKind isEqualToString:UICollectionElementKindSectionHeader]) {
         CGFloat x = indexPath.section * self.collectionView.width;
@@ -143,10 +152,11 @@
         
         return attributes;
     }
+    
     // Leading Element
     if ([elementKind isEqualToString:UICollectionElementKindSectionLeading]) {
         CGFloat x = indexPath.section * self.collectionView.width;
-        CGFloat height = (self.itemSize.height + self.lineSpacing) * 12;
+        CGFloat height = (_itemSize.height + self.lineSpacing) * 12;
         
         CGRect frame = CGRectMake(x, self.heightForHeaderSupplementaryView, self.widthForLeadingSupplementaryView, height);
         
@@ -160,24 +170,24 @@
 
 #pragma mark - Others
 
-- (CGSize)collectionViewContentSize {
-    
-    NSInteger itemCount = 12;
-    
-    CGSize contentSize = CGSizeMake(self.sections * self.collectionView.bounds.size.width, self.heightForHeaderSupplementaryView + itemCount * (self.itemSize.height + self.lineSpacing));
-    
-    return contentSize;
+- (void)prepareLayout {
+    [self _calculateLayoutIfNeeded];
 }
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds {
     return YES;
 }
 
-- (void)prepareLayout {
-    [self _calculateLayoutIfNeeded];
+- (CGSize)collectionViewContentSize {
+    
+    NSInteger itemCount = 12;
+    
+    CGSize contentSize = CGSizeMake(_sections * self.collectionView.bounds.size.width, self.heightForHeaderSupplementaryView + itemCount * (_itemSize.height + self.lineSpacing));
+    
+    return contentSize;
 }
 
-#pragma mark - LayoutInvalidationContext
+#pragma mark - (UISubclassingHooks)
 
 + (Class)invalidationContextClass {
     return ScheduleCollectionViewLayoutInvalidationContext.class;
@@ -215,7 +225,7 @@
         [_supplementaryAttributes[UICollectionElementKindSectionLeading] enumerateKeysAndObjectsUsingBlock:^(NSIndexPath * _Nonnull indexPath, UICollectionViewLayoutAttributes * _Nonnull attributes, BOOL * __unused stop) {
             
             CGFloat x = indexPath.section * self.collectionView.width;
-            CGFloat height = (self.itemSize.height + self.lineSpacing) * 12;
+            CGFloat height = (_itemSize.height + self.lineSpacing) * 12;
             
             CGRect frame = CGRectMake(x, self.heightForHeaderSupplementaryView, self.widthForLeadingSupplementaryView, height);
             
@@ -224,7 +234,7 @@
     }
     
     // invalidate All Attributes
-    if (context.invalidateItemAttributes) {
+    if (context.invalidateAllAttributes || context.invalidateDataSourceCounts) {
         
         [_itemAttributes removeAllObjects];
         
@@ -241,9 +251,11 @@
 
 - (void)_calculateLayoutIfNeeded {
     
-    _sections = [self.collectionView.dataSource performSelector:@selector(numberOfSectionsInCollectionView:) withObject:self.collectionView]
+    NSInteger sections = [self.collectionView.dataSource performSelector:@selector(numberOfSectionsInCollectionView:) withObject:self.collectionView]
     ? [self.collectionView.dataSource numberOfSectionsInCollectionView:self.collectionView]
     : [self.collectionView numberOfSections];
+    
+    _sections = sections;
     
     CGFloat width = (self.collectionView.bounds.size.width - self.widthForLeadingSupplementaryView) / 7 - self.columnSpacing;
     

@@ -19,12 +19,18 @@
 /// 课表视图
 @property (nonatomic, strong) UICollectionView *collectionView;
 
-/// 课表模型
-@property (nonatomic, strong) ScheduleModel *model;
-
 @end
 
 @implementation ScheduleController
+
+- (instancetype)initWithPresenter:(SchedulePresenter *)presenter {
+    self = [super init];
+    if (self) {
+        _presenter = presenter;
+        presenter.controller = self;
+    }
+    return self;
+}
 
 #pragma mark - Life cycle
 
@@ -32,22 +38,14 @@
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.whiteColor;
     
-    self.model = [[ScheduleModel alloc] init];
-    
-    self.presenter.interactoerMain =
-    [ScheduleInteractorMain
-     interactorWithCollectionView:self.collectionView
-     scheduleModel:self.model
-     request:self.presenter.firstRequetDic];
-    
-    ((ScheduleCollectionViewLayout *)self.collectionView.collectionViewLayout).delegate = self.presenter.interactoerMain;
+    [self.presenter.dataSourceInteractor setCollectionView:self.collectionView diff:NO];
+    ((ScheduleCollectionViewLayout *)self.collectionView.collectionViewLayout).dataSource = self.presenter.dataSourceInteractor;
+    self.presenter.delegateInteractor.collectionView = self.collectionView;
     
     [self.view addSubview:self.collectionView];
+    
+    [self.presenter.delegateInteractor requestAndReloadData];
 }
-
-#pragma mark - Method
-
-
 
 #pragma mark - Getter
 

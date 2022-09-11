@@ -14,7 +14,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "RisingRouterRequest+Schedule.h"
+#import "RisingRouter+Schedule.h"
 
 #import "ScheduleRequestType.h"
 
@@ -27,22 +27,10 @@ static NSString *ScheduleRouterName = @"SchedulePresenter";
 
 @protocol ScheduleRouterProtocol <NSObject>
 
-@required
+- (void)parameterWithRequest:(ScheduleRequestDictionary *)request;
 
-/// 是否需要事务手势
-- (id <ScheduleRouterProtocol> (^) (BOOL))allowCustomPan;
-
-/// 是否第一次需要事务
-- (id <ScheduleRouterProtocol> (^) (BOOL))needCustomFirst;
-
-/// 是否是push布局
-- (id <ScheduleRouterProtocol> (^) (BOOL))isPushStyle;
-
-/// 设置请求学生信息
-- (id <ScheduleRouterProtocol> (^)
-   (NSDictionary
-    <ScheduleModelRequestType, NSArray
-    <NSString *> *> *))request;
+- (UIViewController *)controllerWithStylePush:(BOOL)push
+                                   panAllowed:(BOOL)pan;
 
 @end
 

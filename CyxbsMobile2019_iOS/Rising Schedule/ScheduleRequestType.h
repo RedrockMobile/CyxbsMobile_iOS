@@ -18,6 +18,10 @@
 
 typedef NSString * ScheduleModelRequestType;
 
+typedef NSDictionary
+    <ScheduleModelRequestType, NSArray
+    <NSString *> *> ScheduleRequestDictionary;
+
 // MARK: KEY
 
 /// 学生
