@@ -14,7 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol ScheduleDiffProtocol <NSObject>
 
+- (BOOL)isDiffModel;
 
+- (NSComparisonResult)compareCourse:(ScheduleCourse *)aCourse withCourse:(ScheduleCourse *)bCourse;
 
 @end
 

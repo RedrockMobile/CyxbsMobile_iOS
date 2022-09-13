@@ -16,9 +16,7 @@
     self = [super init];
     if (self) {
         self.delegateService = [[ScheduleServiceDelegate alloc] init];
-        self.dataSourceService = [[ScheduleServiceDataSource alloc] init];
-        
-        self.dataSourceService.model = self.delegateService.model;
+        self.dataSourceService = [ScheduleServiceDataSource dataSourceServiceWithModel:self.delegateService.model];
     }
     return self;
 }
@@ -30,6 +28,7 @@
 - (UIViewController *)controllerWithStylePush:(BOOL)push panAllowed:(BOOL)pan {
     ScheduleController *controller = [[ScheduleController alloc] initWithPresenter:self];
     controller.hidesBottomBarWhenPushed = YES;
+    controller.isPushStyle = push;
     self.controller = controller;
     return controller;
 }

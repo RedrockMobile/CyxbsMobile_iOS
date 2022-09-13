@@ -29,6 +29,12 @@
 
 @implementation ScheduleServiceDataSource
 
++ (instancetype)dataSourceServiceWithModel:(ScheduleModel *)model {
+    ScheduleServiceDataSource *service = [[ScheduleServiceDataSource alloc] init];
+    service->_model = model;
+    return service;
+}
+
 #pragma mark - Setter
 
 - (void)setCollectionView:(UICollectionView *)view diff:(BOOL)diff{
@@ -137,7 +143,7 @@
 
 - (NSComparisonResult)collectionView:(UICollectionView *)collectionView
                               layout:(ScheduleCollectionViewLayout *)layout
-                     originIndexPath:(NSIndexPath *)originIndexPath
+              compareOriginIndexPath:(NSIndexPath *)originIndexPath
                conflictWithIndexPath:(NSIndexPath *)conflictIndexPath
                    relayoutWithBlock:(void (^)(NSRange originRange, NSRange comflictRange))block {
     

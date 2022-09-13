@@ -14,6 +14,9 @@
 
 @interface ScheduleServiceDelegate ()
 
+/// <#description#>
+@property (nonatomic) CGPoint contentPointWhenPanNeeded;
+
 @end
 
 @implementation ScheduleServiceDelegate
@@ -45,9 +48,38 @@
     }];
 }
 
+- (void)_pan:(UIPanGestureRecognizer *)pan {
+    CGPoint point = [pan translationInView:self.collectionView];
+    switch (pan.state) {
+        case UIGestureRecognizerStateBegan: {
+            NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
+            if (indexPath) {
+                return;
+            }
+            
+            
+        } break;
+            
+        case UIGestureRecognizerStateChanged: {
+            
+        } break;
+            
+        default: {
+            
+        }
+    }
+}
+
 - (void)setCollectionView:(UICollectionView *)view {
     _collectionView = view;
     view.delegate = self;
+    [view.panGestureRecognizer addTarget:self action:@selector(_pan:)];
+}
+
+#pragma mark - <UICollectionViewDelegate>
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
 }
 
 @end

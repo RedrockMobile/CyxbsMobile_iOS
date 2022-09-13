@@ -39,7 +39,6 @@
     self.view.backgroundColor = UIColor.whiteColor;
     
     [self.presenter.dataSourceService setCollectionView:self.collectionView diff:NO];
-    ((ScheduleCollectionViewLayout *)self.collectionView.collectionViewLayout).dataSource = self.presenter.dataSourceService;
     self.presenter.delegateService.collectionView = self.collectionView;
     
     [self.view addSubview:self.collectionView];
@@ -58,6 +57,7 @@
         layout.lineSpacing = 2;
         layout.columnSpacing = 2;
         layout.heightForHeaderSupplementaryView = 10 + ((width - layout.widthForLeadingSupplementaryView) / 7 - layout.columnSpacing) / 46 * 50;
+        layout.dataSource = self.presenter.dataSourceService;
         
         CGFloat top = 64;
         if (self.isPushStyle) {

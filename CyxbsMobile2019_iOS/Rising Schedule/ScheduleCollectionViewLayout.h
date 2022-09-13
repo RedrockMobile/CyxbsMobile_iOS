@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSComparisonResult)collectionView:(UICollectionView *)collectionView
                               layout:(ScheduleCollectionViewLayout *)layout
-                     originIndexPath:(NSIndexPath *)originIndexPath
+              compareOriginIndexPath:(NSIndexPath *)originIndexPath
                conflictWithIndexPath:(NSIndexPath *)conflictIndexPath
                    relayoutWithBlock:(void (^)(NSRange originRange, NSRange comflictRange))block;
 

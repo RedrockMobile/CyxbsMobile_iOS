@@ -25,10 +25,12 @@ NS_ASSUME_NONNULL_BEGIN
     ScheduleCollectionViewLayoutDataSource
 >
 
+/// <#description#>
+@property (nonatomic, readonly) ScheduleModel *model;
+
 + (instancetype)new NS_UNAVAILABLE;
 
-/// <#description#>
-@property (nonatomic, strong) ScheduleModel *model;
++ (instancetype)dataSourceServiceWithModel:(ScheduleModel * _Nonnull)model;
 
 - (void)setCollectionView:(UICollectionView *)view diff:(BOOL)diff;
 
