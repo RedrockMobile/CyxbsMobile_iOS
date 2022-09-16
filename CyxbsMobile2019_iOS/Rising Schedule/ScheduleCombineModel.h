@@ -33,6 +33,9 @@ typedef NSString * ScheduleCombineType;
 /// （计算属性：sno + combineType)
 @property (nonatomic, readonly) NSString *identifier;
 
+/// 当周
+@property (nonatomic) NSInteger nowWeek;
+
 /// 数据模型
 @property (nonatomic, readonly, nonnull) NSMutableArray <ScheduleCourse *> *courseAry;
 

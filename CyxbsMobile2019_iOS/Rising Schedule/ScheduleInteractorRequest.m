@@ -44,12 +44,15 @@
                 
                 NSString *stuNum = object[@"stuNum"];
                 NSInteger nowWeek = [object[@"nowWeek"] longValue];
+                
                 ScheduleCombineModel *model =
                 [ScheduleCombineModel
                  combineWithSno:stuNum
                  type:([key isEqualToString:ScheduleModelRequestCustom] ?
                        ScheduleCombineCustom :
                        ScheduleCombineSystem)];
+                
+                model.nowWeek = nowWeek;
                 
                 for (NSDictionary *courceDictionary in lessonAry) {
                     

@@ -171,13 +171,18 @@
     if (section == 0) {
         return @"学期";
     }
-    NSString *title = [NSString stringWithFormat:@"%ld月", section];
+    
+    NSString *title = [NSString stringWithFormat:@"%ld月", [NSDate dateWithTimeInterval:(section - 1) * 7 * 24 * 60 * 60 sinceDate:_model.startDate].month];
     return title;
 }
 
 - (BOOL)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
             isCurrentDateAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    return indexPath.item % 2;
+    if (_model.nowWeek != indexPath.section) {
+        return NO;
+    }
+    
+    return (NSDate.date.weekday - 1) == indexPath.item;
 }
 
 - (NSString * _Nullable)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
@@ -185,7 +190,9 @@
     if (indexPath.section == 0) {
         return nil;
     }
-    NSString *title = [NSString stringWithFormat:@"%ld日", indexPath.item];
+    
+    NSDate *date = [NSDate dateWithTimeInterval:(indexPath.section - 1) * 7 * 24 * 60 * 60 + (indexPath.item - 1) * 24 * 60 * 60 sinceDate:_model.startDate];
+    NSString *title = [NSString stringWithFormat:@"%ld日", date.day];
     return title;
 }
 

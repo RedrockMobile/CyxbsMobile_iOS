@@ -178,8 +178,9 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
 
 - (void)sizeToFit {
     CGFloat width = (_attributes.frame.size.width - self.widthForLeadingView) / 7 - self.columnSpacing;
+    CGFloat TopOrHeight = _attributes.frame.size.height / 2;
     
-    self.currentBackgroundView.frame = CGRectMake(-1, 0, width, _attributes.frame.size.height);
+    self.currentBackgroundView.frame = CGRectMake(-1, TopOrHeight, width, TopOrHeight);
     
     self.views[0].frame = CGRectMake(0, 0, self.widthForLeadingView, _attributes.frame.size.height - self.heightForBreathBelowHeaderView);
     [self.views[0] sizeToFit];

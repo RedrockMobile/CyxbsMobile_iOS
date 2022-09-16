@@ -37,7 +37,7 @@ typedef struct _ScheduleCombineEntry {
         _startDate =
         [NSDate dateWithString:[NSUserDefaults.standardUserDefaults stringForKey:RisingClassSchedule_classBegin_String] format:@"yyyy.M.d"];
         
-        _nowWeek = [NSUserDefaults.standardUserDefaults stringForKey:RisingClassSchedule_nowWeek_Integer].unsignedLongValue;
+        self.nowWeek = [NSUserDefaults.standardUserDefaults stringForKey:RisingClassSchedule_nowWeek_Integer].unsignedLongValue;
         
         _courseAry = NSMutableArray.array;
         [_courseAry addObject:NSMutableArray.array]; // For 0 Section
@@ -81,6 +81,7 @@ typedef struct _ScheduleCombineEntry {
     
     self.map[model.identifier] = model;
     self.status[model.identifier] = @YES;
+    self.nowWeek = model.nowWeek;
     
     for (ScheduleCourse *course in model.courseAry) {
         [self _appendCourse:course];
@@ -124,9 +125,7 @@ typedef struct _ScheduleCombineEntry {
 #pragma mark - Setter
 
 - (void)setNowWeek:(NSUInteger)nowWeek {
-    if (_nowWeek == nowWeek) {
-        return;
-    }
+    _nowWeek = nowWeek;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -135,7 +134,9 @@ typedef struct _ScheduleCombineEntry {
         
         [NSUserDefaults.standardUserDefaults setInteger:_nowWeek forKey:RisingClassSchedule_nowWeek_Integer];
         
-        NSTimeInterval beforNow = (_nowWeek - 1) * 7 * 24 * 60 * 60 + NSDate.today.weekday * 24 * 60 * 60;
+        NSDate *date = NSDate.today;
+        
+        NSTimeInterval beforNow = (_nowWeek - 1) * 7 * 24 * 60 * 60 + (date.weekday - 2) * 24 * 60 * 60;
         _startDate = [NSDate dateWithTimeIntervalSinceNow:-beforNow];
     });
 }
