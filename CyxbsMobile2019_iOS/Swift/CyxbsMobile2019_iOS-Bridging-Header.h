@@ -27,7 +27,6 @@
 #import "UserProtocolViewController.h"
 #import "ByWordViewController.h"
 #import "ByPasswordViewController.h"
-#import "YYZGetIdVC.h"
 #import "TodoSyncTool.h"
 
 #pragma mark - Group共享
@@ -382,5 +381,5 @@ typedef NS_ENUM(NSInteger, ScheduleType) {
 #define DAYBARVIEW_DISTANCE (MAIN_SCREEN_W*0.0075)
 //0.00885
 
-//记录最后一次登陆的时间戳，类型是Double，用来避免后端出问题后的强制退出登录
+//记录最后一次登录的时间戳，类型是Double，用来避免后端出问题后的强制退出登录
 #define LastLogInTimeKey_double @"LastLogInTimeKey_TimeInterval"

@@ -95,6 +95,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         [UMessage addAlias:[UserDefaultTool getStuNum] type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
             NSLog(@"%@", responseObject);
         }];
+//        [[UserItem defaultItem] getUserInfo];
     }
     
     // 如果打开应用时有学号密码，但是没有token，退出登录
