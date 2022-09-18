@@ -23,7 +23,7 @@
     hud.cornerRadius = hud.frame.size.height * 0.5;
 }
 
-/// 需要手动调用使hud消失的文字hud（登陆界面的“登陆中...”）
+/// 需要手动调用使hud消失的文字hud（登录界面的“登录中...”）
 + (MBProgressHUD *)showNotHideHudWith:(NSString *)title AddView:(UIView *)view {
     MBProgressHUD *hud =[MBProgressHUD showHUDAddedTo:view animated:YES];
     hud.mode = MBProgressHUDModeText;

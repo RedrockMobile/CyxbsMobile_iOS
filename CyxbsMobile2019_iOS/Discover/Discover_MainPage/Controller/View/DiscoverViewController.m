@@ -435,7 +435,7 @@ static int requestCheckinInfo = 0;
 //    [todoView reloadData];
 //}
 - (void)bindingVolunteerButton {
-    ///需要在此处判断一下是否已经登陆了志愿者的界面，如果登陆了，则直接跳QueryViewController，如果未登陆的话则跳登陆的viewController
+    ///需要在此处判断一下是否已经登录了志愿者的界面，如果登录了，则直接跳QueryViewController，如果未登录的话则跳登录的viewController
     if (![NSUserDefaults.standardUserDefaults objectForKey:@"volunteer_information"]) {
         QueryLoginViewController * vc = [[QueryLoginViewController alloc]init];
         vc.hidesBottomBarWhenPushed = YES;

@@ -95,6 +95,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         [UMessage addAlias:[UserDefaultTool getStuNum] type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
             NSLog(@"%@", responseObject);
         }];
+        [[UserItem defaultItem] getUserInfo];
     }
     
     // 如果打开应用时有学号密码，但是没有token，退出登录
@@ -107,7 +108,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if([self.reaManager isReachable]){
             //如果网络可用，刷新token
-            [UserItemTool refresh];
+//            [UserItemTool refresh];
         }
     });
     //刷新token内部作了错误码判断，只有NSURLErrorBadServerResponse情况下才会要求重新登录
