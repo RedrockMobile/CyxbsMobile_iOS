@@ -91,7 +91,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     sqlite3_initialize();
     CCLog(@"%d", sqlite3_threadsafe());
     
-    if ([UserDefaultTool getStuNum]) {
+    if (![[UserDefaultTool getStuNum] isEqualToString:@""]) {
         [UMessage addAlias:[UserDefaultTool getStuNum] type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
             NSLog(@"%@", responseObject);
         }];
