@@ -221,12 +221,15 @@
                 [self addSussesView];
                 //无需向前页面回传数据(返回时会自动重新网络请求)
             }
-        [self.sADetailsTableView.mj_header endRefreshing];
     }
         failure:^(NSError * _Nonnull error) {
             NSLog(@"体育打卡刷新失败");
-            [self.sADetailsTableView.mj_header endRefreshing];
     }];
+    //伪刷新
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // 结束刷新
+        [self.sADetailsTableView.mj_header endRefreshing];
+    });
 }
 
 //获取数据成功加载此视图
