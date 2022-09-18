@@ -182,7 +182,8 @@
         // 4.2.4 完成登录成功后todo的一些配置
         TodoSyncTool *todoTool = [[TodoSyncTool alloc] init];
         [todoTool logInSuccess];
-        
+        // 4.2.5 得到用户信息
+        [[UserItem defaultItem] getUserInfo];
     }
     failed:^(BOOL isNet) {
         // 隐藏hud
