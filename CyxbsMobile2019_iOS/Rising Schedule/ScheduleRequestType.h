@@ -16,7 +16,7 @@
 
 #pragma mark - ScheduleModelRequestType
 
-typedef NSString * ScheduleModelRequestType;
+typedef NSString * ScheduleModelRequestType NS_STRING_ENUM;
 
 typedef NSDictionary
     <ScheduleModelRequestType, NSArray
