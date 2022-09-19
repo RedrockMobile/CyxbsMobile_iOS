@@ -127,10 +127,8 @@ typedef struct _ScheduleCombineEntry {
 - (void)setNowWeek:(NSUInteger)nowWeek {
     _nowWeek = nowWeek;
     
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        
-        _nowWeek = nowWeek;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
         
         [NSUserDefaults.standardUserDefaults setInteger:_nowWeek forKey:RisingClassSchedule_nowWeek_Integer];
         
@@ -138,7 +136,7 @@ typedef struct _ScheduleCombineEntry {
         
         NSTimeInterval beforNow = (_nowWeek - 1) * 7 * 24 * 60 * 60 + (date.weekday - 2) * 24 * 60 * 60;
         _startDate = [NSDate dateWithTimeIntervalSinceNow:-beforNow];
-    });
+//    });
 }
 
 @end
