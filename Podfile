@@ -42,7 +42,6 @@ target 'CyxbsMobile2019_iOS' do
 
 	pod 'IGListKit' # SSR引入，暂时无项目使用
 	pod 'WCDB'
-	pod 'CTMediator'
       
   # For Swift:
   
