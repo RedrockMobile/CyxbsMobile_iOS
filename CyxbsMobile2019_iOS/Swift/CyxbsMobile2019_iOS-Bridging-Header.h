@@ -27,7 +27,6 @@
 #import "UserProtocolViewController.h"
 #import "ByWordViewController.h"
 #import "ByPasswordViewController.h"
-#import "YYZGetIdVC.h"
 #import "TodoSyncTool.h"
 
 #pragma mark - Group共享
@@ -142,10 +141,9 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 
 /// 登录接口
 #define Mine_POST_logIn_API @"https://be-prod.redrock.cqupt.edu.cn/magipoke/token"
+
 /// 刷新token
-
 #define Mine_POST_refreshToken_API @"https://be-prod.redrock.cqupt.edu.cn/magipoke/token/refresh"
-
 
 /// 上传头像
 #define Mine_GET_upLoadProfile_API @"https://cyxbsmobile.redrock.team/app/index.php/Home/Photo/uploadArticle"
@@ -383,5 +381,5 @@ typedef NS_ENUM(NSInteger, ScheduleType) {
 #define DAYBARVIEW_DISTANCE (MAIN_SCREEN_W*0.0075)
 //0.00885
 
-//记录最后一次登陆的时间戳，类型是Double，用来避免后端出问题后的强制退出登录
+//记录最后一次登录的时间戳，类型是Double，用来避免后端出问题后的强制退出登录
 #define LastLogInTimeKey_double @"LastLogInTimeKey_TimeInterval"

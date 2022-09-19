@@ -134,7 +134,7 @@
         [self addSubview:passwordImageView];
         _passwordImageView = passwordImageView;
         
-        ///登陆按钮
+        ///登录按钮
         UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         [loginBtn setTitle:@"立 即 绑 定" forState:UIControlStateNormal];
         [loginBtn setTintColor:[UIColor whiteColor]];

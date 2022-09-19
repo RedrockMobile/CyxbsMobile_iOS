@@ -91,10 +91,11 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     sqlite3_initialize();
     CCLog(@"%d", sqlite3_threadsafe());
     
-    if ([UserDefaultTool getStuNum]) {
+    if (![[UserDefaultTool getStuNum] isEqualToString:@""]) {
         [UMessage addAlias:[UserDefaultTool getStuNum] type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
             NSLog(@"%@", responseObject);
         }];
+        [[UserItem defaultItem] getUserInfo];
     }
     
     // 如果打开应用时有学号密码，但是没有token，退出登录
@@ -107,59 +108,34 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         if([self.reaManager isReachable]){
             //如果网络可用，刷新token
-            [UserItemTool refresh];
+//            [UserItemTool refresh];
         }
     });
     //刷新token内部作了错误码判断，只有NSURLErrorBadServerResponse情况下才会要求重新登录
 //    [UserItemTool refresh];
     if ([UserDefaultTool getStuNum] && [UserItemTool defaultItem].token && [ArchiveTool getPersonalInfo]) {
-//         刷新志愿信息
-        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
-        [responseSerializer setRemovesKeysWithNullValues:YES];
-        [responseSerializer.acceptableContentTypes setByAddingObjectsFromSet:[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain",@"application/atom+xml",@"application/xml",@"text/xml",nil]];
-        
-        manager.responseSerializer = responseSerializer;
-        
-        [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", [UserItemTool defaultItem].token]  forHTTPHeaderField:@"Authorization"];
-        
+////         刷新志愿信息
+//        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//        AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
+//        [responseSerializer setRemovesKeysWithNullValues:YES];
+//        [responseSerializer.acceptableContentTypes setByAddingObjectsFromSet:[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain",@"application/atom+xml",@"application/xml",@"text/xml",nil]];
+//
+//        manager.responseSerializer = responseSerializer;
+//
+//        [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", [UserItemTool defaultItem].token]  forHTTPHeaderField:@"Authorization"];
+//
         VolunteerItem *volunteer = [[VolunteerItem alloc] init];
 
         
-//        [HttpTool.shareTool
-//         request:Discover_POST_volunteerRequest_API
-//         type:HttpToolRequestTypePost
-//         serializer:HttpToolRequestSerializerHTTP
-//         bodyParameters:nil
-//         progress:nil
-//         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-//            NSMutableArray *temp = [NSMutableArray arrayWithCapacity:10];
-//            for (NSDictionary *dict in object[@"record"]) {
-//                VolunteeringEventItem *volEvent = [[VolunteeringEventItem alloc] initWithDictinary:dict];
-//                [temp addObject:volEvent];
-//            }
-//            volunteer.eventsArray = temp;
-//            [volunteer sortEvents];
-//
-//            NSInteger hour = 0;
-//            int count = 0;
-//            for (VolunteeringEventItem *event in volunteer.eventsArray) {
-//                hour += [event.hour integerValue];
-//                count++;
-//            }
-//            volunteer.hour = [NSString stringWithFormat:@"%ld", hour];
-//            volunteer.count = [NSString stringWithFormat:@"%d", count];
-//            [ArchiveTool saveVolunteerInfomationWith:volunteer];
-//
-//        }
-//         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//
-//        }];
-        
-        
-        [manager POST:Discover_POST_volunteerRequest_API parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        [HttpTool.shareTool
+         request:Discover_POST_volunteerRequest_API
+         type:HttpToolRequestTypePost
+         serializer:HttpToolRequestSerializerHTTP
+         bodyParameters:nil
+         progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
             NSMutableArray *temp = [NSMutableArray arrayWithCapacity:10];
-            for (NSDictionary *dict in responseObject[@"record"]) {
+            for (NSDictionary *dict in object[@"record"]) {
                 VolunteeringEventItem *volEvent = [[VolunteeringEventItem alloc] initWithDictinary:dict];
                 [temp addObject:volEvent];
             }
@@ -176,11 +152,36 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
             volunteer.count = [NSString stringWithFormat:@"%d", count];
             [ArchiveTool saveVolunteerInfomationWith:volunteer];
 
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
 
         }];
+        
+        
+//        [manager POST:Discover_POST_volunteerRequest_API parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//            NSMutableArray *temp = [NSMutableArray arrayWithCapacity:10];
+//            for (NSDictionary *dict in responseObject[@"record"]) {
+//                VolunteeringEventItem *volEvent = [[VolunteeringEventItem alloc] initWithDictinary:dict];
+//                [temp addObject:volEvent];
+//            }
+//            volunteer.eventsArray = temp;
+//            [volunteer sortEvents];
+//
+//            NSInteger hour = 0;
+//            int count = 0;
+//            for (VolunteeringEventItem *event in volunteer.eventsArray) {
+//                hour += [event.hour integerValue];
+//                count++;
+//            }
+//            volunteer.hour = [NSString stringWithFormat:@"%ld", hour];
+//            volunteer.count = [NSString stringWithFormat:@"%d", count];
+//            [ArchiveTool saveVolunteerInfomationWith:volunteer];
+//
+//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//
+//        }];
     }
-    
+//
     //开发者需要显式的调用此函数，日志系统才能工作
     [UMCommonLogManager setUpUMCommonLogManager];
     //初始化umenge功能

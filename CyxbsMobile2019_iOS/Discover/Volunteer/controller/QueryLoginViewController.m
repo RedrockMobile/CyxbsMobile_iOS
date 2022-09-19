@@ -45,7 +45,7 @@
     [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginFailed) name:@"QueryVolunteerInfoFailed" object:nil];
 
-    ///加载登陆界面
+    ///加载登录界面
     VolunteerLoginView *view = [[VolunteerLoginView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [self.view addSubview:view];
     _loginView = view;
@@ -53,7 +53,7 @@
     [self buildLoginViewActions];
 }
 
-#pragma mark - 登陆界面的功能
+#pragma mark - 登录界面的功能
 - (void) buildLoginViewActions {
     ///返回按钮的点击事件
     [_loginView.backBtn addTarget:self action:@selector(clickedBackButton) forControlEvents:UIControlEventTouchUpInside];
@@ -111,7 +111,7 @@
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
 }
 
-#pragma mark - 登陆失败
+#pragma mark - 登录失败
 - (void)loginFailed {
     [self.loadHud hide:YES];
     UIAlertController *alertC = [UIAlertController alertControllerWithTitle:@"账号密码错误或网络异常" message:@"" preferredStyle:UIAlertControllerStyleAlert];
