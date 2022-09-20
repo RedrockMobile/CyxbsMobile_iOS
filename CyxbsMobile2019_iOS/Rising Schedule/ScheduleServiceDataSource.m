@@ -105,13 +105,13 @@
         ScheduleCollectionHeaderView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleCollectionHeaderViewReuseIdentifier forIndexPath:indexPath];
  
         view.widthForLeadingView = layout.widthForLeadingSupplementaryView;
-        view.heightForBreathBelowHeaderView = 10;
         view.columnSpacing = layout.columnSpacing;
-        view.delegate = self;
-        [view sizeToFit];
+        view.dataSource = self;
+        view.superCollectionView = collectionView;
         
         return view;
     } else if ([kind isEqualToString:UICollectionElementKindSectionLeading]) {
+        
         ScheduleCollectionLeadingView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleCollectionLeadingViewReuseIdentifier forIndexPath:indexPath];
         
         view.lineSpacing = layout.lineSpacing;
@@ -161,12 +161,7 @@
 
 #pragma mark - <ScheduleCollectionHeaderViewDataSource>
 
-- (BOOL)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
-                 needSourceInSection:(NSInteger)section {
-    return section ? YES : NO;
-}
-
-- (nonnull NSString *)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
+- (NSString *)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
                              leadingTitleInSection:(NSInteger)section {
     if (section == 0) {
         return @"学期";
@@ -177,16 +172,12 @@
 }
 
 - (BOOL)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
-            isCurrentDateAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    if (_model.nowWeek != indexPath.section) {
-        return NO;
-    }
-    
-    return (NSDate.date.weekday - 1) == indexPath.item;
+                 needSourceInSection:(NSInteger)section {
+    return section ? YES : NO;
 }
 
-- (NSString * _Nullable)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
-                              contentDateAtIndexPath:(nonnull NSIndexPath *)indexPath {
+- (NSString *)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
+                    contentDateAtIndexPath:(nonnull NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         return nil;
     }
@@ -194,6 +185,15 @@
     NSDate *date = [NSDate dateWithTimeInterval:(indexPath.section - 1) * 7 * 24 * 60 * 60 + (indexPath.item - 1) * 24 * 60 * 60 sinceDate:_model.startDate];
     NSString *title = [NSString stringWithFormat:@"%ld日", date.day];
     return title;
+}
+
+- (BOOL)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
+            isCurrentDateAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    if (_model.nowWeek != indexPath.section) {
+        return NO;
+    }
+    
+    return (NSDate.date.weekday - 1) == indexPath.item;
 }
 
 @end

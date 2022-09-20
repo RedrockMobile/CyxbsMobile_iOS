@@ -56,6 +56,7 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
     
     self.contentLab.left = self.titleLab.left;
     self.contentLab.width = self.titleLab.width;
+    self.contentLab.bottom = frame.size.height - 8;
 }
 
 #pragma mark - Getter
