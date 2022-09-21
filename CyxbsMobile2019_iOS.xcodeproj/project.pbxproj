@@ -709,6 +709,7 @@
 		1404747127F459B500307209 /* DiscoverADItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverADItem.m; sourceTree = "<group>"; };
 		1404747B27F46F0D00307209 /* DiscoverADController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverADController.h; sourceTree = "<group>"; };
 		1404747C27F46F0D00307209 /* DiscoverADController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverADController.m; sourceTree = "<group>"; };
+		140AEC6F28DB485800AFC04C /* RisingNSRange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RisingNSRange.h; sourceTree = "<group>"; };
 		1422240428D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleSupplementaryCollectionViewCell.h; sourceTree = "<group>"; };
 		1422240528D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleSupplementaryCollectionViewCell.m; sourceTree = "<group>"; };
 		1422241328D9B091009A4A54 /* RisingExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingExtension.h; sourceTree = "<group>"; };
@@ -2212,6 +2213,7 @@
 			children = (
 				1422241528D9B091009A4A54 /* RisingFoundationExtension.h */,
 				1422241728D9B091009A4A54 /* RisingFoundationExtention.m */,
+				140AEC6F28DB485800AFC04C /* RisingNSRange.h */,
 				1422241828D9B091009A4A54 /* NSDate+Rising.h */,
 				1422241628D9B091009A4A54 /* NSDate+Rising.m */,
 			);

@@ -178,8 +178,9 @@
     if (NSEqualRanges(originCourse.period, conflictCourse.period)) {
         return NSOrderedSame;
     }
-    
-    
+    if (NSRangeIntersectsRange(originCourse.period, conflictCourse.period)) {
+        return NSOrderedDescending;
+    }
     
     return NSOrderedSame;
 }

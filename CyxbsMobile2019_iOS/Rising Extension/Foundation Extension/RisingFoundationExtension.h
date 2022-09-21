@@ -9,6 +9,8 @@
 
 #import "NSDate+Rising.h"
 
+#import "RisingNSRange.h"
+
 #ifndef RisingFoundationExtension_h
 #define RisingFoundationExtension_h
 

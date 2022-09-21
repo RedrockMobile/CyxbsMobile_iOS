@@ -45,7 +45,6 @@
         [self.model combineModel:combineModel];
         [self.collectionView reloadData];
         
-        [self setCurrentIndexPath:[NSIndexPath indexPathForItem:NSDate.today.weekday - 1 inSection:self.model.nowWeek]];
         [self scrollToSection:self.model.nowWeek];
     }
      failure:^(NSError * _Nonnull error) {
@@ -76,12 +75,6 @@
 }
 
 #pragma mark - Method
-
-- (void)setCurrentIndexPath:(NSIndexPath *)indexPath {
-    
-    ScheduleCollectionViewLayout *layout = (ScheduleCollectionViewLayout *)self.collectionView.collectionViewLayout;
-    CGFloat width = (self.collectionView.width - layout.widthForLeadingSupplementaryView) / 7 - layout.columnSpacing;
-}
 
 - (void)scrollToSection:(NSUInteger)page {
     [self.collectionView setContentOffset:CGPointMake(page * self.collectionView.width, 0) animated:YES];
