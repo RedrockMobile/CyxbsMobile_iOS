@@ -63,9 +63,16 @@
         if (self.isPushStyle) {
             top += STATUSBARHEIGHT;
         }
+        
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, top, self.view.width, self.view.height - top) collectionViewLayout:layout];
+        
+//        _collectionView.backgroundColor =
+//        [UIColor dm_colorWithLightColor:UIColorHex(#FFFFFF)
+//                              darkColor:UIColorHex(#1D1D1D)];
         _collectionView.directionalLockEnabled = YES;
         _collectionView.pagingEnabled = YES;
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        _collectionView.showsVerticalScrollIndicator = NO;
     }
     return _collectionView;
 }

@@ -91,7 +91,35 @@
         for (NSInteger item = 0; item < itemCount; item++) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
             UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:indexPath];
+            
             if (CGRectIntersectsRect(attributes.frame, rect)) {
+                
+                [_itemAttributes enumerateKeysAndObjectsUsingBlock:^(NSIndexPath * _Nonnull key, UICollectionViewLayoutAttributes * _Nonnull obj, BOOL * __unused stop) {
+                    
+                    BOOL I = CGRectIntersectsRect(obj.frame, attributes.frame);
+                    if (I && self.dataSource) {
+                        NSComparisonResult compare = [self.dataSource collectionView:self.collectionView layout:self compareOriginIndexPath:key conflictWithIndexPath:indexPath relayoutWithBlock:^(NSRange originRange, NSRange comflictRange) {
+                            
+                            CGRect originFrame = [self _itemSizeForSection:0 week:0 range:originRange];
+                            CGRect newOriginFrame = CGRectMake(obj.frame.origin.x, originFrame.origin.y, obj.frame.size.width, originFrame.size.height);
+                            obj.frame = newOriginFrame;
+                            
+                            CGRect comflicFrame = [self _itemSizeForSection:0 week:0 range:comflictRange];
+                            CGRect newComflicFrame = CGRectMake(attributes.frame.origin.x, comflicFrame.origin.y, attributes.frame.size.width, comflicFrame.size.height);
+                            attributes.frame = newComflicFrame;
+                            
+                        }];
+                        
+                        if (compare == NSOrderedAscending) {
+                            attributes.zIndex += 1;
+                        } else {
+                            obj.zIndex += 1;
+                        }
+                    }
+                    
+                }];
+                
+                
                 [result addObject:attributes];
             }
         }
@@ -115,11 +143,7 @@
         NSUInteger week = [self.dataSource collectionView:self.collectionView layout:self weekForItemAtIndexPath:indexPath];
         NSRange range = [self.dataSource collectionView:self.collectionView layout:self rangeForItemAtIndexPath:indexPath];
         
-        CGFloat x = section * self.collectionView.bounds.size.width + self.widthForLeadingSupplementaryView + (week - 1) * (_itemSize.width + self.columnSpacing);
-        CGFloat y = self.heightForHeaderSupplementaryView + (range.location - 1) * (_itemSize.height + self.lineSpacing);
-        CGFloat height = range.length * _itemSize.height + (range.length - 1) * self.columnSpacing;
-        
-        CGRect frame = CGRectMake(x, y, _itemSize.width, height);
+        CGRect frame = [self _itemSizeForSection:section week:week range:range];
         
         attributes.frame = frame;
     }
@@ -149,6 +173,7 @@
         CGRect frame = CGRectMake(x, y, self.collectionView.width, self.heightForHeaderSupplementaryView);
         
         attributes.frame = frame;
+        attributes.zIndex = CGFLOAT_MAX;
         
         return attributes;
     }
@@ -260,6 +285,15 @@
     CGFloat width = (self.collectionView.bounds.size.width - self.widthForLeadingSupplementaryView) / 7 - self.columnSpacing;
     
     _itemSize = CGSizeMake(width, width / 46 * 50);
+}
+
+- (CGRect)_itemSizeForSection:(NSUInteger)section week:(NSUInteger)week range:(NSRange)range {
+    
+    CGFloat x = section * self.collectionView.bounds.size.width + self.widthForLeadingSupplementaryView + (week - 1) * (_itemSize.width + self.columnSpacing) + self.columnSpacing;
+    CGFloat y = self.heightForHeaderSupplementaryView + (range.location - 1) * (_itemSize.height + self.lineSpacing);
+    CGFloat height = range.length * _itemSize.height + (range.length - 1) * self.columnSpacing;
+        
+    return CGRectMake(x, y, _itemSize.width, height);;
 }
 
 @end

@@ -25,13 +25,18 @@ NS_ASSUME_NONNULL_BEGIN
     ScheduleCollectionViewLayoutDataSource
 >
 
-/// <#description#>
+/// 模型
 @property (nonatomic, readonly) ScheduleModel *model;
 
 + (instancetype)new NS_UNAVAILABLE;
 
+/// 创建数据服务
+/// @param model 数据
 + (instancetype)dataSourceServiceWithModel:(ScheduleModel * _Nonnull)model;
 
+/// 设置collectionView以及是否多人
+/// @param view datasource本质代理
+/// @param diff 是否双人
 - (void)setCollectionView:(UICollectionView *)view diff:(BOOL)diff;
 
 @end

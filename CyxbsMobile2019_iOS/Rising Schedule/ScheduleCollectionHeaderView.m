@@ -8,256 +8,181 @@
 
 #import "ScheduleCollectionHeaderView.h"
 
+#import "ScheduleSupplementaryCollectionViewCell.h"
+
 NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHeaderView";
-
-// !!!: Inner Class Begin
-
-#pragma mark - ScheduleCollectionHeaderViewSigleView
-
-@interface ScheduleCollectionHeaderViewSigleView : UIView
-
-/// 标题
-@property (nonatomic, strong) UILabel *titleLab;
-
-/// 日期
-@property (nonatomic, strong) UILabel *contentLab;
-
-/// 是否只展示标题
-@property (nonatomic) BOOL onlyShowTitle;
-
-/// 是否高亮
-@property (nonatomic) BOOL isCurrent;
-
-/// 设置标题和日期
-/// 必须先掉用sizeToFit保证能显示
-/// 如果不设置日期
-/// @param title 标题
-/// @param content 日期
-- (void)setTitle:(NSString *)title content:(NSString * _Nullable)content;
-
-@end
-
-#pragma mark - ScheduleCollectionHeaderViewSigleView
-
-@implementation ScheduleCollectionHeaderViewSigleView
-
-#pragma mark - Life cycle
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.layer.cornerRadius = 8;
-        self.clipsToBounds = YES;
-        [self addSubview:self.titleLab];
-        [self addSubview:self.contentLab];
-    }
-    return self;
-}
-
-#pragma mark - Method
-
-- (void)sizeToFit {
-    self.titleLab.left = 0;
-    self.titleLab.width = self.width;
-    if (self.onlyShowTitle) {
-        self.titleLab.centerY = self.height / 2;
-    } else {
-        self.titleLab.top = 6;
-    }
-    
-    self.contentLab.left = 0;
-    self.contentLab.width = self.titleLab.width;
-    self.contentLab.bottom = self.SuperBottom - 3;
-}
-
-- (void)setTitle:(NSString *)title content:(NSString *)content {
-    self.titleLab.text = title;
-    self.onlyShowTitle = (!content || [content isEqualToString:@""]);
-    self.contentLab.text = content;
-    self.contentLab.alpha = self.onlyShowTitle ? 0 : 1;
-}
-
-#pragma mark - Getter
-
-- (UILabel *)titleLab {
-    if (_titleLab == nil) {
-        _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, -2, -1, 20)];
-        _titleLab.backgroundColor = UIColor.clearColor;
-        _titleLab.textAlignment = NSTextAlignmentCenter;
-        _titleLab.font = [UIFont fontWithName:PingFangSC size:12];
-        _titleLab.textColor =
-        [UIColor dm_colorWithLightColor:UIColorHex(#15315B)
-                              darkColor:UIColorHex(#F0F0F2)];
-    }
-    return _titleLab;
-}
-
-- (UILabel *)contentLab {
-    if (_contentLab == nil) {
-        _contentLab = [[UILabel alloc] initWithFrame:CGRectMake(self.titleLab.left, -1, -1, 20)];
-        _contentLab.backgroundColor = UIColor.clearColor;
-        _contentLab.textAlignment = NSTextAlignmentCenter;
-        _contentLab.font = [UIFont fontWithName:PingFangSC size:11];
-        _contentLab.textColor =
-        [UIColor dm_colorWithLightColor:UIColorHex(#606E8A)
-                              darkColor:UIColorHex(#868686)];
-    }
-    return _contentLab;
-}
-
-#pragma mark - Setter
-
-- (void)setIsCurrent:(BOOL)isCurrent {
-    if (_isCurrent == isCurrent) {
-        return;
-    }
-    _isCurrent = isCurrent;
-    
-    if (isCurrent) {
-        self.backgroundColor =
-        [UIColor dm_colorWithLightColor:UIColorHex(#2A4E84)
-                              darkColor:UIColorHex(#5A5A5ACC)];
-        self.titleLab.textColor =
-        [UIColor dm_colorWithLightColor:UIColorHex(#FFFFFF)
-                              darkColor:UIColorHex(#F0F0F2)];
-    } else {
-        self.backgroundColor = UIColor.clearColor;
-        self.titleLab.textColor =
-        [UIColor dm_colorWithLightColor:UIColorHex(#15315B)
-                              darkColor:UIColorHex(#F0F0F2)];
-    }
-}
-
-@end
-
-// !!!: Inner Class End
-
-
 
 #pragma mark - ScheduleCollectionHeaderView ()
 
-@interface ScheduleCollectionHeaderView ()
+@interface ScheduleCollectionHeaderView () <
+    UICollectionViewDataSource,
+    UICollectionViewDelegateFlowLayout
+>
 
-/// 视图
-@property (nonatomic, strong) NSArray <ScheduleCollectionHeaderViewSigleView *> *views;
+/// collectionView
+@property (nonatomic, strong) UICollectionView *collectionView;
 
-/// 当天背景view
-@property (nonatomic, strong) UIView *currentBackgroundView;
-
-/// 布局信息
+/// attributes
 @property (nonatomic, strong) UICollectionViewLayoutAttributes *attributes;
+
+/// 背景图
+@property (nonatomic, strong) UIView *backgroudView;
 
 @end
 
 #pragma mark - ScheduleCollectionHeaderView
 
-@implementation ScheduleCollectionHeaderView
+@implementation ScheduleCollectionHeaderView {
+    CGFloat _itemWidth;
+}
 
 #pragma mark - Life cycle
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor =
-        [UIColor dm_colorWithLightColor:UIColorHex(#FFFFFF)
-                              darkColor:UIColorHex(#1D1D1D)];
-        self.layer.zPosition = 1;
+        self.clipsToBounds = YES;
         
-        [self addSubview:self.currentBackgroundView];
-        
-        NSMutableArray <ScheduleCollectionHeaderViewSigleView *> *array = NSMutableArray.array;
-        for (NSInteger i = 0; i <= 7; i++) {
-            ScheduleCollectionHeaderViewSigleView *view = [[ScheduleCollectionHeaderViewSigleView alloc] init];
-            [array addObject:view];
-            [self addSubview:view];
-        }
-        self.views = array.copy;
+        [self addSubview:self.backgroudView];
+        [self addSubview:self.collectionView];
     }
     return self;
-}
-
-- (void)sizeToFit {
-    CGFloat width = (_attributes.frame.size.width - self.widthForLeadingView) / 7 - self.columnSpacing;
-    CGFloat TopOrHeight = _attributes.frame.size.height / 2;
-    
-    self.currentBackgroundView.frame = CGRectMake(-1, TopOrHeight, width, TopOrHeight);
-    
-    self.views[0].frame = CGRectMake(0, 0, self.widthForLeadingView, _attributes.frame.size.height - self.heightForBreathBelowHeaderView);
-    [self.views[0] sizeToFit];
-    
-    for (NSInteger i = 1; i <= 7; i++) {
-        self.views[i].frame = CGRectMake(self.views[i - 1].right, 0, width, _attributes.frame.size.height - self.heightForBreathBelowHeaderView);
-        self.views[i].left += (i == 1 ? 0 : self.columnSpacing);
-        [self.views[i] sizeToFit];
-        
-        if (self.views[i].isCurrent) {
-            self.currentBackgroundView.left = self.views[i].left;
-        }
-    }
 }
 
 #pragma mark - Method
 
 - (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
     _attributes = layoutAttributes;
-        
-    for (NSInteger i = 1; i <= 7; i++) {
-        
-        NSString *title = [NSString stringWithFormat:@"周%@",
-                           (i == 7 ? @"日"
-                           : [NSString translation:(@(i).stringValue)])];
-        [self.views[i] setTitle:title content:self.views[i].contentLab.text];
-    }
+    
+    self.collectionView.size = CGSizeMake(layoutAttributes.size.width, layoutAttributes.size.height - 10);
+    [self.collectionView reloadData];
+    
+    self.backgroudView.alpha = 0;
+}
+
+- (void)setSuperCollectionView:(UICollectionView *)superCollectionView {
+    _superCollectionView = superCollectionView;
+    [superCollectionView registerClass:ScheduleSupplementaryCollectionViewCell.class forCellWithReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier];
 }
 
 #pragma mark - Getter
 
-- (UIView *)currentBackgroundView {
-    if (_currentBackgroundView == nil) {
-        _currentBackgroundView = [[UIView alloc] init];
-        _currentBackgroundView.backgroundColor =
-        [UIColor dm_colorWithLightColor:UIColorHex(#E8F0FC80)
-                              darkColor:UIColorHex(#00000040)];
-        _currentBackgroundView.alpha = 0;
+- (UICollectionView *)collectionView {
+    if (_collectionView == nil) {
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        layout.minimumLineSpacing = 0;
+        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        
+        _collectionView = [[UICollectionView alloc] initWithFrame:self.SuperFrame collectionViewLayout:layout];
+        _collectionView.backgroundColor = UIColor.clearColor;
+        _collectionView.userInteractionEnabled = NO;
+        _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.showsHorizontalScrollIndicator = NO;
+        _collectionView.dataSource = self;
+        _collectionView.delegate = self;
     }
-    return _currentBackgroundView;
+    return _collectionView;
 }
 
-#pragma mark - Setter
-
-- (void)setDelegate:(id<ScheduleCollectionHeaderViewDataSource>)delegate {
-    _delegate = delegate;
-    self.currentBackgroundView.alpha = 0;
-    
-    if (delegate) {
-        BOOL needSource = [delegate scheduleCollectionHeaderView:self needSourceInSection: _attributes.indexPath.section];
-        
-        if (needSource) {
-            [self.views[0] setTitle:[delegate scheduleCollectionHeaderView:self leadingTitleInSection:_attributes.indexPath.section] content:nil];
-            
-            for (NSInteger i = 1; i <= 7; i++) {
-                NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:_attributes.indexPath.section];
-                
-                [self.views[i] setTitle:self.views[i].titleLab.text content:[delegate scheduleCollectionHeaderView:self contentDateAtIndexPath:indexPath]];
-                
-                BOOL isCurrent = [self.delegate scheduleCollectionHeaderView:self isCurrentDateAtIndexPath:indexPath];
-                
-                self.views[i].isCurrent = isCurrent;
-                
-                self.currentBackgroundView.alpha =
-                (BOOL)self.currentBackgroundView.alpha | isCurrent;
-            }
-        } else {
-            [self.views[0] setTitle:@"学期" content:nil];
-            
-            for (NSInteger i = 1; i <= 7; i++) {
-                NSString *title = [NSString stringWithFormat:@"周%@",
-                                   (i == 7 ? @"日"
-                                   : [NSString translation:(@(i).stringValue)])];
-                [self.views[i] setTitle:title content:nil];
-            }
-        }
+- (UIView *)backgroudView {
+    if (_backgroudView == nil) {
+        _backgroudView = [[UIView alloc] init];
+        _backgroudView.backgroundColor =
+        [UIColor Light:UIColorHexARGB(#80E8F0FC)
+                  Dark:UIColorHexARGB(#40000000)];
+        _backgroudView.alpha = 0;
     }
+    return _backgroudView;
+}
+
+- (CGRect)currentFrame {
+    return self.backgroudView.frame;
+}
+
+#pragma mark - <UICollectionViewDataSource>
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 8;
+}
+
+- (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    ScheduleSupplementaryCollectionViewCell *cell = [self.superCollectionView dequeueReusableCellWithReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier forIndexPath:indexPath];
+    
+    if (self.dataSource) {
+        // section is from '_attributes.indexPath.section'
+        // item is from 'indexPath.item'
+        NSInteger section = _attributes.indexPath.section;
+        NSInteger item = indexPath.item;
+
+        NSString *title = [self.dataSource scheduleCollectionHeaderView:self leadingTitleInSection:section];
+        BOOL needSource = [self.dataSource scheduleCollectionHeaderView:self needSourceInSection:section];
+        NSString *content;
+        if (needSource) {
+            NSIndexPath *contentIndexPath = [NSIndexPath indexPathForItem:item inSection:section];
+            content = [self.dataSource scheduleCollectionHeaderView:self contentDateAtIndexPath:contentIndexPath];
+            
+            [self.dataSource
+             scheduleCollectionHeaderView:self
+             isCurrentBlock:^CGRect(BOOL isCurrent) {
+                cell.isCurrent = isCurrent;
+                
+                if (!isCurrent) {
+                    return CGRectZero;
+                }
+                
+                self.backgroudView.alpha = 1;
+                UICollectionViewLayoutAttributes *attributes = [collectionView layoutAttributesForItemAtIndexPath:indexPath];
+                self.backgroudView.left = attributes.frame.origin.x;
+                self.backgroudView.top = attributes.size.height / 2;
+                self.backgroudView.height = attributes.size.height;
+                self.backgroudView.width = attributes.size.width;
+                
+                return attributes.frame;
+            }
+             atIndexPath:contentIndexPath];
+        }
+
+        if (item == 0) {
+            cell.title = title;
+            cell.isTitleOnly = YES;
+        } else {
+            static NSArray *weekStrAry;
+            static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                formatter.locale = NSLocale.CN;
+                formatter.timeZone = NSTimeZone.CQ;
+                weekStrAry = formatter.shortWeekdaySymbols.copy;
+            });
+            
+            cell.title = weekStrAry[item % 7];
+            cell.isTitleOnly = content ? NO : YES;
+        }
+        
+        cell.content = content;
+    }
+    
+    return cell;
+}
+
+#pragma mark - <UICollectionViewDelegateFlowLayout>
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    CGFloat height = collectionView.height;
+    
+    if (indexPath.item == 0) {
+        return CGSizeMake(self.widthForLeadingView, height);
+    }
+    
+    CGFloat itemWidth = (collectionView.width - self.widthForLeadingView) / 7 - self.columnSpacing;
+    
+    return CGSizeMake(itemWidth, height);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return _columnSpacing;
 }
 
 @end
