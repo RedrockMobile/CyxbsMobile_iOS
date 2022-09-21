@@ -36,6 +36,7 @@ NSString *ScheduleSupplementaryCollectionViewCellReuseIdentifier = @"ScheduleSup
     if (self) {
         self.contentView.layer.cornerRadius = 8;
         self.contentView.clipsToBounds = YES;
+        self.backgroundColor = UIColor.clearColor;
         [self.contentView addSubview:self.titleLab];
         [self.contentView addSubview:self.contentLab];
     }

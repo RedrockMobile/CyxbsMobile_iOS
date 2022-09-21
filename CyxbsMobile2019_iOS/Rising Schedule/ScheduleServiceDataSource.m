@@ -115,7 +115,7 @@
         ScheduleCollectionLeadingView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleCollectionLeadingViewReuseIdentifier forIndexPath:indexPath];
         
         view.lineSpacing = layout.lineSpacing;
-        [view sizeToFit];
+        view.superCollectionView = collectionView;
         
         return view;
     }

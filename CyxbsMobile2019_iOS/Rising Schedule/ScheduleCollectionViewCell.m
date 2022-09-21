@@ -113,9 +113,10 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
 - (void)setCourseContent:(NSString *)courseContent {
     self.contentLab.text = courseContent.copy;
     CGFloat width = self.contentLab.width;
+    CGFloat bottom = self.contentLab.bottom;
     [self.contentLab sizeToFit];
     self.contentLab.width = width;
-    self.contentLab.bottom = self.contentView.SuperBottom - 8;
+    self.contentLab.bottom = bottom;
 }
 
 - (void)setMultipleSign:(BOOL)multipleSign {

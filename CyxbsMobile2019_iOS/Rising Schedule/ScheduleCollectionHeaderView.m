@@ -52,13 +52,24 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
 
 - (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
     _attributes = layoutAttributes;
-    self.collectionView.size = layoutAttributes.size;
+    self.collectionView.size = CGSizeMake(layoutAttributes.size.width, layoutAttributes.size.height - 10);
     [self.collectionView reloadData];
 }
 
 - (void)setSuperCollectionView:(UICollectionView *)superCollectionView {
     _superCollectionView = superCollectionView;
     [superCollectionView registerClass:ScheduleSupplementaryCollectionViewCell.class forCellWithReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier];
+}
+
+- (void)addCurrentView:(__kindof UIView *)view atWeek:(NSInteger)week {
+    BOOL check = (week >= 1 && week <= 7);
+    if (!check) {
+        NSAssert(!check, @"\n🔴%s week : %ld", __func__, week);
+        return;
+    }
+    
+    view.top = self.height / 2;
+    view.height = self.height / 2;
 }
 
 #pragma mark - Getter
@@ -70,6 +81,7 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
         _collectionView = [[UICollectionView alloc] initWithFrame:self.SuperFrame collectionViewLayout:layout];
+        _collectionView.backgroundColor = UIColor.clearColor;
         _collectionView.userInteractionEnabled = NO;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
@@ -133,7 +145,7 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    CGFloat height = collectionView.height - 10;
+    CGFloat height = collectionView.height;
     
     if (indexPath.item == 0) {
         return CGSizeMake(self.widthForLeadingView, height);

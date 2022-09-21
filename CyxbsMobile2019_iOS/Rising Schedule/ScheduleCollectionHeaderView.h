@@ -70,6 +70,13 @@ UIKIT_EXTERN NSString *ScheduleCollectionHeaderViewReuseIdentifier;
 /// 列间距
 @property (nonatomic) CGFloat columnSpacing;
 
+/// 添加current视图，记录如下
+/// 1) view.top = self.height / 2; view.height = self.height/2; view.width FIT;
+/// 2) week = [1,7], others will do not addSubview;
+/// @param view 视图
+/// @param week 周数
+- (void)addCurrentView:(__kindof UIView *)view atWeek:(NSInteger)week;
+
 - (instancetype)init NS_UNAVAILABLE;
 
 + (instancetype)new NS_UNAVAILABLE;
