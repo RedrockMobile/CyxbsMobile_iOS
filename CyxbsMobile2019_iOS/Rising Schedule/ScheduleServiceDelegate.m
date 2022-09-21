@@ -19,9 +19,6 @@
 /// <#description#>
 @property (nonatomic) CGPoint contentPointWhenPanNeeded;
 
-/// <#description#>
-@property (nonatomic, strong) UIView *currentBackgroundView;
-
 @end
 
 @implementation ScheduleServiceDelegate
@@ -84,32 +81,10 @@
     
     ScheduleCollectionViewLayout *layout = (ScheduleCollectionViewLayout *)self.collectionView.collectionViewLayout;
     CGFloat width = (self.collectionView.width - layout.widthForLeadingSupplementaryView) / 7 - layout.columnSpacing;
-    
-    self.currentBackgroundView.alpha = 1;
-    self.currentBackgroundView.left = indexPath.section * self.collectionView.width + layout.widthForLeadingSupplementaryView + (indexPath.item - 1) * (width + layout.columnSpacing);
 }
 
 - (void)scrollToSection:(NSUInteger)page {
     [self.collectionView setContentOffset:CGPointMake(page * self.collectionView.width, 0) animated:YES];
-}
-
-#pragma mark - Getter
-
-- (UIView *)currentBackgroundView {
-    if (_currentBackgroundView == nil) {
-        ScheduleCollectionViewLayout *layout = (ScheduleCollectionViewLayout *)self.collectionView.collectionViewLayout;
-        
-        CGFloat width = (self.collectionView.width - layout.widthForLeadingSupplementaryView) / 7 - layout.columnSpacing;
-        
-        _currentBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(-1, -200, width, 2 * self.collectionView.height * 3)];
-        _currentBackgroundView.backgroundColor =
-        [UIColor dm_colorWithLightColor:UIColorHex(#E8F0FC80)
-                              darkColor:UIColorHex(#00000040)];
-        
-        _currentBackgroundView.alpha = 0;
-        _currentBackgroundView.layer.zPosition = -1;
-    }
-    return _currentBackgroundView;
 }
 
 #pragma mark - Setter
@@ -119,7 +94,6 @@
     
     view.delegate = self;
     [view.panGestureRecognizer addTarget:self action:@selector(_pan:)];
-    [view addSubview:self.currentBackgroundView];
 }
 
 #pragma mark - <UICollectionViewDelegate>

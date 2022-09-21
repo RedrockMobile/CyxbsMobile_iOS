@@ -149,6 +149,7 @@
         CGRect frame = CGRectMake(x, y, self.collectionView.width, self.heightForHeaderSupplementaryView);
         
         attributes.frame = frame;
+        attributes.zIndex = 1;
         
         return attributes;
     }

@@ -48,9 +48,13 @@ UIKIT_EXTERN NSString *ScheduleCollectionHeaderViewReuseIdentifier;
 
 /// 是否是当天
 /// @param view 视图
+/// @param currentBlock 是否是当天的block
+/// 1) 给予YES会返回重点视图的frame
+/// 2) 给予NO会返回CGRectZero
 /// @param indexPath 所在周以及星期
-- (BOOL)scheduleCollectionHeaderView:(ScheduleCollectionHeaderView *)view
-            isCurrentDateAtIndexPath:(NSIndexPath *)indexPath;
+- (void)scheduleCollectionHeaderView:(ScheduleCollectionHeaderView *)view
+                      isCurrentBlock:(CGRect (^)(BOOL isCurrent))currentBlock
+                         atIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -70,16 +74,12 @@ UIKIT_EXTERN NSString *ScheduleCollectionHeaderViewReuseIdentifier;
 /// 列间距
 @property (nonatomic) CGFloat columnSpacing;
 
-/// 添加current视图，记录如下
-/// 1) view.top = self.height / 2; view.height = self.height/2; view.width FIT;
-/// 2) week = [1,7], others will do not addSubview;
-/// @param view 视图
-/// @param week 周数
-- (void)addCurrentView:(__kindof UIView *)view atWeek:(NSInteger)week;
-
 - (instancetype)init NS_UNAVAILABLE;
 
 + (instancetype)new NS_UNAVAILABLE;
+
+/// 当日视图frame
+@property (nonatomic, readonly) CGRect currentFrame;
 
 @end
 

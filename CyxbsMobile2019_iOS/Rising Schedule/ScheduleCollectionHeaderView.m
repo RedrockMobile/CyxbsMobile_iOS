@@ -25,6 +25,9 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
 /// attributes
 @property (nonatomic, strong) UICollectionViewLayoutAttributes *attributes;
 
+/// 背景图
+@property (nonatomic, strong) UIView *backgroudView;
+
 @end
 
 #pragma mark - ScheduleCollectionHeaderView
@@ -38,11 +41,9 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor =
-        [UIColor dm_colorWithLightColor:UIColorHex(#FFFFFF)
-                              darkColor:UIColorHex(#1D1D1D)];
-        self.layer.zPosition = 1;
+        self.clipsToBounds = YES;
         
+        [self addSubview:self.backgroudView];
         [self addSubview:self.collectionView];
     }
     return self;
@@ -52,24 +53,16 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
 
 - (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
     _attributes = layoutAttributes;
+    
     self.collectionView.size = CGSizeMake(layoutAttributes.size.width, layoutAttributes.size.height - 10);
     [self.collectionView reloadData];
+    
+    self.backgroudView.alpha = 0;
 }
 
 - (void)setSuperCollectionView:(UICollectionView *)superCollectionView {
     _superCollectionView = superCollectionView;
     [superCollectionView registerClass:ScheduleSupplementaryCollectionViewCell.class forCellWithReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier];
-}
-
-- (void)addCurrentView:(__kindof UIView *)view atWeek:(NSInteger)week {
-    BOOL check = (week >= 1 && week <= 7);
-    if (!check) {
-        NSAssert(!check, @"\n🔴%s week : %ld", __func__, week);
-        return;
-    }
-    
-    view.top = self.height / 2;
-    view.height = self.height / 2;
 }
 
 #pragma mark - Getter
@@ -91,6 +84,21 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
     return _collectionView;
 }
 
+- (UIView *)backgroudView {
+    if (_backgroudView == nil) {
+        _backgroudView = [[UIView alloc] init];
+        _backgroudView.backgroundColor =
+        [UIColor Light:UIColorHexARGB(#80E8F0FC)
+                  Dark:UIColorHexARGB(#40000000)];
+        _backgroudView.alpha = 0;
+    }
+    return _backgroudView;
+}
+
+- (CGRect)currentFrame {
+    return self.backgroudView.frame;
+}
+
 #pragma mark - <UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -110,11 +118,29 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
         NSString *title = [self.dataSource scheduleCollectionHeaderView:self leadingTitleInSection:section];
         BOOL needSource = [self.dataSource scheduleCollectionHeaderView:self needSourceInSection:section];
         NSString *content;
-        BOOL isCurrent = NO;
         if (needSource) {
             NSIndexPath *contentIndexPath = [NSIndexPath indexPathForItem:item inSection:section];
             content = [self.dataSource scheduleCollectionHeaderView:self contentDateAtIndexPath:contentIndexPath];
-            isCurrent = [self.dataSource scheduleCollectionHeaderView:self isCurrentDateAtIndexPath:contentIndexPath];
+            
+            [self.dataSource
+             scheduleCollectionHeaderView:self
+             isCurrentBlock:^CGRect(BOOL isCurrent) {
+                cell.isCurrent = isCurrent;
+                
+                if (!isCurrent) {
+                    return CGRectZero;
+                }
+                
+                self.backgroudView.alpha = 1;
+                UICollectionViewLayoutAttributes *attributes = [collectionView layoutAttributesForItemAtIndexPath:indexPath];
+                self.backgroudView.left = attributes.frame.origin.x;
+                self.backgroudView.top = attributes.size.height / 2;
+                self.backgroudView.height = attributes.size.height;
+                self.backgroudView.width = attributes.size.width;
+                
+                return attributes.frame;
+            }
+             atIndexPath:contentIndexPath];
         }
 
         if (item == 0) {
@@ -127,7 +153,7 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
                 NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
                 formatter.locale = NSLocale.CN;
                 formatter.timeZone = NSTimeZone.CQ;
-                weekStrAry = formatter.shortWeekdaySymbols;
+                weekStrAry = formatter.shortWeekdaySymbols.copy;
             });
             
             cell.title = weekStrAry[item % 7];
@@ -135,7 +161,6 @@ NSString * ScheduleCollectionHeaderViewReuseIdentifier = @"ScheduleCollectionHea
         }
         
         cell.content = content;
-        cell.isCurrent = isCurrent;
     }
     
     return cell;
