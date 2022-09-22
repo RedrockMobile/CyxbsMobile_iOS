@@ -25,12 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger inWeek;
 
 /// 所在周散列表
-@property (nonatomic, copy) NSSet <NSNumber *> *inSections;
+@property (nonatomic, copy) NSMutableSet <NSNumber *> *inSections;
 
-/// 存储period
-@property (nonatomic) NSInteger period_location;
-/// 存储period
-@property (nonatomic) NSUInteger period_lenth;
 /// 第几-几节课，中午为4-5，晚上为8-9
 @property (nonatomic, readonly) NSRange period;
 

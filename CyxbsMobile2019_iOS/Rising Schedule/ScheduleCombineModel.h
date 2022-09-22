@@ -37,7 +37,7 @@ typedef NSString * ScheduleCombineType;
 @property (nonatomic) NSInteger nowWeek;
 
 /// 数据模型
-@property (nonatomic, readonly, nonnull) NSMutableArray <ScheduleCourse *> *courseAry;
+@property (nonatomic, strong, nonnull) NSMutableArray <ScheduleCourse *> *courseAry;
 
 - (instancetype)init NS_UNAVAILABLE;
 

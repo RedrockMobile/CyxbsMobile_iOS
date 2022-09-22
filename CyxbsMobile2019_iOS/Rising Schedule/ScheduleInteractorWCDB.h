@@ -20,7 +20,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ScheduleModel.h"
+#import "ScheduleCombineModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -29,10 +29,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ScheduleInteractorWCDB : NSObject
 
 /// 绑定模型
-@property (nonatomic, strong, readonly) ScheduleModel *bindModel;
+@property (nonatomic, strong, readonly) ScheduleCombineModel *bindModel;
 
 /// 存储路径（由绑定的模型决定）
-@property (nonatomic, copy, readonly) NSString *DBPath;
+@property (nonatomic, readonly, class) NSString *DBPath;
 
 /// 表名
 @property (nonatomic, readonly, class) NSString *tableName;
@@ -42,6 +42,17 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init NS_UNAVAILABLE;
 
 + (instancetype)new NS_UNAVAILABLE;
+
++ (instancetype)WCDBFromSno;
+
+- (instancetype)initWithBindModel:(ScheduleCombineModel *)model;
+
+- (void)save;
+
+
+
+
+
 
 /// 加入一类课程
 /// @param course 一类课程

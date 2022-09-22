@@ -10,7 +10,7 @@
 
 #import "ScheduleInteractorRequest.h"
 
-#import "ScheduleCollectionViewLayout.h"
+#import "ScheduleInteractorWCDB.h"
 
 #pragma mark - ScheduleServiceDelegate ()
 
@@ -39,17 +39,23 @@
         };
     }
     
-    [ScheduleInteractorRequest
-     request:dic
-     success:^(ScheduleCombineModel * _Nonnull combineModel) {
-        [self.model combineModel:combineModel];
-        [self.collectionView reloadData];
-        
-        [self scrollToSection:self.model.nowWeek];
-    }
-     failure:^(NSError * _Nonnull error) {
-        
-    }];
+//    [ScheduleInteractorRequest
+//     request:dic
+//     success:^(ScheduleCombineModel * _Nonnull combineModel) {
+//        [self.model combineModel:combineModel];
+//        [self.collectionView reloadData];
+//
+//        [self scrollToSection:self.model.nowWeek];
+//
+//        ScheduleInteractorWCDB *w = [[ScheduleInteractorWCDB alloc] initWithBindModel:combineModel];
+////        [w save];
+//    }
+//     failure:^(NSError * _Nonnull error) {
+//
+//    }];
+    ScheduleInteractorWCDB *w = [ScheduleInteractorWCDB WCDBFromSno];
+    NSArray *ary = w.bindModel.courseAry;
+    
 }
 
 - (void)_pan:(UIPanGestureRecognizer *)pan {
