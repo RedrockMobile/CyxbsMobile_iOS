@@ -92,20 +92,20 @@
     if (!self.sectionNewsModel.newsAry || self.sectionNewsModel.newsAry.count == 1) {
         return;
     }
-//    JWZXNewsViewController *vc = [[JWZXNewsViewController alloc] initWithRootJWZXSectionModel:self.sectionNewsModel];
-//    vc.hidesBottomBarWhenPushed = YES;
+    JWZXNewsViewController *vc = [[JWZXNewsViewController alloc] initWithRootJWZXSectionModel:self.sectionNewsModel];
+    vc.hidesBottomBarWhenPushed = YES;
     
     // Rising FIXME: vc
     
-    __block UIViewController *controller;
-    [self.router handleScheduleBlock:^(id<ScheduleRouterProtocol>  _Nonnull make) {
-        [make parameterWithRequest:@{
-                    ScheduleModelRequestStudent : @[@"2021215154"]
-        }];
-        controller = [make controllerWithStylePush:YES panAllowed:NO];
-    }];
+//    __block UIViewController *vc;
+//    [self.router handleScheduleBlock:^(id<ScheduleRouterProtocol>  _Nonnull make) {
+//        [make parameterWithRequest:@{
+//                    ScheduleModelRequestStudent : @[@"2021215154"]
+//        }];
+//        vc = [make controllerWithStylePush:YES panAllowed:NO];
+//    }];
     
-    [self.navigationController pushViewController:controller animated:YES];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - Getter

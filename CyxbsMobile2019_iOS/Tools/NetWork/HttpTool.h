@@ -19,6 +19,8 @@
 
 #import <AFNetworking/AFNetworking.h>
 
+#import "RisingSingleClass.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - ENUM (HttpToolRequest)
@@ -51,8 +53,7 @@ typedef NS_ENUM(NSUInteger, HttpToolRequestSerializer) {
 
 @interface HttpTool : NSObject
 
-/// 单例请求工具
-@property (nonatomic, readonly, strong, class) HttpTool *shareTool;
+RisingSingleClass_PROPERTY(Tool)
 
 - (instancetype)init NS_UNAVAILABLE;
 

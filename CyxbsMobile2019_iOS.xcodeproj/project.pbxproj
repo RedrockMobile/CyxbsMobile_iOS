@@ -703,6 +703,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		140374D228DCB61A008EDFAD /* RisingSingleClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RisingSingleClass.h; sourceTree = "<group>"; };
 		1404746A27F446DF00307209 /* DiscoverADBannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverADBannerView.h; sourceTree = "<group>"; };
 		1404746B27F446DF00307209 /* DiscoverADBannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverADBannerView.m; sourceTree = "<group>"; };
 		1404747027F459B500307209 /* DiscoverADItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverADItem.h; sourceTree = "<group>"; };
@@ -2202,6 +2203,7 @@
 			isa = PBXGroup;
 			children = (
 				1422241328D9B091009A4A54 /* RisingExtension.h */,
+				140374D228DCB61A008EDFAD /* RisingSingleClass.h */,
 				1422241428D9B091009A4A54 /* Foundation Extension */,
 				1422241928D9B091009A4A54 /* UIKit Extension */,
 			);
