@@ -10,17 +10,34 @@
 		1404746C27F446DF00307209 /* DiscoverADBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404746B27F446DF00307209 /* DiscoverADBannerView.m */; };
 		1404747227F459B500307209 /* DiscoverADItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404747127F459B500307209 /* DiscoverADItem.m */; };
 		1404747D27F46F0D00307209 /* DiscoverADController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404747C27F46F0D00307209 /* DiscoverADController.m */; };
+		1422240628D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422240528D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.m */; };
+		1422241F28D9B091009A4A54 /* NSDate+Rising.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422241628D9B091009A4A54 /* NSDate+Rising.m */; };
+		1422242028D9B091009A4A54 /* RisingFoundationExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422241728D9B091009A4A54 /* RisingFoundationExtention.m */; };
+		1422242128D9B091009A4A54 /* UIView+Rising.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422241C28D9B091009A4A54 /* UIView+Rising.m */; };
+		1422242228D9B091009A4A54 /* UIColor+Rising.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422241D28D9B091009A4A54 /* UIColor+Rising.m */; };
+		1422242628D9B31B009A4A54 /* RisingUIKitExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422242528D9B31B009A4A54 /* RisingUIKitExtension.m */; };
+		1435613028CCA93500EF6987 /* ScheduleServiceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1435612F28CCA93500EF6987 /* ScheduleServiceDelegate.m */; };
+		1435613328CD7F9800EF6987 /* RisingRouter+Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1435613228CD7F9800EF6987 /* RisingRouter+Schedule.m */; };
 		1451EA53282A09B800A5BB55 /* UserPublishModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451EA52282A09B800A5BB55 /* UserPublishModel.m */; };
 		1451EA58282BAF0C00A5BB55 /* MessageDetailTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451EA57282BAF0C00A5BB55 /* MessageDetailTitleView.m */; };
 		145AF3E5281BDA0000AABC53 /* NSString+UILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 145AF3E3281BDA0000AABC53 /* NSString+UILabel.m */; };
+		1466282628C4B1BD00AF584F /* ScheduleServiceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466282528C4B1BD00AF584F /* ScheduleServiceDataSource.m */; };
+		1466282928C4B1EC00AF584F /* ScheduleCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466282828C4B1EC00AF584F /* ScheduleCollectionViewLayout.m */; };
+		1466282C28C4EFE400AF584F /* ScheduleRequestType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466282B28C4EFE400AF584F /* ScheduleRequestType.m */; };
+		1466283428C5CA4600AF584F /* ScheduleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466283328C5CA4600AF584F /* ScheduleCollectionViewCell.m */; };
+		146AA0C528B65FA800391FD0 /* SchedulePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 146AA0C428B65FA800391FD0 /* SchedulePresenter.m */; };
 		147842EA27F0758F002359BA /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842E927F0758F002359BA /* UIView+Frame.m */; };
 		147842EE27F07A5A002359BA /* UIColor+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842ED27F07A59002359BA /* UIColor+Color.m */; };
 		147842F227F080A7002359BA /* NSDate+Day.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842F127F080A7002359BA /* NSDate+Day.m */; };
+		1478633D28BB567A00C1E54B /* ScheduleCombineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1478633C28BB567A00C1E54B /* ScheduleCombineModel.m */; };
 		147E2CEB28240C3A00DCC312 /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 147E2CEA28240C3A00DCC312 /* HttpTool.m */; };
 		1490FC8B28031BC200958892 /* FinderTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1490FC8A28031BC200958892 /* FinderTopView.m */; };
 		14981FF627FEA8F200AD2A29 /* JWZXNewsAnnexModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FF527FEA8F200AD2A29 /* JWZXNewsAnnexModel.m */; };
 		14981FF927FEAEB800AD2A29 /* JWZXDetailNewsTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FF827FEAEB800AD2A29 /* JWZXDetailNewsTopView.m */; };
 		14981FFC27FEB41B00AD2A29 /* JWZXDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FFB27FEB41B00AD2A29 /* JWZXDetailView.m */; };
+		14B46E6128B4D283003D288B /* ScheduleCourse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6028B4D283003D288B /* ScheduleCourse.mm */; };
+		14B46E6528B4D5D7003D288B /* ScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6328B4D5D7003D288B /* ScheduleModel.m */; };
+		14B46E6A28B4E504003D288B /* ScheduleInteractorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6928B4E504003D288B /* ScheduleInteractorRequest.m */; };
 		14B73F27281BE6C200D08ADD /* CyxbsMobileImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */; };
 		14B73F6E281BED7B00D08ADD /* MessageSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F2C281BED7B00D08ADD /* MessageSettingCell.m */; };
 		14B73F6F281BED7B00D08ADD /* MessageSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F30281BED7B00D08ADD /* MessageSettingVC.m */; };
@@ -54,6 +71,10 @@
 		14E7E4B227F57FC800B67469 /* FeedBackQuestionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4AE27F57FC800B67469 /* FeedBackQuestionButton.m */; };
 		14E7E4B327F57FC800B67469 /* FeedBackSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4AF27F57FC800B67469 /* FeedBackSelectView.m */; };
 		14F0D3D02831DB670046D8F5 /* JWZXSectionNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F0D3CF2831DB670046D8F5 /* JWZXSectionNews.m */; };
+		14F2794828C6D51600F41F60 /* ScheduleCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F2794728C6D51600F41F60 /* ScheduleCollectionHeaderView.m */; };
+		14F2794B28C6D52A00F41F60 /* ScheduleCollectionLeadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F2794A28C6D52A00F41F60 /* ScheduleCollectionLeadingView.m */; };
+		14F8763728B5B04A0067642F /* ScheduleInteractorWCDB.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14F8763628B5B04A0067642F /* ScheduleInteractorWCDB.mm */; };
+		14F8763A28B5B5FA0067642F /* ScheduleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8763928B5B5FA0067642F /* ScheduleController.m */; };
 		14FBBD3B2805050300D5B05D /* DiscoverJWZXVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FBBD3A2805050300D5B05D /* DiscoverJWZXVC.m */; };
 		14FBBD41280505CC00D5B05D /* SSRTextCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FBBD3F280505CC00D5B05D /* SSRTextCycleView.m */; };
 		14FBBD4E2805489A00D5B05D /* SSRTextCycleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FBBD4D2805489A00D5B05D /* SSRTextCycleCell.m */; };
@@ -532,8 +553,6 @@
 		AAE3309925E4E5CD00324750 /* DeleteArticleTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3309825E4E5CD00324750 /* DeleteArticleTipView.m */; };
 		AAE87797286B304F0091656B /* PrivacyTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE87796286B304E0091656B /* PrivacyTipView.swift */; };
 		AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */; };
-		B042050428A4B1BB00903E86 /* RisingUIKitExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B042050128A4B1BB00903E86 /* RisingUIKitExtension.m */; };
-		B042050528A4B1BB00903E86 /* RisingFoundationExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = B042050228A4B1BB00903E86 /* RisingFoundationExtention.m */; };
 		B0F08FDD28A2497F00986EB6 /* SportAttendanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FCE28A2497F00986EB6 /* SportAttendanceModel.m */; };
 		B0F08FDE28A2497F00986EB6 /* SportAttendanceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FD128A2497F00986EB6 /* SportAttendanceItem.m */; };
 		B0F08FDF28A2497F00986EB6 /* SportAttendanceItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FD228A2497F00986EB6 /* SportAttendanceItemModel.m */; };
@@ -684,24 +703,57 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		140374D228DCB61A008EDFAD /* RisingSingleClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RisingSingleClass.h; sourceTree = "<group>"; };
 		1404746A27F446DF00307209 /* DiscoverADBannerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverADBannerView.h; sourceTree = "<group>"; };
 		1404746B27F446DF00307209 /* DiscoverADBannerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverADBannerView.m; sourceTree = "<group>"; };
 		1404747027F459B500307209 /* DiscoverADItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverADItem.h; sourceTree = "<group>"; };
 		1404747127F459B500307209 /* DiscoverADItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverADItem.m; sourceTree = "<group>"; };
 		1404747B27F46F0D00307209 /* DiscoverADController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverADController.h; sourceTree = "<group>"; };
 		1404747C27F46F0D00307209 /* DiscoverADController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverADController.m; sourceTree = "<group>"; };
+		140AEC6F28DB485800AFC04C /* RisingNSRange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RisingNSRange.h; sourceTree = "<group>"; };
+		1422240428D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleSupplementaryCollectionViewCell.h; sourceTree = "<group>"; };
+		1422240528D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleSupplementaryCollectionViewCell.m; sourceTree = "<group>"; };
+		1422241328D9B091009A4A54 /* RisingExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingExtension.h; sourceTree = "<group>"; };
+		1422241528D9B091009A4A54 /* RisingFoundationExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingFoundationExtension.h; sourceTree = "<group>"; };
+		1422241628D9B091009A4A54 /* NSDate+Rising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Rising.m"; sourceTree = "<group>"; };
+		1422241728D9B091009A4A54 /* RisingFoundationExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingFoundationExtention.m; sourceTree = "<group>"; };
+		1422241828D9B091009A4A54 /* NSDate+Rising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Rising.h"; sourceTree = "<group>"; };
+		1422241A28D9B091009A4A54 /* UIView+Rising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Rising.h"; sourceTree = "<group>"; };
+		1422241B28D9B091009A4A54 /* UIColor+Rising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Rising.h"; sourceTree = "<group>"; };
+		1422241C28D9B091009A4A54 /* UIView+Rising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Rising.m"; sourceTree = "<group>"; };
+		1422241D28D9B091009A4A54 /* UIColor+Rising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Rising.m"; sourceTree = "<group>"; };
+		1422241E28D9B091009A4A54 /* RisingUIKitExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingUIKitExtension.h; sourceTree = "<group>"; };
+		1422242528D9B31B009A4A54 /* RisingUIKitExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RisingUIKitExtension.m; sourceTree = "<group>"; };
+		1435612E28CCA93500EF6987 /* ScheduleServiceDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleServiceDelegate.h; sourceTree = "<group>"; };
+		1435612F28CCA93500EF6987 /* ScheduleServiceDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleServiceDelegate.m; sourceTree = "<group>"; };
+		1435613128CD7F9800EF6987 /* RisingRouter+Schedule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RisingRouter+Schedule.h"; sourceTree = "<group>"; };
+		1435613228CD7F9800EF6987 /* RisingRouter+Schedule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RisingRouter+Schedule.m"; sourceTree = "<group>"; };
+		1435613428CDC76F00EF6987 /* ScheduleDiffProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleDiffProtocol.h; sourceTree = "<group>"; };
 		1451EA51282A09B800A5BB55 /* UserPublishModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserPublishModel.h; sourceTree = "<group>"; };
 		1451EA52282A09B800A5BB55 /* UserPublishModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserPublishModel.m; sourceTree = "<group>"; };
 		1451EA56282BAF0C00A5BB55 /* MessageDetailTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDetailTitleView.h; sourceTree = "<group>"; };
 		1451EA57282BAF0C00A5BB55 /* MessageDetailTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MessageDetailTitleView.m; sourceTree = "<group>"; };
 		145AF3E3281BDA0000AABC53 /* NSString+UILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UILabel.m"; sourceTree = "<group>"; };
 		145AF3E4281BDA0000AABC53 /* NSString+UILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UILabel.h"; sourceTree = "<group>"; };
+		1466282428C4B1BD00AF584F /* ScheduleServiceDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleServiceDataSource.h; sourceTree = "<group>"; };
+		1466282528C4B1BD00AF584F /* ScheduleServiceDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleServiceDataSource.m; sourceTree = "<group>"; };
+		1466282728C4B1EC00AF584F /* ScheduleCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionViewLayout.h; sourceTree = "<group>"; };
+		1466282828C4B1EC00AF584F /* ScheduleCollectionViewLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCollectionViewLayout.m; sourceTree = "<group>"; };
+		1466282A28C4E8C100AF584F /* ScheduleRouterProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleRouterProtocol.h; sourceTree = "<group>"; };
+		1466282B28C4EFE400AF584F /* ScheduleRequestType.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleRequestType.m; sourceTree = "<group>"; };
+		1466282D28C4EFF400AF584F /* ScheduleRequestType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleRequestType.h; sourceTree = "<group>"; };
+		1466283228C5CA4600AF584F /* ScheduleCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionViewCell.h; sourceTree = "<group>"; };
+		1466283328C5CA4600AF584F /* ScheduleCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCollectionViewCell.m; sourceTree = "<group>"; };
+		146AA0C328B65FA800391FD0 /* SchedulePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchedulePresenter.h; sourceTree = "<group>"; };
+		146AA0C428B65FA800391FD0 /* SchedulePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchedulePresenter.m; sourceTree = "<group>"; };
 		147842E827F0758F002359BA /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		147842E927F0758F002359BA /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		147842EC27F07A59002359BA /* UIColor+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Color.h"; sourceTree = "<group>"; };
 		147842ED27F07A59002359BA /* UIColor+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Color.m"; sourceTree = "<group>"; };
 		147842F027F080A6002359BA /* NSDate+Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Day.h"; sourceTree = "<group>"; };
 		147842F127F080A7002359BA /* NSDate+Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Day.m"; sourceTree = "<group>"; };
+		1478633B28BB567A00C1E54B /* ScheduleCombineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCombineModel.h; sourceTree = "<group>"; };
+		1478633C28BB567A00C1E54B /* ScheduleCombineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCombineModel.m; sourceTree = "<group>"; };
 		147E2CE928240C3A00DCC312 /* HttpTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpTool.h; sourceTree = "<group>"; };
 		147E2CEA28240C3A00DCC312 /* HttpTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
 		1490FC8928031BC200958892 /* FinderTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinderTopView.h; sourceTree = "<group>"; };
@@ -712,6 +764,14 @@
 		14981FF827FEAEB800AD2A29 /* JWZXDetailNewsTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWZXDetailNewsTopView.m; sourceTree = "<group>"; };
 		14981FFA27FEB41B00AD2A29 /* JWZXDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXDetailView.h; sourceTree = "<group>"; };
 		14981FFB27FEB41B00AD2A29 /* JWZXDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWZXDetailView.m; sourceTree = "<group>"; };
+		14B46E5F28B4D282003D288B /* ScheduleCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleCourse.h; sourceTree = "<group>"; };
+		14B46E6028B4D283003D288B /* ScheduleCourse.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ScheduleCourse.mm; sourceTree = "<group>"; };
+		14B46E6228B4D4A1003D288B /* ScheduleCourse+WCTTableCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScheduleCourse+WCTTableCoding.h"; sourceTree = "<group>"; };
+		14B46E6328B4D5D7003D288B /* ScheduleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleModel.m; sourceTree = "<group>"; };
+		14B46E6428B4D5D7003D288B /* ScheduleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleModel.h; sourceTree = "<group>"; };
+		14B46E6728B4D69A003D288B /* RisingScheduleHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RisingScheduleHeader.h; sourceTree = "<group>"; };
+		14B46E6828B4E504003D288B /* ScheduleInteractorRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleInteractorRequest.h; sourceTree = "<group>"; };
+		14B46E6928B4E504003D288B /* ScheduleInteractorRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleInteractorRequest.m; sourceTree = "<group>"; };
 		14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CyxbsMobileImage.xcassets; sourceTree = "<group>"; };
 		14B73F2C281BED7B00D08ADD /* MessageSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageSettingCell.m; sourceTree = "<group>"; };
 		14B73F2D281BED7B00D08ADD /* MessageSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageSettingCell.h; sourceTree = "<group>"; };
@@ -780,6 +840,14 @@
 		14F0D3CE2831DB670046D8F5 /* JWZXSectionNews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXSectionNews.h; sourceTree = "<group>"; };
 		14F0D3CF2831DB670046D8F5 /* JWZXSectionNews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWZXSectionNews.m; sourceTree = "<group>"; };
 		14F0D3D128329EAF0046D8F5 /* JWZXHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXHeader.h; sourceTree = "<group>"; };
+		14F2794628C6D51600F41F60 /* ScheduleCollectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionHeaderView.h; sourceTree = "<group>"; };
+		14F2794728C6D51600F41F60 /* ScheduleCollectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCollectionHeaderView.m; sourceTree = "<group>"; };
+		14F2794928C6D52A00F41F60 /* ScheduleCollectionLeadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionLeadingView.h; sourceTree = "<group>"; };
+		14F2794A28C6D52A00F41F60 /* ScheduleCollectionLeadingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCollectionLeadingView.m; sourceTree = "<group>"; };
+		14F8763528B5B04A0067642F /* ScheduleInteractorWCDB.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleInteractorWCDB.h; sourceTree = "<group>"; };
+		14F8763628B5B04A0067642F /* ScheduleInteractorWCDB.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ScheduleInteractorWCDB.mm; sourceTree = "<group>"; };
+		14F8763828B5B5FA0067642F /* ScheduleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleController.h; sourceTree = "<group>"; };
+		14F8763928B5B5FA0067642F /* ScheduleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleController.m; sourceTree = "<group>"; };
 		14FBBD392805050300D5B05D /* DiscoverJWZXVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverJWZXVC.h; sourceTree = "<group>"; };
 		14FBBD3A2805050300D5B05D /* DiscoverJWZXVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverJWZXVC.m; sourceTree = "<group>"; };
 		14FBBD3E280505CC00D5B05D /* SSRTextCycleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSRTextCycleView.h; sourceTree = "<group>"; };
@@ -1750,10 +1818,6 @@
 		AAE87796286B304E0091656B /* PrivacyTipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyTipView.swift; sourceTree = "<group>"; };
 		AAFD87CE24F50DB800CBBD11 /* FakeTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FakeTabBarView.h; sourceTree = "<group>"; };
 		AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FakeTabBarView.m; sourceTree = "<group>"; };
-		B042050028A4B1BB00903E86 /* RisingFoundationExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingFoundationExtension.h; sourceTree = "<group>"; };
-		B042050128A4B1BB00903E86 /* RisingUIKitExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingUIKitExtension.m; sourceTree = "<group>"; };
-		B042050228A4B1BB00903E86 /* RisingFoundationExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingFoundationExtention.m; sourceTree = "<group>"; };
-		B042050328A4B1BB00903E86 /* RisingUIKitExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingUIKitExtension.h; sourceTree = "<group>"; };
 		B0F08FCC28A2497F00986EB6 /* SportAttendanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceModel.h; sourceTree = "<group>"; };
 		B0F08FCD28A2497F00986EB6 /* SportAttendanceItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceItemModel.h; sourceTree = "<group>"; };
 		B0F08FCE28A2497F00986EB6 /* SportAttendanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceModel.m; sourceTree = "<group>"; };
@@ -2135,6 +2199,42 @@
 			path = "UITextView+Placeholder";
 			sourceTree = "<group>";
 		};
+		1422241228D9B091009A4A54 /* Rising Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1422241328D9B091009A4A54 /* RisingExtension.h */,
+				140374D228DCB61A008EDFAD /* RisingSingleClass.h */,
+				1422241428D9B091009A4A54 /* Foundation Extension */,
+				1422241928D9B091009A4A54 /* UIKit Extension */,
+			);
+			path = "Rising Extension";
+			sourceTree = "<group>";
+		};
+		1422241428D9B091009A4A54 /* Foundation Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1422241528D9B091009A4A54 /* RisingFoundationExtension.h */,
+				1422241728D9B091009A4A54 /* RisingFoundationExtention.m */,
+				140AEC6F28DB485800AFC04C /* RisingNSRange.h */,
+				1422241828D9B091009A4A54 /* NSDate+Rising.h */,
+				1422241628D9B091009A4A54 /* NSDate+Rising.m */,
+			);
+			path = "Foundation Extension";
+			sourceTree = "<group>";
+		};
+		1422241928D9B091009A4A54 /* UIKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1422241E28D9B091009A4A54 /* RisingUIKitExtension.h */,
+				1422242528D9B31B009A4A54 /* RisingUIKitExtension.m */,
+				1422241B28D9B091009A4A54 /* UIColor+Rising.h */,
+				1422241D28D9B091009A4A54 /* UIColor+Rising.m */,
+				1422241A28D9B091009A4A54 /* UIView+Rising.h */,
+				1422241C28D9B091009A4A54 /* UIView+Rising.m */,
+			);
+			path = "UIKit Extension";
+			sourceTree = "<group>";
+		};
 		1451EA54282A11FB00A5BB55 /* UserPublishModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -2485,6 +2585,56 @@
 				14B3F22B27F1713B007B421C /* SelfSafeView */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		14B4665C28B4C4BD003D288B /* Rising Pods */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Rising Pods";
+			sourceTree = "<group>";
+		};
+		14B4691D28B4C9D9003D288B /* Rising Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				1466282A28C4E8C100AF584F /* ScheduleRouterProtocol.h */,
+				1435613128CD7F9800EF6987 /* RisingRouter+Schedule.h */,
+				1435613228CD7F9800EF6987 /* RisingRouter+Schedule.m */,
+				146AA0C328B65FA800391FD0 /* SchedulePresenter.h */,
+				146AA0C428B65FA800391FD0 /* SchedulePresenter.m */,
+				14F8763828B5B5FA0067642F /* ScheduleController.h */,
+				14F8763928B5B5FA0067642F /* ScheduleController.m */,
+				14F2794628C6D51600F41F60 /* ScheduleCollectionHeaderView.h */,
+				14F2794728C6D51600F41F60 /* ScheduleCollectionHeaderView.m */,
+				14F2794928C6D52A00F41F60 /* ScheduleCollectionLeadingView.h */,
+				14F2794A28C6D52A00F41F60 /* ScheduleCollectionLeadingView.m */,
+				1422240428D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.h */,
+				1422240528D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.m */,
+				1466283228C5CA4600AF584F /* ScheduleCollectionViewCell.h */,
+				1466283328C5CA4600AF584F /* ScheduleCollectionViewCell.m */,
+				1466282728C4B1EC00AF584F /* ScheduleCollectionViewLayout.h */,
+				1466282828C4B1EC00AF584F /* ScheduleCollectionViewLayout.m */,
+				1466282428C4B1BD00AF584F /* ScheduleServiceDataSource.h */,
+				1466282528C4B1BD00AF584F /* ScheduleServiceDataSource.m */,
+				1435612E28CCA93500EF6987 /* ScheduleServiceDelegate.h */,
+				1435612F28CCA93500EF6987 /* ScheduleServiceDelegate.m */,
+				1466282D28C4EFF400AF584F /* ScheduleRequestType.h */,
+				1466282B28C4EFE400AF584F /* ScheduleRequestType.m */,
+				14B46E6828B4E504003D288B /* ScheduleInteractorRequest.h */,
+				14B46E6928B4E504003D288B /* ScheduleInteractorRequest.m */,
+				14F8763528B5B04A0067642F /* ScheduleInteractorWCDB.h */,
+				14F8763628B5B04A0067642F /* ScheduleInteractorWCDB.mm */,
+				1435613428CDC76F00EF6987 /* ScheduleDiffProtocol.h */,
+				14B46E6428B4D5D7003D288B /* ScheduleModel.h */,
+				14B46E6328B4D5D7003D288B /* ScheduleModel.m */,
+				1478633B28BB567A00C1E54B /* ScheduleCombineModel.h */,
+				1478633C28BB567A00C1E54B /* ScheduleCombineModel.m */,
+				14B46E5F28B4D282003D288B /* ScheduleCourse.h */,
+				14B46E6028B4D283003D288B /* ScheduleCourse.mm */,
+				14B46E6228B4D4A1003D288B /* ScheduleCourse+WCTTableCoding.h */,
+				14B46E6728B4D69A003D288B /* RisingScheduleHeader.h */,
+			);
+			path = "Rising Schedule";
 			sourceTree = "<group>";
 		};
 		14B73F29281BED7B00D08ADD /* Discover_MineMessage */ = {
@@ -3953,14 +4103,16 @@
 				AA0DDAC8286C8B1900802324 /* MineMainPage */,
 				1A0AC5F5252B234700221514 /* Swift */,
 				1A141339235F524B0001417E /* Tools */,
-				B04204FF28A4B1BB00903E86 /* Extension */,
 				14CED380288A594E00BADA8B /* RisingRouter */,
 				FE87CE1A27E876FE008D7148 /* Marco */,
 				FE87CE1B27E98F82008D7148 /* Supporting Files */,
 				1451EA55282A294200A5BB55 /* CyxbsMobileTool */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
+				14B4665C28B4C4BD003D288B /* Rising Pods */,
 				1A9B7678235F50A800725937 /* Info.plist */,
 				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
+				1422241228D9B091009A4A54 /* Rising Extension */,
+				14B4691D28B4C9D9003D288B /* Rising Schedule */,
 				14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */,
 			);
 			path = CyxbsMobile2019_iOS;
@@ -5743,17 +5895,6 @@
 			path = ArticleRemarkPraise;
 			sourceTree = "<group>";
 		};
-		B04204FF28A4B1BB00903E86 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				B042050028A4B1BB00903E86 /* RisingFoundationExtension.h */,
-				B042050128A4B1BB00903E86 /* RisingUIKitExtension.m */,
-				B042050228A4B1BB00903E86 /* RisingFoundationExtention.m */,
-				B042050328A4B1BB00903E86 /* RisingUIKitExtension.h */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
 		B0F08FCA28A2497F00986EB6 /* Discover_SportAttendance */ = {
 			isa = PBXGroup;
 			children = (
@@ -6757,6 +6898,7 @@
 				AA7ABAAC2873EA5500BA6790 /* MGDClickLayer.m in Sources */,
 				187DF4BA260310DD000BCDE9 /* LYEmptyBaseView.m in Sources */,
 				18CDF6C7257F91BE006E8E5C /* CalendarViewController.m in Sources */,
+				1466282928C4B1EC00AF584F /* ScheduleCollectionViewLayout.m in Sources */,
 				18CDF67A257F91BD006E8E5C /* ScheduleInquiryViewController.m in Sources */,
 				14B73F6E281BED7B00D08ADD /* MessageSettingCell.m in Sources */,
 				AA7AB96B2873E5EA00BA6790 /* SegmentBarView.m in Sources */,
@@ -6780,6 +6922,7 @@
 				AA7AB95D2873E5EA00BA6790 /* SZHHotSearchView.m in Sources */,
 				B0F08FE028A2497F00986EB6 /* SportAttendanceHeadView.m in Sources */,
 				14981FF627FEA8F200AD2A29 /* JWZXNewsAnnexModel.m in Sources */,
+				1422242128D9B091009A4A54 /* UIView+Rising.m in Sources */,
 				187DF4BB260310DD000BCDE9 /* UIScrollView+Empty.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
 				646B199D28313CDB0015DF28 /* StationView.m in Sources */,
@@ -6789,6 +6932,7 @@
 				49252DAA26D39CC9003A8A7F /* FeedBackMainPageViewController.m in Sources */,
 				49A50B6726D83B9600B25DDF /* CommonQuestionDetailVC.m in Sources */,
 				AA7ABAC32873EA5500BA6790 /* MGDCurrentTimeStr.m in Sources */,
+				14F2794B28C6D52A00F41F60 /* ScheduleCollectionLeadingView.m in Sources */,
 				AAE3309025E3D59100324750 /* ShareViewPlus.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
 				738C15B426E0BDFE00E24F8C /* HistoricalFBDefaultView.m in Sources */,
@@ -6813,6 +6957,7 @@
 				1A1691FE2430ECFE0076EDC7 /* ClassTabBar.m in Sources */,
 				AA7ABA272873EA4100BA6790 /* CYRleaseSaveDraftAlertBtn.m in Sources */,
 				73AAA1CD26C918250084E44D /* DetailsMainViewController.m in Sources */,
+				1422242228D9B091009A4A54 /* UIColor+Rising.m in Sources */,
 				187DF4BE260310DD000BCDE9 /* FTEmptyView.m in Sources */,
 				14B73F81281BED7B00D08ADD /* MessagePresentController.m in Sources */,
 				AA4FA1FA25C2E2E5005139BA /* PraiseTableViewCell.m in Sources */,
@@ -6823,12 +6968,14 @@
 				1A344BBA23E96BF50014A3B4 /* MineAboutContentView.m in Sources */,
 				AA7AB9602873E5EA00BA6790 /* SZHHotSearchButton.m in Sources */,
 				7F101AC5260613E800F2034C /* YYZTopicCell.m in Sources */,
+				1435613328CD7F9800EF6987 /* RisingRouter+Schedule.m in Sources */,
 				FE0D60442801702B00319A9E /* SchoolBusData.m in Sources */,
 				14B73F7F281BED7B00D08ADD /* DiscoverMineMessageVC.m in Sources */,
 				AA49098924F3BF5A007CB3BC /* TransitionManager.m in Sources */,
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
 				AA7ABAAD2873EA5500BA6790 /* FunctionBtn.m in Sources */,
 				AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */,
+				14F8763728B5B04A0067642F /* ScheduleInteractorWCDB.mm in Sources */,
 				4931630D26CD7B6800140412 /* StampCenterCollectionHeaderView.m in Sources */,
 				18CDF675257F91BD006E8E5C /* PointAndDottedLineView.m in Sources */,
 				AA0DDB69286C8B1A00802324 /* FansAndFollowingSegmentView.m in Sources */,
@@ -6846,7 +6993,6 @@
 				FE11E82027E8712B00C4B90B /* QAListSegmentView.m in Sources */,
 				AA4CD5EF25EE7B7F002D9394 /* ArticleModel.m in Sources */,
 				B51C500E28A5FFC00011465E /* LoginVC.m in Sources */,
-				B042050528A4B1BB00903E86 /* RisingFoundationExtention.m in Sources */,
 				AA0DDB80286C8B1A00802324 /* PMPEditingButton.m in Sources */,
 				FE2C135327AEF629001CF7AF /* ToDoTableView.m in Sources */,
 				18CDF674257F91BD006E8E5C /* TestCardTableViewCell.m in Sources */,
@@ -6869,6 +7015,7 @@
 				D0101D6A24352092004337ED /* UITextView+Placeholder.m in Sources */,
 				AA7ABAF82873EA6D00BA6790 /* DKSKeyboardView.m in Sources */,
 				18CDF6B8257F91BD006E8E5C /* ScoreViewController.m in Sources */,
+				14B46E6128B4D283003D288B /* ScheduleCourse.mm in Sources */,
 				18CDF6AC257F91BD006E8E5C /* SCTool.m in Sources */,
 				14B73F80281BED7B00D08ADD /* MessagePresentView.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
@@ -6913,6 +7060,7 @@
 				14B73F79281BED7B00D08ADD /* MessageMoreModel.m in Sources */,
 				18CDF6A7257F91BD006E8E5C /* NewDetailViewController.m in Sources */,
 				AA0DDB73286C8B1A00802324 /* PMPIdentityTableViewController.m in Sources */,
+				1422241F28D9B091009A4A54 /* NSDate+Rising.m in Sources */,
 				AA3F82DD24E9343A00B65042 /* DayBarView.m in Sources */,
 				18CDF4BA257F8DBD006E8E5C /* ChangePwdViewController.m in Sources */,
 				AA7ABAFD2873EA6D00BA6790 /* NoComentView.m in Sources */,
@@ -6995,6 +7143,7 @@
 				18CDF6B4257F91BD006E8E5C /* UICountingLabel.m in Sources */,
 				7F9A212726218E8800CA86B2 /* YYZTopicModel.m in Sources */,
 				18CDF712257F91BE006E8E5C /* TimeTableViewController.m in Sources */,
+				1422240628D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.m in Sources */,
 				18CDF711257F91BE006E8E5C /* ActivityTableViewController.m in Sources */,
 				AA0DDB70286C8B1A00802324 /* EditMyInfoContentView.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
@@ -7007,6 +7156,7 @@
 				14FBBD4E2805489A00D5B05D /* SSRTextCycleCell.m in Sources */,
 				AA0DDB75286C8B1A00802324 /* JHPageController.m in Sources */,
 				AA7ABAAA2873EA5500BA6790 /* MGDClickCoreLayer.m in Sources */,
+				14B46E6A28B4E504003D288B /* ScheduleInteractorRequest.m in Sources */,
 				14CED37F288A594600BADA8B /* RisingRouterRequest.m in Sources */,
 				18CDF6AA257F91BD006E8E5C /* JWZXNewsCell.m in Sources */,
 				AA86E3B82636630800756F05 /* ScheduleInfoModel.m in Sources */,
@@ -7060,6 +7210,7 @@
 				18CDF6B3257F91BD006E8E5C /* SCBarChart.m in Sources */,
 				18CDF66D257F91BD006E8E5C /* ElectricityView.m in Sources */,
 				646B198D282FFC460015DF28 /* BusMAPointAnnotation.m in Sources */,
+				146AA0C528B65FA800391FD0 /* SchedulePresenter.m in Sources */,
 				AAC7CA2025F7797000E6B5D5 /* RemarkParseModel.m in Sources */,
 				18CDF707257F91BE006E8E5C /* AllYearsViewController.m in Sources */,
 				AA7ABAA92873EA5500BA6790 /* ShareView.m in Sources */,
@@ -7071,7 +7222,6 @@
 				AA7ABAB02873EA5500BA6790 /* NewQAFollowTableView.m in Sources */,
 				18CDF681257F91BD006E8E5C /* EmptyClassPresenter.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
-				B042050428A4B1BB00903E86 /* RisingUIKitExtension.m in Sources */,
 				18CDF6AF257F91BD006E8E5C /* SCGenericChart.m in Sources */,
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
 				AA7ABA252873EA4100BA6790 /* SZHPhotoImageView.m in Sources */,
@@ -7087,6 +7237,7 @@
 				18CDF708257F91BE006E8E5C /* QueryViewController.m in Sources */,
 				D0101F68243587A1004337ED /* UIImage+GKDecoder.m in Sources */,
 				FE2C136127AEF629001CF7AF /* DiscoverTodoSetRemindBasicView.m in Sources */,
+				1435613028CCA93500EF6987 /* ScheduleServiceDelegate.m in Sources */,
 				AA0DDB57286C8B1A00802324 /* UIView+JHFrameExtension.m in Sources */,
 				DB34EB32239BD4550052B65E /* LessonNumLabel.m in Sources */,
 				1A1691FB2430ECA70076EDC7 /* ClassTabBarController.m in Sources */,
@@ -7112,6 +7263,7 @@
 				14E7E4A927F5762500B67469 /* QuestionButton.m in Sources */,
 				18CDF6B2257F91BD006E8E5C /* SCColor.m in Sources */,
 				18CDF6D3257F91BE006E8E5C /* HeaderGifRefresh.m in Sources */,
+				1422242628D9B31B009A4A54 /* RisingUIKitExtension.m in Sources */,
 				AA7ABAF52873EA6D00BA6790 /* SHPopMenu.m in Sources */,
 				AA7ABAAF2873EA5500BA6790 /* NewQARecommenTableView.m in Sources */,
 				FE2C135227AEF629001CF7AF /* ToDoMainBarView.m in Sources */,
@@ -7137,6 +7289,7 @@
 				4931630C26CD7B6800140412 /* GotoButton.m in Sources */,
 				AA7AB95C2873E5EA00BA6790 /* SearchBeginVC.m in Sources */,
 				AA0DDB76286C8B1A00802324 /* JHMenuItem.m in Sources */,
+				1466283428C5CA4600AF584F /* ScheduleCollectionViewCell.m in Sources */,
 				18CDF693257F91BD006E8E5C /* CQUPTMapHotPlaceItem.m in Sources */,
 				DB34EB21239BD4550052B65E /* DetailRemindViewController.m in Sources */,
 				DB34EB29239BD4550052B65E /* WeekChooseViewController.m in Sources */,
@@ -7212,6 +7365,7 @@
 				AA7ABAF02873EA6D00BA6790 /* DynamicDetailRequestDataModel.m in Sources */,
 				DB34EB38239BD4550052B65E /* MainView.m in Sources */,
 				18CDF70F257F91BE006E8E5C /* BackgroundTableViewCell.m in Sources */,
+				14B46E6528B4D5D7003D288B /* ScheduleModel.m in Sources */,
 				1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */,
 				DB34EB3A239BD4550052B65E /* CoverView.m in Sources */,
 				AA7ABAA32873EA5400BA6790 /* GroupModel.m in Sources */,
@@ -7232,6 +7386,7 @@
 				AAC7CA1125F7753E00E6B5D5 /* PraiseModel.m in Sources */,
 				AA7ABAB22873EA5500BA6790 /* TopFollowView.m in Sources */,
 				14FBBD3B2805050300D5B05D /* DiscoverJWZXVC.m in Sources */,
+				1422242028D9B091009A4A54 /* RisingFoundationExtention.m in Sources */,
 				AAE3304D25E2A1C600324750 /* RemarkViewController.m in Sources */,
 				D0101D5C2433C885004337ED /* SDMaskGuidController.m in Sources */,
 				DB34EB26239BD4550052B65E /* DetailPageController.m in Sources */,
@@ -7260,6 +7415,7 @@
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
 				AA7ABA992873EA5400BA6790 /* GroupItem.m in Sources */,
 				AA0DDB60286C8B1A00802324 /* SegmentedPageView.m in Sources */,
+				14F2794828C6D51600F41F60 /* ScheduleCollectionHeaderView.m in Sources */,
 				FE2C136627AEF629001CF7AF /* TodoDataModel.m in Sources */,
 				AA7ABAFF2873EA6D00BA6790 /* DynamicSpecificCell.m in Sources */,
 				AA0DDB68286C8B1A00802324 /* FansTableViewCell.m in Sources */,
@@ -7282,6 +7438,7 @@
 				B0F08FEC28A249E200986EB6 /* DataContentView.m in Sources */,
 				14B73F74281BED7B00D08ADD /* SystemMsgModel.m in Sources */,
 				AA7ABAC22873EA5500BA6790 /* PostArchiveTool.m in Sources */,
+				1466282628C4B1BD00AF584F /* ScheduleServiceDataSource.m in Sources */,
 				AA7ABA282873EA4100BA6790 /* SZHCircleLabelView.m in Sources */,
 				147842EE27F07A5A002359BA /* UIColor+Color.m in Sources */,
 				AA7ABAC12873EA5500BA6790 /* MGDStatusBarHeight.m in Sources */,
@@ -7297,7 +7454,9 @@
 				FE2C135B27AEF629001CF7AF /* DiscoverTodoTableViewCell.m in Sources */,
 				AA86E38B2635B04A00756F05 /* ColorManager.m in Sources */,
 				738C15B126E0B35600E24F8C /* FeedBackDefaultView.m in Sources */,
+				1466282C28C4EFE400AF584F /* ScheduleRequestType.m in Sources */,
 				AA7ABA9E2873EA5400BA6790 /* ShieldModel.m in Sources */,
+				14F8763A28B5B5FA0067642F /* ScheduleController.m in Sources */,
 				FE0D60472801702B00319A9E /* SchoolBusMapView.m in Sources */,
 				AA0DDB79286C8B1A00802324 /* PMPFansFollowsAndPraiseModel.m in Sources */,
 				D0101D5D2433C885004337ED /* SDMaskView.m in Sources */,
@@ -7345,6 +7504,7 @@
 				18CDF66A257F91BD006E8E5C /* DiscoverAD.m in Sources */,
 				AA0DDB67286C8B1A00802324 /* FollowersTableViewCell.m in Sources */,
 				FE2C134F27AEF629001CF7AF /* ToDoDetaileViewController.m in Sources */,
+				1478633D28BB567A00C1E54B /* ScheduleCombineModel.m in Sources */,
 				646B1990283001A60015DF28 /* StationMAPointAnnotation.m in Sources */,
 				187DF4C5260310FA000BCDE9 /* UITextView+WZB.m in Sources */,
 				4931631E26CD7B7900140412 /* StampCenterVC.m in Sources */,

@@ -15,6 +15,8 @@
 
 #import "JWZXNewsModel.h"
 
+#import "ScheduleRouterProtocol.h"
+
 #pragma mark - DiscoverJWZXVC ()
 
 /// 暴露在外面的教务新闻VC
@@ -92,6 +94,17 @@
     }
     JWZXNewsViewController *vc = [[JWZXNewsViewController alloc] initWithRootJWZXSectionModel:self.sectionNewsModel];
     vc.hidesBottomBarWhenPushed = YES;
+    
+    // Rising FIXME: vc
+    
+//    __block UIViewController *vc;
+//    [self.router handleScheduleBlock:^(id<ScheduleRouterProtocol>  _Nonnull make) {
+//        [make parameterWithRequest:@{
+//                    ScheduleModelRequestStudent : @[@"2021215154"]
+//        }];
+//        vc = [make controllerWithStylePush:YES panAllowed:NO];
+//    }];
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 
