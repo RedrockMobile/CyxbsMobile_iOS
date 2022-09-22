@@ -23,6 +23,31 @@
 
 @implementation ScheduleInteractorWCDB
 
+- (instancetype)initWithBindModel:(ScheduleCombineModel *)model {
+    self = [super init];
+    if (self) {
+        _bindModel = model;
+    }
+    return self;
+}
+
++ (instancetype)WCDBFromSno {
+    ScheduleCombineModel *model = [ScheduleCombineModel combineWithSno:UserItemTool.defaultItem.stuNum type:ScheduleCombineSystem];
+    model.courseAry = [self.db getAllObjectsOfClass:ScheduleCourse.class fromTable:self.tableName].mutableCopy;
+    ScheduleInteractorWCDB *a = [[self alloc] initWithBindModel:model];
+    return a;
+}
+
+- (void)save {
+    [self.class.db insertObjects:_bindModel.courseAry into:self.class.tableName];
+    RisingLog("😀", @"");
+}
+
+
+
+
+
+
 - (void)insertCourse:(ScheduleCourse *)course {
     NSParameterAssert(course);
     
@@ -64,8 +89,8 @@
 
 #pragma mark - Getter
 
-- (NSString *)DBPath {
-    NSString *pathComponent = [NSString stringWithFormat:@"schedule/%@", self.class.tableName];
++ (NSString *)DBPath {
+    NSString *pathComponent = [NSString stringWithFormat:@"schedule/%@", self.tableName];
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:pathComponent];
 }
 
@@ -73,7 +98,7 @@
     return @"schedule_course_table";
 }
 
-- (WCTDatabase *)db {
++ (WCTDatabase *)db {
     static WCTDatabase *_db;
     
     static dispatch_once_t onceToken;
