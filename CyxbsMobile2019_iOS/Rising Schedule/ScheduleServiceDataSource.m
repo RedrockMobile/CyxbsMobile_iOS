@@ -53,12 +53,14 @@
     if (!_model) {
         return 0;
     }
+    NSLog(@"🌲%lu", _model.courseAry.count);  // 19 rather than 26
     return _model.courseAry.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
-    return _model.courseAry[section].count;
+    NSLog(@"🌸section = %lu, items = %lu",section, _model.courseAry[section].count);
+    return _model.courseAry[section].count;  // 一周的所有课程数
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -70,7 +72,7 @@
     
     cell.courseTitle = course.course;
     cell.courseContent = course.classRoom;
-    
+    // 正常课程
     if (course.period.location <= 4) {
         cell.drawType = ScheduleCollectionViewCellDrawMorning;
     } else if (course.period.location <= 8) {
@@ -78,11 +80,11 @@
     } else if (course.period.location <= 12) {
         cell.drawType = ScheduleCollectionViewCellDrawNight;
     }
-    
+    // 自定义的事务
     if ([course.type isEqualToString:@"事务"]) {
         cell.drawType = ScheduleCollectionViewCellDrawCustom;
     }
-    
+    // 双人课表
     if (_diff) {
         if (![course.sno isEqualToString:UserItemTool.defaultItem.stuNum]) {
             cell.drawType = ScheduleCollectionViewCellDrawCustom;

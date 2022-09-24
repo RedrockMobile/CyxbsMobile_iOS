@@ -48,7 +48,7 @@ UIKIT_EXTERN NSString *ScheduleCollectionHeaderViewReuseIdentifier;
 
 /// 是否是当天
 /// @param view 视图
-/// @param indexPath 所在周以及星期
+/// @param indexPath 所在周以及星期几
 - (BOOL)scheduleCollectionHeaderView:(ScheduleCollectionHeaderView *)view
             isCurrentDateAtIndexPath:(NSIndexPath *)indexPath;
 

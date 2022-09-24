@@ -21,6 +21,8 @@
     return self;
 }
 
+/// 识别码注入
+/// @param request 识别码：查询类型和学号
 - (void)parameterWithRequest:(ScheduleRequestDictionary *)request {
     self.delegateService.parameterIfNeeded = request;
 }

@@ -27,10 +27,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 所在周散列表
 @property (nonatomic, copy) NSSet <NSNumber *> *inSections;
 
-/// 存储period
+/// 存储课程起始时间点
 @property (nonatomic) NSInteger period_location;
-/// 存储period
+
+/// 存储课程长度（几节课）
 @property (nonatomic) NSUInteger period_lenth;
+
 /// 第几-几节课，中午为4-5，晚上为8-9
 @property (nonatomic, readonly) NSRange period;
 
@@ -46,6 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 地点
 @property (nonatomic, copy) NSString *classRoom;
+
 /// 地点别名（以后可能要用到）
 @property (nonatomic, copy) NSString *classRoomNike;
 
