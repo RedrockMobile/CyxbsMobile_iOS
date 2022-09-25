@@ -17,7 +17,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NSString * ScheduleCombineType;
+typedef NSString * ScheduleCombineType NS_STRING_ENUM;
 
 #pragma mark - ScheduleCombineModel
 
@@ -51,9 +51,9 @@ typedef NSString * ScheduleCombineType;
 @end
 
 /// 系统
-FOUNDATION_EXPORT ScheduleCombineType ScheduleCombineSystem;
+FOUNDATION_EXPORT ScheduleCombineType const ScheduleCombineSystem;
 
 /// 自定义
-FOUNDATION_EXPORT ScheduleCombineType ScheduleCombineCustom;
+FOUNDATION_EXPORT ScheduleCombineType const ScheduleCombineCustom;
 
 NS_ASSUME_NONNULL_END

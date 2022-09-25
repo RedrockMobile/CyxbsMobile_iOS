@@ -10,11 +10,11 @@
 
 #pragma mark - ClassScheduleRequestType
 
-ScheduleModelRequestType ScheduleModelRequestStudent = @"student";
+ScheduleModelRequestType const ScheduleModelRequestStudent = @"student";
 
-ScheduleModelRequestType ScheduleModelRequestCustom = @"custom";
+ScheduleModelRequestType const ScheduleModelRequestCustom = @"custom";
 
-ScheduleModelRequestType ScheduleModelRequestTeacher = @"teacher";
+ScheduleModelRequestType const ScheduleModelRequestTeacher = @"teacher";
 
 NSString *API_forScheduleModelRequestType(ScheduleModelRequestType type) {
     NSCParameterAssert(type);
