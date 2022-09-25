@@ -31,8 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)requestAndReloadData;
 
-- (void)setCurrentIndexPath:(NSIndexPath *)indexPath;
-
 - (void)scrollToSection:(NSUInteger)page;
 
 @end

@@ -22,6 +22,9 @@ UIKIT_EXTERN NSString *ScheduleCollectionLeadingViewReuseIdentifier;
 
 @interface ScheduleCollectionLeadingView : UICollectionReusableView
 
+/// 父视图
+@property (nonatomic, weak) UICollectionView *superCollectionView;
+
 /// 列间距
 @property (nonatomic) CGFloat lineSpacing;
 

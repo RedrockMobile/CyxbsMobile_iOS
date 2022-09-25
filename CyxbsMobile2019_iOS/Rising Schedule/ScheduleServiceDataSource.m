@@ -23,6 +23,9 @@
 /// 视图不同
 @property (nonatomic) BOOL diff;
 
+/// 背景图
+@property (nonatomic, strong) UIView *backgroundView;
+
 @end
 
 #pragma mark - ScheduleServiceDataSource
@@ -35,6 +38,20 @@
     return service;
 }
 
+#pragma mark - Getter
+
+- (UIView *)backgroundView {
+    if (_backgroundView == nil) {
+        _backgroundView = [[UIView alloc] init];
+        _backgroundView.backgroundColor =
+        [UIColor Light:UIColorHexARGB(#80E8F0FC)
+                  Dark:UIColorHexARGB(#40000000)];
+        
+        _backgroundView.alpha = 0;
+    }
+    return _backgroundView;
+}
+
 #pragma mark - Setter
 
 - (void)setCollectionView:(UICollectionView *)view diff:(BOOL)diff{
@@ -43,6 +60,8 @@
     [view registerClass:ScheduleCollectionViewCell.class forCellWithReuseIdentifier:ScheduleCollectionViewCellReuseIdentifier];
     [view registerClass:ScheduleCollectionHeaderView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleCollectionHeaderViewReuseIdentifier];
     [view registerClass:ScheduleCollectionLeadingView.class forSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleCollectionLeadingViewReuseIdentifier];
+    
+    [view addSubview:self.backgroundView];
     
     view.dataSource = self;
 }
@@ -59,6 +78,9 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
+    if (_model.courseAry.count <= section) {
+        return 0;
+    }
     NSLog(@"🌸section = %lu, items = %lu",section, _model.courseAry[section].count);
     return _model.courseAry[section].count;  // 一周的所有课程数
 }
@@ -80,6 +102,7 @@
     } else if (course.period.location <= 12) {
         cell.drawType = ScheduleCollectionViewCellDrawNight;
     }
+
     // 自定义的事务
     if ([course.type isEqualToString:@"事务"]) {
         cell.drawType = ScheduleCollectionViewCellDrawCustom;
@@ -105,19 +128,22 @@
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
 
         ScheduleCollectionHeaderView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleCollectionHeaderViewReuseIdentifier forIndexPath:indexPath];
- 
+            
         view.widthForLeadingView = layout.widthForLeadingSupplementaryView;
-        view.heightForBreathBelowHeaderView = 10;
         view.columnSpacing = layout.columnSpacing;
-        view.delegate = self;
-        [view sizeToFit];
-        
+        view.dataSource = self;
+        view.superCollectionView = collectionView;
+        view.backgroundColor =
+        [UIColor dm_colorWithLightColor:UIColorHex(#FFFFFF)
+                              darkColor:UIColorHex(#1D1D1D)];
+                
         return view;
     } else if ([kind isEqualToString:UICollectionElementKindSectionLeading]) {
+        
         ScheduleCollectionLeadingView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleCollectionLeadingViewReuseIdentifier forIndexPath:indexPath];
         
         view.lineSpacing = layout.lineSpacing;
-        [view sizeToFit];
+        view.superCollectionView = collectionView;
         
         return view;
     }
@@ -148,27 +174,23 @@
               compareOriginIndexPath:(NSIndexPath *)originIndexPath
                conflictWithIndexPath:(NSIndexPath *)conflictIndexPath
                    relayoutWithBlock:(void (^)(NSRange originRange, NSRange comflictRange))block {
-    
+    // TODO: Unknown
     ScheduleCourse *originCourse = _model.courseAry[originIndexPath.section][originIndexPath.item];
     ScheduleCourse *conflictCourse = _model.courseAry[conflictIndexPath.section][originIndexPath.item];
     
     if (NSEqualRanges(originCourse.period, conflictCourse.period)) {
         return NSOrderedSame;
     }
-    
-    
+    if (NSRangeIntersectsRange(originCourse.period, conflictCourse.period)) {
+        return NSOrderedDescending;
+    }
     
     return NSOrderedSame;
 }
 
 #pragma mark - <ScheduleCollectionHeaderViewDataSource>
 
-- (BOOL)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
-                 needSourceInSection:(NSInteger)section {
-    return section ? YES : NO;
-}
-
-- (nonnull NSString *)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
+- (NSString *)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
                              leadingTitleInSection:(NSInteger)section {
     if (section == 0) {
         return @"学期";
@@ -179,16 +201,12 @@
 }
 
 - (BOOL)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
-            isCurrentDateAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    if (_model.nowWeek != indexPath.section) {
-        return NO;
-    }
-    
-    return (NSDate.date.weekday - 1) == indexPath.item;
+                 needSourceInSection:(NSInteger)section {
+    return section ? YES : NO;
 }
 
-- (NSString * _Nullable)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
-                              contentDateAtIndexPath:(nonnull NSIndexPath *)indexPath {
+- (NSString *)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
+                    contentDateAtIndexPath:(nonnull NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         return nil;
     }
@@ -196,6 +214,26 @@
     NSDate *date = [NSDate dateWithTimeInterval:(indexPath.section - 1) * 7 * 24 * 60 * 60 + (indexPath.item - 1) * 24 * 60 * 60 sinceDate:_model.startDate];
     NSString *title = [NSString stringWithFormat:@"%ld日", date.day];
     return title;
+}
+
+- (void)scheduleCollectionHeaderView:(ScheduleCollectionHeaderView *)view
+                      isCurrentBlock:(CGRect (^)(BOOL isCurrent))currentBlock
+                         atIndexPath:(NSIndexPath *)indexPath {
+    
+    if (_model.nowWeek != indexPath.section) {
+        currentBlock(NO);
+        return;
+    }
+    
+    BOOL isCurrent = ((NSDate.date.weekday - 1) == indexPath.item);
+    CGRect frame = currentBlock(isCurrent);
+    
+    if (isCurrent) {
+        self.backgroundView.alpha = 1;
+        CGFloat x = indexPath.section * view.width + frame.origin.x;
+        self.backgroundView.frame = CGRectMake(x, -530, frame.size.width, 530 * 3);
+        [self.backgroundView.superview sendSubviewToBack:self.backgroundView];
+    }
 }
 
 @end

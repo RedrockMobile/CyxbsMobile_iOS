@@ -22,16 +22,20 @@ typedef NSDictionary
     <ScheduleModelRequestType, NSArray
     <NSString *> *> ScheduleRequestDictionary;
 
+NS_ASSUME_NONNULL_BEGIN
+
 // MARK: KEY
 
 /// 学生
-FOUNDATION_EXPORT ScheduleModelRequestType _Nonnull ScheduleModelRequestStudent;
+FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestStudent;
 
 /// 老师
-FOUNDATION_EXPORT ScheduleModelRequestType _Nonnull ScheduleModelRequestTeacher;
+FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestTeacher;
 
 /// 自定义
-FOUNDATION_EXPORT ScheduleModelRequestType _Nonnull ScheduleModelRequestCustom;
+FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestCustom;
+
+NS_ASSUME_NONNULL_END
 
 // MARK: Method
 

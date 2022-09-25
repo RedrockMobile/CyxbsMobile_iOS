@@ -10,12 +10,23 @@
 
 #import "ScheduleCourse+WCTTableCoding.h"
 
-#pragma mark - SchoolLesson (WCTTableCoding)
+@interface ScheduleCourse ()
 
-@implementation ScheduleCourse (WCTTableCoding)
+/// 存储period
+@property (nonatomic) NSInteger period_location;
+
+/// 存储period
+@property (nonatomic) NSUInteger period_lenth;
+
+@end
+
+#pragma mark - SchoolLesson
+
+@implementation ScheduleCourse
 
 WCDB_IMPLEMENTATION(ScheduleCourse)
 
+WCDB_SYNTHESIZE(ScheduleCourse, inWeek)
 WCDB_SYNTHESIZE(ScheduleCourse, inSections)
 WCDB_SYNTHESIZE(ScheduleCourse, period_location)
 WCDB_SYNTHESIZE(ScheduleCourse, period_lenth)
@@ -33,12 +44,6 @@ WCDB_SYNTHESIZE(ScheduleCourse, sno)
 WCDB_SYNTHESIZE(ScheduleCourse, teacher)
 WCDB_SYNTHESIZE(ScheduleCourse, lesson)
 
-@end
-
-#pragma mark - SchoolLesson
-
-@implementation ScheduleCourse
-
 #pragma mark - Init
 
 - (instancetype) initWithDictionary:(NSDictionary *)dic {
@@ -52,7 +57,7 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
     self = [super init];
     if (self) {
         self.inWeek = [dic[@"hash_day"] intValue] + 1;
-        self.inSections = [NSSet setWithArray:dic[@"week"]];
+        self.inSections = [NSMutableSet setWithArray:dic[@"week"]];
         self.period_location = [dic[@"begin_lesson"] longValue];
         self.period_lenth = [dic[@"period"] unsignedLongValue];
         self.course = dic[@"course"];
@@ -74,6 +79,29 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
     }
     
     return NSMakeRange(_period_location, _period_lenth);
+}
+
+
+
+static NSString *tbn = @"abc";
+
+- (NSString *)DBPath {
+    NSString *pathComponent = [NSString stringWithFormat:@"schedule/%@", tbn];
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:pathComponent];
+}
+
+- (WCTDatabase *)db {
+    static WCTDatabase *_db;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        _db = [[WCTDatabase alloc] initWithPath:self.DBPath];
+        
+        [_db createTableAndIndexesOfName:tbn withClass:ScheduleCourse.class];
+    });
+    
+    return _db;
 }
 
 @end

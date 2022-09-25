@@ -8,9 +8,9 @@
 
 #import "ScheduleCombineModel.h"
 
-ScheduleCombineType ScheduleCombineSystem = @"system";
+ScheduleCombineType const ScheduleCombineSystem = @"system";
 
-ScheduleCombineType ScheduleCombineCustom = @"custom";
+ScheduleCombineType const ScheduleCombineCustom = @"custom";
 
 #pragma mark - ScheduleCombineModel
 

@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
     WCTTableCoding
 >
 
+WCDB_PROPERTY(inWeek)
 WCDB_PROPERTY(inSections)
 WCDB_PROPERTY(period_location)
 WCDB_PROPERTY(period_lenth)
