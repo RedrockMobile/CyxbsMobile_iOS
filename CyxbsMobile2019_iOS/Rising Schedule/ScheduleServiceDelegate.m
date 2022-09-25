@@ -33,12 +33,13 @@
 
 - (void)requestAndReloadData {
     ScheduleRequestDictionary *dic = self.parameterIfNeeded;
-    if (!dic) {
+    if (!dic) {  // 默认情况
         dic = @{
             ScheduleModelRequestStudent : @[UserItemTool.defaultItem.stuNum]
         };
     }
     
+    // 由识别码请求课表数据
     [ScheduleInteractorRequest
      request:dic
      success:^(ScheduleCombineModel * _Nonnull combineModel) {

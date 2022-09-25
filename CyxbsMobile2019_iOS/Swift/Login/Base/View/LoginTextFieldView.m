@@ -113,14 +113,14 @@
 
 // 控制显示文本的位置
 - (CGRect)textRectForBounds:(CGRect)bounds {
-    CGRect inset = CGRectMake(bounds.origin.x + 46, bounds.origin.y, bounds.size.width - 65, bounds.size.height);
+    CGRect inset = CGRectMake(bounds.origin.x + 44, bounds.origin.y, bounds.size.width - 65, bounds.size.height);
 
     return inset;
 }
 
 // 控制编辑文本的位置
 - (CGRect)editingRectForBounds:(CGRect)bounds {
-   CGRect inset = CGRectMake(bounds.origin.x + 46, bounds.origin.y, bounds.size.width - 65, bounds.size.height);
+   CGRect inset = CGRectMake(bounds.origin.x + 44, bounds.origin.y, bounds.size.width - 65, bounds.size.height);
    return inset;
 }
 

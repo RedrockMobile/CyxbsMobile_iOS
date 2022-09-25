@@ -43,6 +43,7 @@
     
     [self.view addSubview:self.collectionView];
     
+    // 请求数据
     [self.presenter.delegateService requestAndReloadData];
 }
 

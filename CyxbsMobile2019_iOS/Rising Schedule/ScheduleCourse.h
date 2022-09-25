@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 地点
 @property (nonatomic, copy) NSString *classRoom;
+
 /// 地点别名（以后可能要用到）
 @property (nonatomic, copy) NSString *classRoomNike;
 

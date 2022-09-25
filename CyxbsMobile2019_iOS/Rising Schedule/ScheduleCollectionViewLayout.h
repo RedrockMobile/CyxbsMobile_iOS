@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 星期几
 /// @param collectionView 视图
 /// @param layout 布局
-/// @param indexPath 下标
+/// @param indexPath 下标布局
 - (NSUInteger)collectionView:(UICollectionView *)collectionView
                       layout:(ScheduleCollectionViewLayout *)layout
       weekForItemAtIndexPath:(NSIndexPath *)indexPath;

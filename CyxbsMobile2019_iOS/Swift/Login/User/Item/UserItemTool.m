@@ -122,7 +122,7 @@
     [HttpTool.shareTool
      request:Mine_POST_refreshToken_API
      type:HttpToolRequestTypePost
-     serializer:HttpToolRequestSerializerHTTP
+     serializer:HttpToolRequestSerializerHTTP 
      bodyParameters:params
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
