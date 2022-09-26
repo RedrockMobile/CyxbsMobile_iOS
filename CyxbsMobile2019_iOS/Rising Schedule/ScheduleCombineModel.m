@@ -41,7 +41,7 @@ ScheduleCombineType const ScheduleCombineCustom = @"custom";
 }
 
 - (NSString *)identifier {
-    return [NSString stringWithFormat:@"%@%@", _sno, _combineType];
+    return [NSString stringWithFormat:@"s%@%@", _sno, _combineType];
 }
 
 @end

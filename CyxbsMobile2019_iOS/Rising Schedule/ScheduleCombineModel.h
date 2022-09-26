@@ -26,7 +26,7 @@ typedef NSString * ScheduleCombineType NS_STRING_ENUM;
 /// 学号，可以确定唯一性
 @property (nonatomic, copy, readonly) NSString *sno;
 
-/// 绑定类型，由“系统”/“自定义”决定
+/// 绑定类型，由“系统” / “自定义事物”决定
 @property (nonatomic, copy, readonly) ScheduleCombineType combineType;
 
 /// 唯一标识

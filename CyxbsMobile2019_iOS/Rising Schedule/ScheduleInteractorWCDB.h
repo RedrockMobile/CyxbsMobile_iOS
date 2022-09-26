@@ -34,21 +34,20 @@ NS_ASSUME_NONNULL_BEGIN
 /// 存储路径（由绑定的模型决定）
 @property (nonatomic, readonly, class) NSString *DBPath;
 
-/// 表名
-@property (nonatomic, readonly, class) NSString *tableName;
-
 #pragma mark - Method
 
 - (instancetype)init NS_UNAVAILABLE;
 
 + (instancetype)new NS_UNAVAILABLE;
 
+// 建表
+- (void)creatTable;
+
 + (instancetype)WCDBFromSno;
 
 - (instancetype)initWithBindModel:(ScheduleCombineModel *)model;
 
-- (void)save;
-
+- (void)saveSystemData;
 
 
 
@@ -66,9 +65,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param course 一类课程
 - (void)deleteCourse:(ScheduleCourse *)course;
 
-/// 通过学号获取课程
-/// @param num 学号
-- (NSArray <ScheduleCourse *> * _Nullable)courseAryForSno:(NSString *)num;
+/// 根据学号，课表类型找到该表，返回该WXDB
+/// @param sno 学号
+/// @param type 类型
++ (instancetype)getScheduleDataBaseFromSno:(NSString *)sno Type:(ScheduleCombineType)type;
+
 
 @end
 

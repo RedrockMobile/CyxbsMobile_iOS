@@ -39,7 +39,8 @@
         };
     }
     
-    // 由识别码请求课表数据
+    // 由识别码请求课表数据    
+    // 请求到的combineModel 不是最终可以一节节课取出来的model，是一个课程（里面包含了课程的所有周数）
     [ScheduleInteractorRequest
      request:dic
      success:^(ScheduleCombineModel * _Nonnull combineModel) {
@@ -48,14 +49,24 @@
 
         [self scrollToSection:self.model.nowWeek];
 
-        ScheduleInteractorWCDB *w = [[ScheduleInteractorWCDB alloc] initWithBindModel:combineModel];
-//        [w save];
+        // MARK: 本地缓存
+        // 1.绑定combineModel
+        ScheduleInteractorWCDB *dataBase = [[ScheduleInteractorWCDB alloc] initWithBindModel:combineModel];
+        // 2.创建表格，在此期间，把combineModel的identifier作为表的表名
+        [dataBase creatTable];
+        // 3.把请求到的combineModel数据存到数据库中
+        [dataBase saveSystemData];
+        
+        // MARK: 读取本地缓存
+        ScheduleInteractorWCDB *db = [ScheduleInteractorWCDB getScheduleDataBaseFromSno:@"2021215154" Type:ScheduleCombineSystem];
+        // 得到课表数据
+        NSArray *array = [NSArray array];
+        array = db.bindModel.courseAry;
+        NSLog(@"🪲%lu", array.count);
     }
      failure:^(NSError * _Nonnull error) {
 
     }];
-//    ScheduleInteractorWCDB *w = [ScheduleInteractorWCDB WCDBFromSno];
-//    NSArray *ary = w.bindModel.courseAry;
     
 }
 

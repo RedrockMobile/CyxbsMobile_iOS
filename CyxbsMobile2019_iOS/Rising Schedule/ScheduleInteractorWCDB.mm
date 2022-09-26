@@ -31,82 +31,66 @@
     return self;
 }
 
-+ (instancetype)WCDBFromSno {
-    ScheduleCombineModel *model = [ScheduleCombineModel combineWithSno:UserItemTool.defaultItem.stuNum type:ScheduleCombineSystem];
-    model.courseAry = [self.db getAllObjectsOfClass:ScheduleCourse.class fromTable:self.tableName].mutableCopy;
-    ScheduleInteractorWCDB *a = [[self alloc] initWithBindModel:model];
-    return a;
+// 建表
+- (void)creatTable {
+    NSParameterAssert(self.class.db);
+    [self.class.db createTableAndIndexesOfName:_bindModel.identifier withClass:ScheduleCourse.class];
 }
 
-- (void)save {
-    [self.class.db insertObjects:_bindModel.courseAry into:self.class.tableName];
-    RisingLog("😀", @"");
+// 这个批量缓存用于缓存自己和他人的系统课表
+- (void)saveSystemData {
+    [self.class.db insertObjects:_bindModel.courseAry into:_bindModel.identifier];
 }
 
-
-
-
-
+// MARK: 增
 
 - (void)insertCourse:(ScheduleCourse *)course {
     NSParameterAssert(course);
-    
-    [self.db
-     insertObject:course
-     into:self.class.tableName];
+    [self.db insertObject:course into:self.bindModel.identifier];
 }
 
-- (void)updateCourse:(ScheduleCourse *)course {
-    NSParameterAssert(course);
-    
-    [self.db
-     updateRowsInTable:self.class.tableName
-     onProperties:ScheduleCourse.AllProperties
-     withObject:course
-     where:ScheduleCourse.sno == course.sno];
-}
+// MARK: 删
 
 - (void)deleteCourse:(ScheduleCourse *)course {
     NSParameterAssert(course);
-    
-    [self.db
-     deleteObjectsFromTable:self.class.tableName
-     where:ScheduleCourse.sno == course.sno];
+    // 删除：依据这节自定义的课程的周数，星期，period来定位到需要删除的课程
+    [self.db deleteObjectsFromTable:self.bindModel.identifier where:(ScheduleCourse.inWeek == course.inWeek) && (ScheduleCourse.inSections == course.inSections) && (ScheduleCourse.period_lenth == course.period.length) && (ScheduleCourse.period_location == course.period.location)];
 }
 
-- (NSArray<ScheduleCourse *> *)courseAryForSno:(NSString *)num {
-    BOOL check = (!num && num.length < 1);
-    if (check) {
-        NSAssert(check, @"\n🔴%s sno : %@", __func__, num);
-        return nil;
-    }
-    
-    return [self.db
-            getObjectsOfClass:ScheduleCourse.class
-            fromTable:self.class.tableName
-            where:ScheduleCourse.sno == num];
+// MARK: 改
+
+- (void)updateCourse:(ScheduleCourse *)course {
+    NSParameterAssert(course);
+    // 更新：依据这节自定义的课程的周数，星期，period来定位到需要更新的课程
+    [self.db updateRowsInTable:self.bindModel.identifier
+                  onProperties:ScheduleCourse.AllProperties
+                    withObject:course
+                         where:(ScheduleCourse.inWeek == course.inWeek) && (ScheduleCourse.inSections == course.inSections) && (ScheduleCourse.period_lenth == course.period.length) && (ScheduleCourse.period_location == course.period.location)];
+}
+
+// MARK: 查
+
++ (instancetype)getScheduleDataBaseFromSno:(NSString *)sno Type:(ScheduleCombineType)type {
+    ScheduleCombineModel *model = [ScheduleCombineModel combineWithSno:sno type:type];
+    model.courseAry = [self.db getAllObjectsOfClass:ScheduleCourse.class fromTable:model.identifier].mutableCopy;
+    ScheduleInteractorWCDB *dataBase = [[self alloc] initWithBindModel:model];
+    return dataBase;
 }
 
 #pragma mark - Getter
 
 + (NSString *)DBPath {
-    NSString *pathComponent = [NSString stringWithFormat:@"schedule/%@", self.tableName];
+    NSString *pathComponent = [NSString stringWithFormat:@"/schedule/"];
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:pathComponent];
-}
-
-+ (NSString *)tableName {
-    return @"schedule_course_table";
 }
 
 + (WCTDatabase *)db {
     static WCTDatabase *_db;
-    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
         _db = [[WCTDatabase alloc] initWithPath:self.DBPath];
         
-        [_db createTableAndIndexesOfName:self.class.tableName withClass:ScheduleCourse.class];
     });
     
     return _db;
