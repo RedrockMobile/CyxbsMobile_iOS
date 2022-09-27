@@ -23,6 +23,9 @@
 /// 删除多选按钮
 @property (nonatomic, strong) UIButton *deleteBtn;
 
+/// <#description#>
+@property (nonatomic, strong) UIImageView *bkImgView;
+
 @end
 
 #pragma mark - SystemMessageView
@@ -184,6 +187,7 @@
         _mainTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_mainTableView registerClass:SystemMessageCell.class forCellReuseIdentifier:SystemMessageCellReuseIdentifier];
         _mainTableView.delegate = self;
+        _mainTableView.dataSource = self;
         _mainTableView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0);
         // 长按触发多选
         UILongPressGestureRecognizer *longP = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(messageViewLongPress:)];
@@ -243,6 +247,7 @@
     if (delegate) {
         self.mainTableView.dataSource = delegate;
         _delegate = delegate;
+        [self.mainTableView reloadData];
     }
 }
 

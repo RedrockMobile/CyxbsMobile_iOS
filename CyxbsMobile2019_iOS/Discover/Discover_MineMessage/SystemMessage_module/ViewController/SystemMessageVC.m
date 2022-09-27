@@ -67,6 +67,7 @@
 
 - (BOOL)hadReadAfterReloadData {
     [self.messageView reloadData];
+    
     BOOL needBall = NO;
     for (SystemMessage *msg in self.sysMsgModel.msgAry) {
         needBall |= !msg.hadRead;

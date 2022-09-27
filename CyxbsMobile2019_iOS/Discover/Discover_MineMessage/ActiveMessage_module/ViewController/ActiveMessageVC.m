@@ -22,6 +22,9 @@
 /// 展示信息的tableView
 @property (nonatomic, strong) UITableView *msgTableView;
 
+/// bk
+@property (nonatomic, strong) UIImageView *bkImgView;
+
 @end
 
 #pragma mark - ActiveMessageVC
@@ -79,6 +82,16 @@
     }
 }
 
+#pragma mark - Getter
+
+- (UIImageView *)bkImgView {
+    if (_bkImgView == nil) {
+        _bkImgView = [[UIImageView alloc] initWithFrame:CGRectMake(-1, -1, 171, 111)];
+        _bkImgView.image = [UIImage imageNamed:@"人在手机里"];
+    }
+    return _bkImgView;
+}
+
 #pragma mark - <UITableViewDelegate>
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -124,6 +137,12 @@
 #pragma mark - <UITableViewDataSource>
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (!self.sysModel || self.sysModel.activeMsgAry.count == 0) {
+        [self.view addSubview:self.bkImgView];
+        self.bkImgView.center = self.view.SuperCenter;
+        return 0;
+    }
+    [self.bkImgView removeFromSuperview];
     return self.sysModel.activeMsgAry.count;
 }
 

@@ -10,6 +10,11 @@
 		1404746C27F446DF00307209 /* DiscoverADBannerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404746B27F446DF00307209 /* DiscoverADBannerView.m */; };
 		1404747227F459B500307209 /* DiscoverADItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404747127F459B500307209 /* DiscoverADItem.m */; };
 		1404747D27F46F0D00307209 /* DiscoverADController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1404747C27F46F0D00307209 /* DiscoverADController.m */; };
+		1441B78128E2C7A9001E3227 /* NSDate+Rising.m in Sources */ = {isa = PBXBuildFile; fileRef = 1441B77728E2C7A9001E3227 /* NSDate+Rising.m */; };
+		1441B78228E2C7A9001E3227 /* RisingFoundationExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = 1441B77828E2C7A9001E3227 /* RisingFoundationExtention.m */; };
+		1441B78328E2C7A9001E3227 /* RisingUIKitExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1441B77D28E2C7A9001E3227 /* RisingUIKitExtension.m */; };
+		1441B78428E2C7A9001E3227 /* UIView+Rising.m in Sources */ = {isa = PBXBuildFile; fileRef = 1441B77E28E2C7A9001E3227 /* UIView+Rising.m */; };
+		1441B78528E2C7A9001E3227 /* UIColor+Rising.m in Sources */ = {isa = PBXBuildFile; fileRef = 1441B77F28E2C7A9001E3227 /* UIColor+Rising.m */; };
 		1451EA53282A09B800A5BB55 /* UserPublishModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451EA52282A09B800A5BB55 /* UserPublishModel.m */; };
 		1451EA58282BAF0C00A5BB55 /* MessageDetailTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1451EA57282BAF0C00A5BB55 /* MessageDetailTitleView.m */; };
 		145AF3E5281BDA0000AABC53 /* NSString+UILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 145AF3E3281BDA0000AABC53 /* NSString+UILabel.m */; };
@@ -532,8 +537,6 @@
 		AAE3309925E4E5CD00324750 /* DeleteArticleTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3309825E4E5CD00324750 /* DeleteArticleTipView.m */; };
 		AAE87797286B304F0091656B /* PrivacyTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE87796286B304E0091656B /* PrivacyTipView.swift */; };
 		AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */; };
-		B042050428A4B1BB00903E86 /* RisingUIKitExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B042050128A4B1BB00903E86 /* RisingUIKitExtension.m */; };
-		B042050528A4B1BB00903E86 /* RisingFoundationExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = B042050228A4B1BB00903E86 /* RisingFoundationExtention.m */; };
 		B0F08FDD28A2497F00986EB6 /* SportAttendanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FCE28A2497F00986EB6 /* SportAttendanceModel.m */; };
 		B0F08FDE28A2497F00986EB6 /* SportAttendanceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FD128A2497F00986EB6 /* SportAttendanceItem.m */; };
 		B0F08FDF28A2497F00986EB6 /* SportAttendanceItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FD228A2497F00986EB6 /* SportAttendanceItemModel.m */; };
@@ -690,6 +693,18 @@
 		1404747127F459B500307209 /* DiscoverADItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverADItem.m; sourceTree = "<group>"; };
 		1404747B27F46F0D00307209 /* DiscoverADController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverADController.h; sourceTree = "<group>"; };
 		1404747C27F46F0D00307209 /* DiscoverADController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverADController.m; sourceTree = "<group>"; };
+		1441B77328E2C7A9001E3227 /* RisingExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingExtension.h; sourceTree = "<group>"; };
+		1441B77428E2C7A9001E3227 /* RisingSigleClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingSigleClass.h; sourceTree = "<group>"; };
+		1441B77628E2C7A9001E3227 /* RisingFoundationExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingFoundationExtension.h; sourceTree = "<group>"; };
+		1441B77728E2C7A9001E3227 /* NSDate+Rising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Rising.m"; sourceTree = "<group>"; };
+		1441B77828E2C7A9001E3227 /* RisingFoundationExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingFoundationExtention.m; sourceTree = "<group>"; };
+		1441B77928E2C7A9001E3227 /* NSDate+Rising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Rising.h"; sourceTree = "<group>"; };
+		1441B77B28E2C7A9001E3227 /* UIView+Rising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Rising.h"; sourceTree = "<group>"; };
+		1441B77C28E2C7A9001E3227 /* UIColor+Rising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Rising.h"; sourceTree = "<group>"; };
+		1441B77D28E2C7A9001E3227 /* RisingUIKitExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingUIKitExtension.m; sourceTree = "<group>"; };
+		1441B77E28E2C7A9001E3227 /* UIView+Rising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Rising.m"; sourceTree = "<group>"; };
+		1441B77F28E2C7A9001E3227 /* UIColor+Rising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Rising.m"; sourceTree = "<group>"; };
+		1441B78028E2C7A9001E3227 /* RisingUIKitExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingUIKitExtension.h; sourceTree = "<group>"; };
 		1451EA51282A09B800A5BB55 /* UserPublishModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserPublishModel.h; sourceTree = "<group>"; };
 		1451EA52282A09B800A5BB55 /* UserPublishModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserPublishModel.m; sourceTree = "<group>"; };
 		1451EA56282BAF0C00A5BB55 /* MessageDetailTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageDetailTitleView.h; sourceTree = "<group>"; };
@@ -1750,10 +1765,6 @@
 		AAE87796286B304E0091656B /* PrivacyTipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyTipView.swift; sourceTree = "<group>"; };
 		AAFD87CE24F50DB800CBBD11 /* FakeTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FakeTabBarView.h; sourceTree = "<group>"; };
 		AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FakeTabBarView.m; sourceTree = "<group>"; };
-		B042050028A4B1BB00903E86 /* RisingFoundationExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingFoundationExtension.h; sourceTree = "<group>"; };
-		B042050128A4B1BB00903E86 /* RisingUIKitExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingUIKitExtension.m; sourceTree = "<group>"; };
-		B042050228A4B1BB00903E86 /* RisingFoundationExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingFoundationExtention.m; sourceTree = "<group>"; };
-		B042050328A4B1BB00903E86 /* RisingUIKitExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingUIKitExtension.h; sourceTree = "<group>"; };
 		B0F08FCC28A2497F00986EB6 /* SportAttendanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceModel.h; sourceTree = "<group>"; };
 		B0F08FCD28A2497F00986EB6 /* SportAttendanceItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceItemModel.h; sourceTree = "<group>"; };
 		B0F08FCE28A2497F00986EB6 /* SportAttendanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceModel.m; sourceTree = "<group>"; };
@@ -2133,6 +2144,41 @@
 				D0101D6824352092004337ED /* UITextView+Placeholder.m */,
 			);
 			path = "UITextView+Placeholder";
+			sourceTree = "<group>";
+		};
+		1441B77228E2C7A9001E3227 /* Rising Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1441B77328E2C7A9001E3227 /* RisingExtension.h */,
+				1441B77428E2C7A9001E3227 /* RisingSigleClass.h */,
+				1441B77528E2C7A9001E3227 /* Foundation Extension */,
+				1441B77A28E2C7A9001E3227 /* UIKit Extension */,
+			);
+			path = "Rising Extension";
+			sourceTree = "<group>";
+		};
+		1441B77528E2C7A9001E3227 /* Foundation Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1441B77628E2C7A9001E3227 /* RisingFoundationExtension.h */,
+				1441B77728E2C7A9001E3227 /* NSDate+Rising.m */,
+				1441B77828E2C7A9001E3227 /* RisingFoundationExtention.m */,
+				1441B77928E2C7A9001E3227 /* NSDate+Rising.h */,
+			);
+			path = "Foundation Extension";
+			sourceTree = "<group>";
+		};
+		1441B77A28E2C7A9001E3227 /* UIKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				1441B77B28E2C7A9001E3227 /* UIView+Rising.h */,
+				1441B77C28E2C7A9001E3227 /* UIColor+Rising.h */,
+				1441B77D28E2C7A9001E3227 /* RisingUIKitExtension.m */,
+				1441B77E28E2C7A9001E3227 /* UIView+Rising.m */,
+				1441B77F28E2C7A9001E3227 /* UIColor+Rising.m */,
+				1441B78028E2C7A9001E3227 /* RisingUIKitExtension.h */,
+			);
+			path = "UIKit Extension";
 			sourceTree = "<group>";
 		};
 		1451EA54282A11FB00A5BB55 /* UserPublishModel */ = {
@@ -3953,11 +3999,11 @@
 				AA0DDAC8286C8B1900802324 /* MineMainPage */,
 				1A0AC5F5252B234700221514 /* Swift */,
 				1A141339235F524B0001417E /* Tools */,
-				B04204FF28A4B1BB00903E86 /* Extension */,
 				14CED380288A594E00BADA8B /* RisingRouter */,
 				FE87CE1A27E876FE008D7148 /* Marco */,
 				FE87CE1B27E98F82008D7148 /* Supporting Files */,
 				1451EA55282A294200A5BB55 /* CyxbsMobileTool */,
+				1441B77228E2C7A9001E3227 /* Rising Extension */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				1A9B7678235F50A800725937 /* Info.plist */,
 				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
@@ -5743,17 +5789,6 @@
 			path = ArticleRemarkPraise;
 			sourceTree = "<group>";
 		};
-		B04204FF28A4B1BB00903E86 /* Extension */ = {
-			isa = PBXGroup;
-			children = (
-				B042050028A4B1BB00903E86 /* RisingFoundationExtension.h */,
-				B042050128A4B1BB00903E86 /* RisingUIKitExtension.m */,
-				B042050228A4B1BB00903E86 /* RisingFoundationExtention.m */,
-				B042050328A4B1BB00903E86 /* RisingUIKitExtension.h */,
-			);
-			path = Extension;
-			sourceTree = "<group>";
-		};
 		B0F08FCA28A2497F00986EB6 /* Discover_SportAttendance */ = {
 			isa = PBXGroup;
 			children = (
@@ -6830,6 +6865,7 @@
 				AA7ABAAD2873EA5500BA6790 /* FunctionBtn.m in Sources */,
 				AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */,
 				4931630D26CD7B6800140412 /* StampCenterCollectionHeaderView.m in Sources */,
+				1441B78128E2C7A9001E3227 /* NSDate+Rising.m in Sources */,
 				18CDF675257F91BD006E8E5C /* PointAndDottedLineView.m in Sources */,
 				AA0DDB69286C8B1A00802324 /* FansAndFollowingSegmentView.m in Sources */,
 				D0101D592433C885004337ED /* SDMaskController.m in Sources */,
@@ -6846,7 +6882,6 @@
 				FE11E82027E8712B00C4B90B /* QAListSegmentView.m in Sources */,
 				AA4CD5EF25EE7B7F002D9394 /* ArticleModel.m in Sources */,
 				B51C500E28A5FFC00011465E /* LoginVC.m in Sources */,
-				B042050528A4B1BB00903E86 /* RisingFoundationExtention.m in Sources */,
 				AA0DDB80286C8B1A00802324 /* PMPEditingButton.m in Sources */,
 				FE2C135327AEF629001CF7AF /* ToDoTableView.m in Sources */,
 				18CDF674257F91BD006E8E5C /* TestCardTableViewCell.m in Sources */,
@@ -6861,6 +6896,7 @@
 				646B1975282CDF840015DF28 /* StationsCollectionViewCell.m in Sources */,
 				AA0DDB6D286C8B1A00802324 /* EditMyInfoViewController.m in Sources */,
 				18CDF66B257F91BD006E8E5C /* DiscoverADs.m in Sources */,
+				1441B78528E2C7A9001E3227 /* UIColor+Rising.m in Sources */,
 				D0101F66243587A1004337ED /* GKWebImageManager.m in Sources */,
 				18CDF714257F91BE006E8E5C /* QueryHeader.m in Sources */,
 				14B73F70281BED7B00D08ADD /* ActiveMessageModel.m in Sources */,
@@ -6993,6 +7029,7 @@
 				AA49098624F3B6B4007CB3BC /* ClassSchedulInterController.m in Sources */,
 				4931630926CD7B6800140412 /* TaskTableViewCellWithProgress.m in Sources */,
 				18CDF6B4257F91BD006E8E5C /* UICountingLabel.m in Sources */,
+				1441B78328E2C7A9001E3227 /* RisingUIKitExtension.m in Sources */,
 				7F9A212726218E8800CA86B2 /* YYZTopicModel.m in Sources */,
 				18CDF712257F91BE006E8E5C /* TimeTableViewController.m in Sources */,
 				18CDF711257F91BE006E8E5C /* ActivityTableViewController.m in Sources */,
@@ -7071,7 +7108,6 @@
 				AA7ABAB02873EA5500BA6790 /* NewQAFollowTableView.m in Sources */,
 				18CDF681257F91BD006E8E5C /* EmptyClassPresenter.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
-				B042050428A4B1BB00903E86 /* RisingUIKitExtension.m in Sources */,
 				18CDF6AF257F91BD006E8E5C /* SCGenericChart.m in Sources */,
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
 				AA7ABA252873EA4100BA6790 /* SZHPhotoImageView.m in Sources */,
@@ -7287,6 +7323,7 @@
 				AA7ABAC12873EA5500BA6790 /* MGDStatusBarHeight.m in Sources */,
 				B0F08FE328A2497F00986EB6 /* SportAttendanceViewController.m in Sources */,
 				735BC53226D38EA600F22678 /* HistoricalFeedBackTableView.m in Sources */,
+				1441B78228E2C7A9001E3227 /* RisingFoundationExtention.m in Sources */,
 				AA536DDA258C3F7C00F69E73 /* TopBarBasicViewController.m in Sources */,
 				73AAA1CC26C918250084E44D /* DetailsGoodsModel.m in Sources */,
 				AA4CD61025EF7E0F002D9394 /* NothingStateView.m in Sources */,
@@ -7338,6 +7375,7 @@
 				AAAA1D9024FE39F500DB9A81 /* NextLessonFinder.m in Sources */,
 				AA0DDB5D286C8B1A00802324 /* PMPBasicActionView.m in Sources */,
 				646B199728311B0E0015DF28 /* StationGuideBar.m in Sources */,
+				1441B78428E2C7A9001E3227 /* UIView+Rising.m in Sources */,
 				18CDF6B9257F91BD006E8E5C /* Credit.m in Sources */,
 				18CDF673257F91BD006E8E5C /* ExamArrangeDataItem.m in Sources */,
 				73AAA1D426C918250084E44D /* PurchaseInfoGoodsInfoView.m in Sources */,

@@ -93,11 +93,11 @@
         _detailLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         _detailLab.font = [UIFont fontWithName:PingFangSCMedium size: 14];
         // about detail
-        NSString *detailStr = [NSDate stringForSchoolWeek:
-          ([NSDate.today timeIntervalSinceDate:
-            [NSDate dateString:getDateStart_NSString
-                 fromFormatter:NSDateFormatter.defaultFormatter
-                withDateFormat:DateFormat]] / aWeekTimeInterval + 1)];
+        NSNumberFormatter *formetter = NSNumberFormatter.new;
+        formetter.locale = NSLocale.CN;
+        NSString *detailStr = [formetter stringFromNumber:
+                 @([NSDate.date timeIntervalSinceDate:[NSDate dateWithString:getDateStart_NSString format:DateFormat timeZone:NSTimeZone.CQ locale:NSLocale.CN]] / aWeekTimeInterval + 1)] ;
+        
         // about week
         NSString *weekStr = [NSDate.today
                              stringFromFormatter:NSDateFormatter.ChineseFormatter

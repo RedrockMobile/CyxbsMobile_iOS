@@ -51,6 +51,9 @@
 /// 总的一个模型，用来请求，和其他骚操作
 @property (nonatomic, strong) MineMessageModel *mineMsgModel;
 
+/// bk
+@property (nonatomic, strong) UIImageView *bkImgView;
+
 @end
 
 #pragma mark - MineMessageVC
@@ -77,6 +80,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.bkImgView removeFromSuperview];
     
     [self.mineMsgModel
      requestSuccess:^{
@@ -103,6 +107,9 @@
                       AddView:(self.contentView.left < self.view.width / 2 ?
                                self.systemMessageVC.view :
                                self.activeMessageVC.view)];
+        
+        [self.systemMessageVC.view addSubview:self.bkImgView];
+        self.bkImgView.center = self.systemMessageVC.view.SuperCenter;
     }];
 }
 
@@ -111,6 +118,16 @@
     if (self.contentView.left < -self.view.width / 2) {
         self.systemMessageVC.view.hidden = YES;
     }
+}
+
+#pragma mark - Getter
+
+- (UIImageView *)bkImgView {
+    if (_bkImgView == nil) {
+        _bkImgView = [[UIImageView alloc] initWithFrame:CGRectMake(-1, -1, 171, 111)];
+        _bkImgView.image = [UIImage imageNamed:@"人在手机里"];
+    }
+    return _bkImgView;
 }
 
 #pragma mark - Method
