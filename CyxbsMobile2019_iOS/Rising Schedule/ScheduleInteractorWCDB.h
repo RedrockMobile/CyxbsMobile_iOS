@@ -64,7 +64,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)deleteCourse:(ScheduleCourse *)course;
 
 /// 删除全部课程（用于保证本地数据库里面不会出现相同的课程，即所有课程需要在再次请求并存入数据库之前调用此方法，清除原先数据）
-+ (void)deleteAllCourse;
+- (void)deleteAllCourse;
 
 /// 更新一类课程
 /// @param course 一类课程
