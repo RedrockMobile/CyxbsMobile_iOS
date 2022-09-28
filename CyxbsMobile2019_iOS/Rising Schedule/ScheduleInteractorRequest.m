@@ -51,7 +51,6 @@
                  type:([key isEqualToString:ScheduleModelRequestCustom] ?
                        ScheduleCombineCustom :
                        ScheduleCombineSystem)];
-                
                 model.nowWeek = nowWeek;
                 
                 for (NSDictionary *courceDictionary in lessonAry) {

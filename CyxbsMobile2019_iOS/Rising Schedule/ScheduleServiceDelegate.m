@@ -50,12 +50,10 @@
         [self scrollToSection:self.model.nowWeek];
 
         // MARK: 本地缓存
-        // 1.绑定combineModel
+        // 1.绑定combineModel，创建表，在此期间，把combineModel的identifier作为表的表名
         ScheduleInteractorWCDB *dataBase = [[ScheduleInteractorWCDB alloc] initWithBindModel:combineModel];
-        // 2.创建表格，在此期间，把combineModel的identifier作为表的表名
-        [dataBase creatTable];
-        // 3.把请求到的combineModel数据存到数据库中
-        [dataBase saveSystemData];
+        // 2.把请求到的combineModel数据存到数据库中
+        [dataBase saveData];
         
         // MARK: 读取本地缓存
         ScheduleInteractorWCDB *db = [ScheduleInteractorWCDB getScheduleDataBaseFromSno:@"2021215154" Type:ScheduleCombineSystem];
@@ -67,7 +65,6 @@
      failure:^(NSError * _Nonnull error) {
 
     }];
-    
 }
 
 - (void)_pan:(UIPanGestureRecognizer *)pan {
