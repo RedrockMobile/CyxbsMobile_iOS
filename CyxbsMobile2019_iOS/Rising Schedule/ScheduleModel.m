@@ -50,6 +50,9 @@ typedef struct _ScheduleCombineEntry {
 - (void)_appendCourse:(ScheduleCourse *)course {
     NSParameterAssert(course);
     
+    // 使一个个课程按照周数（section）排好放进课表数据源使用的最终Model里面
+    // obj:课程所在的周数
+    // inSections:课程周数的乱序表
     [course.inSections enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, BOOL * __unused stop) {
         NSUInteger section = obj.unsignedLongValue;
         
@@ -59,7 +62,7 @@ typedef struct _ScheduleCombineEntry {
         
         [_courseAry[section] addObject:course];
     }];
-    
+    // 添加到整周里面
     [_courseAry[0] addObject:course];
 }
 

@@ -51,7 +51,6 @@
                  type:([key isEqualToString:ScheduleModelRequestCustom] ?
                        ScheduleCombineCustom :
                        ScheduleCombineSystem)];
-                
                 model.nowWeek = nowWeek;
                 
                 for (NSDictionary *courceDictionary in lessonAry) {
@@ -82,12 +81,15 @@
 - (void)requestCustomSuccess:(void (^)(void))success
                      failure:(void (^)(NSError * _Nonnull))failure {
     return
-    [self.class request:@{ScheduleModelRequestCustom : @[@"Rising"]} success:^(ScheduleCombineModel * _Nonnull combineModel) {
+    [self.class
+     request:@{ScheduleModelRequestCustom : @[@"Rising"]}
+     success:^(ScheduleCombineModel * _Nonnull combineModel) {
         self->_customCombineModel = combineModel;
         if (success) {
             success();
         }
-    } failure:failure];
+    }
+     failure:failure];
 }
 
 - (void)appendCustom:(ScheduleCourse *)course

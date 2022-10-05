@@ -6,16 +6,24 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-/**数据缓存业务
- * 创建该业务并绑定所需业务模型
- * 利用**Request业务**进行缓存CRUD行为
- * 禁止在绑定后指定其他绑定对象
- *
- * 该对象强持有数据模型，但不推荐使用该类去访问对象
- * 但可以在合适的时候通过该类去获取到所绑定的对象
- * 没课约采取此缓存时请注意表名
- * 该模型的CRUD不会对bindModel进行改变
- * 相反的，你应该使用一个业务对其进行封装
+/*
+ 此类为本地缓存类，可以被SerVice直接调用来缓存，获取，增加，改动，删除数据
+ 采取一人一类型一数据表的方法，表名为identifier(combineType + sno)
+ 每个数据表都有绑定的Model，即bindModel，有了bindModel，数据储存和储存数据获取时将会方便很多
+ 
+ 数据储存：请求自己和他人的系统课表，以及第一次创建事务时，需要传入有该课程数据的CombineModel以绑定，这
+ 样有以下几点好处：
+ 1.直接从CombineModel里面获取identifier为表名，建表
+ 2.直接将绑定的CombineModel里面的数据存储到本地数据表中
+ 
+ 储存数据获取：
+ 用 getScheduleDataBaseFromSno:type: 方法创建好一个ScheduleInteractorWCDB对象后，可以直接从bindModel中获取到所有已经存储的课程数据
+ 
+ 请求自己的系统课程数据和他人的系统课程数据用法类似
+ 
+ 而对于自己自定义的事务，多了“增删改”功能，使用方法相比以上稍有不同，就目前看来，自定义事务只运用于用户自己账号的操作，所以“增删改”方法中使用固定表名，即ScheduleCombineCustom + 本地账号sno
+ 
+ 详细代码使用请看对应的飞书文档《iOS "掌上重邮"课表业务》
  */
 
 #import <Foundation/Foundation.h>
@@ -34,41 +42,46 @@ NS_ASSUME_NONNULL_BEGIN
 /// 存储路径（由绑定的模型决定）
 @property (nonatomic, readonly, class) NSString *DBPath;
 
-/// 表名
-@property (nonatomic, readonly, class) NSString *tableName;
-
 #pragma mark - Method
 
 - (instancetype)init NS_UNAVAILABLE;
 
 + (instancetype)new NS_UNAVAILABLE;
 
-+ (instancetype)WCDBFromSno;
-
+/// 本地缓存的第一步：传入一个带有课程数据的CombineModel，试其成为数据表里面的bindModel，并且创建表
+/// @param model 带有课程数据的CombineModel
 - (instancetype)initWithBindModel:(ScheduleCombineModel *)model;
 
-- (void)save;
-
-
-
-
-
+/// 本地缓存第二步：保存先前绑定的CombineModel的数据（这里是批量缓存，用于系统课表）
+- (void)saveData;
 
 /// 加入一类课程
 /// @param course 一类课程
-- (void)insertCourse:(ScheduleCourse *)course;
-
-/// 更新一类课程
-/// @param course 一类课程
-- (void)updateCourse:(ScheduleCourse *)course;
++ (void)insertCourse:(ScheduleCourse *)course;
 
 /// 删除一类课程
 /// @param course 一类课程
-- (void)deleteCourse:(ScheduleCourse *)course;
++ (void)deleteCourse:(ScheduleCourse *)course;
 
-/// 通过学号获取课程
-/// @param num 学号
-- (NSArray <ScheduleCourse *> * _Nullable)courseAryForSno:(NSString *)num;
+/// 删除全部课程（用于保证本地数据库里面不会出现相同的课程，即所有课程需要在再次请求并存入数据库之前调用此方法，清除原先数据）
+- (void)deleteAllCourse;
+
+/// 更新一类课程
+/// @param course 一类课程
++ (void)updateCourse:(ScheduleCourse *)course;
+
+/// 查看是否存在该表
+/// @param tableName 表名
++ (BOOL)tableIsExist:(NSString *)tableName;
+
+/// 查看该表里面是否有数据
+- (BOOL)isCache;
+
+/// 根据学号，课表类型找到该表，返回该WCDB
+/// @param sno 学号
+/// @param type 类型
++ (instancetype)getScheduleDataBaseFromSno:(NSString *)sno Type:(ScheduleCombineType)type;
+
 
 @end
 

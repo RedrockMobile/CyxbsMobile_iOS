@@ -30,6 +30,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// 第几-几节课，中午为4-5，晚上为8-9
 @property (nonatomic, readonly) NSRange period;
 
+/// 存储period
+@property (nonatomic) NSInteger period_location;
+
+/// 存储period
+@property (nonatomic) NSUInteger period_lenth;
+
 // !!!: Source
 
 /// 学号
@@ -37,6 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 课程名
 @property (nonatomic, copy) NSString *course;
+
 /// 课程别名（以后可能要用到）
 @property (nonatomic, copy) NSString *courseNike;
 

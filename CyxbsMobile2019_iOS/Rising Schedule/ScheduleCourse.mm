@@ -12,11 +12,7 @@
 
 @interface ScheduleCourse ()
 
-/// 存储period
-@property (nonatomic) NSInteger period_location;
 
-/// 存储period
-@property (nonatomic) NSUInteger period_lenth;
 
 @end
 
@@ -81,27 +77,5 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
     return NSMakeRange(_period_location, _period_lenth);
 }
 
-
-
-static NSString *tbn = @"abc";
-
-- (NSString *)DBPath {
-    NSString *pathComponent = [NSString stringWithFormat:@"schedule/%@", tbn];
-    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:pathComponent];
-}
-
-- (WCTDatabase *)db {
-    static WCTDatabase *_db;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        
-        _db = [[WCTDatabase alloc] initWithPath:self.DBPath];
-        
-        [_db createTableAndIndexesOfName:tbn withClass:ScheduleCourse.class];
-    });
-    
-    return _db;
-}
 
 @end
