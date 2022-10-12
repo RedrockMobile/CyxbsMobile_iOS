@@ -109,9 +109,9 @@
     }
     // 双人课表
     if (_diff) {
-        if (![course.sno isEqualToString:UserItemTool.defaultItem.stuNum]) {
+//        if (![course.sno isEqualToString:UserItemTool.defaultItem.stuNum]) {
             cell.drawType = ScheduleCollectionViewCellDrawCustom;
-        }
+//        }
     }
     
     cell.multipleSign = NO; // TODO: Unknow how to check
@@ -180,9 +180,6 @@
     
     if (NSEqualRanges(originCourse.period, conflictCourse.period)) {
         return NSOrderedSame;
-    }
-    if (NSRangeIntersectsRange(originCourse.period, conflictCourse.period)) {
-        return NSOrderedDescending;
     }
     
     return NSOrderedSame;

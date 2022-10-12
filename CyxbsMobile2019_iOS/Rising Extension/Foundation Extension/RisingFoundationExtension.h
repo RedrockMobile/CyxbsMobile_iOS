@@ -9,8 +9,6 @@
 
 #import "NSDate+Rising.h"
 
-#import "RisingNSRange.h"
-
 #ifndef RisingFoundationExtension_h
 #define RisingFoundationExtension_h
 
@@ -19,11 +17,6 @@
 FOUNDATION_EXPORT void RisingDetailLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
 
 #define RisingLog(Emoji, format, ...) RisingDetailLog(@"%s %s %@", Emoji, __func__, [NSString stringWithFormat:format, ##__VA_ARGS__]);
-
-
-
-
-
 
 
 

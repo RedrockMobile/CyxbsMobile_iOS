@@ -124,10 +124,4 @@
     return _db;
 }
 
-/// 自己的定义事务的identifier
-+ (NSString *)selfCustomTableName {
-    return [NSString stringWithFormat:@"%@%@", ScheduleCombineCustom, UserItemTool
-    .defaultItem.stuNum];
-}
-
 @end

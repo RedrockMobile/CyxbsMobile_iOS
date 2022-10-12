@@ -8,16 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-
-
-CFAbsoluteTime StartTime;
+#import "CyxbsApplication.h"
 
 int main(int argc, char * argv[]) {
+    NSString * principalClassName;
     NSString * appDelegateClassName;
-    StartTime = CFAbsoluteTimeGetCurrent();
     @autoreleasepool {
-        printf("NSHomeDirectory = %s\n", NSHomeDirectory().UTF8String);
+        principalClassName = NSStringFromClass([CyxbsApplication class]);
         appDelegateClassName = NSStringFromClass([AppDelegate class]);
     }
-    return UIApplicationMain(argc, argv, nil, appDelegateClassName);
+    return UIApplicationMain(argc, argv, principalClassName, appDelegateClassName);
 }

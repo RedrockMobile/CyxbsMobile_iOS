@@ -10,7 +10,7 @@
 @implementation UIColor (Rising_YY)
 
 + (UIColor *)colorWithHexStringARGB:(NSString *)hexStr {
-    hexStr = [[hexStr stringByTrim] uppercaseString];
+    hexStr = [hexStr stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceAndNewlineCharacterSet].uppercaseString;
     if ([hexStr hasPrefix:@"#"]) {
         hexStr = [hexStr substringFromIndex:1];
     } else if ([hexStr hasPrefix:@"0X"]) {

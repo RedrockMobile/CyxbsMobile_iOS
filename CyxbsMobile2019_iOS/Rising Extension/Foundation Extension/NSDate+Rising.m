@@ -10,12 +10,7 @@
 @implementation NSTimeZone (Rising)
 
 + (NSTimeZone *)CQ {
-    static NSTimeZone *CQTimeZone;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        CQTimeZone = [NSTimeZone timeZoneWithName:@"Asia/Chongqing"];
-    });
-    return CQTimeZone;
+    return [NSTimeZone timeZoneWithName:@"Asia/Chongqing"];
 }
 
 @end
@@ -23,12 +18,7 @@
 @implementation NSLocale (Rising)
 
 + (NSLocale *)CN {
-    static NSLocale *CNLocale;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        CNLocale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
-    });
-    return CNLocale;
+    return [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
 }
 
 @end

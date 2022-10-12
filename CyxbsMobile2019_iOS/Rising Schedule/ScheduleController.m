@@ -62,7 +62,7 @@
         
         CGFloat top = 64;
         if (self.isPushStyle) {
-            top += STATUSBARHEIGHT;
+            top += 10;
         }
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, top, self.view.width, self.view.height - top) collectionViewLayout:layout];

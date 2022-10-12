@@ -35,7 +35,7 @@
     ScheduleRequestDictionary *dic = self.parameterIfNeeded;
     if (!dic) {  // 默认情况
         dic = @{
-            ScheduleModelRequestStudent : @[UserItemTool.defaultItem.stuNum]
+//            ScheduleModelRequestStudent : @[UserItemTool.defaultItem.stuNum]
         };
     }
     

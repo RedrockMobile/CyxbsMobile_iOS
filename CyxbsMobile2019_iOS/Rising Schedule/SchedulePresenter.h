@@ -21,16 +21,11 @@
 
 #import "ScheduleServiceDelegate.h"
 
-#import "ScheduleRouterProtocol.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - SchedulePresenter
 
-@interface SchedulePresenter : NSObject <
-    RisingRouterHandler,
-    ScheduleRouterProtocol
->
+@interface SchedulePresenter : NSObject 
 
 /// 控制器
 @property (nonatomic, weak) ScheduleController *controller;
