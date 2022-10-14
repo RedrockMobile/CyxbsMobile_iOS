@@ -43,25 +43,7 @@ extern CFAbsoluteTime StartTime;
     }];
     [man startMonitoring];
 }
-/*
-- (void)netStatusChanges:(NSNotification*)noti {
-    AFNetworkReachabilityStatus status = [noti.object longValue];
-    switch (status) {
-        case AFNetworkReachabilityStatusUnknown:
-            CCLog(@"AFNetworkReachabilityStatusUnknown");
-            break;
-        case AFNetworkReachabilityStatusNotReachable:
-            CCLog(@"AFNetworkReachabilityStatusNotReachable");
-            break;
-        case AFNetworkReachabilityStatusReachableViaWWAN:
-            CCLog(@"AFNetworkReachabilityStatusReachableViaWWAN");
-            break;
-        case AFNetworkReachabilityStatusReachableViaWiFi:
-            CCLog(@"AFNetworkReachabilityStatusReachableViaWiFi");
-            break;
-    }
-}
-*/
+
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
@@ -75,9 +57,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     
     [UserDefaultTool saveValue:hexToken forKey:kUMDeviceToken];
     
-    //1.2.7版本开始不需要用户再手动注册devicetoken，SDK会自动注册
-    //传入的devicetoken是系统回调didRegisterForRemoteNotificationsWithDeviceToken的入参，切记
-    //[UMessage registerDeviceToken:deviceToken];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -101,18 +80,14 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     // 如果打开应用时有学号密码，但是没有token，退出登录
     if (([UserDefaultTool getStuNum] && ![UserItemTool defaultItem].token) || ![UserDefaultTool getStuNum]) {
         [UserItemTool logout];
+
     }
     [self addReaManager];
     // 打开应用时刷新token
-    //开始监测网络状态
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if([self.reaManager isReachable]){
-            //如果网络可用，刷新token
-//            [UserItemTool refresh];
-        }
-    });
+
     //刷新token内部作了错误码判断，只有NSURLErrorBadServerResponse情况下才会要求重新登录
-//    [UserItemTool refresh];
+    [UserItemTool refresh];
+    
     if ([UserDefaultTool getStuNum] && [UserItemTool defaultItem].token && [ArchiveTool getPersonalInfo]) {
 ////         刷新志愿信息
 //        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -157,29 +132,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
         }];
         
-        
-//        [manager POST:Discover_POST_volunteerRequest_API parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-//            NSMutableArray *temp = [NSMutableArray arrayWithCapacity:10];
-//            for (NSDictionary *dict in responseObject[@"record"]) {
-//                VolunteeringEventItem *volEvent = [[VolunteeringEventItem alloc] initWithDictinary:dict];
-//                [temp addObject:volEvent];
-//            }
-//            volunteer.eventsArray = temp;
-//            [volunteer sortEvents];
-//
-//            NSInteger hour = 0;
-//            int count = 0;
-//            for (VolunteeringEventItem *event in volunteer.eventsArray) {
-//                hour += [event.hour integerValue];
-//                count++;
-//            }
-//            volunteer.hour = [NSString stringWithFormat:@"%ld", hour];
-//            volunteer.count = [NSString stringWithFormat:@"%d", count];
-//            [ArchiveTool saveVolunteerInfomationWith:volunteer];
-//
-//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//
-//        }];
     }
 //
     //开发者需要显式的调用此函数，日志系统才能工作
