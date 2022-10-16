@@ -8,138 +8,62 @@
 
 #import "ScheduleModel.h"
 
-typedef struct _ScheduleCombineEntry {
-    ScheduleCombineModel *model;
-    BOOL isUsing;
-} ScheduleCombineEntry;
-
 #pragma mark - ScheduleModel ()
 
 @interface ScheduleModel ()
 
 /// combine映射表
-@property (nonatomic, strong) NSMutableDictionary <NSString *, ScheduleCombineModel *> *map;
-
-/// combine状态
-@property (nonatomic, strong) NSMutableDictionary <NSString *, NSNumber *> *status;
+@property (nonatomic, strong) NSMutableDictionary <NSString *, ScheduleCombineModelStatus *> *statusMap;
 
 @end
 
 #pragma mark - ScheduleModel
 
-@implementation ScheduleModel
-
-#pragma mark - Init
+@implementation ScheduleModel {
+    NSMutableArray <NSMutableArray <NSDictionary <NSValue *, ScheduleCourse *> *> *> *_transDraw;
+}
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _startDate =
-        [NSDate dateWithString:[NSUserDefaults.standardUserDefaults stringForKey:RisingClassSchedule_classBegin_String] format:@"yyyy.M.d"];
-        
-        self.nowWeek = [NSUserDefaults.standardUserDefaults integerForKey:RisingClassSchedule_nowWeek_Integer];
-        
+        _statusMap = NSMutableDictionary.dictionary;
         _courseAry = NSMutableArray.array;
-        [_courseAry addObject:NSMutableArray.array]; // For 0 Section
+        NSMutableURLRequest *request;
     }
     return self;
 }
 
-#pragma mark - Method
-
-- (void)_appendCourse:(ScheduleCourse *)course {
-    NSParameterAssert(course);
-    
-    // 使一个个课程按照周数（section）排好放进课表数据源使用的最终Model里面
-    // obj:课程所在的周数
-    // inSections:课程周数的乱序表
-    [course.inSections enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, BOOL * __unused stop) {
-        NSUInteger section = obj.unsignedLongValue;
-        
-        for (NSUInteger i = _courseAry.count; i <= section; i++) {
-            [_courseAry addObject:NSMutableArray.array];
-        }
-        
-        [_courseAry[section] addObject:course];
-    }];
-    // 添加到整周里面
-    [_courseAry[0] addObject:course];
-}
-
-- (void)_removeCourse:(ScheduleCourse *)course {
-    NSParameterAssert(course);
-    
-    [course.inSections enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, BOOL * __unused stop) {
-        NSUInteger section = obj.unsignedLongValue;
-        
-        [_courseAry[section] removeObject:course];
-    }];
-    
-    [_courseAry[0] removeObject:course];
-}
-
 - (void)combineModel:(ScheduleCombineModel *)model {
-    NSParameterAssert(model);
-    NSAssert(!self.status[model.identifier], @"\n🔴%s status : %d, map : %@", __func__,  [self.status[model.identifier] boolValue], self.map);
-    
-    self.map[model.identifier] = model;
-    self.status[model.identifier] = @YES;
-    self.nowWeek = model.nowWeek;
-    
     for (ScheduleCourse *course in model.courseAry) {
-        [self _appendCourse:course];
+//        NSInteger week = course.inWeek;
+        [course.inSections enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, BOOL * __unused stop) {
+            NSInteger section = obj.longValue;
+            
+            for (NSInteger i = _courseAry.count; i <= section; i++) {
+                [_courseAry addObject:NSMutableArray.array];
+            }
+            
+            [_courseAry[section] addObject:course];
+        }];
     }
-    
-    return;
 }
 
-- (void)recombineWithIdentifier:(NSString *)identifier {
-    NSParameterAssert(identifier);
+- (void)_clear {
     
-    ScheduleCombineModel *model = self.map[identifier];
-    NSParameterAssert(model);
-    
-    if ([self.status[identifier] isEqualToNumber:@YES]) {
-        [self separateModel:model];
-    }
-    
-    self.status[model.identifier] = @YES;
-    
-    for (ScheduleCourse *course in model.courseAry) {
-        [self _appendCourse:course];
-    }
-    
-    return;
-}
-
-- (void)separateModel:(ScheduleCombineModel *)model {
-    NSParameterAssert(model);
-    NSAssert(self.map[model.identifier], @"\n🔴%s id : %@, map : %@", __func__, model.identifier, self.map);
-    
-    self.status[model.identifier] = @NO;
-    
-    for (ScheduleCourse *course in model.courseAry) {
-        [self _removeCourse:course];
-    }
-    
-    return;
 }
 
 #pragma mark - Setter
 
 - (void)setNowWeek:(NSUInteger)nowWeek {
+    if (_nowWeek == nowWeek) {
+        return;
+    }
     _nowWeek = nowWeek;
+            
+    NSDate *date = NSDate.date;
     
-//    static dispatch_once_t onceToken;
-//    dispatch_once(&onceToken, ^{
-        
-        [NSUserDefaults.standardUserDefaults setInteger:_nowWeek forKey:RisingClassSchedule_nowWeek_Integer];
-        
-        NSDate *date = NSDate.date;
-        
-        NSTimeInterval beforNow = (_nowWeek - 1) * 7 * 24 * 60 * 60 + (date.weekday - 2) * 24 * 60 * 60;
-        _startDate = [NSDate dateWithTimeIntervalSinceNow:-beforNow];
-//    });
+    NSTimeInterval beforNow = (_nowWeek - 1) * 7 * 24 * 60 * 60 + (date.weekday - 2) * 24 * 60 * 60;
+    _startDate = [NSDate dateWithTimeIntervalSinceNow:-beforNow];
 }
 
 @end

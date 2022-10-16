@@ -17,17 +17,14 @@
 @implementation AppDelegate
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    // 这个回掉和消息推送有关。iOS的远程推送需要在真机上调试，如果注册成功，就能在这个方法中获取APNs（APNs是Apple Push Notification service的简称）返回的DeviceToken，
     if (![deviceToken isKindOfClass:[NSData class]]) return;
     const unsigned *tokenBytes = (const unsigned *)[deviceToken bytes];
     NSString *hexToken = [NSString stringWithFormat:@"%08x%08x%08x%08x%08x%08x%08x%08x",
                           ntohl(tokenBytes[0]), ntohl(tokenBytes[1]), ntohl(tokenBytes[2]),
                           ntohl(tokenBytes[3]), ntohl(tokenBytes[4]), ntohl(tokenBytes[5]),
                           ntohl(tokenBytes[6]), ntohl(tokenBytes[7])];
-    RisingLog("💙" ,@"deviceToken:%@",hexToken);
-    
-    //1.2.7版本开始不需要用户再手动注册devicetoken，SDK会自动注册
-    //传入的devicetoken是系统回调didRegisterForRemoteNotificationsWithDeviceToken的入参，切记
-    //[UMessage registerDeviceToken:deviceToken];
+    RisingLog("🆃", @"%@", hexToken);
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

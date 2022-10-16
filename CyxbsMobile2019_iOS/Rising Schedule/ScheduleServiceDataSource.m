@@ -72,7 +72,6 @@
     if (!_model) {
         return 0;
     }
-    NSLog(@"🌲%lu", _model.courseAry.count);  // 19 rather than 26
     return _model.courseAry.count;
 }
 
@@ -81,7 +80,6 @@
     if (_model.courseAry.count <= section) {
         return 0;
     }
-    NSLog(@"🌸section = %lu, items = %lu",section, _model.courseAry[section].count);
     return _model.courseAry[section].count;  // 一周的所有课程数
 }
 

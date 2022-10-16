@@ -26,18 +26,21 @@ typedef NSString * ScheduleCombineType NS_STRING_ENUM;
 /// 学号，可以确定唯一性
 @property (nonatomic, copy, readonly) NSString *sno;
 
-/// 绑定类型，由“系统” / “自定义事物”决定
+/// 绑定类型，由“系统”/“自定义”决定
 @property (nonatomic, copy, readonly) ScheduleCombineType combineType;
-
-/// 唯一标识
-/// （计算属性：sno + combineType)
-@property (nonatomic, readonly) NSString *identifier;
 
 /// 当周
 @property (nonatomic) NSInteger nowWeek;
 
-/// 数据模型
-@property (nonatomic, strong, nonnull) NSMutableArray <ScheduleCourse *> *courseAry;
+/// 唯一标识
+/// (计算属性：combineType + sno)
+@property (nonatomic, readonly) NSString *identifier;
+
+/// 课程信息
+@property (nonatomic, strong, null_resettable) NSArray <ScheduleCourse *> *courseAry;
+
+/// 转制成绘制
+@property (nonatomic, readonly) NSArray <NSArray <NSDictionary <NSValue *, ScheduleCourse *> *> *> *transDraw;
 
 - (instancetype)init NS_UNAVAILABLE;
 
@@ -50,10 +53,60 @@ typedef NSString * ScheduleCombineType NS_STRING_ENUM;
 
 @end
 
+#pragma mark - ScheduleCombineModel (XXHB)
+
+/// !!!: 由于各种原因，这里建议查看飞书云文档
+
+#ifndef XXHB
+
+@interface ScheduleCombineModel (XXHB)
+
+/// 缓存
+@property (nonatomic, readonly, copy, class) NSString *path __deprecated_msg("⚠️");
+
+/// 替换缓存
+- (void)replace __deprecated_msg("⚠️");
+
+/// 从缓存中取
+- (void)awake __deprecated_msg("⚠️");
+
+@end
+
+#endif
+
+#pragma mark - ScheduleCombineType
+
 /// 系统
 FOUNDATION_EXPORT ScheduleCombineType const ScheduleCombineSystem;
 
 /// 自定义
 FOUNDATION_EXPORT ScheduleCombineType const ScheduleCombineCustom;
+
+#pragma mark - ScheduleCombineModelStatus
+
+@interface ScheduleCombineModelStatus : NSObject
+
+/// combine
+@property (nonatomic, strong) ScheduleCombineModel *combine;
+
+/// connect, default is YES
+@property (nonatomic) BOOL isConnect;
+
+- (instancetype)init NS_UNAVAILABLE;
+
++ (instancetype)new NS_UNAVAILABLE;
+
++ (instancetype)statusWithCombine:(ScheduleCombineModel *)combine;
+
+@end
+
+#pragma mark - ScheduleCombineModel (Status)
+
+@interface ScheduleCombineModel (Status)
+
+/// new status
+@property (nonatomic, readonly) ScheduleCombineModelStatus *status;
+
+@end
 
 NS_ASSUME_NONNULL_END

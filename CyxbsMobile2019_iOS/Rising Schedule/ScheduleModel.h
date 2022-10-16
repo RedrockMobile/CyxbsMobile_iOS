@@ -20,8 +20,6 @@
 
 #import "ScheduleCombineModel.h"
 
-#import "ScheduleDiffProtocol.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - ScheduleModel
@@ -41,6 +39,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 0代表整周
 /// setter里面为once
 @property (nonatomic) NSUInteger nowWeek;
+
+/// 主学号(如果是双人课表，则会以这个进行判断)
+/// (而事务则是由ScheduleCombineType去判断)
+@property (nonatomic, copy) NSString *sno;
 
 /// 课程数组
 @property (nonatomic, readonly, nonnull) NSMutableArray <NSMutableArray <ScheduleCourse *> *> *courseAry;

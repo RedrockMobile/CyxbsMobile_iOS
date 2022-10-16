@@ -9,6 +9,8 @@
 #ifndef NetURL_h
 #define NetURL_h
 
+#import <Foundation/Foundation.h>
+
 typedef NSString * REDROCK_ENVIRONMENT_URL NS_STRING_ENUM;
 
 FOUNDATION_EXPORT REDROCK_ENVIRONMENT_URL const REDROCK_ENVIRONMENT_BEDEV;

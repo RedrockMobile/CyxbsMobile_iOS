@@ -24,6 +24,10 @@
     ];
 }
 
+- (void)_tabBar {
+    
+}
+
 - (UIViewController *)_vc1 {
     UIViewController *vc = [[ScheduleController alloc] initWithPresenter:[[SchedulePresenter alloc] init]];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];

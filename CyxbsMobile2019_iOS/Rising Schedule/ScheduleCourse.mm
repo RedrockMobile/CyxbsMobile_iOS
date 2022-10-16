@@ -12,7 +12,11 @@
 
 @interface ScheduleCourse ()
 
+/// 存储period
+@property (nonatomic) NSInteger period_location;
 
+/// 存储period
+@property (nonatomic) NSUInteger period_lenth;
 
 @end
 
@@ -36,7 +40,6 @@ WCDB_SYNTHESIZE(ScheduleCourse, courseID)
 WCDB_SYNTHESIZE(ScheduleCourse, rawWeek)
 WCDB_SYNTHESIZE(ScheduleCourse, type)
 
-WCDB_SYNTHESIZE(ScheduleCourse, sno)
 WCDB_SYNTHESIZE(ScheduleCourse, teacher)
 WCDB_SYNTHESIZE(ScheduleCourse, lesson)
 
@@ -53,7 +56,14 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
     self = [super init];
     if (self) {
         self.inWeek = [dic[@"hash_day"] intValue] + 1;
-        self.inSections = [NSMutableSet setWithArray:dic[@"week"]];
+        id weekAry = dic[@"week"];
+        if ([weekAry isKindOfClass:NSArray.class]) {
+            NSMutableSet *set = NSMutableSet.set;
+            for (NSNumber *a in weekAry) {
+                [set addObject:a];
+            }
+            self.inSections = set;
+        }
         self.period_location = [dic[@"begin_lesson"] longValue];
         self.period_lenth = [dic[@"period"] unsignedLongValue];
         self.course = dic[@"course"];
@@ -77,5 +87,10 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
     return NSMakeRange(_period_location, _period_lenth);
 }
 
+- (NSString *)descriptionv{
+    return [NSString stringWithFormat:@"%@", @{
+        @"周" : @(_inWeek)
+    }];
+}
 
 @end

@@ -25,7 +25,7 @@
         for (NSString *num in obj) {
             
             [HttpTool.shareTool
-             request:API_forScheduleModelRequestType(key)
+             request:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-jwzx/kebiao"
              type:HttpToolRequestTypePost
              serializer:HttpToolRequestSerializerHTTP
              bodyParameters:@{
@@ -53,17 +53,12 @@
                        ScheduleCombineSystem)];
                 model.nowWeek = nowWeek;
                 
+                NSMutableArray *ary = NSMutableArray.array;
                 for (NSDictionary *courceDictionary in lessonAry) {
-                    
                     ScheduleCourse *course = [[ScheduleCourse alloc] initWithDictionary:courceDictionary];
-                    course.sno = stuNum.copy;
-                    if ([key isEqualToString:ScheduleModelRequestCustom]) {
-                        course.type = @"事务";
-                    }
-                    
-                    [model.courseAry addObject:course];
+                    [ary addObject:course];
                 }
-                
+                model.courseAry = ary;
                 
                 if (success) {
                     success(model);

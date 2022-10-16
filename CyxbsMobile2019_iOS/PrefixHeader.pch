@@ -9,10 +9,12 @@
 #ifndef MoblieCQUPT_iOS_PrefixHeader_pch
 #define MoblieCQUPT_iOS_PrefixHeader_pch
 
-#import "RisingExtension.h"
-
 #import "CyxbsHeader.h"
 
+#import "RisingExtension.h"
+
 #import "HttpTool.h"
+
+#import <YYKit/YYKit.h>
 
 #endif

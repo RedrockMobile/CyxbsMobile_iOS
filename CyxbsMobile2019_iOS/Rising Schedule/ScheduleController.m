@@ -86,6 +86,7 @@
     if (_collectionView) {
         [self.collectionView reloadData];
     }
+    
 }
 
 @end
