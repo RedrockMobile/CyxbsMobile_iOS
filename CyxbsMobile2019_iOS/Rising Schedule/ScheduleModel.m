@@ -35,7 +35,7 @@
 
 - (void)combineModel:(ScheduleCombineModel *)model {
     for (ScheduleCourse *course in model.courseAry) {
-//        NSInteger week = course.inWeek;
+        //        NSInteger week = course.inWeek;
         [course.inSections enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, BOOL * __unused stop) {
             NSInteger section = obj.longValue;
             
@@ -45,7 +45,10 @@
             
             [_courseAry[section] addObject:course];
         }];
+        
+        [_courseAry[0] addObject:course];
     }
+    self.nowWeek = model.nowWeek;
 }
 
 - (void)_clear {

@@ -50,30 +50,7 @@
 
     }
      failure:^(NSError * _Nonnull error) {
-        NSRange a;
     }];
-}
-
-- (void)_pan:(UIPanGestureRecognizer *)pan {
-    CGPoint point = [pan translationInView:self.collectionView];
-    switch (pan.state) {
-        case UIGestureRecognizerStateBegan: {
-            NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:point];
-            if (indexPath) {
-                return;
-            }
-            
-            
-        } break;
-            
-        case UIGestureRecognizerStateChanged: {
-            
-        } break;
-            
-        default: {
-            
-        }
-    }
 }
 
 #pragma mark - Method

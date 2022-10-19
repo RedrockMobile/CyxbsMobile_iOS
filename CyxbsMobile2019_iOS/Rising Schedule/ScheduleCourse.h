@@ -29,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 第几-几节课，中午为4-5，晚上为8-9
 @property (nonatomic, readonly) NSRange period;
+/// 几点 - 几点
+@property (nonatomic, readonly) NSString *timeStr;
 
 // !!!: Source
 

@@ -91,35 +91,7 @@
         for (NSInteger item = 0; item < itemCount; item++) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
             UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:indexPath];
-            
             if (CGRectIntersectsRect(attributes.frame, rect)) {
-                
-                [_itemAttributes enumerateKeysAndObjectsUsingBlock:^(NSIndexPath * _Nonnull key, UICollectionViewLayoutAttributes * _Nonnull obj, BOOL * __unused stop) {
-                    
-                    BOOL I = CGRectIntersectsRect(obj.frame, attributes.frame);
-                    if (I && self.dataSource) {
-                        NSComparisonResult compare = [self.dataSource collectionView:self.collectionView layout:self compareOriginIndexPath:key conflictWithIndexPath:indexPath relayoutWithBlock:^(NSRange originRange, NSRange comflictRange) {
-                            
-                            CGRect originFrame = [self _itemSizeForSection:0 week:0 range:originRange];
-                            CGRect newOriginFrame = CGRectMake(obj.frame.origin.x, originFrame.origin.y, obj.frame.size.width, originFrame.size.height);
-                            obj.frame = newOriginFrame;
-                            
-                            CGRect comflicFrame = [self _itemSizeForSection:0 week:0 range:comflictRange];
-                            CGRect newComflicFrame = CGRectMake(attributes.frame.origin.x, comflicFrame.origin.y, attributes.frame.size.width, comflicFrame.size.height);
-                            attributes.frame = newComflicFrame;
-                            
-                        }];
-                        
-                        if (compare == NSOrderedAscending) {
-                            attributes.zIndex += 1;
-                        } else {
-                            obj.zIndex += 1;
-                        }
-                    }
-                    
-                }];
-                
-                
                 [result addObject:attributes];
             }
         }

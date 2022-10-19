@@ -30,6 +30,12 @@
 		14B9648328F67F8600C984AB /* CyxbsApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9648228F67F8600C984AB /* CyxbsApplication.m */; };
 		14B9648F28F6883800C984AB /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9648D28F6883800C984AB /* HttpTool.m */; };
 		14B9649428F6927400C984AB /* LaunchScreenColor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B9649328F6927400C984AB /* LaunchScreenColor.xcassets */; };
+		14D598C928FF90EB00C9798F /* ScheduleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598C828FF90EB00C9798F /* ScheduleHeaderView.m */; };
+		14D598CC28FF964100C9798F /* SameDrawUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598CB28FF964100C9798F /* SameDrawUI.m */; };
+		14E844F628FC40090037309F /* ScheduleDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E844F528FC40090037309F /* ScheduleDetailController.m */; };
+		14E8451128FEE9720037309F /* ScheduleDetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E8451028FEE9720037309F /* ScheduleDetailCollectionViewCell.m */; };
+		14E8451428FEE9A30037309F /* ScheduleDetailMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E8451328FEE9A30037309F /* ScheduleDetailMessageTableViewCell.m */; };
+		14E8451728FEFE420037309F /* ScheduleDetailDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E8451628FEFE420037309F /* ScheduleDetailDataSource.m */; };
 		14F2794828C6D51600F41F60 /* ScheduleCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F2794728C6D51600F41F60 /* ScheduleCollectionHeaderView.m */; };
 		14F2794B28C6D52A00F41F60 /* ScheduleCollectionLeadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F2794A28C6D52A00F41F60 /* ScheduleCollectionLeadingView.m */; };
 		14F8763A28B5B5FA0067642F /* ScheduleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8763928B5B5FA0067642F /* ScheduleController.m */; };
@@ -112,6 +118,18 @@
 		14B9648D28F6883800C984AB /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
 		14B9648E28F6883800C984AB /* HttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpTool.h; sourceTree = "<group>"; };
 		14B9649328F6927400C984AB /* LaunchScreenColor.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = LaunchScreenColor.xcassets; sourceTree = "<group>"; };
+		14D598C728FF90EB00C9798F /* ScheduleHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleHeaderView.h; sourceTree = "<group>"; };
+		14D598C828FF90EB00C9798F /* ScheduleHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleHeaderView.m; sourceTree = "<group>"; };
+		14D598CA28FF963600C9798F /* SameDrawUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SameDrawUI.h; sourceTree = "<group>"; };
+		14D598CB28FF964100C9798F /* SameDrawUI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SameDrawUI.m; sourceTree = "<group>"; };
+		14E844F428FC40090037309F /* ScheduleDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleDetailController.h; sourceTree = "<group>"; };
+		14E844F528FC40090037309F /* ScheduleDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleDetailController.m; sourceTree = "<group>"; };
+		14E8450F28FEE9720037309F /* ScheduleDetailCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleDetailCollectionViewCell.h; sourceTree = "<group>"; };
+		14E8451028FEE9720037309F /* ScheduleDetailCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleDetailCollectionViewCell.m; sourceTree = "<group>"; };
+		14E8451228FEE9A30037309F /* ScheduleDetailMessageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleDetailMessageTableViewCell.h; sourceTree = "<group>"; };
+		14E8451328FEE9A30037309F /* ScheduleDetailMessageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleDetailMessageTableViewCell.m; sourceTree = "<group>"; };
+		14E8451528FEFE420037309F /* ScheduleDetailDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleDetailDataSource.h; sourceTree = "<group>"; };
+		14E8451628FEFE420037309F /* ScheduleDetailDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleDetailDataSource.m; sourceTree = "<group>"; };
 		14F2794628C6D51600F41F60 /* ScheduleCollectionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionHeaderView.h; sourceTree = "<group>"; };
 		14F2794728C6D51600F41F60 /* ScheduleCollectionHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCollectionHeaderView.m; sourceTree = "<group>"; };
 		14F2794928C6D52A00F41F60 /* ScheduleCollectionLeadingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionLeadingView.h; sourceTree = "<group>"; };
@@ -215,6 +233,8 @@
 				146AA0C428B65FA800391FD0 /* SchedulePresenter.m */,
 				14F8763828B5B5FA0067642F /* ScheduleController.h */,
 				14F8763928B5B5FA0067642F /* ScheduleController.m */,
+				14D598C728FF90EB00C9798F /* ScheduleHeaderView.h */,
+				14D598C828FF90EB00C9798F /* ScheduleHeaderView.m */,
 				14F2794628C6D51600F41F60 /* ScheduleCollectionHeaderView.h */,
 				14F2794728C6D51600F41F60 /* ScheduleCollectionHeaderView.m */,
 				14F2794928C6D52A00F41F60 /* ScheduleCollectionLeadingView.h */,
@@ -296,6 +316,14 @@
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				1A9B7678235F50A800725937 /* Info.plist */,
 				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
+				14E844F428FC40090037309F /* ScheduleDetailController.h */,
+				14E844F528FC40090037309F /* ScheduleDetailController.m */,
+				14E8451528FEFE420037309F /* ScheduleDetailDataSource.h */,
+				14E8451628FEFE420037309F /* ScheduleDetailDataSource.m */,
+				14E8450F28FEE9720037309F /* ScheduleDetailCollectionViewCell.h */,
+				14E8451028FEE9720037309F /* ScheduleDetailCollectionViewCell.m */,
+				14E8451228FEE9A30037309F /* ScheduleDetailMessageTableViewCell.h */,
+				14E8451328FEE9A30037309F /* ScheduleDetailMessageTableViewCell.m */,
 				14B9649028F6889200C984AB /* HttpTool */,
 				14B9647D28F6715500C984AB /* CyxbsHeader */,
 				1422241228D9B091009A4A54 /* Rising Extension */,
@@ -367,6 +395,8 @@
 				1A9B766B235F50A600725937 /* AppDelegate.m */,
 				14B9647E28F67EEF00C984AB /* CyxbsTabBarController.h */,
 				14B9647F28F67EEF00C984AB /* CyxbsTabBarController.m */,
+				14D598CA28FF963600C9798F /* SameDrawUI.h */,
+				14D598CB28FF964100C9798F /* SameDrawUI.m */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -680,9 +710,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E8451128FEE9720037309F /* ScheduleDetailCollectionViewCell.m in Sources */,
 				1466282928C4B1EC00AF584F /* ScheduleCollectionViewLayout.m in Sources */,
 				14B9647828F66C1E00C984AB /* NetURL.m in Sources */,
 				1422242128D9B091009A4A54 /* UIView+Rising.m in Sources */,
+				14D598C928FF90EB00C9798F /* ScheduleHeaderView.m in Sources */,
 				14F2794B28C6D52A00F41F60 /* ScheduleCollectionLeadingView.m in Sources */,
 				1A9B767A235F50A800725937 /* main.m in Sources */,
 				1422242228D9B091009A4A54 /* UIColor+Rising.m in Sources */,
@@ -700,11 +732,15 @@
 				14B9648028F67EEF00C984AB /* CyxbsTabBarController.m in Sources */,
 				1422242028D9B091009A4A54 /* RisingFoundationExtention.m in Sources */,
 				14F2794828C6D51600F41F60 /* ScheduleCollectionHeaderView.m in Sources */,
+				14E844F628FC40090037309F /* ScheduleDetailController.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
 				1466282628C4B1BD00AF584F /* ScheduleServiceDataSource.m in Sources */,
+				14D598CC28FF964100C9798F /* SameDrawUI.m in Sources */,
 				1466282C28C4EFE400AF584F /* ScheduleRequestType.m in Sources */,
+				14E8451428FEE9A30037309F /* ScheduleDetailMessageTableViewCell.m in Sources */,
 				14F8763A28B5B5FA0067642F /* ScheduleController.m in Sources */,
 				14B9648328F67F8600C984AB /* CyxbsApplication.m in Sources */,
+				14E8451728FEFE420037309F /* ScheduleDetailDataSource.m in Sources */,
 				1478633D28BB567A00C1E54B /* ScheduleCombineModel.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

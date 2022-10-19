@@ -12,9 +12,12 @@
 
 #import "ScheduleCollectionViewLayout.h"
 
-#import "ScheduleModel.h"
+#import "ScheduleHeaderView.h"
 
 @interface ScheduleController ()
+
+/// header view
+@property (nonatomic, strong) ScheduleHeaderView *headerView;
 
 /// 课表视图
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -49,6 +52,14 @@
 
 #pragma mark - Getter
 
+- (ScheduleHeaderView *)headerView {
+    if (_headerView == nil) {
+        _headerView = [[ScheduleHeaderView alloc] initWithFrame:CGRectMake(0, -1, self.view.width, 64)];
+        _headerView.delegate = self.presenter.delegateService;
+    }
+    return _headerView;
+}
+
 - (UICollectionView *)collectionView {
     if (_collectionView == nil) {
         CGFloat width = self.view.width;
@@ -60,20 +71,17 @@
         layout.heightForHeaderSupplementaryView = 10 + ((width - layout.widthForLeadingSupplementaryView) / 7 - layout.columnSpacing) / 46 * 50;
         layout.dataSource = self.presenter.dataSourceService;
         
-        CGFloat top = 64;
-        if (self.isPushStyle) {
-            top += 10;
-        }
+        CGFloat top = 64 + (self.isPushStyle ? StatusBarHeight() : 0);
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, top, self.view.width, self.view.height - top) collectionViewLayout:layout];
         
-//        _collectionView.backgroundColor =
-//        [UIColor dm_colorWithLightColor:UIColorHex(#FFFFFF)
-//                              darkColor:UIColorHex(#1D1D1D)];
         _collectionView.directionalLockEnabled = YES;
         _collectionView.pagingEnabled = YES;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.backgroundColor =
+        [UIColor Light:UIColorHex(#FFFFFF)
+                  Dark:UIColorHex(#1D1D1D)];
     }
     return _collectionView;
 }

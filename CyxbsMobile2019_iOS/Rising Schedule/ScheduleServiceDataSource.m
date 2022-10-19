@@ -131,9 +131,7 @@
         view.columnSpacing = layout.columnSpacing;
         view.dataSource = self;
         view.superCollectionView = collectionView;
-        view.backgroundColor =
-        [UIColor dm_colorWithLightColor:UIColorHex(#FFFFFF)
-                              darkColor:UIColorHex(#1D1D1D)];
+        view.backgroundColor = collectionView.backgroundColor;
                 
         return view;
     } else if ([kind isEqualToString:UICollectionElementKindSectionLeading]) {
@@ -165,22 +163,6 @@
     
     ScheduleCourse *course = _model.courseAry[indexPath.section][indexPath.item];
     return course.period;
-}
-
-- (NSComparisonResult)collectionView:(UICollectionView *)collectionView
-                              layout:(ScheduleCollectionViewLayout *)layout
-              compareOriginIndexPath:(NSIndexPath *)originIndexPath
-               conflictWithIndexPath:(NSIndexPath *)conflictIndexPath
-                   relayoutWithBlock:(void (^)(NSRange originRange, NSRange comflictRange))block {
-    // TODO: Unknown
-    ScheduleCourse *originCourse = _model.courseAry[originIndexPath.section][originIndexPath.item];
-    ScheduleCourse *conflictCourse = _model.courseAry[conflictIndexPath.section][originIndexPath.item];
-    
-    if (NSEqualRanges(originCourse.period, conflictCourse.period)) {
-        return NSOrderedSame;
-    }
-    
-    return NSOrderedSame;
 }
 
 #pragma mark - <ScheduleCollectionHeaderViewDataSource>
@@ -220,7 +202,9 @@
         return;
     }
     
-    BOOL isCurrent = ((NSDate.date.weekday - 1) == indexPath.item);
+    NSInteger weekday = NSDate.date.weekday;
+    weekday = weekday ? weekday : 7;
+    BOOL isCurrent = ((weekday - 1) == indexPath.item);
     CGRect frame = currentBlock(isCurrent);
     
     if (isCurrent) {

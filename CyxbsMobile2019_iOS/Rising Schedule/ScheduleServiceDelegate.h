@@ -12,21 +12,24 @@
 
 #import "ScheduleModel.h"
 
+#import "ScheduleHeaderView.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ScheduleServiceDelegate : NSObject <
-    UICollectionViewDelegate
+    UICollectionViewDelegate,
+    ScheduleHeaderViewDelegate
 >
 
 + (instancetype)new NS_UNAVAILABLE;
 
-/// <#description#>
+/// request schedule
 @property (nonatomic, strong) ScheduleRequestDictionary *parameterIfNeeded;
 
-/// <#description#>
+/// setting datasourse
 @property (nonatomic, readonly, nonnull) ScheduleModel *model;
 
-/// <#description#>
+/// comflict collectionView
 @property (nonatomic, strong, null_resettable) UICollectionView *collectionView;
 
 - (void)requestAndReloadData;

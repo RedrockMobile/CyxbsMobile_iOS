@@ -93,4 +93,48 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
     }];
 }
 
+- (NSString *)timeStr {
+    return [self _checkTime];
+}
+
+- (NSString *)_checkTime {
+    if (_period_location <= 0 || NSMaxRange(self.period) > 12) {
+        return @"";
+    }
+    
+    static NSArray *beginTime = @[
+        @"8:00",
+        @"8:55",
+        @"10:15",
+        @"11:10",
+        
+        @"14:00",
+        @"14:55",
+        @"16:15",
+        @"17:10",
+        
+        @"19:00",
+        @"19:55",
+        @"20:50",
+        @"21:45"];
+    
+    static NSArray *endTime = @[
+        @"8:45",
+        @"9:40",
+        @"11:00",
+        @"11:55",
+        
+        @"14:45",
+        @"15:30",
+        @"17:00",
+        @"17:55",
+        
+        @"19:45",
+        @"20:40",
+        @"20:35",
+        @"22:30"
+    ];
+    return [NSString stringWithFormat:@"%@ - %@", beginTime[_period_location], endTime[NSMaxRange(self.period)]];
+}
+
 @end

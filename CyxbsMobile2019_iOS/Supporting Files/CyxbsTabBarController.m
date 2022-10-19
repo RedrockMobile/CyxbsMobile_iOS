@@ -29,7 +29,9 @@
 }
 
 - (UIViewController *)_vc1 {
-    UIViewController *vc = [[ScheduleController alloc] initWithPresenter:[[SchedulePresenter alloc] init]];
+    ScheduleController *vc = [[ScheduleController alloc] initWithPresenter:[[SchedulePresenter alloc] init]];
+    vc.isPushStyle = YES;
+    
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;
     return nav;
