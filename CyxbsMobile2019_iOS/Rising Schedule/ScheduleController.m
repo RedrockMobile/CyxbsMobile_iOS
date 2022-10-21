@@ -44,7 +44,9 @@
     [self.presenter.dataSourceService setCollectionView:self.collectionView diff:NO];
     self.presenter.delegateService.collectionView = self.collectionView;
     self.presenter.delegateService.viewController = self;
+    self.presenter.delegateService.headerView = self.headerView;
     
+    [self.view addSubview:self.headerView];
     [self.view addSubview:self.collectionView];
     
     // 请求数据
@@ -55,8 +57,8 @@
 
 - (ScheduleHeaderView *)headerView {
     if (_headerView == nil) {
-        _headerView = [[ScheduleHeaderView alloc] initWithFrame:CGRectMake(0, -1, self.view.width, 64)];
-        _headerView.delegate = self.presenter.delegateService;
+        CGFloat top = (self.isPushStyle ? StatusBarHeight() : 0);
+        _headerView = [[ScheduleHeaderView alloc] initWithFrame:CGRectMake(0, top, self.view.width, 64)];
     }
     return _headerView;
 }

@@ -57,7 +57,8 @@
     NSMutableArray *ary = NSMutableArray.array;
     for (ScheduleCombineModelStatus *status in _statusMap.allValues) {
         for (ScheduleCourse *acourse in status.combine.courseAry) {
-            if ([course isAboveTimeAs:acourse] && [acourse.inSections containsObject:@(inweek)]) {
+            if ([course isAboveVerticalTimeAs:acourse]) {
+                if ([acourse.inSections containsObject:@(inweek)] || inweek == 0)
                 [ary addObject:acourse];
             }
         }

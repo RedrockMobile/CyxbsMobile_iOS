@@ -31,10 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ScheduleHeaderView : UIView
 
 /// @"第n周"
-@property (nonatomic, copy) NSString *inSection;
+@property (nonatomic, copy) NSString *title;
 
 /// image
-@property (nonatomic) BOOL isSingle;
+@property (nonatomic) BOOL isSingle __deprecated_msg("还没写");
 
 /// 回到本周 btn
 @property (nonatomic) BOOL reBack;

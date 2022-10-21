@@ -29,20 +29,20 @@ NS_ASSUME_NONNULL_BEGIN
 /// 开始的时间
 @property (nonatomic, readonly, nonnull) NSDate *startDate;
 
-/// 唯一标识，记录如下
-/// 1) 仅用于本地缓存业务，且为DB的路径
-/// 2) identifier的算法请自行解决
-/// 3) 没课约可用identifier算法进行缓存业务
-@property (nonatomic, copy) NSString *identifier;
-
 /// 当周
 /// 0代表整周
 /// setter里面为once
 @property (nonatomic) NSUInteger nowWeek;
 
+/// 当前在上课/最近一次要上的课
+/// 如果今天课程结束了，就会返回nil
+@property (nonatomic, readonly, nullable) ScheduleCourse *nowCourse __deprecated_msg("还没写");
+
 /// 主学号(如果是双人课表，则会以这个进行判断)
 /// (而事务则是由ScheduleCombineType去判断)
-@property (nonatomic, copy) NSString *sno;
+@property (nonatomic, copy) NSString *sno __deprecated_msg("没用到");
+
+#pragma mark !!!: - 需要重构
 
 /// 课程数组
 @property (nonatomic, readonly, nonnull) NSMutableArray <NSMutableArray <ScheduleCourse *> *> *courseAry;

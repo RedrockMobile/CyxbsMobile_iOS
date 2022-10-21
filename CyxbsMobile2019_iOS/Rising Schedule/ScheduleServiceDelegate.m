@@ -16,10 +16,13 @@
 
 #pragma mark - ScheduleServiceDelegate ()
 
-@interface ScheduleServiceDelegate ()
+@interface ScheduleServiceDelegate () <
+    UICollectionViewDelegate,
+    ScheduleHeaderViewDelegate
+>
 
-/// <#description#>
-@property (nonatomic) CGPoint contentPointWhenPanNeeded;
+/// unKnow
+@property (nonatomic) CGPoint contentPointWhenPanNeeded __deprecated_msg("还没用");
 
 @end
 
@@ -51,7 +54,8 @@
         [self.collectionView reloadData];
 
         [self scrollToSection:self.model.nowWeek];
-
+        self.headerView.reBack = NO;
+        self.headerView.title = [self _titleForNum:self.model.nowWeek];
     }
      failure:^(NSError * _Nonnull error) {
     }];
@@ -63,11 +67,28 @@
     [self.collectionView setContentOffset:CGPointMake(page * self.collectionView.width, 0) animated:YES];
 }
 
+- (NSString *)_titleForNum:(NSInteger)num {
+    if (num <= 0) {
+        return @"整学期";
+    }
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.locale = NSLocale.CN;
+    formatter.numberStyle = NSNumberFormatterSpellOutStyle;
+    
+    return [NSString stringWithFormat:@"第%@周", [formatter stringFromNumber:@(num)]];
+}
+
 #pragma mark - Setter
 
 - (void)setCollectionView:(UICollectionView *)view {
     _collectionView = view;
     view.delegate = self;
+}
+
+- (void)setHeaderView:(ScheduleHeaderView *)headerView {
+    _headerView = headerView;
+    _headerView.delegate = self;
+    _headerView.title = [self _titleForNum:self.model.nowWeek];
 }
 
 #pragma mark - <UICollectionViewDelegate>
@@ -83,6 +104,18 @@
         KNSemiModalOptionKeys.animationDuration : @(0.3),
         KNSemiModalOptionKeys.shadowOpacity : @(0.2)
     }];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    NSInteger page = scrollView.contentOffset.x / scrollView.width;
+    self.headerView.title = [self _titleForNum:page];
+    self.headerView.reBack = (page != self.model.nowWeek);
+}
+
+#pragma mark - <ScheduleHeaderViewDelegate>
+
+- (void)scheduleHeaderView:(ScheduleHeaderView *)view didSelectedBtn:(UIButton *)btn {
+    [self scrollToSection:self.model.nowWeek];
 }
 
 @end

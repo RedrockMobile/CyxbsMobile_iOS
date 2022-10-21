@@ -16,10 +16,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ScheduleServiceDelegate : NSObject <
-    UICollectionViewDelegate,
-    ScheduleHeaderViewDelegate
->
+@interface ScheduleServiceDelegate : NSObject
 
 + (instancetype)new NS_UNAVAILABLE;
 
@@ -31,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// comflict collectionView
 @property (nonatomic, strong, null_resettable) UICollectionView *collectionView;
+
+/// header view
+@property (nonatomic, strong) ScheduleHeaderView *headerView;
 
 /// view controller
 @property (nonatomic, weak) UIViewController *viewController;

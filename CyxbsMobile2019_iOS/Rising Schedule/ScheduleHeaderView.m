@@ -62,22 +62,26 @@
 - (UIButton *)reBackBtn {
     if (_reBackBtn == nil) {
         _reBackBtn = [[UIButton alloc] initWithFrame:CGRectMake(-1, self.sectionLab.top, 84, 32)];
+        _reBackBtn.right = self.SuperRight - 16;
         _reBackBtn.layer.cornerRadius = _reBackBtn.height / 2;
         _reBackBtn.clipsToBounds = YES;
+        _reBackBtn.titleLabel.font = [UIFont fontWithName:PingFangSC size:13];
         [_reBackBtn setTitle:@"回到本周" forState:UIControlStateNormal];
+        [_reBackBtn setTitleColor:UIColorHex(#FFFFFF) forState:UIControlStateNormal];
         [_reBackBtn addGradientBlueLayer];
+        [_reBackBtn bringSubviewToFront:_reBackBtn.titleLabel];
         [_reBackBtn addTarget:self action:@selector(_tap:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _reBackBtn;
 }
 
-- (NSString *)inSection {
+- (NSString *)title {
     return self.sectionLab.text.copy;
 }
 
 #pragma mark - Setter
 
-- (void)setInSection:(NSString *)inSection {
+- (void)setTitle:(NSString *)inSection {
     self.sectionLab.text = inSection.copy;
 }
 

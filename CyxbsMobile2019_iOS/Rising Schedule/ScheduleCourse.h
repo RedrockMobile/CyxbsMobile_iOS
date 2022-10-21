@@ -66,7 +66,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param dic 字典（这里必须看文档，注意使用）
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
 
-- (BOOL)isAboveTimeAs:(ScheduleCourse *)course;
+- (BOOL)isAboveVerticalTimeAs:(ScheduleCourse *)course;
 
 @end
 

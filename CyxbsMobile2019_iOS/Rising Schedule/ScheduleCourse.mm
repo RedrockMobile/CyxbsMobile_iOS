@@ -79,8 +79,8 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
 
 #pragma mark - Method
 
-- (BOOL)isAboveTimeAs:(ScheduleCourse *)course {
-    if (self.inWeek == course.inWeek && NSEqualRanges(NSIntersectionRange(self.period, course.period), NSMakeRange(0, 0))) {
+- (BOOL)isAboveVerticalTimeAs:(ScheduleCourse *)course {
+    if (self.inWeek == course.inWeek && !NSEqualRanges(NSIntersectionRange(self.period, course.period), NSMakeRange(0, 0))) {
         return YES;
     }
     return NO;

@@ -14,7 +14,7 @@
 
 - (void)addGradientBlueLayer {
     CAGradientLayer *gl = [CAGradientLayer layer];
-    gl.frame = self.frame;
+    gl.frame = self.SuperFrame;
     gl.startPoint = CGPointMake(0, 0);
     gl.endPoint = CGPointMake(1, 1);
     gl.colors = @[
