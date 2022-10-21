@@ -10,16 +10,22 @@
 
 #import "ScheduleDetailMessageTableViewCell.h"
 
+#import "ScheduleDetailTableHeaderView.h"
+
 NSString *ScheduleDetailCollectionViewCellReuseIdentifier = @"ScheduleDetailCollectionViewCellReuseIdentifier";
 
 #pragma mark - ScheduleDetailCollectionViewCell ()
 
 @interface ScheduleDetailCollectionViewCell () <
-    UITableViewDataSource
+    UITableViewDataSource,
+    UITableViewDelegate
 >
 
 /// table veiw
 @property (nonatomic, strong) UITableView *tableView;
+
+/// table header view
+@property (nonatomic, strong) ScheduleDetailTableHeaderView *tableHeaderView;
 
 @end
 
@@ -33,6 +39,7 @@ NSString *ScheduleDetailCollectionViewCellReuseIdentifier = @"ScheduleDetailColl
     self = [super initWithFrame:frame];
     if (self) {
         [self.contentView addSubview:self.tableView];
+        self.tableView.tableHeaderView = self.tableHeaderView;
     }
     return self;
 }
@@ -47,6 +54,7 @@ NSString *ScheduleDetailCollectionViewCellReuseIdentifier = @"ScheduleDetailColl
     if (_tableView == nil) {
         _tableView = [[UITableView alloc] initWithFrame:self.contentView.SuperFrame style:UITableViewStylePlain];
         _tableView.dataSource = self;
+        _tableView.delegate = self;
         _tableView.estimatedRowHeight = 0;
         _tableView.estimatedSectionHeaderHeight = 0;
         _tableView.estimatedSectionFooterHeight = 0;
@@ -54,8 +62,29 @@ NSString *ScheduleDetailCollectionViewCellReuseIdentifier = @"ScheduleDetailColl
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    }
+        _tableView.bounces = NO;
+        [_tableView registerClass:ScheduleDetailMessageTableViewCell.class forCellReuseIdentifier:ScheduleDetailMessageTableViewCellReuseIdentifier];
+        }
     return _tableView;
+}
+
+- (ScheduleDetailTableHeaderView *)tableHeaderView {
+    if (_tableHeaderView == nil) {
+        _tableHeaderView = [[ScheduleDetailTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width, 100)];
+        _tableHeaderView.title = @"正在加载课程名...";
+        _tableHeaderView.detail = @"正在加载时间与老师...";
+    }
+    return _tableHeaderView;
+}
+
+#pragma mark - Setter
+
+- (void)setCourse:(ScheduleCourse *)course {
+    _course = course;
+    [self.tableView reloadData];
+    self.tableHeaderView.title = course.course;
+    self.tableHeaderView.detail =
+    [NSString stringWithFormat:@"%@ > %@", course.classRoom, course.teacher];
 }
 
 #pragma mark - <UITableViewDataSource>
@@ -67,9 +96,39 @@ NSString *ScheduleDetailCollectionViewCellReuseIdentifier = @"ScheduleDetailColl
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     ScheduleDetailMessageTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ScheduleDetailMessageTableViewCellReuseIdentifier forIndexPath:indexPath];
     
-    
+    switch (indexPath.item) {
+        case 0: {
+            cell.leftDescription = @"周期";
+            cell.rightDetail = [NSString stringWithFormat:@"%@ %lu节连上", self.course.rawWeek, self.course.period.length];
+        } break;
+            
+        case 1: {
+            static NSArray *ary;
+            if (!ary) {
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                formatter.locale = NSLocale.CN;
+                ary = formatter.weekdaySymbols;
+            }
+            cell.leftDescription = @"时间";
+            cell.rightDetail = [NSString stringWithFormat:@"%@ %@", ary[self.course.inWeek % 7], self.course.timeStr];
+        } break;
+            
+        case 2: {
+            cell.leftDescription = @"课程类型";
+            cell.rightDetail = self.course.type;
+        } break;
+            
+        default:
+            break;
+    }
     
     return cell;
+}
+
+#pragma mark - <UITableViewDelegate>
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50;
 }
 
 @end

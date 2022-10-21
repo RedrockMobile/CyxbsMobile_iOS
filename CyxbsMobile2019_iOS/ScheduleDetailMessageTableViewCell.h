@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 复用标志
 UIKIT_EXTERN NSString *ScheduleDetailMessageTableViewCellReuseIdentifier;
 
+#pragma mark - ScheduleDetailMessageTableViewCell
+
 @interface ScheduleDetailMessageTableViewCell : UITableViewCell
 
 /// 左边视图

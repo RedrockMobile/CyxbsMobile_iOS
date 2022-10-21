@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// comflict collectionView
 @property (nonatomic, strong, null_resettable) UICollectionView *collectionView;
 
+/// view controller
+@property (nonatomic, weak) UIViewController *viewController;
+
 - (void)requestAndReloadData;
 
 - (void)scrollToSection:(NSUInteger)page;

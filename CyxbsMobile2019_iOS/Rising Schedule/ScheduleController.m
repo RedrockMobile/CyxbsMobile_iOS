@@ -43,6 +43,7 @@
     
     [self.presenter.dataSourceService setCollectionView:self.collectionView diff:NO];
     self.presenter.delegateService.collectionView = self.collectionView;
+    self.presenter.delegateService.viewController = self;
     
     [self.view addSubview:self.collectionView];
     
@@ -90,11 +91,9 @@
 
 - (void)setPresenter:(SchedulePresenter *)presenter {
     _presenter = presenter;
-    
     if (_collectionView) {
         [self.collectionView reloadData];
     }
-    
 }
 
 @end

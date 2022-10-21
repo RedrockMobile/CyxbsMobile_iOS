@@ -63,6 +63,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param model 连立模型
 - (void)separateModel:(ScheduleCombineModel *)model;
 
+- (NSArray <ScheduleCourse *> *)coursesWithCourse:(ScheduleCourse *)course inWeek:(NSInteger)inweek;
+
 @end
 
 NS_ASSUME_NONNULL_END

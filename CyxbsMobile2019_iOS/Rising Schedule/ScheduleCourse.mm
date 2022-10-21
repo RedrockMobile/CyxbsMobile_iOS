@@ -77,6 +77,15 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
     return self;
 }
 
+#pragma mark - Method
+
+- (BOOL)isAboveTimeAs:(ScheduleCourse *)course {
+    if (self.inWeek == course.inWeek && NSEqualRanges(NSIntersectionRange(self.period, course.period), NSMakeRange(0, 0))) {
+        return YES;
+    }
+    return NO;
+}
+
 #pragma mark - Getter
 
 - (NSRange)period {
@@ -134,7 +143,7 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
         @"20:35",
         @"22:30"
     ];
-    return [NSString stringWithFormat:@"%@ - %@", beginTime[_period_location], endTime[NSMaxRange(self.period)]];
+    return [NSString stringWithFormat:@"%@ - %@", beginTime[_period_location - 1], endTime[NSMaxRange(self.period) - 1]];
 }
 
 @end

@@ -210,7 +210,7 @@
     if (isCurrent) {
         self.backgroundView.alpha = 1;
         CGFloat x = indexPath.section * view.width + frame.origin.x;
-        self.backgroundView.frame = CGRectMake(x, -530, frame.size.width, 530 * 3);
+        self.backgroundView.frame = CGRectMake(x, -800, frame.size.width, 800 * 3);
         [self.backgroundView.superview sendSubviewToBack:self.backgroundView];
     }
 }

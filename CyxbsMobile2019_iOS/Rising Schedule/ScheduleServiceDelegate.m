@@ -10,6 +10,10 @@
 
 #import "ScheduleInteractorRequest.h"
 
+#import "ScheduleDetailController.h"
+
+#import "UIViewController+KNSemiModal.h"
+
 #pragma mark - ScheduleServiceDelegate ()
 
 @interface ScheduleServiceDelegate ()
@@ -63,15 +67,22 @@
 
 - (void)setCollectionView:(UICollectionView *)view {
     _collectionView = view;
-    
     view.delegate = self;
-    [view.panGestureRecognizer addTarget:self action:@selector(_pan:)];
 }
 
 #pragma mark - <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    ScheduleCourse *selectCourse = self.model.courseAry[indexPath.section][indexPath.item];
+    NSArray <ScheduleCourse *> *courses = [self.model coursesWithCourse:selectCourse inWeek:indexPath.section];
     
+    ScheduleDetailController *vc = [[ScheduleDetailController alloc] initWithCourses:courses];
+    [self.viewController presentSemiViewController:vc withOptions:@{
+        KNSemiModalOptionKeys.pushParentBack : @(NO),
+        KNSemiModalOptionKeys.parentAlpha : @(1),
+        KNSemiModalOptionKeys.animationDuration : @(0.3),
+        KNSemiModalOptionKeys.shadowOpacity : @(0.2)
+    }];
 }
 
 @end

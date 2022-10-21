@@ -28,24 +28,20 @@
     if (self) {
         _statusMap = NSMutableDictionary.dictionary;
         _courseAry = NSMutableArray.array;
-        NSMutableURLRequest *request;
     }
     return self;
 }
 
 - (void)combineModel:(ScheduleCombineModel *)model {
+    _statusMap[model.identifier] = model.status;
     for (ScheduleCourse *course in model.courseAry) {
-        //        NSInteger week = course.inWeek;
         [course.inSections enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, BOOL * __unused stop) {
             NSInteger section = obj.longValue;
-            
             for (NSInteger i = _courseAry.count; i <= section; i++) {
                 [_courseAry addObject:NSMutableArray.array];
             }
-            
             [_courseAry[section] addObject:course];
         }];
-        
         [_courseAry[0] addObject:course];
     }
     self.nowWeek = model.nowWeek;
@@ -53,6 +49,20 @@
 
 - (void)_clear {
     
+}
+
+#pragma mark - Method
+
+- (NSArray<ScheduleCourse *> *)coursesWithCourse:(ScheduleCourse *)course inWeek:(NSInteger)inweek {
+    NSMutableArray *ary = NSMutableArray.array;
+    for (ScheduleCombineModelStatus *status in _statusMap.allValues) {
+        for (ScheduleCourse *acourse in status.combine.courseAry) {
+            if ([course isAboveTimeAs:acourse] && [acourse.inSections containsObject:@(inweek)]) {
+                [ary addObject:acourse];
+            }
+        }
+    }
+    return ary;
 }
 
 #pragma mark - Setter
