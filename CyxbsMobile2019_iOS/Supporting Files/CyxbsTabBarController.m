@@ -25,12 +25,10 @@
 }
 
 - (void)_tabBar {
-    UIBlurEffect *effect = [[UIBlurEffect alloc] init];
-    self.tabBar.backgroundColor = UIColor.redColor;
-    
-    
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleProminent];
     UIVisualEffectView *view = [[UIVisualEffectView alloc] initWithEffect:effect];
-
+    view.frame = self.view.SuperFrame;
+    [self.tabBar addSubview:view];
 }
 
 - (UIViewController *)_vc1 {

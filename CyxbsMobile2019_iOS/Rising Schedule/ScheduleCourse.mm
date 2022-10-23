@@ -143,7 +143,7 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
         @"20:35",
         @"22:30"
     ];
-    return [NSString stringWithFormat:@"%@ - %@", beginTime[_period_location - 1], endTime[NSMaxRange(self.period) - 1]];
+    return [NSString stringWithFormat:@"%@ - %@", beginTime[_period_location - 1], endTime[NSMaxRange(self.period) - 2]];
 }
 
 @end

@@ -39,9 +39,6 @@ typedef NSString * ScheduleCombineType NS_STRING_ENUM;
 /// 课程信息
 @property (nonatomic, strong, null_resettable) NSArray <ScheduleCourse *> *courseAry;
 
-/// 转制成绘制
-@property (nonatomic, readonly) NSArray <NSArray <NSDictionary <NSValue *, ScheduleCourse *> *> *> *transDraw;
-
 - (instancetype)init NS_UNAVAILABLE;
 
 + (instancetype)new NS_UNAVAILABLE;
@@ -81,32 +78,5 @@ FOUNDATION_EXPORT ScheduleCombineType const ScheduleCombineSystem;
 
 /// 自定义
 FOUNDATION_EXPORT ScheduleCombineType const ScheduleCombineCustom;
-
-#pragma mark - ScheduleCombineModelStatus
-
-@interface ScheduleCombineModelStatus : NSObject
-
-/// combine
-@property (nonatomic, strong) ScheduleCombineModel *combine;
-
-/// connect, default is YES
-@property (nonatomic) BOOL isConnect;
-
-- (instancetype)init NS_UNAVAILABLE;
-
-+ (instancetype)new NS_UNAVAILABLE;
-
-+ (instancetype)statusWithCombine:(ScheduleCombineModel *)combine;
-
-@end
-
-#pragma mark - ScheduleCombineModel (Status)
-
-@interface ScheduleCombineModel (Status)
-
-/// new status
-@property (nonatomic, readonly) ScheduleCombineModelStatus *status;
-
-@end
 
 NS_ASSUME_NONNULL_END

@@ -83,9 +83,9 @@
         
         CGFloat top = 64 + (self.isPushStyle ? StatusBarHeight() : 0);
         
-        CGFloat height = self.view.height - top - self.tabBarController.tabBar.height;
+        CGFloat height = self.view.height - top;
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, top, self.view.width, height) collectionViewLayout:layout];
-        
+        _collectionView.contentInset = UIEdgeInsetsMake(0, 0, self.tabBarController.tabBar.height, 0);
         _collectionView.directionalLockEnabled = YES;
         _collectionView.pagingEnabled = YES;
         _collectionView.showsHorizontalScrollIndicator = NO;
@@ -109,8 +109,18 @@
 #pragma mark - Getter
 
 - (void)_drawTabbar {
-    UIImage *image = [[UIImage imageNamed:@"empty.goods"] imageByResizeToSize:CGSizeMake(20, 20) contentMode:UIViewContentModeScaleAspectFit];
-    self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"课表" image:image tag:0];
+    UIImage *selectImg = [[[UIImage imageNamed:@"schedule"] imageByResizeToSize:CGSizeMake(20, 20) contentMode:UIViewContentModeScaleAspectFit] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UIImage *unselectImg = [[[UIImage imageNamed:@"schedule"] imageByResizeToSize:CGSizeMake(20, 20) contentMode:UIViewContentModeScaleAspectFit] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"课表" image:unselectImg selectedImage:selectImg];
+    [self.tabBarItem setTitleTextAttributes:@{
+        NSFontAttributeName : [UIFont fontWithName:PingFangSC size:10],
+        NSForegroundColorAttributeName : [UIColor Light:UIColorHex(#2923D2) Dark:UIColorHex(#465FFF)]
+    } forState:UIControlStateSelected];
+    [self.tabBarItem setTitleTextAttributes:@{
+        NSFontAttributeName : [UIFont fontWithName:PingFangSC size:10],
+        NSForegroundColorAttributeName : [UIColor Light:UIColorHex(#AABCD8) Dark:UIColorHex(#8C8C8C)]
+    } forState:UIControlStateNormal];
+    NSAttributedStringKey y;
 }
 
 @end

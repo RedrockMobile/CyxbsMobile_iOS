@@ -42,8 +42,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// (而事务则是由ScheduleCombineType去判断)
 @property (nonatomic, copy) NSString *sno __deprecated_msg("没用到");
 
-#pragma mark !!!: - 需要重构
-
 /// 课程数组
 @property (nonatomic, readonly, nonnull) NSMutableArray <NSMutableArray <ScheduleCourse *> *> *courseAry;
 
@@ -52,17 +50,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param model 连立模型
 - (void)combineModel:(ScheduleCombineModel *)model;
 
-/// 再次建立联系
-/// 如果没有找到，debug会报错
-/// 如果模型进行了修改，也使用该方法绑定
-/// @param identifier 唯一key值
-- (void)recombineWithIdentifier:(NSString *)identifier;
-
 /// 取消连立一个模型
 /// 这里不会直接取消内存，你可以根据当时combine的sno再次建立链接
 /// @param model 连立模型
 - (void)separateModel:(ScheduleCombineModel *)model;
 
+/// 返回同一时间段的所有重复课程
+/// @param course 给到一个课程
+/// @param inweek 给到那一周
 - (NSArray <ScheduleCourse *> *)coursesWithCourse:(ScheduleCourse *)course inWeek:(NSInteger)inweek;
 
 @end
