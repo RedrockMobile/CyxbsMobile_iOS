@@ -6,11 +6,11 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-/**SchedulePresenter业务线
- * 充当与路由的搭配业务
- * 路由的类引入@"ScheduleRouterProtocol.h"
- * 路由名：ScheduleRouterName
- * 参数：请使用RisingRouterRequest
+/**SchedulePresenter驱动器
+ * - 充当与路由的搭配业务，路由的类引入@"ScheduleRouterProtocol.h"
+ * - 控制器驱动： controller
+ * - 数据源驱动： dataSourceService
+ * - 代理源驱动： delegateService
  */
 
 #import <Foundation/Foundation.h>

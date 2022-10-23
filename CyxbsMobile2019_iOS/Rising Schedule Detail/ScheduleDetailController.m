@@ -23,6 +23,9 @@
 /// collection view
 @property (nonatomic, strong) UICollectionView *collectionView;
 
+/// page control
+@property (nonatomic, strong) UIPageControl *pageControl;
+
 @end
 
 #pragma mark - ScheduleDetailController
@@ -48,6 +51,7 @@
               Dark:UIColorHex(#2D2D2D)];
     
     [self.view addSubview:self.collectionView];
+    [self.view addSubview:self.pageControl];
 }
 
 #pragma mark - Getter
@@ -72,6 +76,18 @@
     return _collectionView;
 }
 
+- (UIPageControl *)pageControl {
+    if (_pageControl == nil) {
+        _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(-1, -1, self.view.width, 10)];
+        _pageControl.bottom = self.view.SuperBottom - 18;
+        _pageControl.numberOfPages = self.couseAry.count;
+        _pageControl.currentPage = 0;
+        _pageControl.pageIndicatorTintColor = UIColorHex(#888888);
+        _pageControl.currentPageIndicatorTintColor = UIColorHex(#788EFB);
+    }
+    return _pageControl;
+}
+
 #pragma mark - <UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -91,6 +107,12 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     return collectionView.size;
+}
+
+#pragma mark - <UIScrollViewDelegate>
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    self.pageControl.currentPage = scrollView.contentOffset.x / scrollView.width;
 }
 
 @end

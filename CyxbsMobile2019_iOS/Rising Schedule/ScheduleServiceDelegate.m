@@ -38,11 +38,11 @@
 
 - (void)requestAndReloadData {
     ScheduleRequestDictionary *dic = self.parameterIfNeeded;
-//    if (!dic) {  // 默认情况
+    if (!dic) {  // 默认情况
         dic = @{
             ScheduleModelRequestStudent : @[@"2021215154"]
         };
-//    }
+    }
     
     // 由识别码请求课表数据    
     // 请求到的combineModel 不是最终可以一节节课取出来的model，是一个课程（里面包含了课程的所有周数）
@@ -54,8 +54,6 @@
         [self.collectionView reloadData];
 
         [self scrollToSection:self.model.nowWeek];
-        self.headerView.reBack = NO;
-        self.headerView.title = [self _titleForNum:self.model.nowWeek];
     }
      failure:^(NSError * _Nonnull error) {
     }];
@@ -65,6 +63,8 @@
 
 - (void)scrollToSection:(NSUInteger)page {
     [self.collectionView setContentOffset:CGPointMake(page * self.collectionView.width, 0) animated:YES];
+    self.headerView.title = [self _titleForNum:page];
+    self.headerView.reBack = (page != self.model.nowWeek);
 }
 
 - (NSString *)_titleForNum:(NSInteger)num {
@@ -78,6 +78,12 @@
     return [NSString stringWithFormat:@"第%@周", [formatter stringFromNumber:@(num)]];
 }
 
+- (void)reloadHeaderView {
+    NSInteger page = self.collectionView.contentOffset.x / self.collectionView.width;
+    self.headerView.title = [self _titleForNum:page];
+    self.headerView.reBack = (page != self.model.nowWeek);
+}
+
 #pragma mark - Setter
 
 - (void)setCollectionView:(UICollectionView *)view {
@@ -88,7 +94,7 @@
 - (void)setHeaderView:(ScheduleHeaderView *)headerView {
     _headerView = headerView;
     _headerView.delegate = self;
-    _headerView.title = [self _titleForNum:self.model.nowWeek];
+    [self reloadHeaderView];
 }
 
 #pragma mark - <UICollectionViewDelegate>
@@ -107,9 +113,7 @@
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    NSInteger page = scrollView.contentOffset.x / scrollView.width;
-    self.headerView.title = [self _titleForNum:page];
-    self.headerView.reBack = (page != self.model.nowWeek);
+    [self reloadHeaderView];
 }
 
 #pragma mark - <ScheduleHeaderViewDelegate>

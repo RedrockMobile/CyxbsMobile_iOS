@@ -29,7 +29,6 @@
 		14B9648028F67EEF00C984AB /* CyxbsTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9647F28F67EEF00C984AB /* CyxbsTabBarController.m */; };
 		14B9648328F67F8600C984AB /* CyxbsApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9648228F67F8600C984AB /* CyxbsApplication.m */; };
 		14B9648F28F6883800C984AB /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9648D28F6883800C984AB /* HttpTool.m */; };
-		14B9649428F6927400C984AB /* LaunchScreenColor.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B9649328F6927400C984AB /* LaunchScreenColor.xcassets */; };
 		14D598C928FF90EB00C9798F /* ScheduleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598C828FF90EB00C9798F /* ScheduleHeaderView.m */; };
 		14D598CC28FF964100C9798F /* SameDrawUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598CB28FF964100C9798F /* SameDrawUI.m */; };
 		14D598DB2901801F00C9798F /* ScheduleDetailTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598DA2901801F00C9798F /* ScheduleDetailTableHeaderView.m */; };
@@ -118,7 +117,6 @@
 		14B9648228F67F8600C984AB /* CyxbsApplication.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CyxbsApplication.m; sourceTree = "<group>"; };
 		14B9648D28F6883800C984AB /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
 		14B9648E28F6883800C984AB /* HttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpTool.h; sourceTree = "<group>"; };
-		14B9649328F6927400C984AB /* LaunchScreenColor.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = LaunchScreenColor.xcassets; sourceTree = "<group>"; };
 		14D598C728FF90EB00C9798F /* ScheduleHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleHeaderView.h; sourceTree = "<group>"; };
 		14D598C828FF90EB00C9798F /* ScheduleHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleHeaderView.m; sourceTree = "<group>"; };
 		14D598CA28FF963600C9798F /* SameDrawUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SameDrawUI.h; sourceTree = "<group>"; };
@@ -301,6 +299,7 @@
 		14D598E929021E9F00C9798F /* Pod */ = {
 			isa = PBXGroup;
 			children = (
+				1422241228D9B091009A4A54 /* Rising Extension */,
 				14B9649028F6889200C984AB /* HttpTool */,
 				14D598EA29021EB500C9798F /* SameDrawUI */,
 				14D598E829021E8400C9798F /* KNSemiModal */,
@@ -362,7 +361,6 @@
 				14D598EB29021EF400C9798F /* Rising Schedule Detail */,
 				14D598E929021E9F00C9798F /* Pod */,
 				14B9647D28F6715500C984AB /* CyxbsHeader */,
-				1422241228D9B091009A4A54 /* Rising Extension */,
 				FE87CE1B27E98F82008D7148 /* Supporting Files */,
 				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
@@ -426,7 +424,6 @@
 			isa = PBXGroup;
 			children = (
 				1A9B7675235F50A800725937 /* LaunchScreen.storyboard */,
-				14B9649328F6927400C984AB /* LaunchScreenColor.xcassets */,
 				1A9B7679235F50A800725937 /* main.m */,
 				14B9648128F67F8600C984AB /* CyxbsApplication.h */,
 				14B9648228F67F8600C984AB /* CyxbsApplication.m */,
@@ -566,7 +563,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14B9649428F6927400C984AB /* LaunchScreenColor.xcassets in Resources */,
 				1A9B7677235F50A800725937 /* LaunchScreen.storyboard in Resources */,
 				14B73F27281BE6C200D08ADD /* CyxbsMobileImage.xcassets in Resources */,
 			);

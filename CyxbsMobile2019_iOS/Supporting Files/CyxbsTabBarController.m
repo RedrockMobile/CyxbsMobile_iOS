@@ -18,18 +18,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self _tabBar];
     self.viewControllers = @[
-        self._vc1
+        self._vc1,
     ];
 }
 
 - (void)_tabBar {
+    UIBlurEffect *effect = [[UIBlurEffect alloc] init];
+    self.tabBar.backgroundColor = UIColor.redColor;
     
+    
+    UIVisualEffectView *view = [[UIVisualEffectView alloc] initWithEffect:effect];
+
 }
 
 - (UIViewController *)_vc1 {
-    ScheduleController *vc = [[ScheduleController alloc] initWithPresenter:[[SchedulePresenter alloc] init]];
+    SchedulePresenter *presenter = [[SchedulePresenter alloc] init];
+    presenter.delegateService.parameterIfNeeded = @{
+        ScheduleModelRequestStudent : @[@"2021215154"]
+    };
+    ScheduleController *vc = [[ScheduleController alloc] initWithPresenter:presenter];
     vc.isPushStyle = YES;
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];

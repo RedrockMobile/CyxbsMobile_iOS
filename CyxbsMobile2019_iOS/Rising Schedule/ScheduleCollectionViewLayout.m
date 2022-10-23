@@ -145,7 +145,7 @@
         CGRect frame = CGRectMake(x, y, self.collectionView.width, self.heightForHeaderSupplementaryView);
         
         attributes.frame = frame;
-        attributes.zIndex = CGFLOAT_MAX;
+        attributes.zIndex = 100;
         
         return attributes;
     }

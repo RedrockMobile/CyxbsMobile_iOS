@@ -203,8 +203,8 @@
     }
     
     NSInteger weekday = NSDate.date.weekday;
-    weekday = weekday ? weekday : 7;
-    BOOL isCurrent = ((weekday - 1) == indexPath.item);
+    weekday = (weekday - 1) ? weekday : 7;
+    BOOL isCurrent = (weekday == indexPath.item);
     CGRect frame = currentBlock(isCurrent);
     
     if (isCurrent) {

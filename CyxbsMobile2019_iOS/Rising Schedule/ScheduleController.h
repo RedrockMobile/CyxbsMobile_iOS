@@ -9,6 +9,8 @@
 /**ScheduleController课表控制器
  * 由于Presenter和Controller之间持有关系，
  * controller强持有presenter，而presenter弱持有controller
+ * 创建一个SchedulePresenter以保证此controller的数据与代理
+ * SchedulePresenter负责所有的**驱动管理**
  */
 
 #import <UIKit/UIKit.h>

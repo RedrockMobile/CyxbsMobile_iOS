@@ -39,7 +39,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = UIColor.whiteColor;
+    self.view.backgroundColor =
+    [UIColor Light:UIColorHex(#FFFFFF)
+              Dark:UIColorHex(#1D1D1D)];
     
     [self.presenter.dataSourceService setCollectionView:self.collectionView diff:NO];
     self.presenter.delegateService.collectionView = self.collectionView;
@@ -51,6 +53,8 @@
     
     // 请求数据
     [self.presenter.delegateService requestAndReloadData];
+    
+    [self _drawTabbar];
 }
 
 #pragma mark - Getter
@@ -59,6 +63,9 @@
     if (_headerView == nil) {
         CGFloat top = (self.isPushStyle ? StatusBarHeight() : 0);
         _headerView = [[ScheduleHeaderView alloc] initWithFrame:CGRectMake(0, top, self.view.width, 64)];
+        _headerView.backgroundColor =
+        [UIColor Light:UIColorHex(#FFFFFF)
+                  Dark:UIColorHex(#1D1D1D)];
     }
     return _headerView;
 }
@@ -76,7 +83,8 @@
         
         CGFloat top = 64 + (self.isPushStyle ? StatusBarHeight() : 0);
         
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, top, self.view.width, self.view.height - top) collectionViewLayout:layout];
+        CGFloat height = self.view.height - top - self.tabBarController.tabBar.height;
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, top, self.view.width, height) collectionViewLayout:layout];
         
         _collectionView.directionalLockEnabled = YES;
         _collectionView.pagingEnabled = YES;
@@ -96,6 +104,13 @@
     if (_collectionView) {
         [self.collectionView reloadData];
     }
+}
+
+#pragma mark - Getter
+
+- (void)_drawTabbar {
+    UIImage *image = [[UIImage imageNamed:@"empty.goods"] imageByResizeToSize:CGSizeMake(20, 20) contentMode:UIViewContentModeScaleAspectFit];
+    self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"课表" image:image tag:0];
 }
 
 @end

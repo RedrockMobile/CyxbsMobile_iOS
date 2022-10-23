@@ -6,10 +6,11 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-/**ScheduleServiceDataSource数据源服务
- * 主要布局所有的视图与交互
- * 主业务线会掉用其他业务
- * 应将控制器controller赋值
+/**ScheduleServiceDataSource数据源服务驱动
+ * 主要布局所有的与collecionView相关的视图
+ * 这里只做DataSource相关业务
+ * - 创建的时候必须传入ScheduleModel，并不能为空（地址传递）
+ * - 不用担心视图会在此类里面被主动刷新
  */
 
 #import <UIKit/UIKit.h>
