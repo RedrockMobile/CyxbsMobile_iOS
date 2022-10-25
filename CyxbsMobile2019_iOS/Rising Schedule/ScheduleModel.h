@@ -31,7 +31,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 当周
 /// 0代表整周
-/// setter里面为once
 @property (nonatomic) NSUInteger nowWeek;
 
 /// 当前在上课/最近一次要上的课
@@ -43,17 +42,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *sno __deprecated_msg("没用到");
 
 /// 课程数组
-@property (nonatomic, readonly, nonnull) NSMutableArray <NSMutableArray <ScheduleCourse *> *> *courseAry;
+@property (nonatomic, readonly) NSArray <NSArray <ScheduleCourse *> *> *courseAry;
 
 /// 连立一个模型
 /// 如果已经根据id连立，则取消该次连立
 /// @param model 连立模型
 - (void)combineModel:(ScheduleCombineModel *)model;
 
-/// 取消连立一个模型
-/// 这里不会直接取消内存，你可以根据当时combine的sno再次建立链接
-/// @param model 连立模型
-- (void)separateModel:(ScheduleCombineModel *)model;
+- (void)clear;
 
 /// 返回同一时间段的所有重复课程
 /// @param course 给到一个课程

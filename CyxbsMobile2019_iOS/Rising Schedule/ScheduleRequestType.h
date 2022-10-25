@@ -14,6 +14,8 @@
 #ifndef ScheduleRequestType_h
 #define ScheduleRequestType_h
 
+NS_ASSUME_NONNULL_BEGIN
+
 #pragma mark - ScheduleModelRequestType
 
 typedef NSString * ScheduleModelRequestType NS_STRING_ENUM;
@@ -21,8 +23,6 @@ typedef NSString * ScheduleModelRequestType NS_STRING_ENUM;
 typedef NSDictionary
     <ScheduleModelRequestType, NSArray
     <NSString *> *> ScheduleRequestDictionary;
-
-NS_ASSUME_NONNULL_BEGIN
 
 // MARK: KEY
 
@@ -35,8 +35,6 @@ FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestTeacher;
 /// 自定义
 FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestCustom;
 
-NS_ASSUME_NONNULL_END
-
 // MARK: Method
 
 /// 获取API
@@ -44,5 +42,8 @@ FOUNDATION_EXPORT NSString * _Nullable API_forScheduleModelRequestType(const Sch
 
 /// 获取KEY
 FOUNDATION_EXPORT NSString * _Nullable KeyInParameterForScheduleModelRequestType(const ScheduleModelRequestType _Nonnull);
+
+NS_ASSUME_NONNULL_END
+
 
 #endif /* ScheduleRequestType_h */

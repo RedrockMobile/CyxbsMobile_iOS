@@ -8,38 +8,15 @@
 
 #import "ScheduleCollectionViewLayout.h"
 
-// !!!: Inner Class Begin
-
-#pragma mark - ScheduleCollectionViewLayoutInvalidationContext
-
-@interface ScheduleCollectionViewLayoutInvalidationContext : UICollectionViewLayoutInvalidationContext
-
-/// 是否立刻重新布局顶视图
-@property (nonatomic) BOOL invalidateHeaderSupplementaryAttributes;
-
-/// 是否立刻重新布局左视图
-@property (nonatomic) BOOL invalidateLeadingSupplementaryAttributes;
-
-/// 是否立刻重新布局课表视图
-@property (nonatomic) BOOL invalidateAllAttributes;
-
-@end
-
 #pragma mark - ScheduleCollectionViewLayoutInvalidationContext
 
 @implementation ScheduleCollectionViewLayoutInvalidationContext
 
 @end
 
-// !!!: Inner Class End
-
-
-
-
-
 #pragma mark - ScheduleCollectionViewLayout ()
 
-@interface ScheduleCollectionViewLayout ()
+@interface ScheduleCollectionViewLayout () <UICollectionViewDelegateFlowLayout>
 
 /// 获取section的值
 @property (nonatomic) NSInteger sections;
@@ -57,7 +34,9 @@
 
 #pragma mark - ScheduleCollectionViewLayout
 
-@implementation ScheduleCollectionViewLayout
+@implementation ScheduleCollectionViewLayout {
+    NSMutableDictionary <NSNumber *, NSMutableArray <UICollectionViewLayoutAttributes *> *> * _autoItemAttributes;
+}
 
 - (instancetype)init {
     self = [super init];
@@ -67,6 +46,7 @@
             UICollectionElementKindSectionHeader : NSMutableDictionary.dictionary,
             UICollectionElementKindSectionLeading : NSMutableDictionary.dictionary
         }.mutableCopy;
+        _autoItemAttributes = NSMutableDictionary.dictionary;
     }
     return self;
 }
@@ -74,24 +54,24 @@
 #pragma mark - Ask LayoutAttributes
 
 - (NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
-    
     NSMutableArray *result = NSMutableArray.array;
-    
     for (NSInteger section = 0; section < _sections; section++) {
+        
         // SupplementaryView attributes
         for (NSString *elementKind in _supplementaryAttributes.allKeys) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:section];
             UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForSupplementaryViewOfKind:elementKind atIndexPath:indexPath];
-            if (CGRectIntersectsRect(attributes.frame, rect)) {
+            if (CGRectIntersectsRect(rect, attributes.frame)) {
                 [result addObject:attributes];
             }
         }
+        
         // Cell attributes
         NSUInteger itemCount = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:section];
         for (NSInteger item = 0; item < itemCount; item++) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
             UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:indexPath];
-            if (CGRectIntersectsRect(attributes.frame, rect)) {
+            if (CGRectIntersectsRect(rect, attributes.frame)) {
                 [result addObject:attributes];
             }
         }
@@ -116,11 +96,44 @@
         NSRange range = [self.dataSource collectionView:self.collectionView layout:self rangeForItemAtIndexPath:indexPath];
         
         CGRect frame = [self _itemSizeForSection:section week:week range:range];
-        
         attributes.frame = frame;
+        
+        if (!_autoItemAttributes[@(section * 100 + week)]) {
+            _autoItemAttributes[@(section * 100 + week)] = NSMutableArray.array;
+        }
+        
+        for (UICollectionViewLayoutAttributes *entry in _autoItemAttributes[@(section * 100 + week)]) {
+            // compare like stack when those rects intersect && old entry.alpha != 0
+            if (CGRectIntersectsRect(entry.frame, attributes.frame) && entry.alpha != 0) {
+                if (self.callBack) { // redraw by user
+                    NSComparisonResult result = [self.dataSource collectionView:self.collectionView layout:self compareOriginIndexPath:entry.indexPath conflictWithIndexPath:attributes.indexPath relayoutWithBlock:^(NSRange originRange, NSRange comflictRange) {
+                        CGRect originFrame = [self _itemSizeForSection:section week:week range:originRange];
+                        CGRect comflictFrame = [self _itemSizeForSection:section week:week range:comflictRange];
+                        entry.frame = originFrame;
+                        attributes.frame = comflictFrame;
+                    }];
+                    switch (result) {
+                        case NSOrderedAscending:
+                            entry.alpha = 0;
+                            break;
+                        case NSOrderedDescending:
+                            attributes.alpha = 0;
+                        default:
+                            break;
+                    }
+                } else { // redraw by system
+                    if (CGRectContainsRect(entry.frame, attributes.frame)) {
+                        attributes.alpha = 0;
+                    } else {
+                        entry.alpha = 0;
+                    }
+                }
+            }
+        }
+        
+        [_autoItemAttributes[@(section * 100 + week)] addObject:attributes];
+        _itemAttributes[indexPath] = attributes;
     }
-    
-    _itemAttributes[indexPath] = attributes;
     
     return attributes;
 }
@@ -234,9 +247,9 @@
     if (context.invalidateAllAttributes || context.invalidateDataSourceCounts) {
         
         [_itemAttributes removeAllObjects];
+        [_autoItemAttributes removeAllObjects];
         
         [_supplementaryAttributes enumerateKeysAndObjectsUsingBlock:^(NSString * __unused key, NSMutableDictionary<NSIndexPath *,UICollectionViewLayoutAttributes *> * _Nonnull obj, BOOL * __unused stop) {
-            
             [obj removeAllObjects];
         }];
     }

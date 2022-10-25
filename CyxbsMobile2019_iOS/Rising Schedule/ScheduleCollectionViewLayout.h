@@ -14,9 +14,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class ScheduleCollectionViewLayout;
+#pragma mark - ScheduleCollectionViewLayoutInvalidationContext
+
+@interface ScheduleCollectionViewLayoutInvalidationContext : UICollectionViewLayoutInvalidationContext
+
+/// 是否立刻重新布局顶视图
+@property (nonatomic) BOOL invalidateHeaderSupplementaryAttributes;
+
+/// 是否立刻重新布局左视图
+@property (nonatomic) BOOL invalidateLeadingSupplementaryAttributes;
+
+/// 是否立刻重新布局课表视图
+@property (nonatomic) BOOL invalidateAllAttributes;
+
+@end
 
 #pragma mark - ScheduleCollectionViewLayoutDelegate
+
+@class ScheduleCollectionViewLayout;
 
 @protocol ScheduleCollectionViewLayoutDataSource <NSObject>
 
@@ -38,6 +53,14 @@ NS_ASSUME_NONNULL_BEGIN
                    layout:(ScheduleCollectionViewLayout *)layout
   rangeForItemAtIndexPath:(NSIndexPath *)indexPath;
 
+@optional
+
+- (NSComparisonResult)collectionView:(UICollectionView *)collectionView
+                              layout:(ScheduleCollectionViewLayout *)layout
+              compareOriginIndexPath:(NSIndexPath *)originIndexPath
+               conflictWithIndexPath:(NSIndexPath *)conflictIndexPath
+                   relayoutWithBlock:(void (^)(NSRange originRange, NSRange comflictRange))block;
+
 @end
 
 #pragma mark - ScheduleCollectionViewLayout
@@ -58,6 +81,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 头部装饰视图高
 @property (nonatomic) CGFloat heightForHeaderSupplementaryView;
+
+/// 双人课表callback，默认为NO
+/// 如果是YES， 必须有optional的回掉
+@property (nonatomic) BOOL callBack;
 
 @end
 

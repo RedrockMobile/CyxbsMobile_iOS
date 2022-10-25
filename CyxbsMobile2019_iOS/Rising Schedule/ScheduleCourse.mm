@@ -58,11 +58,7 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
         self.inWeek = [dic[@"hash_day"] intValue] + 1;
         id weekAry = dic[@"week"];
         if ([weekAry isKindOfClass:NSArray.class]) {
-            NSMutableSet *set = NSMutableSet.set;
-            for (NSNumber *a in weekAry) {
-                [set addObject:a];
-            }
-            self.inSections = set;
+            self.inSections = [NSMutableSet setWithArray:weekAry];
         }
         self.period_location = [dic[@"begin_lesson"] longValue];
         self.period_lenth = [dic[@"period"] unsignedLongValue];

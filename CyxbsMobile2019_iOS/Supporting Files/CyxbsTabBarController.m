@@ -10,6 +10,8 @@
 
 #import "SchedulePresenter.h"
 
+#import "FastLoginViewController.h"
+
 @interface CyxbsTabBarController ()
 
 @end
@@ -24,6 +26,16 @@
     ];
 }
 
+#pragma mark - Method
+
+- (void)_test1 {
+    FastLoginViewController *vc = [[FastLoginViewController alloc] init];
+    vc.modalPresentationStyle = UIModalPresentationPageSheet;
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+#pragma mark - private
+
 - (void)_tabBar {
     UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleProminent];
     UIVisualEffectView *view = [[UIVisualEffectView alloc] initWithEffect:effect];
@@ -33,9 +45,9 @@
 
 - (UIViewController *)_vc1 {
     SchedulePresenter *presenter = [[SchedulePresenter alloc] init];
-    presenter.delegateService.parameterIfNeeded = @{
-        ScheduleModelRequestStudent : @[@"2021215154"]
-    };
+//    presenter.delegateService.parameterIfNeeded = @{
+//        ScheduleModelRequestStudent : @[@"2021215154"]
+//    };
     ScheduleController *vc = [[ScheduleController alloc] initWithPresenter:presenter];
     vc.isPushStyle = YES;
     

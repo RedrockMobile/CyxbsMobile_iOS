@@ -21,9 +21,6 @@
     ScheduleHeaderViewDelegate
 >
 
-/// unKnow
-@property (nonatomic) CGPoint contentPointWhenPanNeeded __deprecated_msg("还没用");
-
 @end
 
 @implementation ScheduleServiceDelegate
@@ -39,12 +36,10 @@
 - (void)requestAndReloadData {
     ScheduleRequestDictionary *dic = self.parameterIfNeeded;
     if (!dic) {  // 默认情况
-        dic = @{
-            ScheduleModelRequestStudent : @[@"2021215154"]
-        };
+        [self.collectionView reloadData];
     }
-    
-    // 由识别码请求课表数据    
+    [self.model clear];
+      
     // 请求到的combineModel 不是最终可以一节节课取出来的model，是一个课程（里面包含了课程的所有周数）
     [ScheduleInteractorRequest
      request:dic
@@ -63,8 +58,6 @@
 
 - (void)scrollToSection:(NSUInteger)page {
     [self.collectionView setContentOffset:CGPointMake(page * self.collectionView.width, 0) animated:YES];
-    self.headerView.title = [self _titleForNum:page];
-    self.headerView.reBack = (page != self.model.nowWeek);
 }
 
 - (NSString *)_titleForNum:(NSInteger)num {
@@ -104,6 +97,7 @@
     NSArray <ScheduleCourse *> *courses = [self.model coursesWithCourse:selectCourse inWeek:indexPath.section];
     
     ScheduleDetailController *vc = [[ScheduleDetailController alloc] initWithCourses:courses];
+    [[[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy] impactOccurred];
     [self.viewController presentSemiViewController:vc withOptions:@{
         KNSemiModalOptionKeys.pushParentBack : @(NO),
         KNSemiModalOptionKeys.parentAlpha : @(1),
@@ -112,7 +106,13 @@
     }];
 }
 
+#pragma mark - <UIScrollViewDelegate>
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self reloadHeaderView];
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     [self reloadHeaderView];
 }
 

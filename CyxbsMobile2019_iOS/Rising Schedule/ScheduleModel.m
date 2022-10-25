@@ -8,23 +8,17 @@
 
 #import "ScheduleModel.h"
 
-#pragma mark - ScheduleModel ()
-
-@interface ScheduleModel ()
-
-/// combine映射表
-@property (nonatomic, strong) NSMutableDictionary <NSString *, ScheduleCombineModel *> *statusMap;
-
-@end
-
 #pragma mark - ScheduleModel
 
-@implementation ScheduleModel
+@implementation ScheduleModel {
+    NSMutableDictionary <NSString *, ScheduleCombineModel *> *_statusMap;
+    NSMutableArray <NSMutableArray <ScheduleCourse *> *> *_courseAry;
+}
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [self _zeroClear];
+        [self clear];
     }
     return self;
 }
@@ -45,16 +39,9 @@
     self.nowWeek = model.nowWeek;
 }
 
-- (void)separateModel:(ScheduleCombineModel *)model {
-    _statusMap[model.identifier] = nil;
-    NSArray *originAry = _statusMap.allKeys;
-    [self _zeroClear];
-    for (ScheduleCombineModel *model in originAry) {
-        [self combineModel:model];
-    }
-}
 
-- (void)_zeroClear {
+
+- (void)clear {
     _statusMap = NSMutableDictionary.dictionary;
     _courseAry = NSMutableArray.array;
     [_courseAry addObject:NSMutableArray.array]; // for section 0

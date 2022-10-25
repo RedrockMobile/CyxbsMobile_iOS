@@ -19,6 +19,7 @@
 		1466282C28C4EFE400AF584F /* ScheduleRequestType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466282B28C4EFE400AF584F /* ScheduleRequestType.m */; };
 		1466283428C5CA4600AF584F /* ScheduleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466283328C5CA4600AF584F /* ScheduleCollectionViewCell.m */; };
 		146AA0C528B65FA800391FD0 /* SchedulePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 146AA0C428B65FA800391FD0 /* SchedulePresenter.m */; };
+		146D144C2907F21700327AB8 /* FastLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D144B2907F21700327AB8 /* FastLoginViewController.m */; };
 		1478633D28BB567A00C1E54B /* ScheduleCombineModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1478633C28BB567A00C1E54B /* ScheduleCombineModel.mm */; };
 		14B46E6128B4D283003D288B /* ScheduleCourse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6028B4D283003D288B /* ScheduleCourse.mm */; };
 		14B46E6528B4D5D7003D288B /* ScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6328B4D5D7003D288B /* ScheduleModel.m */; };
@@ -95,6 +96,8 @@
 		1466283328C5CA4600AF584F /* ScheduleCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCollectionViewCell.m; sourceTree = "<group>"; };
 		146AA0C328B65FA800391FD0 /* SchedulePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchedulePresenter.h; sourceTree = "<group>"; };
 		146AA0C428B65FA800391FD0 /* SchedulePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchedulePresenter.m; sourceTree = "<group>"; };
+		146D144A2907F21700327AB8 /* FastLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FastLoginViewController.h; sourceTree = "<group>"; };
+		146D144B2907F21700327AB8 /* FastLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FastLoginViewController.m; sourceTree = "<group>"; };
 		1478633B28BB567A00C1E54B /* ScheduleCombineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCombineModel.h; sourceTree = "<group>"; };
 		1478633C28BB567A00C1E54B /* ScheduleCombineModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ScheduleCombineModel.mm; sourceTree = "<group>"; };
 		14B46E5F28B4D282003D288B /* ScheduleCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleCourse.h; sourceTree = "<group>"; };
@@ -230,10 +233,10 @@
 		14B4691D28B4C9D9003D288B /* Rising Schedule */ = {
 			isa = PBXGroup;
 			children = (
-				146AA0C328B65FA800391FD0 /* SchedulePresenter.h */,
-				146AA0C428B65FA800391FD0 /* SchedulePresenter.m */,
 				14F8763828B5B5FA0067642F /* ScheduleController.h */,
 				14F8763928B5B5FA0067642F /* ScheduleController.m */,
+				146AA0C328B65FA800391FD0 /* SchedulePresenter.h */,
+				146AA0C428B65FA800391FD0 /* SchedulePresenter.m */,
 				14D598C728FF90EB00C9798F /* ScheduleHeaderView.h */,
 				14D598C828FF90EB00C9798F /* ScheduleHeaderView.m */,
 				14F2794628C6D51600F41F60 /* ScheduleCollectionHeaderView.h */,
@@ -363,6 +366,8 @@
 				14B9647D28F6715500C984AB /* CyxbsHeader */,
 				FE87CE1B27E98F82008D7148 /* Supporting Files */,
 				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
+				146D144A2907F21700327AB8 /* FastLoginViewController.h */,
+				146D144B2907F21700327AB8 /* FastLoginViewController.m */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				1A9B7678235F50A800725937 /* Info.plist */,
 				14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */,
@@ -747,6 +752,7 @@
 				1466282928C4B1EC00AF584F /* ScheduleCollectionViewLayout.m in Sources */,
 				14B9647828F66C1E00C984AB /* NetURL.m in Sources */,
 				1422242128D9B091009A4A54 /* UIView+Rising.m in Sources */,
+				146D144C2907F21700327AB8 /* FastLoginViewController.m in Sources */,
 				14D598C928FF90EB00C9798F /* ScheduleHeaderView.m in Sources */,
 				14F2794B28C6D52A00F41F60 /* ScheduleCollectionLeadingView.m in Sources */,
 				14D598DB2901801F00C9798F /* ScheduleDetailTableHeaderView.m in Sources */,

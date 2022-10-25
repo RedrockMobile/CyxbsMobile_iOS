@@ -38,7 +38,7 @@
 
 - (UILabel *)titleLab {
     if (_titleLab == nil) {
-        _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(16, 22, self.width - 2 * 16, 31)];
+        _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(16, 16, self.width - 2 * 16, 31)];
         _titleLab.font = [UIFont fontWithName:PingFangSCBold size:22];
         _titleLab.textColor =
         [UIColor Light:UIColorHex(#112C54) Dark:UIColorHex(#F0F0F2)];

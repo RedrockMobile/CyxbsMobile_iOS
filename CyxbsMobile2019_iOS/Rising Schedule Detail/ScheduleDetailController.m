@@ -64,6 +64,7 @@
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.width / 1.5) collectionViewLayout:layout];
+        _collectionView.backgroundColor = UIColor.clearColor;
         _collectionView.layer.cornerRadius = 16;
         _collectionView.clipsToBounds = YES;
         _collectionView.showsVerticalScrollIndicator = NO;

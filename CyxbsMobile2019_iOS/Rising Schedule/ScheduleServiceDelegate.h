@@ -25,24 +25,26 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#pragma mark - ScheduleServiceDelegate
+
 @interface ScheduleServiceDelegate : NSObject
 
-+ (instancetype)new NS_UNAVAILABLE;
+/// setting datasourse
+@property (nonatomic, strong, nonnull) ScheduleModel *model;
 
 /// request schedule
 @property (nonatomic, strong) ScheduleRequestDictionary *parameterIfNeeded;
-
-/// setting datasourse
-@property (nonatomic, readonly, nonnull) ScheduleModel *model;
 
 /// comflict collectionView
 @property (nonatomic, strong, null_resettable) UICollectionView *collectionView;
 
 /// header view
-@property (nonatomic, strong) ScheduleHeaderView *headerView;
+@property (nonatomic, strong, null_resettable) ScheduleHeaderView *headerView;
 
 /// view controller
 @property (nonatomic, weak) UIViewController *viewController;
+
++ (instancetype)new NS_UNAVAILABLE;
 
 - (void)requestAndReloadData;
 

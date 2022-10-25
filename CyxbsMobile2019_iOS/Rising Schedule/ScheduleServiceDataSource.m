@@ -32,10 +32,12 @@
 
 @implementation ScheduleServiceDataSource
 
-+ (instancetype)dataSourceServiceWithModel:(ScheduleModel *)model {
-    ScheduleServiceDataSource *service = [[ScheduleServiceDataSource alloc] init];
-    service->_model = model;
-    return service;
+- (instancetype)initWithModel:(ScheduleModel *)model {
+    self = [super init];
+    if (self) {
+        _model = model;
+    }
+    return self;
 }
 
 #pragma mark - Getter
@@ -104,12 +106,6 @@
     // 自定义的事务
     if ([course.type isEqualToString:@"事务"]) {
         cell.drawType = ScheduleCollectionViewCellDrawCustom;
-    }
-    // 双人课表
-    if (_diff) {
-//        if (![course.sno isEqualToString:UserItemTool.defaultItem.stuNum]) {
-            cell.drawType = ScheduleCollectionViewCellDrawCustom;
-//        }
     }
     
     cell.multipleSign = NO; // TODO: Unknow how to check
@@ -202,8 +198,8 @@
         return;
     }
     
-    NSInteger weekday = NSDate.date.weekday;
-    weekday = (weekday - 1) ? weekday : 7;
+    NSInteger weekday = NSDate.date.weekday - 1;
+    weekday = weekday ? weekday : 7;
     BOOL isCurrent = (weekday == indexPath.item);
     CGRect frame = currentBlock(isCurrent);
     

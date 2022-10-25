@@ -29,7 +29,9 @@ NSString *ScheduleDetailMessageTableViewCellReuseIdentifier = @"ScheduleDetailMe
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.backgroundColor = UIColor.clearColor;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.contentView.backgroundColor = UIColor.clearColor;
         [self.contentView addSubview:self.leftLab];
         [self.contentView addSubview:self.rightLab];
     }

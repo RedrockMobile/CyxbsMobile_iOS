@@ -38,6 +38,8 @@ NSString *ScheduleDetailCollectionViewCellReuseIdentifier = @"ScheduleDetailColl
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = UIColor.clearColor;
+        self.contentView.backgroundColor = UIColor.clearColor;
         [self.contentView addSubview:self.tableView];
         self.tableView.tableHeaderView = self.tableHeaderView;
     }
@@ -53,6 +55,7 @@ NSString *ScheduleDetailCollectionViewCellReuseIdentifier = @"ScheduleDetailColl
 - (UITableView *)tableView {
     if (_tableView == nil) {
         _tableView = [[UITableView alloc] initWithFrame:self.contentView.SuperFrame style:UITableViewStylePlain];
+        _tableView.backgroundColor = UIColor.clearColor;
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.estimatedRowHeight = 0;

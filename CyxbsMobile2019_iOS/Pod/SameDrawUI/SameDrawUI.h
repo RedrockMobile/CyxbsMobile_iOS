@@ -11,23 +11,30 @@
 
 #import <UIKit/UIKit.h>
 
+extern const struct CyxbsEmptyImageName {
+    __unsafe_unretained NSString *error404;
+    __unsafe_unretained NSString *kebiao;
+    __unsafe_unretained NSString *sleepy;
+    __unsafe_unretained NSString *openCurtain;
+    __unsafe_unretained NSString *emptyMessage;
+    __unsafe_unretained NSString *emptyList;
+    __unsafe_unretained NSString *checkBoard;
+    __unsafe_unretained NSString *toTheMoon;
+    __unsafe_unretained NSString *letItRot;
+    __unsafe_unretained NSString *haveAnyQuestion;
+} CyxbsEmptyImageName;
+
 @interface UIView (SameDrawUI)
 
 /// 添加渐变蓝色
 - (void)addGradientBlueLayer;
 
-@end
+/// 创建一个空白占位页
+/// - Parameters:
+///   - CyxbsEmptyImageName: 是上面CyxbsEmptyImageName的一种
+///   - content: 描述信息，会自动换行（或手动\n）
++ (instancetype)viewWithEmptyholderImageName:(NSString *)CyxbsEmptyImageName content:(NSString *)content;
 
-extern const struct CyxbsEmptyViewKeys {
-    __unsafe_unretained NSString *traverseParentHierarchy; // boxed BOOL. default is YES.
-    __unsafe_unretained NSString *pushParentBack;           // boxed BOOL. default is YES.
-    __unsafe_unretained NSString *animationDuration; // boxed double, in seconds. default is 0.5.
-    __unsafe_unretained NSString *parentAlpha;       // boxed float. lower is darker. default is 0.5.
-    __unsafe_unretained NSString *parentScale;       // boxed double default is 0.8
-    __unsafe_unretained NSString *shadowOpacity;     // default is 0.8
-    __unsafe_unretained NSString *transitionStyle;     // boxed NSNumber - one of the KNSemiModalTransitionStyle values.
-    __unsafe_unretained NSString *disableCancel;     // boxed BOOL. default is NO.
-    __unsafe_unretained NSString *backgroundView;     // UIView, custom background.
-} KNSemiModalOptionKeys;
+@end
 
 #endif /* SameDrawUI_h */
