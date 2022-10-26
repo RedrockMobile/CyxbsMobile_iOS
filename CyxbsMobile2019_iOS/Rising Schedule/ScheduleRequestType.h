@@ -37,9 +37,6 @@ FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestCustom;
 
 // MARK: Method
 
-/// 获取API
-FOUNDATION_EXPORT NSString * _Nullable API_forScheduleModelRequestType(const ScheduleModelRequestType _Nonnull);
-
 /// 获取KEY
 FOUNDATION_EXPORT NSString * _Nullable KeyInParameterForScheduleModelRequestType(const ScheduleModelRequestType _Nonnull);
 

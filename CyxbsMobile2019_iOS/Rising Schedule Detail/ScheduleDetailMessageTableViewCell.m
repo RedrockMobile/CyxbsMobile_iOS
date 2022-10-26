@@ -58,7 +58,7 @@ NSString *ScheduleDetailMessageTableViewCellReuseIdentifier = @"ScheduleDetailMe
 - (UILabel *)leftLab {
     if (_leftLab == nil) {
         _leftLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width / 2, self.contentView.height)];
-        _leftLab.font = [UIFont fontWithName:PingFangSC size:15];
+        _leftLab.font = [UIFont fontWithName:FontName.PingFangSC.Regular size:15];
         _leftLab.textColor =
         [UIColor Light:UIColorHex(#112C54)
                   Dark:UIColorHex(#F0F0F2)];
@@ -69,7 +69,7 @@ NSString *ScheduleDetailMessageTableViewCellReuseIdentifier = @"ScheduleDetailMe
 - (UILabel *)rightLab {
     if (_rightLab == nil) {
         _rightLab = [[UILabel alloc] initWithFrame:CGRectMake(self.leftLab.right, 0, self.contentView.width / 2, self.contentView.height)];
-        _rightLab.font = [UIFont fontWithName:PingFangSCBold size:15];
+        _rightLab.font = [UIFont fontWithName:FontName.PingFangSC.Semibold size:15];
         _rightLab.textAlignment = NSTextAlignmentRight;
         _rightLab.textColor =
         [UIColor Light:UIColorHex(#112C54)

@@ -90,7 +90,7 @@ NSString *ScheduleSupplementaryCollectionViewCellReuseIdentifier = @"ScheduleSup
         _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 6, -1, 20)];
         _titleLab.backgroundColor = UIColor.clearColor;
         _titleLab.textAlignment = NSTextAlignmentCenter;
-        _titleLab.font = [UIFont fontWithName:PingFangSC size:12];
+        _titleLab.font = [UIFont fontWithName:FontName.PingFangSC.Regular size:12];
         _titleLab.textColor =
         [UIColor dm_colorWithLightColor:UIColorHex(#15315B)
                               darkColor:UIColorHex(#F0F0F2)];
@@ -103,7 +103,7 @@ NSString *ScheduleSupplementaryCollectionViewCellReuseIdentifier = @"ScheduleSup
         _contentLab = [[UILabel alloc] initWithFrame:CGRectMake(self.titleLab.left, -1, -1, 20)];
         _contentLab.backgroundColor = UIColor.clearColor;
         _contentLab.textAlignment = NSTextAlignmentCenter;
-        _contentLab.font = [UIFont fontWithName:PingFangSC size:11];
+        _contentLab.font = [UIFont fontWithName:FontName.PingFangSC.Regular size:11];
         _contentLab.textColor =
         [UIColor dm_colorWithLightColor:UIColorHex(#606E8A)
                               darkColor:UIColorHex(#868686)];

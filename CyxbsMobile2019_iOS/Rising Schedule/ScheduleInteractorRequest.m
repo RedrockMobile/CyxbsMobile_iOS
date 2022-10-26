@@ -25,7 +25,7 @@
         for (NSString *num in obj) {
             
             [HttpTool.shareTool
-             request:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-jwzx/kebiao"
+             request:STRS(NetURL.base.bedev, NetURL.scheule.stu)
              type:HttpToolRequestTypePost
              serializer:HttpToolRequestSerializerHTTP
              bodyParameters:@{

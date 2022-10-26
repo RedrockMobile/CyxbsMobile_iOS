@@ -8,7 +8,10 @@
 
 #import "FastLoginViewController.h"
 
-@interface FastLoginViewController ()
+@interface FastLoginViewController () <UITextFieldDelegate>
+
+/// <#description#>
+@property (nonatomic, strong) UITextField *textField;
 
 @end
 
@@ -20,6 +23,20 @@
     [UIColor Light:UIColorHex(#FFFFFF)
               Dark:UIColorHex(#1D1D1D)];
     
+}
+
+- (UITextField *)textField {
+    if (_textField == nil) {
+        _textField = [[UITextField alloc] initWithFrame:CGRectMake(-1, -1, 200, 48)];
+        _textField.delegate = self;
+    }
+    return _textField;
+}
+
+#pragma mark - <UITextFieldDelegate>
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [NSUserDefaults.standardUserDefaults setValue:textField.text forKey:UDKey.sno];
 }
 
 @end

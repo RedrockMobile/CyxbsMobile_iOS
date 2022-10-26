@@ -51,7 +51,7 @@
 - (UILabel *)sectionLab {
     if (_sectionLab == nil) {
         _sectionLab = [[UILabel alloc] initWithFrame:CGRectMake(16, 16, 150, 31)];
-        _sectionLab.font = [UIFont fontWithName:PingFangSCBold size:22];
+        _sectionLab.font = [UIFont fontWithName:FontName.PingFangSC.Semibold size:22];
         _sectionLab.textColor =
         [UIColor Light:UIColorHex(#112C54)
                   Dark:UIColorHex(#F0F0F2)];
@@ -65,7 +65,7 @@
         _reBackBtn.right = self.SuperRight - 16;
         _reBackBtn.layer.cornerRadius = _reBackBtn.height / 2;
         _reBackBtn.clipsToBounds = YES;
-        _reBackBtn.titleLabel.font = [UIFont fontWithName:PingFangSC size:13];
+        _reBackBtn.titleLabel.font = [UIFont fontWithName:FontName.PingFangSC.Regular size:13];
         [_reBackBtn setTitle:@"回到本周" forState:UIControlStateNormal];
         [_reBackBtn setTitleColor:UIColorHex(#FFFFFF) forState:UIControlStateNormal];
         [_reBackBtn addGradientBlueLayer];

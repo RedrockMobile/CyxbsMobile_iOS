@@ -16,24 +16,6 @@ ScheduleModelRequestType const ScheduleModelRequestCustom = @"custom";
 
 ScheduleModelRequestType const ScheduleModelRequestTeacher = @"teacher";
 
-NSString *API_forScheduleModelRequestType(ScheduleModelRequestType type) {
-    NSCParameterAssert(type);
-    
-    static NSDictionary *APIDictionary;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        APIDictionary = @{
-            ScheduleModelRequestStudent : RisingSchedule_POST_stuSchedule_API,
-            ScheduleModelRequestTeacher : RisingSchedule_POST_teaSchedule_API,
-            ScheduleModelRequestCustom : RisingSchedule_POST_perTransaction_API
-        };
-    });
-    
-    NSCParameterAssert(APIDictionary[type]);
-    
-    return APIDictionary[type];
-}
-
 NSString *KeyInParameterForScheduleModelRequestType(ScheduleModelRequestType type) {
     NSCParameterAssert(type);
     

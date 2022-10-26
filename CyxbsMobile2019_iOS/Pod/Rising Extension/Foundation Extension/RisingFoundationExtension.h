@@ -18,6 +18,4 @@ FOUNDATION_EXPORT void RisingDetailLog(NSString *format, ...) NS_FORMAT_FUNCTION
 
 #define RisingLog(Emoji, format, ...) RisingDetailLog(@"%@ %s %@", ((__bridge NSString *)CFSTR(#Emoji)), __func__, [NSString stringWithFormat:format, ##__VA_ARGS__]);
 
-
-
 #endif /* RisingFoundationExtention_h */

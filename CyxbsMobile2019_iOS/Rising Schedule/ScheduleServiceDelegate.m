@@ -97,7 +97,7 @@
     NSArray <ScheduleCourse *> *courses = [self.model coursesWithCourse:selectCourse inWeek:indexPath.section];
     
     ScheduleDetailController *vc = [[ScheduleDetailController alloc] initWithCourses:courses];
-    [[[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy] impactOccurred];
+    [[[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium] impactOccurred];
     [self.viewController presentSemiViewController:vc withOptions:@{
         KNSemiModalOptionKeys.pushParentBack : @(NO),
         KNSemiModalOptionKeys.parentAlpha : @(1),

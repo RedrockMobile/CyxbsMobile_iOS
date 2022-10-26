@@ -46,7 +46,7 @@
     }];
     
     UILabel *lab = [[UILabel alloc] init];
-    lab.font = [UIFont fontWithName:PingFangSC size:14];
+    lab.font = [UIFont fontWithName:FontName.PingFangSC.Regular size:14];
     lab.textColor =
     [UIColor Light:UIColorHex(#15315B) Dark:UIColorHex(#F0F0F2)];
     lab.numberOfLines = 0;

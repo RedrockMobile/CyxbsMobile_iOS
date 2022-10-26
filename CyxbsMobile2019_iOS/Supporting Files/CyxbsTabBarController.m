@@ -45,9 +45,9 @@
 
 - (UIViewController *)_vc1 {
     SchedulePresenter *presenter = [[SchedulePresenter alloc] init];
-//    presenter.delegateService.parameterIfNeeded = @{
-//        ScheduleModelRequestStudent : @[@"2021215154"]
-//    };
+    presenter.delegateService.parameterIfNeeded = @{
+        ScheduleModelRequestStudent : @[@"2021215154"]
+    };
     ScheduleController *vc = [[ScheduleController alloc] initWithPresenter:presenter];
     vc.isPushStyle = YES;
     

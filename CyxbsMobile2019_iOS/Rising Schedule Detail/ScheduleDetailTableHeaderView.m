@@ -39,7 +39,7 @@
 - (UILabel *)titleLab {
     if (_titleLab == nil) {
         _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(16, 16, self.width - 2 * 16, 31)];
-        _titleLab.font = [UIFont fontWithName:PingFangSCBold size:22];
+        _titleLab.font = [UIFont fontWithName:FontName.PingFangSC.Semibold size:22];
         _titleLab.textColor =
         [UIColor Light:UIColorHex(#112C54) Dark:UIColorHex(#F0F0F2)];
     }
@@ -49,7 +49,7 @@
 - (UILabel *)detailLab {
     if (_detailLab == nil) {
         _detailLab = [[UILabel alloc] initWithFrame:CGRectMake(self.titleLab.left, self.titleLab.bottom + 8, self.titleLab.width, 18)];
-        _detailLab.font = [UIFont fontWithName:PingFangSC size:13];
+        _detailLab.font = [UIFont fontWithName:FontName.PingFangSC.Regular size:13];
         _detailLab.textColor =
         [UIColor Light:UIColorHex(#15315BB2)
                   Dark:UIColorHex(#F0F0F080)];

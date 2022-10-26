@@ -11,15 +11,26 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NSString * REDROCK_ENVIRONMENT_URL NS_STRING_ENUM;
-
-FOUNDATION_EXPORT REDROCK_ENVIRONMENT_URL const REDROCK_ENVIRONMENT_BEDEV;
-FOUNDATION_EXPORT REDROCK_ENVIRONMENT_URL const REDROCK_ENVIRONMENT_BEPROD;
-FOUNDATION_EXPORT REDROCK_ENVIRONMENT_URL const REDROCK_ENVIRONMENT_CLOUD;
-
-REDROCK_ENVIRONMENT_URL const __system_check_url__(void);
-
-#define CyxbsMobileBaseURL_1 @""
+extern const struct NetURL {
+    // .base
+    const struct Base {
+        __unsafe_unretained NSString *bedev;
+        __unsafe_unretained NSString *beprod;
+        __unsafe_unretained NSString *cloud;
+    } base;
+    // .schedule
+    const struct Schedule {
+        __unsafe_unretained NSString *stu;
+        __unsafe_unretained NSString *tea;
+        // .transaction
+        const struct Transaction {
+            __unsafe_unretained NSString *get;
+            __unsafe_unretained NSString *add;
+            __unsafe_unretained NSString *edit;
+            __unsafe_unretained NSString *del;
+        } transaction;
+    } scheule;
+} NetURL;
 
 #import "RisingScheduleHeader.h"
 

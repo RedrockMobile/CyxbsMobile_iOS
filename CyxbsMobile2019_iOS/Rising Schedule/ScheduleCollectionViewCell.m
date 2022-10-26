@@ -66,7 +66,7 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
         _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(8, 8, -1, -1)];
         _titleLab.backgroundColor = UIColor.clearColor;
         _titleLab.numberOfLines = 3;
-        _titleLab.font = [UIFont fontWithName:PingFangSC size:10];
+        _titleLab.font = [UIFont fontWithName:FontName.PingFangSC.Regular size:10];
         _titleLab.textAlignment = NSTextAlignmentCenter;
     }
     return _titleLab;
@@ -77,7 +77,7 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
         _contentLab = [[UILabel alloc] init];
         _contentLab.backgroundColor = UIColor.clearColor;
         _contentLab.numberOfLines = 3;
-        _contentLab.font = [UIFont fontWithName:PingFangSC size:10];
+        _contentLab.font = [UIFont fontWithName:FontName.PingFangSC.Regular size:10];
         _contentLab.textAlignment = NSTextAlignmentCenter;
     }
     return _contentLab;

@@ -102,4 +102,7 @@ bodyConstructing:(nullable void (^)(id<AFMultipartFormData> body))block
 
 @end
 
+
+#define STRS(NetURLbase, else) [NetURLbase stringByAppendingString:else]
+
 NS_ASSUME_NONNULL_END

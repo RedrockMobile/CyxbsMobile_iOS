@@ -113,14 +113,13 @@
     UIImage *unselectImg = [[[UIImage imageNamed:@"schedule"] imageByResizeToSize:CGSizeMake(20, 20) contentMode:UIViewContentModeScaleAspectFit] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"课表" image:unselectImg selectedImage:selectImg];
     [self.tabBarItem setTitleTextAttributes:@{
-        NSFontAttributeName : [UIFont fontWithName:PingFangSC size:10],
+        NSFontAttributeName : [UIFont fontWithName:FontName.PingFangSC.Regular size:10],
         NSForegroundColorAttributeName : [UIColor Light:UIColorHex(#2923D2) Dark:UIColorHex(#465FFF)]
     } forState:UIControlStateSelected];
     [self.tabBarItem setTitleTextAttributes:@{
-        NSFontAttributeName : [UIFont fontWithName:PingFangSC size:10],
+        NSFontAttributeName : [UIFont fontWithName:FontName.PingFangSC.Regular size:10],
         NSForegroundColorAttributeName : [UIColor Light:UIColorHex(#AABCD8) Dark:UIColorHex(#8C8C8C)]
     } forState:UIControlStateNormal];
-    NSAttributedStringKey y;
 }
 
 @end

@@ -20,6 +20,7 @@
 		1466283428C5CA4600AF584F /* ScheduleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466283328C5CA4600AF584F /* ScheduleCollectionViewCell.m */; };
 		146AA0C528B65FA800391FD0 /* SchedulePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 146AA0C428B65FA800391FD0 /* SchedulePresenter.m */; };
 		146D144C2907F21700327AB8 /* FastLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D144B2907F21700327AB8 /* FastLoginViewController.m */; };
+		146D144F2908BB2800327AB8 /* UDKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D144E2908BB2800327AB8 /* UDKey.m */; };
 		1478633D28BB567A00C1E54B /* ScheduleCombineModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1478633C28BB567A00C1E54B /* ScheduleCombineModel.mm */; };
 		14B46E6128B4D283003D288B /* ScheduleCourse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6028B4D283003D288B /* ScheduleCourse.mm */; };
 		14B46E6528B4D5D7003D288B /* ScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6328B4D5D7003D288B /* ScheduleModel.m */; };
@@ -98,6 +99,8 @@
 		146AA0C428B65FA800391FD0 /* SchedulePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchedulePresenter.m; sourceTree = "<group>"; };
 		146D144A2907F21700327AB8 /* FastLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FastLoginViewController.h; sourceTree = "<group>"; };
 		146D144B2907F21700327AB8 /* FastLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FastLoginViewController.m; sourceTree = "<group>"; };
+		146D144D2908BB1C00327AB8 /* UDKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UDKey.h; sourceTree = "<group>"; };
+		146D144E2908BB2800327AB8 /* UDKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UDKey.m; sourceTree = "<group>"; };
 		1478633B28BB567A00C1E54B /* ScheduleCombineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCombineModel.h; sourceTree = "<group>"; };
 		1478633C28BB567A00C1E54B /* ScheduleCombineModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ScheduleCombineModel.mm; sourceTree = "<group>"; };
 		14B46E5F28B4D282003D288B /* ScheduleCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleCourse.h; sourceTree = "<group>"; };
@@ -277,6 +280,8 @@
 				14B9647728F66C1E00C984AB /* NetURL.m */,
 				14B9647928F6700B00C984AB /* FontName.h */,
 				14B9647A28F6701500C984AB /* FontName.m */,
+				146D144D2908BB1C00327AB8 /* UDKey.h */,
+				146D144E2908BB2800327AB8 /* UDKey.m */,
 			);
 			path = CyxbsHeader;
 			sourceTree = "<group>";
@@ -759,6 +764,7 @@
 				1A9B767A235F50A800725937 /* main.m in Sources */,
 				1422242228D9B091009A4A54 /* UIColor+Rising.m in Sources */,
 				14B9647B28F6701500C984AB /* FontName.m in Sources */,
+				146D144F2908BB2800327AB8 /* UDKey.m in Sources */,
 				14B9648F28F6883800C984AB /* HttpTool.m in Sources */,
 				14B46E6128B4D283003D288B /* ScheduleCourse.mm in Sources */,
 				1422241F28D9B091009A4A54 /* NSDate+Rising.m in Sources */,
