@@ -9,5 +9,7 @@
 #import "UDKey.h"
 
 const struct UDKey UDKey = {
-    .sno = @"UDKey_sno"
+    .sno = @"UDKey_sno",
+    .isXXHB = @"UDKey_isXXHB",
+    .startDate = @"UDKey_startDate"
 };

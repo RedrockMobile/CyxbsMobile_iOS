@@ -31,6 +31,8 @@ typedef NSString * ScheduleCombineType NS_STRING_ENUM;
 
 /// 当周
 @property (nonatomic) NSInteger nowWeek;
+/// 起始日期
+@property (nonatomic) NSDate *startDate;
 
 /// 唯一标识
 /// (计算属性：combineType + sno)

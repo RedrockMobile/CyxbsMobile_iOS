@@ -39,8 +39,6 @@
     self.nowWeek = model.nowWeek;
 }
 
-
-
 - (void)clear {
     _statusMap = NSMutableDictionary.dictionary;
     _courseAry = NSMutableArray.array;

@@ -19,7 +19,7 @@ const struct NetURL NetURL = {
         .tea = @"/magipoke-teakb/api/teaKb",
         .transaction = {
             .get = @"/magipoke-reminder/Person/getTransaction",
-            .add = @"magipoke-reminder/Person/addTransaction",
+            .add = @"/magipoke-reminder/Person/addTransaction",
             .edit = @"/magipoke-reminder/Person/editTransaction",
             .del = @"/magipoke-reminder/Person/deleteTransaction"
         }

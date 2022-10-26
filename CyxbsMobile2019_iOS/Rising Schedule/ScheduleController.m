@@ -51,10 +51,14 @@
     [self.view addSubview:self.headerView];
     [self.view addSubview:self.collectionView];
     
+    [self _drawTabbar];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
     // 请求数据
     [self.presenter.delegateService requestAndReloadData];
-    
-    [self _drawTabbar];
 }
 
 #pragma mark - Getter

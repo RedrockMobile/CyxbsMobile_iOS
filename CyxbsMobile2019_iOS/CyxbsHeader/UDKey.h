@@ -11,6 +11,8 @@
 
 extern const struct UDKey {
     __unsafe_unretained NSString *sno; // String value
+    __unsafe_unretained NSString *isXXHB; // Bool value
+    __unsafe_unretained NSString *startDate; // Date value
 } UDKey;
 
 #endif /* UDKey_h */

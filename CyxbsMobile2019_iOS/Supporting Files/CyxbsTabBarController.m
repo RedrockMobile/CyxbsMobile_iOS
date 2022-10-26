@@ -12,7 +12,10 @@
 
 #import "FastLoginViewController.h"
 
-@interface CyxbsTabBarController ()
+@interface CyxbsTabBarController () 
+
+/// <#description#>
+@property (nonatomic, strong) ScheduleController *scheduleController;
 
 @end
 
@@ -23,15 +26,15 @@
     [self _tabBar];
     self.viewControllers = @[
         self._vc1,
+        self._test1
     ];
 }
 
 #pragma mark - Method
 
-- (void)_test1 {
+- (UIViewController *)_test1 {
     FastLoginViewController *vc = [[FastLoginViewController alloc] init];
-    vc.modalPresentationStyle = UIModalPresentationPageSheet;
-    [self presentViewController:vc animated:YES completion:nil];
+    return vc;
 }
 
 #pragma mark - private
@@ -50,6 +53,7 @@
     };
     ScheduleController *vc = [[ScheduleController alloc] initWithPresenter:presenter];
     vc.isPushStyle = YES;
+    self.scheduleController = vc;
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;

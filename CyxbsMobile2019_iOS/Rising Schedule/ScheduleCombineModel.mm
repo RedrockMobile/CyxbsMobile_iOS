@@ -47,6 +47,27 @@ ScheduleCombineType const ScheduleCombineCustom = @"custom";
     return [NSString stringWithFormat:@"%@%@", _combineType, _sno];
 }
 
+#pragma mark - Setter
+
+- (void)setNowWeek:(NSInteger)nowWeek {
+    if (_nowWeek == nowWeek) {
+        return;
+    }
+    _nowWeek = nowWeek;
+    NSDate *date = NSDate.date;
+    NSTimeInterval beforNow = (_nowWeek - 1) * 7 * 24 * 60 * 60 + (date.weekday - 2) * 24 * 60 * 60;
+    _startDate = [NSDate dateWithTimeIntervalSinceNow:-beforNow];
+}
+
+- (void)setStartDate:(NSDate *)startDate {
+    if ([_startDate isEqualToDate:startDate]) {
+        return;
+    }
+    _startDate = startDate;
+    NSTimeInterval beforNow = [NSDate.date timeIntervalSinceDate:startDate];
+    _nowWeek = beforNow / (24 * 60 * 60) / 7;
+}
+
 @end
 
 #pragma mark - ScheduleCombineModel (XXHB)
@@ -74,6 +95,7 @@ ScheduleCombineType const ScheduleCombineCustom = @"custom";
 
 - (void)awake {
     self.courseAry = [self.class.db getAllObjectsOfClass:ScheduleCourse.class fromTable:self.identifier].mutableCopy;
+    self.startDate = [NSUserDefaults.standardUserDefaults valueForKey:UDKey.startDate];
 }
 
 @end

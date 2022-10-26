@@ -47,10 +47,20 @@
         [self.model combineModel:combineModel];
         
         [self.collectionView reloadData];
-
         [self scrollToSection:self.model.nowWeek];
+        
+        if ([NSUserDefaults.standardUserDefaults boolForKey:UDKey.isXXHB]) {
+            [combineModel replace];
+        }
     }
      failure:^(NSError * _Nonnull error) {
+        if (![NSUserDefaults.standardUserDefaults boolForKey:UDKey.isXXHB]) {
+            ScheduleCombineModel *combineModel = [ScheduleCombineModel combineWithSno:[NSUserDefaults.standardUserDefaults valueForKey:UDKey.sno] type:ScheduleCombineSystem];
+            [combineModel awake];
+            [self.model combineModel:combineModel];
+            [self.collectionView reloadData];
+            [self scrollToSection:self.model.nowWeek];
+        }
     }];
 }
 
