@@ -31,6 +31,8 @@
     if (self) {
         _presenter = presenter;
         presenter.controller = self;
+        
+        [self _drawTabbar];
     }
     return self;
 }
@@ -50,14 +52,18 @@
     
     [self.view addSubview:self.headerView];
     [self.view addSubview:self.collectionView];
-    
-    [self _drawTabbar];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    // 请求数据
+    // 请求数据（依据缓存）
+    NSString *sno = [NSUserDefaults.standardUserDefaults valueForKey:UDKey.sno];
+    if (sno && ![sno isEqualToString:@""]) {
+        self.presenter.delegateService.parameterIfNeeded = @{
+            ScheduleModelRequestStudent : @[sno]
+        };
+    }
     [self.presenter.delegateService requestAndReloadData];
 }
 

@@ -103,7 +103,7 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
 }
 
 - (NSString *)_checkTime {
-    if (_period_location <= 0 || NSMaxRange(self.period) > 12) {
+    if (_period_location <= 0 || NSMaxRange(self.period) - 1 > 12) {
         return @"";
     }
     
@@ -139,7 +139,7 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
         @"20:35",
         @"22:30"
     ];
-    return [NSString stringWithFormat:@"%@ - %@", beginTime[_period_location - 1], endTime[NSMaxRange(self.period) - 2]];
+    return [NSString stringWithFormat:@"%@ - %@", beginTime[(_period_location - 1) % 12], endTime[(NSMaxRange(self.period) - 2) % 12]];
 }
 
 @end

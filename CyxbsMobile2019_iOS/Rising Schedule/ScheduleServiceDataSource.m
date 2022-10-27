@@ -122,13 +122,13 @@
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
 
         ScheduleCollectionHeaderView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleCollectionHeaderViewReuseIdentifier forIndexPath:indexPath];
-            
+        
         view.widthForLeadingView = layout.widthForLeadingSupplementaryView;
         view.columnSpacing = layout.columnSpacing;
         view.dataSource = self;
         view.superCollectionView = collectionView;
         view.backgroundColor = collectionView.backgroundColor;
-                
+        
         return view;
     } else if ([kind isEqualToString:UICollectionElementKindSectionLeading]) {
         

@@ -101,6 +101,7 @@
 		146D144B2907F21700327AB8 /* FastLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FastLoginViewController.m; sourceTree = "<group>"; };
 		146D144D2908BB1C00327AB8 /* UDKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UDKey.h; sourceTree = "<group>"; };
 		146D144E2908BB2800327AB8 /* UDKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UDKey.m; sourceTree = "<group>"; };
+		146D1450290A614100327AB8 /* SwiftBrigeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftBrigeHeader.h; sourceTree = "<group>"; };
 		1478633B28BB567A00C1E54B /* ScheduleCombineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCombineModel.h; sourceTree = "<group>"; };
 		1478633C28BB567A00C1E54B /* ScheduleCombineModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ScheduleCombineModel.mm; sourceTree = "<group>"; };
 		14B46E5F28B4D282003D288B /* ScheduleCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleCourse.h; sourceTree = "<group>"; };
@@ -371,6 +372,7 @@
 				14B9647D28F6715500C984AB /* CyxbsHeader */,
 				FE87CE1B27E98F82008D7148 /* Supporting Files */,
 				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
+				146D1450290A614100327AB8 /* SwiftBrigeHeader.h */,
 				146D144A2907F21700327AB8 /* FastLoginViewController.h */,
 				146D144B2907F21700327AB8 /* FastLoginViewController.m */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
@@ -958,7 +960,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
@@ -997,16 +999,16 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.4.3;
+				MARKETING_VERSION = 6.4.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = CyxbsMobile2019_iOS/SwiftBrigeHeader;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1019,7 +1021,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 0;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
@@ -1058,15 +1060,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.4.3;
+				MARKETING_VERSION = 6.4.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/Swift/CyxbsMobile2019_iOS-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
+				SWIFT_OBJC_BRIDGING_HEADER = CyxbsMobile2019_iOS/SwiftBrigeHeader;
+				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

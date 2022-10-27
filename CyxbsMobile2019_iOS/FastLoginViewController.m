@@ -22,6 +22,14 @@
 
 @implementation FastLoginViewController
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self _drawTabbar];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor =
@@ -31,7 +39,6 @@
     [self.view addSubview:self.textField];
     [self.view addSubview:self.cleBtn];
     
-    [self _drawTabbar];
 }
 
 - (UITextField *)textField {
@@ -66,11 +73,13 @@
         [_cleBtn addGradientBlueLayer];
         _cleBtn.layer.cornerRadius = _cleBtn.height / 3;
         _cleBtn.clipsToBounds = YES;
-        _cleBtn.titleLabel.font = [UIFont fontWithName:FontName.PingFangSC.Regular size:13];
-        [_cleBtn setTitle:@"取  消" forState:UIControlStateNormal];
+        _cleBtn.titleLabel.font = [UIFont fontWithName:FontName.PingFangSC.Semibold size:16];
+        [_cleBtn setTitle:@"注  消" forState:UIControlStateNormal];
         [_cleBtn setTitleColor:UIColorHex(#FFFFFF) forState:UIControlStateNormal];
         [_cleBtn bringSubviewToFront:_cleBtn.titleLabel];
-        [_cleBtn addTarget:self action:@selector(_cletap:) forControlEvents:UIControlEventTouchUpInside];
+        [_cleBtn addTarget:self action:@selector(_cletap:)
+          forControlEvents:UIControlEventTouchUpInside];
+        [_cleBtn addTarget:self action:@selector(_outside:) forControlEvents:UIControlEventTouchUpOutside];
     }
     return _cleBtn;
 }
@@ -92,7 +101,11 @@
 }
 
 - (void)_cletap:(UIButton *)btn {
+    [NSUserDefaults.standardUserDefaults setValue:self.textField.text forKey:UDKey.sno];
     self.textField.text = @"";
+}
+
+- (void)_outside:(UIButton *)btn {
     [NSUserDefaults.standardUserDefaults setBool:YES forKey:UDKey.isXXHB];
 }
 
@@ -102,7 +115,6 @@
     if (!textField.text || ![textField.text isEqualToString:@""]) {
         return;
     }
-    [NSUserDefaults.standardUserDefaults setValue:textField.text forKey:UDKey.sno];
 }
 
 @end

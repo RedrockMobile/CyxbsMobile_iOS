@@ -55,6 +55,10 @@
     }
      failure:^(NSError * _Nonnull error) {
         if (![NSUserDefaults.standardUserDefaults boolForKey:UDKey.isXXHB]) {
+            NSString *str = [NSUserDefaults.standardUserDefaults valueForKey:UDKey.sno];
+            if (!str || [str isEqualToString:@""]) {
+                return;
+            }
             ScheduleCombineModel *combineModel = [ScheduleCombineModel combineWithSno:[NSUserDefaults.standardUserDefaults valueForKey:UDKey.sno] type:ScheduleCombineSystem];
             [combineModel awake];
             [self.model combineModel:combineModel];

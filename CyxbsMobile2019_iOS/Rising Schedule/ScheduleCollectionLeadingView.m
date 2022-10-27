@@ -66,6 +66,8 @@ NSString *ScheduleCollectionLeadingViewReuseIdentifier = @"ScheduleCollectionLea
         
         _collectionView = [[UICollectionView alloc] initWithFrame:self.SuperFrame collectionViewLayout:layout];
         _collectionView.backgroundColor = UIColor.clearColor;
+        _collectionView.bounces = NO;
+        _collectionView.scrollEnabled = NO;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.dataSource = self;
