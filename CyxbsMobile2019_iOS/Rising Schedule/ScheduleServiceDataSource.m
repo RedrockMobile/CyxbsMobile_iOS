@@ -62,6 +62,7 @@
     [view registerClass:ScheduleCollectionViewCell.class forCellWithReuseIdentifier:ScheduleCollectionViewCellReuseIdentifier];
     [view registerClass:ScheduleCollectionHeaderView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleCollectionHeaderViewReuseIdentifier];
     [view registerClass:ScheduleCollectionLeadingView.class forSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleCollectionLeadingViewReuseIdentifier];
+    [view registerClass:UICollectionReusableView.class forSupplementaryViewOfKind:UICollectionElementKindSectionPlaceholder withReuseIdentifier:UICollectionElementKindSectionPlaceholder];
     
     [view addSubview:self.backgroundView];
     
@@ -130,7 +131,9 @@
         view.backgroundColor = collectionView.backgroundColor;
         
         return view;
-    } else if ([kind isEqualToString:UICollectionElementKindSectionLeading]) {
+    }
+    
+    if ([kind isEqualToString:UICollectionElementKindSectionLeading]) {
         
         ScheduleCollectionLeadingView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleCollectionLeadingViewReuseIdentifier forIndexPath:indexPath];
         
@@ -138,6 +141,13 @@
         view.superCollectionView = collectionView;
         
         return view;
+    }
+    
+    if ([kind isEqualToString:UICollectionElementKindSectionPlaceholder]) {
+        
+        UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionPlaceholder withReuseIdentifier:UICollectionElementKindSectionPlaceholder forIndexPath:indexPath];
+        
+        
     }
     
     return nil;

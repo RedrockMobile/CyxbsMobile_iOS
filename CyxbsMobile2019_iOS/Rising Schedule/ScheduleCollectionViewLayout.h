@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class ScheduleCollectionViewLayout;
 
+/// <#Description#>
 @protocol ScheduleCollectionViewLayoutDataSource <NSObject>
 
 @required
@@ -55,6 +56,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @optional
 
+/// 双人展示 - 对比两个重合的视图
+/// @param collectionView 视图
+/// @param layout 布局
+/// @param originIndexPath 之前在视图里面的下标
+/// @param conflictIndexPath 即将往视图里添加的下标
+/// @param block 如果要重新绘制range就掉用，可以不掉用
 - (NSComparisonResult)collectionView:(UICollectionView *)collectionView
                               layout:(ScheduleCollectionViewLayout *)layout
               compareOriginIndexPath:(NSIndexPath *)originIndexPath
@@ -83,7 +90,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) CGFloat heightForHeaderSupplementaryView;
 
 /// 双人课表callback，默认为NO
-/// 如果是YES， 必须有optional的回掉
+/// 如果是YES， 必须有optional的**compareOrigin:conflictWith:**回掉
 @property (nonatomic) BOOL callBack;
 
 @end

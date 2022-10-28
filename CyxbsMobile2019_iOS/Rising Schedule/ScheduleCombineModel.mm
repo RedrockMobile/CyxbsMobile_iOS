@@ -89,13 +89,21 @@ ScheduleCombineType const ScheduleCombineCustom = @"custom";
 }
 
 - (void)replace {
+    [self _check];
     [self.class.db deleteAllObjectsFromTable:self.identifier];
     [self.class.db insertObjects:self.courseAry into:self.identifier];
 }
 
 - (void)awake {
+    [self _check];
     self.courseAry = [self.class.db getAllObjectsOfClass:ScheduleCourse.class fromTable:self.identifier].mutableCopy;
     self.startDate = [NSUserDefaults.standardUserDefaults valueForKey:UDKey.startDate];
+}
+
+- (void)_check {
+    if (![self.class.db isTableExists:self.identifier]) {
+        [self.class.db createTableAndIndexesOfName:self.identifier withClass:ScheduleCourse.class];
+    }
 }
 
 @end

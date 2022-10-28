@@ -120,7 +120,7 @@
 
 - (void)_drawTabbar {
     UIImage *selectImg = [[[UIImage imageNamed:@"schedule"] imageByResizeToSize:CGSizeMake(20, 20) contentMode:UIViewContentModeScaleAspectFit] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    UIImage *unselectImg = [[[UIImage imageNamed:@"schedule"] imageByResizeToSize:CGSizeMake(20, 20) contentMode:UIViewContentModeScaleAspectFit] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *unselectImg = [[[UIImage imageNamed:@"schedule.unselect"] imageByResizeToSize:CGSizeMake(20, 20) contentMode:UIViewContentModeScaleAspectFit] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"课表" image:unselectImg selectedImage:selectImg];
     [self.tabBarItem setTitleTextAttributes:@{
         NSFontAttributeName : [UIFont fontWithName:FontName.PingFangSC.Regular size:10],

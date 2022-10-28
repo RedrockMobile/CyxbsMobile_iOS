@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "图.png",
+      "filename" : "组 14@3x 1-1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,12 +12,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "图-1.png",
+      "filename" : "shilian@2x 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "图@2x.png",
+      "filename" : "组 14@3x 1-1 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -28,12 +28,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "图@2x-1.png",
+      "filename" : "shilian@2x 1@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "图@3x.png",
+      "filename" : "组 14@3x 1-1 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -44,7 +44,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "图@3x-1.png",
+      "filename" : "shilian@2x 1@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

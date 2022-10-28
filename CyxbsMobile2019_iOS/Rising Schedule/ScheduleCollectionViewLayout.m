@@ -175,6 +175,25 @@
         return attributes;
     }
     
+    // Placeholder Element
+    if ([elementKind isEqualToString:UICollectionElementKindSectionPlaceholder]) {
+        CGFloat x = indexPath.section * self.collectionView.width + self.widthForLeadingSupplementaryView;
+        CGFloat y = self.heightForHeaderSupplementaryView;
+        CGFloat width = self.collectionView.width - self.widthForLeadingSupplementaryView;
+        CGFloat height = self.collectionView.height - self.heightForHeaderSupplementaryView;
+        
+        CGRect frame = CGRectMake(x, y, width, height);
+        
+        attributes.frame = frame;
+        
+        if (self.dataSource) {
+            NSUInteger itemCount = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:indexPath.section];
+            attributes.alpha = (itemCount > 0 ? 0 : 1);
+        }
+        
+        return attributes;
+    }
+    
     return attributes;
 }
 
@@ -223,7 +242,17 @@
             CGFloat x = indexPath.section * self.collectionView.width;
             CGFloat y = self.collectionView.contentOffset.y;
             
-            CGRect frame = CGRectMake(x, y, self.collectionView.width, self.heightForHeaderSupplementaryView);
+            CGRect frame = CGRectMake(x, y, attributes.size.width, attributes.size.height);
+            
+            attributes.frame = frame;
+        }];
+        
+        [_supplementaryAttributes[UICollectionElementKindSectionPlaceholder] enumerateKeysAndObjectsUsingBlock:^(NSIndexPath * _Nonnull indexPath, UICollectionViewLayoutAttributes * _Nonnull attributes, BOOL * __unused stop) {
+            
+            CGFloat x = indexPath.section * self.collectionView.width + self.widthForLeadingSupplementaryView;
+            CGFloat y = self.collectionView.contentOffset.y + self.heightForHeaderSupplementaryView;
+            
+            CGRect frame = CGRectMake(x, y, attributes.size.width, attributes.size.height);
             
             attributes.frame = frame;
         }];
@@ -279,6 +308,15 @@
     CGFloat height = range.length * _itemSize.height + (range.length - 1) * self.columnSpacing;
         
     return CGRectMake(x, y, _itemSize.width, height);;
+}
+
+#pragma mark - Setter
+
+- (void)setCallBack:(BOOL)callBack {
+    _callBack = callBack;
+    ScheduleCollectionViewLayoutInvalidationContext *context = [[ScheduleCollectionViewLayoutInvalidationContext alloc] init];
+    context.invalidateAllAttributes = YES;
+    [self invalidateLayoutWithContext:context];
 }
 
 @end

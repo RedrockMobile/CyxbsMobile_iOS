@@ -12,6 +12,8 @@ NSString *const UICollectionElementKindSectionLeading = @"UICollectionElementKin
 
 NSString *const UICollectionElementKindSectionTrailing = @"UICollectionElementKindSectionTrailing";
 
+NSString *const UICollectionElementKindSectionPlaceholder = @"UICollectionElementKindSectionPlaceholder";
+
 CGFloat StatusBarHeight(void) {
     static CGFloat statusBarHeight = 0;
     static dispatch_once_t onceToken;

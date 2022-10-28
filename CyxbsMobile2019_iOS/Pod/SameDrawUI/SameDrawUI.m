@@ -12,6 +12,11 @@
 
 #import "RisingExtension.h"
 
+const struct CyxbsEmptyImageName CyxbsEmptyImageName = {
+    .error404 = @"empty.error404",
+    .kebiao = @"empty.kebiao"
+};
+
 @implementation UIView (SameDrawUI)
 
 - (void)addGradientBlueLayer {
@@ -27,35 +32,32 @@
     [self.layer addSublayer: gl];
 }
 
-+ (instancetype)viewWithEmptyholderImageName:(NSString *)CyxbsEmptyImageName content:(NSString *)content {
++ (UIView *)placeholderViewWith:(void (^)(UIImageView *, UILabel *))block {
     UIView *view = [[UIView alloc] init];
-    
-    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:CyxbsEmptyImageName]];
-    imgView.contentMode = UIViewContentModeScaleAspectFit;
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"404"]];
     [view addSubview:imgView];
     [imgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(view);
-        make.centerY.equalTo(view).offset(10);
-        if (view.width >= 360) {
-            make.width.equalTo(@320);
-        } else {
-            make.left.equalTo(@20);
-            make.right.equalTo(@20);
-        }
-        make.height.mas_equalTo(imgView.width).multipliedBy(3 / 4);
+        make.top.equalTo(view).offset(view.width / 2);
+        make.width.equalTo(@170);
+        make.height.equalTo(@105);
     }];
     
     UILabel *lab = [[UILabel alloc] init];
-    lab.font = [UIFont fontWithName:FontName.PingFangSC.Regular size:14];
+    lab.text = @"无数据";
+    lab.font = [UIFont fontWithName:FontName.PingFangSC.Medium size:12];
     lab.textColor =
-    [UIColor Light:UIColorHex(#15315B) Dark:UIColorHex(#F0F0F2)];
-    lab.numberOfLines = 0;
+    [UIColor Light:UIColorHex(#112C54) Dark:UIColorHex(#DFDFE3)];
+    
     [view addSubview:lab];
     [lab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(@20);
-        make.right.equalTo(@20);
-        make.top.equalTo(imgView.mas_bottom).offset(10);
+        make.centerX.equalTo(view);
+        make.top.equalTo(imgView.mas_bottom).offset(20);
     }];
+    
+    if (block) {
+        block(imgView, lab);
+    }
     
     return view;
 }
