@@ -402,11 +402,16 @@
         hash_day = couseDataDict[@"hash_day"];
         hash_lesson = couseDataDict[@"hash_lesson"];
         //为整学期页的设置数据
-        [self.orderlySchedulArray[0][hash_day.intValue][hash_lesson.intValue] addObject:couseDataDict];
-        
+        if (hash_day.intValue > 0 && hash_lesson.intValue > 0) {
+            [self.orderlySchedulArray[0][hash_day.intValue][hash_lesson.intValue] addObject:couseDataDict];
+        }
         //为后面有课的周设置数据
-        for (NSNumber *weekNum in weeks) {
-            [self.orderlySchedulArray[weekNum.intValue][hash_day.intValue][hash_lesson.intValue] addObject:couseDataDict];
+        if ([weeks isKindOfClass:NSArray.class]) {
+            for (NSNumber *weekNum in weeks) {
+                if (hash_day.intValue > 0 && hash_lesson.intValue > 0) {
+                    [self.orderlySchedulArray[weekNum.intValue][hash_day.intValue][hash_lesson.intValue] addObject:couseDataDict];
+                }
+            }
         }
     }
 }

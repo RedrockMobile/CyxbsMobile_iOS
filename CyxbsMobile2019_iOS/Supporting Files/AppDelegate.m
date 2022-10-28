@@ -264,10 +264,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     baseURL = @"https://be-prod.redrock.cqupt.edu.cn/";
 #endif
     [NSUserDefaults.standardUserDefaults setObject:baseURL forKey:@"baseURL"];
-    [UserItemTool checkVisibleAPI:^(NSString * _Nonnull url) {
-        // 容灾环境
-        [NSUserDefaults.standardUserDefaults setObject:url forKey:@"baseURL"];
-    }];
+//    [UserItemTool checkVisibleAPI:^(NSString * _Nonnull url) {
+//        // 容灾环境
+//        [NSUserDefaults.standardUserDefaults setObject:url forKey:@"baseURL"];
+//    }];
 }
 
 ///检查是否有最新的掌邮，并提示用户获取
