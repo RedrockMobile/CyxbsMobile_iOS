@@ -942,9 +942,9 @@ static int requestCheckinInfo = 0;
 
 - (void)touchEmptyClass {
     NSLog(@"点击了空教室");
-    EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+//    EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)touchToDOList{
@@ -956,9 +956,9 @@ static int requestCheckinInfo = 0;
 
 - (void)touchSportAttendance {
     NSLog(@"点击了体育打卡");
-    SportAttendanceViewController *vc = [[SportAttendanceViewController alloc] init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+//    SportAttendanceViewController *vc = [[SportAttendanceViewController alloc] init];
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //MARK: - 监听键盘事件
