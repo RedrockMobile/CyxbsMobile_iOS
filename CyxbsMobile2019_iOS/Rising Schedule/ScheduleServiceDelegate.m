@@ -40,7 +40,6 @@
     }
     [self.model clear];
       
-    // 请求到的combineModel 不是最终可以一节节课取出来的model，是一个课程（里面包含了课程的所有周数）
     [ScheduleInteractorRequest
      request:dic
      success:^(ScheduleCombineModel * _Nonnull combineModel) {
@@ -54,7 +53,7 @@
         }
     }
      failure:^(NSError * _Nonnull error) {
-        if (![NSUserDefaults.standardUserDefaults boolForKey:UDKey.isXXHB]) {
+        if ([NSUserDefaults.standardUserDefaults boolForKey:UDKey.isXXHB]) {
             NSString *str = [NSUserDefaults.standardUserDefaults valueForKey:UDKey.sno];
             if (!str || [str isEqualToString:@""]) {
                 return;

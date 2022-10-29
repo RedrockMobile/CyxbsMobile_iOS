@@ -35,6 +35,9 @@
 		14D598CC28FF964100C9798F /* SameDrawUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598CB28FF964100C9798F /* SameDrawUI.m */; };
 		14D598DB2901801F00C9798F /* ScheduleDetailTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598DA2901801F00C9798F /* ScheduleDetailTableHeaderView.m */; };
 		14D598E729021BE400C9798F /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598E629021BE400C9798F /* UIViewController+KNSemiModal.m */; };
+		14E3199B290C11CB00B951CE /* PlaceholderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E3199A290C11CB00B951CE /* PlaceholderCollectionReusableView.m */; };
+		14E3199D290CC4F100B951CE /* UserAgreement.md in Resources */ = {isa = PBXBuildFile; fileRef = 14E3199C290CC4F100B951CE /* UserAgreement.md */; };
+		14E319A0290CC52D00B951CE /* UserAgreementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E3199F290CC52D00B951CE /* UserAgreementView.m */; };
 		14E844F628FC40090037309F /* ScheduleDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E844F528FC40090037309F /* ScheduleDetailController.m */; };
 		14E8451128FEE9720037309F /* ScheduleDetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E8451028FEE9720037309F /* ScheduleDetailCollectionViewCell.m */; };
 		14E8451428FEE9A30037309F /* ScheduleDetailMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E8451328FEE9A30037309F /* ScheduleDetailMessageTableViewCell.m */; };
@@ -132,6 +135,11 @@
 		14D598DA2901801F00C9798F /* ScheduleDetailTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleDetailTableHeaderView.m; sourceTree = "<group>"; };
 		14D598E529021BE400C9798F /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
 		14D598E629021BE400C9798F /* UIViewController+KNSemiModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KNSemiModal.m"; sourceTree = "<group>"; };
+		14E31999290C11CB00B951CE /* PlaceholderCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaceholderCollectionReusableView.h; sourceTree = "<group>"; };
+		14E3199A290C11CB00B951CE /* PlaceholderCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaceholderCollectionReusableView.m; sourceTree = "<group>"; };
+		14E3199C290CC4F100B951CE /* UserAgreement.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = UserAgreement.md; sourceTree = "<group>"; };
+		14E3199E290CC52D00B951CE /* UserAgreementView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAgreementView.h; sourceTree = "<group>"; };
+		14E3199F290CC52D00B951CE /* UserAgreementView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAgreementView.m; sourceTree = "<group>"; };
 		14E844F428FC40090037309F /* ScheduleDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleDetailController.h; sourceTree = "<group>"; };
 		14E844F528FC40090037309F /* ScheduleDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleDetailController.m; sourceTree = "<group>"; };
 		14E8450F28FEE9720037309F /* ScheduleDetailCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleDetailCollectionViewCell.h; sourceTree = "<group>"; };
@@ -375,6 +383,11 @@
 				146D1450290A614100327AB8 /* SwiftBrigeHeader.h */,
 				146D144A2907F21700327AB8 /* FastLoginViewController.h */,
 				146D144B2907F21700327AB8 /* FastLoginViewController.m */,
+				14E31999290C11CB00B951CE /* PlaceholderCollectionReusableView.h */,
+				14E3199A290C11CB00B951CE /* PlaceholderCollectionReusableView.m */,
+				14E3199E290CC52D00B951CE /* UserAgreementView.h */,
+				14E3199F290CC52D00B951CE /* UserAgreementView.m */,
+				14E3199C290CC4F100B951CE /* UserAgreement.md */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				1A9B7678235F50A800725937 /* Info.plist */,
 				14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */,
@@ -458,7 +471,6 @@
 				1A9B7663235F50A600725937 /* Sources */,
 				1A9B7664235F50A600725937 /* Frameworks */,
 				1A9B7665235F50A600725937 /* Resources */,
-				81DCEEACD5150216D20A1471 /* [CP] Copy Pods Resources */,
 				5069A10D9BED088AE88BB0DB /* [CP] Embed Pods Frameworks */,
 				FE32057327EC902D003D4479 /* ShellScript */,
 			);
@@ -499,7 +511,6 @@
 				1A9B7687235F50A900725937 /* Frameworks */,
 				1A9B7688235F50A900725937 /* Resources */,
 				4EA42E7A2533C5D239A06918 /* [CP] Embed Pods Frameworks */,
-				E67C242BDE0E757B41184027 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -575,6 +586,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14E3199D290CC4F100B951CE /* UserAgreement.md in Resources */,
 				1A9B7677235F50A800725937 /* LaunchScreen.storyboard in Resources */,
 				14B73F27281BE6C200D08ADD /* CyxbsMobileImage.xcassets in Resources */,
 			);
@@ -653,23 +665,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		81DCEEACD5150216D20A1471 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B21145A9612AA583864D1A02 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -714,23 +709,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E67C242BDE0E757B41184027 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests/Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests/Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests/Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		FE32057327EC902D003D4479 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -770,6 +748,7 @@
 				14B9648F28F6883800C984AB /* HttpTool.m in Sources */,
 				14B46E6128B4D283003D288B /* ScheduleCourse.mm in Sources */,
 				1422241F28D9B091009A4A54 /* NSDate+Rising.m in Sources */,
+				14E3199B290C11CB00B951CE /* PlaceholderCollectionReusableView.m in Sources */,
 				14D598E729021BE400C9798F /* UIViewController+KNSemiModal.m in Sources */,
 				1422240628D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.m in Sources */,
 				14B46E6A28B4E504003D288B /* ScheduleInteractorRequest.m in Sources */,
@@ -779,6 +758,7 @@
 				1466283428C5CA4600AF584F /* ScheduleCollectionViewCell.m in Sources */,
 				14B46E6528B4D5D7003D288B /* ScheduleModel.m in Sources */,
 				14B9648028F67EEF00C984AB /* CyxbsTabBarController.m in Sources */,
+				14E319A0290CC52D00B951CE /* UserAgreementView.m in Sources */,
 				1422242028D9B091009A4A54 /* RisingFoundationExtention.m in Sources */,
 				14F2794828C6D51600F41F60 /* ScheduleCollectionHeaderView.m in Sources */,
 				14E844F628FC40090037309F /* ScheduleDetailController.m in Sources */,

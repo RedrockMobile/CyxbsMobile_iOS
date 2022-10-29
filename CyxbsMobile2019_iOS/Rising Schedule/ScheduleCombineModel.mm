@@ -92,6 +92,7 @@ ScheduleCombineType const ScheduleCombineCustom = @"custom";
     [self _check];
     [self.class.db deleteAllObjectsFromTable:self.identifier];
     [self.class.db insertObjects:self.courseAry into:self.identifier];
+    [NSUserDefaults.standardUserDefaults setValue:self.startDate forKey:UDKey.startDate];
 }
 
 - (void)awake {

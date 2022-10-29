@@ -5,38 +5,39 @@ platform :ios,'11.0'
 use_frameworks!
 
 target 'CyxbsMobile2019_iOS' do
-    pod 'TZImagePickerController','~> 3.3.2'
-    pod 'YBImageBrowser',:inhibit_warnings => true
-    pod 'NudeIn'
+    # pod 'TZImagePickerController','~> 3.3.2'
+    # pod 'YBImageBrowser',:inhibit_warnings => true
+    # pod 'NudeIn'
     pod 'SDWebImage'
     pod 'AFNetworking'
-    pod 'MBProgressHUD', '~> 0.9.2'
+    # pod 'MBProgressHUD', '~> 0.9.2'
     
     pod 'YYKit',:inhibit_warnings => true
     pod 'YYImage',:inhibit_warnings => true
     pod 'Masonry'
     pod 'MJRefresh'
-    pod 'AMapLocation-NO-IDFA'
-    pod 'AMap3DMap-NO-IDFA'
+    # pod 'AMapLocation-NO-IDFA'
+    # pod 'AMap3DMap-NO-IDFA'
     pod 'MJExtension'
-    pod 'SDCycleScrollView'
+    # pod 'SDCycleScrollView'
     
-    pod 'UMCCommon','~> 2.1.1'
-    pod 'UMCSecurityPlugins','~> 1.0.6'
-    pod 'UMCCommonLog','~> 1.0.0'
-    pod 'UMCPush','~> 3.2.4'
-    pod 'UMCAnalytics','~> 6.0.5'
-    pod 'UMCErrorCatch','~> 1.0.0'
-    pod 'UMCShare/UI','~> 6.9.6'
-    pod 'UMCShare/Social/ReducedWeChat','~> 6.9.6'
-    pod 'UMCShare/Social/ReducedQQ','~> 6.9.6'
+    # pod 'UMCCommon','~> 2.1.1'
+    # pod 'UMCSecurityPlugins','~> 1.0.6'
+    # pod 'UMCCommonLog','~> 1.0.0'
+    # pod 'UMCPush','~> 3.2.4'
+    # pod 'UMCAnalytics','~> 6.0.5'
+    # pod 'UMCErrorCatch','~> 1.0.0'
+    # pod 'UMCShare/UI','~> 6.9.6'
+    # pod 'UMCShare/Social/ReducedWeChat','~> 6.9.6'
+    # pod 'UMCShare/Social/ReducedQQ','~> 6.9.6'
     
-    pod 'IQKeyboardManager'
-    pod 'Bugly'
+    # pod 'IQKeyboardManager'
+    # pod 'Bugly'
     pod 'LookinServer', :configurations => ['Debug']
     pod 'FluentDarkModeKit'
     pod 'IGListKit' # SSR引入，暂时无项目使用
     pod 'WCDB'
+    pod 'CocoaMarkdown'
     
     pod 'Alamofire'
     pod 'SwiftyJSON'

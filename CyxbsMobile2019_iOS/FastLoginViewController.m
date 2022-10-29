@@ -41,6 +41,14 @@
     
 }
 
+#pragma mark - TT
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.textField resignFirstResponder];
+}
+
+#pragma mark - Setter
+
 - (UITextField *)textField {
     if (_textField == nil) {
         _textField = [[UITextField alloc] initWithFrame:CGRectMake(-1, 330, 281, 44)];
