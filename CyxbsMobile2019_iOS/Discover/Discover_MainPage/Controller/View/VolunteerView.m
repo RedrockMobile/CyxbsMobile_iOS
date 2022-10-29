@@ -10,8 +10,6 @@
 #import "VolunteerItem.h"
 #import "ArchiveTool.h"
 
-
-
 @interface VolunteerView()
 
 @property (nonatomic, strong) VolunteerItem *volunteerItem;
@@ -30,13 +28,14 @@
         } else {
             // Fallback on earlier versions
         }
-        [self addNoBindingView];
-        
-        if ([NSUserDefaults.standardUserDefaults objectForKey:@"volunteer_information"]) {
-            self.volunteerItem = [ArchiveTool getPersonalInfo];
-            [self refreshViewIfNeeded];
-        }
-        [self addClearButton];//添加透明按钮用来在被点击后设置宿舍
+//        [self addNoBindingView];
+        [self addStopView];
+//
+//        if ([NSUserDefaults.standardUserDefaults objectForKey:@"volunteer_information"]) {
+//            self.volunteerItem = [ArchiveTool getPersonalInfo];
+//            [self refreshViewIfNeeded];
+//        }
+//        [self addClearButton];//添加透明按钮用来在被点击后设置宿舍
     }
     return self;
 }
@@ -75,6 +74,22 @@
     }
 }
 // MARK: 未绑定部分
+//服务功能暂停页
+- (void)addStopView{
+    [self addSeperateLine];//一个像素的分割线
+    [self addVolunteerTitle];
+    
+    UILabel *Lab = [[UILabel alloc] init];
+    Lab.text = @"当前服务暂停使用";
+    Lab.font = [UIFont fontWithName:PingFangSCLight size: 15];
+    Lab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
+    [self addSubview:Lab];
+    [Lab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self);
+        make.centerY.equalTo(self).offset(20);
+    }];
+}
+
 -(void)addNoBindingView {
     [self addSeperateLine];//一个像素的分割线
     [self addVolunteerTitle];
@@ -126,6 +141,7 @@
         make.top.equalTo(self).offset(30);
     }];
 }
+
 - (void)addAllTimeBackImage {
     UIImageView *allTimeBackImage = [[UIImageView alloc]init];
     self.allTimeBackImage = allTimeBackImage;
