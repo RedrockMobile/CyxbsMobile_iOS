@@ -42,7 +42,7 @@
         
         [self addBannerView];
         
-        [self addSubview:self.jwzxVC.view];
+//        [self addSubview:self.jwzxVC.view];
 //        [self addNewsSender];
 //        [self addNews];
         [self addSomeEnters];

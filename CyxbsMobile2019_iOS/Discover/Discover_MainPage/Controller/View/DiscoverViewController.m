@@ -373,7 +373,7 @@ static int requestCheckinInfo = 0;
     FinderView *finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 0)];
     
     // Remake by SSR
-    [self addChildViewController:finderView.jwzxViewController];
+//    [self addChildViewController:finderView.jwzxViewController];
     [self addChildViewController:finderView.msgViewController];
     
     
