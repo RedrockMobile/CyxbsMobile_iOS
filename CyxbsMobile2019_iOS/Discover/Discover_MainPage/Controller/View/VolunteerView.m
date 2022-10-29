@@ -106,8 +106,8 @@
     }
     [self addSubview:hintLabel];
     [self.hintLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.allTimeBackImage);
-        make.left.equalTo(self.allTimeBackImage.mas_right).offset(22);
+        make.centerX.equalTo(self);
+        make.centerY.equalTo(self).offset(20);
     }];
 }
 - (void)addVolunteerTitle {

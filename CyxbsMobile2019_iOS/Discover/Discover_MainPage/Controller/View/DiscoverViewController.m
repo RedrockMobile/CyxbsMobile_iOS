@@ -388,8 +388,8 @@ static int requestCheckinInfo = 0;
     UIViewController *vc = [self.router controllerForRouterPath:@"DiscoverSAVC"];
     vc.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     self.sportVC = (DiscoverSAVC *)vc;
-    [self addChildViewController:vc];
-    [self.view addSubview:vc.view];
+//    [self addChildViewController:vc];
+    [self.contentView addSubview:self.sportVC.view];
 }
 
 #pragma mark - 即将更改的东西

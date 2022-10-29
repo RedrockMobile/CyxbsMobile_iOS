@@ -260,8 +260,8 @@
         make.top.equalTo(self).offset(23);
     }];
     [self.hintLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.electricFeeTitle.mas_bottom).offset(38);
-        make.left.equalTo(self.electricFeeTitle.mas_right).offset(41);
+        make.centerX.equalTo(self);
+        make.centerY.equalTo(self).offset(20);
     }];
     [self.electricFeeTime mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.electricFeeTitle);

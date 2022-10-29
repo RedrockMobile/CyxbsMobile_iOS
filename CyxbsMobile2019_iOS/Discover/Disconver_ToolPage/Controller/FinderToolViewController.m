@@ -395,13 +395,13 @@
 }
 // MARK: 体育打卡
 - (void)chooseSportAttendance:(FinderToolViewItem *)sender{
-    if (sender.isChooingNow == YES) {
-        [sender toggleFavoriteStates];
-    } else {
-        SportAttendanceViewController *vc = [[SportAttendanceViewController alloc] init];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+//    if (sender.isChooingNow == YES) {
+//        [sender toggleFavoriteStates];
+//    } else {
+//        SportAttendanceViewController *vc = [[SportAttendanceViewController alloc] init];
+//        vc.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
 }
 
 @end
