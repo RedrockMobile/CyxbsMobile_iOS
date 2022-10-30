@@ -530,5 +530,23 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     }
 }
 
+
+#pragma mark - 更新xcode14,iOS16,编译旧项目闪退(UINavigationBarContentViewLayout 0x106a25230> valueForUndefinedKey:),添加以下方法
++ (void)load
+{
+    Class cls = NSClassFromString(@"_UINavigationBarContentViewLayout");
+    SEL selector = @selector(valueForUndefinedKey:);
+    Method impMethod = class_getInstanceMethod([self class], selector);
+
+    if (impMethod) {
+        class_addMethod(cls, selector, method_getImplementation(impMethod), method_getTypeEncoding(impMethod));
+    }
+}
+
+- (id)valueForUndefinedKey:(NSString *)key
+{
+    return nil;
+}
+
 @end
 
