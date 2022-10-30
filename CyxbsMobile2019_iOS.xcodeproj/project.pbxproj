@@ -5330,10 +5330,10 @@
 		AA7ABA2F2873EA5300BA6790 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				AA7ABA302873EA5300BA6790 /* NewQAMainVC+delegateMethod.h */,
-				AA7ABA312873EA5300BA6790 /* NewQAMainVC.m */,
-				AA7ABA322873EA5300BA6790 /* NewQAMainVC+delegateMethod.m */,
 				AA7ABA332873EA5300BA6790 /* NewQAMainVC.h */,
+				AA7ABA312873EA5300BA6790 /* NewQAMainVC.m */,
+				AA7ABA302873EA5300BA6790 /* NewQAMainVC+delegateMethod.h */,
+				AA7ABA322873EA5300BA6790 /* NewQAMainVC+delegateMethod.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
