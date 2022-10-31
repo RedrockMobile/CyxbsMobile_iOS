@@ -60,10 +60,10 @@
     
     self.view.frame = CGRectMake(0, 0, self.width, 20);
     
-    [self.view addSubview:self.jwNewsBtn];
-    [self.view addSubview:self.textCycleView];
+//    [self.view addSubview:self.jwNewsBtn];
+//    [self.view addSubview:self.textCycleView];
     
-    [self request];
+//    [self request];
 }
 
 #pragma mark - Method
