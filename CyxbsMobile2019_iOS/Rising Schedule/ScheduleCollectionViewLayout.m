@@ -105,28 +105,39 @@
         for (UICollectionViewLayoutAttributes *entry in _autoItemAttributes[@(section * 100 + week)]) {
             // compare like stack when those rects intersect && old entry.alpha != 0
             if (CGRectIntersectsRect(entry.frame, attributes.frame) && entry.alpha != 0) {
+                NSIndexPath *showIndexPath;
                 if (self.callBack) { // redraw by user
                     NSComparisonResult result = [self.dataSource collectionView:self.collectionView layout:self compareOriginIndexPath:entry.indexPath conflictWithIndexPath:attributes.indexPath relayoutWithBlock:^(NSRange originRange, NSRange comflictRange) {
+                        // when user call block
                         CGRect originFrame = [self _itemSizeForSection:section week:week range:originRange];
                         CGRect comflictFrame = [self _itemSizeForSection:section week:week range:comflictRange];
                         entry.frame = originFrame;
                         attributes.frame = comflictFrame;
                     }];
+                    // user return NSComparisonResult
                     switch (result) {
-                        case NSOrderedAscending:
-                            entry.alpha = 0;
-                            break;
-                        case NSOrderedDescending:
+                        case NSOrderedDescending: {
                             attributes.alpha = 0;
-                        default:
-                            break;
+                            showIndexPath = entry.indexPath;
+                        } break;
+                        default: {
+                            // NSOrderedAscending or NSOrderedSame
+                            entry.alpha = 0;
+                            showIndexPath = attributes.indexPath;
+                        } break;
                     }
                 } else { // redraw by system
                     if (CGRectContainsRect(entry.frame, attributes.frame)) {
                         attributes.alpha = 0;
+                        showIndexPath = entry.indexPath;
                     } else {
                         entry.alpha = 0;
+                        showIndexPath = entry.indexPath;
                     }
+                }
+                // draw when muti
+                if ([self.dataSource respondsToSelector:@selector(collectionView:layout:mutiLayoutAtIndexPath:)]) {
+                    [self.dataSource collectionView:self.collectionView layout:self mutiLayoutAtIndexPath:showIndexPath];
                 }
             }
         }

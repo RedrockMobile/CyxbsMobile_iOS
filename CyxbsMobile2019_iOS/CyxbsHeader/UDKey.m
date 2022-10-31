@@ -10,6 +10,8 @@
 
 const struct UDKey UDKey = {
     .sno = @"UDKey_sno",
+    .otherSno = @"UDKey_otherSno",
+    .isDefineMuti = @"UDKey_isDefineMuti",
     .isXXHB = @"UDKey_isXXHB",
     .startDate = @"UDKey_startDate"
 };

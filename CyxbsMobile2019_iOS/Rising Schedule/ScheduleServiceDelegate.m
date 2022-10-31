@@ -135,4 +135,8 @@
     [self scrollToSection:self.model.nowWeek];
 }
 
+- (void)scheduleHeaderViewDidTapDouble:(ScheduleHeaderView *)view {
+    [view setShowMuti:view.isShow isSingle:!view.isSingle];
+}
+
 @end

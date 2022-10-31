@@ -39,6 +39,25 @@
     return self;
 }
 
+- (void)_addAttribute {
+    dispatch_async(dispatch_queue_create("UserAgreementView._addAttribute", DISPATCH_QUEUE_CONCURRENT), ^{
+        CMDocument *document = [[CMDocument alloc] initWithContentsOfFile:[NSBundle.mainBundle pathForResource:@"UserAgreement" ofType:@"md"] options:CMDocumentOptionsSmart];
+        CMTextAttributes *attributes = [[CMTextAttributes alloc] init];
+        attributes.h2Attributes = @{
+            NSFontAttributeName : [UIFont fontWithName:FontName.PingFangSC.Semibold size:18],
+            NSBackgroundColorAttributeName : [UIColor Light:UIColorHex(#112C54) Dark:UIColorHex(#F0F0F2)]
+        };
+        attributes.textAttributes = @{
+            NSFontAttributeName : [UIFont fontWithName:FontName.PingFangSC.Medium size:14],
+            NSBackgroundColorAttributeName : [UIColor Light:UIColorHex(#112C54) Dark:UIColorHex(#F0F0F2)]
+        };
+        NSAttributedString *string = [document attributedStringWithAttributes:attributes];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            self.agreementTextView.attributedText = string;
+        });
+    });
+}
+
 #pragma mark - Getter
 
 - (UILabel *)titleLab {
@@ -57,19 +76,6 @@
 - (UITextView *)agreementTextView {
     if (_agreementTextView == nil) {
         _agreementTextView = [[UITextView alloc] initWithFrame:CGRectMake(3, 3, self.width - 6, self.height - 6)];
-        
-        CMDocument *document = [[CMDocument alloc] initWithContentsOfFile:[NSBundle.mainBundle pathForResource:@"UserAgreement" ofType:@"md"] options:CMDocumentOptionsSmart];
-        CMTextAttributes *attributes = [[CMTextAttributes alloc] init];
-        attributes.h2Attributes = @{
-            NSFontAttributeName : [UIFont fontWithName:FontName.PingFangSC.Semibold size:18],
-            NSBackgroundColorAttributeName : [UIColor Light:UIColorHex(#112C54) Dark:UIColorHex(#F0F0F2)]
-        };
-        attributes.textAttributes = @{
-            NSFontAttributeName : [UIFont fontWithName:FontName.PingFangSC.Medium size:14],
-            NSBackgroundColorAttributeName : [UIColor Light:UIColorHex(#112C54) Dark:UIColorHex(#F0F0F2)]
-        };
-        NSAttributedString *string = [document attributedStringWithAttributes:attributes];
-        _agreementTextView.attributedText = string;
     }
     return _agreementTextView;
 }

@@ -24,6 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - btn: 操作的btn
 - (void)scheduleHeaderView:(ScheduleHeaderView *)view didSelectedBtn:(UIButton *)btn;
 
+/// 点击了双人图标
+/// - Parameter view: 视图
+- (void)scheduleHeaderViewDidTapDouble:(ScheduleHeaderView *)view;
+
 @end
 
 #pragma mark - ScheduleHeaderView
@@ -33,14 +37,25 @@ NS_ASSUME_NONNULL_BEGIN
 /// @"第n周"
 @property (nonatomic, copy) NSString *title;
 
-/// image
-@property (nonatomic) BOOL isSingle __deprecated_msg("还没写");
-
 /// 回到本周 btn
 @property (nonatomic) BOOL reBack;
 
 /// 代理
 @property (nonatomic, weak) id <ScheduleHeaderViewDelegate> delegate;
+
+/// 绘制是否显示以及是单是双
+/// 如果show为false，isSingle都没用
+/// 默认为NO, NO
+/// - Parameters:
+///   - show: 是否展示
+///   - isSingle: 是否单双
+- (void)setShowMuti:(BOOL)show isSingle:(BOOL)isSingle;
+
+/// 是否在展示
+@property (nonatomic, readonly) BOOL isShow;
+
+/// 是否单双
+@property (nonatomic, readonly) BOOL isSingle;
 
 - (instancetype)init NS_UNAVAILABLE;
 

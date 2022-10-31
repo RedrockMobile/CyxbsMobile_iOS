@@ -68,6 +68,15 @@ NS_ASSUME_NONNULL_BEGIN
                conflictWithIndexPath:(NSIndexPath *)conflictIndexPath
                    relayoutWithBlock:(void (^)(NSRange originRange, NSRange comflictRange))block;
 
+/// 如果重合了，则会在这个代理方法里回传
+/// 只要有这个协议，必定会掉用
+/// @param collectionView 视图
+/// @param layout 布局
+/// @param indexPath 所展示的下标
+- (void)collectionView:(UICollectionView *)collectionView
+                layout:(ScheduleCollectionViewLayout *)layout
+ mutiLayoutAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 #pragma mark - ScheduleCollectionViewLayout
@@ -90,7 +99,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) CGFloat heightForHeaderSupplementaryView;
 
 /// 双人课表callback，默认为NO
-/// 如果是YES， 必须有optional的**compareOrigin:conflictWith:**回掉
+/// 如果是YES， 必掉用optional的**compareOrigin:conflictWith:**回掉
+/// 否则则不会掉用
 @property (nonatomic) BOOL callBack;
 
 @end

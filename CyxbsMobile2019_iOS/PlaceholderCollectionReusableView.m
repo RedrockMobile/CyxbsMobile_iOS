@@ -38,8 +38,12 @@ NSString *PlaceholderCollectionReusableViewReuseIdentifier = @"PlaceholderCollec
 }
 
 - (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
-    CGRect frame = layoutAttributes.frame;
-    self.imgView.centerX = frame.size.width / 2;
+    
+    self.imgView.centerX = layoutAttributes.size.width / 2;
+    self.imgView.centerY = layoutAttributes.size.height * 0.4;
+    
+    
+    self.contentLab.centerX = layoutAttributes.size.width / 2;
     
 }
 

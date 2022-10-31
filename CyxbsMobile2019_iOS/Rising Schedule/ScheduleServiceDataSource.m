@@ -109,7 +109,7 @@
         cell.drawType = ScheduleCollectionViewCellDrawCustom;
     }
     
-    cell.multipleSign = NO; // TODO: Unknow how to check
+    cell.multipleSign = NO;
     
     return cell;
 }
@@ -145,7 +145,8 @@
     
     if ([kind isEqualToString:UICollectionElementKindSectionPlaceholder]) {
         
-        UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionPlaceholder withReuseIdentifier:UICollectionElementKindSectionPlaceholder forIndexPath:indexPath];
+        // TODO: Empty view
+//        UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionPlaceholder withReuseIdentifier:UICollectionElementKindSectionPlaceholder forIndexPath:indexPath];
         
         
     }
@@ -169,6 +170,28 @@
     
     ScheduleCourse *course = _model.courseAry[indexPath.section][indexPath.item];
     return course.period;
+}
+
+- (NSComparisonResult)collectionView:(UICollectionView *)collectionView
+                              layout:(ScheduleCollectionViewLayout *)layout
+              compareOriginIndexPath:(NSIndexPath *)originIndexPath
+               conflictWithIndexPath:(NSIndexPath *)conflictIndexPath
+                   relayoutWithBlock:(void (^)(NSRange, NSRange))block {
+    
+    ScheduleCourse *originCourse = _model.courseAry[originIndexPath.section][originIndexPath.item];
+    ScheduleCourse *comflictCourse = _model.courseAry[conflictIndexPath.section][conflictIndexPath.item];
+    
+    // TODO: check NSComparisonResult
+    
+    return NSOrderedSame;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView
+                layout:(ScheduleCollectionViewLayout *)layout
+ mutiLayoutAtIndexPath:(NSIndexPath *)indexPath {
+    
+    ScheduleCollectionViewCell *cell = (ScheduleCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    cell.multipleSign = YES;
 }
 
 #pragma mark - <ScheduleCollectionHeaderViewDataSource>

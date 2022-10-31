@@ -4,7 +4,17 @@ platform :ios,'11.0'
 
 use_frameworks!
 
+install! 'cocoapods', :disable_input_output_paths => true
+
+def available_pods
+   pod 'YYKit',:inhibit_warnings => true
+   pod 'YYImage',:inhibit_warnings => true
+end
+
 target 'CyxbsMobile2019_iOS' do
+    inherit! :search_paths
+    vailable_pods
+
     # pod 'TZImagePickerController','~> 3.3.2'
     # pod 'YBImageBrowser',:inhibit_warnings => true
     # pod 'NudeIn'
@@ -12,8 +22,6 @@ target 'CyxbsMobile2019_iOS' do
     pod 'AFNetworking'
     # pod 'MBProgressHUD', '~> 0.9.2'
     
-    pod 'YYKit',:inhibit_warnings => true
-    pod 'YYImage',:inhibit_warnings => true
     pod 'Masonry'
     pod 'MJRefresh'
     # pod 'AMapLocation-NO-IDFA'
