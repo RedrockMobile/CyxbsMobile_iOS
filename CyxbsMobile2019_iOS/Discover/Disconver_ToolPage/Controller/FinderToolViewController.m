@@ -63,7 +63,7 @@
 //        if (IS_IPHONEX) {
 //            make.top.equalTo(self.view).offset(40);
 //        }else {
-            make.top.equalTo(self.view).offset(40);
+            make.top.equalTo(self.view).offset(STATUSBARHEIGHT +15 );
 //        }
         make.left.equalTo(self.view).offset(8.6);
     }];
