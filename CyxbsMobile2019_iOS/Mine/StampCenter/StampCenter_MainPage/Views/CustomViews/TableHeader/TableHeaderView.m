@@ -82,7 +82,6 @@
     return _detailLabel;
 }
 
-
 - (void)checkIn{
     [CheckInModel CheckInSucceeded:^{
         self.button.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#C1C1C1" alpha:1] darkColor:[UIColor colorWithHexString:@"#474747" alpha:1]];
