@@ -886,6 +886,7 @@
 //}
 
 - (void)viewDidLoad{
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:UIColor.whiteColor darkColor:UIColor.blackColor];
     [self addStopView];
 }
 
