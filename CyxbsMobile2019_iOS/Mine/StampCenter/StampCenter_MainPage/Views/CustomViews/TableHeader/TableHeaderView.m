@@ -35,9 +35,14 @@
     if (!_button) {
        GotoButton *button = [[GotoButton alloc]initWithFrame:CGRectMake(0.781*SCREEN_WIDTH, 32, 66, 28) AndTitle:@"去签到"];
         [StampTaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
+            if (!array || array.count <= 0) {
+                [NewQAHud showHudWith:@"Token失效了，重新登录掌邮试试吧" AddView:self];
+                return;
+            }
             StampTaskData *data = array[0];
             if ([data.title isEqualToString:@"NULL"]) {
-                [NewQAHud showHudWith:@"Token失效了，重启掌邮试试吧" AddView:self];
+                [NewQAHud showHudWith:@"Token失效了，重新登录掌邮试试吧" AddView:self];
+                return;
             }
             if (data.current_progress == data.max_progress) {
                 self.button.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#C1C1C1" alpha:1] darkColor:[UIColor colorWithHexString:@"#474747" alpha:1]];

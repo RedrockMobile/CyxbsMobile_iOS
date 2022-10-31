@@ -94,7 +94,9 @@
             [mArray2 addObject:data];
         }
     }
-    [mArray removeObjectAtIndex:0];
+    if (mArray.count > 0) {
+        [mArray removeObjectAtIndex:0];
+    }
     _taskAry = mArray;
     _extraTaskAry = mArray2;
     //刷新控件
