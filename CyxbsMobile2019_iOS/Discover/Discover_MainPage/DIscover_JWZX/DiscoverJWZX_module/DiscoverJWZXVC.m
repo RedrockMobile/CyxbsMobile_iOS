@@ -62,7 +62,6 @@
     
 //    [self.view addSubview:self.jwNewsBtn];
 //    [self.view addSubview:self.textCycleView];
-    
 //    [self request];
 }
 

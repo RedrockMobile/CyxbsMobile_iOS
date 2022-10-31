@@ -7587,7 +7587,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.4.0;
+				MARKETING_VERSION = 6.4.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -7646,7 +7646,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.4.0;
+				MARKETING_VERSION = 6.4.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
