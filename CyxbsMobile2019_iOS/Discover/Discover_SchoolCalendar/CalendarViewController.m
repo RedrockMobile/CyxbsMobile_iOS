@@ -12,7 +12,6 @@
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (strong, nonatomic) UIImageView *calendarView1;
 @property (strong, nonatomic) UIImageView *calendarView2;
-@property (nonatomic, weak)UIButton *backButton;//返回按钮
 
 @end
 
@@ -44,6 +43,29 @@
     }];
     [scrollView addSubview:imageView];
     
+    [self setBackButton];
 }
+
+#pragma mark - 返回按钮
+- (void)setBackButton {
+    // 返回按钮
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [backButton setImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backButton];
+    
+    [backButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(STATUSBARHEIGHT + 15);
+        make.leading.equalTo(self.view).offset(15);
+        make.height.equalTo(@19);
+        make.width.equalTo(@9);
+    }];
+}
+
+/// 点击 返回按钮 后调用的方法
+- (void)backButtonClicked {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 @end

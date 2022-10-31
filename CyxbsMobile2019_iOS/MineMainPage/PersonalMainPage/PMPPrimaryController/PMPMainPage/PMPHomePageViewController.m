@@ -437,7 +437,9 @@ UIImagePickerControllerDelegate>
 
 
 - (void)viewDidLoad{
-    [self setupView];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:UIColor.whiteColor darkColor:UIColor.blackColor];
+    
+    [self setBackButton];
     [self addStopView];
 }
 
@@ -461,31 +463,25 @@ UIImagePickerControllerDelegate>
     }];
 }
 
-- (void)setupView {
-    // configure self
-    self.view.backgroundColor = [UIColor dm_colorWithLightColor:UIColor.whiteColor darkColor:UIColor.blackColor];
-    // configure topBarView
-    [self.view addSubview:self.topBarView];
+- (void)setBackButton {
+    // 返回按钮
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [backButton setImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backButton];
     
-    //获取状态栏高度
-    [self.topBarView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view).offset(STATUSBARHEIGHT);
-        make.left.right.equalTo(self.view);
-        make.height.mas_equalTo(44);
-    }];
-    // 立即将导航栏布局，将 frame 的值所固定
-    // 以便在不使用 autoLayout/masonry 的情况下也可以得到导航栏的位置信息
-    [self.view layoutIfNeeded];
-    
-    // configure backBtn
-    [self.backBtn setImage:[UIImage imageNamed:@"空教室返回"] forState:UIControlStateNormal];
-    [self.topBarView addSubview:self.backBtn];
-    [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.topBarView).offset(20);
-        make.centerY.equalTo(self.topBarView);
-        make.width.equalTo(@9);
+    [backButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view).offset(STATUSBARHEIGHT + 15);
+        make.leading.equalTo(self.view).offset(15);
         make.height.equalTo(@19);
+        make.width.equalTo(@9);
     }];
 }
+
+/// 点击 返回按钮 后调用的方法
+- (void)backButtonClicked {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 
 @end
