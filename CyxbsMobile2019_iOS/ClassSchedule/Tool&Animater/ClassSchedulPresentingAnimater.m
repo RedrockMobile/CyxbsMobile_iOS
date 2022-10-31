@@ -47,10 +47,14 @@
     to.view.clipsToBounds = YES;
     [transitionContext.containerView addSubview:to.view];
             
+    // 状态栏(statusbar)
+    CGRect rectStatus = [[UIApplication sharedApplication] statusBarFrame];
+    double stausHeight = rectStatus.size.height;  // 高度
+    
     [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
         to.topBarView.alpha = 1;
         to.fakeBar.alpha = 0;
-        [to.view setFrame:CGRectMake(0, 49, MAIN_SCREEN_W, MAIN_SCREEN_H - 49)];
+        [to.view setFrame:CGRectMake(0, stausHeight, MAIN_SCREEN_W, MAIN_SCREEN_H - stausHeight)];
     }completion:^(BOOL finished) {
         BOOL wasCancel = [transitionContext transitionWasCancelled];
         if(wasCancel){
