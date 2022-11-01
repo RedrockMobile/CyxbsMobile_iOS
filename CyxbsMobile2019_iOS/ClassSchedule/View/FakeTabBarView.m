@@ -149,14 +149,20 @@
 /// 课表的一个代理方法，用来更新下节课信息
 /// @param paramDict 下节课的数据字典
 - (void)updateSchedulTabBarViewWithDic:(NSDictionary *)paramDict{
-    if( [paramDict[@"is"] intValue]==1){//有下一节课
-        self.classroomLabel.labelText = paramDict[@"classroomLabel"];
-        self.classTimeLabel.labelText = paramDict[@"classTimeLabel"];
-        self.classLabel.labelText = paramDict[@"classLabel"];
-    }else{//无下一节课
-        self.classroomLabel.labelText = @"---";
-        self.classTimeLabel.labelText = @"---";
-        self.classLabel.labelText = @"无课了";
+    if(paramDict.count >1){
+        if( [paramDict[@"is"] intValue] == 1){//有下一节课
+            self.classroomLabel.labelText = paramDict[@"classroomLabel"];
+            self.classTimeLabel.labelText = paramDict[@"classTimeLabel"];
+            self.classLabel.labelText = paramDict[@"classLabel"];
+        }else{//无下一节课
+            self.classroomLabel.labelText = @"---";
+            self.classTimeLabel.labelText = @"---";
+            self.classLabel.labelText = @"无课了";
+        }
+    }else{
+        self.classroomLabel.labelText = @"无网了";
+        self.classTimeLabel.labelText = @"无网了";
+        self.classLabel.labelText = @"联网才能使用";
     }
 }
 
