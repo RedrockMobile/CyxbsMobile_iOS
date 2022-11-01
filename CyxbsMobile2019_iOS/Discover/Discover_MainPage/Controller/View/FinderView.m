@@ -132,7 +132,8 @@
         [imageButton setImage:[UIImage imageNamed:name] forState:normal];
         label.text = name;
         button = [[EnterButton alloc]initWithImageButton:imageButton label:label];
-        button.top = self.jwzxVC.view.bottom + 15;
+//        button.top = self.jwzxVC.view.bottom + 15;
+        button.top = self.bannerView.bottom + 25;
         button.width = imageButton.width;
         button.height = imageButton.height + label.height;
         [array addObject:button];

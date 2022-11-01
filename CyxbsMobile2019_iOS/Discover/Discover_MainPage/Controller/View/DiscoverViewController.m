@@ -255,7 +255,8 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     
     [self.sportVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
-        make.top.equalTo(self.finderView.mas_bottom).offset(20);
+//        make.top.equalTo(self.finderView.mas_bottom).offset(20);
+        make.top.equalTo(self.finderView.mas_bottom);
         make.height.equalTo(@152);
     }];
     

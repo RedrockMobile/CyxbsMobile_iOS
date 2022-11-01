@@ -50,7 +50,7 @@
     [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0 usingSpringWithDamping:1 initialSpringVelocity:10 options:UIViewAnimationOptionCurveEaseOut animations:^{
         to.topBarView.alpha = 1;
         to.fakeBar.alpha = 0;
-        [to.view setFrame:CGRectMake(0, STATUSBARHEIGHT, MAIN_SCREEN_W, MAIN_SCREEN_H - STATUSBARHEIGHT)];
+        [to.view setFrame:CGRectMake(0, STATUSBARHEIGHT >30 ? STATUSBARHEIGHT : 30, MAIN_SCREEN_W, MAIN_SCREEN_H - (STATUSBARHEIGHT >30 ? STATUSBARHEIGHT : 30))];
     }completion:^(BOOL finished) {
         BOOL wasCancel = [transitionContext transitionWasCancelled];
         if(wasCancel){
