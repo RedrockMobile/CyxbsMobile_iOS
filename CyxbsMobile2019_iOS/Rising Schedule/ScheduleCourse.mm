@@ -130,7 +130,7 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
         @"11:55",
         
         @"14:45",
-        @"15:30",
+        @"15:40",
         @"17:00",
         @"17:55",
         

@@ -8,11 +8,27 @@
 
 /**ScheduleCollectionViewLayout视图布局
  * 设置所有陈列出来的属性，来达到最佳的视觉效果
+ * 请查看飞书云文档
  */
 
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+#pragma mark - ScheduleCollectionViewLayoutAttributes
+
+@interface ScheduleCollectionViewLayoutAttributes : UICollectionViewLayoutAttributes
+
+/// 星期
+@property (nonatomic) NSInteger week;
+
+/// 绘制的range
+@property (nonatomic) NSRange drawRange;
+
+/// 是否有多个重复视图
+@property (nonatomic) BOOL hadMuti;
+
+@end
 
 #pragma mark - ScheduleCollectionViewLayoutInvalidationContext
 
@@ -33,7 +49,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class ScheduleCollectionViewLayout;
 
-/// <#Description#>
 @protocol ScheduleCollectionViewLayoutDataSource <NSObject>
 
 @required
@@ -57,25 +72,16 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 
 /// 双人展示 - 对比两个重合的视图
+/// 如需要改变，请直接对两个Attributes进行改变
 /// @param collectionView 视图
 /// @param layout 布局
-/// @param originIndexPath 之前在视图里面的下标
-/// @param conflictIndexPath 即将往视图里添加的下标
-/// @param block 如果要重新绘制range就掉用，可以不掉用
+/// @param compareAttributes 之前在视图里面的Attributes
+/// @param conflictAttributes 即将呈现的Attributes
 - (NSComparisonResult)collectionView:(UICollectionView *)collectionView
                               layout:(ScheduleCollectionViewLayout *)layout
-              compareOriginIndexPath:(NSIndexPath *)originIndexPath
-               conflictWithIndexPath:(NSIndexPath *)conflictIndexPath
-                   relayoutWithBlock:(void (^)(NSRange originRange, NSRange comflictRange))block;
-
-/// 如果重合了，则会在这个代理方法里回传
-/// 只要有这个协议，必定会掉用
-/// @param collectionView 视图
-/// @param layout 布局
-/// @param indexPath 所展示的下标
-- (void)collectionView:(UICollectionView *)collectionView
-                layout:(ScheduleCollectionViewLayout *)layout
- mutiLayoutAtIndexPath:(NSIndexPath *)indexPath;
+             compareOriginAttributes:(ScheduleCollectionViewLayoutAttributes *)compareAttributes
+              conflictWithAttributes:(ScheduleCollectionViewLayoutAttributes *)conflictAttributes
+__deprecated_msg("即将部署该API，测试阶段");
 
 @end
 
@@ -98,10 +104,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 头部装饰视图高
 @property (nonatomic) CGFloat heightForHeaderSupplementaryView;
 
-/// 双人课表callback，默认为NO
+/// 课表自布局callback，默认为NO
 /// 如果是YES， 必掉用optional的**compareOrigin:conflictWith:**回掉
 /// 否则则不会掉用
-@property (nonatomic) BOOL callBack;
+@property (nonatomic) BOOL callBack __deprecated_msg("正在修改阶段");
 
 @end
 

@@ -45,7 +45,7 @@
     [UIColor Light:UIColorHex(#FFFFFF)
               Dark:UIColorHex(#1D1D1D)];
     
-    [self.presenter.dataSourceService setCollectionView:self.collectionView diff:NO];
+    [self.presenter.dataSourceService setCollectionView:self.collectionView];
     self.presenter.delegateService.collectionView = self.collectionView;
     self.presenter.delegateService.viewController = self;
     self.presenter.delegateService.headerView = self.headerView;

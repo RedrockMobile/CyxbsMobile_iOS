@@ -56,7 +56,7 @@
 
 #pragma mark - Setter
 
-- (void)setCollectionView:(UICollectionView *)view diff:(BOOL)diff{
+- (void)setCollectionView:(UICollectionView *)view {
     NSParameterAssert(view);
     
     [view registerClass:ScheduleCollectionViewCell.class forCellWithReuseIdentifier:ScheduleCollectionViewCellReuseIdentifier];
@@ -174,14 +174,8 @@
 
 - (NSComparisonResult)collectionView:(UICollectionView *)collectionView
                               layout:(ScheduleCollectionViewLayout *)layout
-              compareOriginIndexPath:(NSIndexPath *)originIndexPath
-               conflictWithIndexPath:(NSIndexPath *)conflictIndexPath
-                   relayoutWithBlock:(void (^)(NSRange, NSRange))block {
-    
-    ScheduleCourse *originCourse = _model.courseAry[originIndexPath.section][originIndexPath.item];
-    ScheduleCourse *comflictCourse = _model.courseAry[conflictIndexPath.section][conflictIndexPath.item];
-    
-    // TODO: check NSComparisonResult
+             compareOriginAttributes:(ScheduleCollectionViewLayoutAttributes *)compareAttributes
+              conflictWithAttributes:(ScheduleCollectionViewLayoutAttributes *)conflictAttributes {
     
     return NSOrderedSame;
 }

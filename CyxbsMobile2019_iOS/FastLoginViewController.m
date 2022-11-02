@@ -40,7 +40,7 @@
               Dark:UIColorHex(#1D1D1D)];
     
     [self.view addSubview:self.snoField];
-    [self.view addSubview:self.otherField];
+//    [self.view addSubview:self.otherField];
     [self.view addSubview:self.cleBtn];
     
 }
@@ -110,7 +110,7 @@
         _cleBtn.layer.cornerRadius = _cleBtn.height / 3;
         _cleBtn.clipsToBounds = YES;
         _cleBtn.titleLabel.font = [UIFont fontWithName:FontName.PingFangSC.Semibold size:16];
-        [_cleBtn setTitle:@"注  消" forState:UIControlStateNormal];
+        [_cleBtn setTitle:@"注  销" forState:UIControlStateNormal];
         [_cleBtn setTitleColor:UIColorHex(#FFFFFF) forState:UIControlStateNormal];
         [_cleBtn bringSubviewToFront:_cleBtn.titleLabel];
         [_cleBtn addTarget:self action:@selector(_cletap:)

@@ -8,6 +8,12 @@
 
 #import "ScheduleCollectionViewLayout.h"
 
+#pragma mark - ScheduleCollectionViewLayoutAttributes
+
+@implementation ScheduleCollectionViewLayoutAttributes
+
+@end
+
 #pragma mark - ScheduleCollectionViewLayoutInvalidationContext
 
 @implementation ScheduleCollectionViewLayoutInvalidationContext
@@ -80,6 +86,8 @@
     return result;
 }
 
+// --------------- Item ---------------
+
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     NSParameterAssert(indexPath);
     
@@ -105,39 +113,25 @@
         for (UICollectionViewLayoutAttributes *entry in _autoItemAttributes[@(section * 100 + week)]) {
             // compare like stack when those rects intersect && old entry.alpha != 0
             if (CGRectIntersectsRect(entry.frame, attributes.frame) && entry.alpha != 0) {
-                NSIndexPath *showIndexPath;
-                if (self.callBack) { // redraw by user
-                    NSComparisonResult result = [self.dataSource collectionView:self.collectionView layout:self compareOriginIndexPath:entry.indexPath conflictWithIndexPath:attributes.indexPath relayoutWithBlock:^(NSRange originRange, NSRange comflictRange) {
-                        // when user call block
-                        CGRect originFrame = [self _itemSizeForSection:section week:week range:originRange];
-                        CGRect comflictFrame = [self _itemSizeForSection:section week:week range:comflictRange];
-                        entry.frame = originFrame;
-                        attributes.frame = comflictFrame;
-                    }];
+                if (self.callBack && NO) { // redraw by user
+                    // TODO: check new Attributes
+                    NSComparisonResult result = [self.dataSource collectionView:self.collectionView layout:self compareOriginAttributes:entry conflictWithAttributes:attributes];
                     // user return NSComparisonResult
                     switch (result) {
                         case NSOrderedDescending: {
-                            attributes.alpha = 0;
-                            showIndexPath = entry.indexPath;
+                            attributes.hidden = YES;
                         } break;
                         default: {
                             // NSOrderedAscending or NSOrderedSame
-                            entry.alpha = 0;
-                            showIndexPath = attributes.indexPath;
+                            entry.hidden = YES;
                         } break;
                     }
                 } else { // redraw by system
                     if (CGRectContainsRect(entry.frame, attributes.frame)) {
-                        attributes.alpha = 0;
-                        showIndexPath = entry.indexPath;
+                        attributes.hidden = YES;
                     } else {
-                        entry.alpha = 0;
-                        showIndexPath = entry.indexPath;
+                        entry.hidden = YES;
                     }
-                }
-                // draw when muti
-                if ([self.dataSource respondsToSelector:@selector(collectionView:layout:mutiLayoutAtIndexPath:)]) {
-                    [self.dataSource collectionView:self.collectionView layout:self mutiLayoutAtIndexPath:showIndexPath];
                 }
             }
         }
@@ -148,6 +142,8 @@
     
     return attributes;
 }
+
+// --------------- Supplementary ---------------
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath {
     NSParameterAssert(indexPath);
@@ -228,6 +224,10 @@
 }
 
 #pragma mark - (UISubclassingHooks)
+
++ (Class)layoutAttributesClass {
+    return ScheduleCollectionViewLayoutAttributes.class;
+}
 
 + (Class)invalidationContextClass {
     return ScheduleCollectionViewLayoutInvalidationContext.class;
@@ -318,7 +318,15 @@
     CGFloat y = self.heightForHeaderSupplementaryView + (range.location - 1) * (_itemSize.height + self.lineSpacing);
     CGFloat height = range.length * _itemSize.height + (range.length - 1) * self.columnSpacing;
         
-    return CGRectMake(x, y, _itemSize.width, height);;
+    return CGRectMake(x, y, _itemSize.width, height);
+}
+
+- (CGRect)_itemSizeForAttributes:(ScheduleCollectionViewLayoutAttributes *)attributes {
+    CGFloat x = attributes.indexPath.section * self.collectionView.bounds.size.width + self.widthForLeadingSupplementaryView + (attributes.week - 1) * (_itemSize.width + self.columnSpacing) + self.columnSpacing;
+    CGFloat y = self.heightForHeaderSupplementaryView + (attributes.drawRange.location - 1) * (_itemSize.height + self.lineSpacing);
+    CGFloat height = attributes.drawRange.length * _itemSize.height + (attributes.drawRange.length - 1) * self.columnSpacing;
+        
+    return CGRectMake(x, y, _itemSize.width, height);
 }
 
 #pragma mark - Setter
