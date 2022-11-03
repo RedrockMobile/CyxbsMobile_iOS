@@ -73,6 +73,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 双人展示 - 对比两个重合的视图
 /// 如需要改变，请直接对两个Attributes进行改变
+/// 返回值： NSOrderedDescending 和 NSOrderedAscending 会再次对Attributes进行改变
+/// 如果返回 NSOrderedSame, 请主动赋值Attributes, 否则视图不会显示双人
 /// @param collectionView 视图
 /// @param layout 布局
 /// @param compareAttributes 之前在视图里面的Attributes
@@ -107,7 +109,7 @@ __deprecated_msg("即将部署该API，测试阶段");
 /// 课表自布局callback，默认为NO
 /// 如果是YES， 必掉用optional的**compareOrigin:conflictWith:**回掉
 /// 否则则不会掉用
-@property (nonatomic) BOOL callBack __deprecated_msg("正在修改阶段");
+@property (nonatomic) BOOL callBack __deprecated_msg("正在测试阶段");
 
 @end
 

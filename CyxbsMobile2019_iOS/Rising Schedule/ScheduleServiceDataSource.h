@@ -41,9 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)setDiff:(BOOL)isDiff withSno:(NSString *)sno;
 
-/// 设置collectionView以及是否多人
+/// 设置collectionView
 /// @param view datasource本质代理
-/// @param diff 是否双人
 - (void)setCollectionView:(UICollectionView *)view;
 
 @end

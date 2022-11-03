@@ -13,6 +13,8 @@
 
 #import <UIKit/UIKit.h>
 
+@class ScheduleCollectionViewLayoutAttributes;
+
 NS_ASSUME_NONNULL_BEGIN
 
 /// 复用标志
@@ -40,9 +42,6 @@ typedef NS_ENUM(NSUInteger, ScheduleCollectionViewCellDrawType) {
 
 /// 细节(计算属性)
 @property (nonatomic, copy) NSString *courseContent;
-
-/// 多人标识
-@property (nonatomic) BOOL multipleSign;
 
 - (instancetype)init NS_UNAVAILABLE;
 

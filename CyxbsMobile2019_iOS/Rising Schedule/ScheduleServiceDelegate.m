@@ -46,7 +46,7 @@
         [self.model combineModel:combineModel];
         
         [self.collectionView reloadData];
-        [self scrollToSection:self.model.nowWeek];
+//        [self scrollToSection:self.model.nowWeek];
         
         if ([NSUserDefaults.standardUserDefaults boolForKey:UDKey.isXXHB]) {
             [combineModel replace];
@@ -62,7 +62,7 @@
             [combineModel awake];
             [self.model combineModel:combineModel];
             [self.collectionView reloadData];
-            [self scrollToSection:self.model.nowWeek];
+//            [self scrollToSection:self.model.nowWeek];
         }
     }];
 }

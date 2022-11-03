@@ -108,9 +108,7 @@
     if ([course.type isEqualToString:@"事务"]) {
         cell.drawType = ScheduleCollectionViewCellDrawCustom;
     }
-    
-    cell.multipleSign = NO;
-    
+        
     return cell;
 }
 
@@ -178,14 +176,6 @@
               conflictWithAttributes:(ScheduleCollectionViewLayoutAttributes *)conflictAttributes {
     
     return NSOrderedSame;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView
-                layout:(ScheduleCollectionViewLayout *)layout
- mutiLayoutAtIndexPath:(NSIndexPath *)indexPath {
-    
-    ScheduleCollectionViewCell *cell = (ScheduleCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.multipleSign = YES;
 }
 
 #pragma mark - <ScheduleCollectionHeaderViewDataSource>

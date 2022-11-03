@@ -51,10 +51,10 @@ NSString *ScheduleSupplementaryCollectionViewCellReuseIdentifier = @"ScheduleSup
     
     if (self.isTitleOnly) {
         self.titleLab.centerY = _attributes.size.height / 2;
-        self.contentLab.alpha = 0;
+        self.contentLab.hidden = YES;
     } else {
         self.titleLab.top = 6;
-        self.contentLab.alpha = 1;
+        self.contentLab.hidden = NO;
     }
     
     self.contentLab.bottom = _attributes.size.height - 3;

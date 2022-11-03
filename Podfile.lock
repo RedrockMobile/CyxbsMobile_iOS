@@ -55,9 +55,6 @@ PODS:
     - SQLiteRepairKit (~> 1.2.0)
     - WCDBOptimizedSQLCipher (~> 1.2.0)
   - WCDBOptimizedSQLCipher (1.2.1)
-  - YYImage (1.0.4):
-    - YYImage/Core (= 1.0.4)
-  - YYImage/Core (1.0.4)
   - YYKit (1.0.9):
     - YYKit/no-arc (= 1.0.9)
   - YYKit/no-arc (1.0.9)
@@ -79,7 +76,6 @@ DEPENDENCIES:
   - SwiftyJSON
   - SwiftySwift
   - WCDB
-  - YYImage
   - YYKit
 
 SPEC REPOS:
@@ -104,7 +100,6 @@ SPEC REPOS:
     - SwiftySwift
     - WCDB
     - WCDBOptimizedSQLCipher
-    - YYImage
     - YYKit
 
 SPEC CHECKSUMS:
@@ -128,9 +123,8 @@ SPEC CHECKSUMS:
   SwiftySwift: dfb02560bec08882d6daff3603d9e5738af92ab3
   WCDB: 8e90babdeb7784c569353a4bd22a66c0a175a882
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
-  YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 2f2099c74af172f9ac36b8fd305017f8849f57d3
+PODFILE CHECKSUM: 61dc164a8ea02973a8947c7c7aa16588996ffdf4
 
 COCOAPODS: 1.11.3

@@ -8,12 +8,12 @@ install! 'cocoapods', :disable_input_output_paths => true
 
 def available_pods
    pod 'YYKit',:inhibit_warnings => true
-   pod 'YYImage',:inhibit_warnings => true
+   # pod 'YYImage',:inhibit_warnings => true
 end
 
 target 'CyxbsMobile2019_iOS' do
     inherit! :search_paths
-    vailable_pods
+    available_pods
 
     # pod 'TZImagePickerController','~> 3.3.2'
     # pod 'YBImageBrowser',:inhibit_warnings => true

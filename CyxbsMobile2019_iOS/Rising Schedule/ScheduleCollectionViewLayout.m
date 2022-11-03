@@ -12,6 +12,14 @@
 
 @implementation ScheduleCollectionViewLayoutAttributes
 
+- (id)copyWithZone:(nullable NSZone *)zone {
+    ScheduleCollectionViewLayoutAttributes *attributes = [super copyWithZone:zone];
+    attributes.week = self.week;
+    attributes.hadMuti = self.hadMuti;
+    attributes.drawRange = self.drawRange;
+    return attributes;
+}
+
 @end
 
 #pragma mark - ScheduleCollectionViewLayoutInvalidationContext
@@ -31,7 +39,7 @@
 @property (nonatomic) CGSize itemSize;
 
 /// 正常视图布局
-@property (nonatomic, strong) NSMutableDictionary <NSIndexPath *, UICollectionViewLayoutAttributes *> *itemAttributes;
+@property (nonatomic, strong) NSMutableDictionary <NSIndexPath *, ScheduleCollectionViewLayoutAttributes *> *itemAttributes;
 
 /// 补充视图布局
 @property (nonatomic, strong) NSMutableDictionary <NSString *, NSMutableDictionary <NSIndexPath *, UICollectionViewLayoutAttributes *> *> *supplementaryAttributes;
@@ -41,7 +49,7 @@
 #pragma mark - ScheduleCollectionViewLayout
 
 @implementation ScheduleCollectionViewLayout {
-    NSMutableDictionary <NSNumber *, NSMutableArray <UICollectionViewLayoutAttributes *> *> * _autoItemAttributes;
+    NSMutableDictionary <NSNumber *, NSMutableArray <ScheduleCollectionViewLayoutAttributes *> *> * _autoItemAttributes;
 }
 
 - (instancetype)init {
@@ -91,28 +99,31 @@
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     NSParameterAssert(indexPath);
     
-    UICollectionViewLayoutAttributes *attributes = _itemAttributes[indexPath];
+    ScheduleCollectionViewLayoutAttributes *attributes = _itemAttributes[indexPath];
     if (attributes) {
+        NSAssert(attributes.week, @"");
         return attributes;
     }
 
     attributes = [self.class.layoutAttributesClass layoutAttributesForCellWithIndexPath:indexPath];
     
     if (self.dataSource) {
-        NSUInteger section = indexPath.section;
         NSUInteger week = [self.dataSource collectionView:self.collectionView layout:self weekForItemAtIndexPath:indexPath];
         NSRange range = [self.dataSource collectionView:self.collectionView layout:self rangeForItemAtIndexPath:indexPath];
+        attributes.hidden = NO;
+        attributes.week = week;
+        attributes.drawRange = range;
         
-        CGRect frame = [self _itemSizeForSection:section week:week range:range];
+        CGRect frame = [self _itemSizeForAttributes:attributes];
         attributes.frame = frame;
         
-        if (!_autoItemAttributes[@(section * 100 + week)]) {
-            _autoItemAttributes[@(section * 100 + week)] = NSMutableArray.array;
+        if (!_autoItemAttributes[@(indexPath.section * 100 + week)]) {
+            _autoItemAttributes[@(indexPath.section * 100 + week)] = NSMutableArray.array;
         }
-        
-        for (UICollectionViewLayoutAttributes *entry in _autoItemAttributes[@(section * 100 + week)]) {
+         
+        for (ScheduleCollectionViewLayoutAttributes *entry in _autoItemAttributes[@(indexPath.section * 100 + week)]) {
             // compare like stack when those rects intersect && old entry.alpha != 0
-            if (CGRectIntersectsRect(entry.frame, attributes.frame) && entry.alpha != 0) {
+            if (CGRectIntersectsRect(entry.frame, attributes.frame) && !entry.isHidden) {
                 if (self.callBack && NO) { // redraw by user
                     // TODO: check new Attributes
                     NSComparisonResult result = [self.dataSource collectionView:self.collectionView layout:self compareOriginAttributes:entry conflictWithAttributes:attributes];
@@ -120,23 +131,28 @@
                     switch (result) {
                         case NSOrderedDescending: {
                             attributes.hidden = YES;
+                            entry.hadMuti = YES;
                         } break;
-                        default: {
+                        case NSOrderedAscending: {
                             // NSOrderedAscending or NSOrderedSame
                             entry.hidden = YES;
+                            attributes.hadMuti = YES;
                         } break;
+                        default:break;
                     }
                 } else { // redraw by system
                     if (CGRectContainsRect(entry.frame, attributes.frame)) {
                         attributes.hidden = YES;
+                        entry.hadMuti = YES;
                     } else {
                         entry.hidden = YES;
+                        attributes.hadMuti = YES;
                     }
                 }
             }
         }
         
-        [_autoItemAttributes[@(section * 100 + week)] addObject:attributes];
+        [_autoItemAttributes[@(indexPath.section * 100 + week)] addObject:attributes];
         _itemAttributes[indexPath] = attributes;
     }
     
@@ -310,15 +326,6 @@
     CGFloat width = (self.collectionView.bounds.size.width - self.widthForLeadingSupplementaryView) / 7 - self.columnSpacing;
     
     _itemSize = CGSizeMake(width, width / 46 * 50);
-}
-
-- (CGRect)_itemSizeForSection:(NSUInteger)section week:(NSUInteger)week range:(NSRange)range {
-    
-    CGFloat x = section * self.collectionView.bounds.size.width + self.widthForLeadingSupplementaryView + (week - 1) * (_itemSize.width + self.columnSpacing) + self.columnSpacing;
-    CGFloat y = self.heightForHeaderSupplementaryView + (range.location - 1) * (_itemSize.height + self.lineSpacing);
-    CGFloat height = range.length * _itemSize.height + (range.length - 1) * self.columnSpacing;
-        
-    return CGRectMake(x, y, _itemSize.width, height);
 }
 
 - (CGRect)_itemSizeForAttributes:(ScheduleCollectionViewLayoutAttributes *)attributes {

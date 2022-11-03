@@ -8,6 +8,8 @@
 
 #import "ScheduleCollectionViewCell.h"
 
+#import "ScheduleCollectionViewLayout.h"
+
 NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCell";
 
 #pragma mark - ScheduleCollectionViewCell ()
@@ -57,6 +59,15 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
     self.contentLab.left = self.titleLab.left;
     self.contentLab.width = self.titleLab.width;
     self.contentLab.bottom = frame.size.height - 8;
+    
+    if ([layoutAttributes isKindOfClass:ScheduleCollectionViewLayoutAttributes.class]) {
+        ScheduleCollectionViewLayoutAttributes *attributes = (ScheduleCollectionViewLayoutAttributes *)layoutAttributes;
+        if (attributes.hadMuti) {
+            self.multyView.hidden = NO;
+        } else {
+            self.multyView.hidden = YES;
+        }
+    }
 }
 
 #pragma mark - Getter
@@ -88,7 +99,7 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
         _multyView = [[UIView alloc] initWithFrame:CGRectMake(-1, 4, 8, 2)];
         _multyView.layer.cornerRadius = _multyView.height / 2;
         _multyView.clipsToBounds = YES;
-        _multyView.alpha = 0;
+        _multyView.hidden = YES;
     }
     return _multyView;
 }
@@ -117,15 +128,6 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
     [self.contentLab sizeToFit];
     self.contentLab.width = width;
     self.contentLab.bottom = bottom;
-}
-
-- (void)setMultipleSign:(BOOL)multipleSign {
-    if (_multipleSign != multipleSign) {
-        return;
-    }
-    _multipleSign = multipleSign;
-    
-    self.multyView.alpha = multipleSign ? 1 : 0;
 }
 
 - (void)setDrawType:(ScheduleCollectionViewCellDrawType)drawType {
