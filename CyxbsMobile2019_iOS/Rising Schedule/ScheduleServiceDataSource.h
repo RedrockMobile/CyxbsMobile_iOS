@@ -39,8 +39,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param model 数据
 - (instancetype)initWithModel:(ScheduleModel * _Nonnull)model;
 
-- (void)setDiff:(BOOL)isDiff withSno:(NSString *)sno;
-
 /// 设置collectionView
 /// @param view datasource本质代理
 - (void)setCollectionView:(UICollectionView *)view;

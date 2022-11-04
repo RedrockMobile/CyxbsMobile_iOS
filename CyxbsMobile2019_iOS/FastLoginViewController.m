@@ -10,6 +10,8 @@
 
 #import "SameDrawUI.h"
 
+#import "SchedulePresenter.h"
+
 @interface FastLoginViewController () <UITextFieldDelegate>
 
 /// <#description#>
@@ -137,6 +139,7 @@
 }
 
 - (void)_cletap:(UIButton *)btn {
+    NSString *sno = self.snoField.text.copy;
     if (!self.otherField.text && ![self.otherField.text isEqualToString:@""]) {
         [NSUserDefaults.standardUserDefaults setBool:YES forKey:UDKey.isDefineMuti];
     } else {
@@ -146,10 +149,15 @@
     [NSUserDefaults.standardUserDefaults setValue:self.otherField.text forKey:UDKey.otherSno];
     self.snoField.text = @"";
     self.otherField.text = @"";
+    
+    self.presenter.nextRequestDic = @{
+        ScheduleModelRequestStudent : @[sno]
+    };
 }
 
 - (void)_outside:(UIButton *)btn {
     [NSUserDefaults.standardUserDefaults setBool:YES forKey:UDKey.isXXHB];
+    self.presenter.useAwake = YES;
 }
 
 #pragma mark - <UITextFieldDelegate>

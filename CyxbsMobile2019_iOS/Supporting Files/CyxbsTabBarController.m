@@ -15,7 +15,7 @@
 @interface CyxbsTabBarController () 
 
 /// <#description#>
-@property (nonatomic, strong) ScheduleController *scheduleController;
+@property (nonatomic, strong) SchedulePresenter *schedulePresenter;
 
 @end
 
@@ -34,6 +34,7 @@
 
 - (UIViewController *)_test1 {
     FastLoginViewController *vc = [[FastLoginViewController alloc] init];
+    vc.presenter = self.schedulePresenter;
     return vc;
 }
 
@@ -48,9 +49,17 @@
 
 - (UIViewController *)_vc1 {
     SchedulePresenter *presenter = [[SchedulePresenter alloc] init];
+    presenter.useAwake = [NSUserDefaults.standardUserDefaults boolForKey:UDKey.isXXHB];
+    NSString *sno = [NSUserDefaults.standardUserDefaults valueForKey:UDKey.sno];
+    if (sno && ![sno isEqualToString:@""]) {
+        presenter.nextRequestDic = @{
+            ScheduleModelRequestStudent : @[sno]
+        };
+    }
+    
     ScheduleController *vc = [[ScheduleController alloc] initWithPresenter:presenter];
     vc.isPushStyle = YES;
-    self.scheduleController = vc;
+    self.schedulePresenter = presenter;
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     nav.navigationBarHidden = YES;

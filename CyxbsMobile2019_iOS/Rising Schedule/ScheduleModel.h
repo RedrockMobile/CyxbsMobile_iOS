@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 主学号(如果是双人课表，则会以这个进行判断)
 /// (而事务则是由ScheduleCombineType去判断)
-@property (nonatomic, copy) NSString *sno __deprecated_msg("没用到");
+@property (nonatomic, copy, nullable) NSString *sno __deprecated_msg("没用到");
 
 /// 课程数组
 @property (nonatomic, readonly) NSArray <NSArray <ScheduleCourse *> *> *courseAry;
@@ -49,6 +49,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param model 连立模型
 - (void)combineModel:(ScheduleCombineModel *)model;
 
+/// 清理掉所有模型
 - (void)clear;
 
 /// 返回同一时间段的所有重复课程

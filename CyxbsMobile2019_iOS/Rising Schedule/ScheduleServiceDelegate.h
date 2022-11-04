@@ -44,6 +44,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// view controller
 @property (nonatomic, weak) UIViewController *viewController;
 
+/// XXHB, default is NO
+@property (nonatomic) BOOL canUseAwake __deprecated_msg("⚠️XXHB");
+
 + (instancetype)new NS_UNAVAILABLE;
 
 - (void)requestAndReloadData;

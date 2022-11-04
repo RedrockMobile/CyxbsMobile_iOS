@@ -46,23 +46,23 @@
         [self.model combineModel:combineModel];
         
         [self.collectionView reloadData];
-//        [self scrollToSection:self.model.nowWeek];
+        [self scrollToSection:self.model.nowWeek];
         
-        if ([NSUserDefaults.standardUserDefaults boolForKey:UDKey.isXXHB]) {
+        if (self.canUseAwake) {
             [combineModel replace];
         }
     }
      failure:^(NSError * _Nonnull error) {
-        if ([NSUserDefaults.standardUserDefaults boolForKey:UDKey.isXXHB]) {
-            NSString *str = [NSUserDefaults.standardUserDefaults valueForKey:UDKey.sno];
-            if (!str || [str isEqualToString:@""]) {
-                return;
-            }
-            ScheduleCombineModel *combineModel = [ScheduleCombineModel combineWithSno:[NSUserDefaults.standardUserDefaults valueForKey:UDKey.sno] type:ScheduleCombineSystem];
-            [combineModel awake];
-            [self.model combineModel:combineModel];
+        if (self.canUseAwake) {
+            [dic enumerateKeysAndObjectsUsingBlock:^(ScheduleModelRequestType _Nonnull key, NSArray<NSString *> * _Nonnull obj, BOOL * __unused stop) {
+                for (NSString *sno in obj) {
+                    ScheduleCombineModel *combineModel = [ScheduleCombineModel combineWithSno:[NSUserDefaults.standardUserDefaults valueForKey:sno] type:key];
+                    [combineModel awake];
+                    [self.model combineModel:combineModel];
+                }
+            }];
             [self.collectionView reloadData];
-//            [self scrollToSection:self.model.nowWeek];
+            [self scrollToSection:self.model.nowWeek];
         }
     }];
 }

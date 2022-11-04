@@ -124,7 +124,7 @@
         for (ScheduleCollectionViewLayoutAttributes *entry in _autoItemAttributes[@(indexPath.section * 100 + week)]) {
             // compare like stack when those rects intersect && old entry.alpha != 0
             if (CGRectIntersectsRect(entry.frame, attributes.frame) && !entry.isHidden) {
-                if (self.callBack && NO) { // redraw by user
+                if (self.callBack) { // redraw by user
                     // TODO: check new Attributes
                     NSComparisonResult result = [self.dataSource collectionView:self.collectionView layout:self compareOriginAttributes:entry conflictWithAttributes:attributes];
                     // user return NSComparisonResult
@@ -134,7 +134,6 @@
                             entry.hadMuti = YES;
                         } break;
                         case NSOrderedAscending: {
-                            // NSOrderedAscending or NSOrderedSame
                             entry.hidden = YES;
                             attributes.hadMuti = YES;
                         } break;

@@ -37,7 +37,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) ScheduleServiceDelegate *delegateService;
 
 /// 重设模型数据
-@property (nonatomic, strong) ScheduleModel *model;
+@property (nonatomic, assign) ScheduleModel *model;
+
+/// 设置collectionView
+@property (nonatomic, assign) UICollectionView *collectionView;
+
+/// 设置下一次请求
+@property (nonatomic, assign) ScheduleRequestDictionary *nextRequestDic;
+
+/// XXHB
+@property (nonatomic) BOOL useAwake __deprecated_msg("注意使用");
 
 @end
 

@@ -45,9 +45,7 @@
     [UIColor Light:UIColorHex(#FFFFFF)
               Dark:UIColorHex(#1D1D1D)];
     
-    [self.presenter.dataSourceService setCollectionView:self.collectionView];
-    self.presenter.delegateService.collectionView = self.collectionView;
-    self.presenter.delegateService.viewController = self;
+    self.presenter.collectionView = self.collectionView;
     self.presenter.delegateService.headerView = self.headerView;
     
     [self.view addSubview:self.headerView];
@@ -58,12 +56,6 @@
     [super viewDidAppear:animated];
     
     // TODO: 请求数据（依据缓存）
-    NSString *sno = [NSUserDefaults.standardUserDefaults valueForKey:UDKey.sno];
-    if (sno && ![sno isEqualToString:@""]) {
-        self.presenter.delegateService.parameterIfNeeded = @{
-            ScheduleModelRequestStudent : @[sno]
-        };
-    }
     [self.presenter.delegateService requestAndReloadData];
 }
 

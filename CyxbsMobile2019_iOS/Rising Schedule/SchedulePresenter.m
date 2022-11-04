@@ -22,8 +22,36 @@
 }
 
 - (void)setModel:(ScheduleModel *)model {
+    _model = model;
     _delegateService.model = model;
     _dataSourceService = [[ScheduleServiceDataSource alloc] initWithModel:model];
+}
+
+- (void)setController:(ScheduleController *)controller {
+    _controller = controller;
+    _delegateService.viewController = controller;
+}
+
+- (void)setCollectionView:(UICollectionView *)collectionView {
+    _collectionView = collectionView;
+    [_dataSourceService setCollectionView:collectionView];
+    _delegateService.collectionView = collectionView;
+}
+
+- (void)setNextRequestDic:(ScheduleRequestDictionary *)nextRequestDic {
+    _delegateService.parameterIfNeeded = nextRequestDic;
+}
+
+- (void)setUseAwake:(BOOL)useAwake {
+    _delegateService.canUseAwake = useAwake;
+}
+
+- (ScheduleRequestDictionary *)nextRequestDic {
+    return _delegateService.parameterIfNeeded;
+}
+
+- (BOOL)useAwake {
+    return _delegateService.canUseAwake;
 }
 
 @end

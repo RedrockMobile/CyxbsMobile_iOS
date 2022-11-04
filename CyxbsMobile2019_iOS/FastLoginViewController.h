@@ -10,7 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class SchedulePresenter;
+
 @interface FastLoginViewController : UIViewController
+
+/// <#description#>
+@property (nonatomic) SchedulePresenter *presenter;
 
 @end
 
