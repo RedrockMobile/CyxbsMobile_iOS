@@ -23,5 +23,8 @@ const struct NetURL NetURL = {
             .edit = @"/magipoke-reminder/Person/editTransaction",
             .del = @"/magipoke-reminder/Person/deleteTransaction"
         }
+    },
+    .search = {
+        .stu = @"/magipoke-text/search/people"
     }
 };

@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSMutableSet <NSNumber *> *inSections;
 
 /// 第几-几节课，中午为4-5，晚上为8-9
-@property (nonatomic, readonly) NSRange period;
+@property (nonatomic) NSRange period;
 /// 几点 - 几点
 @property (nonatomic, readonly) NSString *timeStr;
 

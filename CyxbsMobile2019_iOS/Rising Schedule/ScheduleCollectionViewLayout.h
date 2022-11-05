@@ -71,10 +71,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @optional
 
-/// 双人展示 - 对比两个重合的视图
+/// 双人展示 - 对比两个重合的视图（callBack为YES才会掉用）
 /// 如需要改变，请直接对两个Attributes进行改变
 /// 返回值： NSOrderedDescending 和 NSOrderedAscending 会再次对Attributes进行改变
-/// 如果返回 NSOrderedSame, 请主动赋值Attributes, 否则视图不会显示双人
+/// 如果不想判断，就返回NSOrderedSame，会采用默认情况
 /// @param collectionView 视图
 /// @param layout 布局
 /// @param compareAttributes 之前在视图里面的Attributes

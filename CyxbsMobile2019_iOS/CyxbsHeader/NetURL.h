@@ -30,6 +30,10 @@ extern const struct NetURL {
             __unsafe_unretained NSString *del;
         } transaction;
     } scheule;
+    // .search
+    const struct Search {
+        __unsafe_unretained NSString *stu;
+    } search;
 } NetURL;
 
 #import "RisingScheduleHeader.h"

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -31,6 +31,9 @@
 		14B9648028F67EEF00C984AB /* CyxbsTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9647F28F67EEF00C984AB /* CyxbsTabBarController.m */; };
 		14B9648328F67F8600C984AB /* CyxbsApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9648228F67F8600C984AB /* CyxbsApplication.m */; };
 		14B9648F28F6883800C984AB /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9648D28F6883800C984AB /* HttpTool.m */; };
+		14BC47F82914D76E0063809E /* SearchPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC47F72914D76E0063809E /* SearchPeopleViewController.m */; };
+		14BC47FB2914D80F0063809E /* SearchPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC47FA2914D80F0063809E /* SearchPerson.m */; };
+		14BC480929154D290063809E /* SearchPersonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC480829154D290063809E /* SearchPersonModel.m */; };
 		14D598C928FF90EB00C9798F /* ScheduleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598C828FF90EB00C9798F /* ScheduleHeaderView.m */; };
 		14D598CC28FF964100C9798F /* SameDrawUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598CB28FF964100C9798F /* SameDrawUI.m */; };
 		14D598DB2901801F00C9798F /* ScheduleDetailTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598DA2901801F00C9798F /* ScheduleDetailTableHeaderView.m */; };
@@ -127,6 +130,12 @@
 		14B9648228F67F8600C984AB /* CyxbsApplication.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CyxbsApplication.m; sourceTree = "<group>"; };
 		14B9648D28F6883800C984AB /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
 		14B9648E28F6883800C984AB /* HttpTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpTool.h; sourceTree = "<group>"; };
+		14BC47F62914D76E0063809E /* SearchPeopleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchPeopleViewController.h; sourceTree = "<group>"; };
+		14BC47F72914D76E0063809E /* SearchPeopleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchPeopleViewController.m; sourceTree = "<group>"; };
+		14BC47F92914D80F0063809E /* SearchPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchPerson.h; sourceTree = "<group>"; };
+		14BC47FA2914D80F0063809E /* SearchPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchPerson.m; sourceTree = "<group>"; };
+		14BC480729154D290063809E /* SearchPersonModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchPersonModel.h; sourceTree = "<group>"; };
+		14BC480829154D290063809E /* SearchPersonModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchPersonModel.m; sourceTree = "<group>"; };
 		14D598C728FF90EB00C9798F /* ScheduleHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleHeaderView.h; sourceTree = "<group>"; };
 		14D598C828FF90EB00C9798F /* ScheduleHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleHeaderView.m; sourceTree = "<group>"; };
 		14D598CA28FF963600C9798F /* SameDrawUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SameDrawUI.h; sourceTree = "<group>"; };
@@ -304,6 +313,26 @@
 			path = HttpTool;
 			sourceTree = "<group>";
 		};
+		14BC47F52914D73F0063809E /* FastUp Tests */ = {
+			isa = PBXGroup;
+			children = (
+				146D144A2907F21700327AB8 /* FastLoginViewController.h */,
+				146D144B2907F21700327AB8 /* FastLoginViewController.m */,
+				14E31999290C11CB00B951CE /* PlaceholderCollectionReusableView.h */,
+				14E3199A290C11CB00B951CE /* PlaceholderCollectionReusableView.m */,
+				14E3199E290CC52D00B951CE /* UserAgreementView.h */,
+				14E3199F290CC52D00B951CE /* UserAgreementView.m */,
+				14E3199C290CC4F100B951CE /* UserAgreement.md */,
+				14BC47F62914D76E0063809E /* SearchPeopleViewController.h */,
+				14BC47F72914D76E0063809E /* SearchPeopleViewController.m */,
+				14BC480729154D290063809E /* SearchPersonModel.h */,
+				14BC480829154D290063809E /* SearchPersonModel.m */,
+				14BC47F92914D80F0063809E /* SearchPerson.h */,
+				14BC47FA2914D80F0063809E /* SearchPerson.m */,
+			);
+			path = "FastUp Tests";
+			sourceTree = "<group>";
+		};
 		14D598E829021E8400C9798F /* KNSemiModal */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,13 +410,7 @@
 				FE87CE1B27E98F82008D7148 /* Supporting Files */,
 				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
 				146D1450290A614100327AB8 /* SwiftBrigeHeader.h */,
-				146D144A2907F21700327AB8 /* FastLoginViewController.h */,
-				146D144B2907F21700327AB8 /* FastLoginViewController.m */,
-				14E31999290C11CB00B951CE /* PlaceholderCollectionReusableView.h */,
-				14E3199A290C11CB00B951CE /* PlaceholderCollectionReusableView.m */,
-				14E3199E290CC52D00B951CE /* UserAgreementView.h */,
-				14E3199F290CC52D00B951CE /* UserAgreementView.m */,
-				14E3199C290CC4F100B951CE /* UserAgreement.md */,
+				14BC47F52914D73F0063809E /* FastUp Tests */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				1A9B7678235F50A800725937 /* Info.plist */,
 				14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */,
@@ -732,6 +755,7 @@
 				14E8451128FEE9720037309F /* ScheduleDetailCollectionViewCell.m in Sources */,
 				1466282928C4B1EC00AF584F /* ScheduleCollectionViewLayout.m in Sources */,
 				14B9647828F66C1E00C984AB /* NetURL.m in Sources */,
+				14BC47F82914D76E0063809E /* SearchPeopleViewController.m in Sources */,
 				1422242128D9B091009A4A54 /* UIView+Rising.m in Sources */,
 				146D144C2907F21700327AB8 /* FastLoginViewController.m in Sources */,
 				14D598C928FF90EB00C9798F /* ScheduleHeaderView.m in Sources */,
@@ -755,6 +779,8 @@
 				14B46E6528B4D5D7003D288B /* ScheduleModel.m in Sources */,
 				14B9648028F67EEF00C984AB /* CyxbsTabBarController.m in Sources */,
 				14E319A0290CC52D00B951CE /* UserAgreementView.m in Sources */,
+				14BC47FB2914D80F0063809E /* SearchPerson.m in Sources */,
+				14BC480929154D290063809E /* SearchPersonModel.m in Sources */,
 				1422242028D9B091009A4A54 /* RisingFoundationExtention.m in Sources */,
 				14F2794828C6D51600F41F60 /* ScheduleCollectionHeaderView.m in Sources */,
 				14E844F628FC40090037309F /* ScheduleDetailController.m in Sources */,

@@ -82,6 +82,13 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
     return NO;
 }
 
+#pragma mark - Setter
+
+- (void)setPeriod:(NSRange)period {
+    _period_location = period.location;
+    _period_lenth = period.length;
+}
+
 #pragma mark - Getter
 
 - (NSRange)period {

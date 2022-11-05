@@ -122,31 +122,26 @@
         }
          
         for (ScheduleCollectionViewLayoutAttributes *entry in _autoItemAttributes[@(indexPath.section * 100 + week)]) {
-            // compare like stack when those rects intersect && old entry.alpha != 0
+            // The Attributes being compared must have an inclusion relationship, and the previous view must be visible
             if (CGRectIntersectsRect(entry.frame, attributes.frame) && !entry.isHidden) {
-                if (self.callBack) { // redraw by user
-                    // TODO: check new Attributes
-                    NSComparisonResult result = [self.dataSource collectionView:self.collectionView layout:self compareOriginAttributes:entry conflictWithAttributes:attributes];
-                    // user return NSComparisonResult
-                    switch (result) {
-                        case NSOrderedDescending: {
-                            attributes.hidden = YES;
-                            entry.hadMuti = YES;
-                        } break;
-                        case NSOrderedAscending: {
-                            entry.hidden = YES;
-                            attributes.hadMuti = YES;
-                        } break;
-                        default:break;
-                    }
-                } else { // redraw by system
+                NSComparisonResult result = NSOrderedSame;
+                if (self.callBack) {
+                    result = [self.dataSource collectionView:self.collectionView layout:self compareOriginAttributes:entry conflictWithAttributes:attributes];
+                }
+                if (result == NSOrderedSame) {
                     if (CGRectContainsRect(entry.frame, attributes.frame)) {
-                        attributes.hidden = YES;
-                        entry.hadMuti = YES;
+                        result = NSOrderedDescending;
                     } else {
-                        entry.hidden = YES;
-                        attributes.hadMuti = YES;
+                        result = NSOrderedAscending;
                     }
+                }
+                // result must be ** NSOrderedDescending or NSOrderedAscending **
+                if (result == NSOrderedDescending) {
+                    attributes.hidden = YES;
+                    entry.hadMuti = YES;
+                } else {
+                    entry.hidden = YES;
+                    attributes.hadMuti = YES;
                 }
             }
         }

@@ -55,7 +55,6 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    // TODO: 请求数据（依据缓存）
     [self.presenter.delegateService requestAndReloadData];
 }
 

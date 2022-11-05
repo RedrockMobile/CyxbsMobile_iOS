@@ -31,7 +31,6 @@
             for (NSInteger i = _courseAry.count; i <= section; i++) {
                 [_courseAry addObject:NSMutableArray.array];
             }
-            // TODO: use _statusMap & _sno
             [_courseAry[section] addObject:course];
         }];
         [_courseAry[0] addObject:course];
@@ -70,6 +69,21 @@
     NSDate *date = NSDate.date;
     NSTimeInterval beforNow = (_nowWeek - 1) * 7 * 24 * 60 * 60 + (date.weekday - 2) * 24 * 60 * 60;
     _startDate = [NSDate dateWithTimeIntervalSinceNow:-beforNow];
+}
+
+- (ScheduleCourse *)nowCourse {
+    if (self.nowWeek >= self.courseAry.count) {
+        return nil;
+    }
+    NSArray <ScheduleCourse *> *ary = self.courseAry[self.nowWeek];
+    
+    
+    NSDate *date = NSDate.date;
+    NSInteger weekday = NSDate.date.weekday - 1;
+    weekday = weekday ? weekday : 7;
+    
+    
+    return nil;
 }
 
 @end

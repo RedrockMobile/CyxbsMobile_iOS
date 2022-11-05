@@ -174,6 +174,10 @@
                               layout:(ScheduleCollectionViewLayout *)layout
              compareOriginAttributes:(ScheduleCollectionViewLayoutAttributes *)compareAttributes
               conflictWithAttributes:(ScheduleCollectionViewLayoutAttributes *)conflictAttributes {
+    ScheduleCourse *compareCourse = _model.courseAry[compareAttributes.indexPath.section][compareAttributes.indexPath.item];
+    ScheduleCourse *conflictCourse = _model.courseAry[conflictAttributes.indexPath.section][conflictAttributes.indexPath.item];
+    
+    
     
     return NSOrderedSame;
 }
