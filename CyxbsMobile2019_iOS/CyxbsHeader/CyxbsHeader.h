@@ -15,4 +15,6 @@
 
 #import "UDKey.h"
 
+#import "NSUserDefaults+Cyxbs.h"
+
 #endif /* CyxbsHeader_h */

@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 当周
 /// 0代表整周
-@property (nonatomic) NSUInteger nowWeek;
+@property (nonatomic, readonly) NSUInteger nowWeek;
 
 /// 当前在上课/最近一次要上的课
 /// 如果今天课程结束了，就会返回nil
@@ -56,6 +56,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param course 给到一个课程
 /// @param inweek 给到那一周
 - (NSArray <ScheduleCourse *> *)coursesWithCourse:(ScheduleCourse *)course inWeek:(NSInteger)inweek;
+
+/// 返回值按 ** 是学号系统的 > 是学号自定义的 > 不是学号系统的 **排序
+/// 如果sno为nil或者@""，则直接返回**NSOrderedSame**
+/// @param aCourse 这节课
+- (NSComparisonResult)compareResultOfCourse:(ScheduleCourse *)aCourse;
 
 @end
 

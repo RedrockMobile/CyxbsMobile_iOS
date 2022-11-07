@@ -11,10 +11,10 @@
 const struct FontName FontName = {
     .PingFangSC = {
         .Regular = @"PingFangHK-Regular",
-        .Ultralight = @ "PingFangSC-Ultralight",
-        .Thin = @ "PingFangSC-Thin",
-        .Light = @ "PingFangSC-Light",
-        .Medium = @ "PingFangSC-Medium",
-        .Semibold = @ "PingFangSC-Semibold",
+        .Ultralight = @"PingFangSC-Ultralight",
+        .Thin = @"PingFangSC-Thin",
+        .Light = @"PingFangSC-Light",
+        .Medium = @"PingFangSC-Medium",
+        .Semibold = @"PingFangSC-Semibold",
     }
 };

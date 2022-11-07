@@ -59,6 +59,19 @@
     return ary;
 }
 
+- (NSComparisonResult)compareResultOfCourse:(ScheduleCourse *)aCourse {
+    if (!_sno || ![_sno isEqualToString:@""]) {
+        return NSOrderedSame;
+    }
+    if (![aCourse.sno isEqualToString:_sno]) {
+        return NSOrderedAscending;
+    }
+    if ([aCourse.requestType isEqualToString:ScheduleModelRequestStudent]) {
+        return NSOrderedDescending;
+    }
+    return NSOrderedSame;
+}
+
 #pragma mark - Setter
 
 - (void)setNowWeek:(NSUInteger)nowWeek {

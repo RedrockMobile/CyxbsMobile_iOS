@@ -13,11 +13,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "ScheduleRequestType.h"
+
 #import "ScheduleCourse.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-typedef NSString * ScheduleCombineType NS_STRING_ENUM;
 
 #pragma mark - ScheduleCombineModel
 
@@ -27,7 +27,7 @@ typedef NSString * ScheduleCombineType NS_STRING_ENUM;
 @property (nonatomic, copy, readonly) NSString *sno;
 
 /// 绑定类型，由“系统”/“自定义”决定
-@property (nonatomic, copy, readonly) ScheduleCombineType combineType;
+@property (nonatomic, copy, readonly) ScheduleModelRequestType requestType;
 
 /// 当周
 @property (nonatomic) NSInteger nowWeek;
@@ -48,7 +48,7 @@ typedef NSString * ScheduleCombineType NS_STRING_ENUM;
 /// 建立连立模型
 /// @param sno 学号
 /// @param type 方式
-+ (instancetype)combineWithSno:(NSString *)sno type:(ScheduleCombineType)type;
++ (instancetype)combineWithSno:(NSString *)sno type:(ScheduleModelRequestType)type;
 
 @end
 
@@ -72,13 +72,5 @@ typedef NSString * ScheduleCombineType NS_STRING_ENUM;
 @end
 
 #endif
-
-#pragma mark - ScheduleCombineType
-
-/// 系统
-FOUNDATION_EXPORT ScheduleCombineType const ScheduleCombineSystem;
-
-/// 自定义
-FOUNDATION_EXPORT ScheduleCombineType const ScheduleCombineCustom;
 
 NS_ASSUME_NONNULL_END

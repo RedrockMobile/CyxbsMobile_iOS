@@ -60,6 +60,11 @@ target 'CyxbsMobile2019_iOS' do
 
     target 'CyxbsMobile2019_iOSUITests' do
     end
+    
+end
+
+target 'ScheduleWidgetExtension' do
+    available_pods
 end
 
 post_install do |installer|

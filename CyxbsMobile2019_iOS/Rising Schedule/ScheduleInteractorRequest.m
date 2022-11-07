@@ -46,16 +46,14 @@
                 NSInteger nowWeek = [object[@"nowWeek"] longValue];
                 
                 ScheduleCombineModel *model =
-                [ScheduleCombineModel
-                 combineWithSno:stuNum
-                 type:([key isEqualToString:ScheduleModelRequestCustom] ?
-                       ScheduleCombineCustom :
-                       ScheduleCombineSystem)];
+                [ScheduleCombineModel combineWithSno:stuNum type:key];
                 model.nowWeek = nowWeek;
                 
                 NSMutableArray *ary = NSMutableArray.array;
                 for (NSDictionary *courceDictionary in lessonAry) {
                     ScheduleCourse *course = [[ScheduleCourse alloc] initWithDictionary:courceDictionary];
+                    course.sno = stuNum;
+                    course.requestType = key;
                     [ary addObject:course];
                 }
                 model.courseAry = ary;

@@ -10,10 +10,6 @@
 
 #import "ScheduleCourse+WCTTableCoding.h"
 
-ScheduleCombineType const ScheduleCombineSystem = @"system";
-
-ScheduleCombineType const ScheduleCombineCustom = @"custom";
-
 #pragma mark - ScheduleCombineModel
 
 @implementation ScheduleCombineModel
@@ -26,7 +22,7 @@ ScheduleCombineType const ScheduleCombineCustom = @"custom";
     return self;
 }
 
-+ (instancetype)combineWithSno:(NSString *)sno type:(ScheduleCombineType)type {
++ (instancetype)combineWithSno:(NSString *)sno type:(ScheduleModelRequestType)type {
     BOOL check = ((!sno || sno.length < 2) || (!type));
     if (check) {
         NSAssert(!check, @"\n🔴%s sno : %@, type : %@", __func__, sno, type);
@@ -36,7 +32,7 @@ ScheduleCombineType const ScheduleCombineCustom = @"custom";
     ScheduleCombineModel *model = [[ScheduleCombineModel alloc] init];
     
     model->_sno = sno.copy;
-    model->_combineType = type.copy;
+    model->_requestType = type.copy;
     
     return model;
 }
@@ -44,7 +40,7 @@ ScheduleCombineType const ScheduleCombineCustom = @"custom";
 #pragma mark - Getter
 
 - (NSString *)identifier {
-    return [NSString stringWithFormat:@"%@%@", _combineType, _sno];
+    return [NSString stringWithFormat:@"%@%@", _requestType, _sno];
 }
 
 #pragma mark - Setter
@@ -92,12 +88,17 @@ ScheduleCombineType const ScheduleCombineCustom = @"custom";
     [self _check];
     [self.class.db deleteAllObjectsFromTable:self.identifier];
     [self.class.db insertObjects:self.courseAry into:self.identifier];
+    
+    NSArray *ary = [self.class.db getAllObjectsOfClass:ScheduleCourse.class fromTable:self.identifier];
+    RisingLog("😀", @"replace %@", ary);
+    
     [NSUserDefaults.standardUserDefaults setValue:self.startDate forKey:UDKey.startDate];
 }
 
 - (void)awake {
     [self _check];
-    self.courseAry = [self.class.db getAllObjectsOfClass:ScheduleCourse.class fromTable:self.identifier].mutableCopy;
+    self.courseAry = [self.class.db getAllObjectsOfClass:ScheduleCourse.class fromTable:self.identifier];
+    RisingLog("😀", @"replace %@", self.courseAry);
     self.startDate = [NSUserDefaults.standardUserDefaults valueForKey:UDKey.startDate];
 }
 

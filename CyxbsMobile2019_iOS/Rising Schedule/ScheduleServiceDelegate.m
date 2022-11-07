@@ -54,11 +54,11 @@
     }
      failure:^(NSError * _Nonnull error) {
         if (self.canUseAwake) {
-            [dic enumerateKeysAndObjectsUsingBlock:^(ScheduleModelRequestType _Nonnull key, NSArray<NSString *> * _Nonnull obj, BOOL * __unused stop) {
+            [dic enumerateKeysAndObjectsUsingBlock:^(ScheduleModelRequestType  _Nonnull key, NSArray<NSString *> * _Nonnull obj, BOOL * __unused stop) {
                 for (NSString *sno in obj) {
-                    ScheduleCombineModel *combineModel = [ScheduleCombineModel combineWithSno:sno type:key];
-                    [combineModel awake];
-                    [self.model combineModel:combineModel];
+                    ScheduleCombineModel *combine = [ScheduleCombineModel combineWithSno:sno type:key];
+                    [combine awake];
+                    [self.model combineModel:combine];
                 }
             }];
             [self.collectionView reloadData];

@@ -174,10 +174,22 @@
                               layout:(ScheduleCollectionViewLayout *)layout
              compareOriginAttributes:(ScheduleCollectionViewLayoutAttributes *)compareAttributes
               conflictWithAttributes:(ScheduleCollectionViewLayoutAttributes *)conflictAttributes {
+    if (!_model.sno || ![_model.sno isEqualToString:@""]) {
+        return NSOrderedSame;
+    }
     ScheduleCourse *compareCourse = _model.courseAry[compareAttributes.indexPath.section][compareAttributes.indexPath.item];
     ScheduleCourse *conflictCourse = _model.courseAry[conflictAttributes.indexPath.section][conflictAttributes.indexPath.item];
     
+    NSComparisonResult compareResult = [_model compareResultOfCourse:compareCourse];
+    NSComparisonResult conflictResult = [_model compareResultOfCourse:conflictCourse];
     
+    if (compareResult == conflictResult) {
+        return NSOrderedSame;
+    }
+    // need redraw
+    if (compareResult > conflictResult) {
+        
+    }
     
     return NSOrderedSame;
 }
