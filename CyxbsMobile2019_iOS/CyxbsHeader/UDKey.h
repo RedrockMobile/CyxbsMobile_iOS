@@ -9,12 +9,15 @@
 #ifndef UDKey_h
 #define UDKey_h
 
+#import <Foundation/Foundation.h>
+
 extern const struct UDKey {
     __unsafe_unretained NSString *sno; // String value
     __unsafe_unretained NSString *otherSno; // String value
     __unsafe_unretained NSString *isDefineMuti; // Bool value
     __unsafe_unretained NSString *isXXHB; // Bool value
     __unsafe_unretained NSString *startDate; // Date value
+    __unsafe_unretained NSString *hadReadAgreement; // Bool value
 } UDKey;
 
 #endif /* UDKey_h */

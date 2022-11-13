@@ -12,6 +12,8 @@
 
 #import "SchedulePresenter.h"
 
+#import "SearchPeopleViewController.h"
+
 @interface FastLoginViewController () <UITextFieldDelegate>
 
 /// <#description#>
@@ -153,6 +155,8 @@
     self.presenter.nextRequestDic = @{
         ScheduleModelRequestStudent : @[sno]
     };
+    
+    [NSUserDefaults.widgetUserDefaults setValue:self.presenter.nextRequestDic forKey:@"schedule.request.dic"];
 }
 
 - (void)_outside:(UIButton *)btn {
@@ -161,6 +165,15 @@
 }
 
 #pragma mark - <UITextFieldDelegate>
+
+//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+//    SearchPeopleViewController *vc = [[SearchPeopleViewController alloc] init];
+//    vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+//    [self presentViewController:vc animated:YES completion:^{
+//        [vc foucus];
+//    }];
+//    return NO;
+//}
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if (!textField.text || ![textField.text isEqualToString:@""]) {

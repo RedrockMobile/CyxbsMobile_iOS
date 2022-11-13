@@ -1,8 +1,8 @@
 //
-//  SearchPeopleViewController.h
+//  UserAgreementViewController.h
 //  CyxbsMobile2019_iOS
 //
-//  Created by SSR on 2022/11/4.
+//  Created by SSR on 2022/11/10.
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
@@ -10,9 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SearchPeopleViewController : UIViewController
-
-- (void)foucus;
+@interface UserAgreementViewController : UIViewController
 
 @end
 

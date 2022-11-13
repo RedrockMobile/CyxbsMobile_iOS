@@ -12,6 +12,8 @@
 
 #import "FastLoginViewController.h"
 
+#import "UserAgreementViewController.h"
+
 @interface CyxbsTabBarController () 
 
 /// <#description#>
@@ -28,6 +30,16 @@
         self._vc1,
         self._test1
     ];
+    
+    BOOL hadReadAgreement = [NSUserDefaults.standardUserDefaults boolForKey:UDKey.hadReadAgreement];
+    if (!hadReadAgreement) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            UIViewController *vc = [[UserAgreementViewController alloc] init];
+            vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+            [self presentViewController:vc animated:YES completion:nil];
+        });
+        self.selectedIndex = 1;
+    }
 }
 
 #pragma mark - Method

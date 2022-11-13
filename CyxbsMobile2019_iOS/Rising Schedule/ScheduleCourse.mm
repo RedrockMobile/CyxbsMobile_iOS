@@ -48,7 +48,7 @@ WCDB_SYNTHESIZE(ScheduleCourse, requestType)
 
 #pragma mark - Init
 
-- (instancetype) initWithDictionary:(NSDictionary *)dic {
+- (instancetype)initWithDictionary:(NSDictionary *)dic {
     
     BOOL check = (!dic || dic.count < 10);
     if (check) {
@@ -109,14 +109,17 @@ WCDB_SYNTHESIZE(ScheduleCourse, requestType)
 }
 
 - (NSString *)timeStr {
-    return [self _checkTime];
-}
-
-- (NSString *)_checkTime {
     if (_period_location <= 0 || NSMaxRange(self.period) - 1 > 12) {
         return @"";
     }
-    
+    __block NSString *str;
+    [ScheduleCourse getTimelineString:^(NSArray<NSString *> *beginTimes, NSArray<NSString *> *endTimes) {
+        str = [NSString stringWithFormat:@"%@ - %@", beginTimes[(self.period_location - 1) % 12], endTimes[(NSMaxRange(self.period) - 2) % 12]];
+    }];
+    return str;
+}
+
++ (void)getTimelineString:(void (^)(NSArray <NSString *> *beginTimes, NSArray <NSString *> *endTimes))block {
     static NSArray *beginTime = @[
         @"8:00",
         @"8:55",
@@ -149,7 +152,9 @@ WCDB_SYNTHESIZE(ScheduleCourse, requestType)
         @"20:35",
         @"22:30"
     ];
-    return [NSString stringWithFormat:@"%@ - %@", beginTime[(_period_location - 1) % 12], endTime[(NSMaxRange(self.period) - 2) % 12]];
+    if (block) {
+        block(beginTime, endTime);
+    }
 }
 
 @end

@@ -22,7 +22,22 @@ extension FontName {
 }
 
 extension UserDefaults {
-    var widget : UserDefaults? {
+    static var widget : UserDefaults? {
         UserDefaults(suiteName: "group.com.mredrock.cyxbs.widget")
+    }
+}
+
+extension Locale {
+    static var CN: Locale {
+        Locale(identifier: "zh_CN")
+    }
+}
+
+import SwiftUI
+
+extension Color {
+    init(light: UIColor, dark: UIColor) {
+        @Environment(\.colorScheme) var currentMode
+        self.init(currentMode == .dark ? dark : light)
     }
 }

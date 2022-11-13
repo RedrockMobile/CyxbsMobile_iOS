@@ -56,7 +56,7 @@
         if (self.canUseAwake) {
             [dic enumerateKeysAndObjectsUsingBlock:^(ScheduleModelRequestType  _Nonnull key, NSArray<NSString *> * _Nonnull obj, BOOL * __unused stop) {
                 for (NSString *sno in obj) {
-                    ScheduleCombineModel *combine = [ScheduleCombineModel combineWithSno:sno type:key];
+                    ScheduleCombineModel *combine = [[ScheduleCombineModel alloc] initWithSno:sno type:key];
                     [combine awake];
                     [self.model combineModel:combine];
                 }

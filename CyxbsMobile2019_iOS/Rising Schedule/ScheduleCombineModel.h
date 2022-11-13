@@ -48,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 建立连立模型
 /// @param sno 学号
 /// @param type 方式
-+ (instancetype)combineWithSno:(NSString *)sno type:(ScheduleModelRequestType)type;
+- (instancetype)initWithSno:(NSString *)sno type:(ScheduleModelRequestType)type;
 
 @end
 

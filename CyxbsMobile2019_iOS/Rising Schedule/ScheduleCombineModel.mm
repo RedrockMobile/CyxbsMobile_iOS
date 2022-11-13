@@ -10,6 +10,8 @@
 
 #import "ScheduleCourse+WCTTableCoding.h"
 
+#import <NSDate+YYAdd.h>
+
 #pragma mark - ScheduleCombineModel
 
 @implementation ScheduleCombineModel
@@ -17,24 +19,23 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _courseAry = NSMutableArray.array;
+        _courseAry = NSArray.array;
     }
     return self;
 }
 
-+ (instancetype)combineWithSno:(NSString *)sno type:(ScheduleModelRequestType)type {
+- (instancetype)initWithSno:(NSString *)sno type:(ScheduleModelRequestType)type {
+    self = [super init];
     BOOL check = ((!sno || sno.length < 2) || (!type));
     if (check) {
         NSAssert(!check, @"\n🔴%s sno : %@, type : %@", __func__, sno, type);
         return nil;
     }
-    
-    ScheduleCombineModel *model = [[ScheduleCombineModel alloc] init];
-    
-    model->_sno = sno.copy;
-    model->_requestType = type.copy;
-    
-    return model;
+    if (self) {
+        _sno = sno.copy;
+        _requestType = type.copy;
+    }
+    return self;
 }
 
 #pragma mark - Getter
@@ -89,17 +90,12 @@
     [self.class.db deleteAllObjectsFromTable:self.identifier];
     [self.class.db insertObjects:self.courseAry into:self.identifier];
     
-    NSArray *ary = [self.class.db getAllObjectsOfClass:ScheduleCourse.class fromTable:self.identifier];
-    RisingLog("😀", @"replace %@", ary);
-    
-    [NSUserDefaults.standardUserDefaults setValue:self.startDate forKey:UDKey.startDate];
+    [NSUserDefaults.standardUserDefaults setValue:self.startDate forKey:@"UDKey_startDate"];
 }
 
 - (void)awake {
     [self _check];
     self.courseAry = [self.class.db getAllObjectsOfClass:ScheduleCourse.class fromTable:self.identifier];
-    RisingLog("😀", @"replace %@", self.courseAry);
-    self.startDate = [NSUserDefaults.standardUserDefaults valueForKey:UDKey.startDate];
 }
 
 - (void)_check {

@@ -46,7 +46,7 @@
                 NSInteger nowWeek = [object[@"nowWeek"] longValue];
                 
                 ScheduleCombineModel *model =
-                [ScheduleCombineModel combineWithSno:stuNum type:key];
+                [[ScheduleCombineModel alloc] initWithSno:stuNum type:key];
                 model.nowWeek = nowWeek;
                 
                 NSMutableArray *ary = NSMutableArray.array;

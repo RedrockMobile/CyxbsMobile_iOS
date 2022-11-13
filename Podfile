@@ -65,6 +65,7 @@ end
 
 target 'ScheduleWidgetExtension' do
     available_pods
+    pod 'WCDB'
 end
 
 post_install do |installer|

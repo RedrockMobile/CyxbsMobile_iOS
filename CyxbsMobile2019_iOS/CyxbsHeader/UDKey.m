@@ -13,5 +13,6 @@ const struct UDKey UDKey = {
     .otherSno = @"UDKey_otherSno",
     .isDefineMuti = @"UDKey_isDefineMuti",
     .isXXHB = @"UDKey_isXXHB",
-    .startDate = @"UDKey_startDate"
+    .startDate = @"UDKey_startDate",
+    .hadReadAgreement = @"UDKey_hadReadAgreement"
 };

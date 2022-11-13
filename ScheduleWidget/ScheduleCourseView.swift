@@ -10,53 +10,19 @@ import SwiftUI
 
 struct ScheduleCourseView: View {
     
-    enum DrawType: Int {
-        
+    enum DrawType {
         case morning
         case afternoon
         case night
         case others
-        
-        var backgroudColor: Color {
-            switch self {
-            case .morning:
-                return Color(UIColor(hexString: "#F9E7D8")!)
-            case .afternoon:
-                return Color(UIColor(hexString: "#F9E3E4")!)
-            case .night:
-                return Color(UIColor(hexString: "#DDE3F8")!)
-            case .others:
-                return Color(UIColor(hexString: "#DFF3FC")!)
-            }
-        }
-        
-        var textColor: Color {
-            switch self {
-            case .morning:
-                return Color(UIColor(hexString: "#FF8015")!)
-            case .afternoon:
-                return Color(UIColor(hexString: "#06A3FC")!)
-            case .night:
-                return Color(UIColor(hexString: "#4066EA")!)
-            case .others:
-                return Color(UIColor(hexString: "#06A3FC")!)
-            }
-        }
     }
-    
     var inDraw: DrawType
     var title: String
     var content: String
     
-    init(inDraw: DrawType, title: String, content: String) {
-        self.inDraw = inDraw
-        self.title = title
-        self.content = content
-    }
-    
     var body: some View {
         ZStack {
-            inDraw.backgroudColor
+            DrawPlace.background(inDraw).color
             VStack {
                 Text(title)
                     .padding(.top, 8)
@@ -65,17 +31,57 @@ struct ScheduleCourseView: View {
                     .padding(.bottom, 8)
             }
             .font(Font.custom(FontName.PingFangSC.Regular, size: 10))
-            .foregroundColor(inDraw.textColor)
+            .foregroundColor(DrawPlace.text(inDraw).color)
             .padding(.horizontal, 3)
             GeometryReader { entry in
                 Spacer()
-                inDraw.textColor
+                DrawPlace.text(inDraw).color
                     .frame(width: 8, height: 2)
                     .cornerRadius(1)
-                Spacer(minLength: 5)
+                    .padding(.trailing, 5)
             }
         }
         .cornerRadius(10)
+    }
+    
+    enum DrawPlace {
+        case text(DrawType)
+        case background(DrawType)
+        
+        var color: Color {
+            switch self {
+            case let .text(type):
+                switch type {
+                    case .morning:
+                        return Color(light: UIColor(hexString: "#FF8015")!,
+                                     dark: UIColor(hexString: "#F0F0F2CC")!)
+                    case .afternoon:
+                        return Color(light: UIColor(hexString: "#FF6262")!,
+                                     dark: UIColor(hexString: "#F0F0F2CC")!)
+                    case .night:
+                        return Color(light: UIColor(hexString: "#4066EA")!,
+                                     dark: UIColor(hexString: "#F0F0F2CC")!)
+                    case .others:
+                        return Color(light: UIColor(hexString: "#06A3FC")!,
+                                     dark: UIColor(hexString: "#F0F0F2CC")!)
+                }
+            case let .background(type):
+                switch type {
+                case .morning:
+                    return Color(light: UIColor(hexString: "#F9E7D8")!,
+                                 dark: UIColor(hexString: "#FFCCA126")!)
+                case .afternoon:
+                    return Color(light: UIColor(hexString: "#F9E3E4")!,
+                                 dark: UIColor(hexString: "#FF979B26")!)
+                case .night:
+                    return Color(light: UIColor(hexString: "#DDE3F8")!,
+                                 dark: UIColor(hexString: "#9BB2FB26")!)
+                case .others:
+                    return Color(light: UIColor(hexString: "#DFF3FC")!,
+                                 dark: UIColor(hexString: "#90DBFB26")!)
+                }
+            }
+        }
     }
 }
 

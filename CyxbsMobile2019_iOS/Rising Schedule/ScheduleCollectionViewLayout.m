@@ -124,9 +124,8 @@
         for (ScheduleCollectionViewLayoutAttributes *entry in _autoItemAttributes[@(indexPath.section * 100 + week)]) {
             // The Attributes being compared must have an inclusion relationship, and the previous view must be visible
             if (CGRectIntersectsRect(entry.frame, attributes.frame) && !entry.isHidden) {
-                
                 NSComparisonResult result = NSOrderedSame;
-                if (self.callBack) {
+                if (self.callBack && NO) {
                     result = [self.dataSource collectionView:self.collectionView layout:self compareOriginAttributes:entry conflictWithAttributes:attributes];
                 }
                 if (result == NSOrderedSame) {

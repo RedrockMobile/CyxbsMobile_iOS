@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SearchPersonModel : NSObject
 
 /// datasorse
-@property (nonatomic, readonly, nonnull) NSArray <SearchPerson *> *serchPersons;
+@property (nonatomic, readonly, nonnull) NSArray <SearchPerson *> *personAry;
 
 - (void)reqestWithInfo:(NSString *)info
                success:(void (^)(void))success
