@@ -64,6 +64,8 @@
         _agreementLab.textColor =
         [UIColor Light:UIColorHex(#112C54) Dark:UIColorHex(#F0F0F2)];
         _agreementLab.text = @"已阅读并同意《掌上重邮用户协议》";
+        
+        UIEvent *a;
     }
     return _agreementLab;
 }

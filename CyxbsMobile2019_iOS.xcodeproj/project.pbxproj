@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,7 @@
 		1466282928C4B1EC00AF584F /* ScheduleCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466282828C4B1EC00AF584F /* ScheduleCollectionViewLayout.m */; };
 		1466282C28C4EFE400AF584F /* ScheduleRequestType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466282B28C4EFE400AF584F /* ScheduleRequestType.m */; };
 		1466283428C5CA4600AF584F /* ScheduleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466283328C5CA4600AF584F /* ScheduleCollectionViewCell.m */; };
+		1468F18729248C110080DA08 /* SearchPersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1468F18629248C110080DA08 /* SearchPersonTableViewCell.m */; };
 		146AA0C528B65FA800391FD0 /* SchedulePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 146AA0C428B65FA800391FD0 /* SchedulePresenter.m */; };
 		146D144C2907F21700327AB8 /* FastLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D144B2907F21700327AB8 /* FastLoginViewController.m */; };
 		146D144F2908BB2800327AB8 /* UDKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D144E2908BB2800327AB8 /* UDKey.m */; };
@@ -145,6 +146,8 @@
 		1466282D28C4EFF400AF584F /* ScheduleRequestType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleRequestType.h; sourceTree = "<group>"; };
 		1466283228C5CA4600AF584F /* ScheduleCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionViewCell.h; sourceTree = "<group>"; };
 		1466283328C5CA4600AF584F /* ScheduleCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCollectionViewCell.m; sourceTree = "<group>"; };
+		1468F18529248C110080DA08 /* SearchPersonTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchPersonTableViewCell.h; sourceTree = "<group>"; };
+		1468F18629248C110080DA08 /* SearchPersonTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchPersonTableViewCell.m; sourceTree = "<group>"; };
 		146AA0C328B65FA800391FD0 /* SchedulePresenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchedulePresenter.h; sourceTree = "<group>"; };
 		146AA0C428B65FA800391FD0 /* SchedulePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchedulePresenter.m; sourceTree = "<group>"; };
 		146D144A2907F21700327AB8 /* FastLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FastLoginViewController.h; sourceTree = "<group>"; };
@@ -412,6 +415,8 @@
 				1441BF79291F4E0100591A0E /* Rising User Agreenent */,
 				14BC47F62914D76E0063809E /* SearchPeopleViewController.h */,
 				14BC47F72914D76E0063809E /* SearchPeopleViewController.m */,
+				1468F18529248C110080DA08 /* SearchPersonTableViewCell.h */,
+				1468F18629248C110080DA08 /* SearchPersonTableViewCell.m */,
 				14BC480729154D290063809E /* SearchPersonModel.h */,
 				14BC480829154D290063809E /* SearchPersonModel.m */,
 				14BC47F92914D80F0063809E /* SearchPerson.h */,
@@ -717,7 +722,7 @@
 				};
 			};
 			buildConfigurationList = 1A9B7662235F50A600725937 /* Build configuration list for PBXProject "CyxbsMobile2019_iOS" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -963,6 +968,7 @@
 				1422242628D9B31B009A4A54 /* RisingUIKitExtension.m in Sources */,
 				1441BF7C291FF29200591A0E /* UserAgreementConsentView.m in Sources */,
 				1466283428C5CA4600AF584F /* ScheduleCollectionViewCell.m in Sources */,
+				1468F18729248C110080DA08 /* SearchPersonTableViewCell.m in Sources */,
 				14B46E6528B4D5D7003D288B /* ScheduleModel.m in Sources */,
 				14B9648028F67EEF00C984AB /* CyxbsTabBarController.m in Sources */,
 				14E319A0290CC52D00B951CE /* UserAgreementView.m in Sources */,
@@ -1228,7 +1234,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
@@ -1290,7 +1296,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 0;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";

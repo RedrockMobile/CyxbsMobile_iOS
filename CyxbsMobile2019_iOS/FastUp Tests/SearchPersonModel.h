@@ -17,9 +17,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// datasorse
 @property (nonatomic, readonly, nonnull) NSArray <SearchPerson *> *personAry;
 
+/// sets
+@property (nonatomic, strong) NSSet <NSString *> *snoSet;
+
 - (void)reqestWithInfo:(NSString *)info
                success:(void (^)(void))success
                failure:(void (^)(NSError *))failure;
+
+- (void)removeSno:(NSString *)sno;
 
 @end
 

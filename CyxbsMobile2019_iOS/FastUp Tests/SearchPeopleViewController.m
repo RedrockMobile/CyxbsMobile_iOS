@@ -54,8 +54,15 @@
     [self.textField becomeFirstResponder];
 }
 
-- (void)_request {
-    
+- (void)_request:(NSString *)str {
+    [self.searchModel
+     reqestWithInfo:str
+     success:^{
+        
+    }
+     failure:^(NSError * _Nonnull) {
+        
+    }];
 }
 
 - (void)_cancel:(UIButton *)btn {
@@ -72,6 +79,31 @@
     
     return nil;
 }
+
+#pragma mark - <UITextFieldDelegate>
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if ([textField.text isEqualToString:@""] && [string isEqualToString:@" "]) {
+        return NO;
+    }
+    NSString *key;
+    if ([string isEqualToString:@""]) {
+        key = [textField.text substringToIndex:textField.text.length - 1];
+    } else {
+        key = [NSString stringWithFormat:@"%@%@", textField.text, string];
+    }
+    
+    if ([string isEqualToString:@"\n"]) {
+        [textField resignFirstResponder];
+        [self _request:key];
+    } else {
+        //优化了延迟500毫秒记录输入内容，发起请求
+        [NSRunLoop cancelPreviousPerformRequestsWithTarget:self];
+        [self performSelector:@selector(_request:) withObject:key afterDelay:0.8];
+    }
+    return YES;
+}
+
 
 #pragma mark - Getter
 
