@@ -32,6 +32,7 @@ NSString *ScheduleSupplementaryCollectionViewCellReuseIdentifier = @"ScheduleSup
 #pragma mark - Init
 
 - (instancetype)initWithFrame:(CGRect)frame {
+    static NSInteger count = 0;
     self = [super initWithFrame:frame];
     if (self) {
         self.contentView.layer.cornerRadius = 8;

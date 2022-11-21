@@ -8,26 +8,6 @@
 
 #import "ScheduleCollectionViewLayout.h"
 
-#pragma mark - ScheduleCollectionViewLayoutAttributes
-
-@implementation ScheduleCollectionViewLayoutAttributes
-
-- (id)copyWithZone:(nullable NSZone *)zone {
-    ScheduleCollectionViewLayoutAttributes *attributes = [super copyWithZone:zone];
-    attributes.week = self.week;
-    attributes.hadMuti = self.hadMuti;
-    attributes.drawRange = self.drawRange;
-    return attributes;
-}
-
-@end
-
-#pragma mark - ScheduleCollectionViewLayoutInvalidationContext
-
-@implementation ScheduleCollectionViewLayoutInvalidationContext
-
-@end
-
 #pragma mark - ScheduleCollectionViewLayout ()
 
 @interface ScheduleCollectionViewLayout () <UICollectionViewDelegateFlowLayout>
@@ -73,16 +53,22 @@
         
         // SupplementaryView attributes
         for (NSString *elementKind in _supplementaryAttributes.allKeys) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:section];
-            UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForSupplementaryViewOfKind:elementKind atIndexPath:indexPath];
-            if (CGRectIntersectsRect(rect, attributes.frame)) {
-                [result addObject:attributes];
+            
+            NSInteger supplementaryCount = [self.dataSource collectionView:self.collectionView layout:self numberOfSupplementaryOfKind:elementKind inSection:section];
+            for (NSInteger item = 0; item < supplementaryCount; item++) {
+                
+                NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
+                UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForSupplementaryViewOfKind:elementKind atIndexPath:indexPath];
+                if (CGRectIntersectsRect(rect, attributes.frame)) {
+                    [result addObject:attributes];
+                }
             }
         }
         
         // Cell attributes
         NSUInteger itemCount = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:section];
         for (NSInteger item = 0; item < itemCount; item++) {
+            
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
             UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:indexPath];
             if (CGRectIntersectsRect(rect, attributes.frame)) {
@@ -101,58 +87,40 @@
     
     ScheduleCollectionViewLayoutAttributes *attributes = _itemAttributes[indexPath];
     if (attributes) {
-        NSAssert(attributes.week, @"");
+        NSAssert(attributes.layoutModel.week, @"week为0");
         return attributes;
     }
 
     attributes = [self.class.layoutAttributesClass layoutAttributesForCellWithIndexPath:indexPath];
+    _itemAttributes[indexPath] = attributes;
     
     if (self.dataSource) {
-        NSUInteger week = [self.dataSource collectionView:self.collectionView layout:self weekForItemAtIndexPath:indexPath];
-        NSRange range = [self.dataSource collectionView:self.collectionView layout:self rangeForItemAtIndexPath:indexPath];
-        attributes.hidden = NO;
-        attributes.week = week;
-        attributes.drawRange = range;
+        ScheduleCollectionViewLayoutModel *viewModel = [self.dataSource collectionView:self.collectionView layout:self layoutModelForItemAtIndexPath:indexPath];
         
-        CGRect frame = [self _itemSizeForAttributes:attributes];
-        attributes.frame = frame;
+        attributes.layoutModel = viewModel;
         
-        if (!_autoItemAttributes[@(indexPath.section * 100 + week)]) {
-            _autoItemAttributes[@(indexPath.section * 100 + week)] = NSMutableArray.array;
-        }
-         
-        for (ScheduleCollectionViewLayoutAttributes *entry in _autoItemAttributes[@(indexPath.section * 100 + week)]) {
-            // The Attributes being compared must have an inclusion relationship, and the previous view must be visible
-            if (CGRectIntersectsRect(entry.frame, attributes.frame) && !entry.isHidden) {
-                NSComparisonResult result = NSOrderedSame;
-                if (self.callBack && NO) {
-                    result = [self.dataSource collectionView:self.collectionView layout:self compareOriginAttributes:entry conflictWithAttributes:attributes];
-                }
-                if (result == NSOrderedSame) {
-                    if (CGRectContainsRect(entry.frame, attributes.frame)) {
-                        result = NSOrderedDescending;
-                    } else if (CGRectContainsRect(attributes.frame, entry.frame)){
-                        result = NSOrderedAscending;
-                    } else {
-                        continue;
-                    }
-                }
-                // result must be ** NSOrderedDescending or NSOrderedAscending **
-                if (result == NSOrderedDescending) {
-                    attributes.hidden = YES;
-                    entry.hadMuti = YES;
-                } else {
-                    entry.hidden = YES;
-                    attributes.hadMuti = YES;
-                }
-            }
-        }
-        
-        [_autoItemAttributes[@(indexPath.section * 100 + week)] addObject:attributes];
-        _itemAttributes[indexPath] = attributes;
+        [self _transformItemWithAttributes:attributes];
     }
     
     return attributes;
+}
+
+- (void)_transformItemWithAttributes:(ScheduleCollectionViewLayoutAttributes *)attributes {
+    ScheduleCollectionViewLayoutModel *layoutModel = attributes.layoutModel;
+    
+    CGFloat x = attributes.indexPath.section * self.collectionView.width + self.widthForLeadingSupplementaryView + (layoutModel.week - 1) * (_itemSize.width + self.columnSpacing);
+    CGFloat y = self.heightForHeaderSupplementaryView + (layoutModel.orginRange.location - 1) * (_itemSize.height + self.lineSpacing);
+    CGFloat height = layoutModel.orginRange.length * _itemSize.height + (layoutModel.orginRange.length - 1) * self.columnSpacing;
+    
+    CGRect frame = CGRectMake(x, y, _itemSize.width, height);
+    
+    [_autoItemAttributes[@(attributes.indexPath.section * 10 + layoutModel.week)] enumerateObjectsUsingBlock:^(ScheduleCollectionViewLayoutAttributes * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (CGRectContainsRect(frame, obj.frame)) {
+            
+        }
+    }];
+    
+    attributes.frame = frame;
 }
 
 // --------------- Supplementary ---------------
@@ -162,36 +130,53 @@
     
     UICollectionViewLayoutAttributes *attributes = _supplementaryAttributes[elementKind][indexPath];
 
-    if (attributes) {
-        return attributes;
+    if (!attributes) {
+        attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
+        _supplementaryAttributes[elementKind][indexPath] = attributes;
     }
     
-    attributes = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:elementKind withIndexPath:indexPath];
-    _supplementaryAttributes[elementKind][indexPath] = attributes;
+    [self _transformSupplementaryAttributes:attributes];
+    
+    return attributes;
+}
+
+- (void)_transformSupplementaryAttributes:(UICollectionViewLayoutAttributes *)attributes {
+    NSIndexPath *indexPath = attributes.indexPath;
+    NSString *elementKind = attributes.representedElementKind;
     
     // Header Element
     if ([elementKind isEqualToString:UICollectionElementKindSectionHeader]) {
-        CGFloat x = indexPath.section * self.collectionView.width;
+        if (indexPath.item == 0) {
+            CGFloat x = indexPath.section * self.collectionView.width;
+            CGFloat y = self.collectionView.contentOffset.y;
+            CGRect frame = CGRectMake(x, y, self.widthForLeadingSupplementaryView, self.heightForHeaderSupplementaryView);
+            
+            attributes.frame = frame;
+            attributes.zIndex = 100;
+            
+            return;
+        }
+        CGFloat x = indexPath.section * self.collectionView.width + self.widthForLeadingSupplementaryView + (indexPath.item - 1) * (self.columnSpacing + _itemSize.width);
         CGFloat y = self.collectionView.contentOffset.y;
         
-        CGRect frame = CGRectMake(x, y, self.collectionView.width, self.heightForHeaderSupplementaryView);
+        CGRect frame = CGRectMake(x, y, _itemSize.width, self.heightForHeaderSupplementaryView);
         
         attributes.frame = frame;
         attributes.zIndex = 100;
         
-        return attributes;
+        return;
     }
     
     // Leading Element
     if ([elementKind isEqualToString:UICollectionElementKindSectionLeading]) {
         CGFloat x = indexPath.section * self.collectionView.width;
-        CGFloat height = (_itemSize.height + self.lineSpacing) * 12;
+        CGFloat y = self.heightForHeaderSupplementaryView + indexPath.item * (self.lineSpacing + _itemSize.height);
         
-        CGRect frame = CGRectMake(x, self.heightForHeaderSupplementaryView, self.widthForLeadingSupplementaryView, height);
+        CGRect frame = CGRectMake(x, y, self.widthForLeadingSupplementaryView, _itemSize.height);
         
         attributes.frame = frame;
         
-        return attributes;
+        return;
     }
     
     // Placeholder Element
@@ -210,10 +195,8 @@
             attributes.alpha = (itemCount > 0 ? 0 : 1);
         }
         
-        return attributes;
+        return ;
     }
-    
-    return attributes;
 }
 
 #pragma mark - Others
@@ -323,15 +306,6 @@
     
     _itemSize = CGSizeMake(width, width / 46 * 50);
 }
-
-- (CGRect)_itemSizeForAttributes:(ScheduleCollectionViewLayoutAttributes *)attributes {
-    CGFloat x = attributes.indexPath.section * self.collectionView.bounds.size.width + self.widthForLeadingSupplementaryView + (attributes.week - 1) * (_itemSize.width + self.columnSpacing) + self.columnSpacing;
-    CGFloat y = self.heightForHeaderSupplementaryView + (attributes.drawRange.location - 1) * (_itemSize.height + self.lineSpacing);
-    CGFloat height = attributes.drawRange.length * _itemSize.height + (attributes.drawRange.length - 1) * self.columnSpacing;
-        
-    return CGRectMake(x, y, _itemSize.width, height);
-}
-
 #pragma mark - Setter
 
 - (void)setCallBack:(BOOL)callBack {

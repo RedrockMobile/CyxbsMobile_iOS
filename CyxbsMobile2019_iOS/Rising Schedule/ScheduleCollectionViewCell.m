@@ -62,7 +62,7 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
     
     if ([layoutAttributes isKindOfClass:ScheduleCollectionViewLayoutAttributes.class]) {
         ScheduleCollectionViewLayoutAttributes *attributes = (ScheduleCollectionViewLayoutAttributes *)layoutAttributes;
-        if (attributes.hadMuti) {
+        if (attributes.layoutModel.hadMuti) {
             self.multyView.hidden = NO;
         } else {
             self.multyView.hidden = YES;

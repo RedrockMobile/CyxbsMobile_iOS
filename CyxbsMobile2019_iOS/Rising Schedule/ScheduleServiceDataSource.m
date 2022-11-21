@@ -10,15 +10,12 @@
 
 #import "ScheduleCollectionViewCell.h"
 
-#import "ScheduleCollectionHeaderView.h"
+#import "ScheduleSupplementaryCollectionViewCell.h"
 
-#import "ScheduleCollectionLeadingView.h"
 
 #pragma mark - ScheduleServiceDataSource ()
 
-@interface ScheduleServiceDataSource () <
-    ScheduleCollectionHeaderViewDataSource
->
+@interface ScheduleServiceDataSource ()
 
 /// 视图不同
 @property (nonatomic) BOOL diff;
@@ -60,9 +57,8 @@
     NSParameterAssert(view);
     
     [view registerClass:ScheduleCollectionViewCell.class forCellWithReuseIdentifier:ScheduleCollectionViewCellReuseIdentifier];
-    [view registerClass:ScheduleCollectionHeaderView.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleCollectionHeaderViewReuseIdentifier];
-    [view registerClass:ScheduleCollectionLeadingView.class forSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleCollectionLeadingViewReuseIdentifier];
-    [view registerClass:UICollectionReusableView.class forSupplementaryViewOfKind:UICollectionElementKindSectionPlaceholder withReuseIdentifier:UICollectionElementKindSectionPlaceholder];
+    [view registerClass:ScheduleSupplementaryCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier];
+    [view registerClass:ScheduleSupplementaryCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier];
     
     [view addSubview:self.backgroundView];
     
@@ -116,58 +112,69 @@
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath {
     
-    ScheduleCollectionViewLayout *layout = (ScheduleCollectionViewLayout *)collectionView.collectionViewLayout;
-    
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-
-        ScheduleCollectionHeaderView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleCollectionHeaderViewReuseIdentifier forIndexPath:indexPath];
-        
-        view.widthForLeadingView = layout.widthForLeadingSupplementaryView;
-        view.columnSpacing = layout.columnSpacing;
-        view.dataSource = self;
-        view.superCollectionView = collectionView;
-        view.backgroundColor = collectionView.backgroundColor;
-        
-        return view;
+    if (kind != UICollectionElementKindSectionHeader && kind != UICollectionElementKindSectionLeading) {
+        return nil;
     }
     
-    if ([kind isEqualToString:UICollectionElementKindSectionLeading]) {
+    NSDate *date = [NSDate dateWithTimeInterval:(indexPath.section - 1) * 7 * 24 * 60 * 60 + (indexPath.item - 1) * 24 * 60 * 60 sinceDate:_model.startDate];
+    NSInteger weekday = NSDate.date.weekday - 1;
+    weekday = weekday ? weekday : 7;
+    
+    ScheduleSupplementaryCollectionViewCell *cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier forIndexPath:indexPath];
+    
+    cell.backgroundColor = collectionView.backgroundColor;
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        cell.isTitleOnly = (indexPath.section == 0 ? YES : indexPath.item == 0);
         
-        ScheduleCollectionLeadingView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleCollectionLeadingViewReuseIdentifier forIndexPath:indexPath];
+        cell.title = (indexPath.section == 0 ? @"学期" : indexPath.item == 0 ? [NSString stringWithFormat:@"%ld月", date.month] : [date stringWithFormat:@"EEE" timeZone:NSTimeZone.CQ locale:NSLocale.CN]);
         
-        view.lineSpacing = layout.lineSpacing;
-        view.superCollectionView = collectionView;
+        cell.content = [NSString stringWithFormat:@"%ld日", date.day];
         
-        return view;
+        cell.isCurrent = (indexPath.section != _model.nowWeek ? NO : indexPath.item == weekday);
+        
+        return cell;
     }
     
-    if ([kind isEqualToString:UICollectionElementKindSectionPlaceholder]) {
+    if (kind == UICollectionElementKindSectionLeading) {
+        cell.isTitleOnly = YES;
         
-        // TODO: Empty view
-//        UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionPlaceholder withReuseIdentifier:UICollectionElementKindSectionPlaceholder forIndexPath:indexPath];
+        cell.title = @(indexPath.item + 1).stringValue;
         
-        
+        return cell;
     }
     
     return nil;
 }
 
-#pragma mark - <ScheduleCollectionViewLayoutDelegate>
+#pragma mark - <ScheduleCollectionViewLayoutDataSource>
 
-- (NSUInteger)collectionView:(nonnull UICollectionView *)collectionView
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView
                       layout:(nonnull ScheduleCollectionViewLayout *)layout
-      weekForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+ numberOfSupplementaryOfKind:(nonnull NSString *)kind
+                   inSection:(NSInteger)section {
+    if (kind == UICollectionElementKindSectionHeader) {
+        return 8;
+    }
     
-    ScheduleCourse *course = _model.courseAry[indexPath.section][indexPath.item];
-    return course.inWeek;
+    if (kind == UICollectionElementKindSectionLeading) {
+        return 12;
+    }
+    
+    return 0;
 }
 
-- (NSRange)collectionView:(nonnull UICollectionView *)collectionView
-                   layout:(nonnull ScheduleCollectionViewLayout *)layout
-  rangeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    
+- (ScheduleCollectionViewLayoutModel *)collectionView:(UICollectionView *)collectionView
+                                               layout:(ScheduleCollectionViewLayout *)layout
+                        layoutModelForItemAtIndexPath:(NSIndexPath *)indexPath {
     ScheduleCourse *course = _model.courseAry[indexPath.section][indexPath.item];
-    return course.period;
+    
+    ScheduleCollectionViewLayoutModel *model = [[ScheduleCollectionViewLayoutModel alloc] init];
+    
+    model.orginRange = course.period;
+    model.week = course.inWeek;
+    
+    return model;
 }
 
 - (NSComparisonResult)collectionView:(UICollectionView *)collectionView
@@ -192,56 +199,6 @@
     }
     
     return NSOrderedSame;
-}
-
-#pragma mark - <ScheduleCollectionHeaderViewDataSource>
-
-- (NSString *)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
-                             leadingTitleInSection:(NSInteger)section {
-    if (section == 0) {
-        return @"学期";
-    }
-    
-    NSString *title = [NSString stringWithFormat:@"%ld月", [NSDate dateWithTimeInterval:(section - 1) * 7 * 24 * 60 * 60 sinceDate:_model.startDate].month];
-    return title;
-}
-
-- (BOOL)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
-                 needSourceInSection:(NSInteger)section {
-    return section ? YES : NO;
-}
-
-- (NSString *)scheduleCollectionHeaderView:(nonnull ScheduleCollectionHeaderView *)view
-                    contentDateAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        return nil;
-    }
-    
-    NSDate *date = [NSDate dateWithTimeInterval:(indexPath.section - 1) * 7 * 24 * 60 * 60 + (indexPath.item - 1) * 24 * 60 * 60 sinceDate:_model.startDate];
-    NSString *title = [NSString stringWithFormat:@"%ld日", date.day];
-    return title;
-}
-
-- (void)scheduleCollectionHeaderView:(ScheduleCollectionHeaderView *)view
-                      isCurrentBlock:(CGRect (^)(BOOL isCurrent))currentBlock
-                         atIndexPath:(NSIndexPath *)indexPath {
-    
-    if (_model.nowWeek != indexPath.section) {
-        currentBlock(NO);
-        return;
-    }
-    
-    NSInteger weekday = NSDate.date.weekday - 1;
-    weekday = weekday ? weekday : 7;
-    BOOL isCurrent = (weekday == indexPath.item);
-    CGRect frame = currentBlock(isCurrent);
-    
-    if (isCurrent) {
-        self.backgroundView.alpha = 1;
-        CGFloat x = indexPath.section * view.width + frame.origin.x;
-        self.backgroundView.frame = CGRectMake(x, -800, frame.size.width, 800 * 3);
-        [self.backgroundView.superview sendSubviewToBack:self.backgroundView];
-    }
 }
 
 @end

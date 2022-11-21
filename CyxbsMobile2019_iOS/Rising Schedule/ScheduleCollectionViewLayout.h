@@ -13,39 +13,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ScheduleCollectionViewLayoutAttributes.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark - ScheduleCollectionViewLayoutAttributes
-
-@interface ScheduleCollectionViewLayoutAttributes : UICollectionViewLayoutAttributes
-
-/// 星期
-@property (nonatomic) NSInteger week;
-
-/// 绘制的range
-@property (nonatomic) NSRange drawRange;
-
-/// 是否有多个重复视图
-@property (nonatomic) BOOL hadMuti;
-
-@end
-
-#pragma mark - ScheduleCollectionViewLayoutInvalidationContext
-
-@interface ScheduleCollectionViewLayoutInvalidationContext : UICollectionViewLayoutInvalidationContext
-
-/// 是否立刻重新布局顶视图
-@property (nonatomic) BOOL invalidateHeaderSupplementaryAttributes;
-
-/// 是否立刻重新布局左视图
-@property (nonatomic) BOOL invalidateLeadingSupplementaryAttributes;
-
-/// 是否立刻重新布局课表视图
-@property (nonatomic) BOOL invalidateAllAttributes;
-
-@end
-
-#pragma mark - ScheduleCollectionViewLayoutDelegate
+#pragma mark - ScheduleCollectionViewLayoutDataSource
 
 @class ScheduleCollectionViewLayout;
 
@@ -53,23 +25,31 @@ NS_ASSUME_NONNULL_BEGIN
 
 @required
 
-/// 星期几
+- (NSInteger)collectionView:(UICollectionView *)collectionView
+                     layout:(ScheduleCollectionViewLayout *)layout
+numberOfSupplementaryOfKind:(NSString *)kind
+                  inSection:(NSInteger)section;
+
+/// 返回LayoutAttributes，只有基础的东西才会被使用，
 /// @param collectionView 视图
 /// @param layout 布局
 /// @param indexPath 下标布局
-- (NSUInteger)collectionView:(UICollectionView *)collectionView
-                      layout:(ScheduleCollectionViewLayout *)layout
-      weekForItemAtIndexPath:(NSIndexPath *)indexPath;
-
-/// 第几节-长度
-/// @param collectionView 视图
-/// @param layout 布局
-/// @param indexPath 下标
-- (NSRange)collectionView:(UICollectionView *)collectionView
-                   layout:(ScheduleCollectionViewLayout *)layout
-  rangeForItemAtIndexPath:(NSIndexPath *)indexPath;
+- (ScheduleCollectionViewLayoutModel *)collectionView:(UICollectionView *)collectionView
+                                               layout:(ScheduleCollectionViewLayout *)layout
+                        layoutModelForItemAtIndexPath:(NSIndexPath *)indexPath;
 
 @optional
+
+/// 布局中午或者晚上的时候使用，若不使用，则不布局中午晚上
+/// @param collectionView 视图
+/// @param layout 布局
+/// @param section 那一个section
+/// @param layTransform 布局的话，则传回这个，不传也可以
+- (void)collectionView:(UICollectionView *)collectionView
+                layout:(ScheduleCollectionViewLayout *)layout
+             inSection:(NSInteger)section
+          noonAndNight:(void (^)(BOOL layNoon, BOOL layNight))layTransform
+__deprecated_msg("即将部署该API，测试阶段");
 
 /// 双人展示 - 对比两个重合的视图（callBack为YES才会掉用）
 /// 如需要改变，请直接对两个Attributes进行改变

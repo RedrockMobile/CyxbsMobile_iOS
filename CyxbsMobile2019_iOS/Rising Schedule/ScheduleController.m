@@ -79,7 +79,7 @@
         layout.widthForLeadingSupplementaryView = 30;
         layout.lineSpacing = 2;
         layout.columnSpacing = 2;
-        layout.heightForHeaderSupplementaryView = 10 + ((width - layout.widthForLeadingSupplementaryView) / 7 - layout.columnSpacing) / 46 * 50;
+        layout.heightForHeaderSupplementaryView = ((width - layout.widthForLeadingSupplementaryView) / 7 - layout.columnSpacing) / 46 * 50;
         layout.dataSource = self.presenter.dataSourceService;
         
         CGFloat top = 64 + (self.isPushStyle ? StatusBarHeight() : 0);
