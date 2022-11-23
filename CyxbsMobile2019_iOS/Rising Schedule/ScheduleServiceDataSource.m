@@ -79,7 +79,7 @@
     if (_model.courseAry.count <= section) {
         return 0;
     }
-    return _model.courseAry[section].count;  // 一周的所有课程数
+    return _model.courseAry[section].count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -127,7 +127,7 @@
     if (kind == UICollectionElementKindSectionHeader) {
         cell.isTitleOnly = (indexPath.section == 0 ? YES : indexPath.item == 0);
         
-        cell.title = (indexPath.section == 0 ? @"学期" : indexPath.item == 0 ? [NSString stringWithFormat:@"%ld月", date.month] : [date stringWithFormat:@"EEE" timeZone:NSTimeZone.CQ locale:NSLocale.CN]);
+        cell.title = (indexPath.section == 0 && indexPath.item == 0 ? @"学期" : indexPath.item == 0 ? [NSString stringWithFormat:@"%ld月", date.month] : [date stringWithFormat:@"EEE" timeZone:NSTimeZone.CQ locale:NSLocale.CN]);
         
         cell.content = [NSString stringWithFormat:@"%ld日", date.day];
         
@@ -164,6 +164,14 @@
     return 0;
 }
 
+- (NSInteger)collectionView:(UICollectionView *)collectionView
+                     layout:(ScheduleCollectionViewLayout *)layout
+      pointForCellInSection:(NSInteger)section
+                    forItem:(NSInteger)item {
+    
+    return 34;
+}
+
 - (ScheduleCollectionViewLayoutModel *)collectionView:(UICollectionView *)collectionView
                                                layout:(ScheduleCollectionViewLayout *)layout
                         layoutModelForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -177,28 +185,28 @@
     return model;
 }
 
-- (NSComparisonResult)collectionView:(UICollectionView *)collectionView
-                              layout:(ScheduleCollectionViewLayout *)layout
-             compareOriginAttributes:(ScheduleCollectionViewLayoutAttributes *)compareAttributes
-              conflictWithAttributes:(ScheduleCollectionViewLayoutAttributes *)conflictAttributes {
-    if (!_model.sno || ![_model.sno isEqualToString:@""]) {
-        return NSOrderedSame;
-    }
-    ScheduleCourse *compareCourse = _model.courseAry[compareAttributes.indexPath.section][compareAttributes.indexPath.item];
-    ScheduleCourse *conflictCourse = _model.courseAry[conflictAttributes.indexPath.section][conflictAttributes.indexPath.item];
-    
-    NSComparisonResult compareResult = [_model compareResultOfCourse:compareCourse];
-    NSComparisonResult conflictResult = [_model compareResultOfCourse:conflictCourse];
-    
-    if (compareResult == conflictResult) {
-        return NSOrderedSame;
-    }
-    // need redraw
-    if (compareResult > conflictResult) {
-        
-    }
-    
-    return NSOrderedSame;
-}
+//- (NSComparisonResult)collectionView:(UICollectionView *)collectionView
+//                              layout:(ScheduleCollectionViewLayout *)layout
+//             compareOriginAttributes:(ScheduleCollectionViewLayoutAttributes *)compareAttributes
+//              conflictWithAttributes:(ScheduleCollectionViewLayoutAttributes *)conflictAttributes {
+//    if (!_model.sno || ![_model.sno isEqualToString:@""]) {
+//        return NSOrderedSame;
+//    }
+//    ScheduleCourse *compareCourse = _model.courseAry[compareAttributes.indexPath.section][compareAttributes.indexPath.item];
+//    ScheduleCourse *conflictCourse = _model.courseAry[conflictAttributes.indexPath.section][conflictAttributes.indexPath.item];
+//
+//    NSComparisonResult compareResult = [_model compareResultOfCourse:compareCourse];
+//    NSComparisonResult conflictResult = [_model compareResultOfCourse:conflictCourse];
+//
+//    if (compareResult == conflictResult) {
+//        return NSOrderedSame;
+//    }
+//    // need redraw
+//    if (compareResult > conflictResult) {
+//
+//    }
+//
+//    return NSOrderedSame;
+//}
 
 @end

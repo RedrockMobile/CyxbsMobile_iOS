@@ -31,6 +31,7 @@
     model.hadMuti = self.hadMuti;
     model.week = self.week;
     model.orginRange = self.orginRange;
+    model.isOrigin = self.isOrigin;
     return model;
 }
 

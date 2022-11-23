@@ -53,7 +53,7 @@
 		14BC483229190E9F0063809E /* ScheduleCombineModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1478633C28BB567A00C1E54B /* ScheduleCombineModel.mm */; };
 		14BC483429190FAE0063809E /* UDKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D144E2908BB2800327AB8 /* UDKey.m */; };
 		14BC4835291910660063809E /* ScheduleCourse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6028B4D283003D288B /* ScheduleCourse.mm */; };
-		14D03B8A292B1BE7001CA682 /* ScheduleSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D03B89292B1BE7001CA682 /* ScheduleSectionModel.m */; };
+		14D03B94292B7781001CA682 /* NSIndexPath+Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D03B93292B7781001CA682 /* NSIndexPath+Schedule.m */; };
 		14D598C928FF90EB00C9798F /* ScheduleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598C828FF90EB00C9798F /* ScheduleHeaderView.m */; };
 		14D598CC28FF964100C9798F /* SameDrawUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598CB28FF964100C9798F /* SameDrawUI.m */; };
 		14D598DB2901801F00C9798F /* ScheduleDetailTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598DA2901801F00C9798F /* ScheduleDetailTableHeaderView.m */; };
@@ -199,8 +199,8 @@
 		14BC482D29169E6E0063809E /* NSUserDefaults+Cyxbs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Cyxbs.h"; sourceTree = "<group>"; };
 		14BC482E29169E6E0063809E /* NSUserDefaults+Cyxbs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Cyxbs.m"; sourceTree = "<group>"; };
 		14BC48302917CFB80063809E /* ScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
-		14D03B88292B1BE7001CA682 /* ScheduleSectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleSectionModel.h; sourceTree = "<group>"; };
-		14D03B89292B1BE7001CA682 /* ScheduleSectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleSectionModel.m; sourceTree = "<group>"; };
+		14D03B92292B7781001CA682 /* NSIndexPath+Schedule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+Schedule.h"; sourceTree = "<group>"; };
+		14D03B93292B7781001CA682 /* NSIndexPath+Schedule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+Schedule.m"; sourceTree = "<group>"; };
 		14D598C728FF90EB00C9798F /* ScheduleHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleHeaderView.h; sourceTree = "<group>"; };
 		14D598C828FF90EB00C9798F /* ScheduleHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleHeaderView.m; sourceTree = "<group>"; };
 		14D598CA28FF963600C9798F /* SameDrawUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SameDrawUI.h; sourceTree = "<group>"; };
@@ -362,14 +362,14 @@
 				1422240528D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.m */,
 				1466283228C5CA4600AF584F /* ScheduleCollectionViewCell.h */,
 				1466283328C5CA4600AF584F /* ScheduleCollectionViewCell.m */,
-				1466282D28C4EFF400AF584F /* ScheduleRequestType.h */,
-				1466282B28C4EFE400AF584F /* ScheduleRequestType.m */,
 				14B46E6828B4E504003D288B /* ScheduleInteractorRequest.h */,
 				14B46E6928B4E504003D288B /* ScheduleInteractorRequest.m */,
+				1466282D28C4EFF400AF584F /* ScheduleRequestType.h */,
+				1466282B28C4EFE400AF584F /* ScheduleRequestType.m */,
+				14D03B92292B7781001CA682 /* NSIndexPath+Schedule.h */,
+				14D03B93292B7781001CA682 /* NSIndexPath+Schedule.m */,
 				14B46E6428B4D5D7003D288B /* ScheduleModel.h */,
 				14B46E6328B4D5D7003D288B /* ScheduleModel.m */,
-				14D03B88292B1BE7001CA682 /* ScheduleSectionModel.h */,
-				14D03B89292B1BE7001CA682 /* ScheduleSectionModel.m */,
 				1478633B28BB567A00C1E54B /* ScheduleCombineModel.h */,
 				1478633C28BB567A00C1E54B /* ScheduleCombineModel.mm */,
 				14B46E5F28B4D282003D288B /* ScheduleCourse.h */,
@@ -962,6 +962,7 @@
 				14E3199B290C11CB00B951CE /* PlaceholderCollectionReusableView.m in Sources */,
 				14D598E729021BE400C9798F /* UIViewController+KNSemiModal.m in Sources */,
 				1422240628D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.m in Sources */,
+				14D03B94292B7781001CA682 /* NSIndexPath+Schedule.m in Sources */,
 				14B46E6A28B4E504003D288B /* ScheduleInteractorRequest.m in Sources */,
 				146AA0C528B65FA800391FD0 /* SchedulePresenter.m in Sources */,
 				1435613028CCA93500EF6987 /* ScheduleServiceDelegate.m in Sources */,
@@ -977,7 +978,6 @@
 				1422242028D9B091009A4A54 /* RisingFoundationExtention.m in Sources */,
 				14E844F628FC40090037309F /* ScheduleDetailController.m in Sources */,
 				14BC481B29164EB40063809E /* ScheduleWidget.intentdefinition in Sources */,
-				14D03B8A292B1BE7001CA682 /* ScheduleSectionModel.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
 				1466282628C4B1BD00AF584F /* ScheduleServiceDataSource.m in Sources */,
 				14D598CC28FF964100C9798F /* SameDrawUI.m in Sources */,

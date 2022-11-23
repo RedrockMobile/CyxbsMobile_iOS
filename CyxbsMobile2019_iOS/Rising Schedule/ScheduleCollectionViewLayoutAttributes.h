@@ -18,10 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ScheduleCollectionViewLayoutModel: NSObject <NSCopying>
 
 /// 标题
-@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *title __deprecated_msg("unused");
 
 /// 描述
-@property (nonatomic, copy) NSString *content;
+@property (nonatomic, copy) NSString *content __deprecated_msg("unused");
 
 /// 星期
 @property (nonatomic) NSInteger week;
@@ -31,6 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 是否有多个重复视图
 @property (nonatomic) BOOL hadMuti;
+
+/// 是否是自己的
+@property (nonatomic) BOOL isOrigin;
 
 @end
 

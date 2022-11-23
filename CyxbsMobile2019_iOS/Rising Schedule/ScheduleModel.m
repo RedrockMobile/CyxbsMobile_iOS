@@ -12,7 +12,7 @@
 
 @implementation ScheduleModel {
     NSMutableDictionary <NSString *, ScheduleCombineModel *> *_statusMap;
-    NSMutableArray <NSMutableArray <ScheduleCourse *> *> *_courseAry;
+    
 }
 
 - (instancetype)init {
@@ -24,24 +24,12 @@
 }
 
 - (void)combineModel:(ScheduleCombineModel *)model {
-    _statusMap[model.identifier] = model;
-    for (ScheduleCourse *course in model.courseAry) {
-        [course.inSections enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, BOOL * __unused stop) {
-            NSInteger section = obj.longValue;
-            for (NSInteger i = _courseAry.count; i <= section; i++) {
-                [_courseAry addObject:NSMutableArray.array];
-            }
-            [_courseAry[section] addObject:course];
-        }];
-        [_courseAry[0] addObject:course];
-    }
-    self.nowWeek = model.nowWeek;
+   
 }
 
 - (void)clear {
     _statusMap = NSMutableDictionary.dictionary;
     _courseAry = NSMutableArray.array;
-    [_courseAry addObject:NSMutableArray.array]; // for section 0
 }
 
 #pragma mark - Method

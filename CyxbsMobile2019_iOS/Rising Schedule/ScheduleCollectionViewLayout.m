@@ -115,8 +115,15 @@
     CGRect frame = CGRectMake(x, y, _itemSize.width, height);
     
     [_autoItemAttributes[@(attributes.indexPath.section * 10 + layoutModel.week)] enumerateObjectsUsingBlock:^(ScheduleCollectionViewLayoutAttributes * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
         if (CGRectContainsRect(frame, obj.frame)) {
-            
+            if (CGRectIntersectsRect(obj.frame, frame)) {
+                // origin like [1,3] & [2,3]
+            } else if (CGRectIntersectsRect(frame, obj.frame)) {
+                // origin like [2,3] & [1,3]
+            } else {
+                // origin like [1,3] & [3,4]
+            }
         }
     }];
     

@@ -30,6 +30,11 @@ NS_ASSUME_NONNULL_BEGIN
 numberOfSupplementaryOfKind:(NSString *)kind
                   inSection:(NSInteger)section;
 
+- (NSInteger)collectionView:(UICollectionView *)collectionView
+                     layout:(ScheduleCollectionViewLayout *)layout
+      pointForCellInSection:(NSInteger)section
+                    forItem:(NSInteger)item;
+
 /// 返回LayoutAttributes，只有基础的东西才会被使用，
 /// @param collectionView 视图
 /// @param layout 布局
