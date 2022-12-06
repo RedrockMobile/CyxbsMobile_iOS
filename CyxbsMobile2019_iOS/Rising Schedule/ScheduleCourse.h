@@ -13,6 +13,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "ScheduleRequestType.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - SchoolLesson
@@ -25,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger inWeek;
 
 /// 所在周散列表
-@property (nonatomic, copy) NSMutableSet <NSNumber *> *inSections;
+@property (nonatomic, copy) NSMutableIndexSet *inSections;
 
 /// 第几-几节课，中午为4-5，晚上为8-9
 @property (nonatomic) NSRange period;
@@ -66,7 +68,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *sno;
 
 /// requestType
-@property (nonatomic, copy) NSString *requestType;
+@property (nonatomic, copy) ScheduleModelRequestType requestType;
 
 #pragma mark - Method
 
@@ -77,11 +79,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 竖直方向上是否与另外一节课重合，不考虑周数
 /// @param course 另一节课
 - (BOOL)isAboveVerticalTimeAs:(ScheduleCourse *)course;
-
-/// 返回timeline字符串
-/// 每个array的count一定在[0..<12]
-/// @param timelineBlock 返回timeline字符串
-+ (void)getTimelineString:(void (^)(NSArray <NSString *> *beginTimes, NSArray <NSString *> *endTimes))timelineBlock;
 
 @end
 

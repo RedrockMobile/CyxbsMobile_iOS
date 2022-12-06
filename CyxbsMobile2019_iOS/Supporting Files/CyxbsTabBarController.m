@@ -69,6 +69,15 @@
         };
     }
     
+    /// @warning 注意
+    presenter.nextRequestDic = @{
+        ScheduleModelRequestStudent : @[
+            @"2021215154",
+            @"2021215179"
+        ]
+    };
+    presenter.model.sno = @"2021215154";
+    
     ScheduleController *vc = [[ScheduleController alloc] initWithPresenter:presenter];
     vc.isPushStyle = YES;
     self.schedulePresenter = presenter;

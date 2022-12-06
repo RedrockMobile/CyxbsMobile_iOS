@@ -15,43 +15,53 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _delegateService = [[ScheduleServiceDelegate alloc] init];
-        _dataSourceService = [[ScheduleServiceDataSource alloc] initWithModel:_delegateService.model];
+        _service = [[ScheduleServiceSolve alloc] initWithModel:[[ScheduleModel alloc] init]];
     }
     return self;
 }
 
 - (void)setModel:(ScheduleModel *)model {
-    _model = model;
-    _delegateService.model = model;
-    _dataSourceService = [[ScheduleServiceDataSource alloc] initWithModel:model];
+    _service.model = model;
 }
+
+- (ScheduleModel *)model {
+    return _service.model;
+}
+
 
 - (void)setController:(ScheduleController *)controller {
-    _controller = controller;
-    _delegateService.viewController = controller;
+    _service.viewController = controller;
 }
+
+- (ScheduleController *)controller {
+    return (ScheduleController *)_service.viewController;
+}
+
 
 - (void)setCollectionView:(UICollectionView *)collectionView {
-    _collectionView = collectionView;
-    [_dataSourceService setCollectionView:collectionView];
-    _delegateService.collectionView = collectionView;
+    _service.collectionView = collectionView;
 }
+
+- (UICollectionView *)collectionView {
+    return _service.collectionView;
+}
+
 
 - (void)setNextRequestDic:(ScheduleRequestDictionary *)nextRequestDic {
-    _delegateService.parameterIfNeeded = nextRequestDic;
-}
-
-- (void)setUseAwake:(BOOL)useAwake {
-    _delegateService.canUseAwake = useAwake;
+    _service.parameterIfNeeded = nextRequestDic;
 }
 
 - (ScheduleRequestDictionary *)nextRequestDic {
-    return _delegateService.parameterIfNeeded;
+    return _service.parameterIfNeeded;
+}
+
+
+- (void)setUseAwake:(BOOL)useAwake {
+    _service.canUseAwake = useAwake;
 }
 
 - (BOOL)useAwake {
-    return _delegateService.canUseAwake;
+    return _service.canUseAwake;
 }
 
 @end

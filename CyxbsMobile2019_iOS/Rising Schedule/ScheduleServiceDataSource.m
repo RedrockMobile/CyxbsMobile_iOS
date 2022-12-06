@@ -12,7 +12,6 @@
 
 #import "ScheduleSupplementaryCollectionViewCell.h"
 
-
 #pragma mark - ScheduleServiceDataSource ()
 
 @interface ScheduleServiceDataSource ()
@@ -71,37 +70,30 @@
     if (!_model) {
         return 0;
     }
-    return _model.courseAry.count;
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView
-     numberOfItemsInSection:(NSInteger)section {
-    if (_model.courseAry.count <= section) {
-        return 0;
-    }
-    return _model.courseAry[section].count;
+    return _model.courseIdxPaths.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                            cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    ScheduleCourse *course = _model.courseAry[indexPath.section][indexPath.item];
+    NSIndexPath *locationIdxPath = _model.courseIdxPaths[indexPath.section][indexPath.item];
+    ScheduleCollectionViewModel *viewModel = [_model.mapTable objectForKey:locationIdxPath];
     
     ScheduleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ScheduleCollectionViewCellReuseIdentifier forIndexPath:indexPath];
     
-    cell.courseTitle = course.course;
-    cell.courseContent = course.classRoom;
+    cell.courseTitle = viewModel.title;
+    cell.courseContent = viewModel.content;
     // 正常课程
-    if (course.period.location <= 4) {
+    if (locationIdxPath.location <= 4) {
         cell.drawType = ScheduleCollectionViewCellDrawMorning;
-    } else if (course.period.location <= 8) {
+    } else if (locationIdxPath.location <= 8) {
         cell.drawType = ScheduleCollectionViewCellDrawAfternoon;
-    } else if (course.period.location <= 12) {
+    } else if (locationIdxPath.location <= 12) {
         cell.drawType = ScheduleCollectionViewCellDrawNight;
     }
 
     // 自定义的事务
-    if ([course.type isEqualToString:@"事务"]) {
+    if (viewModel.kind == ScheduleBelongFistCustom) {
         cell.drawType = ScheduleCollectionViewCellDrawCustom;
     }
         
@@ -168,45 +160,8 @@
                      layout:(ScheduleCollectionViewLayout *)layout
       pointForCellInSection:(NSInteger)section
                     forItem:(NSInteger)item {
-    
+    UITableViewCell *ce;
     return 34;
 }
-
-- (ScheduleCollectionViewLayoutModel *)collectionView:(UICollectionView *)collectionView
-                                               layout:(ScheduleCollectionViewLayout *)layout
-                        layoutModelForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ScheduleCourse *course = _model.courseAry[indexPath.section][indexPath.item];
-    
-    ScheduleCollectionViewLayoutModel *model = [[ScheduleCollectionViewLayoutModel alloc] init];
-    
-    model.orginRange = course.period;
-    model.week = course.inWeek;
-    
-    return model;
-}
-
-//- (NSComparisonResult)collectionView:(UICollectionView *)collectionView
-//                              layout:(ScheduleCollectionViewLayout *)layout
-//             compareOriginAttributes:(ScheduleCollectionViewLayoutAttributes *)compareAttributes
-//              conflictWithAttributes:(ScheduleCollectionViewLayoutAttributes *)conflictAttributes {
-//    if (!_model.sno || ![_model.sno isEqualToString:@""]) {
-//        return NSOrderedSame;
-//    }
-//    ScheduleCourse *compareCourse = _model.courseAry[compareAttributes.indexPath.section][compareAttributes.indexPath.item];
-//    ScheduleCourse *conflictCourse = _model.courseAry[conflictAttributes.indexPath.section][conflictAttributes.indexPath.item];
-//
-//    NSComparisonResult compareResult = [_model compareResultOfCourse:compareCourse];
-//    NSComparisonResult conflictResult = [_model compareResultOfCourse:conflictCourse];
-//
-//    if (compareResult == conflictResult) {
-//        return NSOrderedSame;
-//    }
-//    // need redraw
-//    if (compareResult > conflictResult) {
-//
-//    }
-//
-//    return NSOrderedSame;
-//}
 
 @end

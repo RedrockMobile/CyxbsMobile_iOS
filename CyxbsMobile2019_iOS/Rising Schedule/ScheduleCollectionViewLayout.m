@@ -10,7 +10,7 @@
 
 #pragma mark - ScheduleCollectionViewLayout ()
 
-@interface ScheduleCollectionViewLayout () <UICollectionViewDelegateFlowLayout>
+@interface ScheduleCollectionViewLayout ()
 
 /// 获取section的值
 @property (nonatomic) NSInteger sections;
@@ -28,9 +28,7 @@
 
 #pragma mark - ScheduleCollectionViewLayout
 
-@implementation ScheduleCollectionViewLayout {
-    NSMutableDictionary <NSNumber *, NSMutableArray <ScheduleCollectionViewLayoutAttributes *> *> * _autoItemAttributes;
-}
+@implementation ScheduleCollectionViewLayout
 
 - (instancetype)init {
     self = [super init];
@@ -40,7 +38,6 @@
             UICollectionElementKindSectionHeader : NSMutableDictionary.dictionary,
             UICollectionElementKindSectionLeading : NSMutableDictionary.dictionary
         }.mutableCopy;
-        _autoItemAttributes = NSMutableDictionary.dictionary;
     }
     return self;
 }
@@ -54,7 +51,7 @@
         // SupplementaryView attributes
         for (NSString *elementKind in _supplementaryAttributes.allKeys) {
             
-            NSInteger supplementaryCount = [self.dataSource collectionView:self.collectionView layout:self numberOfSupplementaryOfKind:elementKind inSection:section];
+            NSInteger supplementaryCount = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:section];
             for (NSInteger item = 0; item < supplementaryCount; item++) {
                 
                 NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
@@ -87,7 +84,7 @@
     
     ScheduleCollectionViewLayoutAttributes *attributes = _itemAttributes[indexPath];
     if (attributes) {
-        NSAssert(attributes.layoutModel.week, @"week为0");
+        NSAssert(attributes.pointIndexPath.week, @"week为0");
         return attributes;
     }
 
@@ -95,9 +92,9 @@
     _itemAttributes[indexPath] = attributes;
     
     if (self.dataSource) {
-        ScheduleCollectionViewLayoutModel *viewModel = [self.dataSource collectionView:self.collectionView layout:self layoutModelForItemAtIndexPath:indexPath];
-        
-        attributes.layoutModel = viewModel;
+        NSIndexPath *locationIndexPath = [self.dataSource collectionView:self.collectionView layout:self locationAtIndexPath:indexPath];
+        NSInteger lenth = [self.dataSource collectionView:self.collectionView layout:self lenthForLocationIndexPath:locationIndexPath];
+        ScheduleCollectionViewLayoutAttributes *attributes = ScheduleCollectionViewLayoutAttributes(locationIndexPath, lenth);
         
         [self _transformItemWithAttributes:attributes];
     }
@@ -106,26 +103,12 @@
 }
 
 - (void)_transformItemWithAttributes:(ScheduleCollectionViewLayoutAttributes *)attributes {
-    ScheduleCollectionViewLayoutModel *layoutModel = attributes.layoutModel;
     
-    CGFloat x = attributes.indexPath.section * self.collectionView.width + self.widthForLeadingSupplementaryView + (layoutModel.week - 1) * (_itemSize.width + self.columnSpacing);
-    CGFloat y = self.heightForHeaderSupplementaryView + (layoutModel.orginRange.location - 1) * (_itemSize.height + self.lineSpacing);
-    CGFloat height = layoutModel.orginRange.length * _itemSize.height + (layoutModel.orginRange.length - 1) * self.columnSpacing;
-    
+    CGFloat x = attributes.pointIndexPath.section * self.collectionView.width + self.widthForLeadingSupplementaryView + (attributes.pointIndexPath.week - 1) * (_itemSize.width + self.columnSpacing) + (attributes.pointIndexPath.location - 1) * (_itemSize.height + self.lineSpacing);
+    CGFloat y = self.heightForHeaderSupplementaryView + (attributes.pointIndexPath.location - 1) * (_itemSize.height + self.lineSpacing) + self.lineSpacing;
+    CGFloat height = attributes.lenth * _itemSize.height + (attributes.lenth - 1) * self.columnSpacing;
+
     CGRect frame = CGRectMake(x, y, _itemSize.width, height);
-    
-    [_autoItemAttributes[@(attributes.indexPath.section * 10 + layoutModel.week)] enumerateObjectsUsingBlock:^(ScheduleCollectionViewLayoutAttributes * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        if (CGRectContainsRect(frame, obj.frame)) {
-            if (CGRectIntersectsRect(obj.frame, frame)) {
-                // origin like [1,3] & [2,3]
-            } else if (CGRectIntersectsRect(frame, obj.frame)) {
-                // origin like [2,3] & [1,3]
-            } else {
-                // origin like [1,3] & [3,4]
-            }
-        }
-    }];
     
     attributes.frame = frame;
 }
@@ -286,10 +269,9 @@
     }
     
     // invalidate All Attributes
-    if (context.invalidateAllAttributes || context.invalidateDataSourceCounts) {
+    if (context.invalidateDataSourceCounts) {
         
         [_itemAttributes removeAllObjects];
-        [_autoItemAttributes removeAllObjects];
         
         [_supplementaryAttributes enumerateKeysAndObjectsUsingBlock:^(NSString * __unused key, NSMutableDictionary<NSIndexPath *,UICollectionViewLayoutAttributes *> * _Nonnull obj, BOOL * __unused stop) {
             [obj removeAllObjects];
@@ -312,14 +294,6 @@
     CGFloat width = (self.collectionView.bounds.size.width - self.widthForLeadingSupplementaryView) / 7 - self.columnSpacing;
     
     _itemSize = CGSizeMake(width, width / 46 * 50);
-}
-#pragma mark - Setter
-
-- (void)setCallBack:(BOOL)callBack {
-    _callBack = callBack;
-    ScheduleCollectionViewLayoutInvalidationContext *context = [[ScheduleCollectionViewLayoutInvalidationContext alloc] init];
-    context.invalidateAllAttributes = YES;
-    [self invalidateLayoutWithContext:context];
 }
 
 @end

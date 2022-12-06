@@ -19,7 +19,7 @@
 
 #import "ScheduleServiceDataSource.h"
 
-#import "ScheduleServiceDelegate.h"
+#import "ScheduleServiceSolve.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -30,11 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 控制器（不用赋值，会自动生成）
 @property (nonatomic, weak) ScheduleController *controller;
 
-/// dataSource业务
-@property (nonatomic, readonly) ScheduleServiceDataSource *dataSourceService;
-
 /// 响应式业务
-@property (nonatomic, readonly) ScheduleServiceDelegate *delegateService;
+@property (nonatomic, readonly) ScheduleServiceSolve *service;
 
 /// 重设模型数据
 @property (nonatomic, assign) ScheduleModel *model;

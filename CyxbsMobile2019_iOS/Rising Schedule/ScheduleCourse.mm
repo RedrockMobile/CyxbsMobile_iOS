@@ -22,7 +22,7 @@
 
 #pragma mark - SchoolLesson
 
-@implementation ScheduleCourse
+@implementation ScheduleCourse 
 
 WCDB_IMPLEMENTATION(ScheduleCourse)
 
@@ -61,7 +61,10 @@ WCDB_SYNTHESIZE(ScheduleCourse, requestType)
         self.inWeek = [dic[@"hash_day"] intValue] + 1;
         id weekAry = dic[@"week"];
         if ([weekAry isKindOfClass:NSArray.class]) {
-            self.inSections = [NSMutableSet setWithArray:weekAry];
+            _inSections = NSMutableIndexSet.indexSet;
+            for (NSNumber *sectionNumber in weekAry) {
+                [_inSections addIndex:sectionNumber.longValue];
+            }
         }
         self.period_location = [dic[@"begin_lesson"] longValue];
         self.period_lenth = [dic[@"period"] unsignedLongValue];
@@ -112,49 +115,19 @@ WCDB_SYNTHESIZE(ScheduleCourse, requestType)
     if (_period_location <= 0 || NSMaxRange(self.period) - 1 > 12) {
         return @"";
     }
-    __block NSString *str;
-    [ScheduleCourse getTimelineString:^(NSArray<NSString *> *beginTimes, NSArray<NSString *> *endTimes) {
-        str = [NSString stringWithFormat:@"%@ - %@", beginTimes[(self.period_location - 1) % 12], endTimes[(NSMaxRange(self.period) - 2) % 12]];
-    }];
-    return str;
-}
-
-+ (void)getTimelineString:(void (^)(NSArray <NSString *> *beginTimes, NSArray <NSString *> *endTimes))block {
-    static NSArray *beginTime = @[
-        @"8:00",
-        @"8:55",
-        @"10:15",
-        @"11:10",
-        
-        @"14:00",
-        @"14:55",
-        @"16:15",
-        @"17:10",
-        
-        @"19:00",
-        @"19:55",
-        @"20:50",
-        @"21:45"];
-    
-    static NSArray *endTime = @[
-        @"8:45",
-        @"9:40",
-        @"11:00",
-        @"11:55",
-        
-        @"14:45",
-        @"15:40",
-        @"17:00",
-        @"17:55",
-        
-        @"19:45",
-        @"20:40",
-        @"20:35",
-        @"22:30"
-    ];
-    if (block) {
-        block(beginTime, endTime);
-    }
+    __block NSString *b, *e;
+//    [ getTimeline:^(NSInteger idx, NSTimeInterval begin, NSTimeInterval end, BOOL *stop) {
+//        if (self->_period_location - 1 == idx) {
+//            b = [NSString stringWithFormat:@"%ld:%ld", (NSInteger)begin / 60, (NSInteger)begin % 60];
+//        }
+//        if (NSMaxRange(self.period) - 2 == idx) {
+//            e = [NSString stringWithFormat:@"%ld:%ld", (NSInteger)end / 60, (NSInteger)end % 60];
+//        }
+//        if (e) {
+//            *stop = YES;
+//        }
+//    }];
+    return [b stringByAppendingFormat:@" - %@", e];
 }
 
 @end

@@ -46,7 +46,7 @@
               Dark:UIColorHex(#1D1D1D)];
     
     self.presenter.collectionView = self.collectionView;
-    self.presenter.delegateService.headerView = self.headerView;
+    self.presenter.service.headerView = self.headerView;
     
     [self.view addSubview:self.headerView];
     [self.view addSubview:self.collectionView];
@@ -55,7 +55,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    [self.presenter.delegateService requestAndReloadData];
+    [self.presenter.service requestAndReloadData];
 }
 
 #pragma mark - Getter
@@ -80,7 +80,7 @@
         layout.lineSpacing = 2;
         layout.columnSpacing = 2;
         layout.heightForHeaderSupplementaryView = ((width - layout.widthForLeadingSupplementaryView) / 7 - layout.columnSpacing) / 46 * 50;
-        layout.dataSource = self.presenter.dataSourceService;
+        layout.dataSource = self.presenter.service;
         
         CGFloat top = 64 + (self.isPushStyle ? StatusBarHeight() : 0);
         

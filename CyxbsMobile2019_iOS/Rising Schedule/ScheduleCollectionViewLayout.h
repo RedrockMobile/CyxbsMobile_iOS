@@ -8,12 +8,14 @@
 
 /**ScheduleCollectionViewLayout视图布局
  * 设置所有陈列出来的属性，来达到最佳的视觉效果
- * 请查看飞书云文档
+ * 请查看飞书云文档，查看ScheduleCollectionViewLayoutAttributes
  */
 
 #import <UIKit/UIKit.h>
 
 #import "ScheduleCollectionViewLayoutAttributes.h"
+
+#import "ScheduleCollectionViewModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,23 +27,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @required
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView
-                     layout:(ScheduleCollectionViewLayout *)layout
-numberOfSupplementaryOfKind:(NSString *)kind
-                  inSection:(NSInteger)section;
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView
-                     layout:(ScheduleCollectionViewLayout *)layout
-      pointForCellInSection:(NSInteger)section
-                    forItem:(NSInteger)item;
-
-/// 返回LayoutAttributes，只有基础的东西才会被使用，
+/// 返回对应下标的布局点
 /// @param collectionView 视图
 /// @param layout 布局
-/// @param indexPath 下标布局
-- (ScheduleCollectionViewLayoutModel *)collectionView:(UICollectionView *)collectionView
-                                               layout:(ScheduleCollectionViewLayout *)layout
-                        layoutModelForItemAtIndexPath:(NSIndexPath *)indexPath;
+/// @param indexPath 下标
+- (NSIndexPath *)collectionView:(UICollectionView *)collectionView
+                         layout:(ScheduleCollectionViewLayout *)layout
+            locationAtIndexPath:(NSIndexPath *)indexPath;
+
+/// 返回对应布局点的长度
+/// @param collectionView 视图
+/// @param layout 布局
+/// @param indexPath 下标
+- (NSInteger)collectionView:(UICollectionView *)collectionView
+                     layout:(ScheduleCollectionViewLayout *)layout
+  lenthForLocationIndexPath:(NSIndexPath *)indexPath;
 
 @optional
 
@@ -49,25 +49,11 @@ numberOfSupplementaryOfKind:(NSString *)kind
 /// @param collectionView 视图
 /// @param layout 布局
 /// @param section 那一个section
-/// @param layTransform 布局的话，则传回这个，不传也可以
-- (void)collectionView:(UICollectionView *)collectionView
+/// @param layoutTime 时间点
+- (BOOL)collectionView:(UICollectionView *)collectionView
                 layout:(ScheduleCollectionViewLayout *)layout
+         canLayoutTime:(ScheduleCollectionViewLayoutTime)layoutTime
              inSection:(NSInteger)section
-          noonAndNight:(void (^)(BOOL layNoon, BOOL layNight))layTransform
-__deprecated_msg("即将部署该API，测试阶段");
-
-/// 双人展示 - 对比两个重合的视图（callBack为YES才会掉用）
-/// 如需要改变，请直接对两个Attributes进行改变
-/// 返回值： NSOrderedDescending 和 NSOrderedAscending 会再次对Attributes进行改变
-/// 如果不想判断，就返回NSOrderedSame，会采用默认情况
-/// @param collectionView 视图
-/// @param layout 布局
-/// @param compareAttributes 之前在视图里面的Attributes
-/// @param conflictAttributes 即将呈现的Attributes
-- (NSComparisonResult)collectionView:(UICollectionView *)collectionView
-                              layout:(ScheduleCollectionViewLayout *)layout
-             compareOriginAttributes:(ScheduleCollectionViewLayoutAttributes *)compareAttributes
-              conflictWithAttributes:(ScheduleCollectionViewLayoutAttributes *)conflictAttributes
 __deprecated_msg("即将部署该API，测试阶段");
 
 @end
@@ -90,11 +76,6 @@ __deprecated_msg("即将部署该API，测试阶段");
 
 /// 头部装饰视图高
 @property (nonatomic) CGFloat heightForHeaderSupplementaryView;
-
-/// 课表自布局callback，默认为NO
-/// 如果是YES， 必掉用optional的**compareOrigin:conflictWith:**回掉
-/// 否则则不会掉用
-@property (nonatomic) BOOL callBack __deprecated_msg("正在测试阶段");
 
 @end
 

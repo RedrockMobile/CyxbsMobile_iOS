@@ -8,43 +8,54 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ScheduleCourse.h"
+NS_HEADER_AUDIT_BEGIN(nullability, sendability)
+
+#pragma mark - ScheduleCollectionViewDataSource
+
+// When you use NSIndexPath (Schedule), you must use those function to replace some of functions in UICollectionViewDataSource
+NS_SWIFT_UI_ACTOR
+@protocol ScheduleCollectionViewDataSource <UICollectionViewDataSource>
+
+@optional
+
+/// 返回一周所拥有的装饰视图数量，默认返回0
+/// - Parameters:
+///   - collectionView: 视图
+///   - kind: 名字
+///   - section: 第几周
+- (NSInteger)collectionView:(UICollectionView *)collectionView
+numberOfSupplementaryOfKind:(NSString *)kind
+                  inSection:(NSInteger)section;
+
+@end
+
+NS_HEADER_AUDIT_END(nullability, sendability)
+
+
+
+
 
 NS_ASSUME_NONNULL_BEGIN
 
-
-#pragma mark - ScheduleCollectionViewLayoutModel
-
-@interface ScheduleCollectionViewLayoutModel: NSObject <NSCopying>
-
-/// 标题
-@property (nonatomic, copy) NSString *title __deprecated_msg("unused");
-
-/// 描述
-@property (nonatomic, copy) NSString *content __deprecated_msg("unused");
-
-/// 星期
-@property (nonatomic) NSInteger week;
-
-/// 绘制的点
-@property (nonatomic) NSRange orginRange;
-
-/// 是否有多个重复视图
-@property (nonatomic) BOOL hadMuti;
-
-/// 是否是自己的
-@property (nonatomic) BOOL isOrigin;
-
-@end
-
 #pragma mark - ScheduleCollectionViewLayoutAttributes
 
-@interface ScheduleCollectionViewLayoutAttributes : UICollectionViewLayoutAttributes
+@interface ScheduleCollectionViewLayoutAttributes : UICollectionViewLayoutAttributes <NSCopying>
 
-/// Layout Model
-@property (nonatomic, copy) ScheduleCollectionViewLayoutModel *layoutModel;
+/// indexPath
+@property (nonatomic, copy) NSIndexPath *pointIndexPath;
+
+/// lenth
+@property (nonatomic) NSInteger lenth;
+
+- (instancetype)initWithPointIndexPath:(NSIndexPath *)idx lenth:(NSInteger)lenth;
 
 @end
+
+#define ScheduleCollectionViewLayoutAttributes(idx, len) [[ScheduleCollectionViewLayoutAttributes alloc] initWithPointIndexPath:idx lenth:len]
+
+
+
+
 
 #pragma mark - ScheduleCollectionViewLayoutInvalidationContext
 
@@ -55,9 +66,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 是否立刻重新布局左视图
 @property (nonatomic) BOOL invalidateLeadingSupplementaryAttributes;
-
-/// 是否立刻重新布局课表视图
-@property (nonatomic) BOOL invalidateAllAttributes;
 
 @end
 

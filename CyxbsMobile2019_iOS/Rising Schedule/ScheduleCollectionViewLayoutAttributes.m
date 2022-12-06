@@ -8,31 +8,22 @@
 
 #import "ScheduleCollectionViewLayoutAttributes.h"
 
-#pragma mark - ScheduleCollectionViewLayoutAttributes
-
 @implementation ScheduleCollectionViewLayoutAttributes
 
-- (id)copyWithZone:(nullable NSZone *)zone {
-    ScheduleCollectionViewLayoutAttributes *attributes = [super copyWithZone:zone];
-    attributes.layoutModel = self.layoutModel.copy;
-    return attributes;
+- (instancetype)initWithPointIndexPath:(NSIndexPath *)idx lenth:(NSInteger)lenth {
+    self = [super init];
+    if (self) {
+        self.pointIndexPath = idx.copy;
+        self.lenth = lenth;
+    }
+    return self;
 }
 
-@end
-
-#pragma mark - ScheduleCollectionViewLayoutModel
-
-@implementation ScheduleCollectionViewLayoutModel
-
-- (id)copyWithZone:(NSZone *)zone {
-    ScheduleCollectionViewLayoutModel *model = [[ScheduleCollectionViewLayoutModel alloc] init];
-    model.title = self.title;
-    model.content = self.content;
-    model.hadMuti = self.hadMuti;
-    model.week = self.week;
-    model.orginRange = self.orginRange;
-    model.isOrigin = self.isOrigin;
-    return model;
+- (nonnull id)copyWithZone:(nullable NSZone *)zone {
+    ScheduleCollectionViewLayoutAttributes *attributes = [super copyWithZone:zone];
+    attributes.pointIndexPath = self.pointIndexPath.copy;
+    attributes.lenth = self.lenth;
+    return attributes;
 }
 
 @end

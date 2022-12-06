@@ -13,8 +13,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ScheduleRequestType.h"
-
 #import "ScheduleCourse.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -52,9 +50,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-#pragma mark - ScheduleCombineModel (XXHB)
+
+
+
 
 /// !!!: 由于各种原因，这里建议查看飞书云文档
+#pragma mark - ScheduleCombineModel (XXHB)
 
 #ifndef XXHB
 
