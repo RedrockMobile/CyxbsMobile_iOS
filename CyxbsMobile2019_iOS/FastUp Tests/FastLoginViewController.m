@@ -44,7 +44,7 @@
               Dark:UIColorHex(#1D1D1D)];
     
     [self.view addSubview:self.snoField];
-//    [self.view addSubview:self.otherField];
+    [self.view addSubview:self.otherField];
     [self.view addSubview:self.cleBtn];
     
 }
@@ -52,14 +52,14 @@
 #pragma mark - TT
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self.snoField resignFirstResponder];
+    [self.view endEditing:YES];
 }
 
 #pragma mark - Setter
 
 - (UITextField *)snoField {
     if (_snoField == nil) {
-        _snoField = [[UITextField alloc] initWithFrame:CGRectMake(-1, 330, 281, 44)];
+        _snoField = [[UITextField alloc] initWithFrame:CGRectMake(-1, self.view.height / 3, 281, 44)];
         _snoField.centerX = self.view.width / 2;
         _snoField.layer.cornerRadius = 8;
         _snoField.clipsToBounds = YES;
@@ -142,19 +142,25 @@
 
 - (void)_cletap:(UIButton *)btn {
     NSString *sno = self.snoField.text.copy;
-    if (!self.otherField.text && ![self.otherField.text isEqualToString:@""]) {
+    if (self.otherField.text && ![self.otherField.text isEqualToString:@""]) {
+        NSString *otherSno = self.otherField.text.copy;
         [NSUserDefaults.standardUserDefaults setBool:YES forKey:UDKey.isDefineMuti];
+        [NSUserDefaults.standardUserDefaults setBool:NO forKey:UDKey.isDefineMuti];
+        self.presenter.nextRequestDic = @{
+            ScheduleModelRequestStudent : @[sno, otherSno]
+        };
+        self.presenter.model.sno = sno;
     } else {
         [NSUserDefaults.standardUserDefaults setBool:NO forKey:UDKey.isDefineMuti];
+        self.presenter.nextRequestDic = @{
+            ScheduleModelRequestStudent : @[sno]
+        };
+        self.presenter.model.sno = nil;
     }
     [NSUserDefaults.standardUserDefaults setValue:self.snoField.text forKey:UDKey.sno];
     [NSUserDefaults.standardUserDefaults setValue:self.otherField.text forKey:UDKey.otherSno];
     self.snoField.text = @"";
     self.otherField.text = @"";
-    
-    self.presenter.nextRequestDic = @{
-        ScheduleModelRequestStudent : @[sno]
-    };
     
     [NSUserDefaults.widgetUserDefaults setValue:self.presenter.nextRequestDic forKey:@"schedule.request.dic"];
 }

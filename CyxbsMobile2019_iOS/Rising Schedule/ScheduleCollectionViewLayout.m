@@ -50,8 +50,8 @@
         
         // SupplementaryView attributes
         for (NSString *elementKind in _supplementaryAttributes.allKeys) {
-            
-            NSInteger supplementaryCount = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:section];
+            id <ScheduleCollectionViewDataSource> dataSource = (id <ScheduleCollectionViewDataSource>)self.collectionView.dataSource;
+            NSInteger supplementaryCount = [dataSource collectionView:self.collectionView numberOfSupplementaryOfKind:elementKind inSection:section];
             for (NSInteger item = 0; item < supplementaryCount; item++) {
                 
                 NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
@@ -94,7 +94,8 @@
     if (self.dataSource) {
         NSIndexPath *locationIndexPath = [self.dataSource collectionView:self.collectionView layout:self locationAtIndexPath:indexPath];
         NSInteger lenth = [self.dataSource collectionView:self.collectionView layout:self lenthForLocationIndexPath:locationIndexPath];
-        ScheduleCollectionViewLayoutAttributes *attributes = ScheduleCollectionViewLayoutAttributes(locationIndexPath, lenth);
+        attributes.pointIndexPath = locationIndexPath;
+        attributes.lenth = lenth;
         
         [self _transformItemWithAttributes:attributes];
     }
@@ -104,7 +105,7 @@
 
 - (void)_transformItemWithAttributes:(ScheduleCollectionViewLayoutAttributes *)attributes {
     
-    CGFloat x = attributes.pointIndexPath.section * self.collectionView.width + self.widthForLeadingSupplementaryView + (attributes.pointIndexPath.week - 1) * (_itemSize.width + self.columnSpacing) + (attributes.pointIndexPath.location - 1) * (_itemSize.height + self.lineSpacing);
+    CGFloat x = attributes.pointIndexPath.section * self.collectionView.width + self.widthForLeadingSupplementaryView + (attributes.pointIndexPath.week - 1) * (_itemSize.width + self.columnSpacing);
     CGFloat y = self.heightForHeaderSupplementaryView + (attributes.pointIndexPath.location - 1) * (_itemSize.height + self.lineSpacing) + self.lineSpacing;
     CGFloat height = attributes.lenth * _itemSize.height + (attributes.lenth - 1) * self.columnSpacing;
 
@@ -207,6 +208,33 @@
     
     return contentSize;
 }
+
+//- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity {
+//    
+//    CGPoint point = [super targetContentOffsetForProposedContentOffset:proposedContentOffset withScrollingVelocity:velocity];
+//    
+//    if (velocity.x) {
+//        CGFloat y = self.collectionView.contentOffset.y;
+//        point.y = y;
+//        return point;
+//    }
+//    
+//    CGFloat oneLenValue = (self.collectionView.contentOffset.y - self.heightForHeaderSupplementaryView) / (_itemSize.height + self.lineSpacing);
+//    CGFloat currentTop = (velocity.y > 0.0) ? floor(oneLenValue) : ceil(oneLenValue);
+//    CGFloat nextTop = (velocity.y > 0.0) ? ceil(oneLenValue) : floor(oneLenValue);
+//    
+//    BOOL pannedLessThanAPage = fabs(1 + currentTop - oneLenValue) > 0.5;
+//    BOOL flicked = fabs(velocity.y) > 0.02;
+//    if (pannedLessThanAPage && flicked) {
+//        point.y = nextTop * self.pageWidth;
+//    } else {
+//        point.y = round(rawPageValue) * self.pageWidth;
+//    }
+//    
+//    return point;
+//    
+//
+//}
 
 #pragma mark - (UISubclassingHooks)
 

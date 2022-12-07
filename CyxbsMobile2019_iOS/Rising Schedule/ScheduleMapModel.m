@@ -42,27 +42,29 @@
 #pragma mark - Method
 
 - (void)combineModel:(ScheduleCombineModel *)model {
-    RisingDetailLog(@"--- %@", model.sno, self.sno);
     for (ScheduleCourse *course in model.courseAry) {
+        
+        ScheduleCollectionViewModel *viewModel = [self _viewModelWithCourse:course];
         [course.inSections enumerateIndexesUsingBlock:^(NSUInteger section, BOOL * __unused stop) {
             NSIndexPath *indexPath = ScheduleIndexPath(section, course.inWeek, course.period.location);
-            ScheduleCollectionViewModel *viewModel = [self _viewModelWithCourse:course];
             
-//            [self _setViewModel:viewModel forIndexPath:indexPath];
-            
-            RisingDetailLog(@"ScheduleIndexPath(%ld, %ld, %ld) = LK(%ld, %ld)", indexPath.section, indexPath.week, indexPath.location, viewModel.lenth, viewModel.kind);
+            [self _setViewModel:viewModel forIndexPath:indexPath];
         }];
+        
+        [self _setViewModel:viewModel forIndexPath:ScheduleIndexPath(0, course.inWeek, course.period.location)];
     }
-    RisingDetailLog(@"%@", NSStringFromMapTable(_dayMap));
     
+    [self _trunToMap];
 }
 
 - (void)clear {
-    [_mapTable removeAllObjects];
     [_dayMap removeAllObjects];
 }
 
 #pragma mark - private
+
+#define _getVM_atAry(i) ((__bridge ScheduleCollectionViewModel *)[pointerAry pointerAtIndex:i])
+#define _setVM_atAry(viewModel, i) [pointerAry replacePointerAtIndex:i withPointer:(__bridge void *)(viewModel)]
 
 - (ScheduleCollectionViewModel *)_viewModelWithCourse:(ScheduleCourse *)course {
     ScheduleCollectionViewModel *viewModel = [[ScheduleCollectionViewModel alloc] initWithScheduleCourse:course];
@@ -94,60 +96,66 @@
 }
 
 - (void)_setViewModel:(ScheduleCollectionViewModel *)viewModel forIndexPath:(NSIndexPath *)indexPath {
+    ScheduleCollectionViewModel *newVM = viewModel.copy;
+    // 获取到同一天的课程表情况
     NSPointerArray *pointerAry = [self _getAryAt:indexPath];
-    NSInteger count = indexPath.location + viewModel.lenth - 1;
+    NSInteger count = indexPath.location + newVM.lenth;
     if (pointerAry.count < count) {
         pointerAry.count = count;
     }
-
-    for (NSInteger i = indexPath.location; i < indexPath.location + viewModel.lenth; i++) {
-    #define replace [pointerAry replacePointerAtIndex:(i - 1) withPointer:(__bridge void *)(indexPath)]; \
-        [_mapTable setObject:viewModel forKey:indexPath]
-        
-        void *pointer = [pointerAry pointerAtIndex:i - 1];
-        if (pointer == NULL) {
-            // 原来的为空，则直接替换
-            replace;
-        } else {
-            // 获取以前的idx和viewModel
-            NSIndexPath *oldIndexPath = (__bridge NSIndexPath *)pointer;
-            ScheduleCollectionViewModel *oldViewModel = [_mapTable objectForKey:oldIndexPath];
-            
-            if (viewModel.kind < oldViewModel.kind) {
-                // 如果新的优先级 高于 以前的优先级
-                viewModel.hadMuti = YES;
-                replace;
-            } else if (viewModel.kind == oldViewModel.kind) {
-                // 如果新的优先级 平于 以前的优先级
-                if ([oldIndexPath compare:indexPath] != NSOrderedAscending) {
-                    // 如果idx一样/比以前大，那么直接替换
-                    replace;
+    
+    for (NSInteger i = indexPath.location; i < count; i++) {
+        ScheduleCollectionViewModel *oldVM = _getVM_atAry(i);
+        if (oldVM) {
+            if (!(newVM.kind < oldVM.kind)) {
+                if (newVM.kind != oldVM.kind) {
+                    oldVM.hadMuti = YES;
+                    continue;
                 } else {
-                    // 比以前小就算了
-                    oldViewModel.hadMuti = YES;
+                    if (newVM.lenth < oldVM.lenth) {
+                        oldVM.hadMuti = YES;
+                        continue;
+                    }
                 }
-            } else {
-                // 如果新的优先级 低于 以前的优先级
-                oldViewModel.hadMuti = YES;
             }
+            newVM.hadMuti = YES;
         }
+        _setVM_atAry(newVM, i);
     }
 }
 
-- (void)_trunedToMap {
-    NSEnumerator <NSPointerArray *> *enumerator = _dayMap.objectEnumerator;
-    for (NSPointerArray *pointerAry = enumerator.nextObject; pointerAry; pointerAry = enumerator.nextObject) {
-        if (pointerAry.count == 0) {
+- (void)_trunToMap {
+    [_mapTable removeAllObjects];
+    NSEnumerator <NSIndexPath *> *keyEnumerator = _dayMap.keyEnumerator;
+    for (NSIndexPath *dayIdx = keyEnumerator.nextObject; dayIdx; dayIdx = keyEnumerator.nextObject) {
+        
+        NSPointerArray *pointerAry = [_dayMap objectForKey:dayIdx];
+        if (pointerAry.count < 1) {
             continue;
         }
-        NSIndexPath *obj = (__bridge NSIndexPath *)[pointerAry pointerAtIndex:0];
-        for (NSInteger i = 1; i < pointerAry.count; i++) {
-            NSIndexPath *nextObj = (__bridge NSIndexPath *)[pointerAry pointerAtIndex:i];
-            if (![nextObj isEqual:obj]) {
-                if (obj) {
-                    
+        ScheduleCollectionViewModel *beforeVM = _getVM_atAry(1);
+        ScheduleCollectionViewModel *nextVM;
+        ScheduleCollectionViewModel *copyVM = beforeVM.copy;
+        (!copyVM) ?: (copyVM.lenth = 1);
+        NSInteger location = 1;
+        
+        for (NSInteger idx = 2; idx < pointerAry.count; idx++, beforeVM = nextVM) {
+            nextVM = _getVM_atAry(idx);
+            if (nextVM != beforeVM) {
+                if (copyVM) {
+                    [_mapTable setObject:copyVM forKey:ScheduleIndexPath(dayIdx.section, dayIdx.week, location)];
                 }
+                copyVM = nextVM.copy;
+                (!copyVM) ?: (copyVM.lenth = 1);
+                location = idx;
+                continue;
             }
+            if (copyVM) {
+                copyVM.lenth++;
+            }
+        }
+        if (copyVM) {
+            [_mapTable setObject:copyVM forKey:ScheduleIndexPath(dayIdx.section, dayIdx.week, location)];
         }
     }
 }

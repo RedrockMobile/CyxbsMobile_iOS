@@ -13,12 +13,17 @@
 @implementation ScheduleCollectionViewModel
 
 - (nonnull id)copyWithZone:(nullable NSZone *)zone {
-    ScheduleCollectionViewModel *model;
-    model.title = self.title;
-    model.content = self.content;
+    ScheduleCollectionViewModel *model = [[ScheduleCollectionViewModel alloc] init];
+    model.title = self.title.copy;
+    model.content = self.content.copy;
     model.hadMuti = self.hadMuti;
     model.kind = self.kind;
+    model.lenth = self.lenth;
     return model;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"len:%ld, kind:%ld, muti:%d (%@ %@)", self.lenth, self.kind, self.hadMuti, self.title, self.content];
 }
 
 @end

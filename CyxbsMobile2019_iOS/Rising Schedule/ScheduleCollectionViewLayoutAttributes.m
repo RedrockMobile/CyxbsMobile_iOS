@@ -10,15 +10,6 @@
 
 @implementation ScheduleCollectionViewLayoutAttributes
 
-- (instancetype)initWithPointIndexPath:(NSIndexPath *)idx lenth:(NSInteger)lenth {
-    self = [super init];
-    if (self) {
-        self.pointIndexPath = idx.copy;
-        self.lenth = lenth;
-    }
-    return self;
-}
-
 - (nonnull id)copyWithZone:(nullable NSZone *)zone {
     ScheduleCollectionViewLayoutAttributes *attributes = [super copyWithZone:zone];
     attributes.pointIndexPath = self.pointIndexPath.copy;

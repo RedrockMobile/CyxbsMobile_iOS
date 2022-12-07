@@ -47,11 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// lenth
 @property (nonatomic) NSInteger lenth;
 
-- (instancetype)initWithPointIndexPath:(NSIndexPath *)idx lenth:(NSInteger)lenth;
-
 @end
-
-#define ScheduleCollectionViewLayoutAttributes(idx, len) [[ScheduleCollectionViewLayoutAttributes alloc] initWithPointIndexPath:idx lenth:len]
 
 
 

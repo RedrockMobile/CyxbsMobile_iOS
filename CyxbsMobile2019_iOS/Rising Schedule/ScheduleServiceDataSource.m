@@ -73,6 +73,13 @@
     return _model.courseIdxPaths.count;
 }
 
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    if (!_model.courseIdxPaths[section]) {
+        return 0;
+    }
+    return _model.courseIdxPaths[section].count;
+}
+
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                            cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -83,47 +90,71 @@
     
     cell.courseTitle = viewModel.title;
     cell.courseContent = viewModel.content;
-    // 正常课程
-    if (locationIdxPath.location <= 4) {
-        cell.drawType = ScheduleCollectionViewCellDrawMorning;
-    } else if (locationIdxPath.location <= 8) {
-        cell.drawType = ScheduleCollectionViewCellDrawAfternoon;
-    } else if (locationIdxPath.location <= 12) {
-        cell.drawType = ScheduleCollectionViewCellDrawNight;
+    
+    switch (viewModel.kind) {
+        /* FistSystem */
+        case ScheduleBelongFistSystem: {
+            if (locationIdxPath.location <= 4) {
+                cell.drawType = ScheduleCollectionViewCellDrawMorning;
+            } else if (locationIdxPath.location <= 8) {
+                cell.drawType = ScheduleCollectionViewCellDrawAfternoon;
+            } else if (locationIdxPath.location <= 12) {
+                cell.drawType = ScheduleCollectionViewCellDrawNight;
+            }
+        } break;
+            
+        /* FistCustom */
+        case ScheduleBelongFistCustom: {
+            cell.drawType = ScheduleCollectionViewCellDrawCustom;
+        } break;
+            
+        /* SecondSystem */
+        case ScheduleBelongSecondSystem: {
+            cell.drawType = ScheduleCollectionViewCellDrawOthers;
+        } break;
     }
-
-    // 自定义的事务
-    if (viewModel.kind == ScheduleBelongFistCustom) {
-        cell.drawType = ScheduleCollectionViewCellDrawCustom;
-    }
-        
+    
+    // muti
+    cell.isMuti = viewModel.hadMuti;
+    
+    cell.oneLenth = (viewModel.lenth == 1) ;
+    
     return cell;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath {
-    
     if (kind != UICollectionElementKindSectionHeader && kind != UICollectionElementKindSectionLeading) {
         return nil;
     }
     
     NSDate *date = [NSDate dateWithTimeInterval:(indexPath.section - 1) * 7 * 24 * 60 * 60 + (indexPath.item - 1) * 24 * 60 * 60 sinceDate:_model.startDate];
-    NSInteger weekday = NSDate.date.weekday - 1;
-    weekday = weekday ? weekday : 7;
+    
+    NSUInteger currentDayWeek = date.weekday;
+    currentDayWeek = (currentDayWeek + 6) % 7 + currentDayWeek / 7;
     
     ScheduleSupplementaryCollectionViewCell *cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier forIndexPath:indexPath];
     
+    // set
     cell.backgroundColor = collectionView.backgroundColor;
     
     if (kind == UICollectionElementKindSectionHeader) {
+        
+        NSUInteger todayWeek = NSDate.date.weekday;
+        todayWeek = (todayWeek + 6) % 7 + todayWeek / 7;
+        
         cell.isTitleOnly = (indexPath.section == 0 ? YES : indexPath.item == 0);
         
-        cell.title = (indexPath.section == 0 && indexPath.item == 0 ? @"学期" : indexPath.item == 0 ? [NSString stringWithFormat:@"%ld月", date.month] : [date stringWithFormat:@"EEE" timeZone:NSTimeZone.CQ locale:NSLocale.CN]);
+        cell.title = ((indexPath.section == 0 && indexPath.item == 0) ? @"学期" :
+                      ((indexPath.item == 0) ? [NSString stringWithFormat:@"%ld月", date.month] :
+                       [date stringWithFormat:@"EEE" timeZone:NSTimeZone.CQ locale:NSLocale.CN]));
         
         cell.content = [NSString stringWithFormat:@"%ld日", date.day];
         
-        cell.isCurrent = (indexPath.section != _model.nowWeek ? NO : indexPath.item == weekday);
+        cell.isCurrent = (indexPath.section == 0 ? NO :
+                          (indexPath.section != _model.nowWeek ? NO :
+                           indexPath.item == todayWeek));
         
         return cell;
     }
@@ -139,29 +170,31 @@
     return nil;
 }
 
-#pragma mark - <ScheduleCollectionViewLayoutDataSource>
+#pragma mark - ScheduleCollectionViewDataSource
 
-- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView
-                      layout:(nonnull ScheduleCollectionViewLayout *)layout
- numberOfSupplementaryOfKind:(nonnull NSString *)kind
-                   inSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfSupplementaryOfKind:(NSString *)kind inSection:(NSInteger)section {
     if (kind == UICollectionElementKindSectionHeader) {
         return 8;
     }
-    
     if (kind == UICollectionElementKindSectionLeading) {
         return 12;
     }
-    
     return 0;
+}
+
+#pragma mark - <ScheduleCollectionViewLayoutDataSource>
+
+- (NSIndexPath *)collectionView:(UICollectionView *)collectionView
+                         layout:(ScheduleCollectionViewLayout *)layout
+            locationAtIndexPath:(NSIndexPath *)indexPath {
+    return _model.courseIdxPaths[indexPath.section][indexPath.item];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
                      layout:(ScheduleCollectionViewLayout *)layout
-      pointForCellInSection:(NSInteger)section
-                    forItem:(NSInteger)item {
-    UITableViewCell *ce;
-    return 34;
+  lenthForLocationIndexPath:(NSIndexPath *)indexPath {
+    ScheduleCollectionViewModel *vm = [_model.mapTable objectForKey:indexPath];
+    return vm.lenth;
 }
 
 @end
