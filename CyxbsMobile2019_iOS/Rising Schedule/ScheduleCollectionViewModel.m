@@ -62,21 +62,6 @@ BOOL schedule_section_week_equal(const void *item1, const void *item2, NSUIntege
     return idx1.section == idx2.section && idx1.week == idx2.week;
 }
 
-NSUInteger schedule_sample_hash(const void *item, NSUInteger (* _Nullable size)(const void *item)) {
-    NSIndexPath *idx = (__bridge NSIndexPath *)(item);
-    return idx.hash;
-}
-
-BOOL schedule_sample_equal(const void *item1, const void*item2, NSUInteger (* _Nullable size)(const void *item)) {
-    NSIndexPath *idx1 = (__bridge NSIndexPath *)(item1);
-    NSIndexPath *idx2 = (__bridge NSIndexPath *)(item2);
-    return [idx1 compare:idx2] == NSOrderedSame;
-}
-
-BOOL schedule_pointer_equal(const void *item1, const void *item2, NSUInteger (* _Nullable size)(const void *item)) {
-    return item1 == item2;
-}
-
 @end
 
 #pragma mark - ScheduleCollectionViewModel (ScheduleCourse)

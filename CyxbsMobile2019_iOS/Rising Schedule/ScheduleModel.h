@@ -16,8 +16,6 @@
  * 不同的数据都应该为不同的combine模型
  */
 
-#import <Foundation/Foundation.h>
-
 #import "ScheduleMapModel.h"
 
 NS_ASSUME_NONNULL_BEGIN

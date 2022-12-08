@@ -76,11 +76,17 @@ NSString *ScheduleSupplementaryCollectionViewCellReuseIdentifier = @"ScheduleSup
         self.titleLab.textColor =
         [UIColor dm_colorWithLightColor:UIColorHex(#FFFFFF)
                               darkColor:UIColorHex(#F0F0F2)];
+        self.contentLab.textColor =
+        [UIColor dm_colorWithLightColor:UIColorHex(#FFFFFF64)
+                              darkColor:UIColorHex(#868686)];
     } else {
         self.contentView.backgroundColor = UIColor.clearColor;
         self.titleLab.textColor =
         [UIColor dm_colorWithLightColor:UIColorHex(#15315B)
                               darkColor:UIColorHex(#F0F0F2)];
+        self.contentLab.textColor =
+        [UIColor dm_colorWithLightColor:UIColorHex(#606E8A)
+                              darkColor:UIColorHex(#868686)];
     }
 }
 
