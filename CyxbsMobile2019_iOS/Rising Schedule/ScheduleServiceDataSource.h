@@ -24,12 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - ScheduleServiceDataSource
 
 @interface ScheduleServiceDataSource : NSObject <
-    UICollectionViewDataSource,
+    ScheduleCollectionViewDataSource,
     ScheduleCollectionViewLayoutDataSource
 >
 
 /// 模型
-@property (nonatomic, readonly) ScheduleModel *model;
+@property (nonatomic, strong) ScheduleModel *model;
 
 + (instancetype)new NS_UNAVAILABLE;
 
@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 设置collectionView
 /// @param view datasource本质代理
-- (void)setCollectionView:(UICollectionView *)view;
+- (void)setCollectionView:(UICollectionView *)view NS_REQUIRES_SUPER;
 
 @end
 

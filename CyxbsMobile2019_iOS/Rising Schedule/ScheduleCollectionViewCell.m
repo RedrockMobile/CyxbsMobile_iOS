@@ -8,8 +8,6 @@
 
 #import "ScheduleCollectionViewCell.h"
 
-#import "ScheduleCollectionViewLayout.h"
-
 NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCell";
 
 #pragma mark - ScheduleCollectionViewCell ()
@@ -59,15 +57,6 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
     self.contentLab.left = self.titleLab.left;
     self.contentLab.width = self.titleLab.width;
     self.contentLab.bottom = frame.size.height - 8;
-    
-    if ([layoutAttributes isKindOfClass:ScheduleCollectionViewLayoutAttributes.class]) {
-        ScheduleCollectionViewLayoutAttributes *attributes = (ScheduleCollectionViewLayoutAttributes *)layoutAttributes;
-        if (attributes.hadMuti) {
-            self.multyView.hidden = NO;
-        } else {
-            self.multyView.hidden = YES;
-        }
-    }
 }
 
 #pragma mark - Getter
@@ -112,6 +101,14 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
     return self.contentLab.text.copy;
 }
 
+- (BOOL)isMuti {
+    return !self.multyView.hidden;
+}
+
+- (BOOL)oneLenth {
+    return self.contentLab.hidden;
+}
+
 #pragma mark - Setter
 
 - (void)setCourseTitle:(NSString *)courseTitle {
@@ -128,6 +125,14 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
     [self.contentLab sizeToFit];
     self.contentLab.width = width;
     self.contentLab.bottom = bottom;
+}
+
+- (void)setIsMuti:(BOOL)isMuti {
+    self.multyView.hidden = !isMuti;
+}
+
+- (void)setOneLenth:(BOOL)oneLenth  {
+    self.contentLab.hidden = oneLenth;
 }
 
 - (void)setDrawType:(ScheduleCollectionViewCellDrawType)drawType {

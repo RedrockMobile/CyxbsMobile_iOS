@@ -82,12 +82,12 @@ NSString *ScheduleDetailCollectionViewCellReuseIdentifier = @"ScheduleDetailColl
 
 #pragma mark - Setter
 
-- (void)setCourse:(ScheduleCourse *)course {
-    _course = course;
+- (void)setCourse:(ScheduleCourse *)scheduleCourse {
+    _course = scheduleCourse;
     [self.tableView reloadData];
-    self.tableHeaderView.title = course.course;
+    self.tableHeaderView.title = scheduleCourse.course;
     self.tableHeaderView.detail =
-    [NSString stringWithFormat:@"%@ > %@", course.classRoom, course.teacher];
+    [NSString stringWithFormat:@"%@ > %@", scheduleCourse.classRoom, scheduleCourse.teacher];
 }
 
 #pragma mark - <UITableViewDataSource>

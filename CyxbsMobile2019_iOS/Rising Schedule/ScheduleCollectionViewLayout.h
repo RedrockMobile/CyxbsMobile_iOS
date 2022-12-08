@@ -8,44 +8,18 @@
 
 /**ScheduleCollectionViewLayout视图布局
  * 设置所有陈列出来的属性，来达到最佳的视觉效果
- * 请查看飞书云文档
+ * 请查看飞书云文档，查看ScheduleCollectionViewLayoutAttributes
  */
 
 #import <UIKit/UIKit.h>
 
+#import "ScheduleCollectionViewLayoutAttributes.h"
+
+#import "ScheduleCollectionViewModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark - ScheduleCollectionViewLayoutAttributes
-
-@interface ScheduleCollectionViewLayoutAttributes : UICollectionViewLayoutAttributes
-
-/// 星期
-@property (nonatomic) NSInteger week;
-
-/// 绘制的range
-@property (nonatomic) NSRange drawRange;
-
-/// 是否有多个重复视图
-@property (nonatomic) BOOL hadMuti;
-
-@end
-
-#pragma mark - ScheduleCollectionViewLayoutInvalidationContext
-
-@interface ScheduleCollectionViewLayoutInvalidationContext : UICollectionViewLayoutInvalidationContext
-
-/// 是否立刻重新布局顶视图
-@property (nonatomic) BOOL invalidateHeaderSupplementaryAttributes;
-
-/// 是否立刻重新布局左视图
-@property (nonatomic) BOOL invalidateLeadingSupplementaryAttributes;
-
-/// 是否立刻重新布局课表视图
-@property (nonatomic) BOOL invalidateAllAttributes;
-
-@end
-
-#pragma mark - ScheduleCollectionViewLayoutDelegate
+#pragma mark - ScheduleCollectionViewLayoutDataSource
 
 @class ScheduleCollectionViewLayout;
 
@@ -53,36 +27,33 @@ NS_ASSUME_NONNULL_BEGIN
 
 @required
 
-/// 星期几
-/// @param collectionView 视图
-/// @param layout 布局
-/// @param indexPath 下标布局
-- (NSUInteger)collectionView:(UICollectionView *)collectionView
-                      layout:(ScheduleCollectionViewLayout *)layout
-      weekForItemAtIndexPath:(NSIndexPath *)indexPath;
-
-/// 第几节-长度
+/// 返回对应下标的布局点
 /// @param collectionView 视图
 /// @param layout 布局
 /// @param indexPath 下标
-- (NSRange)collectionView:(UICollectionView *)collectionView
-                   layout:(ScheduleCollectionViewLayout *)layout
-  rangeForItemAtIndexPath:(NSIndexPath *)indexPath;
+- (NSIndexPath *)collectionView:(UICollectionView *)collectionView
+                         layout:(ScheduleCollectionViewLayout *)layout
+            locationAtIndexPath:(NSIndexPath *)indexPath;
+
+/// 返回对应布局点的长度
+/// @param collectionView 视图
+/// @param layout 布局
+/// @param indexPath 下标
+- (NSInteger)collectionView:(UICollectionView *)collectionView
+                     layout:(ScheduleCollectionViewLayout *)layout
+  lenthForLocationIndexPath:(NSIndexPath *)indexPath;
 
 @optional
 
-/// 双人展示 - 对比两个重合的视图（callBack为YES才会掉用）
-/// 如需要改变，请直接对两个Attributes进行改变
-/// 返回值： NSOrderedDescending 和 NSOrderedAscending 会再次对Attributes进行改变
-/// 如果不想判断，就返回NSOrderedSame，会采用默认情况
+/// 布局中午或者晚上的时候使用，若不使用，则不布局中午晚上
 /// @param collectionView 视图
 /// @param layout 布局
-/// @param compareAttributes 之前在视图里面的Attributes
-/// @param conflictAttributes 即将呈现的Attributes
-- (NSComparisonResult)collectionView:(UICollectionView *)collectionView
-                              layout:(ScheduleCollectionViewLayout *)layout
-             compareOriginAttributes:(ScheduleCollectionViewLayoutAttributes *)compareAttributes
-              conflictWithAttributes:(ScheduleCollectionViewLayoutAttributes *)conflictAttributes
+/// @param section 那一个section
+/// @param layoutTime 时间点
+- (BOOL)collectionView:(UICollectionView *)collectionView
+                layout:(ScheduleCollectionViewLayout *)layout
+         canLayoutTime:(ScheduleCollectionViewLayoutTime)layoutTime
+             inSection:(NSInteger)section
 __deprecated_msg("即将部署该API，测试阶段");
 
 @end
@@ -105,11 +76,6 @@ __deprecated_msg("即将部署该API，测试阶段");
 
 /// 头部装饰视图高
 @property (nonatomic) CGFloat heightForHeaderSupplementaryView;
-
-/// 课表自布局callback，默认为NO
-/// 如果是YES， 必掉用optional的**compareOrigin:conflictWith:**回掉
-/// 否则则不会掉用
-@property (nonatomic) BOOL callBack __deprecated_msg("正在测试阶段");
 
 @end
 

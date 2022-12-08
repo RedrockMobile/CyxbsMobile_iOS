@@ -13,8 +13,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class ScheduleCollectionViewLayoutAttributes;
-
 NS_ASSUME_NONNULL_BEGIN
 
 /// 复用标志
@@ -42,6 +40,12 @@ typedef NS_ENUM(NSUInteger, ScheduleCollectionViewCellDrawType) {
 
 /// 细节(计算属性)
 @property (nonatomic, copy) NSString *courseContent;
+
+/// 是否存在多个
+@property (nonatomic) BOOL isMuti;
+
+/// 设置为yes时可以自动布局一下下。
+@property (nonatomic) BOOL oneLenth;
 
 - (instancetype)init NS_UNAVAILABLE;
 

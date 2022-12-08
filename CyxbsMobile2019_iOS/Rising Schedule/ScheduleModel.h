@@ -16,15 +16,13 @@
  * 不同的数据都应该为不同的combine模型
  */
 
-#import <Foundation/Foundation.h>
-
-#import "ScheduleCombineModel.h"
+#import "ScheduleMapModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - ScheduleModel
 
-@interface ScheduleModel : NSObject
+@interface ScheduleModel : ScheduleMapModel
 
 /// 开始的时间
 @property (nonatomic, readonly, nonnull) NSDate *startDate;
@@ -33,34 +31,15 @@ NS_ASSUME_NONNULL_BEGIN
 /// 0代表整周
 @property (nonatomic, readonly) NSUInteger nowWeek;
 
+@property (nonatomic, readonly) NSArray <NSArray <NSIndexPath *> *> *courseIdxPaths;
+
 /// 当前在上课/最近一次要上的课
 /// 如果今天课程结束了，就会返回nil
 @property (nonatomic, readonly, nullable) ScheduleCourse *nowCourse __deprecated_msg("还没写");
 
-/// 主学号(如果是双人课表，则会以这个进行判断)
-/// (而事务则是由ScheduleCombineType去判断)
-@property (nonatomic, copy, nullable) NSString *sno __deprecated_msg("没用到");
-
-/// 课程数组
-@property (nonatomic, readonly) NSArray <NSArray <ScheduleCourse *> *> *courseAry;
-
-/// 连立一个模型
-/// 如果已经根据id连立，则取消该次连立
-/// @param model 连立模型
-- (void)combineModel:(ScheduleCombineModel *)model;
-
-/// 清理掉所有模型
-- (void)clear;
-
 /// 返回同一时间段的所有重复课程
-/// @param course 给到一个课程
-/// @param inweek 给到那一周
-- (NSArray <ScheduleCourse *> *)coursesWithCourse:(ScheduleCourse *)course inWeek:(NSInteger)inweek;
-
-/// 返回值按 ** 是学号系统的 > 是学号自定义的 > 不是学号系统的 **排序
-/// 如果sno为nil或者@""，则直接返回**NSOrderedSame**
-/// @param aCourse 这节课
-- (NSComparisonResult)compareResultOfCourse:(ScheduleCourse *)aCourse;
+/// 传进来的idxPath，至少week和location位置有值
+- (NSArray <ScheduleCourse *> *)coursesWithLocationIdxPath:(NSIndexPath *)idxPath;
 
 @end
 

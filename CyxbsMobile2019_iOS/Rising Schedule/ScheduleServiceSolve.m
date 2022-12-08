@@ -1,12 +1,12 @@
 //
-//  ScheduleServiceDelegate.m
+//  ScheduleServiceSolve.m
 //  CyxbsMobile2019_iOS
 //
 //  Created by SSR on 2022/9/10.
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-#import "ScheduleServiceDelegate.h"
+#import "ScheduleServiceSolve.h"
 
 #import "ScheduleInteractorRequest.h"
 
@@ -14,28 +14,28 @@
 
 #import "UIViewController+KNSemiModal.h"
 
-#pragma mark - ScheduleServiceDelegate ()
+#pragma mark - ScheduleServiceSolve ()
 
-@interface ScheduleServiceDelegate () <
+@interface ScheduleServiceSolve () <
     UICollectionViewDelegate,
     ScheduleHeaderViewDelegate
 >
 
 @end
 
-@implementation ScheduleServiceDelegate
+#pragma mark - ScheduleServiceSolve
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        _model = [[ScheduleModel alloc] init];
-    }
-    return self;
+@implementation ScheduleServiceSolve
+
+- (void)setCollectionView:(UICollectionView *)view {
+    [super setCollectionView:view];
+    _collectionView = view;
+    view.delegate = self;
 }
 
 - (void)requestAndReloadData {
     ScheduleRequestDictionary *dic = self.parameterIfNeeded;
-    if (!dic) {  // 默认情况
+    if (!dic) {
         [self.collectionView reloadData];
     }
     [self.model clear];
@@ -90,13 +90,6 @@
     self.headerView.reBack = (page != self.model.nowWeek);
 }
 
-#pragma mark - Setter
-
-- (void)setCollectionView:(UICollectionView *)view {
-    _collectionView = view;
-    view.delegate = self;
-}
-
 - (void)setHeaderView:(ScheduleHeaderView *)headerView {
     _headerView = headerView;
     _headerView.delegate = self;
@@ -106,8 +99,8 @@
 #pragma mark - <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    ScheduleCourse *selectCourse = self.model.courseAry[indexPath.section][indexPath.item];
-    NSArray <ScheduleCourse *> *courses = [self.model coursesWithCourse:selectCourse inWeek:indexPath.section];
+    NSIndexPath *locationIdxPath = self.model.courseIdxPaths[indexPath.section][indexPath.item];
+    NSArray <ScheduleCourse *> *courses = [self.model coursesWithLocationIdxPath:locationIdxPath];
     
     ScheduleDetailController *vc = [[ScheduleDetailController alloc] initWithCourses:courses];
     [[[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium] impactOccurred];

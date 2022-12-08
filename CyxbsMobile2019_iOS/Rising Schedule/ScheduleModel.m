@@ -12,64 +12,60 @@
 
 @implementation ScheduleModel {
     NSMutableDictionary <NSString *, ScheduleCombineModel *> *_statusMap;
-    NSMutableArray <NSMutableArray <ScheduleCourse *> *> *_courseAry;
+    NSMutableArray <NSMutableArray <NSIndexPath *> *> *_courseIdxPaths;
 }
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [self clear];
+        _statusMap = NSMutableDictionary.dictionary;
     }
     return self;
 }
 
 - (void)combineModel:(ScheduleCombineModel *)model {
-    _statusMap[model.identifier] = model;
-    for (ScheduleCourse *course in model.courseAry) {
-        [course.inSections enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, BOOL * __unused stop) {
-            NSInteger section = obj.longValue;
-            for (NSInteger i = _courseAry.count; i <= section; i++) {
-                [_courseAry addObject:NSMutableArray.array];
-            }
-            [_courseAry[section] addObject:course];
-        }];
-        [_courseAry[0] addObject:course];
+    if (_statusMap[model.identifier]) {
+        return;
     }
+    [super combineModel:model];
+    _statusMap[model.identifier] = model;
+    _courseIdxPaths = nil;
     self.nowWeek = model.nowWeek;
 }
 
 - (void)clear {
-    _statusMap = NSMutableDictionary.dictionary;
-    _courseAry = NSMutableArray.array;
-    [_courseAry addObject:NSMutableArray.array]; // for section 0
+    [super clear];
+    [_statusMap removeAllObjects];
+    _courseIdxPaths = nil;
 }
 
-#pragma mark - Method
-
-- (NSArray<ScheduleCourse *> *)coursesWithCourse:(ScheduleCourse *)course inWeek:(NSInteger)inweek {
+- (NSArray<ScheduleCourse *> *)coursesWithLocationIdxPath:(NSIndexPath *)idxPath {
     NSMutableArray *ary = NSMutableArray.array;
-    for (ScheduleCombineModel *model in _statusMap.allValues) {
-        for (ScheduleCourse *acourse in model.courseAry) {
-            if ([course isAboveVerticalTimeAs:acourse]) {
-                if ([acourse.inSections containsObject:@(inweek)] || inweek == 0)
-                [ary addObject:acourse];
+    [_statusMap enumerateKeysAndObjectsUsingBlock:^(NSString * __unused key, ScheduleCombineModel * _Nonnull obj, BOOL * __unused stop) {
+        for (ScheduleCourse *course in obj.courseAry) {
+            if (course.inSections && course.inWeek == idxPath.week && NSLocationInRange(idxPath.location, course.period) ) {
+                [ary addObject:course];
             }
         }
-    }
+    }];
     return ary;
 }
 
-- (NSComparisonResult)compareResultOfCourse:(ScheduleCourse *)aCourse {
-    if (!_sno || ![_sno isEqualToString:@""]) {
-        return NSOrderedSame;
+#pragma mark - Getter
+
+- (NSArray<NSArray<NSIndexPath *> *> *)courseIdxPaths {
+    if (_courseIdxPaths == nil) {
+        _courseIdxPaths = @[NSMutableArray.array].mutableCopy;
+        
+        NSEnumerator <NSIndexPath *> *idxEnum = self.mapTable.keyEnumerator;
+        for (NSIndexPath *indexPath = idxEnum.nextObject; indexPath; indexPath = idxEnum.nextObject) {
+            for (NSInteger i = _courseIdxPaths.count; i <= indexPath.section; i++) {
+                [_courseIdxPaths addObject:NSMutableArray.array];
+            }
+            [_courseIdxPaths[indexPath.section] addObject:indexPath];
+        }
     }
-    if (![aCourse.sno isEqualToString:_sno]) {
-        return NSOrderedAscending;
-    }
-    if ([aCourse.requestType isEqualToString:ScheduleModelRequestStudent]) {
-        return NSOrderedDescending;
-    }
-    return NSOrderedSame;
+    return _courseIdxPaths;
 }
 
 #pragma mark - Setter
@@ -80,23 +76,10 @@
     }
     _nowWeek = nowWeek;
     NSDate *date = NSDate.date;
+    NSUInteger originWeek = date.weekday;
+    originWeek = (originWeek + 6) % 7 + originWeek / 7;
     NSTimeInterval beforNow = (_nowWeek - 1) * 7 * 24 * 60 * 60 + (date.weekday - 2) * 24 * 60 * 60;
     _startDate = [NSDate dateWithTimeIntervalSinceNow:-beforNow];
-}
-
-- (ScheduleCourse *)nowCourse {
-    if (self.nowWeek >= self.courseAry.count) {
-        return nil;
-    }
-    NSArray <ScheduleCourse *> *ary = self.courseAry[self.nowWeek];
-    
-    
-    NSDate *date = NSDate.date;
-    NSInteger weekday = NSDate.date.weekday - 1;
-    weekday = weekday ? weekday : 7;
-    
-    
-    return nil;
 }
 
 @end
