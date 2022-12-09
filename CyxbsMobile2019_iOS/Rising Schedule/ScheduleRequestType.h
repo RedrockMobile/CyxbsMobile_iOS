@@ -14,6 +14,8 @@
 #ifndef ScheduleRequestType_h
 #define ScheduleRequestType_h
 
+#import <Foundation/Foundation.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - ScheduleModelRequestType
@@ -41,6 +43,5 @@ FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestCustom;
 FOUNDATION_EXPORT NSString * _Nullable KeyInParameterForScheduleModelRequestType(const ScheduleModelRequestType _Nonnull);
 
 NS_ASSUME_NONNULL_END
-
 
 #endif /* ScheduleRequestType_h */

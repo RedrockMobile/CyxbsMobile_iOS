@@ -16,23 +16,23 @@ struct ScheduleWidgetEntryView: View {
     
     var body: some View {
         switch family {
-        case .systemSmall:
-            EmptyView()
-        case .systemMedium:
-            EmptyView()
+//        case .systemSmall:
+//            EmptyView()
+//        case .systemMedium:
+//            EmptyView()
         case .systemLarge:
             ScheduleWidgetLarge(entry: entry)
         case .systemExtraLarge:
             EmptyView()
-        case .accessoryCorner:
-            EmptyView()
-        case .accessoryCircular:
-            EmptyView()
-        case .accessoryRectangular:
-            EmptyView()
-        case .accessoryInline:
-            EmptyView()
-        @unknown default:
+//        case .accessoryCorner:
+//            EmptyView()
+//        case .accessoryCircular:
+//            EmptyView()
+//        case .accessoryRectangular:
+//            EmptyView()
+//        case .accessoryInline:
+//            EmptyView()
+        default:
             EmptyView()
         }
     }

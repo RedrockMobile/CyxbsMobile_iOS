@@ -85,7 +85,7 @@ FOUNDATION_EXPORT ScheduleIndexPathEqual schedule_section_week_equal;
 typedef NS_ENUM(NSUInteger, ScheduleCollectionViewLayoutTime) {
     ScheduleCollectionViewLayoutTimeNoon = 015,
     ScheduleCollectionViewLayoutTimeNight
-} NS_UNAVAILABLE __deprecated_msg("暂时未设计午晚算法");
+} __deprecated_msg("暂时未设计午晚算法");
 
 NS_HEADER_AUDIT_END(nullability, sendability)
 

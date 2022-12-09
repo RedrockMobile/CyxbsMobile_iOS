@@ -1,4 +1,4 @@
-source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+# source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 
 platform :ios,'11.0'
 
@@ -8,7 +8,6 @@ install! 'cocoapods', :disable_input_output_paths => true
 
 def available_pods
    pod 'YYKit',:inhibit_warnings => true
-   # pod 'YYImage',:inhibit_warnings => true
 end
 
 target 'CyxbsMobile2019_iOS' do
@@ -66,6 +65,8 @@ end
 target 'ScheduleWidgetExtension' do
     available_pods
     pod 'WCDB'
+    pod 'Alamofire'
+pod 'AFNetworking'
 end
 
 post_install do |installer|

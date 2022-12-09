@@ -8,6 +8,10 @@
 
 #import "ScheduleInteractorRequest.h"
 
+#import "HttpTool.h"
+
+#import "NetURL.h"
+
 #pragma mark - ScheduleInteractorRequest
 
 @implementation ScheduleInteractorRequest

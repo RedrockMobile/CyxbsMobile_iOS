@@ -65,17 +65,14 @@ struct WeekTitleView: View {
 
 struct ScheduleWidgetLarge: View {
     var entry: Provider.Entry
-    var model = ScheduleWidgetModel()
+    var model = ScheduleSectionModel()
     
     var body: some View {
-        ForEach(model.weeks) { entry in
-            HStack {
-//                var formatter = DateFormatter()
-//                formatter.locale = Locale.CN
-//                
-//                let date = entry.id
-                Circle()
-                
+        HStack {
+            ForEach(model.viewModels) { dayVM in
+                WeekTitleView(title: dayVM.id, content: "b", isTarget: true)
+                    .frame(height: 52, alignment: .center)
+                Spacer(minLength: 2)
             }
         }
     }

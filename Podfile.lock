@@ -79,7 +79,7 @@ DEPENDENCIES:
   - YYKit
 
 SPEC REPOS:
-  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
+  trunk:
     - AFNetworking
     - Alamofire
     - CocoaMarkdown
@@ -125,6 +125,6 @@ SPEC CHECKSUMS:
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 5d95688bd33fc72df35569fe76ab0322f7fad837
+PODFILE CHECKSUM: 6b4c6a1c38fdb19f36a854171727f27acf5ceb3b
 
 COCOAPODS: 1.11.3

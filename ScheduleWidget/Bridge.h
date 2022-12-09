@@ -11,6 +11,7 @@
 
 #import <YYKit/YYKit.h>
 
-#import "ScheduleCombineModel.h"
+#import "ScheduleInteractorRequest.h"
+#import "ScheduleMapModel.h"
 
 #endif /* Bridge_h */
