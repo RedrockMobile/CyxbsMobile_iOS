@@ -62,7 +62,14 @@
 
 - (ScheduleHeaderView *)headerView {
     if (_headerView == nil) {
-        CGFloat top = (self.isPushStyle ? StatusBarHeight() : 0);
+        CGFloat (^statusHeight)(void) = ^{
+                if (@available(iOS 13.0, *)) {
+                    return [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager.statusBarFrame.size.height;
+                }
+            return [UIApplication sharedApplication].statusBarFrame.size.height;
+        };
+        
+        CGFloat top = (self.isPushStyle ? statusHeight() : 0);
         _headerView = [[ScheduleHeaderView alloc] initWithFrame:CGRectMake(0, top, self.view.width, 64)];
         _headerView.backgroundColor =
         [UIColor Light:UIColorHex(#FFFFFF)
@@ -82,8 +89,7 @@
         layout.heightForHeaderSupplementaryView = ((width - layout.widthForLeadingSupplementaryView) / 7 - layout.columnSpacing) / 46 * 50;
         layout.dataSource = self.presenter.service;
         
-        CGFloat top = 64 + (self.isPushStyle ? StatusBarHeight() : 0);
-        
+        CGFloat top = self.headerView.bottom;
         CGFloat height = self.view.height - top;
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, top, self.view.width, height) collectionViewLayout:layout];
         _collectionView.contentInset = UIEdgeInsetsMake(0, 0, self.tabBarController.tabBar.height, 0);
@@ -96,15 +102,6 @@
                   Dark:UIColorHex(#1D1D1D)];
     }
     return _collectionView;
-}
-
-#pragma mark - Setter
-
-- (void)setPresenter:(SchedulePresenter *)presenter {
-    _presenter = presenter;
-    if (_collectionView) {
-        [self.collectionView reloadData];
-    }
 }
 
 #pragma mark - Getter

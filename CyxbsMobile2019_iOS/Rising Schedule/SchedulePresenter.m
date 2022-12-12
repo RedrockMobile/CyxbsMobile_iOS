@@ -10,7 +10,9 @@
 
 #pragma mark - SchedulePresenter
 
-@implementation SchedulePresenter
+@implementation SchedulePresenter {
+    
+}
 
 - (instancetype)init {
     self = [super init];

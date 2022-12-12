@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SchedulePresenter : NSObject 
 
 /// 控制器（不用赋值，会自动生成）
-@property (nonatomic, weak) ScheduleController *controller;
+@property (nonatomic, weak) UIViewController *controller;
 
 /// 响应式业务
 @property (nonatomic, readonly) ScheduleServiceSolve *service;

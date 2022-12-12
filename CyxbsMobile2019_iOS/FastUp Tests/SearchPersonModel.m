@@ -8,6 +8,8 @@
 
 #import "SearchPersonModel.h"
 
+#import "HttpTool.h"
+
 @implementation SearchPersonModel {
     NSMutableArray <SearchPerson *> *_personAry;
     NSMutableSet <NSString *> *_snoSet;

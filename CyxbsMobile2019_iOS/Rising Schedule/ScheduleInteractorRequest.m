@@ -23,6 +23,19 @@
                  <NSString *> *> *)requestDictionary
         success:(void (^)(ScheduleCombineModel *))success
         failure:(void (^)(NSError * _Nonnull))failure {
+    
+    NSString *(^keyForType)(NSString *) = ^(NSString *type) {
+        static NSDictionary *keyDictionary;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            keyDictionary = @{
+                ScheduleModelRequestStudent : @"stu_num",
+                ScheduleModelRequestTeacher : @"tea",
+                ScheduleModelRequestCustom : @"stu_num"
+            };
+        });
+        return keyDictionary[type];
+    };
         
     [requestDictionary enumerateKeysAndObjectsUsingBlock:^(ScheduleModelRequestType _Nonnull key, NSArray<NSString *> * _Nonnull obj, BOOL * __unused stop) {
         
@@ -33,7 +46,7 @@
              type:HttpToolRequestTypePost
              serializer:HttpToolRequestSerializerHTTP
              bodyParameters:@{
-                KeyInParameterForScheduleModelRequestType(key) : num.copy,
+                keyForType(key) : num.copy,
             }
              progress:nil
              success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable object) {

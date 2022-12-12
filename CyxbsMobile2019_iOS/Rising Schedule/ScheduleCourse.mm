@@ -79,15 +79,6 @@ WCDB_SYNTHESIZE(ScheduleCourse, requestType)
     return self;
 }
 
-#pragma mark - Method
-
-- (BOOL)isAboveVerticalTimeAs:(ScheduleCourse *)course {
-    if (self.inWeek == course.inWeek && !NSEqualRanges(NSIntersectionRange(self.period, course.period), NSMakeRange(0, 0))) {
-        return YES;
-    }
-    return NO;
-}
-
 #pragma mark - Setter
 
 - (void)setPeriod:(NSRange)period {

@@ -76,9 +76,9 @@
     }
     _nowWeek = nowWeek;
     NSDate *date = NSDate.date;
-    NSUInteger originWeek = date.weekday;
-    originWeek = (originWeek + 6) % 7 + originWeek / 7;
-    NSTimeInterval beforNow = (_nowWeek - 1) * 7 * 24 * 60 * 60 + (date.weekday - 2) * 24 * 60 * 60;
+    NSUInteger aboveWeek = NSDate.date.weekday + 6;
+    NSUInteger todayWeek = aboveWeek % 8 + aboveWeek / 7;
+    NSTimeInterval beforNow = (_nowWeek - 1) * 7 * 24 * 60 * 60 + todayWeek * 24 * 60 * 60;
     _startDate = [NSDate dateWithTimeIntervalSinceNow:-beforNow];
 }
 

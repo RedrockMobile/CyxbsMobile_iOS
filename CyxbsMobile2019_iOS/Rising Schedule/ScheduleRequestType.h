@@ -37,11 +37,6 @@ FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestTeacher;
 /// 自定义
 FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestCustom;
 
-// MARK: Method
-
-/// 获取KEY
-FOUNDATION_EXPORT NSString * _Nullable KeyInParameterForScheduleModelRequestType(const ScheduleModelRequestType _Nonnull);
-
 NS_ASSUME_NONNULL_END
 
 #endif /* ScheduleRequestType_h */

@@ -12,6 +12,8 @@
 
 #import "ScheduleCollectionViewModel.h"
 
+#import "NSIndexPath+Schedule.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ScheduleMapModel : NSObject

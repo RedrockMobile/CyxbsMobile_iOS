@@ -46,12 +46,12 @@
         
         ScheduleCollectionViewModel *viewModel = [self _viewModelWithCourse:course];
         [course.inSections enumerateIndexesUsingBlock:^(NSUInteger section, BOOL * __unused stop) {
-            NSIndexPath *indexPath = ScheduleIndexPath(section, course.inWeek, course.period.location);
+            NSIndexPath *indexPath = ScheduleIndexPathNew(section, course.inWeek, course.period.location);
             
             [self _setViewModel:viewModel forIndexPath:indexPath];
         }];
         
-        [self _setViewModel:viewModel forIndexPath:ScheduleIndexPath(0, course.inWeek, course.period.location)];
+        [self _setViewModel:viewModel forIndexPath:ScheduleIndexPathNew(0, course.inWeek, course.period.location)];
     }
     
     [self _trunToMap];
@@ -143,7 +143,7 @@
             nextVM = _getVM_atAry(idx);
             if (nextVM != beforeVM) {
                 if (copyVM) {
-                    [_mapTable setObject:copyVM forKey:ScheduleIndexPath(dayIdx.section, dayIdx.week, location)];
+                    [_mapTable setObject:copyVM forKey:ScheduleIndexPathNew(dayIdx.section, dayIdx.week, location)];
                 }
                 copyVM = nextVM.copy;
                 (!copyVM) ?: (copyVM.lenth = 1);
@@ -155,7 +155,7 @@
             }
         }
         if (copyVM) {
-            [_mapTable setObject:copyVM forKey:ScheduleIndexPath(dayIdx.section, dayIdx.week, location)];
+            [_mapTable setObject:copyVM forKey:ScheduleIndexPathNew(dayIdx.section, dayIdx.week, location)];
         }
     }
 }

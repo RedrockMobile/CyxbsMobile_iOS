@@ -76,10 +76,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param dic 字典（这里必须看文档，注意使用）
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
 
-/// 竖直方向上是否与另外一节课重合，不考虑周数
-/// @param course 另一节课
-- (BOOL)isAboveVerticalTimeAs:(ScheduleCourse *)course;
-
 @end
 
 NS_ASSUME_NONNULL_END

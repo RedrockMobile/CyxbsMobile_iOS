@@ -141,8 +141,8 @@
     
     if (kind == UICollectionElementKindSectionHeader) {
         
-        NSUInteger todayWeek = NSDate.date.weekday;
-        todayWeek = (todayWeek + 6) % 7 + todayWeek / 7;
+        NSUInteger aboveWeek = NSDate.date.weekday + 6;
+        NSUInteger todayWeek = aboveWeek % 8 + aboveWeek / 7;
         
         cell.isTitleOnly = (indexPath.section == 0 ? YES : indexPath.item == 0);
         

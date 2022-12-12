@@ -6,7 +6,7 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-#import "ScheduleCollectionViewLayoutAttributes.h"
+#import "ScheduleCollectionViewLayoutSupport.h"
 
 @implementation ScheduleCollectionViewLayoutAttributes
 

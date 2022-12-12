@@ -1,5 +1,5 @@
 //
-//  ScheduleCollectionViewLayoutAttributes.h
+//  ScheduleCollectionViewLayoutSupport.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by SSR on 2022/11/19.
@@ -7,33 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
-NS_HEADER_AUDIT_BEGIN(nullability, sendability)
-
-#pragma mark - ScheduleCollectionViewDataSource
-
-// When you use NSIndexPath (Schedule), you must use those function to replace some of functions in UICollectionViewDataSource
-NS_SWIFT_UI_ACTOR
-@protocol ScheduleCollectionViewDataSource <UICollectionViewDataSource>
-
-@optional
-
-/// 返回一周所拥有的装饰视图数量，默认返回0
-/// - Parameters:
-///   - collectionView: 视图
-///   - kind: 名字
-///   - section: 第几周
-- (NSInteger)collectionView:(UICollectionView *)collectionView
-numberOfSupplementaryOfKind:(NSString *)kind
-                  inSection:(NSInteger)section;
-
-@end
-
-NS_HEADER_AUDIT_END(nullability, sendability)
-
-
-
-
 
 NS_ASSUME_NONNULL_BEGIN
 
