@@ -347,7 +347,7 @@
         }
         
         [HttpTool.shareTool
-         request:RisingSchedule_POST_addTransaction_API
+         request:ClassSchedule_POST_addRemind_API
          type:HttpToolRequestTypePost
          serializer:HttpToolRequestSerializerHTTP
          bodyParameters:jsonParameters
@@ -409,7 +409,7 @@
         }
         
         [HttpTool.shareTool
-         request:RisingSchedule_POST_editTransaction_API
+         request:ClassSchedule_POST_editRemind_API
          type:HttpToolRequestTypePost
          serializer:HttpToolRequestSerializerHTTP
          bodyParameters:jsonParameters

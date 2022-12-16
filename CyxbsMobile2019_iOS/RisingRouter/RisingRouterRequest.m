@@ -62,13 +62,7 @@
 #pragma mark - Getter
 
 + (UIViewController *)useTopController {
-    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    
-    while (topController.presentedViewController) {
-        topController = topController.presentedViewController;
-    }
-    
-    return topController;
+    return UIApplication.topViewController;
 }
 
 @end

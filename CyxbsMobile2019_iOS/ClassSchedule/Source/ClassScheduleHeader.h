@@ -10,8 +10,25 @@
 #define ClassScheduleHeader_h
 
 // “课表”、“备忘”接口
+#pragma mark - API
 
+//查课表数据，POST，参数：@{@"stu_num"]:学号}
+#define ClassSchedule_POST_keBiao_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/kebiao"]
 
+//加备忘，POST
+#define ClassSchedule_POST_addRemind_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/addTransaction"
+
+//获得备忘，POST
+#define ClassSchedule_POST_getRemind_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/getTransaction"
+
+//编辑备忘，POST
+#define ClassSchedule_POST_editRemind_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/editTransaction"
+
+//删除备忘，POST
+#define ClassSchedule_POST_deleteRemind_API @"https://cyxbsmobile.redrock.team/cyxbsMobile/index.php/Home/Person/deleteTransaction"
+
+//查老师课表数据，POST，参数： @{ @"teaName": 姓名, @"tea": 工号？}
+#define ClassSchedule_POST_teaKeBiao_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-teakb/api/teaKb"]
 
 /// 空教室接口
 #define ClassSchedule_POST_emptyClass_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/roomEmpty"]

@@ -7,8 +7,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import <UIColor+YYAdd.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - UIColor (Color)

@@ -209,7 +209,7 @@
     [parameters setObject:identifier forKey:@"id"];
     
     [HttpTool.shareTool
-     request:RisingSchedule_POST_deleteTransaction_API
+     request:ClassSchedule_POST_deleteRemind_API
      type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:parameters

@@ -199,6 +199,9 @@
     
     //设置小点
     [self setupPoint];
+    
+    
+    NSLog(@"token: %@",UserItemTool.defaultItem.token);
 
 }
 

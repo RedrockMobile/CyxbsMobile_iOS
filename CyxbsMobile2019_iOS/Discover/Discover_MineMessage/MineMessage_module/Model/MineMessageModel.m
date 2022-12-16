@@ -32,11 +32,6 @@
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         NSLog(@"🟢%@:\n%@", self.class, object);
         NSDictionary *data = object[@"data"];
-        if (!data) {
-            NSError *error = [[NSError alloc] init];
-            failure(error);
-            return;
-        }
         self.systemMsgModel = [[SystemMsgModel alloc] initWithArray:data[@"system_msg"]];
         self.activeMsgModel = [[ActiveMessageModel alloc] initWithArray:data[@"active_msg"]];
         if (success) {
@@ -49,6 +44,28 @@
             failure(error);
         }
     }];
+    
+//    [HttpClient.defaultClient
+//     requestWithPath:Discover_GET_allMsg_API
+//     method:HttpRequestGet
+//     parameters:nil
+//     prepareExecute:nil
+//     progress:nil
+//     success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSLog(@"🟢%@:\n%@", self.class, responseObject);
+//        NSDictionary *data = responseObject[@"data"];
+//        self.systemMsgModel = [[SystemMsgModel alloc] initWithArray:data[@"system_msg"]];
+//        self.activeMsgModel = [[ActiveMessageModel alloc] initWithArray:data[@"active_msg"]];
+//        if (success) {
+//            success();
+//        }
+//    }
+//     failure:^(NSURLSessionDataTask *task, NSError *error) {
+//        NSLog(@"🔴%@:\n%@", self.class, error);
+//        if (failure) {
+//            failure(error);
+//        }
+//    }];
 }
 
 @end

@@ -69,7 +69,7 @@
     NSDictionary *paramDict = @{@"stu_num":stuNum};
     
     [HttpTool.shareTool
-     request:RisingSchedule_POST_stuSchedule_API
+     request:ClassSchedule_POST_keBiao_API
      type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:paramDict
@@ -144,7 +144,7 @@
     NSDictionary *parameters = @{@"stu_num":stu_Num};
     
     [HttpTool.shareTool
-     request:RisingSchedule_POST_stuSchedule_API
+     request:ClassSchedule_POST_keBiao_API
      type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:parameters
@@ -193,7 +193,7 @@
 - (void)getTeaClassBookArrayFromNet:(NSDictionary*)parameters{
 
     [HttpTool.shareTool
-     request:RisingSchedule_POST_teaSchedule_API
+     request:ClassSchedule_POST_teaKeBiao_API
      type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:parameters
@@ -268,7 +268,7 @@
         dispatch_async(que, ^{
             
             [HttpTool.shareTool
-             request:RisingSchedule_POST_stuSchedule_API
+             request:ClassSchedule_POST_keBiao_API
              type:HttpToolRequestTypePost
              serializer:HttpToolRequestSerializerHTTP
              bodyParameters:@{@"stuNum":infoDict[@"stuNum"]}

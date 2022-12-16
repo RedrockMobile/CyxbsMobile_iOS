@@ -289,7 +289,7 @@
     NSDictionary *parameter = @{@"stuNum":stuNum,@"forceFetch":@"true"};
     
     [HttpTool.shareTool
-     request:RisingSchedule_POST_stuSchedule_API
+     request:ClassSchedule_POST_keBiao_API
      type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:parameter
@@ -354,7 +354,7 @@
     NSString *remindPath = [path stringByAppendingPathComponent:@"remind.plist"];
     
     [HttpTool.shareTool
-     request:RisingSchedule_POST_perTransaction_API
+     request:ClassSchedule_POST_getRemind_API
      type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:@{@"stuNum":stuNum,@"idNum":idNum}
@@ -417,15 +417,15 @@
         NSMutableDictionary *realParameters;
         NSString *path = [NSString string];
         if ([type isEqualToString:@"edit"]) {
-            path = RisingSchedule_POST_editTransaction_API;
+            path = ClassSchedule_POST_editRemind_API;
             realParameters = jsonParameters;
         }
         else if ([type isEqualToString:@"delete"]) {
-            path = RisingSchedule_POST_deleteTransaction_API;
+            path = ClassSchedule_POST_deleteRemind_API;
             realParameters = parameters;
         }
         else if ([type isEqualToString:@"add"]) {
-            path = RisingSchedule_POST_addTransaction_API;
+            path = ClassSchedule_POST_addRemind_API;
             realParameters = jsonParameters;
         }
         

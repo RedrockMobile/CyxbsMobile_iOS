@@ -134,7 +134,7 @@ UIImagePickerControllerDelegate
 
 #pragma mark - ImagePickerControllerDelegate
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary< UIImagePickerControllerInfoKey,id> *)info {
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info {
     UIImage *image = info[UIImagePickerControllerEditedImage];
     self.contentView.headerImageView.image = image;
     self.profileChanged = YES;
@@ -184,7 +184,7 @@ UIImagePickerControllerDelegate
 /// 修改数据成功之后执行这个方法
 - (void)userInfoUploadSuccess {
     // 上传数据后刷新token
-    [UserItemTool refresh];
+//    [UserItemTool refresh];
 
     [self.navigationController popViewControllerAnimated:YES];
 }

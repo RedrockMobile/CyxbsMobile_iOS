@@ -10,6 +10,8 @@
 
 #import "HttpTool.h"
 
+static HttpTool *_shareTool;
+
 #pragma mark - HttpTool ()
 
 @interface HttpTool ()
@@ -32,7 +34,19 @@
 
 @implementation HttpTool
 
-RisingSigleClass_IMPLEMENTATION(Tool)
+#pragma mark - Single
+
++ (HttpTool *)shareTool {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _shareTool = [[super allocWithZone:nil] init];
+    });
+    return _shareTool;
+}
+
++ (instancetype)allocWithZone:(struct _NSZone *)zone {
+    return self.shareTool;
+}
 
 - (AFHTTPSessionManager *)sessionManager {
     static dispatch_once_t onceToken;
@@ -141,9 +155,7 @@ bodyConstructing:(void (^)(id<AFMultipartFormData> _Nonnull))block
     [self.sessionManager
      POST:URLString
      parameters:parameters
-     headers:@{
-        @"App-Version" : @"100000"
-    }
+     headers:nil
      constructingBodyWithBlock:block
      progress:uploadProgress
      success:success
