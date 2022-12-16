@@ -31,7 +31,6 @@
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         //字典转模型
         NSArray *array = object[@"data"][@"shop"];
-        NSLog(@"%@",object);
         NSMutableArray *mArray = [[NSMutableArray alloc]initWithCapacity:99];
             [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 StampGoodsData *data = [self GoodsDataWithDict:obj];
@@ -43,7 +42,6 @@
             }
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"==========================出错了");
         [[NSNotificationCenter defaultCenter] postNotificationName:@"networkerror" object:nil];
     }];
     
