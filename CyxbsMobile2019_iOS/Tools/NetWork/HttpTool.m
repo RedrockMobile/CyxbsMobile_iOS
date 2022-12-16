@@ -32,7 +32,7 @@
 
 @implementation HttpTool
 
-RisingSigleClass_IMPLEMENTATION(Tool)
+RisingSingleClass_IMPLEMENTATION(Tool)
 
 - (AFHTTPSessionManager *)sessionManager {
     static dispatch_once_t onceToken;
@@ -201,6 +201,5 @@ bodyConstructing:(void (^)(id<AFMultipartFormData> _Nonnull))block
             parameters:parameters
             error:nil];
 }
-
 
 @end

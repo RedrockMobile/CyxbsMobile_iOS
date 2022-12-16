@@ -15,7 +15,7 @@
 
 #import "JWZXNewsModel.h"
 
-#import "ScheduleRouterProtocol.h"
+//#import "ScheduleRouterProtocol.h"
 
 #pragma mark - DiscoverJWZXVC ()
 
