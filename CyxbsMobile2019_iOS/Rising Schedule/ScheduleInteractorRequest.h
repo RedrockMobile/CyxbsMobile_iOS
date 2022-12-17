@@ -22,6 +22,8 @@
 
 #import "ScheduleRequestType.h"
 
+#import "ScheduleCombineIdentifier.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - ScheduleInteractorRequest
@@ -52,6 +54,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)request:(ScheduleRequestDictionary *)requestDictionary
         success:(void (^)(ScheduleCombineModel *combineModel))success
         failure:(void (^)(NSError *error))failure;
+
+
+
+
+
 
 /// 请求事务
 /// @param success 成功

@@ -13,6 +13,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "NSIndexPath+Schedule.h"
+
 #import "ScheduleCourse.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -29,17 +31,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 当周
 @property (nonatomic) NSInteger nowWeek;
-/// 起始日期
-@property (nonatomic) NSDate *startDate;
 
 /// 唯一标识
 /// (计算属性：combineType + sno)
 @property (nonatomic, readonly) NSString *identifier;
 
 /// 课程信息
+/// when you - setCourseAry:, the transMap will immediately show
 @property (nonatomic, strong, null_resettable) NSArray <ScheduleCourse *> *courseAry;
 
-- (instancetype)init NS_UNAVAILABLE;
+/// 由courseAry转换成map
+/// key对象来源于NSIndexPath+Schedule，采用strong，hash/isEqual粒度为location
+/// value对象来源于courseAry，采用week
+@property (nonatomic, strong, readonly) NSMapTable <NSIndexPath *, ScheduleCourse *> *transMap;
+
+//- (instancetype)init NS_UNAVAILABLE;
 
 + (instancetype)new NS_UNAVAILABLE;
 

@@ -34,7 +34,7 @@ FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestStudent;
 /// 老师
 FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestTeacher;
 
-/// 自定义
+/// 自定义 mutable
 FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestCustom;
 
 NS_ASSUME_NONNULL_END

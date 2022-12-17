@@ -12,7 +12,7 @@
 
 #if __has_feature(objc_arc) // ARC
 
-#define RisingSigleClass_IMPLEMENTATION(name)  \
+#define RisingSingleClass_IMPLEMENTATION(name)  \
 static id _instance = nil; \
 + (instancetype)share##name { \
     return [[self alloc] init];\

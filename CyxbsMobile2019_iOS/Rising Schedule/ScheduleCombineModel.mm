@@ -19,7 +19,8 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _courseAry = NSArray.array;
+        _courseAry = NSArray.array;NSCache *a;
+        
     }
     return self;
 }
@@ -42,27 +43,6 @@
 
 - (NSString *)identifier {
     return [NSString stringWithFormat:@"%@%@", _requestType, _sno];
-}
-
-#pragma mark - Setter
-
-- (void)setNowWeek:(NSInteger)nowWeek {
-    if (_nowWeek == nowWeek) {
-        return;
-    }
-    _nowWeek = nowWeek;
-    NSDate *date = NSDate.date;
-    NSTimeInterval beforNow = (_nowWeek - 1) * 7 * 24 * 60 * 60 + (date.weekday - 2) * 24 * 60 * 60;
-    _startDate = [NSDate dateWithTimeIntervalSinceNow:-beforNow];
-}
-
-- (void)setStartDate:(NSDate *)startDate {
-    if ([_startDate isEqualToDate:startDate]) {
-        return;
-    }
-    _startDate = startDate;
-    NSTimeInterval beforNow = [NSDate.date timeIntervalSinceDate:startDate];
-    _nowWeek = beforNow / (24 * 60 * 60) / 7;
 }
 
 @end
@@ -90,7 +70,7 @@
     [self.class.db deleteAllObjectsFromTable:self.identifier];
     [self.class.db insertObjects:self.courseAry into:self.identifier];
     
-    [NSUserDefaults.standardUserDefaults setValue:self.startDate forKey:@"UDKey_startDate"];
+//    [NSUserDefaults.standardUserDefaults setValue:self.startDate forKey:@"UDKey_startDate"];
 }
 
 - (void)awake {
