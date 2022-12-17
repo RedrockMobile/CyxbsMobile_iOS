@@ -369,31 +369,31 @@
 
 /// 点击动态按钮后调用
 - (void)blogBtnClicked {
-    ArticleViewController *vc = [[ArticleViewController alloc] init];
-    
-    vc.hidesBottomBarWhenPushed = YES;
-    
-    [self.navigationController pushViewController:vc animated:YES];
+//    ArticleViewController *vc = [[ArticleViewController alloc] init];
+//    
+//    vc.hidesBottomBarWhenPushed = YES;
+//    
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /// 点击评论按钮后调用
 - (void)remarkBtnClicked {
-    [NSUserDefaults.standardUserDefaults setInteger:(NSInteger)([NSDate date].timeIntervalSince1970) forKey:remarkLastClickTimeKey_NSInteger];
-    RemarkViewController *vc = [[RemarkViewController alloc] init];
-    
-    vc.hidesBottomBarWhenPushed = YES;
-    
-    [self.navigationController pushViewController:vc animated:YES];
+//    [NSUserDefaults.standardUserDefaults setInteger:(NSInteger)([NSDate date].timeIntervalSince1970) forKey:remarkLastClickTimeKey_NSInteger];
+//    RemarkViewController *vc = [[RemarkViewController alloc] init];
+//
+//    vc.hidesBottomBarWhenPushed = YES;
+//
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /// 点击获赞按钮后调用
 - (void)praiseBtnClicked {
-    [NSUserDefaults.standardUserDefaults setInteger:(NSInteger)([NSDate date].timeIntervalSince1970) forKey:praiseLastClickTimeKey_NSInteger];
-    PraiseViewController *vc = [[PraiseViewController alloc] init];
-    
-    vc.hidesBottomBarWhenPushed = YES;
-    
-    [self.navigationController pushViewController:vc animated:YES];
+//    [NSUserDefaults.standardUserDefaults setInteger:(NSInteger)([NSDate date].timeIntervalSince1970) forKey:praiseLastClickTimeKey_NSInteger];
+//    PraiseViewController *vc = [[PraiseViewController alloc] init];
+//
+//    vc.hidesBottomBarWhenPushed = YES;
+//
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /// 点击消息中心按钮后调用

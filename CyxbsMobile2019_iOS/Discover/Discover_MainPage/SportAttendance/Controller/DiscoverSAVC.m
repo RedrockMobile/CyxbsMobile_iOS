@@ -49,12 +49,15 @@
     
     //默认为未绑定的失败页
     [self addFailureView];
+    
+    //暂停功能使用页
+    [self addStopView];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     //尝试获取数据
-    [self getSportData];
+//    [self getSportData];
 }
 
 #pragma mark - getter
@@ -238,6 +241,22 @@
     [_SABtn removeAllTargets];
     [_SABtn addTarget:self action:@selector(lookDataView) forControlEvents:UIControlEventTouchUpInside];
 }
+
+//服务功能暂停页
+- (void)addStopView{
+    [self removeView];
+    [self addbaseView];
+    UILabel *Lab = [[UILabel alloc] init];
+    Lab.text = @"当前服务暂停使用";
+    Lab.font = [UIFont fontWithName:PingFangSCLight size: 15];
+    Lab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
+    [self.view addSubview:Lab];
+    [Lab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.centerY.equalTo(self.view).offset(20);
+    }];
+}
+
 
 //移除视图
 - (void)removeView{

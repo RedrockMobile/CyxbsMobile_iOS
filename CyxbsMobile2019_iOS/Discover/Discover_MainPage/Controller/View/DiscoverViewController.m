@@ -255,7 +255,8 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     
     [self.sportVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
-        make.top.equalTo(self.finderView.mas_bottom).offset(20);
+//        make.top.equalTo(self.finderView.mas_bottom).offset(20);
+        make.top.equalTo(self.finderView.mas_bottom);
         make.height.equalTo(@152);
     }];
     
@@ -373,7 +374,7 @@ static int requestCheckinInfo = 0;
     FinderView *finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 0)];
     
     // Remake by SSR
-    [self addChildViewController:finderView.jwzxViewController];
+//    [self addChildViewController:finderView.jwzxViewController];
     [self addChildViewController:finderView.msgViewController];
     
     
@@ -388,8 +389,8 @@ static int requestCheckinInfo = 0;
     UIViewController *vc = [self.router controllerForRouterPath:@"DiscoverSAVC"];
     vc.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     self.sportVC = (DiscoverSAVC *)vc;
-    [self addChildViewController:vc];
-    [self.view addSubview:vc.view];
+//    [self addChildViewController:vc];
+    [self.contentView addSubview:self.sportVC.view];
 }
 
 #pragma mark - 即将更改的东西
@@ -942,9 +943,9 @@ static int requestCheckinInfo = 0;
 
 - (void)touchEmptyClass {
     NSLog(@"点击了空教室");
-    EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+//    EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)touchToDOList{
@@ -956,9 +957,9 @@ static int requestCheckinInfo = 0;
 
 - (void)touchSportAttendance {
     NSLog(@"点击了体育打卡");
-    SportAttendanceViewController *vc = [[SportAttendanceViewController alloc] init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+//    SportAttendanceViewController *vc = [[SportAttendanceViewController alloc] init];
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //MARK: - 监听键盘事件

@@ -42,7 +42,7 @@
         
         [self addBannerView];
         
-        [self addSubview:self.jwzxVC.view];
+//        [self addSubview:self.jwzxVC.view];
 //        [self addNewsSender];
 //        [self addNews];
         [self addSomeEnters];
@@ -121,7 +121,7 @@
         }
         [nameArray addObject:@"更多功能"];
     }else {
-        nameArray = [@[@"我的考试", @"校车轨迹", @"查课表", @"更多功能"] mutableCopy];//用来保存图片和名称
+        nameArray = [@[@"重邮地图", @"校车轨迹", @"查课表", @"更多功能"] mutableCopy];//用来保存图片和名称
 //        nameArray = [@[@"空教室", @"查课表",@"我的考试", @"更多功能"] mutableCopy];//用来保存图片和名称
     }
     NSMutableArray *array = [NSMutableArray array];
@@ -132,7 +132,8 @@
         [imageButton setImage:[UIImage imageNamed:name] forState:normal];
         label.text = name;
         button = [[EnterButton alloc]initWithImageButton:imageButton label:label];
-        button.top = self.jwzxVC.view.bottom + 15;
+//        button.top = self.jwzxVC.view.bottom + 15;
+        button.top = self.bannerView.bottom + 25;
         button.width = imageButton.width;
         button.height = imageButton.height + label.height;
         [array addObject:button];

@@ -192,7 +192,7 @@
     
     [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self).offset(17 - 10); // 减去10的按钮内边距
-        make.top.equalTo(self).offset(41);
+        make.top.equalTo(self).offset(STATUSBARHEIGHT);
         make.width.height.equalTo(@30);
     }];
     

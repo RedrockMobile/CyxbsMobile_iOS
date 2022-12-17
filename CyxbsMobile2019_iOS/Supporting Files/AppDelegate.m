@@ -98,9 +98,20 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         [[UserItem defaultItem] getUserInfo];
     }
     
-    // 如果打开应用时有学号密码，但是没有token，退出登录
+    // 如果打开应用时有学号密码，但是没有token，退出登录(添加时间判断30天后才退出)
     if (([UserDefaultTool getStuNum] && ![UserItemTool defaultItem].token) || ![UserDefaultTool getStuNum]) {
-        [UserItemTool logout];
+        
+        //获取上次登录的时间戳(和1970.1.1的秒间隔)
+        double lastLogInTime = [NSUserDefaults.standardUserDefaults doubleForKey:LastLogInTimeKey_double];
+        
+        //上次登录的时间是30天前(2592000秒)才退出
+        if (NSDate.nowTimestamp - lastLogInTime > 2592000) {
+            UIAlertController *loginAlertController = [UIAlertController alertControllerWithTitle:@"登录已过期" message:@"登录验证信息失效，请重新登录" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"重新登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                // 直接退出登录
+                [UserItemTool logout];
+            }];
+        }
     }
     [self addReaManager];
     // 打开应用时刷新token
@@ -528,6 +539,24 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
             });
         }
     }
+}
+
+
+#pragma mark - 更新xcode14,iOS16,编译旧项目闪退(UINavigationBarContentViewLayout 0x106a25230> valueForUndefinedKey:),添加以下方法
++ (void)load
+{
+    Class cls = NSClassFromString(@"_UINavigationBarContentViewLayout");
+    SEL selector = @selector(valueForUndefinedKey:);
+    Method impMethod = class_getInstanceMethod([self class], selector);
+
+    if (impMethod) {
+        class_addMethod(cls, selector, method_getImplementation(impMethod), method_getTypeEncoding(impMethod));
+    }
+}
+
+- (id)valueForUndefinedKey:(NSString *)key
+{
+    return nil;
 }
 
 @end

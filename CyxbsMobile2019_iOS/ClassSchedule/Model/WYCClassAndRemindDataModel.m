@@ -50,15 +50,15 @@
 /// 查个人课表用这个方法,它会先加载本地数据，再调去用getPersonalClassBookArrayFromNet方法来网络请求数据
 /// @param stuNum 学号
 - (void)getPersonalClassBookArrayWithStuNum:(NSString*)stuNum{
-    //先取出本地的课表数据
-    self.orderlySchedulArray = [NSMutableArray arrayWithContentsOfFile:parsedDataArrPath];
-    
-    //如果本地存储的课表数据非空，那么通知代理数据加载成功
-    if(self.orderlySchedulArray!=nil){
-        [self.delegate ModelDataLoadSuccess];
-    }
-    
-    //再通过网络请求获取课表数据，如果请求的数据和本地不一样且请求数据非空那么通知代理数据加载成功
+//    //先取出本地的课表数据
+//    self.orderlySchedulArray = [NSMutableArray arrayWithContentsOfFile:parsedDataArrPath];
+//
+//    //如果本地存储的课表数据非空，那么通知代理数据加载成功
+//    if(self.orderlySchedulArray!=nil){
+//        [self.delegate ModelDataLoadSuccess];
+//    }
+//
+//    //再通过网络请求获取课表数据，如果请求的数据和本地不一样且请求数据非空那么通知代理数据加载成功
     [self getPersonalClassBookArrayFromNet:stuNum];
 }
 
@@ -69,7 +69,7 @@
     NSDictionary *paramDict = @{@"stu_num":stuNum};
     
     [HttpTool.shareTool
-     request:ClassSchedule_POST_keBiao_API
+     request:RisingSchedule_POST_stuSchedule_API
      type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:paramDict
@@ -83,10 +83,10 @@
         //储存当前周数，计算开学日期
         [self storeDate:[NSString stringWithFormat:@"%@", object[@"nowWeek"]]];
         
-        //如果没有数据，或者数据和本地数据一样，那么return
-        if (rowLessonDataArr == nil || [rowLessonDataArr isEqualToArray:self.rowDataArray]) {
-            return;
-        }
+//        //如果没有数据，或者数据和本地数据一样，那么return
+//        if (rowLessonDataArr == nil || [rowLessonDataArr isEqualToArray:self.rowDataArray]) {
+//            return;
+//        }
         
         //保存未解析的课表数据
         [rowLessonDataArr writeToFile:rowDataArrPath atomically:YES];
@@ -144,7 +144,7 @@
     NSDictionary *parameters = @{@"stu_num":stu_Num};
     
     [HttpTool.shareTool
-     request:ClassSchedule_POST_keBiao_API
+     request:RisingSchedule_POST_stuSchedule_API
      type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:parameters
@@ -193,7 +193,7 @@
 - (void)getTeaClassBookArrayFromNet:(NSDictionary*)parameters{
 
     [HttpTool.shareTool
-     request:ClassSchedule_POST_teaKeBiao_API
+     request:RisingSchedule_POST_teaSchedule_API
      type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:parameters
@@ -268,7 +268,7 @@
         dispatch_async(que, ^{
             
             [HttpTool.shareTool
-             request:ClassSchedule_POST_keBiao_API
+             request:RisingSchedule_POST_stuSchedule_API
              type:HttpToolRequestTypePost
              serializer:HttpToolRequestSerializerHTTP
              bodyParameters:@{@"stuNum":infoDict[@"stuNum"]}
@@ -402,11 +402,16 @@
         hash_day = couseDataDict[@"hash_day"];
         hash_lesson = couseDataDict[@"hash_lesson"];
         //为整学期页的设置数据
-        [self.orderlySchedulArray[0][hash_day.intValue][hash_lesson.intValue] addObject:couseDataDict];
-        
+        if (hash_day.intValue >= 0 && hash_lesson.intValue >= 0) {
+            [self.orderlySchedulArray[0][hash_day.intValue][hash_lesson.intValue] addObject:couseDataDict];
+        }
         //为后面有课的周设置数据
-        for (NSNumber *weekNum in weeks) {
-            [self.orderlySchedulArray[weekNum.intValue][hash_day.intValue][hash_lesson.intValue] addObject:couseDataDict];
+        if ([weeks isKindOfClass:NSArray.class]) {
+            for (NSNumber *weekNum in weeks) {
+                if (hash_day.intValue >= 0 && hash_lesson.intValue >= 0) {
+                    [self.orderlySchedulArray[weekNum.intValue][hash_day.intValue][hash_lesson.intValue] addObject:couseDataDict];
+                }
+            }
         }
     }
 }
