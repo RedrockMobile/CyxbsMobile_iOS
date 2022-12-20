@@ -11,7 +11,7 @@
 #pragma mark - ScheduleModel
 
 @implementation ScheduleModel {
-    NSMutableDictionary <NSString *, ScheduleCombineModel *> *_statusMap;
+    NSMutableDictionary <ScheduleIdentifier *, NSArray<ScheduleCourse *> *> *_statusMap;
     NSMutableArray <NSMutableArray <NSIndexPath *> *> *_courseIdxPaths;
 }
 
@@ -23,14 +23,13 @@
     return self;
 }
 
-- (void)combineModel:(ScheduleCombineModel *)model {
+- (void)combineItem:(ScheduleCombineItem *)model {
     if (_statusMap[model.identifier]) {
         return;
     }
-    [super combineModel:model];
-    _statusMap[model.identifier] = model;
+    [super combineItem:model];
+    _statusMap[model.identifier] = model.value;
     _courseIdxPaths = nil;
-    self.nowWeek = model.nowWeek;
 }
 
 - (void)clear {
@@ -41,13 +40,13 @@
 
 - (NSArray<ScheduleCourse *> *)coursesWithLocationIdxPath:(NSIndexPath *)idxPath {
     NSMutableArray *ary = NSMutableArray.array;
-    [_statusMap enumerateKeysAndObjectsUsingBlock:^(NSString * __unused key, ScheduleCombineModel * _Nonnull obj, BOOL * __unused stop) {
-        for (ScheduleCourse *course in obj.courseAry) {
+    for (NSArray <ScheduleCourse *> *kind in _statusMap.allValues) {
+        for (ScheduleCourse *course in kind) {
             if (course.inSections && course.inWeek == idxPath.week && NSLocationInRange(idxPath.location, course.period) ) {
                 [ary addObject:course];
             }
         }
-    }];
+    }
     return ary;
 }
 

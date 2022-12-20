@@ -1,5 +1,5 @@
 //
-//  ScheduleInteractorRequest.h
+//  ScheduleNETRequest.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by SSR on 2022/8/23.
@@ -18,28 +18,17 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ScheduleCombineModel.h"
-
 #import "ScheduleRequestType.h"
 
-#import "ScheduleCombineIdentifier.h"
+#import "ScheduleCombineItemSupport.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark - ScheduleInteractorRequest
-
-@interface ScheduleInteractorRequest : NSObject
-
-/// 自定义combine模型
-@property (nonatomic, strong, readonly) ScheduleCombineModel *customCombineModel;
+@interface ScheduleNETRequest : NSObject
 
 - (instancetype)init NS_UNAVAILABLE;
 
 + (instancetype)new NS_UNAVAILABLE;
-
-/// 初始化一个自定义绑定模型
-/// @param model 自定义绑定模型
-+ (instancetype)requestWithCustomCombineModel:(ScheduleCombineModel *)model;
 
 #pragma mark - Method
 
@@ -52,19 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param success 成功返回
 /// @param failure 失败返回
 + (void)request:(ScheduleRequestDictionary *)requestDictionary
-        success:(void (^)(ScheduleCombineModel *combineModel))success
+        success:(void (^)(ScheduleCombineItem *item))success
         failure:(void (^)(NSError *error))failure;
-
-
-
-
-
-
-/// 请求事务
-/// @param success 成功
-/// @param failure 失败
-- (void)requestCustomSuccess:(void (^)(void))success
-                     failure:(void (^)(NSError *error))failure;
 
 /// 新增事务
 /// @param course 一节自定义课，记录如下
@@ -72,8 +50,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 2) 自动权属性: type
 /// @param success 成功返回
 /// @param failure 失败返回
-- (void)appendCustom:(ScheduleCourse *)course
-             success:(void (^)(void))success
++ (void)appendCustom:(ScheduleCourse *)course
+             success:(void (^)(ScheduleCombineItem *item))success
              failure:(void (^)(NSError *error))failure;
 
 /// 更改事务
@@ -83,8 +61,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 3) 自定义检查标识符为courseID
 /// @param success 成功返回
 /// @param failure 失败返回
-- (void)editCustom:(ScheduleCourse *)course
-           success:(void (^)(void))success
++ (void)editCustom:(ScheduleCourse *)course
+           success:(void (^)(ScheduleCombineItem *item))success
            failure:(void (^)(NSError *error))failure;
 
 /// 删除事务
@@ -92,8 +70,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 1) 自定义检查标识符为customID
 /// @param success 成功返回
 /// @param failure 失败返回
-- (void)deleteCustom:(ScheduleCourse *)course
-             success:(void (^)(void))success
++ (void)deleteCustom:(ScheduleCourse *)course
+             success:(void (^)(ScheduleCombineItem *item))success
              failure:(void (^)(NSError *error))failure;
 
 @end

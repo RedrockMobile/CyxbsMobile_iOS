@@ -10,8 +10,9 @@
 #define Bridge_h
 
 #import <YYKit/YYKit.h>
-
-#import "ScheduleInteractorRequest.h"
+/*
+#import "ScheduleNETRequest.h"
 #import "ScheduleMapModel.h"
+ */
 
 #endif /* Bridge_h */

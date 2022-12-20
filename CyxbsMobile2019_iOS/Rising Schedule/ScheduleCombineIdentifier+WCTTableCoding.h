@@ -6,13 +6,13 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-#import "ScheduleCombineIdentifier.h"
+#import "ScheduleCombineItemSupport.h"
 
 #import <WCDB.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ScheduleCombineIdentifier (WCTTableCoding) <
+@interface ScheduleIdentifier (WCTTableCoding) <
     WCTTableCoding
 >
 

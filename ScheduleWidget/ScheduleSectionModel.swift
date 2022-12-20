@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+/*
 class ScheduleSectionModel: ScheduleMapModel {
 
     var viewModels: Array <ScheduleDayModel>
@@ -44,3 +44,4 @@ class ScheduleSectionModel: ScheduleMapModel {
         var viewModels: Array<IndexPath> = []
     }
 }
+*/

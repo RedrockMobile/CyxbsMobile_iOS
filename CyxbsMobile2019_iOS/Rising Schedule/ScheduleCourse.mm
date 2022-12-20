@@ -1,5 +1,5 @@
 //
-//  ScheduleCourse.m
+//  ScheduleCourse.mm
 //  CyxbsMobile2019_iOS
 //
 //  Created by SSR on 2022/8/23
@@ -42,9 +42,6 @@ WCDB_SYNTHESIZE(ScheduleCourse, type)
 
 WCDB_SYNTHESIZE(ScheduleCourse, teacher)
 WCDB_SYNTHESIZE(ScheduleCourse, lesson)
-
-WCDB_SYNTHESIZE(ScheduleCourse, sno)
-WCDB_SYNTHESIZE(ScheduleCourse, requestType)
 
 #pragma mark - Init
 

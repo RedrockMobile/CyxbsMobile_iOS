@@ -41,10 +41,10 @@
 
 #pragma mark - Method
 
-- (void)combineModel:(ScheduleCombineModel *)model {
-    for (ScheduleCourse *course in model.courseAry) {
+- (void)combineItem:(ScheduleCombineItem *)item {
+    for (ScheduleCourse *course in item.value) {
         
-        ScheduleCollectionViewModel *viewModel = [self _viewModelWithCourse:course];
+        ScheduleCollectionViewModel *viewModel = [self _viewModelWithIdentifier:item.identifier course:course];
         [course.inSections enumerateIndexesUsingBlock:^(NSUInteger section, BOOL * __unused stop) {
             NSIndexPath *indexPath = ScheduleIndexPathNew(section, course.inWeek, course.period.location);
             
@@ -66,13 +66,13 @@
 #define _getVM_atAry(i) ((__bridge ScheduleCollectionViewModel *)[pointerAry pointerAtIndex:i])
 #define _setVM_atAry(viewModel, i) [pointerAry replacePointerAtIndex:i withPointer:(__bridge void *)(viewModel)]
 
-- (ScheduleCollectionViewModel *)_viewModelWithCourse:(ScheduleCourse *)course {
+- (ScheduleCollectionViewModel *)_viewModelWithIdentifier:(ScheduleIdentifier *)identifier course:(ScheduleCourse *)course {
     ScheduleCollectionViewModel *viewModel = [[ScheduleCollectionViewModel alloc] initWithScheduleCourse:course];
     if (!self.sno || [self.sno isEqualToString:@""]) {
         return viewModel;
     }
-    if ([course.sno isEqualToString:self.sno]) {
-        if (course.requestType == ScheduleModelRequestStudent) {
+    if ([identifier.sno isEqualToString:self.sno]) {
+        if (identifier.type == ScheduleModelRequestStudent) {
             viewModel.kind = ScheduleBelongFistSystem;
             return viewModel;
         } else {

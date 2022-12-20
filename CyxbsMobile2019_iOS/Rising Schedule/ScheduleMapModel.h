@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ScheduleCombineModel.h"
-
 #import "ScheduleCollectionViewModel.h"
+
+#import "ScheduleCombineItemSupport.h"
 
 #import "NSIndexPath+Schedule.h"
 
@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 加入到Map管理，不做强保存
 /// @param model 加入map管理的model
-- (void)combineModel:(ScheduleCombineModel *)model NS_REQUIRES_SUPER;
+- (void)combineItem:(ScheduleCombineItem *)model NS_REQUIRES_SUPER;
 
 /// 清理掉所有模型
 - (void)clear NS_REQUIRES_SUPER;

@@ -62,14 +62,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// @“xx节”
 @property (nonatomic, copy) NSString *lesson;
 
-// !!!: Distributed
-
-/// sno
-@property (nonatomic, copy) NSString *sno;
-
-/// requestType
-@property (nonatomic, copy) ScheduleModelRequestType requestType;
-
 #pragma mark - Method
 
 /// 根据字典来赋值

@@ -8,7 +8,7 @@
 
 #import "ScheduleServiceSolve.h"
 
-#import "ScheduleInteractorRequest.h"
+#import "ScheduleNETRequest.h"
 
 #import "ScheduleDetailController.h"
 
@@ -39,31 +39,31 @@
         [self.collectionView reloadData];
     }
     [self.model clear];
-      
-    [ScheduleInteractorRequest
+    
+    [ScheduleNETRequest
      request:dic
-     success:^(ScheduleCombineModel * _Nonnull combineModel) {
-        [self.model combineModel:combineModel];
+     success:^(ScheduleCombineItem * _Nonnull item) {
+        [self.model combineItem:item];
         
         [self.collectionView reloadData];
         [self scrollToSection:self.model.nowWeek];
         
-        if (self.canUseAwake) {
-            [combineModel replace];
-        }
+//        if (self.canUseAwake) {
+//            [combineModel replace];
+//        }
     }
      failure:^(NSError * _Nonnull error) {
-        if (self.canUseAwake) {
-            [dic enumerateKeysAndObjectsUsingBlock:^(ScheduleModelRequestType  _Nonnull key, NSArray<NSString *> * _Nonnull obj, BOOL * __unused stop) {
-                for (NSString *sno in obj) {
-                    ScheduleCombineModel *combine = [[ScheduleCombineModel alloc] initWithSno:sno type:key];
-                    [combine awake];
-                    [self.model combineModel:combine];
-                }
-            }];
-            [self.collectionView reloadData];
-            [self scrollToSection:self.model.nowWeek];
-        }
+//        if (self.canUseAwake) {
+//            [dic enumerateKeysAndObjectsUsingBlock:^(ScheduleModelRequestType  _Nonnull key, NSArray<NSString *> * _Nonnull obj, BOOL * __unused stop) {
+//                for (NSString *sno in obj) {
+//                    ScheduleCombineModel *combine = [[ScheduleCombineModel alloc] initWithSno:sno type:key];
+//                    [combine awake];
+//                    [self.model combineModel:combine];
+//                }
+//            }];
+//            [self.collectionView reloadData];
+//            [self scrollToSection:self.model.nowWeek];
+//        }
     }];
 }
 
