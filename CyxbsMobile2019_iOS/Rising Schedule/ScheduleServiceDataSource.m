@@ -16,9 +16,6 @@
 
 @interface ScheduleServiceDataSource ()
 
-/// 视图不同
-@property (nonatomic) BOOL diff;
-
 /// 背景图
 @property (nonatomic, strong) UIView *backgroundView;
 
@@ -44,8 +41,7 @@
         _backgroundView.backgroundColor =
         [UIColor Light:UIColorHexARGB(#80E8F0FC)
                   Dark:UIColorHexARGB(#40000000)];
-        
-        _backgroundView.alpha = 0;
+        _backgroundView.hidden = YES;
     }
     return _backgroundView;
 }
@@ -131,9 +127,6 @@
     
     NSDate *date = [NSDate dateWithTimeInterval:(indexPath.section - 1) * 7 * 24 * 60 * 60 + (indexPath.item - 1) * 24 * 60 * 60 sinceDate:_model.startDate];
     
-    NSUInteger currentDayWeek = date.weekday;
-    currentDayWeek = (currentDayWeek + 6) % 7 + currentDayWeek / 7;
-    
     ScheduleSupplementaryCollectionViewCell *cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier forIndexPath:indexPath];
     
     // set
@@ -141,8 +134,8 @@
     
     if (kind == UICollectionElementKindSectionHeader) {
         
-        NSUInteger aboveWeek = NSDate.date.weekday + 6;
-        NSUInteger todayWeek = aboveWeek % 8 + aboveWeek / 7;
+        NSUInteger aboveWeek = [NSCalendar.currentCalendar components:NSCalendarUnitWeekday fromDate:NSDate.date].weekday + 6;
+        NSUInteger todayWeek = aboveWeek % 8 + aboveWeek / 8;
         
         cell.isTitleOnly = (indexPath.section == 0 ? YES : indexPath.item == 0);
         

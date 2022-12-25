@@ -68,9 +68,9 @@ RisingSingleClass_IMPLEMENTATION(Cache)
     static WCTDatabase *db;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"schedule/WCDB"];
+        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"schedule_WCDB"];
         db = [[WCTDatabase alloc] initWithPath:path];
-        [self.DB createVirtualTableOfName:@"key" withClass:ScheduleIdentifier.class];
+        [db createVirtualTableOfName:@"key" withClass:ScheduleIdentifier.class];
     });
     return db;
 }
@@ -102,7 +102,7 @@ RisingSingleClass_IMPLEMENTATION(Cache)
 @implementation ScheduleShareCache (XXHB)
 
 - (NSString *(^)(NSString *key))fileBy {
-    static NSString *base = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"schedule/Archiver/"];
+    static NSString *base = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"schedule_Archiver/"];
     return ^NSString *(NSString *key) {
         return [base stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.data", key]];
     };

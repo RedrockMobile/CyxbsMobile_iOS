@@ -101,6 +101,14 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
     return NSMakeRange(_period_location, _period_lenth);
 }
 
+#pragma mark - override
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@ %p>;\n \
+            course: %@, place: %@, inWeek: %ld, period: %ld, %ld\n", NSStringFromClass(self.class), self,
+            self.course, self.classRoom, self.inWeek, self.period.location, self.period.length];
+}
+
 #pragma mark - <NSSecureCoding>
 
 + (BOOL)supportsSecureCoding {

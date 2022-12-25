@@ -184,7 +184,7 @@
         
         if (self.dataSource) {
             NSUInteger itemCount = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:indexPath.section];
-            attributes.alpha = (itemCount > 0 ? 0 : 1);
+            attributes.hidden = (itemCount > 0 ? 0 : 1);
         }
         
         return ;

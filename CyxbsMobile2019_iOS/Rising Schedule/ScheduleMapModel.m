@@ -57,6 +57,12 @@
     [self _trunToMap];
 }
 
+- (void)test {
+    ScheduleCourse *a = [[ScheduleCourse alloc] init];
+    // alloc -> malloc -> calloc 分配对空间
+    // init 初始化
+}
+
 - (void)clear {
     [_dayMap removeAllObjects];
 }

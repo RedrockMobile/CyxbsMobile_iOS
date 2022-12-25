@@ -72,7 +72,7 @@
 
 - (void)setBeginerWithExp:(NSTimeInterval)exp {
     _startDate = [NSDate dateWithTimeIntervalSince1970:exp];
-    _nowWeek = [NSDate.date timeIntervalSinceDate:_startDate] / (7 * 24 * 60 * 60);
+    _nowWeek = ceil([NSDate.date timeIntervalSinceDate:_startDate] / (7 * 24 * 60 * 60));
 }
 
 @end

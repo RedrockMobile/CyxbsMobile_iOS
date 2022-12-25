@@ -82,7 +82,7 @@
 }
 
 - (UIImageView *)doubleImgView {
-    if (_doubleImgView == nil) {NSOrderedSet *a;
+    if (_doubleImgView == nil) {
         _doubleImgView = [[UIImageView alloc] initWithFrame:CGRectMake(-1, -1, 16, 18)];
         _doubleImgView.right = self.SuperRight - 130;
         _doubleImgView.centerY = self.reBackBtn.centerY;
@@ -106,14 +106,14 @@
 
 - (void)setReBack:(BOOL)reBack {
     _reBack = reBack;
-    self.reBackBtn.alpha = (reBack ? 1 : 0);
+    self.reBackBtn.hidden = (reBack ? 1 : 0);
 }
 
 - (void)setShowMuti:(BOOL)show isSingle:(BOOL)isSingle {
     _isShow = show;
     _isSingle = isSingle;
     if (!show) {
-        self.doubleImgView.alpha = 0;
+        self.doubleImgView.hidden = 0;
         return;
     }
     if (isSingle) {

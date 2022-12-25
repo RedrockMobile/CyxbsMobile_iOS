@@ -58,7 +58,11 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, iat)
     return NO;
 }
 
-#pragma mark -
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@, %p>; [%@, %@] : (exp: %lf, iat: %lf)", NSStringFromClass(self.class), self, self.sno, self.type, self.exp, self.iat];
+}
+
+#pragma mark - Method
 
 - (NSString *)key {
     return [_type stringByAppendingString:_sno].copy;
@@ -67,8 +71,8 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, iat)
 - (void)setExpWithNowWeek:(NSInteger)nowWeek {
     NSUInteger weekday = [NSCalendar.currentCalendar components:NSCalendarUnitWeekday fromDate:NSDate.date].weekday;
     NSUInteger aboveWeek = weekday + 6;
-    NSUInteger todayWeek = aboveWeek % 8 + aboveWeek / 7;
-    NSTimeInterval beforNow = (nowWeek - 1) * 7 * 24 * 60 * 60 + todayWeek * 24 * 60 * 60;
+    NSUInteger todayWeek = aboveWeek % 8 + aboveWeek / 8;
+    NSTimeInterval beforNow = (nowWeek - 1) * 7 * 24 * 60 * 60 + (todayWeek - 1) * 24 * 60 * 60;
     _exp = [NSDate dateWithTimeIntervalSinceNow:-beforNow].timeIntervalSince1970;
 }
 
@@ -102,7 +106,7 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, iat)
 #pragma mark - <NSCopying>
 
 - (nonnull id)copyWithZone:(nullable NSZone *)zone {
-    ScheduleIdentifier *obj = [[ScheduleIdentifier alloc] initWithSno:self.sno type:self.type];
+    ScheduleIdentifier *obj = [[ScheduleIdentifier alloc] initWithSno:self.sno.copy type:self.type];
     obj.iat = self.iat;
     return obj;
 }
@@ -145,6 +149,10 @@ NSArray <ScheduleIdentifier *> *ScheduleIdentifiersFromScheduleRequestDictionary
     return [[ScheduleCombineItem alloc] initWithIdentifier:name value:value];
 }
 
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@, %p> [%@ : count: %ld]", NSStringFromClass(self.class), self, self.identifier, self.value.count];
+}
+
 #pragma mark - <NSSecureCoding>
 
 + (BOOL)supportsSecureCoding {
@@ -169,7 +177,7 @@ NSArray <ScheduleIdentifier *> *ScheduleIdentifiersFromScheduleRequestDictionary
 #pragma mark - <NSCopying>
 
 - (nonnull id)copyWithZone:(nullable NSZone *)zone {
-    return [[ScheduleCombineItem allocWithZone:zone] initWithIdentifier:self.identifier value:self.value];
+    return [[ScheduleCombineItem allocWithZone:zone] initWithIdentifier:self.identifier.copy value:self.value.copy];
 }
 
 @end

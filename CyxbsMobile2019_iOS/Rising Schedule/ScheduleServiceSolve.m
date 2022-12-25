@@ -41,6 +41,7 @@
         [self.collectionView reloadData];
         return;
     }
+    [self.model clear];
     
     NSMutableDictionary *finDic = NSMutableDictionary.dictionary;
     NSArray <ScheduleIdentifier *> *ids = ScheduleIdentifiersFromScheduleRequestDictionary(dic);
@@ -50,8 +51,8 @@
             [self.model combineItem:item];
             [self.collectionView reloadData];
         } else {
-            [finDic objectForKey:identifier.key] ?: [finDic setObject:NSMutableArray.array forKey:identifier.key];
-            [finDic[identifier.key] addObject:identifier.sno];
+            [finDic objectForKey:identifier.type] ?: [finDic setObject:NSMutableArray.array forKey:identifier.type];
+            [finDic[identifier.type] addObject:identifier.sno];
         }
     }
     
@@ -68,20 +69,20 @@
         
         [ScheduleShareCache.shareCache cacheItem:item];
         
-        if (self.canUseAwake) {
-            [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
-        }
+//        if (self.canUseAwake) {
+//            [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
+//        }
     }
      failure:^(NSError * _Nonnull error) {
-        if (self.canUseAwake) {
-            NSArray <ScheduleIdentifier *> *ids = ScheduleIdentifiersFromScheduleRequestDictionary(finDic);
-            for (ScheduleIdentifier *identifier in ids) {
-                ScheduleCombineItem *item = [ScheduleShareCache.shareCache awakeForIdentifier:identifier];
-                [self.model combineItem:item];
-            }
-            [self.collectionView reloadData];
-            [self scrollToSection:self.model.nowWeek];
-        }
+//        if (self.canUseAwake) {
+//            NSArray <ScheduleIdentifier *> *ids = ScheduleIdentifiersFromScheduleRequestDictionary(finDic);
+//            for (ScheduleIdentifier *identifier in ids) {
+//                ScheduleCombineItem *item = [ScheduleShareCache.shareCache awakeForIdentifier:identifier];
+//                [self.model combineItem:item];
+//            }
+//            [self.collectionView reloadData];
+//            [self scrollToSection:self.model.nowWeek];
+//        }
     }];
 }
 

@@ -15,7 +15,7 @@
 #define RisingSingleClass_IMPLEMENTATION(name)  \
 static id _instance = nil; \
 + (instancetype)share##name { \
-    return [[self alloc] init];\
+    return [self alloc];\
 } \
 + (instancetype)allocWithZone:(struct _NSZone *)zone { \
     static dispatch_once_t onceToken; \

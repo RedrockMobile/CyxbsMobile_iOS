@@ -23,7 +23,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"len:%ld, kind:%ld, muti:%d (%@ %@)", self.lenth, self.kind, self.hadMuti, self.title, self.content];
+    return [NSString stringWithFormat:@"<%@, %p> [len: %ld, kind: %ld, muti: %d] (%@ %@)", NSStringFromClass(self.class), self, self.lenth, self.kind, self.hadMuti, self.title, self.content];
 }
 
 @end
