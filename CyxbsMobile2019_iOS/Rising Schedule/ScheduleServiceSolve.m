@@ -12,6 +12,8 @@
 
 #import "ScheduleDetailController.h"
 
+#import "ScheduleShareCache.h"
+
 #import "UIViewController+KNSemiModal.h"
 
 #pragma mark - ScheduleServiceSolve ()
@@ -37,33 +39,49 @@
     ScheduleRequestDictionary *dic = self.parameterIfNeeded;
     if (!dic) {
         [self.collectionView reloadData];
+        return;
     }
-    [self.model clear];
+    
+    NSMutableDictionary *finDic = NSMutableDictionary.dictionary;
+    NSArray <ScheduleIdentifier *> *ids = ScheduleIdentifiersFromScheduleRequestDictionary(dic);
+    for (ScheduleIdentifier *identifier in ids) {
+        ScheduleCombineItem *item = [ScheduleShareCache.shareCache getItemForKey:identifier.key];
+        if (item) {
+            [self.model combineItem:item];
+            [self.collectionView reloadData];
+        } else {
+            [finDic objectForKey:identifier.key] ?: [finDic setObject:NSMutableArray.array forKey:identifier.key];
+            [finDic[identifier.key] addObject:identifier.sno];
+        }
+    }
+    
+    if (!finDic.count) {
+        return;
+    }
     
     [ScheduleNETRequest
-     request:dic
+     request:finDic
      success:^(ScheduleCombineItem * _Nonnull item) {
         [self.model combineItem:item];
-        
         [self.collectionView reloadData];
         [self scrollToSection:self.model.nowWeek];
         
-//        if (self.canUseAwake) {
-//            [combineModel replace];
-//        }
+        [ScheduleShareCache.shareCache cacheItem:item];
+        
+        if (self.canUseAwake) {
+            [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
+        }
     }
      failure:^(NSError * _Nonnull error) {
-//        if (self.canUseAwake) {
-//            [dic enumerateKeysAndObjectsUsingBlock:^(ScheduleModelRequestType  _Nonnull key, NSArray<NSString *> * _Nonnull obj, BOOL * __unused stop) {
-//                for (NSString *sno in obj) {
-//                    ScheduleCombineModel *combine = [[ScheduleCombineModel alloc] initWithSno:sno type:key];
-//                    [combine awake];
-//                    [self.model combineModel:combine];
-//                }
-//            }];
-//            [self.collectionView reloadData];
-//            [self scrollToSection:self.model.nowWeek];
-//        }
+        if (self.canUseAwake) {
+            NSArray <ScheduleIdentifier *> *ids = ScheduleIdentifiersFromScheduleRequestDictionary(finDic);
+            for (ScheduleIdentifier *identifier in ids) {
+                ScheduleCombineItem *item = [ScheduleShareCache.shareCache awakeForIdentifier:identifier];
+                [self.model combineItem:item];
+            }
+            [self.collectionView reloadData];
+            [self scrollToSection:self.model.nowWeek];
+        }
     }];
 }
 

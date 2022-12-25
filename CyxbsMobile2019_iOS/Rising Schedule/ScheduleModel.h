@@ -27,8 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 开始的时间
 @property (nonatomic, readonly, nonnull) NSDate *startDate;
 
-/// 当周
-/// 0代表整周
+/// 当周(0代表整周)
 @property (nonatomic, readonly) NSUInteger nowWeek;
 
 @property (nonatomic, readonly) NSArray <NSArray <NSIndexPath *> *> *courseIdxPaths;

@@ -14,6 +14,7 @@
 
 #import "ScheduleCourse.h"
 
+#if __has_include(<WCDB.h>)
 #import <WCDB.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -42,3 +43,5 @@ WCDB_PROPERTY(lesson)
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

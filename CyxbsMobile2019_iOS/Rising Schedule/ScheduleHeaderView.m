@@ -82,7 +82,7 @@
 }
 
 - (UIImageView *)doubleImgView {
-    if (_doubleImgView == nil) {
+    if (_doubleImgView == nil) {NSOrderedSet *a;
         _doubleImgView = [[UIImageView alloc] initWithFrame:CGRectMake(-1, -1, 16, 18)];
         _doubleImgView.right = self.SuperRight - 130;
         _doubleImgView.centerY = self.reBackBtn.centerY;

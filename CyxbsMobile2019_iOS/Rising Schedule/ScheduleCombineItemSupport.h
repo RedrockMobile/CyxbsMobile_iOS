@@ -22,11 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// set cause the key use
 @property (nonatomic, readonly, copy) ScheduleModelRequestType type;
 
-/// save the time begin
+/// The time for nowWeek
 @property (nonatomic) NSTimeInterval exp;
 - (void)setExpWithNowWeek:(NSInteger)nowWeek;
 
-/// you can save last request time
+/// The last request time you can save
 @property (nonatomic) NSTimeInterval iat;
 
 /// return type + name
@@ -42,6 +42,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+FOUNDATION_EXPORT NSArray <ScheduleIdentifier *> *ScheduleIdentifiersFromScheduleRequestDictionary(ScheduleRequestDictionary *dictionary);
+
+
+
+
+
 #pragma mark - ScheduleCombineItem
 
 @class ScheduleCourse;
@@ -52,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
     NSArray <ScheduleCourse *> *_value;
 }
 
-- (instancetype)initWithName:(ScheduleIdentifier *)identifier value:(nullable NSArray <ScheduleCourse *> *)value NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithIdentifier:(ScheduleIdentifier *)identifier value:(nullable NSArray <ScheduleCourse *> *)value NS_DESIGNATED_INITIALIZER;
 
 + (instancetype)combineItemWithIdentifier:(ScheduleIdentifier *)identifier value:(nullable NSArray <ScheduleCourse *> *)value;
 

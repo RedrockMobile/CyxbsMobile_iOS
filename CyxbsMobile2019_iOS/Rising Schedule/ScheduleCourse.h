@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - SchoolLesson
 
-@interface ScheduleCourse : NSObject
+@interface ScheduleCourse : NSObject <NSSecureCoding>
 
 // !!!: Time
 

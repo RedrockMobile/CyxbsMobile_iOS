@@ -1,5 +1,5 @@
 //
-//  ScheduleCombineIdentifier+WCTTableCoding.h
+//  ScheduleIdentifier+WCTTableCoding.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by SSR on 2022/12/14.
@@ -8,6 +8,7 @@
 
 #import "ScheduleCombineItemSupport.h"
 
+#if __has_include(<WCDB.h>)
 #import <WCDB.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -23,3 +24,5 @@ WCDB_PROPERTY(iat)
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

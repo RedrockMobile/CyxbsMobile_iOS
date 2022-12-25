@@ -8,8 +8,6 @@
 
 #import "ScheduleCourse.h"
 
-#import "ScheduleCourse+WCTTableCoding.h"
-
 @interface ScheduleCourse ()
 
 /// 存储period
@@ -20,7 +18,11 @@
 
 @end
 
-#pragma mark - SchoolLesson
+#pragma mark - ScheduleCourse
+
+#import "ScheduleCourse+WCTTableCoding.h"
+
+#ifdef WCDB_h
 
 @implementation ScheduleCourse 
 
@@ -42,6 +44,12 @@ WCDB_SYNTHESIZE(ScheduleCourse, type)
 
 WCDB_SYNTHESIZE(ScheduleCourse, teacher)
 WCDB_SYNTHESIZE(ScheduleCourse, lesson)
+
+#else
+
+@implementation ScheduleCourse
+
+#endif
 
 #pragma mark - Init
 
@@ -93,29 +101,42 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
     return NSMakeRange(_period_location, _period_lenth);
 }
 
-- (NSString *)descriptionv{
-    return [NSString stringWithFormat:@"%@", @{
-        @"周" : @(_inWeek)
-    }];
+#pragma mark - <NSSecureCoding>
+
++ (BOOL)supportsSecureCoding {
+    return YES;
 }
 
-- (NSString *)timeStr {
-    if (_period_location <= 0 || NSMaxRange(self.period) - 1 > 12) {
-        return @"";
-    }
-    __block NSString *b, *e;
-//    [ getTimeline:^(NSInteger idx, NSTimeInterval begin, NSTimeInterval end, BOOL *stop) {
-//        if (self->_period_location - 1 == idx) {
-//            b = [NSString stringWithFormat:@"%ld:%ld", (NSInteger)begin / 60, (NSInteger)begin % 60];
-//        }
-//        if (NSMaxRange(self.period) - 2 == idx) {
-//            e = [NSString stringWithFormat:@"%ld:%ld", (NSInteger)end / 60, (NSInteger)end % 60];
-//        }
-//        if (e) {
-//            *stop = YES;
-//        }
-//    }];
-    return [b stringByAppendingFormat:@" - %@", e];
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder {
+    self.inWeek = [decoder decodeIntegerForKey:@"inWeek"];
+    self.inSections = ((NSMutableIndexSet *)[decoder decodeObjectOfClass:NSMutableIndexSet.class forKey:@"inSections"]).mutableCopy;
+    self.period_location = [decoder decodeIntegerForKey:@"location"];
+    self.period_lenth = [decoder decodeIntegerForKey:@"lenth"];
+    self.course = [decoder decodeObjectForKey:@"course"];
+    self.courseNike = [decoder decodeObjectForKey:@"courseNike"];
+    self.classRoom = [decoder decodeObjectForKey:@"classRoom"];
+    self.classRoomNike = [decoder decodeObjectForKey:@"classRoomNike"];
+    self.courseID = [decoder decodeObjectForKey:@"id"];
+    self.rawWeek = [decoder decodeObjectForKey:@"rawWeek"];
+    self.type = [decoder decodeObjectForKey:@"type"];
+    self.teacher = [decoder decodeObjectForKey:@"teacher"];
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(nonnull NSCoder *)coder {
+    [coder encodeInteger:self.inWeek forKey:@"inWeek"];
+    [coder encodeObject:self.inSections forKey:@"inSections"];
+    [coder encodeInteger:self.period_location forKey:@"location"];
+    [coder encodeInteger:self.period_lenth forKey:@"lenth"];
+    [coder encodeObject:self.course forKey:@"course"];
+    [coder encodeObject:self.courseNike forKey:@"courseNike"];
+    [coder encodeObject:self.classRoom forKey:@"classRoom"];
+    [coder encodeObject:self.classRoomNike forKey:@"classRoomNike"];
+    [coder encodeObject:self.courseID forKey:@"id"];
+    [coder encodeObject:self.rawWeek forKey:@"rawWeek"];
+    [coder encodeObject:self.type forKey:@"type"];
+    [coder encodeObject:self.teacher forKey:@"teacher"];
 }
 
 @end

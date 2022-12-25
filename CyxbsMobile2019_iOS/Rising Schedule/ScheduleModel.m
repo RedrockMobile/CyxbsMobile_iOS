@@ -30,6 +30,7 @@
     [super combineItem:model];
     _statusMap[model.identifier] = model.value;
     _courseIdxPaths = nil;
+    [self setBeginerWithExp:model.identifier.exp];
 }
 
 - (void)clear {
@@ -67,18 +68,11 @@
     return _courseIdxPaths;
 }
 
-#pragma mark - Setter
+#pragma mark - Private
 
-- (void)setNowWeek:(NSUInteger)nowWeek {
-    if (_nowWeek == nowWeek) {
-        return;
-    }
-    _nowWeek = nowWeek;
-    NSDate *date = NSDate.date;
-    NSUInteger aboveWeek = NSDate.date.weekday + 6;
-    NSUInteger todayWeek = aboveWeek % 8 + aboveWeek / 7;
-    NSTimeInterval beforNow = (_nowWeek - 1) * 7 * 24 * 60 * 60 + todayWeek * 24 * 60 * 60;
-    _startDate = [NSDate dateWithTimeIntervalSinceNow:-beforNow];
+- (void)setBeginerWithExp:(NSTimeInterval)exp {
+    _startDate = [NSDate dateWithTimeIntervalSince1970:exp];
+    _nowWeek = [NSDate.date timeIntervalSinceDate:_startDate] / (7 * 24 * 60 * 60);
 }
 
 @end

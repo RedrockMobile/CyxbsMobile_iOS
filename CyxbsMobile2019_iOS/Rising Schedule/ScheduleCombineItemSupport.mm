@@ -10,11 +10,11 @@
 
 #import "ScheduleCourse.h"
 
-#import "ScheduleCombineIdentifier+WCTTableCoding.h"
-
-#import <YYKit/NSDate+YYAdd.h>
-
 #pragma mark - ScheduleIdentifier
+
+#import "ScheduleIdentifier+WCTTableCoding.h"
+
+#ifdef WCDB_h
 
 @implementation ScheduleIdentifier
 
@@ -23,6 +23,12 @@ WCDB_IMPLEMENTATION(ScheduleIdentifier)
 WCDB_SYNTHESIZE(ScheduleIdentifier, sno)
 WCDB_SYNTHESIZE(ScheduleIdentifier, type)
 WCDB_SYNTHESIZE(ScheduleIdentifier, iat)
+
+#else
+
+@implementation ScheduleIdentifier
+
+#endif
 
 - (instancetype)initWithSno:(NSString *)name type:(ScheduleModelRequestType)type {
     self = [super init];
@@ -59,7 +65,8 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, iat)
 }
 
 - (void)setExpWithNowWeek:(NSInteger)nowWeek {
-    NSUInteger aboveWeek = NSDate.date.weekday + 6;
+    NSUInteger weekday = [NSCalendar.currentCalendar components:NSCalendarUnitWeekday fromDate:NSDate.date].weekday;
+    NSUInteger aboveWeek = weekday + 6;
     NSUInteger todayWeek = aboveWeek % 8 + aboveWeek / 7;
     NSTimeInterval beforNow = (nowWeek - 1) * 7 * 24 * 60 * 60 + todayWeek * 24 * 60 * 60;
     _exp = [NSDate dateWithTimeIntervalSinceNow:-beforNow].timeIntervalSince1970;
@@ -102,15 +109,30 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, iat)
 
 @end
 
+NSArray <ScheduleIdentifier *> *ScheduleIdentifiersFromScheduleRequestDictionary(ScheduleRequestDictionary *dictionary) {
+    NSMutableArray *ary = NSMutableArray.array;
+    for (NSString *key in dictionary.allKeys) {
+        for (NSString *sno in dictionary[key]) {
+            ScheduleIdentifier *identifier = [ScheduleIdentifier identifierWithSno:sno type:key];
+            [ary addObject:identifier];
+        }
+    }
+    return ary;
+}
+
+
+
+
+
 #pragma mark - ScheduleCombineItem
 
 @implementation ScheduleCombineItem
 
 - (instancetype)init {
-    return [self initWithName:[ScheduleIdentifier alloc] value:nil];
+    return [self initWithIdentifier:[ScheduleIdentifier alloc] value:nil];
 }
 
-- (instancetype)initWithName:(ScheduleIdentifier *)name value:(NSArray<ScheduleCourse *> *)value {
+- (instancetype)initWithIdentifier:(ScheduleIdentifier *)name value:(NSArray<ScheduleCourse *> *)value {
     self = [super init];
     if (self) {
         _identifier = name;
@@ -120,7 +142,7 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, iat)
 }
 
 + (instancetype)combineItemWithIdentifier:(ScheduleIdentifier *)name value:(NSArray<ScheduleCourse *> *)value {
-    return [[ScheduleCombineItem alloc] initWithName:name value:value];
+    return [[ScheduleCombineItem alloc] initWithIdentifier:name value:value];
 }
 
 #pragma mark - <NSSecureCoding>
@@ -132,7 +154,7 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, iat)
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder {
     ScheduleIdentifier *identifier = [decoder decodeObjectOfClass:ScheduleIdentifier. class forKey:@"name"];
     NSArray <ScheduleCourse *> *courses = [decoder decodeObjectOfClass:NSArray.class forKey:@"value"];
-    self = [self initWithName:identifier value:courses];
+    self = [self initWithIdentifier:identifier value:courses];
     if (!self) {
         return nil;
     }
@@ -147,7 +169,7 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, iat)
 #pragma mark - <NSCopying>
 
 - (nonnull id)copyWithZone:(nullable NSZone *)zone {
-    return [[ScheduleCombineItem allocWithZone:zone] initWithName:self.identifier value:self.value];
+    return [[ScheduleCombineItem allocWithZone:zone] initWithIdentifier:self.identifier value:self.value];
 }
 
 @end
