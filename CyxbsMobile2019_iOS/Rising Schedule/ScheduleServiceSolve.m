@@ -69,20 +69,20 @@
         
         [ScheduleShareCache.shareCache cacheItem:item];
         
-//        if (self.canUseAwake) {
-//            [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
-//        }
+        if (self.canUseAwake) {
+            [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
+        }
     }
      failure:^(NSError * _Nonnull error) {
-//        if (self.canUseAwake) {
-//            NSArray <ScheduleIdentifier *> *ids = ScheduleIdentifiersFromScheduleRequestDictionary(finDic);
-//            for (ScheduleIdentifier *identifier in ids) {
-//                ScheduleCombineItem *item = [ScheduleShareCache.shareCache awakeForIdentifier:identifier];
-//                [self.model combineItem:item];
-//            }
-//            [self.collectionView reloadData];
-//            [self scrollToSection:self.model.nowWeek];
-//        }
+        if (self.canUseAwake) {
+            NSArray <ScheduleIdentifier *> *ids = ScheduleIdentifiersFromScheduleRequestDictionary(finDic);
+            for (ScheduleIdentifier *identifier in ids) {
+                ScheduleCombineItem *item = [ScheduleShareCache.shareCache awakeForIdentifier:identifier];
+                [self.model combineItem:item];
+            }
+            [self.collectionView reloadData];
+            [self scrollToSection:self.model.nowWeek];
+        }
     }];
 }
 

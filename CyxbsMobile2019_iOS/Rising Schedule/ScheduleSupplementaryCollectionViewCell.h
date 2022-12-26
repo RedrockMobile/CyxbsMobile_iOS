@@ -13,7 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 复用标志
 UIKIT_EXTERN NSString *ScheduleSupplementaryCollectionViewCellReuseIdentifier;
 
-#pragma mark - ScheduleSupplementaryCollectionViewCell
+/**MARK: ScheduleSupplementaryCollectionViewCell
+ * 头视图以及左视图的Cell
+ */
 
 @interface ScheduleSupplementaryCollectionViewCell : UICollectionViewCell
 

@@ -6,18 +6,16 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-/**一类课ScheduleCourse模型
- * 时刻注意你的inSections散列表
- * 特别是在自定义课表的时候，
- */
-
 #import <Foundation/Foundation.h>
 
 #import "ScheduleRequestType.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark - SchoolLesson
+/**MARK: ScheduleCourse
+ * 一类课程的体现，具体表现在`inSections`
+ * 注意，不满足`NSCopying`协议
+ */
 
 @interface ScheduleCourse : NSObject <NSSecureCoding>
 
@@ -27,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger inWeek;
 
 /// 所在周散列表
-@property (nonatomic, copy) NSMutableIndexSet *inSections;
+@property (nonatomic, copy) NSIndexSet *inSections;
 
 /// 第几-几节课，中午为4-5，晚上为8-9
 @property (nonatomic) NSRange period;

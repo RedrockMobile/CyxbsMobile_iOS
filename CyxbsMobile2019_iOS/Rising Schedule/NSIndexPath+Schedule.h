@@ -34,11 +34,9 @@ typedef BOOL ScheduleIndexPathEqualFunction(const void *item1, const void*item2,
 FOUNDATION_EXPORT ScheduleIndexPathHashFunction schedule_section_week_hash;
 FOUNDATION_EXPORT ScheduleIndexPathEqualFunction schedule_section_week_equal;
 
-#pragma mark - ENUM (ScheduleCollectionViewLayoutTime)
-
 typedef NS_ENUM(NSUInteger, ScheduleCollectionViewLayoutTime) {
     ScheduleCollectionViewLayoutTimeNoon = 015,
     ScheduleCollectionViewLayoutTimeNight
-} __deprecated_msg("暂时未设计午晚算法");
+};
 
 NS_HEADER_AUDIT_END(nullability, sendability)

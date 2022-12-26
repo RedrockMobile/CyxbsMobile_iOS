@@ -13,17 +13,21 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-// MARK: API
+/**MARK: API
+ * API Supported but without base URL.
+ * use like \c scheule.stu
+ * See https://metersphere.redrock.team/#/api/definition
+ */
 
 extern const struct Schedule {
-    NSString *stu;
-    NSString *tea;
+    NSString *stu; // POST
+    NSString *tea; // POST
     // .transaction
     const struct Transaction {
-        NSString *get;
-        NSString *add;
-        NSString *edit;
-        NSString *del;
+        NSString *get; // POST
+        NSString *add; // POST
+        NSString *edit; // POST
+        NSString *del; // POST
     } transaction;
 } scheule;
 

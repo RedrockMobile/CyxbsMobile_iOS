@@ -16,11 +16,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**MARK: ScheduleMapModel
+ * base layout class
+ */
+
 @interface ScheduleMapModel : NSObject
 
 /// 设置学号，使map呈现不同效果
 @property (nonatomic, copy, nullable) NSString *sno;
 
+/// 最终的布局mapTable
 @property (nonatomic, strong, readonly) NSMapTable <NSIndexPath *, ScheduleCollectionViewModel *>  *mapTable;
 
 /// 加入到Map管理，不做强保存

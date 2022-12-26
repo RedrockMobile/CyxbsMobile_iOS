@@ -18,7 +18,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark - ScheduleModelRequestType
+/**MARK: ScheduleModelRequestType
+ * a kind of STRING ENUM
+ * ScheduleRequestDictionary sames as:
+ * @{
+ *      ScheduleModelRequestStudent : @[
+ *          @"2021215154",
+ *          @"2021215179"],
+ *      ScheduleModelRequestTeacher : @[
+ *          @"040107"],
+ *      ScheduleModelRequestCustom : @[@""]
+ * }
+ */
 
 typedef NSString * ScheduleModelRequestType NS_STRING_ENUM;
 

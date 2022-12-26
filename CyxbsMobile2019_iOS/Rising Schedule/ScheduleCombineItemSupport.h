@@ -12,7 +12,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark - ScheduleCombineIdentifier
+/**MARK: ScheduleCombineIdentifier
+ * you can use as a `KeyType`
+ * like NSDictionary, NSMapTable, NSCache...
+ * `- isEqual:` just comparee \c sno and \c type
+ */
 
 @interface ScheduleIdentifier : NSObject <NSSecureCoding, NSCopying>
 
@@ -48,7 +52,9 @@ FOUNDATION_EXPORT NSArray <ScheduleIdentifier *> *ScheduleIdentifiersFromSchedul
 
 
 
-#pragma mark - ScheduleCombineItem
+/**MARK: ScheduleCombineItem
+ * design refers to `NSURLQueryItem`
+ */
 
 @class ScheduleCourse;
 

@@ -6,12 +6,6 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-/**
- *
- * 外部的indexPath确定 *周* 和 *所在点*
- * timeline确定 *星期* 和 *长度*
- */
-
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -23,7 +17,10 @@ typedef NS_ENUM(NSUInteger, ScheduleBelongKind) {
     ScheduleBelongUnknow = ScheduleBelongFistSystem
 };
 
-#pragma mark - ScheduleCollectionViewModel
+/**MARK: ScheduleCollectionViewModel
+ * \c ViewModel 遵循了`NSCopying`协议
+ * 保存每个视图的数据源信息
+ */
 
 @interface ScheduleCollectionViewModel : NSObject <NSCopying>
 

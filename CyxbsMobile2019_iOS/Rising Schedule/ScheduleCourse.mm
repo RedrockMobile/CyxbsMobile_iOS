@@ -66,12 +66,12 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
         self.inWeek = [dic[@"hash_day"] intValue] + 1;
         id weekAry = dic[@"week"];
         if ([weekAry isKindOfClass:NSArray.class]) {
-            _inSections = NSMutableIndexSet.indexSet;
+            NSMutableIndexSet *idxSet = NSMutableIndexSet.indexSet;
             for (NSNumber *sectionNumber in weekAry) {
-                [_inSections addIndex:sectionNumber.longValue];
+                [idxSet addIndex:sectionNumber.longValue];
             }
-        }
-        self.period_location = [dic[@"begin_lesson"] longValue];
+            self.inSections = idxSet.copy;
+        }        self.period_location = [dic[@"begin_lesson"] longValue];
         self.period_lenth = [dic[@"period"] unsignedLongValue];
         self.course = dic[@"course"];
         self.classRoom = dic[@"classroom"];
@@ -127,7 +127,7 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
     self.courseID = [decoder decodeObjectForKey:@"id"];
     self.rawWeek = [decoder decodeObjectForKey:@"rawWeek"];
     self.type = [decoder decodeObjectForKey:@"type"];
-    self.teacher = [decoder decodeObjectForKey:@"teacher"];
+    self.teacher = [decoder decodeObjectForKey:@"teacher"];NSArray *a;
     
     return self;
 }

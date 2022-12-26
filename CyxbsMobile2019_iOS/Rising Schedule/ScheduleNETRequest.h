@@ -34,10 +34,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 请求课表
 /// @param requestDictionary 一种字典，记录如下
-/// 1) 个人课表 @{student : @[@"2021215154"]}
-/// 2) 多人课表 @{student : @[@"2021215154", @"2021215179"]}
-/// 3) 老师课表 @{teacher : @[@"040107"]}
-/// 4) 混合课表 @{student : @[@"2021215154"], teacher : @[@"040107"]}
+/// 1) 个人课表 @{ScheduleModelRequestStudent : @[@"2021215154"]}
+/// 2) 多人课表 @{ScheduleModelRequestStudent : @[@"2021215154", @"2021215179"]}
+/// 3) 老师课表 @{ScheduleModelRequestTeacher : @[@"040107"]}
+/// 4) 混合课表 @{ScheduleModelRequestStudent : @[@"2021215154"], ScheduleModelRequestTeacher : @[@"040107"]}
 /// @param success 成功返回
 /// @param failure 失败返回
 + (void)request:(ScheduleRequestDictionary *)requestDictionary
