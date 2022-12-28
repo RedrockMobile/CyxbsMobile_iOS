@@ -43,6 +43,11 @@
 		14B46E6528B4D5D7003D288B /* ScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6328B4D5D7003D288B /* ScheduleModel.m */; };
 		14B46E6A28B4E504003D288B /* ScheduleNETRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6928B4E504003D288B /* ScheduleNETRequest.m */; };
 		14B73F27281BE6C200D08ADD /* CyxbsMobileImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */; };
+		14B7E41D295C46D40033653D /* TransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B7E41C295C46D40033653D /* TransitioningDelegate.m */; };
+		14B7E420295C4A150033653D /* PresentAnimatedTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B7E41F295C4A150033653D /* PresentAnimatedTransition.m */; };
+		14B7E423295C4B2C0033653D /* DismissAnimatedTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B7E422295C4B2C0033653D /* DismissAnimatedTransition.m */; };
+		14B7E426295C4B770033653D /* PresentDrivenInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B7E425295C4B770033653D /* PresentDrivenInteractiveTransition.m */; };
+		14B7E429295C4BE30033653D /* DismissDrivenInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B7E428295C4BE30033653D /* DismissDrivenInteractiveTransition.m */; };
 		14B9647828F66C1E00C984AB /* NetURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9647728F66C1E00C984AB /* NetURL.m */; };
 		14B9647B28F6701500C984AB /* FontName.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9647A28F6701500C984AB /* FontName.m */; };
 		14B9648028F67EEF00C984AB /* CyxbsTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9647F28F67EEF00C984AB /* CyxbsTabBarController.m */; };
@@ -188,6 +193,16 @@
 		14B46E6828B4E504003D288B /* ScheduleNETRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleNETRequest.h; sourceTree = "<group>"; };
 		14B46E6928B4E504003D288B /* ScheduleNETRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleNETRequest.m; sourceTree = "<group>"; };
 		14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CyxbsMobileImage.xcassets; sourceTree = "<group>"; };
+		14B7E41B295C46D40033653D /* TransitioningDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransitioningDelegate.h; sourceTree = "<group>"; };
+		14B7E41C295C46D40033653D /* TransitioningDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransitioningDelegate.m; sourceTree = "<group>"; };
+		14B7E41E295C4A150033653D /* PresentAnimatedTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresentAnimatedTransition.h; sourceTree = "<group>"; };
+		14B7E41F295C4A150033653D /* PresentAnimatedTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresentAnimatedTransition.m; sourceTree = "<group>"; };
+		14B7E421295C4B2C0033653D /* DismissAnimatedTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DismissAnimatedTransition.h; sourceTree = "<group>"; };
+		14B7E422295C4B2C0033653D /* DismissAnimatedTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DismissAnimatedTransition.m; sourceTree = "<group>"; };
+		14B7E424295C4B770033653D /* PresentDrivenInteractiveTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresentDrivenInteractiveTransition.h; sourceTree = "<group>"; };
+		14B7E425295C4B770033653D /* PresentDrivenInteractiveTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresentDrivenInteractiveTransition.m; sourceTree = "<group>"; };
+		14B7E427295C4BE30033653D /* DismissDrivenInteractiveTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DismissDrivenInteractiveTransition.h; sourceTree = "<group>"; };
+		14B7E428295C4BE30033653D /* DismissDrivenInteractiveTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DismissDrivenInteractiveTransition.m; sourceTree = "<group>"; };
 		14B9647628F66C1600C984AB /* NetURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetURL.h; sourceTree = "<group>"; };
 		14B9647728F66C1E00C984AB /* NetURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetURL.m; sourceTree = "<group>"; };
 		14B9647928F6700B00C984AB /* FontName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontName.h; sourceTree = "<group>"; };
@@ -410,6 +425,23 @@
 			path = "Rising Schedule";
 			sourceTree = "<group>";
 		};
+		14B7E42A295C4C360033653D /* Rising Transition */ = {
+			isa = PBXGroup;
+			children = (
+				14B7E41B295C46D40033653D /* TransitioningDelegate.h */,
+				14B7E41C295C46D40033653D /* TransitioningDelegate.m */,
+				14B7E41E295C4A150033653D /* PresentAnimatedTransition.h */,
+				14B7E41F295C4A150033653D /* PresentAnimatedTransition.m */,
+				14B7E421295C4B2C0033653D /* DismissAnimatedTransition.h */,
+				14B7E422295C4B2C0033653D /* DismissAnimatedTransition.m */,
+				14B7E424295C4B770033653D /* PresentDrivenInteractiveTransition.h */,
+				14B7E425295C4B770033653D /* PresentDrivenInteractiveTransition.m */,
+				14B7E427295C4BE30033653D /* DismissDrivenInteractiveTransition.h */,
+				14B7E428295C4BE30033653D /* DismissDrivenInteractiveTransition.m */,
+			);
+			path = "Rising Transition";
+			sourceTree = "<group>";
+		};
 		14B9647D28F6715500C984AB /* CyxbsHeader */ = {
 			isa = PBXGroup;
 			children = (
@@ -547,6 +579,7 @@
 			children = (
 				14B4691D28B4C9D9003D288B /* Rising Schedule */,
 				14D598EB29021EF400C9798F /* Rising Schedule Detail */,
+				14B7E42A295C4C360033653D /* Rising Transition */,
 				14D598E929021E9F00C9798F /* Pod */,
 				14B9647D28F6715500C984AB /* CyxbsHeader */,
 				FE87CE1B27E98F82008D7148 /* Supporting Files */,
@@ -981,6 +1014,7 @@
 			files = (
 				14F80C0929288AC500481F4B /* ScheduleCollectionViewLayoutSupport.m in Sources */,
 				14D03BB7292DFECE001CA682 /* ScheduleCollectionViewModel.m in Sources */,
+				14B7E423295C4B2C0033653D /* DismissAnimatedTransition.m in Sources */,
 				14E8451128FEE9720037309F /* ScheduleDetailCollectionViewCell.m in Sources */,
 				14592A6C2954659F006EB674 /* ScheduleShareCache.mm in Sources */,
 				1466282928C4B1EC00AF584F /* ScheduleCollectionViewLayout.m in Sources */,
@@ -1001,6 +1035,7 @@
 				14BC482F29169E6E0063809E /* NSUserDefaults+Cyxbs.m in Sources */,
 				1422241F28D9B091009A4A54 /* NSDate+Rising.m in Sources */,
 				141DB246293AE9C90051A395 /* ScheduleMapModel.m in Sources */,
+				14B7E426295C4B770033653D /* PresentDrivenInteractiveTransition.m in Sources */,
 				14E3199B290C11CB00B951CE /* PlaceholderCollectionReusableView.m in Sources */,
 				14D598E729021BE400C9798F /* UIViewController+KNSemiModal.m in Sources */,
 				1422240628D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.m in Sources */,
@@ -1009,9 +1044,11 @@
 				1435613028CCA93500EF6987 /* ScheduleServiceSolve.m in Sources */,
 				1422242628D9B31B009A4A54 /* RisingUIKitExtension.m in Sources */,
 				1441BF7C291FF29200591A0E /* UserAgreementConsentView.m in Sources */,
+				14B7E41D295C46D40033653D /* TransitioningDelegate.m in Sources */,
 				1466283428C5CA4600AF584F /* ScheduleCollectionViewCell.m in Sources */,
 				1468F18729248C110080DA08 /* SearchPersonTableViewCell.m in Sources */,
 				14B46E6528B4D5D7003D288B /* ScheduleModel.m in Sources */,
+				14B7E429295C4BE30033653D /* DismissDrivenInteractiveTransition.m in Sources */,
 				14B9648028F67EEF00C984AB /* CyxbsTabBarController.m in Sources */,
 				14E319A0290CC52D00B951CE /* UserAgreementView.m in Sources */,
 				14BC47FB2914D80F0063809E /* SearchPerson.m in Sources */,
@@ -1021,6 +1058,7 @@
 				14E844F628FC40090037309F /* ScheduleDetailController.m in Sources */,
 				14BC481B29164EB40063809E /* ScheduleWidget.intentdefinition in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
+				14B7E420295C4A150033653D /* PresentAnimatedTransition.m in Sources */,
 				1466282628C4B1BD00AF584F /* ScheduleServiceDataSource.m in Sources */,
 				14D598CC28FF964100C9798F /* SameDrawUI.m in Sources */,
 				1466282C28C4EFE400AF584F /* ScheduleRequestType.m in Sources */,

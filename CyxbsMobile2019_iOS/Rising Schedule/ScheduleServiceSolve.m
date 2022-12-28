@@ -14,7 +14,7 @@
 
 #import "ScheduleShareCache.h"
 
-#import "UIViewController+KNSemiModal.h"
+#import "TransitioningDelegate.h"
 
 #pragma mark - ScheduleServiceSolve ()
 
@@ -118,17 +118,16 @@
 #pragma mark - <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [[[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium] impactOccurred];
     NSIndexPath *locationIdxPath = self.model.courseIdxPaths[indexPath.section][indexPath.item];
     NSArray <ScheduleCourse *> *courses = [self.model coursesWithLocationIdxPath:locationIdxPath];
     
+    TransitioningDelegate *transitionDelegate = [[TransitioningDelegate alloc] init];
+    transitionDelegate.transitionDurationIfNeeded = 0.3;
     ScheduleDetailController *vc = [[ScheduleDetailController alloc] initWithCourses:courses];
-    [[[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium] impactOccurred];
-    [self.viewController presentSemiViewController:vc withOptions:@{
-        KNSemiModalOptionKeys.pushParentBack : @(NO),
-        KNSemiModalOptionKeys.parentAlpha : @(1),
-        KNSemiModalOptionKeys.animationDuration : @(0.3),
-        KNSemiModalOptionKeys.shadowOpacity : @(0.2)
-    }];
+    vc.transitioningDelegate = transitionDelegate;
+    vc.modalPresentationStyle = UIModalPresentationCustom;
+    [self.viewController presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark - <UIScrollViewDelegate>

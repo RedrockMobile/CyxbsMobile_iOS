@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithCourses:(NSArray <ScheduleCourse *> *)courses;
 
+/// a selector
+- (void)dismiss;
+
 @end
 
 NS_ASSUME_NONNULL_END

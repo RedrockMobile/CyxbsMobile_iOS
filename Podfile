@@ -45,6 +45,7 @@ target 'CyxbsMobile2019_iOS' do
     pod 'IGListKit' # SSR引入，暂时无项目使用
     pod 'WCDB'
     pod 'CocoaMarkdown'
+    pod 'JGProgressHUD'
     
     pod 'Alamofire'
     pod 'SwiftyJSON'
