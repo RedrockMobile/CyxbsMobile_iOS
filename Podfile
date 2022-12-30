@@ -15,7 +15,7 @@ target 'CyxbsMobile2019_iOS' do
     # pod 'YBImageBrowser',:inhibit_warnings => true
     # pod 'NudeIn'
     pod 'SDWebImage'
-    pod 'AFNetworking'
+    pod 'AFNetworking', '~> 4.0'
     # pod 'MBProgressHUD', '~> 0.9.2'
     
     pod 'Masonry'
@@ -41,7 +41,8 @@ target 'CyxbsMobile2019_iOS' do
     pod 'FluentDarkModeKit'
     pod 'IGListKit' # SSR引入，暂时无项目使用
     pod 'WCDB'
-    pod 'CocoaMarkdown'
+    # pod 'CocoaMarkdown'
+  pod 'MarkDownEditor'
     pod 'JGProgressHUD'
     
     pod 'Alamofire'
@@ -68,8 +69,6 @@ end
 post_install do |installer|
     installer.pods_project.build_configurations.each do |config|
         config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
-        config.build_settings['VALID_ARCHS'] = 'arm64 arm64e armv7 armv7s x86_64 i386'
-        config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
         config.build_settings['HEADER_SEARCH_PATHS'] = '$(PROJECT_DIR)/**'
         config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
         config.build_settings['EXPANDED_CODE_SIGN_IDENTITY'] = ""

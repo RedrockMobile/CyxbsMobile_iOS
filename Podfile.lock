@@ -14,30 +14,36 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
-  - Alamofire (5.5.0)
-  - CocoaMarkdown (1.2.7)
+  - Alamofire (5.6.4)
+  - cmark (0.21.0)
   - FluentDarkModeKit (1.0.4)
   - IGListDiffKit (4.0.0)
   - IGListKit (4.0.0):
     - IGListDiffKit (= 4.0.0)
   - JGProgressHUD (2.2)
-  - LookinServer (1.0.4)
+  - LookinServer (1.1.2):
+    - LookinServer/Core (= 1.1.2)
+  - LookinServer/Core (1.1.2)
+  - MarkDownEditor (3.0.0):
+    - cmark (~> 0.21.0)
+    - Ono (~> 1.1.3)
   - Masonry (1.1.0)
   - MJExtension (3.4.1)
   - MJRefresh (3.7.5)
-  - RxCocoa (5.1.3):
-    - RxRelay (~> 5)
-    - RxSwift (~> 5)
-  - RxRelay (5.1.3):
-    - RxSwift (~> 5)
-  - RxSwift (5.1.3)
-  - SDWebImage (5.12.2):
-    - SDWebImage/Core (= 5.12.2)
-  - SDWebImage/Core (5.12.2)
-  - SnapKit (5.0.1)
+  - Ono (1.1.3)
+  - RxCocoa (6.5.0):
+    - RxRelay (= 6.5.0)
+    - RxSwift (= 6.5.0)
+  - RxRelay (6.5.0):
+    - RxSwift (= 6.5.0)
+  - RxSwift (6.5.0)
+  - SDWebImage (5.14.2):
+    - SDWebImage/Core (= 5.14.2)
+  - SDWebImage/Core (5.14.2)
+  - SnapKit (5.6.0)
   - SQLiteRepairKit (1.2.2):
     - WCDBOptimizedSQLCipher (~> 1.2.0)
-  - SwiftyJSON (4.3.0)
+  - SwiftyJSON (5.0.1)
   - SwiftySwift (3.0.0):
     - SwiftySwift/Cocoa (= 3.0.0)
     - SwiftySwift/Core (= 3.0.0)
@@ -61,13 +67,13 @@ PODS:
   - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
-  - AFNetworking
+  - AFNetworking (~> 4.0)
   - Alamofire
-  - CocoaMarkdown
   - FluentDarkModeKit
   - IGListKit
   - JGProgressHUD
   - LookinServer
+  - MarkDownEditor
   - Masonry
   - MJExtension
   - MJRefresh
@@ -84,15 +90,17 @@ SPEC REPOS:
   trunk:
     - AFNetworking
     - Alamofire
-    - CocoaMarkdown
+    - cmark
     - FluentDarkModeKit
     - IGListDiffKit
     - IGListKit
     - JGProgressHUD
     - LookinServer
+    - MarkDownEditor
     - Masonry
     - MJExtension
     - MJRefresh
+    - Ono
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -107,28 +115,30 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
-  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
-  CocoaMarkdown: c0c4707fd46ee03d5b662a3cd93560f0fe2b79b6
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  cmark: d4af340aaaac5f28f17780c8ea5483691ec2424a
   FluentDarkModeKit: b6317653a00329564582884772ec57c4eaad1a1f
   IGListDiffKit: 665d6cf43ce726e676013db9c7d6c4294259b6b2
   IGListKit: fd5a5d21935298f5849fa49d426843cff97b77c7
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
-  LookinServer: 743c1681771d0a8dcc38825325a080c3186404a5
+  LookinServer: bb667a77f1ee594a8e91226e729dbe49f3401f5c
+  MarkDownEditor: 1e9cc99fb3af28282b4a6afb340c97b8305a0314
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
-  RxCocoa: e2ed092d5432e4296aa818021d27de4090ac0354
-  RxRelay: 5a18c2eb2d68326ebaf0112f80d837ae41b92b97
-  RxSwift: 915abbdfb62214aa89ccd0b194d44fb478019b27
-  SDWebImage: 240e5c12b592fb1268c1d03b8c90d90e8c2ffe82
-  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Ono: 49c7cc7e513718fe6c2a1f87fea80ea9272d0216
+  RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
+  RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
+  RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
+  SDWebImage: b9a731e1d6307f44ca703b3976d18c24ca561e84
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SQLiteRepairKit: 35aaae5a8838adb85f5b1eb4d796055be6060a4b
-  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   SwiftySwift: dfb02560bec08882d6daff3603d9e5738af92ab3
   WCDB: 8e90babdeb7784c569353a4bd22a66c0a175a882
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 729d1f1492f78e021d0af69278422a4734d20991
+PODFILE CHECKSUM: 56d454094aa4f15c13771830c1db50e5e83c6f4d
 
 COCOAPODS: 1.11.3
