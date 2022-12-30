@@ -20,6 +20,7 @@ PODS:
   - IGListDiffKit (4.0.0)
   - IGListKit (4.0.0):
     - IGListDiffKit (= 4.0.0)
+  - JGProgressHUD (2.2)
   - LookinServer (1.0.4)
   - Masonry (1.1.0)
   - MJExtension (3.4.1)
@@ -65,6 +66,7 @@ DEPENDENCIES:
   - CocoaMarkdown
   - FluentDarkModeKit
   - IGListKit
+  - JGProgressHUD
   - LookinServer
   - Masonry
   - MJExtension
@@ -86,6 +88,7 @@ SPEC REPOS:
     - FluentDarkModeKit
     - IGListDiffKit
     - IGListKit
+    - JGProgressHUD
     - LookinServer
     - Masonry
     - MJExtension
@@ -109,6 +112,7 @@ SPEC CHECKSUMS:
   FluentDarkModeKit: b6317653a00329564582884772ec57c4eaad1a1f
   IGListDiffKit: 665d6cf43ce726e676013db9c7d6c4294259b6b2
   IGListKit: fd5a5d21935298f5849fa49d426843cff97b77c7
+  JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
   LookinServer: 743c1681771d0a8dcc38825325a080c3186404a5
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
@@ -125,6 +129,6 @@ SPEC CHECKSUMS:
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 6b4c6a1c38fdb19f36a854171727f27acf5ceb3b
+PODFILE CHECKSUM: 729d1f1492f78e021d0af69278422a4734d20991
 
 COCOAPODS: 1.11.3

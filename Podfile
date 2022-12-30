@@ -6,13 +6,10 @@ use_frameworks!
 
 install! 'cocoapods', :disable_input_output_paths => true
 
-def available_pods
-   pod 'YYKit',:inhibit_warnings => true
-end
-
 target 'CyxbsMobile2019_iOS' do
     inherit! :search_paths
-    available_pods
+
+    pod 'YYKit',:inhibit_warnings => true
 
     # pod 'TZImagePickerController','~> 3.3.2'
     # pod 'YBImageBrowser',:inhibit_warnings => true
@@ -63,11 +60,9 @@ target 'CyxbsMobile2019_iOS' do
     
 end
 
-target 'ScheduleWidgetExtension' do
-    available_pods
+target 'CyxbsWidgetExtension' do
     pod 'WCDB'
     pod 'Alamofire'
-pod 'AFNetworking'
 end
 
 post_install do |installer|

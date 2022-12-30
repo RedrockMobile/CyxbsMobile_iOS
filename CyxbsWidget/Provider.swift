@@ -1,8 +1,8 @@
 //
-//  ScheduleWidget.swift
-//  ScheduleWidget
+//  Provider.swift
+//  CyxbsWidget
 //
-//  Created by SSR on 2022/11/5.
+//  Created by SSR on 2022/12/30.
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
@@ -38,25 +38,4 @@ struct Provider: TimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     let date: Date
-}
-
-@main
-struct CyxbsWidgets: WidgetBundle {
-    @WidgetBundleBuilder
-    var body: some Widget {
-        ScheduleWidget()
-    }
-}
-
-struct ScheduleWidget: Widget {
-    let kind: String = "ScheduleWidget"
-
-    var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
-            ScheduleWidgetEntryView(entry: entry)
-        }
-        .configurationDisplayName("掌邮课表")
-        .description("快来添加你的课表小组件吧！")
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
-    }
 }
