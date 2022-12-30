@@ -24,6 +24,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class ScheduleShareCache;
+
 @interface ScheduleNETRequest : NSObject
 
 - (instancetype)init NS_UNAVAILABLE;

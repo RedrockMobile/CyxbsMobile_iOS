@@ -12,6 +12,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class ScheduleTimeline;
+
 /**MARK: ScheduleCourse
  * 一类课程的体现，具体表现在`inSections`
  * 注意，不满足`NSCopying`协议

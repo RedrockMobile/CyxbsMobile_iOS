@@ -8,12 +8,11 @@
 
 #import "ScheduleNETRequest.h"
 
+#import "ScheduleShareCache.h"
 #import "ScheduleCourse.h"
 
 #import "HttpTool.h"
-
 #import "NetURL.h"
-
 #import "ScheduleAPI.h"
 
 static NSString *urlForRequest(ScheduleModelRequestType type) {
@@ -81,6 +80,7 @@ static NSString *keyForType(ScheduleModelRequestType type) {
                 }
                 
                 ScheduleCombineItem *item = [ScheduleCombineItem combineItemWithIdentifier:identifier value:ary];
+                [ScheduleShareCache.shareCache cacheItem:item];
                
                 if (success) {
                     success(item);

@@ -8,10 +8,6 @@
 
 #import "PresentAnimatedTransition.h"
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-variable"
-#pragma clang diagnostic ignored "-Wundeclared-selector"
-
 @implementation PresentAnimatedTransition
 
 - (instancetype)init {
@@ -26,8 +22,10 @@
     // 获取要跳转过去的 VC
     UIViewController *to = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    // !!!: "-Wunused-variable"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-variable"
     UIViewController *from = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+#pragma clang diagnostic pop
     
     CGRect frame = to.view.frame, beginFrame = frame, endFrame = frame;
     beginFrame.origin.y = transitionContext.containerView.frame.origin.y + transitionContext.containerView.frame.size.height;
@@ -42,10 +40,7 @@
         if(wasCancel){
             [to.view removeFromSuperview];
         } else {
-            // !!!: "-Wundeclared-selector"
-            if ([to respondsToSelector:@selector(dismiss)]) {
-                [transitionContext.containerView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:to action:@selector(dismiss)]];
-            }
+            [transitionContext.containerView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:to action:@selector(dismissModalViewControllerAnimated:)]];
         }
         [transitionContext completeTransition:!wasCancel];
     }];
@@ -56,5 +51,3 @@
 }
 
 @end
-
-#pragma clang diagnostic pop

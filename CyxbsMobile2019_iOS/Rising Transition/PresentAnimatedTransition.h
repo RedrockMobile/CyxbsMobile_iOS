@@ -6,6 +6,10 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
+/**
+ * 单击空白地方支持调用` - dismissModalViewControllerAnimated`
+ */
+
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN

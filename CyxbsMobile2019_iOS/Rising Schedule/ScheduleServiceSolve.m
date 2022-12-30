@@ -67,7 +67,7 @@
         [self.collectionView reloadData];
         [self scrollToSection:self.model.nowWeek];
         
-        [ScheduleShareCache.shareCache cacheItem:item];
+//        [ScheduleShareCache.shareCache cacheItem:item];
         
         if (self.canUseAwake) {
             [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];

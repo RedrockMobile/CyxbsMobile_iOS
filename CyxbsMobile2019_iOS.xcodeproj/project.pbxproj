@@ -78,6 +78,9 @@
 		14E3199B290C11CB00B951CE /* PlaceholderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E3199A290C11CB00B951CE /* PlaceholderCollectionReusableView.m */; };
 		14E3199D290CC4F100B951CE /* UserAgreement.md in Resources */ = {isa = PBXBuildFile; fileRef = 14E3199C290CC4F100B951CE /* UserAgreement.md */; };
 		14E319A0290CC52D00B951CE /* UserAgreementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E3199F290CC52D00B951CE /* UserAgreementView.m */; };
+		14E66AA7295C8AC90043CBE7 /* ScheduleTimelineSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E66AA6295C8AC90043CBE7 /* ScheduleTimelineSupport.m */; };
+		14E66AA8295D7AB50043CBE7 /* ScheduleTimelineSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E66AA6295C8AC90043CBE7 /* ScheduleTimelineSupport.m */; };
+		14E66AA9295DBEA90043CBE7 /* ScheduleShareCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14592A6B2954659F006EB674 /* ScheduleShareCache.mm */; };
 		14E844F628FC40090037309F /* ScheduleDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E844F528FC40090037309F /* ScheduleDetailController.m */; };
 		14E8451128FEE9720037309F /* ScheduleDetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E8451028FEE9720037309F /* ScheduleDetailCollectionViewCell.m */; };
 		14E8451428FEE9A30037309F /* ScheduleDetailMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E8451328FEE9A30037309F /* ScheduleDetailMessageTableViewCell.m */; };
@@ -250,6 +253,8 @@
 		14E3199C290CC4F100B951CE /* UserAgreement.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = UserAgreement.md; sourceTree = "<group>"; };
 		14E3199E290CC52D00B951CE /* UserAgreementView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAgreementView.h; sourceTree = "<group>"; };
 		14E3199F290CC52D00B951CE /* UserAgreementView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAgreementView.m; sourceTree = "<group>"; };
+		14E66AA5295C8AC90043CBE7 /* ScheduleTimelineSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleTimelineSupport.h; sourceTree = "<group>"; };
+		14E66AA6295C8AC90043CBE7 /* ScheduleTimelineSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleTimelineSupport.m; sourceTree = "<group>"; };
 		14E844F428FC40090037309F /* ScheduleDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleDetailController.h; sourceTree = "<group>"; };
 		14E844F528FC40090037309F /* ScheduleDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleDetailController.m; sourceTree = "<group>"; };
 		14E8450F28FEE9720037309F /* ScheduleDetailCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleDetailCollectionViewCell.h; sourceTree = "<group>"; };
@@ -417,6 +422,8 @@
 				14B46E6228B4D4A1003D288B /* ScheduleCourse+WCTTableCoding.h */,
 				14592969294482CB006EB674 /* NSIndexPath+Schedule.h */,
 				1459296A294482CB006EB674 /* NSIndexPath+Schedule.m */,
+				14E66AA5295C8AC90043CBE7 /* ScheduleTimelineSupport.h */,
+				14E66AA6295C8AC90043CBE7 /* ScheduleTimelineSupport.m */,
 				1466282D28C4EFF400AF584F /* ScheduleRequestType.h */,
 				1466282B28C4EFE400AF584F /* ScheduleRequestType.m */,
 				14592A5E29516223006EB674 /* ScheduleAPI.h */,
@@ -988,6 +995,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14BC4829291654020063809E /* ScheduleCourseView.swift in Sources */,
+				14E66AA9295DBEA90043CBE7 /* ScheduleShareCache.mm in Sources */,
 				14BC4835291910660063809E /* ScheduleCourse.mm in Sources */,
 				1459291A29434667006EB674 /* ScheduleSectionModel.swift in Sources */,
 				14BC483429190FAE0063809E /* UDKey.m in Sources */,
@@ -1001,6 +1009,7 @@
 				1459291629433F1A006EB674 /* ScheduleCollectionViewModel.m in Sources */,
 				14BC481529164EB30063809E /* ScheduleWidget.swift in Sources */,
 				1459291D29435E06006EB674 /* NetURL.m in Sources */,
+				14E66AA8295D7AB50043CBE7 /* ScheduleTimelineSupport.m in Sources */,
 				14BC481A29164EB40063809E /* ScheduleWidget.intentdefinition in Sources */,
 				1459296C294483C4006EB674 /* NSIndexPath+Schedule.m in Sources */,
 				1459291C29435DC0006EB674 /* HttpTool.m in Sources */,
@@ -1056,6 +1065,7 @@
 				14BC480929154D290063809E /* SearchPersonModel.m in Sources */,
 				1422242028D9B091009A4A54 /* RisingFoundationExtention.m in Sources */,
 				14E844F628FC40090037309F /* ScheduleDetailController.m in Sources */,
+				14E66AA7295C8AC90043CBE7 /* ScheduleTimelineSupport.m in Sources */,
 				14BC481B29164EB40063809E /* ScheduleWidget.intentdefinition in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
 				14B7E420295C4A150033653D /* PresentAnimatedTransition.m in Sources */,

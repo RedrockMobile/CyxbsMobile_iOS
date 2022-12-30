@@ -8,6 +8,8 @@
 
 #import "ScheduleCourse.h"
 
+#import "ScheduleTimelineSupport.h"
+
 @interface ScheduleCourse ()
 
 /// 存储period
@@ -97,8 +99,18 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
     if (_period_location < 0) {
         _period_location = 12 - _period_location;
     }
-    
     return NSMakeRange(_period_location, _period_lenth);
+}
+
+- (NSString *)timeStr {
+    ScheduleTimeline *timeline = ScheduleTimeline.standardTimeLine;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
+    formatter.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Chongqing"];
+    formatter.dateFormat = @"HH:mm";
+    NSString *beginStr = [formatter stringFromDate:(timeline[self.period.location - 1]).fromComponents.date];
+    NSString *endStr =[formatter stringFromDate:(timeline[NSMaxRange(self.period) - 2]).toComponents.date];
+    return [beginStr stringByAppendingFormat:@" - %@", endStr];
 }
 
 #pragma mark - override
@@ -127,7 +139,7 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
     self.courseID = [decoder decodeObjectForKey:@"id"];
     self.rawWeek = [decoder decodeObjectForKey:@"rawWeek"];
     self.type = [decoder decodeObjectForKey:@"type"];
-    self.teacher = [decoder decodeObjectForKey:@"teacher"];NSArray *a;
+    self.teacher = [decoder decodeObjectForKey:@"teacher"];
     
     return self;
 }
