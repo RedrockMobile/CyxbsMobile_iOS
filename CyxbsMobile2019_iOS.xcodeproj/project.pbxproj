@@ -3056,11 +3056,11 @@
 		18CDF4D4257F91BC006E8E5C /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				18CDF4D5257F91BC006E8E5C /* Discover_MainPage */,
 				B0F08FEE28A24F9000986EB6 /* IDSBinding */,
 				B0F08FCA28A2497F00986EB6 /* Discover_SportAttendance */,
 				7AA4C48528922AE300E204C8 /* Source */,
 				FE0D60362801702B00319A9E /* Discover_SchoolBus */,
-				18CDF4D5257F91BC006E8E5C /* Discover_MainPage */,
 				18CDF500257F91BC006E8E5C /* Discover_TestArrange */,
 				FE2C131327AEF629001CF7AF /* ToDo */,
 				18CDF512257F91BC006E8E5C /* Discover_FindScheduleInquiry */,
@@ -5758,9 +5758,9 @@
 		B0F08FCA28A2497F00986EB6 /* Discover_SportAttendance */ = {
 			isa = PBXGroup;
 			children = (
-				B0F08FCB28A2497F00986EB6 /* Model */,
+				B0F08FDA28A2497F00986EB6 /* Controller */,
 				B0F08FD328A2497F00986EB6 /* View */,
-				B0F08FDA28A2497F00986EB6 /* ViewController */,
+				B0F08FCB28A2497F00986EB6 /* Model */,
 			);
 			path = Discover_SportAttendance;
 			sourceTree = "<group>";
@@ -5797,13 +5797,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		B0F08FDA28A2497F00986EB6 /* ViewController */ = {
+		B0F08FDA28A2497F00986EB6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				B0F08FDC28A2497F00986EB6 /* SportAttendanceViewController.h */,
 				B0F08FDB28A2497F00986EB6 /* SportAttendanceViewController.m */,
 			);
-			path = ViewController;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		B0F08FE428A249E200986EB6 /* SportAttendance */ = {
@@ -5838,8 +5838,8 @@
 			isa = PBXGroup;
 			children = (
 				B0F08FEF28A24F9000986EB6 /* Controller */,
-				B0F08FF228A24F9000986EB6 /* Model */,
 				B0F08FF528A24F9000986EB6 /* View */,
+				B0F08FF228A24F9000986EB6 /* Model */,
 			);
 			path = IDSBinding;
 			sourceTree = "<group>";
@@ -6354,8 +6354,8 @@
 		FE0D60362801702B00319A9E /* Discover_SchoolBus */ = {
 			isa = PBXGroup;
 			children = (
-				FE0D60382801702B00319A9E /* Models */,
 				FE0D603B2801702B00319A9E /* Controller */,
+				FE0D60382801702B00319A9E /* Models */,
 				FE0D603E2801702B00319A9E /* Views */,
 			);
 			path = Discover_SchoolBus;

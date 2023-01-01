@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @protocol IdsBindingViewDelegate <NSObject>
 
--(void)touchBindingButton;
+- (void)touchBindingButton;
 
 @end
 
