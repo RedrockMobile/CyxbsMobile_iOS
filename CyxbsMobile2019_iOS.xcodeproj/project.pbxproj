@@ -75,6 +75,11 @@
 		14D598CC28FF964100C9798F /* SameDrawUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598CB28FF964100C9798F /* SameDrawUI.m */; };
 		14D598DB2901801F00C9798F /* ScheduleDetailTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598DA2901801F00C9798F /* ScheduleDetailTableHeaderView.m */; };
 		14D598E729021BE400C9798F /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598E629021BE400C9798F /* UIViewController+KNSemiModal.m */; };
+		14D64593296161BC001315B1 /* ScheduleFetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D64592296161BC001315B1 /* ScheduleFetchData.swift */; };
+		14D6459529616280001315B1 /* ScheduleMapModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 141DB245293AE9C90051A395 /* ScheduleMapModel.m */; };
+		14D6459629616289001315B1 /* NSIndexPath+Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1459296A294482CB006EB674 /* NSIndexPath+Schedule.m */; };
+		14D6459729616374001315B1 /* ScheduleRequestType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466282B28C4EFE400AF584F /* ScheduleRequestType.m */; };
+		14D645992961758F001315B1 /* ScheduleSimpleEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D645982961758F001315B1 /* ScheduleSimpleEntry.swift */; };
 		14E3199B290C11CB00B951CE /* PlaceholderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E3199A290C11CB00B951CE /* PlaceholderCollectionReusableView.m */; };
 		14E3199D290CC4F100B951CE /* UserAgreement.md in Resources */ = {isa = PBXBuildFile; fileRef = 14E3199C290CC4F100B951CE /* UserAgreement.md */; };
 		14E319A0290CC52D00B951CE /* UserAgreementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E3199F290CC52D00B951CE /* UserAgreementView.m */; };
@@ -253,6 +258,9 @@
 		14D598DA2901801F00C9798F /* ScheduleDetailTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleDetailTableHeaderView.m; sourceTree = "<group>"; };
 		14D598E529021BE400C9798F /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
 		14D598E629021BE400C9798F /* UIViewController+KNSemiModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KNSemiModal.m"; sourceTree = "<group>"; };
+		14D64592296161BC001315B1 /* ScheduleFetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFetchData.swift; sourceTree = "<group>"; };
+		14D645942961620F001315B1 /* CyxbsWidget-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CyxbsWidget-Bridging-Header.h"; sourceTree = "<group>"; };
+		14D645982961758F001315B1 /* ScheduleSimpleEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSimpleEntry.swift; sourceTree = "<group>"; };
 		14E31999290C11CB00B951CE /* PlaceholderCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaceholderCollectionReusableView.h; sourceTree = "<group>"; };
 		14E3199A290C11CB00B951CE /* PlaceholderCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaceholderCollectionReusableView.m; sourceTree = "<group>"; };
 		14E3199C290CC4F100B951CE /* UserAgreement.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = UserAgreement.md; sourceTree = "<group>"; };
@@ -352,7 +360,10 @@
 				14100AEF29612DFE0046E7BE /* ScheduleTopView.swift */,
 				14100AEA295FDCF50046E7BE /* ScheduleSupplementaryView.swift */,
 				14100AED296005F20046E7BE /* ScheduleLeadingView.swift */,
+				14D645982961758F001315B1 /* ScheduleSimpleEntry.swift */,
+				14D64592296161BC001315B1 /* ScheduleFetchData.swift */,
 				14100AF1296139020046E7BE /* CyxbsWidgetSupport.h */,
+				14D645942961620F001315B1 /* CyxbsWidget-Bridging-Header.h */,
 				141008E8295E88E20046E7BE /* CyxbsWidget.intentdefinition */,
 				141008E9295E88E20046E7BE /* Assets.xcassets */,
 				141008EB295E88E20046E7BE /* Info.plist */,
@@ -1007,16 +1018,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				14100AE7295F08920046E7BE /* ScheduleContentView.swift in Sources */,
+				14D645992961758F001315B1 /* ScheduleSimpleEntry.swift in Sources */,
 				14100AFB29615DB80046E7BE /* ScheduleShareCache.mm in Sources */,
 				141008E7295E88E20046E7BE /* ScheduleProvider.swift in Sources */,
+				14D6459529616280001315B1 /* ScheduleMapModel.m in Sources */,
 				141008F7295E8B7A0046E7BE /* ScheduleSystemLarge.swift in Sources */,
+				14D6459729616374001315B1 /* ScheduleRequestType.m in Sources */,
 				141008E5295E88E20046E7BE /* CyxbsWidgetLiveActivity.swift in Sources */,
 				14100AEE296005F20046E7BE /* ScheduleLeadingView.swift in Sources */,
 				14100AF029612DFE0046E7BE /* ScheduleTopView.swift in Sources */,
 				141008F9295E8CF60046E7BE /* ScheduleSystemSmall.swift in Sources */,
 				14100AEB295FDCF50046E7BE /* ScheduleSupplementaryView.swift in Sources */,
 				141008FB295E8D520046E7BE /* ScheduleWidgetEntryView.swift in Sources */,
+				14D6459629616289001315B1 /* NSIndexPath+Schedule.m in Sources */,
 				141008EC295E88E20046E7BE /* CyxbsWidget.intentdefinition in Sources */,
+				14D64593296161BC001315B1 /* ScheduleFetchData.swift in Sources */,
 				14100AFE29615DF80046E7BE /* ScheduleTimelineSupport.m in Sources */,
 				14100AFD29615DCD0046E7BE /* ScheduleCombineItemSupport.mm in Sources */,
 				14100AFC29615DC10046E7BE /* ScheduleCourse.mm in Sources */,
@@ -1166,6 +1182,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsWidget/CyxbsWidget-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1199,6 +1216,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsWidget/CyxbsWidget-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

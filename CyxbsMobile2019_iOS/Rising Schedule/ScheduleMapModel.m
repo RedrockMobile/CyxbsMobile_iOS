@@ -9,7 +9,9 @@
 #import "ScheduleMapModel.h"
 
 @implementation ScheduleMapModel {
+    NSMapTable <NSIndexPath *, ScheduleCollectionViewModel *> *_mapTable;
     NSMapTable <NSIndexPath *, NSPointerArray *> *_dayMap;
+    BOOL _clear;
 }
 
 - (instancetype)init {
@@ -42,6 +44,7 @@
 #pragma mark - Method
 
 - (void)combineItem:(ScheduleCombineItem *)item {
+    _clear = YES;
     for (ScheduleCourse *course in item.value) {
         
         ScheduleCollectionViewModel *viewModel = [self _viewModelWithIdentifier:item.identifier course:course];
@@ -53,12 +56,17 @@
         
         [self _setViewModel:viewModel forIndexPath:ScheduleIndexPathNew(0, course.inWeek, course.period.location)];
     }
-    
-    [self _trunToMap];
 }
 
 - (void)clear {
     [_dayMap removeAllObjects];
+}
+
+- (NSMapTable<NSIndexPath *,ScheduleCollectionViewModel *> *)mapTable {
+    if (_clear) {
+        [self finishCombine];
+    }
+    return _mapTable;
 }
 
 #pragma mark - private
@@ -124,7 +132,9 @@
     }
 }
 
-- (void)_trunToMap {
+#pragma mark - I I I
+
+- (void)finishCombine {
     [_mapTable removeAllObjects];
     NSEnumerator <NSIndexPath *> *keyEnumerator = _dayMap.keyEnumerator;
     for (NSIndexPath *dayIdx = keyEnumerator.nextObject; dayIdx; dayIdx = keyEnumerator.nextObject) {
@@ -158,6 +168,7 @@
             [_mapTable setObject:copyVM forKey:ScheduleIndexPathNew(dayIdx.section, dayIdx.week, location)];
         }
     }
+    _clear = NO;
 }
 
 @end

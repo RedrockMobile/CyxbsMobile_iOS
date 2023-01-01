@@ -93,8 +93,9 @@ RisingSingleClass_IMPLEMENTATION(Cache)
 }
 
 - (ScheduleCombineItem *)awakeForIdentifier:(ScheduleIdentifier *)identifier {
+    ScheduleIdentifier *idl = [self.DB getObjectsOfClass:ScheduleIdentifier.class fromTable:@"Cyxbs_key" where:ScheduleIdentifier.sno == identifier.sno && ScheduleIdentifier.type == identifier.type].lastObject;
     NSArray *value = [self.DB getAllObjectsOfClass:ScheduleCourse.class fromTable:identifier.key];
-    ScheduleCombineItem *item = [ScheduleCombineItem combineItemWithIdentifier:identifier.copy value:value];
+    ScheduleCombineItem *item = [ScheduleCombineItem combineItemWithIdentifier:idl value:value];
     return item;
 }
 

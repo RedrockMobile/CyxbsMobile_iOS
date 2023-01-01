@@ -18,7 +18,7 @@ struct ScheduleWidgetEntryView: View {
         case .systemSmall:
             ScheduleSystemSmall()
         case .systemLarge:
-            ScheduleSystemLarge(entry: entry)
+            ScheduleSystemLarge(entry: entry, data: ScheduleFetchData())
         default:
             EmptyView()
         }

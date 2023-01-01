@@ -47,7 +47,7 @@ struct ScheduleContentView: View {
     case afternoon
     case night
     case other
-    case system
+    case custem
     case empty
     }
 }
@@ -171,7 +171,7 @@ extension ScheduleContentView.DrawType {
                     return .clear
                 }
             }
-        case .system:
+        case .custem:
             switch place {
             case .text:
                 return .black

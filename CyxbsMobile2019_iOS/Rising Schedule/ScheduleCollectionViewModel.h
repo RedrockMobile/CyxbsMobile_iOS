@@ -14,6 +14,7 @@ typedef NS_ENUM(NSUInteger, ScheduleBelongKind) {
     ScheduleBelongFistSystem,
     ScheduleBelongFistCustom,
     ScheduleBelongSecondSystem,
+    ScheduleBelongWidgetEmpty, // Widget usealbe only
     ScheduleBelongUnknow = ScheduleBelongFistSystem
 };
 
