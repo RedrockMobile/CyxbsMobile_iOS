@@ -23,6 +23,7 @@ WCDB_IMPLEMENTATION(ScheduleIdentifier)
 WCDB_SYNTHESIZE(ScheduleIdentifier, sno)
 WCDB_SYNTHESIZE(ScheduleIdentifier, type)
 WCDB_SYNTHESIZE(ScheduleIdentifier, iat)
+WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
 
 #else
 

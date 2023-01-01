@@ -10,7 +10,7 @@ import WidgetKit
 import SwiftUI
 import Intents
 
-struct Provider: TimelineProvider {
+struct ScheduleProvider: TimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
         SimpleEntry(date: Date())
     }

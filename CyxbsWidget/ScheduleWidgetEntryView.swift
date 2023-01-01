@@ -10,7 +10,7 @@ import SwiftUI
 import WidgetKit
 
 struct ScheduleWidgetEntryView: View {
-    var entry: Provider.Entry
+    var entry: ScheduleProvider.Entry
     @Environment(\.widgetFamily) var family
     
     var body: some View {

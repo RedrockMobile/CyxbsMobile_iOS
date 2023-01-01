@@ -8,6 +8,8 @@
 
 #import "ScheduleShareCache.h"
 
+#import "CyxbsWidgetSupport.h"
+
 #pragma mark - ScheduleShareCache ()
 
 @interface ScheduleShareCache () <NSCacheDelegate>
@@ -68,9 +70,10 @@ RisingSingleClass_IMPLEMENTATION(Cache)
     static WCTDatabase *db;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"schedule_WCDB"];
-        db = [[WCTDatabase alloc] initWithPath:path];
-        [db createVirtualTableOfName:@"key" withClass:ScheduleIdentifier.class];
+        NSURL *url = [NSFileManager.defaultManager containerURLForSecurityApplicationGroupIdentifier:CyxbsWidgetAppGroups];
+        NSString *path1 = [url URLByAppendingPathComponent:@"schedule_WCDB"].path;
+        db = [[WCTDatabase alloc] initWithPath:path1];
+        [db createTableAndIndexesOfName:@"Cyxbs_key" withClass:ScheduleIdentifier.class];
     });
     return db;
 }
@@ -81,10 +84,12 @@ RisingSingleClass_IMPLEMENTATION(Cache)
         NSLog(@"Use -cacheItem: before");
         return;
     }
-    [self.DB createVirtualTableOfName:key withClass:ScheduleCourse.class];
+    if (![self.DB isTableExists:key]) {
+        [self.DB createTableAndIndexesOfName:key withClass:ScheduleCourse.class];
+    }
     [self.DB deleteAllObjectsFromTable:key];
     [self.DB insertObjects:item.value into:key];
-    [self.DB insertOrReplaceObject:item.identifier into:@"key"];
+    [self.DB insertOrReplaceObject:item.identifier into:@"Cyxbs_key"];
 }
 
 - (ScheduleCombineItem *)awakeForIdentifier:(ScheduleIdentifier *)identifier {
@@ -102,7 +107,8 @@ RisingSingleClass_IMPLEMENTATION(Cache)
 @implementation ScheduleShareCache (XXHB)
 
 - (NSString *(^)(NSString *key))fileBy {
-    static NSString *base = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"schedule_Archiver/"];
+    NSURL *url = [NSFileManager.defaultManager containerURLForSecurityApplicationGroupIdentifier:CyxbsWidgetAppGroups];
+    NSString *base = [url URLByAppendingPathComponent:@"schedule_Archiver/"].path;
     return ^NSString *(NSString *key) {
         return [base stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.data", key]];
     };

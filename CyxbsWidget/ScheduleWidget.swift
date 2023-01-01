@@ -13,7 +13,7 @@ struct ScheduleWidget: Widget {
     let kind: String = "ScheduleWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+        StaticConfiguration(kind: kind, provider: ScheduleProvider()) { entry in
             ScheduleWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("掌邮课表")

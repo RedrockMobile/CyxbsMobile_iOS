@@ -11,7 +11,7 @@
 		141008E0295E88E20046E7BE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BC481129164EB30063809E /* SwiftUI.framework */; };
 		141008E3295E88E20046E7BE /* CyxbsWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141008E2295E88E20046E7BE /* CyxbsWidgetBundle.swift */; };
 		141008E5295E88E20046E7BE /* CyxbsWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141008E4295E88E20046E7BE /* CyxbsWidgetLiveActivity.swift */; };
-		141008E7295E88E20046E7BE /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141008E6295E88E20046E7BE /* Provider.swift */; };
+		141008E7295E88E20046E7BE /* ScheduleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141008E6295E88E20046E7BE /* ScheduleProvider.swift */; };
 		141008EA295E88E20046E7BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 141008E9295E88E20046E7BE /* Assets.xcassets */; };
 		141008EC295E88E20046E7BE /* CyxbsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 141008E8295E88E20046E7BE /* CyxbsWidget.intentdefinition */; };
 		141008ED295E88E20046E7BE /* CyxbsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 141008E8295E88E20046E7BE /* CyxbsWidget.intentdefinition */; };
@@ -20,6 +20,16 @@
 		141008F7295E8B7A0046E7BE /* ScheduleSystemLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141008F6295E8B7A0046E7BE /* ScheduleSystemLarge.swift */; };
 		141008F9295E8CF60046E7BE /* ScheduleSystemSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141008F8295E8CF60046E7BE /* ScheduleSystemSmall.swift */; };
 		141008FB295E8D520046E7BE /* ScheduleWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141008FA295E8D520046E7BE /* ScheduleWidgetEntryView.swift */; };
+		14100AE7295F08920046E7BE /* ScheduleContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AE6295F08920046E7BE /* ScheduleContentView.swift */; };
+		14100AEB295FDCF50046E7BE /* ScheduleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AEA295FDCF50046E7BE /* ScheduleSupplementaryView.swift */; };
+		14100AEC295FEE190046E7BE /* ScheduleCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D03BB6292DFECE001CA682 /* ScheduleCollectionViewModel.m */; };
+		14100AEE296005F20046E7BE /* ScheduleLeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AED296005F20046E7BE /* ScheduleLeadingView.swift */; };
+		14100AF029612DFE0046E7BE /* ScheduleTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AEF29612DFE0046E7BE /* ScheduleTopView.swift */; };
+		14100AF82961516B0046E7BE /* WidgetKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AF72961516B0046E7BE /* WidgetKitHelper.swift */; };
+		14100AFB29615DB80046E7BE /* ScheduleShareCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14592A6B2954659F006EB674 /* ScheduleShareCache.mm */; };
+		14100AFC29615DC10046E7BE /* ScheduleCourse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6028B4D283003D288B /* ScheduleCourse.mm */; };
+		14100AFD29615DCD0046E7BE /* ScheduleCombineItemSupport.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1459298A294A0083006EB674 /* ScheduleCombineItemSupport.mm */; };
+		14100AFE29615DF80046E7BE /* ScheduleTimelineSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E66AA6295C8AC90043CBE7 /* ScheduleTimelineSupport.m */; };
 		141DB246293AE9C90051A395 /* ScheduleMapModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 141DB245293AE9C90051A395 /* ScheduleMapModel.m */; };
 		1422240628D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422240528D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.m */; };
 		1422241F28D9B091009A4A54 /* NSDate+Rising.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422241628D9B091009A4A54 /* NSDate+Rising.m */; };
@@ -130,7 +140,7 @@
 		141008DE295E88E20046E7BE /* CyxbsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CyxbsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		141008E2295E88E20046E7BE /* CyxbsWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyxbsWidgetBundle.swift; sourceTree = "<group>"; };
 		141008E4295E88E20046E7BE /* CyxbsWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyxbsWidgetLiveActivity.swift; sourceTree = "<group>"; };
-		141008E6295E88E20046E7BE /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		141008E6295E88E20046E7BE /* ScheduleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleProvider.swift; sourceTree = "<group>"; };
 		141008E8295E88E20046E7BE /* CyxbsWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = CyxbsWidget.intentdefinition; sourceTree = "<group>"; };
 		141008E9295E88E20046E7BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		141008EB295E88E20046E7BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -138,6 +148,15 @@
 		141008F6295E8B7A0046E7BE /* ScheduleSystemLarge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSystemLarge.swift; sourceTree = "<group>"; };
 		141008F8295E8CF60046E7BE /* ScheduleSystemSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSystemSmall.swift; sourceTree = "<group>"; };
 		141008FA295E8D520046E7BE /* ScheduleWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWidgetEntryView.swift; sourceTree = "<group>"; };
+		14100AE5295F021C0046E7BE /* CyxbsWidgetExtensionDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CyxbsWidgetExtensionDebug.entitlements; sourceTree = "<group>"; };
+		14100AE6295F08920046E7BE /* ScheduleContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleContentView.swift; sourceTree = "<group>"; };
+		14100AEA295FDCF50046E7BE /* ScheduleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSupplementaryView.swift; sourceTree = "<group>"; };
+		14100AED296005F20046E7BE /* ScheduleLeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleLeadingView.swift; sourceTree = "<group>"; };
+		14100AEF29612DFE0046E7BE /* ScheduleTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTopView.swift; sourceTree = "<group>"; };
+		14100AF1296139020046E7BE /* CyxbsWidgetSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CyxbsWidgetSupport.h; sourceTree = "<group>"; };
+		14100AF62961516B0046E7BE /* CyxbsMobile2019_iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CyxbsMobile2019_iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		14100AF72961516B0046E7BE /* WidgetKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetKitHelper.swift; sourceTree = "<group>"; };
+		14100AFA296154F60046E7BE /* CyxbsMobile2019_iOSDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CyxbsMobile2019_iOSDebug.entitlements; sourceTree = "<group>"; };
 		141DB244293AE9C90051A395 /* ScheduleMapModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleMapModel.h; sourceTree = "<group>"; };
 		141DB245293AE9C90051A395 /* ScheduleMapModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleMapModel.m; sourceTree = "<group>"; };
 		1422240428D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleSupplementaryCollectionViewCell.h; sourceTree = "<group>"; };
@@ -185,7 +204,6 @@
 		146D144B2907F21700327AB8 /* FastLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FastLoginViewController.m; sourceTree = "<group>"; };
 		146D144D2908BB1C00327AB8 /* UDKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UDKey.h; sourceTree = "<group>"; };
 		146D144E2908BB2800327AB8 /* UDKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UDKey.m; sourceTree = "<group>"; };
-		146D1450290A614100327AB8 /* SwiftBrigeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftBrigeHeader.h; sourceTree = "<group>"; };
 		14B46E5F28B4D282003D288B /* ScheduleCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleCourse.h; sourceTree = "<group>"; };
 		14B46E6028B4D283003D288B /* ScheduleCourse.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ScheduleCourse.mm; sourceTree = "<group>"; };
 		14B46E6228B4D4A1003D288B /* ScheduleCourse+WCTTableCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScheduleCourse+WCTTableCoding.h"; sourceTree = "<group>"; };
@@ -223,7 +241,6 @@
 		14BC480829154D290063809E /* SearchPersonModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchPersonModel.m; sourceTree = "<group>"; };
 		14BC480F29164EB30063809E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		14BC481129164EB30063809E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		14BC482C29169C5E0063809E /* ScheduleWidgetExtensionDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScheduleWidgetExtensionDebug.entitlements; sourceTree = "<group>"; };
 		14BC482D29169E6E0063809E /* NSUserDefaults+Cyxbs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Cyxbs.h"; sourceTree = "<group>"; };
 		14BC482E29169E6E0063809E /* NSUserDefaults+Cyxbs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Cyxbs.m"; sourceTree = "<group>"; };
 		14D03BB5292DFECE001CA682 /* ScheduleCollectionViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionViewModel.h; sourceTree = "<group>"; };
@@ -324,13 +341,18 @@
 		141008E1295E88E20046E7BE /* CyxbsWidget */ = {
 			isa = PBXGroup;
 			children = (
-				141008E6295E88E20046E7BE /* Provider.swift */,
 				141008E2295E88E20046E7BE /* CyxbsWidgetBundle.swift */,
 				141008E4295E88E20046E7BE /* CyxbsWidgetLiveActivity.swift */,
 				141008F4295E899D0046E7BE /* ScheduleWidget.swift */,
+				141008E6295E88E20046E7BE /* ScheduleProvider.swift */,
 				141008FA295E8D520046E7BE /* ScheduleWidgetEntryView.swift */,
 				141008F8295E8CF60046E7BE /* ScheduleSystemSmall.swift */,
 				141008F6295E8B7A0046E7BE /* ScheduleSystemLarge.swift */,
+				14100AE6295F08920046E7BE /* ScheduleContentView.swift */,
+				14100AEF29612DFE0046E7BE /* ScheduleTopView.swift */,
+				14100AEA295FDCF50046E7BE /* ScheduleSupplementaryView.swift */,
+				14100AED296005F20046E7BE /* ScheduleLeadingView.swift */,
+				14100AF1296139020046E7BE /* CyxbsWidgetSupport.h */,
 				141008E8295E88E20046E7BE /* CyxbsWidget.intentdefinition */,
 				141008E9295E88E20046E7BE /* Assets.xcassets */,
 				141008EB295E88E20046E7BE /* Info.plist */,
@@ -546,7 +568,7 @@
 		1A9B765E235F50A600725937 = {
 			isa = PBXGroup;
 			children = (
-				14BC482C29169C5E0063809E /* ScheduleWidgetExtensionDebug.entitlements */,
+				14100AE5295F021C0046E7BE /* CyxbsWidgetExtensionDebug.entitlements */,
 				1A9B7669235F50A600725937 /* CyxbsMobile2019_iOS */,
 				1A9B7682235F50A900725937 /* CyxbsMobile2019_iOSTests */,
 				1A9B768D235F50A900725937 /* CyxbsMobile2019_iOSUITests */,
@@ -572,6 +594,7 @@
 		1A9B7669235F50A600725937 /* CyxbsMobile2019_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				14100AFA296154F60046E7BE /* CyxbsMobile2019_iOSDebug.entitlements */,
 				14B4691D28B4C9D9003D288B /* Rising Schedule */,
 				14D598EB29021EF400C9798F /* Rising Schedule Detail */,
 				14B7E42A295C4C360033653D /* Rising Transition */,
@@ -579,7 +602,7 @@
 				14B9647D28F6715500C984AB /* CyxbsHeader */,
 				FE87CE1B27E98F82008D7148 /* Supporting Files */,
 				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
-				146D1450290A614100327AB8 /* SwiftBrigeHeader.h */,
+				14100AF62961516B0046E7BE /* CyxbsMobile2019_iOS-Bridging-Header.h */,
 				14BC47F52914D73F0063809E /* FastUp Tests */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				1A9B7678235F50A800725937 /* Info.plist */,
@@ -647,6 +670,7 @@
 			isa = PBXGroup;
 			children = (
 				1A9B7675235F50A800725937 /* LaunchScreen.storyboard */,
+				14100AF72961516B0046E7BE /* WidgetKitHelper.swift */,
 				1A9B7679235F50A800725937 /* main.m */,
 				14B9648128F67F8600C984AB /* CyxbsApplication.h */,
 				14B9648228F67F8600C984AB /* CyxbsApplication.m */,
@@ -758,7 +782,7 @@
 					};
 					1A9B7666235F50A600725937 = {
 						CreatedOnToolsVersion = 10.3;
-						LastSwiftMigration = 1200;
+						LastSwiftMigration = 1410;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -982,13 +1006,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				141008E7295E88E20046E7BE /* Provider.swift in Sources */,
+				14100AE7295F08920046E7BE /* ScheduleContentView.swift in Sources */,
+				14100AFB29615DB80046E7BE /* ScheduleShareCache.mm in Sources */,
+				141008E7295E88E20046E7BE /* ScheduleProvider.swift in Sources */,
 				141008F7295E8B7A0046E7BE /* ScheduleSystemLarge.swift in Sources */,
 				141008E5295E88E20046E7BE /* CyxbsWidgetLiveActivity.swift in Sources */,
+				14100AEE296005F20046E7BE /* ScheduleLeadingView.swift in Sources */,
+				14100AF029612DFE0046E7BE /* ScheduleTopView.swift in Sources */,
 				141008F9295E8CF60046E7BE /* ScheduleSystemSmall.swift in Sources */,
+				14100AEB295FDCF50046E7BE /* ScheduleSupplementaryView.swift in Sources */,
 				141008FB295E8D520046E7BE /* ScheduleWidgetEntryView.swift in Sources */,
 				141008EC295E88E20046E7BE /* CyxbsWidget.intentdefinition in Sources */,
+				14100AFE29615DF80046E7BE /* ScheduleTimelineSupport.m in Sources */,
+				14100AFD29615DCD0046E7BE /* ScheduleCombineItemSupport.mm in Sources */,
+				14100AFC29615DC10046E7BE /* ScheduleCourse.mm in Sources */,
 				141008F5295E899D0046E7BE /* ScheduleWidget.swift in Sources */,
+				14100AEC295FEE190046E7BE /* ScheduleCollectionViewModel.m in Sources */,
 				141008E3295E88E20046E7BE /* CyxbsWidgetBundle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1041,6 +1074,7 @@
 				1459298B294A0083006EB674 /* ScheduleCombineItemSupport.mm in Sources */,
 				14BC480929154D290063809E /* SearchPersonModel.m in Sources */,
 				1422242028D9B091009A4A54 /* RisingFoundationExtention.m in Sources */,
+				14100AF82961516B0046E7BE /* WidgetKitHelper.swift in Sources */,
 				14E844F628FC40090037309F /* ScheduleDetailController.m in Sources */,
 				14E66AA7295C8AC90043CBE7 /* ScheduleTimelineSupport.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
@@ -1111,6 +1145,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_ENTITLEMENTS = CyxbsWidgetExtensionDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1227,6 +1262,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Debug;
 		};
@@ -1281,6 +1317,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1292,7 +1329,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
+				CODE_SIGN_ENTITLEMENTS = CyxbsMobile2019_iOS/CyxbsMobile2019_iOSDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
@@ -1341,7 +1378,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = CyxbsMobile2019_iOS/SwiftBrigeHeader;
+				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/CyxbsMobile2019_iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1356,6 +1393,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development: SSR Rising (Y82J2LCTLL)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
@@ -1403,7 +1441,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = CyxbsMobile2019_iOS/SwiftBrigeHeader;
+				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/CyxbsMobile2019_iOS-Bridging-Header.h";
 				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1413,6 +1451,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B96D229622E2F31FBCD33B4F /* Pods-CyxbsMobile2019_iOSTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1438,6 +1477,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 77D1AF943479D46CA3520A58 /* Pods-CyxbsMobile2019_iOSTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1462,6 +1502,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BD5C83DD4A5F87175B80CF25 /* Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D67VC378K4;
 				INFOPLIST_FILE = CyxbsMobile2019_iOSUITests/Info.plist;
@@ -1481,6 +1522,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 437715CC8C0C829ECA03DE7B /* Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D67VC378K4;
 				INFOPLIST_FILE = CyxbsMobile2019_iOSUITests/Info.plist;
