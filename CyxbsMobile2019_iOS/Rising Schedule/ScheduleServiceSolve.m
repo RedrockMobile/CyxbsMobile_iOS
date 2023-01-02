@@ -37,31 +37,31 @@
 
 - (void)requestAndReloadData {
     ScheduleRequestDictionary *dic = self.parameterIfNeeded;
-    if (!dic) {
+    // if dic is empty or have nothing, return
+    if (!dic || dic.count == 0) {
         [self.collectionView reloadData];
         return;
     }
     [self.model clear];
-    
-    NSMutableDictionary *finDic = NSMutableDictionary.dictionary;
+    // check if Memenry have cache item
+    NSMutableArray <ScheduleIdentifier *> *unInMemIds = NSMutableArray.array;
     NSArray <ScheduleIdentifier *> *ids = ScheduleIdentifiersFromScheduleRequestDictionary(dic);
-    for (ScheduleIdentifier *identifier in ids) {
-        ScheduleCombineItem *item = [ScheduleShareCache.shareCache getItemForKey:identifier.key];
-        if (item) {
-            [self.model combineItem:item];
-            [self.collectionView reloadData];
+    for (ScheduleIdentifier *idsItem in ids) {
+        ScheduleCombineItem *cacheItem = [ScheduleShareCache.shareCache getItemForKey:idsItem.key];
+        if (cacheItem) {
+            [self.model combineItem:cacheItem];
         } else {
-            [finDic objectForKey:identifier.type] ?: [finDic setObject:NSMutableArray.array forKey:identifier.type];
-            [finDic[identifier.type] addObject:identifier.sno];
+            [unInMemIds addObject:idsItem];
         }
     }
-    
-    if (!finDic.count) {
+    // if all in MEM, do nont request
+    if (unInMemIds.count == 0) {
         return;
     }
     
+    dic = ScheduleRequestDictionaryFromScheduleIdentifiers(unInMemIds);
     [ScheduleNETRequest
-     request:finDic
+     request:dic
      success:^(ScheduleCombineItem * _Nonnull item) {
         [self.model combineItem:item];
         [self.collectionView reloadData];
@@ -71,13 +71,10 @@
             [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
         }
     }
-     failure:^(NSError * _Nonnull error) {
+     failure:^(NSError * _Nonnull error, ScheduleIdentifier *errorID) {
         if (self.canUseAwake) {
-            NSArray <ScheduleIdentifier *> *ids = ScheduleIdentifiersFromScheduleRequestDictionary(finDic);
-            for (ScheduleIdentifier *identifier in ids) {
-                ScheduleCombineItem *item = [ScheduleShareCache.shareCache awakeForIdentifier:identifier];
-                [self.model combineItem:item];
-            }
+            ScheduleCombineItem *item = [ScheduleShareCache.shareCache awakeForIdentifier:errorID];
+            [self.model combineItem:item];
             [self.collectionView reloadData];
             [self scrollToSection:self.model.nowWeek];
         }
@@ -95,7 +92,7 @@
         return @"整学期";
     }
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    formatter.locale = NSLocale.CN;
+    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
     formatter.numberStyle = NSNumberFormatterSpellOutStyle;
     
     return [NSString stringWithFormat:@"第%@周", [formatter stringFromNumber:@(num)]];
@@ -104,7 +101,7 @@
 - (void)reloadHeaderView {
     NSInteger page = self.collectionView.contentOffset.x / self.collectionView.width;
     self.headerView.title = [self _titleForNum:page];
-    self.headerView.reBack = (page != self.model.nowWeek);
+    self.headerView.reBack = (page == self.model.nowWeek);
 }
 
 - (void)setHeaderView:(ScheduleHeaderView *)headerView {

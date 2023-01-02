@@ -8,7 +8,7 @@
 
 #import "ScheduleNETRequest.h"
 
-#import "ScheduleShareCache.h"
+#import "ScheduleWidgetCache.h"
 #import "ScheduleCourse.h"
 
 #import "HttpTool.h"
@@ -45,7 +45,7 @@ static NSString *keyForType(ScheduleModelRequestType type) {
 
 + (void)request:(ScheduleRequestDictionary *)requestDictionary
         success:(void (^)(ScheduleCombineItem *))success
-        failure:(void (^)(NSError *))failure {
+        failure:(nonnull void (^)(NSError * _Nonnull, ScheduleIdentifier * _Nonnull))failure {
     
     for (ScheduleModelRequestType type in requestDictionary.allKeys) {
         for (NSString *sno in requestDictionary[type]) {
@@ -80,15 +80,24 @@ static NSString *keyForType(ScheduleModelRequestType type) {
                 }
                 
                 ScheduleCombineItem *item = [ScheduleCombineItem combineItemWithIdentifier:identifier value:ary];
+                
                 [ScheduleShareCache.shareCache cacheItem:item];
+                if ([item.identifier isEqual:ScheduleWidgetCache.shareCache.nonatomicMainID]) {
+                    ScheduleWidgetCache.shareCache.nonatomicMainID = item.identifier;
+                    ScheduleWidgetCache.shareCache.mainID = item.identifier;
+                } else if ([item.identifier isEqual:ScheduleWidgetCache.shareCache.nonatomicOtherID]) {
+                    ScheduleWidgetCache.shareCache.nonatomicOtherID = item.identifier;
+                    ScheduleWidgetCache.shareCache.otherID = item.identifier;
+                }
                
                 if (success) {
                     success(item);
                 }
             }
              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                ScheduleIdentifier *identifier = [ScheduleIdentifier identifierWithSno:sno type:type];
                 if (failure) {
-                    failure(error);
+                    failure(error, identifier);
                 }
             }];
         }

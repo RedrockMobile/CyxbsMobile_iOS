@@ -109,7 +109,7 @@ NSString *ScheduleDetailCollectionViewCellReuseIdentifier = @"ScheduleDetailColl
             static NSArray *ary;
             if (!ary) {
                 NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                formatter.locale = NSLocale.CN;
+                formatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
                 ary = formatter.weekdaySymbols;
             }
             cell.leftDescription = @"时间";

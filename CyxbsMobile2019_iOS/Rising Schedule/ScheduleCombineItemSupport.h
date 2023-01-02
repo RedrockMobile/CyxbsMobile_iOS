@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**MARK: ScheduleCombineIdentifier
  * you can use as a `KeyType`
  * like NSDictionary, NSMapTable, NSCache...
- * `- isEqual:` just comparee \c sno and \c type
+ * `- isEqual:` just compare \c sno and \c type
  */
 
 @interface ScheduleIdentifier : NSObject <NSSecureCoding, NSCopying>
@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly, copy) NSString *sno;
 
 /// set cause the key use
-@property (nonatomic, readonly, copy) ScheduleModelRequestType type;
+@property (nonatomic, readonly) ScheduleModelRequestType type;
 
 /// The time for nowWeek
 @property (nonatomic) NSTimeInterval exp;
@@ -47,7 +47,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 FOUNDATION_EXPORT NSArray <ScheduleIdentifier *> *ScheduleIdentifiersFromScheduleRequestDictionary(ScheduleRequestDictionary *dictionary);
-
+FOUNDATION_EXPORT ScheduleRequestDictionary *ScheduleRequestDictionaryFromScheduleIdentifiers(NSArray <ScheduleIdentifier *> *ary);
 
 
 

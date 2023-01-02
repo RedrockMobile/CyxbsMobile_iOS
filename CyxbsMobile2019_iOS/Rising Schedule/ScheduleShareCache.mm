@@ -62,9 +62,9 @@ RisingSingleClass_IMPLEMENTATION(Cache)
 
 #import "ScheduleIdentifier+WCTTableCoding.h"
 
-#ifdef WCDB_h
-
 @implementation ScheduleShareCache (XXHB)
+
+#ifdef WCDB_h
 
 - (WCTDatabase *)DB {
     static WCTDatabase *db;
@@ -99,13 +99,7 @@ RisingSingleClass_IMPLEMENTATION(Cache)
     return item;
 }
 
-@end
-
-#else
-
-#pragma mark - Archiver版 // 不想写
-
-@implementation ScheduleShareCache (XXHB)
+#else // MARK: - Archiver版
 
 - (NSString *(^)(NSString *key))fileBy {
     NSURL *url = [NSFileManager.defaultManager containerURLForSecurityApplicationGroupIdentifier:CyxbsWidgetAppGroups];
@@ -139,6 +133,7 @@ RisingSingleClass_IMPLEMENTATION(Cache)
     ScheduleCombineItem *item = [ScheduleCombineItem combineItemWithIdentifier:identifier.copy value:value];
     return item;
 }
-@end
 
 #endif
+
+@end

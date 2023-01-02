@@ -24,7 +24,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class ScheduleShareCache;
+/**ScheduleWidgetCache Support
+ * when `success` a kind of item,
+ * ScheduleNETRequest will check out \c nonatomicMainID and \c nonatomicOtherID
+ *
+ * ScheduleShareCache Support
+ * when `success` a kind of item,
+ * Memenry will cache the item, not use XXHB
+ */
+@class ScheduleWidgetCache;
 
 @interface ScheduleNETRequest : NSObject
 
@@ -44,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param failure 失败返回
 + (void)request:(ScheduleRequestDictionary *)requestDictionary
         success:(void (^)(ScheduleCombineItem *item))success
-        failure:(void (^)(NSError *error))failure;
+        failure:(void (^)(NSError *error, ScheduleIdentifier *errorID))failure;
 
 /// 新增事务
 /// @param course 一节自定义课，记录如下

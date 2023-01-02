@@ -27,6 +27,8 @@
     return self;
 }
 
+#pragma mark - Method
+
 - (void)combineItem:(ScheduleCombineItem *)model {
     if (_statusMap[model.identifier]) {
         return;

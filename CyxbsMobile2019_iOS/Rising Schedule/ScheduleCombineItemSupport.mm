@@ -77,6 +77,16 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
     _exp = [NSDate dateWithTimeIntervalSinceNow:-beforNow].timeIntervalSince1970;
 }
 
+#pragma mark - WCDB
+
+- (void)setSno:(NSString *)sno {
+    _sno = sno.copy;
+}
+
+- (void)setType:(ScheduleModelRequestType)type {
+    _type = type;
+}
+
 #pragma mark - <NSSecureCoding>
 
 + (BOOL)supportsSecureCoding {
@@ -109,6 +119,7 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
 - (nonnull id)copyWithZone:(nullable NSZone *)zone {
     ScheduleIdentifier *obj = [[ScheduleIdentifier alloc] initWithSno:self.sno.copy type:self.type];
     obj.iat = self.iat;
+    obj.exp = self.exp;
     return obj;
 }
 
@@ -125,6 +136,16 @@ NSArray <ScheduleIdentifier *> *ScheduleIdentifiersFromScheduleRequestDictionary
     return ary;
 }
 
+ScheduleRequestDictionary *ScheduleRequestDictionaryFromScheduleIdentifiers(NSArray <ScheduleIdentifier *> *ary) {
+    NSMutableDictionary *finDic = NSMutableDictionary.dictionary;
+    for (ScheduleIdentifier *identifier in ary) {
+        if (![finDic objectForKey:identifier.type]) {
+            [finDic setObject:NSMutableArray.array forKey:identifier.type];
+        }
+        [finDic[identifier.type] addObject:identifier.sno];
+    }
+    return finDic;
+}
 
 
 

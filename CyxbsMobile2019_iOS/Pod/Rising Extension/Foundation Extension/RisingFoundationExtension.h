@@ -7,8 +7,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "NSDate+Rising.h"
-
 #ifndef RisingFoundationExtension_h
 #define RisingFoundationExtension_h
 

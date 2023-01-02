@@ -12,23 +12,34 @@ import WidgetKit
 struct ScheduleSystemLarge: View {
     var entry: ScheduleProvider.Entry
     var data: ScheduleFetchData
+    
+    init(entry: ScheduleProvider.Entry) {
+        self.entry = entry
+        let hour = Calendar.current.dateComponents(in: TimeZone(identifier: "Asia/Chongqing")!, from: entry.date).hour!
+        let range: Range<Int>!
+        if hour < 10 {
+            range = 1..<7
+        } else if hour < 12 {
+            range = 3..<9
+        } else if hour < 16 {
+            range = 5..<11
+        } else {
+            range = 7..<13
+        }
+        data = ScheduleFetchData(range: range)
+    }
+    
     var body: some View {
         HStack(spacing: 2) {
-            ScheduleLeadingView(month: "1月", range: 1..<9, height: 46)
-                .frame(width: 29)
-            GeometryReader { entry in
+            ScheduleLeadingView(month: month(), range: data.range, height: 46)
+                .frame(width: 25)
+            GeometryReader { entryA in
                 VStack(spacing: 2) {
-                    ScheduleTopView()
-                        .frame(height: 46)
-                    HStack(spacing: 2) {
-                        ForEach(0..<data.data.count, id: \.self) { idx in
-                            let ary = data.data[idx]
-                            VStack(spacing: 2) {
-                                ForEach(ary) { context in
-                                    ScheduleContentView(title: context.title, content: context.content, draw: draw(context), muti: context.muti)
-                                        .frame(height: height(context, prepear: entry.size.height - 46))
-                                }
-                            }
+                    ScheduleTopView(anyDate: data.start)
+                        .frame(height: entryA.size.width / 7 / 46 * 50)
+                    GeometryReader { entryB in
+                        ForEach(data.data) { item in
+                            ContentView(item: item, size: entryB.size)
                         }
                     }
                 }
@@ -39,37 +50,61 @@ struct ScheduleSystemLarge: View {
 }
 
 extension ScheduleSystemLarge {
-    func draw(_ entry: ScheduleSimpleEntry) -> ScheduleContentView.DrawType {
-        switch entry.belong {
-        case .myself:
-            if entry.locate <= 4 {
-                return .morning
-            } else if entry.locate <= 8 {
-                return .afternoon
-            } else {
-                return .night
+    
+    func ContentView(item: ScheduleFetchData.PartItem, size: CGSize) -> some View {
+        let itemHeight = (size.height - 2.0 * 7) / CGFloat(data.range.count)
+        let itemWidth = (size.width - 2.0 * 6) / 7
+        
+        let vm = item.viewModel
+        let idx = item.indexPath as NSIndexPath
+        
+        return ScheduleContentView(title: vm.title,
+                                   content: vm.content,
+                                   draw: draw(vm.kind, locate: idx.location),
+                                   muti: vm.hadMuti)
+        .frame(width: itemWidth, height: itemHeight * CGFloat(vm.lenth) + 2.0 * CGFloat(vm.lenth - 1))
+        .padding(.top, (itemHeight + 2) * CGFloat(idx.location - data.range.lowerBound))
+        .padding(.leading, (itemWidth + 2.0) * CGFloat(idx.week - 1))
+        
+        func draw(_ kind: ScheduleBelongKind = .fistSystem, locate: Int) -> ScheduleContentView.DrawType {
+            switch kind {
+            case .fistSystem:
+                if locate <= 4 {
+                    return .morning
+                } else if locate <= 8 {
+                    return .afternoon
+                } else {
+                    return .night
+                }
+            case .fistCustom:
+                return .custem
+            case .secondSystem:
+                return .other
+            @unknown default:
+               return .empty
             }
-        case .custom:
-            return .custem
-        case .others:
-            return .other
-        case .empty:
-            return .empty
         }
     }
-    func height(_ entry: ScheduleSimpleEntry, prepear: CGFloat) -> CGFloat {
-        let side = (prepear - 2 * 7) / 8
-        return CGFloat(entry.lenth) * side + CGFloat((entry.lenth - 1) * 2)
+    
+    func month() -> String {
+        if let start = data.start {
+            let formatter = DateFormatter()
+            formatter.timeZone = TimeZone(identifier: "Asia/Chongqing")!
+            formatter.locale = Locale(identifier: "zh_CN")
+            formatter.dateFormat = "M月"
+            return formatter.string(from: start)
+        } else {
+            return "学期"
+        }
     }
 }
 
 
 
 
-
 struct ScheduleSystemLarge_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduleSystemLarge(entry: .init(date: NSDate.now), data: ScheduleFetchData())
+        ScheduleSystemLarge(entry: .init(date: NSDate.now))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

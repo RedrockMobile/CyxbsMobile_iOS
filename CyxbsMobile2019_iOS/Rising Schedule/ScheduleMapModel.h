@@ -39,10 +39,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface ScheduleMapModel (widget)
-
-@property (nonatomic, readonly) NSMapTable <NSIndexPath *, NSPointerArray *> *dayMap;
-
-@end
-
 NS_ASSUME_NONNULL_END

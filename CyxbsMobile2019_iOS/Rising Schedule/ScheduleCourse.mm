@@ -73,7 +73,8 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
                 [idxSet addIndex:sectionNumber.longValue];
             }
             self.inSections = idxSet.copy;
-        }        self.period_location = [dic[@"begin_lesson"] longValue];
+        }
+        self.period_location = [dic[@"begin_lesson"] longValue];
         self.period_lenth = [dic[@"period"] unsignedLongValue];
         self.course = dic[@"course"];
         self.classRoom = dic[@"classroom"];

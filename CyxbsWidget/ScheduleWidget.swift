@@ -18,6 +18,6 @@ struct ScheduleWidget: Widget {
         }
         .configurationDisplayName("掌邮课表")
         .description("快来添加你的课表小组件吧！")
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        .supportedFamilies([.systemLarge])
     }
 }

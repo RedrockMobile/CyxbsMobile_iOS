@@ -15,10 +15,10 @@ struct ScheduleWidgetEntryView: View {
     
     var body: some View {
         switch family {
-        case .systemSmall:
-            ScheduleSystemSmall()
+//        case .systemSmall:
+//            ScheduleSystemSmall()
         case .systemLarge:
-            ScheduleSystemLarge(entry: entry, data: ScheduleFetchData())
+            ScheduleSystemLarge(entry: entry)
         default:
             EmptyView()
         }

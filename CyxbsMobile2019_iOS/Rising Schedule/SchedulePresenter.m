@@ -8,6 +8,10 @@
 
 #import "SchedulePresenter.h"
 
+#import "ScheduleWidgetCache.h"
+
+#import "掌上重邮-Swift.h"
+
 #pragma mark - SchedulePresenter
 
 @implementation SchedulePresenter {
@@ -64,6 +68,35 @@
 
 - (BOOL)useAwake {
     return _service.canUseAwake;
+}
+
+
+@end
+
+
+@implementation SchedulePresenter (ScheduleDouble)
+
+- (void)setWithMainIdentifier:(ScheduleIdentifier *)main otherIdentifier:(ScheduleIdentifier *)other {
+    _service.model.sno = main.sno;
+    ScheduleWidgetCache.shareCache.nonatomicMainID = main;
+    ScheduleWidgetCache.shareCache.nonatomicOtherID = other;
+    ScheduleWidgetCache.shareCache.beDouble = YES;
+    _service.parameterIfNeeded = @{
+        ScheduleModelRequestStudent : @[main.sno, other.sno]
+    };
+}
+
+- (void)setWithOnlyMainIdentifier:(ScheduleIdentifier *)main {
+    _service.model.sno = nil;
+    ScheduleWidgetCache.shareCache.nonatomicMainID = main;
+    ScheduleWidgetCache.shareCache.beDouble = NO;
+    _service.parameterIfNeeded = @{
+        ScheduleModelRequestStudent : @[main.sno]
+    };
+}
+
+- (void)setWidgetSection:(NSInteger)section {
+    ScheduleWidgetCache.shareCache.widgetSection = section;
 }
 
 @end
