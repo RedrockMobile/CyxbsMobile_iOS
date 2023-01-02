@@ -38,10 +38,10 @@
     [self addBackButton];
     [self addToolTitle];
     [self addSettingButton];
-    [self addContentView];//添加底层的ScrollView
+    [self addContentView];  // 添加底层的ScrollView
     [self addViewContainer];
     [self configNavigationBar];
-    [self addToolViewItems];//将每个工具添加到当前页面
+    [self addToolViewItems];  // 将每个工具添加到当前页面
 
     if (@available(iOS 11.0, *)) {
         self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];

@@ -9,8 +9,7 @@
 #import "ExamArrangeModel.h"
 
 @implementation ExamArrangeModel
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         [self fetchData];

@@ -11,7 +11,7 @@
 @interface popUpViewController ()
 
 ///信息说明的contentView，他是一个button，用来保证点击空白处可以取消
-@property (nonatomic, weak) UIButton * learnAboutContentView;
+@property (nonatomic, weak) UIButton *learnAboutContentView;
 
 @end
 

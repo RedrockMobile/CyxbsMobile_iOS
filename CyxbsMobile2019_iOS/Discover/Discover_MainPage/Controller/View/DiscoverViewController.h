@@ -6,6 +6,7 @@
 //  Copyright © 2019 Redrock. All rights reserved.
 //
 
+// 此类为发现页的总VC，代码臃肿，需要优化
 #import <UIKit/UIKit.h>
 
 #pragma mark - DiscoverViewController

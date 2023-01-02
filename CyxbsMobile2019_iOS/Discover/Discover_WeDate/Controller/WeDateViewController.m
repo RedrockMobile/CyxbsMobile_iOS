@@ -12,19 +12,25 @@
 #import "ClassmatesList.h"
 #import "WYCClassBookViewController.h"
 
-@interface WeDateViewController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,PeopleListTableViewCellDelegateDelete,PeopleListTableViewCellDelegateAdd>
+@interface WeDateViewController () <
+    UITextFieldDelegate,
+    UITableViewDelegate,
+    UITableViewDataSource,
+    PeopleListTableViewCellDelegateDelete,
+    PeopleListTableViewCellDelegateAdd
+>
 /**推出没课约的按钮*/
-@property (nonatomic, strong)UIButton *backButton;
+@property (nonatomic, strong) UIButton *backButton;
 /**显示“没课约”3个字的label*/
-@property (nonatomic, strong)UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *titleLabel;
 /**搜索框*/
-@property (nonatomic ,strong)UITextField *searchField;
+@property (nonatomic ,strong) UITextField *searchField;
 /**显示已经被添加的人的tableView*/
-@property (nonatomic ,strong)UITableView *peoleAddedList;
+@property (nonatomic ,strong) UITableView *peoleAddedList;
 /**紫色的查询按钮*/
-@property (nonatomic, strong)UIButton *enquiryBtn;
-/**已添加的人的信息*/
-@property (nonatomic, strong)NSMutableArray *infoDictArray;
+@property (nonatomic, strong) UIButton *enquiryBtn;
+/**已添加的人的信息*/ 
+@property (nonatomic, strong) NSMutableArray *infoDictArray;
 @end
 
 @implementation WeDateViewController

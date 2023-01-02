@@ -24,12 +24,12 @@
 /// 教务在线 / Remake by SSR
 @property (nonatomic, strong) DiscoverJWZXVC *jwzxVC;
 
-@property (nonatomic, weak)SDCycleScrollView *cycleScrollView;
+@property (nonatomic, weak) SDCycleScrollView *cycleScrollView;
 
 @end
 
 @implementation FinderView
-//MARK: - 初始化部分
+// MARK: - 初始化部分
 - (instancetype) initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

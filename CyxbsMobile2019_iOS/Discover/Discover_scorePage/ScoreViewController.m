@@ -18,20 +18,20 @@
 #import "IDSController.h"
 
 @interface ScoreViewController ()<SCChartDataSource, UITableViewDelegate, UITableViewDataSource>
-@property (nonatomic, weak)UserInfoView *userInfoView;
-@property (nonatomic, weak)UIScrollView *contentView;
-@property (nonatomic, weak)UIView *twoTitleView;//学风成绩平均绩点
-@property (nonatomic, weak)SCChart *chartView;
-@property (nonatomic, weak)ABScoreView *ABScoreView;//AB学分
-@property (nonatomic, weak)UIView *termBackView;
-@property (nonatomic, weak)UILabel *termLabel;//"学期成绩"
-@property (nonatomic, weak)UITableView *tableView;//每学年的成绩
+@property (nonatomic, weak) UserInfoView *userInfoView;
+@property (nonatomic, weak) UIScrollView *contentView;
+@property (nonatomic, weak) UIView *twoTitleView;//学风成绩平均绩点
+@property (nonatomic, weak) SCChart *chartView;
+@property (nonatomic, weak) ABScoreView *ABScoreView;//AB学分
+@property (nonatomic, weak) UIView *termBackView;
+@property (nonatomic, weak) UILabel *termLabel;//"学期成绩"
+@property (nonatomic, weak) UITableView *tableView;//每学年的成绩
 @property (nonatomic, strong) IdsBinding * idsBindingModel;//ids绑定
 @property (nonatomic, strong) MBProgressHUD *loadHud;
-@property (nonatomic,assign)float tableViewCurrentHeight;//tableView的当前高度
+@property (nonatomic, assign) float tableViewCurrentHeight;//tableView的当前高度
 
-@property (nonatomic)GPA *gpaModel;
-@property (nonatomic)GPAItem *gpaItem;
+@property (nonatomic) GPA *gpaModel;
+@property (nonatomic) GPAItem *gpaItem;
 @end
 
 @implementation ScoreViewController

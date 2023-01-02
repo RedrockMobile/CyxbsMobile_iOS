@@ -11,11 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VolunteerModel : NSObject
-@property(nonatomic, copy)NSString *allTime;
-@property(nonatomic, copy)NSString *recentTime;
-@property(nonatomic, copy)NSString *recentTitle;
-@property(nonatomic, copy)NSString *recentTeam;
-@property(nonatomic, copy)NSString *recentDate;
+@property(nonatomic, copy) NSString *allTime;
+@property(nonatomic, copy) NSString *recentTime;
+@property(nonatomic, copy) NSString *recentTitle;
+@property(nonatomic, copy) NSString *recentTeam;
+@property(nonatomic, copy) NSString *recentDate;
 
 
 

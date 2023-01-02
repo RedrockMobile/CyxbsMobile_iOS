@@ -9,8 +9,7 @@
 #import "VolunteerModel.h"
 
 @implementation VolunteerModel
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
     if (self) {
         [self getData];

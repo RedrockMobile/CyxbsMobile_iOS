@@ -9,15 +9,15 @@
 #import "FinderToolViewItem.h"
 
 @interface FinderToolViewItem()
-@property (nonatomic, weak)UIImageView *iconView;
-@property (nonatomic, weak)UILabel *myTitleLabel;//前缀加my是为了防止与原命名重名
-@property (nonatomic, weak)UILabel *myDetailLabel;
-
+@property (nonatomic, weak) UIImageView *iconView;
+@property (nonatomic, weak) UILabel *myTitleLabel;//前缀加my是为了防止与原命名重名
+@property (nonatomic, weak) UILabel *myDetailLabel;
 @end
+
 @implementation FinderToolViewItem
 
 - (instancetype)initWithIconView:(NSString *)iconViewName Title:(NSString *)title Detail:(NSString *)detail {
-    if(self = [super init]) {
+    if (self = [super init]) {
         if (@available(iOS 11.0, *)) {
             self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         } else {
@@ -87,7 +87,7 @@
         if (@available(iOS 11.0, *)) {
             self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E5EAF2" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
         }
-    }else {
+    } else {
         if (@available(iOS 11.0, *)) {
             self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         }
@@ -96,7 +96,7 @@
 - (void)toggleFavoriteStates {
     if (self.isFavorite == YES) {
         self.isFavorite = NO;
-    }else {
+    } else {
         self.isFavorite = YES;
     }
     [self changeBackgroundColorIfNeeded];

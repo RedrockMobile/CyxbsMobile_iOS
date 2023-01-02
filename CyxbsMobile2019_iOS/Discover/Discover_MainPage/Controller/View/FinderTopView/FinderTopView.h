@@ -6,6 +6,7 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
+// 此类为发现页顶部View，包括日期，消息界面，签到等等
 #import <UIKit/UIKit.h>
 
 #import "DiscoverMineMessageVC.h"
