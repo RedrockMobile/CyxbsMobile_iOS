@@ -12,7 +12,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ElectricityViewDelegate <NSObject>
--(void)touchElectrictyView;
+/// 点击绑定宿舍
+- (void)touchElectrictyView;
+
 @end
 
 @interface ElectricityView : UIView
@@ -32,10 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) UILabel *hintLabel;//“还未绑定账号哦～”
  
 @property (nonatomic, weak) UIButton *clearButton;
-@property (nonatomic, weak) UIButton *bindingButton;//点击之后跳转绑定宿舍
 
 /// 当有数据的时候调用这个方法更新为有预览的视图
--(void) refreshViewIfNeeded;
+- (void)refreshViewIfNeeded;
 @end
 
 NS_ASSUME_NONNULL_END

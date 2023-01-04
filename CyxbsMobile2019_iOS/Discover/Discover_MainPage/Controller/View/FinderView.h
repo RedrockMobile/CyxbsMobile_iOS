@@ -38,13 +38,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) SDCycleScrollView *bannerView;//
 
-@property (nonatomic, copy) NSMutableArray <EnterButton*> *enterButtonArray;//四个入口按钮
+@property (nonatomic, copy) NSMutableArray <EnterButton *> *enterButtonArray;//四个入口按钮
 
 @property (nonatomic, weak) id<LQQFinderViewDelegate> delegate;
 
-@property (nonatomic) NSMutableArray * bannerURLStrings;//轮播图urlString
+@property (nonatomic) NSMutableArray *bannerURLStrings;//轮播图urlString
 
-@property (nonatomic) NSMutableArray * bannerGoToURL;//轮播图目标网页url
+@property (nonatomic) NSMutableArray *bannerGoToURL;//轮播图目标网页url
 
 /// 应该在addChildViewController掉用这个 / Remake by SSR
 - (UIViewController *)jwzxViewController;

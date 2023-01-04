@@ -56,7 +56,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     AlreadyLogin,
 };
 
-@interface DiscoverViewController ()<
+@interface DiscoverViewController () <
     UIScrollViewDelegate,
     LQQFinderViewDelegate,
     UIPickerViewDelegate,
@@ -91,37 +91,37 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 @property (nonatomic, weak)UILabel *buildingNumberLabel;
 
 /// 填写房间号的框框
-@property (nonatomic, weak)UITextField *roomTextField;
-
+@property (nonatomic, weak) UITextField *roomTextField;
+ 
 /// 用来遮挡tabbar的View
-@property (nonatomic, weak)UIView *hideTabbarView;
-
+@property (nonatomic, weak) UIView *hideTabbarView;
+ 
 /// 用来补充志愿服务页面下方颜色
-@property (nonatomic, weak)UIView *colorView;
+@property (nonatomic, weak) UIView *colorView;
 
 /// Model
 @property ElectricFeeModel *elecModel;
 
-@property (nonatomic, strong)JWZXNewsModel *jwzxNewsModel;
+@property (nonatomic, strong) JWZXNewsModel *jwzxNewsModel;
 
 @property (nonatomic, strong) DiscoverADModel *ADModel;
 
 @property PickerModel *pickerModel;
 
 /// pickerView
-@property (nonatomic)NSInteger selectedArrays;
+@property (nonatomic) NSInteger selectedArrays;
 
 /// Data
-@property (nonatomic, assign)int classTabbarHeight;
+@property (nonatomic, assign) int classTabbarHeight;
 
-@property(nonatomic, assign)int classTabbarCornerRadius;
-
-@property(nonatomic,strong)UIWindow *window;
+@property (nonatomic, assign) int classTabbarCornerRadius;
+ 
+@property (nonatomic,strong) UIWindow *window;
 
 //@property(nonatomic, strong)DiscoverTodoView* todoView;
 //
 //@property(nonatomic, strong)TodoSyncTool* todoSyncTool;
-@property(nonatomic, strong)DiscoverSAVC * sportVC;
+@property (nonatomic, strong) DiscoverSAVC * sportVC;
 
 @end
 
@@ -187,6 +187,8 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }
 //    [self.todoView reloadData];
 }
+
+// MARK: TODO: Method
 - (void)presentMySchedul{
     ClassScheduleTabBarView *classTabBarView = ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView;
     [classTabBarView.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
@@ -212,6 +214,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 //    self.hidesBottomBarWhenPushed = NO;
 //}
 
+// MARK: TODO: Method
 - (void)addNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucceed) name:@"Login_LoginSuceeded" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bindingRoomFailed) name:@"electricFeeRoomFailed" object:nil];//绑定的宿舍号码有问题
@@ -227,15 +230,17 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(todoSyncToolDidSync:) name:TodoSyncToolSyncNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backToThisController) name:@"logout" object:nil];
 }
+
 - (void)loginSucceed {
     [self requestData];
 }
+
 - (void)layoutSubviews {
 
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         if(IS_IPHONEX) {
             make.top.equalTo(self.view).offset(44);
-        }else {
+        } else {
             make.top.equalTo(self.view).offset(20);
         }
         make.left.right.equalTo(self.view);
@@ -406,7 +411,6 @@ static int requestCheckinInfo = 0;
     [self.finderView updateBannerViewIfNeeded];
 }
 
-
 - (void)addEleView {
     ElectricityView *eleView = [[ElectricityView alloc]init];
     self.eleView = eleView;
@@ -414,6 +418,7 @@ static int requestCheckinInfo = 0;
     [self.contentView addSubview:eleView];
 
 }
+
 - (void)addVolView {
     VolunteerView *volView = [[VolunteerView alloc]init];
     self.volView = volView;
@@ -438,10 +443,10 @@ static int requestCheckinInfo = 0;
 - (void)bindingVolunteerButton {
     ///需要在此处判断一下是否已经登录了志愿者的界面，如果登录了，则直接跳QueryViewController，如果未登录的话则跳登录的viewController
     if (![NSUserDefaults.standardUserDefaults objectForKey:@"volunteer_information"]) {
-        QueryLoginViewController * vc = [[QueryLoginViewController alloc]init];
+        QueryLoginViewController *vc = [[QueryLoginViewController alloc]init];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
-    }else {
+    } else {
         VolunteerItem *volunteer = [ArchiveTool getPersonalInfo];
         QueryViewController *queryVC = [[QueryViewController alloc] initWithVolunteerItem:volunteer];
         queryVC.hidesBottomBarWhenPushed = YES;
@@ -520,7 +525,7 @@ static int requestCheckinInfo = 0;
 #pragma mark - end
 
 //点击了绑定宿舍房间号
-- (void) bindingBuildingAndRoom {
+- (void)bindingBuildingAndRoom {
     [self getPickerViewData];
     //添加灰色背景板
     UIButton * contentView = [[UIButton alloc]initWithFrame:self.view.frame];
@@ -529,7 +534,7 @@ static int requestCheckinInfo = 0;
     contentView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     contentView.alpha = 0;
     
-    UIView *hideTabbarView = [[UIView alloc]initWithFrame:CGRectMake(0,-self.classTabbarHeight, MAIN_SCREEN_W, 800)];
+    UIView *hideTabbarView = [[UIView alloc]initWithFrame:CGRectMake(0, - self.classTabbarHeight, MAIN_SCREEN_W, 800)];
     hideTabbarView.layer.cornerRadius = self.classTabbarCornerRadius;
     self.hideTabbarView = hideTabbarView;
     hideTabbarView.backgroundColor = contentView.backgroundColor;
@@ -584,7 +589,7 @@ static int requestCheckinInfo = 0;
         make.left.equalTo(bindingView).offset(14);
         make.top.equalTo(bindingView).offset(23);
     }];
-    UITextField * textField = [[UITextField alloc]init];
+    UITextField *textField = [[UITextField alloc]init];
     [bindingView addSubview:textField];
     textField.keyboardType = UIKeyboardTypeNumberPad;
     textField.returnKeyType =UIReturnKeyDone;
@@ -594,7 +599,7 @@ static int requestCheckinInfo = 0;
         make.width.equalTo(@170);
     }];
     textField.placeholder = @"例如\"403\"";
-    if([UserItem defaultItem].room) {
+    if ([UserItem defaultItem].room) {
         textField.text = [UserItem defaultItem].room;
     }
 
@@ -701,14 +706,14 @@ static int requestCheckinInfo = 0;
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component  {
     if (component == 0) {
         return self.pickerModel.allArray.count;
-    }else {
+    } else {
         return [self.pickerModel.allArray objectAtIndex:self.selectedArrays].count;
     }
 }
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if (component == 0) {
         return self.pickerModel.placeArray[row];
-    }else {
+    } else {
 //        self.placeArray = @[@"宁静苑",@"明理苑",@"知行苑",@"兴业苑",@"四海苑"];
         NSInteger selectedRow = [pickerView selectedRowInComponent:0];
         NSArray *arr = [self.pickerModel.allArray objectAtIndex:selectedRow];

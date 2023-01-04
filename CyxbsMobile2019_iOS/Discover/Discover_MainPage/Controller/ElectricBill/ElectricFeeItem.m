@@ -14,7 +14,7 @@
         if (dict[@"elec_inf"][@"elec_cost"][0] == NULL || dict[@"elec_inf"][@"elec_cost"][1] == NULL)
         {
             self.money = [NSString stringWithFormat:@"0"];
-        } else{
+        } else {
             self.money = [NSString stringWithFormat:@"%@.%@",dict[@"elec_inf"][@"elec_cost"][0],dict[@"elec_inf"][@"elec_cost"][1]];
         }
         self.degree = [dict[@"elec_inf"][@"elec_spend"] stringValue];

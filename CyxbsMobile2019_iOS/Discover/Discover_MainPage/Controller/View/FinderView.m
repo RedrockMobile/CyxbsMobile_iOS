@@ -29,6 +29,7 @@
 @end
 
 @implementation FinderView
+
 // MARK: - 初始化部分
 - (instancetype) initWithFrame:(CGRect)frame
 {

@@ -70,9 +70,9 @@
 }
 - (NSArray *)getBuildingNameIndexAndBuildingNumberIndexByNumberOfDormitory:(NSString *)dormitoryNumber {
     if ([dormitoryNumber isEqual:@"23A"]) {
-        return @[@3,@6];
-    }else if ([dormitoryNumber isEqual:@"23B"]) {
-        return @[@3,@7];
+        return @[@3, @6];
+    } else if ([dormitoryNumber isEqual:@"23B"]) {
+        return @[@3, @7];
     }
     int num = dormitoryNumber.intValue;
     if (num == 40) {//宁静苑10舍

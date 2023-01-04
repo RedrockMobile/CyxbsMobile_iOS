@@ -115,7 +115,7 @@
 - (UILabel *)titleLab {
     if (_titleLab == nil) {
         _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(self.detailLab.left, self.detailLab.bottom + 1, 200, 50)];
-        _titleLab .text = @"发现";
+        _titleLab.text = @"发现";
         _titleLab.font = [UIFont fontWithName:PingFangSCSemibold size: 27];
         _titleLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     }

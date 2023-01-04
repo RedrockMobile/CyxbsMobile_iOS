@@ -2100,19 +2100,19 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		1404747E27F47F0F00307209 /* ViewController */ = {
+		1404747E27F47F0F00307209 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				1404747B27F46F0D00307209 /* DiscoverADController.h */,
 				1404747C27F46F0D00307209 /* DiscoverADController.m */,
 			);
-			path = ViewController;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		1404747F27F47F2A00307209 /* Discover_AD */ = {
 			isa = PBXGroup;
 			children = (
-				1404747E27F47F0F00307209 /* ViewController */,
+				1404747E27F47F0F00307209 /* Controller */,
 				1404746927F32B0D00307209 /* Model */,
 				1404747427F4682D00307209 /* View */,
 			);
