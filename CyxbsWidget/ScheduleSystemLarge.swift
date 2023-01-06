@@ -30,22 +30,27 @@ struct ScheduleSystemLarge: View {
     }
     
     var body: some View {
-        HStack(spacing: 2) {
-            ScheduleLeadingView(month: month(), range: data.range, height: 46)
-                .frame(width: 25)
-            GeometryReader { entryA in
-                VStack(spacing: 2) {
-                    ScheduleTopView(anyDate: data.start)
-                        .frame(height: entryA.size.width / 7 / 46 * 50)
-                    GeometryReader { entryB in
-                        ForEach(data.data) { item in
-                            ContentView(item: item, size: entryB.size)
+        VStack(spacing: 0) {
+            ScheduleSectionTopView(title: title())
+                .padding(.bottom, 4)
+            Divider()
+            HStack(spacing: 2) {
+                ScheduleLeadingView(month: month(), range: data.range, height: 46)
+                    .frame(width: 26)
+                GeometryReader { entryA in
+                    VStack(spacing: 2) {
+                        ScheduleTopView(anyDate: data.start)
+                            .frame(height: entryA.size.width / 7 / 46 * 50)
+                        GeometryReader { entryB in
+                            ForEach(data.data) { item in
+                                ContentView(item: item, size: entryB.size)
+                            }
                         }
                     }
                 }
             }
         }
-        .padding(.all, 10)
+        .padding(.all, 6)
     }
 }
 
@@ -83,6 +88,14 @@ extension ScheduleSystemLarge {
             @unknown default:
                return .empty
             }
+        }
+    }
+    
+    func title() -> String {
+        if data.section <= 0 {
+            return "整学期"
+        } else {
+            return "第\(data.section)周"
         }
     }
     

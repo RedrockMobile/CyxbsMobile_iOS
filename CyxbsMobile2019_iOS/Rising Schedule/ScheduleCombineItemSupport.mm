@@ -139,7 +139,7 @@ NSArray <ScheduleIdentifier *> *ScheduleIdentifiersFromScheduleRequestDictionary
 ScheduleRequestDictionary *ScheduleRequestDictionaryFromScheduleIdentifiers(NSArray <ScheduleIdentifier *> *ary) {
     NSMutableDictionary *finDic = NSMutableDictionary.dictionary;
     for (ScheduleIdentifier *identifier in ary) {
-        if (![finDic objectForKey:identifier.type]) {
+        if ([finDic objectForKey:identifier.type] == nil) {
             [finDic setObject:NSMutableArray.array forKey:identifier.type];
         }
         [finDic[identifier.type] addObject:identifier.sno];

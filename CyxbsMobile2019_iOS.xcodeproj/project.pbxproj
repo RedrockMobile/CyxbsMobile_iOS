@@ -38,6 +38,8 @@
 		1422242628D9B31B009A4A54 /* RisingUIKitExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422242528D9B31B009A4A54 /* RisingUIKitExtension.m */; };
 		14320606291C9657003B0E11 /* UserAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14320605291C9657003B0E11 /* UserAgreementViewController.m */; };
 		1435613028CCA93500EF6987 /* ScheduleServiceSolve.m in Sources */ = {isa = PBXBuildFile; fileRef = 1435612F28CCA93500EF6987 /* ScheduleServiceSolve.m */; };
+		143762C72963EBC200979FA2 /* CyxbsWidgetKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143762C62963EBC200979FA2 /* CyxbsWidgetKind.swift */; };
+		143762C82963EBC700979FA2 /* CyxbsWidgetKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143762C62963EBC200979FA2 /* CyxbsWidgetKind.swift */; };
 		1441BF7C291FF29200591A0E /* UserAgreementConsentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1441BF7B291FF29200591A0E /* UserAgreementConsentView.m */; };
 		1448BFF52961CC830015768E /* WidgetKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AF72961516B0046E7BE /* WidgetKitHelper.swift */; };
 		1448BFF829627E350015768E /* ScheduleWidgetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448BFF729627E350015768E /* ScheduleWidgetCache.m */; };
@@ -179,6 +181,7 @@
 		14320605291C9657003B0E11 /* UserAgreementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAgreementViewController.m; sourceTree = "<group>"; };
 		1435612E28CCA93500EF6987 /* ScheduleServiceSolve.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleServiceSolve.h; sourceTree = "<group>"; };
 		1435612F28CCA93500EF6987 /* ScheduleServiceSolve.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleServiceSolve.m; sourceTree = "<group>"; };
+		143762C62963EBC200979FA2 /* CyxbsWidgetKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyxbsWidgetKind.swift; sourceTree = "<group>"; };
 		1441BF7A291FF29200591A0E /* UserAgreementConsentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAgreementConsentView.h; sourceTree = "<group>"; };
 		1441BF7B291FF29200591A0E /* UserAgreementConsentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAgreementConsentView.m; sourceTree = "<group>"; };
 		1448BFF629627E350015768E /* ScheduleWidgetCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleWidgetCache.h; sourceTree = "<group>"; };
@@ -348,6 +351,7 @@
 			children = (
 				141008E2295E88E20046E7BE /* CyxbsWidgetBundle.swift */,
 				141008E4295E88E20046E7BE /* CyxbsWidgetLiveActivity.swift */,
+				143762C62963EBC200979FA2 /* CyxbsWidgetKind.swift */,
 				141008F4295E899D0046E7BE /* ScheduleWidget.swift */,
 				141008E6295E88E20046E7BE /* ScheduleProvider.swift */,
 				141008FA295E8D520046E7BE /* ScheduleWidgetEntryView.swift */,
@@ -1022,6 +1026,7 @@
 				141008E5295E88E20046E7BE /* CyxbsWidgetLiveActivity.swift in Sources */,
 				14100AEE296005F20046E7BE /* ScheduleLeadingView.swift in Sources */,
 				14100AF029612DFE0046E7BE /* ScheduleTopView.swift in Sources */,
+				143762C82963EBC700979FA2 /* CyxbsWidgetKind.swift in Sources */,
 				141008F9295E8CF60046E7BE /* ScheduleSystemSmall.swift in Sources */,
 				14100AEB295FDCF50046E7BE /* ScheduleSupplementaryView.swift in Sources */,
 				141008FB295E8D520046E7BE /* ScheduleWidgetEntryView.swift in Sources */,
@@ -1084,6 +1089,7 @@
 				14BC480929154D290063809E /* SearchPersonModel.m in Sources */,
 				1422242028D9B091009A4A54 /* RisingFoundationExtention.m in Sources */,
 				14100AF82961516B0046E7BE /* WidgetKitHelper.swift in Sources */,
+				143762C72963EBC200979FA2 /* CyxbsWidgetKind.swift in Sources */,
 				14E844F628FC40090037309F /* ScheduleDetailController.m in Sources */,
 				14E66AA7295C8AC90043CBE7 /* ScheduleTimelineSupport.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
@@ -1344,7 +1350,7 @@
 				CODE_SIGN_ENTITLEMENTS = CyxbsMobile2019_iOS/CyxbsMobile2019_iOSDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
@@ -1383,7 +1389,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.4.4;
+				MARKETING_VERSION = 6.4.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1405,9 +1411,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
-				CODE_SIGN_IDENTITY = "Apple Development: SSR Rising (Y82J2LCTLL)";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
@@ -1446,7 +1452,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.4.4;
+				MARKETING_VERSION = 6.4.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";

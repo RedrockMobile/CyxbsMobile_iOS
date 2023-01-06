@@ -82,7 +82,7 @@
         _widgetField = [self _kindFieldWithPlaceholder:@"输入小组件展示周数" imgName:@"more"];
         _widgetField.frame = CGRectMake(-1, self.otherField.bottom + 22, 281, 44);
         _widgetField.centerX = self.view.width / 2;
-        _widgetField.keyboardType = UIKeyboardTypePhonePad;
+        _widgetField.keyboardType = UIKeyboardTypeASCIICapableNumberPad;
     }
     return _widgetField;
 }

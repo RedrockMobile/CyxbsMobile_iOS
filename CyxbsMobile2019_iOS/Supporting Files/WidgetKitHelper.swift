@@ -10,9 +10,17 @@ import WidgetKit
 
 @available(iOS 14.0, *)
 @objcMembers final class WidgetKitHelper: NSObject {
-    class func reloadAllWidgets() {
+    class func reloadAllTimelines() {
         #if arch(arm64) || arch(i386) || arch(x86_64)
         WidgetCenter.shared.reloadAllTimelines()
         #endif
     }
+    
+    class func reloadTimelines(ofKind kind: WidgetKind) {
+        #if arch(arm64) || arch(i386) || arch(x86_64)
+        WidgetCenter.shared.reloadTimelines(ofKind: kind.rawValue)
+        #endif
+    }
 }
+
+

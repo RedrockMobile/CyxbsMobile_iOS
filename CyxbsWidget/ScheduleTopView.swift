@@ -21,6 +21,19 @@ struct ScheduleTopView: View {
     }
 }
 
+struct ScheduleSectionTopView: View {
+    var title: String
+    @Environment(\.colorScheme) var scheme
+    var body: some View {
+        HStack {
+            Text(title)
+                .padding(.leading, 10)
+                .foregroundColor(color())
+            Spacer()
+        }
+    }
+}
+
 extension ScheduleTopView {
     func data() -> Array<Date> {
         var components = Calendar.current.dateComponents(in: TimeZone(identifier: "Asia/Chongqing")!, from: anyDate ?? Date())
@@ -58,18 +71,38 @@ extension ScheduleTopView {
         }
     }
     
-    func target(_ date: Date) -> Bool { Calendar.current.compare(date, to: Date(), toGranularity: .day) == .orderedSame
+    func target(_ date: Date) -> Bool {
+        Calendar.current.compare(date, to: Date(), toGranularity: .day) == .orderedSame
     }
 }
+
+extension ScheduleSectionTopView {
+    func color() -> Color {
+        switch scheme {
+        case .light:
+            return Color(red: 0.082, green: 0.192, blue: 0.357, opacity: 1)
+        case .dark:
+            return Color(red: 0.941, green: 0.941, blue: 0.949, opacity: 1)
+        @unknown default:
+            return .clear
+        }
+    }
+}
+
+
+
+
 
 struct ScheduleTopView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
+            ScheduleSectionTopView(title: "第2周")
+            Divider()
             ScheduleTopView(anyDate: Date())
                 .frame(width: 312, height: 46)
             ScheduleTopView()
                 .frame(width: 312, height: 46)
         }
-            .previewContext(WidgetPreviewContext(family: .systemLarge))
+        .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

@@ -84,6 +84,9 @@
     _service.parameterIfNeeded = @{
         ScheduleModelRequestStudent : @[main.sno, other.sno]
     };
+    if (@available(iOS 14.0, *)) {
+        [WidgetKitHelper reloadAllTimelines];
+    }
 }
 
 - (void)setWithOnlyMainIdentifier:(ScheduleIdentifier *)main {
@@ -93,10 +96,16 @@
     _service.parameterIfNeeded = @{
         ScheduleModelRequestStudent : @[main.sno]
     };
+    if (@available(iOS 14.0, *)) {
+        [WidgetKitHelper reloadAllTimelines];
+    }
 }
 
 - (void)setWidgetSection:(NSInteger)section {
     ScheduleWidgetCache.shareCache.widgetSection = section;
+    if (@available(iOS 14.0, *)) {
+        [WidgetKitHelper reloadAllTimelines];
+    }
 }
 
 @end

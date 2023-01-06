@@ -30,7 +30,7 @@
 #pragma mark - Method
 
 - (void)combineItem:(ScheduleCombineItem *)model {
-    if (_statusMap[model.identifier]) {
+    if (_statusMap[model.identifier] || model.identifier == nil) {
         return;
     }
     [super combineItem:model];

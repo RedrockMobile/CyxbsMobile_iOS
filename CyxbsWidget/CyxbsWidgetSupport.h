@@ -9,7 +9,7 @@
 #ifndef CyxbsWidgetSupport_h
 #define CyxbsWidgetSupport_h
 
-@class NSString;
+#import <Foundation/Foundation.h>
 
 static NSString * const CyxbsWidgetAppGroups = @"group.com.mredrock.cyxbs.widget";
 

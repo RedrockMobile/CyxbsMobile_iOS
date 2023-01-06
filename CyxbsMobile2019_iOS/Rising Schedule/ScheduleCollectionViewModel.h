@@ -10,17 +10,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**MARK: ScheduleCollectionViewModel
+ * \c ViewModel 遵循了`NSCopying`协议
+ * 保存每个视图的数据源信息
+ */
+
 typedef NS_ENUM(NSUInteger, ScheduleBelongKind) {
     ScheduleBelongFistSystem,
     ScheduleBelongFistCustom,
     ScheduleBelongSecondSystem,
     ScheduleBelongUnknow = ScheduleBelongFistSystem
 };
-
-/**MARK: ScheduleCollectionViewModel
- * \c ViewModel 遵循了`NSCopying`协议
- * 保存每个视图的数据源信息
- */
 
 @interface ScheduleCollectionViewModel : NSObject <NSCopying>
 
