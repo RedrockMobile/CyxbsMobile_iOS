@@ -513,14 +513,6 @@ static int requestCheckinInfo = 0;
     //这里读缓存以后日期的样式就改回去了，所以先屏蔽
 }
 
-#pragma mark - 即将要被更改的地方
-- (void)updateNewsUI {
-//    if(self.jwzxNewsModel.jwzxNews.news != nil){
-////        [self.finderView.news setTitle:self.jwzxNewsModel.jwzxNews.news.firstObject.title forState:normal];
-//        //同时写入缓存
-//        [self.defaults setObject:self.jwzxNewsModel.jwzxNews.news.firstObject.title forKey:@"OneNews_oneNews"];
-//    }
-}
 
 #pragma mark - end
 

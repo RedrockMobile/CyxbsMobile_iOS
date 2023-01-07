@@ -46,26 +46,6 @@
             failure(error);
         }
     }];
-    
-//    [HttpClient.defaultClient
-//     requestWithPath:Discover_GET_newsDetail_API
-//     method:HttpRequestGet
-//     parameters:@{@"id" : self.newsID}
-//     prepareExecute:nil
-//     progress:nil
-//     success:^(NSURLSessionDataTask *task, id responseObject) {
-//        NSLog(@"🟢JWZX Detail News Model:\n%@", responseObject);
-//        [self loadWithDictionary:responseObject[@"data"]];
-//        if (success) {
-//            success();
-//        }
-//    }
-//      failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        NSLog(@"🔴JWZX Detail News Model Error:\n%@", error);
-//        if (failure) {
-//            failure(error);
-//        }
-//    }];
 }
 
 - (void)loadWithDictionary:(NSDictionary *)dic {

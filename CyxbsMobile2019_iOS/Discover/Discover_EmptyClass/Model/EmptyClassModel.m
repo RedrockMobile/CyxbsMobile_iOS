@@ -28,12 +28,6 @@
             failure(error);
         }
     }];
-    
-//    [[HttpClient defaultClient] requestWithPath:ClassSchedule_POST_emptyClass_API method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//        success(responseObject);
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        failure(error);
-//    }];
 }
 
 @end

@@ -85,37 +85,6 @@
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self testArrangeFailed];
     }];
-    
-//    [[HttpClient defaultClient] requestWithPath:Discover_GET_examModel_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//        NSString *type = responseObject[@"data"][@"ExamModel"];
-//        if ([type isEqualToString:@"magipoke"]) {//掌邮显示
-//            [self displayByAPP];
-//        }else {//h5显示
-//            int mode = 0;
-//            if (@available(iOS 13.0, *)) {
-//                //判断是否使用深色模式：
-//                if (UITraitCollection.currentTraitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
-//                    mode = 1;
-//                }
-//            }
-//            //考试h5:https://fe-prod.redrock.team/zscy-exam/
-//            //2020迎新h5:https://fe-prod.redrock.team/welcome-2020/
-//            NSString *h5UrlStr = responseObject[@"data"][@"Redirect"];
-//            //h5url后拼接的参数：stuNum为学号；uiType为1代表使用黑夜模式，0代表不是
-//            h5UrlStr = [NSString stringWithFormat:@"%@?stuNum=%@&uiType=%d",h5UrlStr,[UserItem defaultItem].stuNum,mode];
-//            [self displayByH5:h5UrlStr];
-//        }
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        [self testArrangeFailed];
-//    }];
-    //修改考试的展示模式
-    /*
-    [[HttpClient defaultClient] requestWithPath:@"https://be-prod.redrock.team/magipoke-jwzx/changExamModel?model=magipoke" method:HttpRequestPost parameters:@{} prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        CCLog(@"kkksuccess%@",responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        CCLog(@"kkkfaliue%@",error);
-    }];
-     */
 }
 
 - (void)displayByAPP {

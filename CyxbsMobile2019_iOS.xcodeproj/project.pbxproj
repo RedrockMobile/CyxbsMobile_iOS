@@ -97,7 +97,6 @@
 		18CDF665257F91BD006E8E5C /* PickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4E3257F91BC006E8E5C /* PickerModel.m */; };
 		18CDF666257F91BD006E8E5C /* JWZXNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4E9257F91BC006E8E5C /* JWZXNewsModel.m */; };
 		18CDF668257F91BD006E8E5C /* JWZXNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4EB257F91BC006E8E5C /* JWZXNew.m */; };
-		18CDF669257F91BD006E8E5C /* VolunteerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4ED257F91BC006E8E5C /* VolunteerModel.m */; };
 		18CDF66A257F91BD006E8E5C /* DiscoverAD.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F0257F91BC006E8E5C /* DiscoverAD.m */; };
 		18CDF66B257F91BD006E8E5C /* DiscoverADs.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F1257F91BC006E8E5C /* DiscoverADs.m */; };
 		18CDF66C257F91BD006E8E5C /* DiscoverADModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F2257F91BC006E8E5C /* DiscoverADModel.m */; };
@@ -863,8 +862,6 @@
 		18CDF4E8257F91BC006E8E5C /* JWZXNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWZXNew.h; sourceTree = "<group>"; };
 		18CDF4E9257F91BC006E8E5C /* JWZXNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWZXNewsModel.m; sourceTree = "<group>"; };
 		18CDF4EB257F91BC006E8E5C /* JWZXNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWZXNew.m; sourceTree = "<group>"; };
-		18CDF4ED257F91BC006E8E5C /* VolunteerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerModel.m; sourceTree = "<group>"; };
-		18CDF4EE257F91BC006E8E5C /* VolunteerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerModel.h; sourceTree = "<group>"; };
 		18CDF4F0257F91BC006E8E5C /* DiscoverAD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverAD.m; sourceTree = "<group>"; };
 		18CDF4F1257F91BC006E8E5C /* DiscoverADs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverADs.m; sourceTree = "<group>"; };
 		18CDF4F2257F91BC006E8E5C /* DiscoverADModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverADModel.m; sourceTree = "<group>"; };
@@ -3102,7 +3099,6 @@
 			isa = PBXGroup;
 			children = (
 				18CDF4E2257F91BC006E8E5C /* PickerView */,
-				18CDF4EC257F91BC006E8E5C /* Volunteer */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3135,15 +3131,6 @@
 				1404748127F48C2B00307209 /* JWZXSectionNews */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		18CDF4EC257F91BC006E8E5C /* Volunteer */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF4EE257F91BC006E8E5C /* VolunteerModel.h */,
-				18CDF4ED257F91BC006E8E5C /* VolunteerModel.m */,
-			);
-			path = Volunteer;
 			sourceTree = "<group>";
 		};
 		18CDF4F6257F91BC006E8E5C /* View */ = {
@@ -7029,7 +7016,6 @@
 				AA7ABA962873EA5400BA6790 /* NewQAMainVC.m in Sources */,
 				FE2C135627AEF629001CF7AF /* ToDoDetailRepeatView.m in Sources */,
 				D0101F61243587A1004337ED /* GKLoadingView.m in Sources */,
-				18CDF669257F91BD006E8E5C /* VolunteerModel.m in Sources */,
 				1A799562252B43E400603253 /* SwiftyClient.swift in Sources */,
 				18CDF671257F91BD006E8E5C /* ExamArrangeModel.m in Sources */,
 				7311328526CCEC2400EF88C1 /* ExchangeCenterViewController.m in Sources */,

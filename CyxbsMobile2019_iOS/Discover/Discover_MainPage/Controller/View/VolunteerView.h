@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @protocol VolunteerViewDelegate <NSObject>
--(void)touchVolunteerView;
+- (void)touchVolunteerView;
 @end
 
 @interface VolunteerView : UIView

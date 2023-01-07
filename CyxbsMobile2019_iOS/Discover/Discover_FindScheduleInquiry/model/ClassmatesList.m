@@ -42,21 +42,6 @@
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failedCallBack(task, error);
     }];
-    
-//    HttpClient *client = [HttpClient defaultClient];
-//
-//    [client requestWithPath:ClassSchedule_GET_searchPeople_API method:HttpRequestGet parameters:parameters prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//        NSMutableArray *tmpArray = [NSMutableArray array];
-//        for (NSDictionary *classmateInfo in responseObject[@"data"]) {
-//            ClassmateItem *classmate = [ClassmateItem classmateWithDictionary:classmateInfo];
-//            [tmpArray addObject:classmate];
-//        }
-//        self.classmatesArray = tmpArray;
-//        succeededCallBack(self);
-//
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        failedCallBack(task, error);
-//    }];
 }
 
 - (void)getTeaListWithName:(NSString *)name success:(void (^)(ClassmatesList *classmatesList))succeededCallBack failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failedCallBack{
