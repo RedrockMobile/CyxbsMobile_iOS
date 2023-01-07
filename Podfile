@@ -24,8 +24,11 @@ target 'CyxbsMobile2019_iOS' do
     # pod 'AMap3DMap-NO-IDFA'
     pod 'MJExtension'
     # pod 'SDCycleScrollView'
+
+	#pod 'UMCommon'    # 必须集成 不支持arm64，去死吧
+	# pod 'UMDevice'    # 必须集成
+	# pod 'UMPush'	# 必选，推送组件，由原来的UMCPush变为UMPush
     
-    # pod 'UMCCommon','~> 2.1.1'
     # pod 'UMCSecurityPlugins','~> 1.0.6'
     # pod 'UMCCommonLog','~> 1.0.0'
     # pod 'UMCPush','~> 3.2.4'
