@@ -13,6 +13,7 @@ struct ScheduleWidgetEntryView: View {
     var entry: ScheduleProvider.Entry
     @Environment(\.widgetFamily) var family
     
+    @ViewBuilder
     var body: some View {
         switch family {
 //        case .systemSmall:

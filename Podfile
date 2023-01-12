@@ -66,7 +66,9 @@ end
 
 target 'CyxbsWidgetExtension' do
     pod 'WCDB'
-    pod 'Alamofire'
+    # pod 'Alamofire'
+    # pod 'SwiftyJSON'
+    pod 'AFNetworking'
 end
 
 post_install do |installer|

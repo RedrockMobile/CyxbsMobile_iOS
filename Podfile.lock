@@ -67,6 +67,7 @@ PODS:
   - YYKit/no-arc (1.0.9)
 
 DEPENDENCIES:
+  - AFNetworking
   - AFNetworking (~> 4.0)
   - Alamofire
   - FluentDarkModeKit
@@ -139,6 +140,6 @@ SPEC CHECKSUMS:
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: d4c5e5be231029e9bcaa22484092e34b285a9282
+PODFILE CHECKSUM: 30436e8ef23d117b2e415e9577f17cccb62ba3ed
 
 COCOAPODS: 1.11.3

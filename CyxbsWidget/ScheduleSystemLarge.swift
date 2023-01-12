@@ -117,7 +117,7 @@ extension ScheduleSystemLarge {
 
 struct ScheduleSystemLarge_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduleSystemLarge(entry: .init(date: NSDate.now))
+        ScheduleSystemLarge(entry:ScheduleTimelineEntry(date: Date()))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

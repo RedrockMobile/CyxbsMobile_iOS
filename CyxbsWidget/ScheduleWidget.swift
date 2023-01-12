@@ -13,7 +13,7 @@ struct ScheduleWidget: Widget {
     let kind: String = WidgetKind.schedule.rawValue
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: ScheduleProvider()) { entry in
+        IntentConfiguration(kind: kind, intent: ScheduleWidgetConfiguration.self, provider: ScheduleProvider()) { entry in
             ScheduleWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("掌邮课表")

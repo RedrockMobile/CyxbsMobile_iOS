@@ -10,20 +10,33 @@ import WidgetKit
 import SwiftUI
 import Intents
 
-struct ScheduleProvider: TimelineProvider {
+typealias ScheduleWidgetConfiguration = ConfigurationIntent
+
+struct ScheduleProvider: IntentTimelineProvider {
+    
     func placeholder(in context: Context) -> ScheduleTimelineEntry {
-        ScheduleTimelineEntry(date: Date())
+        ScheduleTimelineEntry(date: Date(), show: ScheduleWidgetModel.priviewSection)
     }
     
-    func getSnapshot(in context: Context, completion: @escaping (ScheduleTimelineEntry) -> ()) {
-        let entry = ScheduleTimelineEntry(date: Date())
+    func getSnapshot(for configuration: ScheduleWidgetConfiguration, in context: Context, completion: @escaping (ScheduleTimelineEntry) -> ())  {
+        let date = Date()
+        let entry: ScheduleTimelineEntry!
+        
+        if context.isPreview {
+            entry = .init(date: Date())
+        } else {
+            let model = ScheduleWidgetModel(showSection: 0, showRange: 1..<7)
+            
+            entry = ScheduleTimelineEntry(date: Date(), show: 13)
+        }
+        
         completion(entry)
     }
     
-    func getTimeline(in context: Context, completion: @escaping (Timeline<ScheduleTimelineEntry>) -> ()) {
-        var entries: [ScheduleTimelineEntry] = []
+    func getTimeline(for configuration: ScheduleWidgetConfiguration, in context: Context, completion: @escaping (Timeline<ScheduleTimelineEntry>) -> ()) {
         
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
+        var entries: [ScheduleTimelineEntry] = []
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
@@ -34,8 +47,4 @@ struct ScheduleProvider: TimelineProvider {
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
-}
-
-struct ScheduleTimelineEntry: TimelineEntry {
-    let date: Date
 }
