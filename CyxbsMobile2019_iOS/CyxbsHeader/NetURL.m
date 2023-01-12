@@ -14,17 +14,7 @@ const struct NetURL NetURL = {
         .beprod = @"https://be-prod.redrock.cqupt.edu.cn",
         .cloud =  @"https://be-prod.redrock.team"
     },
-    .scheule = {
-        .stu = @"/magipoke-jwzx/kebiao",
-        .tea = @"/magipoke-teakb/api/teaKb",
-        .transaction = {
-            .get = @"/magipoke-reminder/Person/getTransaction",
-            .add = @"/magipoke-reminder/Person/addTransaction",
-            .edit = @"/magipoke-reminder/Person/editTransaction",
-            .del = @"/magipoke-reminder/Person/deleteTransaction"
-        }
-    },
     .search = {
         .stu = @"/magipoke-text/search/people"
-    }
+    },
 };

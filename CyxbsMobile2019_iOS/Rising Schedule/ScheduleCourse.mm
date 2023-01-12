@@ -1,5 +1,5 @@
 //
-//  ScheduleCourse.m
+//  ScheduleCourse.mm
 //  CyxbsMobile2019_iOS
 //
 //  Created by SSR on 2022/8/23
@@ -8,7 +8,7 @@
 
 #import "ScheduleCourse.h"
 
-#import "ScheduleCourse+WCTTableCoding.h"
+#import "ScheduleTimelineSupport.h"
 
 @interface ScheduleCourse ()
 
@@ -20,7 +20,11 @@
 
 @end
 
-#pragma mark - SchoolLesson
+#pragma mark - ScheduleCourse
+
+#import "ScheduleCourse+WCTTableCoding.h"
+
+#ifdef WCDB_h
 
 @implementation ScheduleCourse 
 
@@ -43,8 +47,11 @@ WCDB_SYNTHESIZE(ScheduleCourse, type)
 WCDB_SYNTHESIZE(ScheduleCourse, teacher)
 WCDB_SYNTHESIZE(ScheduleCourse, lesson)
 
-WCDB_SYNTHESIZE(ScheduleCourse, sno)
-WCDB_SYNTHESIZE(ScheduleCourse, requestType)
+#else
+
+@implementation ScheduleCourse
+
+#endif
 
 #pragma mark - Init
 
@@ -61,10 +68,11 @@ WCDB_SYNTHESIZE(ScheduleCourse, requestType)
         self.inWeek = [dic[@"hash_day"] intValue] + 1;
         id weekAry = dic[@"week"];
         if ([weekAry isKindOfClass:NSArray.class]) {
-            _inSections = NSMutableIndexSet.indexSet;
+            NSMutableIndexSet *idxSet = NSMutableIndexSet.indexSet;
             for (NSNumber *sectionNumber in weekAry) {
-                [_inSections addIndex:sectionNumber.longValue];
+                [idxSet addIndex:sectionNumber.longValue];
             }
+            self.inSections = idxSet.copy;
         }
         self.period_location = [dic[@"begin_lesson"] longValue];
         self.period_lenth = [dic[@"period"] unsignedLongValue];
@@ -77,15 +85,6 @@ WCDB_SYNTHESIZE(ScheduleCourse, requestType)
         self.lesson = dic[@"lesson"];
     }
     return self;
-}
-
-#pragma mark - Method
-
-- (BOOL)isAboveVerticalTimeAs:(ScheduleCourse *)course {
-    if (self.inWeek == course.inWeek && !NSEqualRanges(NSIntersectionRange(self.period, course.period), NSMakeRange(0, 0))) {
-        return YES;
-    }
-    return NO;
 }
 
 #pragma mark - Setter
@@ -101,33 +100,64 @@ WCDB_SYNTHESIZE(ScheduleCourse, requestType)
     if (_period_location < 0) {
         _period_location = 12 - _period_location;
     }
-    
     return NSMakeRange(_period_location, _period_lenth);
 }
 
-- (NSString *)descriptionv{
-    return [NSString stringWithFormat:@"%@", @{
-        @"周" : @(_inWeek)
-    }];
+- (NSString *)timeStr {
+    ScheduleTimeline *timeline = ScheduleTimeline.standardTimeLine;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
+    formatter.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Chongqing"];
+    formatter.dateFormat = @"HH:mm";
+    NSString *beginStr = [formatter stringFromDate:(timeline[self.period.location - 1]).fromComponents.date];
+    NSString *endStr =[formatter stringFromDate:(timeline[NSMaxRange(self.period) - 2]).toComponents.date];
+    return [beginStr stringByAppendingFormat:@" - %@", endStr];
 }
 
-- (NSString *)timeStr {
-    if (_period_location <= 0 || NSMaxRange(self.period) - 1 > 12) {
-        return @"";
-    }
-    __block NSString *b, *e;
-//    [ getTimeline:^(NSInteger idx, NSTimeInterval begin, NSTimeInterval end, BOOL *stop) {
-//        if (self->_period_location - 1 == idx) {
-//            b = [NSString stringWithFormat:@"%ld:%ld", (NSInteger)begin / 60, (NSInteger)begin % 60];
-//        }
-//        if (NSMaxRange(self.period) - 2 == idx) {
-//            e = [NSString stringWithFormat:@"%ld:%ld", (NSInteger)end / 60, (NSInteger)end % 60];
-//        }
-//        if (e) {
-//            *stop = YES;
-//        }
-//    }];
-    return [b stringByAppendingFormat:@" - %@", e];
+#pragma mark - override
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@ %p>;\n \
+            course: %@, place: %@, inWeek: %ld, period: %ld, %ld\n", NSStringFromClass(self.class), self,
+            self.course, self.classRoom, self.inWeek, self.period.location, self.period.length];
+}
+
+#pragma mark - <NSSecureCoding>
+
++ (BOOL)supportsSecureCoding {
+    return YES;
+}
+
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder {
+    self.inWeek = [decoder decodeIntegerForKey:@"inWeek"];
+    self.inSections = ((NSMutableIndexSet *)[decoder decodeObjectOfClass:NSMutableIndexSet.class forKey:@"inSections"]).mutableCopy;
+    self.period_location = [decoder decodeIntegerForKey:@"location"];
+    self.period_lenth = [decoder decodeIntegerForKey:@"lenth"];
+    self.course = [decoder decodeObjectForKey:@"course"];
+    self.courseNike = [decoder decodeObjectForKey:@"courseNike"];
+    self.classRoom = [decoder decodeObjectForKey:@"classRoom"];
+    self.classRoomNike = [decoder decodeObjectForKey:@"classRoomNike"];
+    self.courseID = [decoder decodeObjectForKey:@"id"];
+    self.rawWeek = [decoder decodeObjectForKey:@"rawWeek"];
+    self.type = [decoder decodeObjectForKey:@"type"];
+    self.teacher = [decoder decodeObjectForKey:@"teacher"];
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(nonnull NSCoder *)coder {
+    [coder encodeInteger:self.inWeek forKey:@"inWeek"];
+    [coder encodeObject:self.inSections forKey:@"inSections"];
+    [coder encodeInteger:self.period_location forKey:@"location"];
+    [coder encodeInteger:self.period_lenth forKey:@"lenth"];
+    [coder encodeObject:self.course forKey:@"course"];
+    [coder encodeObject:self.courseNike forKey:@"courseNike"];
+    [coder encodeObject:self.classRoom forKey:@"classRoom"];
+    [coder encodeObject:self.classRoomNike forKey:@"classRoomNike"];
+    [coder encodeObject:self.courseID forKey:@"id"];
+    [coder encodeObject:self.rawWeek forKey:@"rawWeek"];
+    [coder encodeObject:self.type forKey:@"type"];
+    [coder encodeObject:self.teacher forKey:@"teacher"];
 }
 
 @end

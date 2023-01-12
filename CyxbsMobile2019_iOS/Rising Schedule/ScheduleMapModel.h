@@ -8,22 +8,31 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ScheduleCombineModel.h"
-
 #import "ScheduleCollectionViewModel.h"
 
+#import "ScheduleCombineItemSupport.h"
+
+#import "NSIndexPath+Schedule.h"
+
 NS_ASSUME_NONNULL_BEGIN
+
+/**MARK: ScheduleMapModel
+ * base layout class
+ */
 
 @interface ScheduleMapModel : NSObject
 
 /// 设置学号，使map呈现不同效果
 @property (nonatomic, copy, nullable) NSString *sno;
 
-@property (nonatomic, strong, readonly) NSMapTable <NSIndexPath *, ScheduleCollectionViewModel *>  *mapTable;
+/// 最终的布局mapTable，自定调用finishCombine
+@property (nonatomic, strong, readonly) NSMapTable <NSIndexPath *, ScheduleCollectionViewModel *> *mapTable;
 
 /// 加入到Map管理，不做强保存
 /// @param model 加入map管理的model
-- (void)combineModel:(ScheduleCombineModel *)model NS_REQUIRES_SUPER;
+- (void)combineItem:(ScheduleCombineItem *)model NS_REQUIRES_SUPER;
+
+- (void)finishCombine;
 
 /// 清理掉所有模型
 - (void)clear NS_REQUIRES_SUPER;

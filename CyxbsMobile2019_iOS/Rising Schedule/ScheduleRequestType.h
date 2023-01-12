@@ -14,9 +14,22 @@
 #ifndef ScheduleRequestType_h
 #define ScheduleRequestType_h
 
+#import <Foundation/Foundation.h>
+
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark - ScheduleModelRequestType
+/**MARK: ScheduleModelRequestType
+ * a kind of STRING ENUM
+ * ScheduleRequestDictionary sames as:
+ * @{
+ *      ScheduleModelRequestStudent : @[
+ *          @"2021215154",
+ *          @"2021215179"],
+ *      ScheduleModelRequestTeacher : @[
+ *          @"040107"],
+ *      ScheduleModelRequestCustom : @[@""]
+ * }
+ */
 
 typedef NSString * ScheduleModelRequestType NS_STRING_ENUM;
 
@@ -32,15 +45,9 @@ FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestStudent;
 /// 老师
 FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestTeacher;
 
-/// 自定义
+/// 自定义 mutable
 FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestCustom;
 
-// MARK: Method
-
-/// 获取KEY
-FOUNDATION_EXPORT NSString * _Nullable KeyInParameterForScheduleModelRequestType(const ScheduleModelRequestType _Nonnull);
-
 NS_ASSUME_NONNULL_END
-
 
 #endif /* ScheduleRequestType_h */

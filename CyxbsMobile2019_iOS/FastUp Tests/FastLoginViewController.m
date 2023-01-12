@@ -12,7 +12,7 @@
 
 #import "SchedulePresenter.h"
 
-#import "SearchPeopleViewController.h"
+#import "ScheduleWidgetCache.h"
 
 @interface FastLoginViewController () <UITextFieldDelegate>
 
@@ -24,6 +24,8 @@
 
 /// <#description#>
 @property (nonatomic, strong) UIButton *cleBtn;
+
+@property (nonatomic, strong) UITextField *widgetField;
 
 @end
 
@@ -46,7 +48,7 @@
     [self.view addSubview:self.snoField];
     [self.view addSubview:self.otherField];
     [self.view addSubview:self.cleBtn];
-    
+    [self.view addSubview:self.widgetField];
 }
 
 #pragma mark - TT
@@ -59,50 +61,51 @@
 
 - (UITextField *)snoField {
     if (_snoField == nil) {
-        _snoField = [[UITextField alloc] initWithFrame:CGRectMake(-1, self.view.height / 3, 281, 44)];
+        _snoField = [self _kindFieldWithPlaceholder:@"请输入您的学号" imgName:@"logo.sno"];
+        _snoField.frame = CGRectMake(-1, StatusBarHeight() + 100, 281, 44);
         _snoField.centerX = self.view.width / 2;
-        _snoField.layer.cornerRadius = 8;
-        _snoField.clipsToBounds = YES;
-        _snoField.font = [UIFont fontWithName:FontName.PingFangSC.Regular size:14];
-        _snoField.textColor = [UIColor Light:UIColorHex(#8B8B8B) Dark:UIColorHex(#C2C2C2)];
-        _snoField.backgroundColor = [UIColor Light:UIColorHex(#F1F5F9CC) Dark:UIColorHex(#282828)];
-        _snoField.delegate = self;
-        _snoField.placeholder = @"请输入您的学号";
-        _snoField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 46, 44)];
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 18, 15)];
-        imgView.center = view.SuperCenter;
-        imgView.image = [UIImage imageNamed:@"logo.sno"];
-        [view addSubview:imgView];
-        _snoField.leftView = view;
-        _snoField.leftViewMode = UITextFieldViewModeAlways;
     }
     return _snoField;
 }
 
 - (UITextField *)otherField {
     if (_otherField == nil) {
-        _otherField = [[UITextField alloc] initWithFrame:CGRectMake(-1, self.snoField.bottom + 22, 281, 44)];
+        _otherField = [self _kindFieldWithPlaceholder:@"请输入对方的学号" imgName:@"logo.reset"];
+        _otherField.frame = CGRectMake(-1, self.snoField.bottom + 22, 281, 44);
         _otherField.centerX = self.view.width / 2;
-        _otherField.layer.cornerRadius = 8;
-        _otherField.clipsToBounds = YES;
-        _otherField.font = [UIFont fontWithName:FontName.PingFangSC.Regular size:14];
-        _otherField.textColor = [UIColor Light:UIColorHex(#8B8B8B) Dark:UIColorHex(#C2C2C2)];
-        _otherField.backgroundColor = [UIColor Light:UIColorHex(#F1F5F9CC) Dark:UIColorHex(#282828)];
-        _otherField.delegate = self;
-        _otherField.placeholder = @"请输入对方的学号";
-        _otherField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 46, 44)];
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 18, 15)];
-        imgView.center = view.SuperCenter;
-        imgView.image = [UIImage imageNamed:@"logo.reset"];
-        [view addSubview:imgView];
-        _otherField.leftView = view;
-        _otherField.leftViewMode = UITextFieldViewModeAlways;
     }
     return _otherField;
+}
+
+- (UITextField *)widgetField {
+    if (_widgetField == nil) {
+        _widgetField = [self _kindFieldWithPlaceholder:@"输入小组件展示周数" imgName:@"more"];
+        _widgetField.frame = CGRectMake(-1, self.otherField.bottom + 22, 281, 44);
+        _widgetField.centerX = self.view.width / 2;
+        _widgetField.keyboardType = UIKeyboardTypeASCIICapableNumberPad;
+    }
+    return _widgetField;
+}
+
+- (UITextField *)_kindFieldWithPlaceholder:(NSString *)placeholder imgName:(NSString *)imgName {
+    UITextField *textField = [[UITextField alloc] init];
+    textField.layer.cornerRadius = 8;
+    textField.clipsToBounds = YES;
+    textField.font = [UIFont fontWithName:FontName.PingFangSC.Regular size:14];
+    textField.textColor = [UIColor Light:UIColorHex(#8B8B8B) Dark:UIColorHex(#C2C2C2)];
+    textField.backgroundColor = [UIColor Light:UIColorHex(#F1F5F9CC) Dark:UIColorHex(#282828)];
+    textField.delegate = self;
+    textField.placeholder = placeholder;
+    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 46, 44)];
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 18, 15)];
+    imgView.center = view.SuperCenter;
+    imgView.image = [UIImage imageNamed:imgName];
+    [view addSubview:imgView];
+    textField.leftView = view;
+    textField.leftViewMode = UITextFieldViewModeAlways;
+    return textField;
 }
 
 - (UIButton *)cleBtn {
@@ -119,12 +122,38 @@
         [_cleBtn bringSubviewToFront:_cleBtn.titleLabel];
         [_cleBtn addTarget:self action:@selector(_cletap:)
           forControlEvents:UIControlEventTouchUpInside];
-        [_cleBtn addTarget:self action:@selector(_outside:) forControlEvents:UIControlEventTouchUpOutside];
+        [_cleBtn addTarget:self action:@selector(_outside:) forControlEvents:UIControlEventTouchDragOutside];
     }
     return _cleBtn;
 }
 
 #pragma mark - private
+
+- (void)_cletap:(UIButton *)btn {
+    NSString *sno = self.snoField.text.copy;
+    ScheduleIdentifier *mainID = [ScheduleIdentifier identifierWithSno:sno type:ScheduleModelRequestStudent];
+    if (self.otherField.text && ![self.otherField.text isEqualToString:@""]) {
+        // be double
+        NSString *otherSno = self.otherField.text.copy;
+        ScheduleIdentifier *otherID = [ScheduleIdentifier identifierWithSno:otherSno type:ScheduleModelRequestStudent];
+        
+        [self.presenter setWithMainIdentifier:mainID otherIdentifier:otherID];
+    } else {
+        // only
+        [self.presenter setWithOnlyMainIdentifier:mainID];
+    }
+    self.snoField.text = nil;
+    self.otherField.text = nil;
+    
+    if (self.widgetField.text && ![self.widgetField.text isEqualToString:@""]) {
+        [self.presenter setWidgetSection:self.widgetField.text.integerValue];
+    }
+}
+
+- (void)_outside:(UIButton *)btn {
+    [NSUserDefaults.standardUserDefaults setBool:YES forKey:UDKey.isXXHB];
+    self.presenter.useAwake = YES;
+}
 
 - (void)_drawTabbar {
     UIImage *selectImg = [[[UIImage imageNamed:@"more"] imageByResizeToSize:CGSizeMake(20, 20) contentMode:UIViewContentModeScaleAspectFit] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -140,46 +169,7 @@
     } forState:UIControlStateNormal];
 }
 
-- (void)_cletap:(UIButton *)btn {
-    NSString *sno = self.snoField.text.copy;
-    if (self.otherField.text && ![self.otherField.text isEqualToString:@""]) {
-        NSString *otherSno = self.otherField.text.copy;
-        [NSUserDefaults.standardUserDefaults setBool:YES forKey:UDKey.isDefineMuti];
-        [NSUserDefaults.standardUserDefaults setBool:NO forKey:UDKey.isDefineMuti];
-        self.presenter.nextRequestDic = @{
-            ScheduleModelRequestStudent : @[sno, otherSno]
-        };
-        self.presenter.model.sno = sno;
-    } else {
-        [NSUserDefaults.standardUserDefaults setBool:NO forKey:UDKey.isDefineMuti];
-        self.presenter.nextRequestDic = @{
-            ScheduleModelRequestStudent : @[sno]
-        };
-        self.presenter.model.sno = nil;
-    }
-    [NSUserDefaults.standardUserDefaults setValue:self.snoField.text forKey:UDKey.sno];
-    [NSUserDefaults.standardUserDefaults setValue:self.otherField.text forKey:UDKey.otherSno];
-    self.snoField.text = @"";
-    self.otherField.text = @"";
-    
-    [NSUserDefaults.widgetUserDefaults setValue:self.presenter.nextRequestDic forKey:@"schedule.request.dic"];
-}
-
-- (void)_outside:(UIButton *)btn {
-    [NSUserDefaults.standardUserDefaults setBool:YES forKey:UDKey.isXXHB];
-    self.presenter.useAwake = YES;
-}
-
 #pragma mark - <UITextFieldDelegate>
-
-//- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-//    SearchPeopleViewController *vc = [[SearchPeopleViewController alloc] init];
-//    vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-//    [self presentViewController:vc animated:YES completion:^{
-//        [vc foucus];
-//    }];
-//    return NO;
-//}
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if (!textField.text || ![textField.text isEqualToString:@""]) {

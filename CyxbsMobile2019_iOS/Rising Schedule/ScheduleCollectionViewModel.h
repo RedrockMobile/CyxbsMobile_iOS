@@ -6,15 +6,14 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-/**
- *
- * 外部的indexPath确定 *周* 和 *所在点*
- * timeline确定 *星期* 和 *长度*
- */
-
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+/**MARK: ScheduleCollectionViewModel
+ * \c ViewModel 遵循了`NSCopying`协议
+ * 保存每个视图的数据源信息
+ */
 
 typedef NS_ENUM(NSUInteger, ScheduleBelongKind) {
     ScheduleBelongFistSystem,
@@ -22,8 +21,6 @@ typedef NS_ENUM(NSUInteger, ScheduleBelongKind) {
     ScheduleBelongSecondSystem,
     ScheduleBelongUnknow = ScheduleBelongFistSystem
 };
-
-#pragma mark - ScheduleCollectionViewModel
 
 @interface ScheduleCollectionViewModel : NSObject <NSCopying>
 
@@ -50,50 +47,6 @@ NS_ASSUME_NONNULL_END
 
 
 
-#pragma mark - NSIndexPath (ScheduleTimeline)
-
-NS_HEADER_AUDIT_BEGIN(nullability, sendability)
-
-#define ScheduleIndexPath(s, w, l) [NSIndexPath indexPathForLocation:l inWeek:w inSection:s]
-
-// This category provides convenience methods to make it easier to use an NSIndexPath to represent a location, week and section, for use with UICollectionView For Schedule
-@interface NSIndexPath (ScheduleTimeline)
-
-+ (instancetype)indexPathForLocation:(NSInteger)location inWeek:(NSInteger)week inSection:(NSInteger)section;
-
-// Returns the index at position 0.
-@property (nonatomic, readonly) NSInteger section;
-
-// Returns the index at position 1.
-@property (nonatomic, readonly) NSInteger week;
-
-// Returns the index at position 2.
-@property (nonatomic, readonly) NSInteger location;
-
-@end
-
-#pragma mark - Hash & Equal
-
-typedef NSUInteger ScheduleIndexPathHash(const void *item, NSUInteger (* _Nullable size)(const void *item));
-typedef BOOL ScheduleIndexPathEqual(const void *item1, const void*item2, NSUInteger (* _Nullable size)(const void *item));
-
-FOUNDATION_EXPORT ScheduleIndexPathHash schedule_section_week_hash;
-FOUNDATION_EXPORT ScheduleIndexPathEqual schedule_section_week_equal;
-
-#pragma mark - ENUM (ScheduleCollectionViewLayoutTime)
-
-typedef NS_ENUM(NSUInteger, ScheduleCollectionViewLayoutTime) {
-    ScheduleCollectionViewLayoutTimeNoon = 015,
-    ScheduleCollectionViewLayoutTimeNight
-} NS_UNAVAILABLE __deprecated_msg("暂时未设计午晚算法");
-
-NS_HEADER_AUDIT_END(nullability, sendability)
-
-
-
-
-
-
 #if __has_include("ScheduleCourse.h")
 #import "ScheduleCourse.h"
 
@@ -108,7 +61,3 @@ NS_ASSUME_NONNULL_BEGIN
 NS_ASSUME_NONNULL_END
 
 #endif
-
-
-
-

@@ -8,11 +8,13 @@
 
 #import "ScheduleServiceSolve.h"
 
-#import "ScheduleInteractorRequest.h"
+#import "ScheduleNETRequest.h"
 
 #import "ScheduleDetailController.h"
 
-#import "UIViewController+KNSemiModal.h"
+#import "ScheduleShareCache.h"
+
+#import "TransitioningDelegate.h"
 
 #pragma mark - ScheduleServiceSolve ()
 
@@ -35,32 +37,44 @@
 
 - (void)requestAndReloadData {
     ScheduleRequestDictionary *dic = self.parameterIfNeeded;
-    if (!dic) {
+    // if dic is empty or have nothing, return
+    if (!dic || dic.count == 0) {
         [self.collectionView reloadData];
+        return;
     }
     [self.model clear];
-      
-    [ScheduleInteractorRequest
+    // check if Memenry have cache item
+    NSMutableArray <ScheduleIdentifier *> *unInMemIds = NSMutableArray.array;
+    NSArray <ScheduleIdentifier *> *ids = ScheduleIdentifiersFromScheduleRequestDictionary(dic);
+    for (ScheduleIdentifier *idsItem in ids) {
+        ScheduleCombineItem *cacheItem = [ScheduleShareCache.shareCache getItemForKey:idsItem.key];
+        if (cacheItem) {
+            [self.model combineItem:cacheItem];
+        } else {
+            [unInMemIds addObject:idsItem];
+        }
+    }
+    // if all in MEM, do nont request
+    if (unInMemIds.count == 0) {
+        return;
+    }
+    
+    dic = ScheduleRequestDictionaryFromScheduleIdentifiers(unInMemIds);
+    [ScheduleNETRequest
      request:dic
-     success:^(ScheduleCombineModel * _Nonnull combineModel) {
-        [self.model combineModel:combineModel];
-        
+     success:^(ScheduleCombineItem * _Nonnull item) {
+        [self.model combineItem:item];
         [self.collectionView reloadData];
         [self scrollToSection:self.model.nowWeek];
         
         if (self.canUseAwake) {
-            [combineModel replace];
+            [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
         }
     }
-     failure:^(NSError * _Nonnull error) {
+     failure:^(NSError * _Nonnull error, ScheduleIdentifier *errorID) {
         if (self.canUseAwake) {
-            [dic enumerateKeysAndObjectsUsingBlock:^(ScheduleModelRequestType  _Nonnull key, NSArray<NSString *> * _Nonnull obj, BOOL * __unused stop) {
-                for (NSString *sno in obj) {
-                    ScheduleCombineModel *combine = [[ScheduleCombineModel alloc] initWithSno:sno type:key];
-                    [combine awake];
-                    [self.model combineModel:combine];
-                }
-            }];
+            ScheduleCombineItem *item = [ScheduleShareCache.shareCache awakeForIdentifier:errorID];
+            [self.model combineItem:item];
             [self.collectionView reloadData];
             [self scrollToSection:self.model.nowWeek];
         }
@@ -78,7 +92,7 @@
         return @"整学期";
     }
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    formatter.locale = NSLocale.CN;
+    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
     formatter.numberStyle = NSNumberFormatterSpellOutStyle;
     
     return [NSString stringWithFormat:@"第%@周", [formatter stringFromNumber:@(num)]];
@@ -87,7 +101,7 @@
 - (void)reloadHeaderView {
     NSInteger page = self.collectionView.contentOffset.x / self.collectionView.width;
     self.headerView.title = [self _titleForNum:page];
-    self.headerView.reBack = (page != self.model.nowWeek);
+    self.headerView.reBack = (page == self.model.nowWeek);
 }
 
 - (void)setHeaderView:(ScheduleHeaderView *)headerView {
@@ -99,17 +113,16 @@
 #pragma mark - <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [[[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium] impactOccurred];
     NSIndexPath *locationIdxPath = self.model.courseIdxPaths[indexPath.section][indexPath.item];
     NSArray <ScheduleCourse *> *courses = [self.model coursesWithLocationIdxPath:locationIdxPath];
     
+    TransitioningDelegate *transitionDelegate = [[TransitioningDelegate alloc] init];
+    transitionDelegate.transitionDurationIfNeeded = 0.3;
     ScheduleDetailController *vc = [[ScheduleDetailController alloc] initWithCourses:courses];
-    [[[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium] impactOccurred];
-    [self.viewController presentSemiViewController:vc withOptions:@{
-        KNSemiModalOptionKeys.pushParentBack : @(NO),
-        KNSemiModalOptionKeys.parentAlpha : @(1),
-        KNSemiModalOptionKeys.animationDuration : @(0.3),
-        KNSemiModalOptionKeys.shadowOpacity : @(0.2)
-    }];
+    vc.transitioningDelegate = transitionDelegate;
+    vc.modalPresentationStyle = UIModalPresentationCustom;
+    [self.viewController presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark - <UIScrollViewDelegate>

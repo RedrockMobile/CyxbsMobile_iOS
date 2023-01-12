@@ -13,9 +13,11 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ScheduleCollectionViewLayoutAttributes.h"
+#import "ScheduleCollectionViewLayoutSupport.h"
 
-#import "ScheduleCollectionViewModel.h"
+#import "ScheduleCollectionViewDataSource.h"
+
+#import "NSIndexPath+Schedule.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -5,8 +5,6 @@
 //  Created by SSR on 2022/7/28.
 //
 
-#import <UIKit/UIKit.h>
-
 #if __has_include(<YYKit/UIColor+YYAdd.h>)
 #import <YYKit/UIColor+YYAdd.h>
 
@@ -44,8 +42,8 @@ NS_ASSUME_NONNULL_END
 
 #endif
 
-#if __has_include(<UIColor+DarkModeKit.h>)
-#import <UIColor+DarkModeKit.h>
+//#if __has_include(<UIColor+DarkModeKit.h>)
+#import <FluentDarkModeKit/FluentDarkModeKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -58,5 +56,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-
-#endif
+//#endif

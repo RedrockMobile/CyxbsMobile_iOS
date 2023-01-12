@@ -32,7 +32,7 @@
 
 @implementation HttpTool
 
-RisingSigleClass_IMPLEMENTATION(Tool)
+RisingSingleClass_IMPLEMENTATION(Tool)
 
 - (AFHTTPSessionManager *)sessionManager {
     static dispatch_once_t onceToken;

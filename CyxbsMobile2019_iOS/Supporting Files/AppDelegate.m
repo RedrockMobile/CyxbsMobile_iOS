@@ -54,6 +54,10 @@
     [NSUserDefaults.standardUserDefaults setObject:baseURL forKey:@"baseURL"];
 }
 
+- (void)_umeng_rising {
+    
+}
+
 //- (void)_umeng {
 //    //开发者需要显式的调用此函数，日志系统才能工作
 //    [UMCommonLogManager setUpUMCommonLogManager];

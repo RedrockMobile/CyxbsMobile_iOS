@@ -9,7 +9,9 @@
 #import "ScheduleMapModel.h"
 
 @implementation ScheduleMapModel {
+    NSMapTable <NSIndexPath *, ScheduleCollectionViewModel *> *_mapTable;
     NSMapTable <NSIndexPath *, NSPointerArray *> *_dayMap;
+    BOOL _clear;
 }
 
 - (instancetype)init {
@@ -41,24 +43,30 @@
 
 #pragma mark - Method
 
-- (void)combineModel:(ScheduleCombineModel *)model {
-    for (ScheduleCourse *course in model.courseAry) {
+- (void)combineItem:(ScheduleCombineItem *)item {
+    _clear = YES;
+    for (ScheduleCourse *course in item.value) {
         
-        ScheduleCollectionViewModel *viewModel = [self _viewModelWithCourse:course];
+        ScheduleCollectionViewModel *viewModel = [self _viewModelWithIdentifier:item.identifier course:course];
         [course.inSections enumerateIndexesUsingBlock:^(NSUInteger section, BOOL * __unused stop) {
-            NSIndexPath *indexPath = ScheduleIndexPath(section, course.inWeek, course.period.location);
+            NSIndexPath *indexPath = ScheduleIndexPathNew(section, course.inWeek, course.period.location);
             
             [self _setViewModel:viewModel forIndexPath:indexPath];
         }];
         
-        [self _setViewModel:viewModel forIndexPath:ScheduleIndexPath(0, course.inWeek, course.period.location)];
+        [self _setViewModel:viewModel forIndexPath:ScheduleIndexPathNew(0, course.inWeek, course.period.location)];
     }
-    
-    [self _trunToMap];
 }
 
 - (void)clear {
     [_dayMap removeAllObjects];
+}
+
+- (NSMapTable<NSIndexPath *,ScheduleCollectionViewModel *> *)mapTable {
+    if (_clear) {
+        [self finishCombine];
+    }
+    return _mapTable;
 }
 
 #pragma mark - private
@@ -66,13 +74,13 @@
 #define _getVM_atAry(i) ((__bridge ScheduleCollectionViewModel *)[pointerAry pointerAtIndex:i])
 #define _setVM_atAry(viewModel, i) [pointerAry replacePointerAtIndex:i withPointer:(__bridge void *)(viewModel)]
 
-- (ScheduleCollectionViewModel *)_viewModelWithCourse:(ScheduleCourse *)course {
+- (ScheduleCollectionViewModel *)_viewModelWithIdentifier:(ScheduleIdentifier *)identifier course:(ScheduleCourse *)course {
     ScheduleCollectionViewModel *viewModel = [[ScheduleCollectionViewModel alloc] initWithScheduleCourse:course];
     if (!self.sno || [self.sno isEqualToString:@""]) {
         return viewModel;
     }
-    if ([course.sno isEqualToString:self.sno]) {
-        if (course.requestType == ScheduleModelRequestStudent) {
+    if ([identifier.sno isEqualToString:self.sno]) {
+        if (identifier.type == ScheduleModelRequestStudent) {
             viewModel.kind = ScheduleBelongFistSystem;
             return viewModel;
         } else {
@@ -124,7 +132,9 @@
     }
 }
 
-- (void)_trunToMap {
+#pragma mark - I I I
+
+- (void)finishCombine {
     [_mapTable removeAllObjects];
     NSEnumerator <NSIndexPath *> *keyEnumerator = _dayMap.keyEnumerator;
     for (NSIndexPath *dayIdx = keyEnumerator.nextObject; dayIdx; dayIdx = keyEnumerator.nextObject) {
@@ -143,7 +153,7 @@
             nextVM = _getVM_atAry(idx);
             if (nextVM != beforeVM) {
                 if (copyVM) {
-                    [_mapTable setObject:copyVM forKey:ScheduleIndexPath(dayIdx.section, dayIdx.week, location)];
+                    [_mapTable setObject:copyVM forKey:ScheduleIndexPathNew(dayIdx.section, dayIdx.week, location)];
                 }
                 copyVM = nextVM.copy;
                 (!copyVM) ?: (copyVM.lenth = 1);
@@ -155,9 +165,10 @@
             }
         }
         if (copyVM) {
-            [_mapTable setObject:copyVM forKey:ScheduleIndexPath(dayIdx.section, dayIdx.week, location)];
+            [_mapTable setObject:copyVM forKey:ScheduleIndexPathNew(dayIdx.section, dayIdx.week, location)];
         }
     }
+    _clear = NO;
 }
 
 @end

@@ -20,6 +20,20 @@
                ReferencedContainer = "container:CyxbsMobile2019_iOS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "141008DD295E88E20046E7BE"
+               BuildableName = "CyxbsWidgetExtension.appex"
+               BlueprintName = "CyxbsWidgetExtension"
+               ReferencedContainer = "container:CyxbsMobile2019_iOS.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

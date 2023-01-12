@@ -51,7 +51,8 @@
         // SupplementaryView attributes
         for (NSString *elementKind in _supplementaryAttributes.allKeys) {
             id <ScheduleCollectionViewDataSource> dataSource = (id <ScheduleCollectionViewDataSource>)self.collectionView.dataSource;
-            NSInteger supplementaryCount = [dataSource collectionView:self.collectionView numberOfSupplementaryOfKind:elementKind inSection:section];
+            NSInteger supplementaryCount = ![dataSource respondsToSelector:@selector(collectionView:numberOfSupplementaryOfKind:inSection:)]?:
+            [dataSource collectionView:self.collectionView numberOfSupplementaryOfKind:elementKind inSection:section];
             for (NSInteger item = 0; item < supplementaryCount; item++) {
                 
                 NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
@@ -183,7 +184,7 @@
         
         if (self.dataSource) {
             NSUInteger itemCount = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:indexPath.section];
-            attributes.alpha = (itemCount > 0 ? 0 : 1);
+            attributes.hidden = (itemCount > 0 ? 0 : 1);
         }
         
         return ;

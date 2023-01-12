@@ -12,10 +12,10 @@
 
 #if __has_feature(objc_arc) // ARC
 
-#define RisingSigleClass_IMPLEMENTATION(name)  \
+#define RisingSingleClass_IMPLEMENTATION(name)  \
 static id _instance = nil; \
 + (instancetype)share##name { \
-    return [[self alloc] init];\
+    return [self alloc];\
 } \
 + (instancetype)allocWithZone:(struct _NSZone *)zone { \
     static dispatch_once_t onceToken; \
@@ -33,7 +33,7 @@ static id _instance = nil; \
 
 #else // MRC
 
-#define RisingSingleClass_PROPERTY(name)  \
+#define RisingSingleClass_IMPLEMENTATION(name)  \
 static name *_instance = nil; \
 + (instancetype)share##name { \
     name *instance = [[self alloc] init]; \

@@ -1,4 +1,4 @@
-source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+# source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 
 platform :ios,'11.0'
 
@@ -6,20 +6,16 @@ use_frameworks!
 
 install! 'cocoapods', :disable_input_output_paths => true
 
-def available_pods
-   pod 'YYKit',:inhibit_warnings => true
-   # pod 'YYImage',:inhibit_warnings => true
-end
-
 target 'CyxbsMobile2019_iOS' do
     inherit! :search_paths
-    available_pods
+
+    pod 'YYKit',:inhibit_warnings => true
 
     # pod 'TZImagePickerController','~> 3.3.2'
     # pod 'YBImageBrowser',:inhibit_warnings => true
     # pod 'NudeIn'
     pod 'SDWebImage'
-    pod 'AFNetworking'
+    pod 'AFNetworking', '~> 4.0'
     # pod 'MBProgressHUD', '~> 0.9.2'
     
     pod 'Masonry'
@@ -28,8 +24,11 @@ target 'CyxbsMobile2019_iOS' do
     # pod 'AMap3DMap-NO-IDFA'
     pod 'MJExtension'
     # pod 'SDCycleScrollView'
+
+	#pod 'UMCommon'    # 必须集成 不支持arm64，去死吧
+	# pod 'UMDevice'    # 必须集成
+	# pod 'UMPush'	# 必选，推送组件，由原来的UMCPush变为UMPush
     
-    # pod 'UMCCommon','~> 2.1.1'
     # pod 'UMCSecurityPlugins','~> 1.0.6'
     # pod 'UMCCommonLog','~> 1.0.0'
     # pod 'UMCPush','~> 3.2.4'
@@ -45,7 +44,9 @@ target 'CyxbsMobile2019_iOS' do
     pod 'FluentDarkModeKit'
     pod 'IGListKit' # SSR引入，暂时无项目使用
     pod 'WCDB'
-    pod 'CocoaMarkdown'
+    # pod 'CocoaMarkdown'
+  pod 'MarkDownEditor'
+    pod 'JGProgressHUD'
     
     pod 'Alamofire'
     pod 'SwiftyJSON'
@@ -63,16 +64,16 @@ target 'CyxbsMobile2019_iOS' do
     
 end
 
-target 'ScheduleWidgetExtension' do
-    available_pods
+target 'CyxbsWidgetExtension' do
     pod 'WCDB'
+    # pod 'Alamofire'
+    # pod 'SwiftyJSON'
+    pod 'AFNetworking'
 end
 
 post_install do |installer|
     installer.pods_project.build_configurations.each do |config|
         config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
-        config.build_settings['VALID_ARCHS'] = 'arm64 arm64e armv7 armv7s x86_64 i386'
-        config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
         config.build_settings['HEADER_SEARCH_PATHS'] = '$(PROJECT_DIR)/**'
         config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
         config.build_settings['EXPANDED_CODE_SIGN_IDENTITY'] = ""

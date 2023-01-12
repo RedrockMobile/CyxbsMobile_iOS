@@ -16,9 +16,6 @@
 
 @interface ScheduleServiceDataSource ()
 
-/// 视图不同
-@property (nonatomic) BOOL diff;
-
 /// 背景图
 @property (nonatomic, strong) UIView *backgroundView;
 
@@ -44,8 +41,7 @@
         _backgroundView.backgroundColor =
         [UIColor Light:UIColorHexARGB(#80E8F0FC)
                   Dark:UIColorHexARGB(#40000000)];
-        
-        _backgroundView.alpha = 0;
+        _backgroundView.hidden = YES;
     }
     return _backgroundView;
 }
@@ -130,9 +126,10 @@
     }
     
     NSDate *date = [NSDate dateWithTimeInterval:(indexPath.section - 1) * 7 * 24 * 60 * 60 + (indexPath.item - 1) * 24 * 60 * 60 sinceDate:_model.startDate];
-    
-    NSUInteger currentDayWeek = date.weekday;
-    currentDayWeek = (currentDayWeek + 6) % 7 + currentDayWeek / 7;
+    NSDateComponents *component = [NSCalendar.currentCalendar componentsInTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Chongqing"] fromDate:date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Chongqing"];
+    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
     
     ScheduleSupplementaryCollectionViewCell *cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier forIndexPath:indexPath];
     
@@ -141,16 +138,17 @@
     
     if (kind == UICollectionElementKindSectionHeader) {
         
-        NSUInteger todayWeek = NSDate.date.weekday;
-        todayWeek = (todayWeek + 6) % 7 + todayWeek / 7;
+        NSUInteger calenderWeek = [NSCalendar.currentCalendar component:NSCalendarUnitWeekday fromDate:NSDate.date];
+        NSUInteger todayWeek = (calenderWeek + 6) % 8 + (calenderWeek + 6) / 8;
+        formatter.dateFormat = @"EEE";
         
         cell.isTitleOnly = (indexPath.section == 0 ? YES : indexPath.item == 0);
         
         cell.title = ((indexPath.section == 0 && indexPath.item == 0) ? @"学期" :
-                      ((indexPath.item == 0) ? [NSString stringWithFormat:@"%ld月", date.month] :
-                       [date stringWithFormat:@"EEE" timeZone:NSTimeZone.CQ locale:NSLocale.CN]));
+                      ((indexPath.item == 0) ? [NSString stringWithFormat:@"%ld月", component.month] :
+                       [formatter stringFromDate:date]));
         
-        cell.content = [NSString stringWithFormat:@"%ld日", date.day];
+        cell.content = [NSString stringWithFormat:@"%ld日", component.day];
         
         cell.isCurrent = (indexPath.section == 0 ? NO :
                           (indexPath.section != _model.nowWeek ? NO :

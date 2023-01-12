@@ -14,6 +14,8 @@
 
 #import "UserAgreementViewController.h"
 
+#import "ScheduleWidgetCache.h"
+
 @interface CyxbsTabBarController () 
 
 /// <#description#>
@@ -62,21 +64,16 @@
 - (UIViewController *)_vc1 {
     SchedulePresenter *presenter = [[SchedulePresenter alloc] init];
     presenter.useAwake = [NSUserDefaults.standardUserDefaults boolForKey:UDKey.isXXHB];
-    NSString *sno = [NSUserDefaults.standardUserDefaults valueForKey:UDKey.sno];
-    if (sno && ![sno isEqualToString:@""]) {
-        presenter.nextRequestDic = @{
-            ScheduleModelRequestStudent : @[sno]
-        };
-    }
     
-//    /// @warning 注意
-//    presenter.nextRequestDic = @{
-//        ScheduleModelRequestStudent : @[
-//            @"2021215154",
-//            @"2021214411"
-//        ]
-//    };
-//    presenter.model.sno = @"2021214411";
+    ScheduleIdentifier *mainID = ScheduleWidgetCache.shareCache.mainID;
+    if (mainID.sno && ![mainID.sno isEqualToString:@""]) {
+        if (ScheduleWidgetCache.shareCache.beDouble) {
+            ScheduleIdentifier *otherID = ScheduleWidgetCache.shareCache.otherID;
+            [presenter setWithMainIdentifier:mainID otherIdentifier:otherID];
+        } else {
+            [presenter setWithOnlyMainIdentifier:mainID];
+        }
+    }
     
     ScheduleController *vc = [[ScheduleController alloc] initWithPresenter:presenter];
     vc.isPushStyle = YES;

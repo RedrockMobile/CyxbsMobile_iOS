@@ -11,6 +11,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "ScheduleAPI.h"
+
 extern const struct NetURL {
     // .base
     const struct Base {
@@ -18,24 +20,9 @@ extern const struct NetURL {
         __unsafe_unretained NSString *beprod;
         __unsafe_unretained NSString *cloud;
     } base;
-    // .schedule
-    const struct Schedule {
-        __unsafe_unretained NSString *stu;
-        __unsafe_unretained NSString *tea;
-        // .transaction
-        const struct Transaction {
-            __unsafe_unretained NSString *get;
-            __unsafe_unretained NSString *add;
-            __unsafe_unretained NSString *edit;
-            __unsafe_unretained NSString *del;
-        } transaction;
-    } scheule;
-    // .search
     const struct Search {
         __unsafe_unretained NSString *stu;
     } search;
 } NetURL;
-
-#import "RisingScheduleHeader.h"
 
 #endif /* NetURL_h */

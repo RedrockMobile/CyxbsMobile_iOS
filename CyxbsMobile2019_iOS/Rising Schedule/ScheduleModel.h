@@ -27,15 +27,16 @@ NS_ASSUME_NONNULL_BEGIN
 /// 开始的时间
 @property (nonatomic, readonly, nonnull) NSDate *startDate;
 
-/// 当周
-/// 0代表整周
+/// 当周(0代表整周)
 @property (nonatomic, readonly) NSUInteger nowWeek;
 
 @property (nonatomic, readonly) NSArray <NSArray <NSIndexPath *> *> *courseIdxPaths;
 
 /// 当前在上课/最近一次要上的课
 /// 如果今天课程结束了，就会返回nil
-@property (nonatomic, readonly, nullable) ScheduleCourse *nowCourse __deprecated_msg("还没写");
+@property (nonatomic, readonly, nullable) ScheduleCourse *nowCourse;
+
+@property (nonatomic, readonly) CGFloat percentOfLocation;
 
 /// 返回同一时间段的所有重复课程
 /// 传进来的idxPath，至少week和location位置有值

@@ -8,7 +8,7 @@
 
 #import "UserAgreementView.h"
 
-#import <CocoaMarkdown/CocoaMarkdown.h>
+#import <MarkDownEditor/MarkDownEditor.h>
 
 #pragma mark - UserAgreementView ()
 
@@ -44,10 +44,12 @@
             NSFontAttributeName : [UIFont fontWithName:FontName.PingFangSC.Semibold size:20],
             NSForegroundColorAttributeName : [UIColor Light:UIColorHex(#112C54) Dark:UIColorHex(#F0F0F2)]
         };
+        
         attributes.textAttributes = @{
             NSFontAttributeName : [UIFont fontWithName:FontName.PingFangSC.Medium size:16],
             NSForegroundColorAttributeName : [UIColor Light:UIColorHex(#112C54) Dark:UIColorHex(#F0F0F2)]
         };
+        
         NSAttributedString *string = [document attributedStringWithAttributes:attributes];
         dispatch_sync(dispatch_get_main_queue(), ^{
             self.agreementTextView.attributedText = string;

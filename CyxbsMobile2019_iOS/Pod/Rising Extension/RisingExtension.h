@@ -10,6 +10,10 @@
 
 #import "RisingFoundationExtension.h"
 
+#if __has_include(<UIKit/UIKit.h>)
+
 #import "RisingUIKitExtension.h"
+
+#endif
 
 #endif /* RisingExtension_h */

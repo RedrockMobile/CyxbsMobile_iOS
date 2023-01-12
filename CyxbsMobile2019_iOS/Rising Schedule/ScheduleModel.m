@@ -8,10 +8,14 @@
 
 #import "ScheduleModel.h"
 
+#import "ScheduleTimelineSupport.h"
+
+#import "ScheduleTimelineSupport.h"
+
 #pragma mark - ScheduleModel
 
 @implementation ScheduleModel {
-    NSMutableDictionary <NSString *, ScheduleCombineModel *> *_statusMap;
+    NSMutableDictionary <ScheduleIdentifier *, NSArray<ScheduleCourse *> *> *_statusMap;
     NSMutableArray <NSMutableArray <NSIndexPath *> *> *_courseIdxPaths;
 }
 
@@ -23,14 +27,16 @@
     return self;
 }
 
-- (void)combineModel:(ScheduleCombineModel *)model {
-    if (_statusMap[model.identifier]) {
+#pragma mark - Method
+
+- (void)combineItem:(ScheduleCombineItem *)model {
+    if (_statusMap[model.identifier] || model.identifier == nil) {
         return;
     }
-    [super combineModel:model];
-    _statusMap[model.identifier] = model;
+    [super combineItem:model];
+    _statusMap[model.identifier] = model.value;
     _courseIdxPaths = nil;
-    self.nowWeek = model.nowWeek;
+    [self setBeginerWithExp:model.identifier.exp];
 }
 
 - (void)clear {
@@ -39,15 +45,32 @@
     _courseIdxPaths = nil;
 }
 
+- (ScheduleCourse *)nowCourse {
+    NSDate *nowDate = NSDate.date;
+    NSDateComponents *components = [NSCalendar.currentCalendar componentsInTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Chongqing"] fromDate:nowDate];
+    NSInteger inWeek = (components.weekday + 6) % 8 + (components.weekday + 6) / 8;
+    NSInteger inSection = [nowDate timeIntervalSinceDate:self.startDate] / (7 * 24 * 60 * 60);
+    NSInteger percent = [ScheduleTimeline.standardTimeLine percentWithDateComponents:components];
+    
+    ScheduleIdentifier *selfIdentifier = [ScheduleIdentifier identifierWithSno:self.sno type:ScheduleModelRequestStudent];
+    for (ScheduleCourse *course in _statusMap[selfIdentifier]) {
+        if ([course.inSections containsIndex:inSection] && course.inWeek == inWeek && NSLocationInRange(percent, course.period)) {
+            return course;
+        }
+    }
+    
+    return nil;
+}
+
 - (NSArray<ScheduleCourse *> *)coursesWithLocationIdxPath:(NSIndexPath *)idxPath {
     NSMutableArray *ary = NSMutableArray.array;
-    [_statusMap enumerateKeysAndObjectsUsingBlock:^(NSString * __unused key, ScheduleCombineModel * _Nonnull obj, BOOL * __unused stop) {
-        for (ScheduleCourse *course in obj.courseAry) {
+    for (NSArray <ScheduleCourse *> *kind in _statusMap.allValues) {
+        for (ScheduleCourse *course in kind) {
             if (course.inSections && course.inWeek == idxPath.week && NSLocationInRange(idxPath.location, course.period) ) {
                 [ary addObject:course];
             }
         }
-    }];
+    }
     return ary;
 }
 
@@ -68,18 +91,11 @@
     return _courseIdxPaths;
 }
 
-#pragma mark - Setter
+#pragma mark - Private
 
-- (void)setNowWeek:(NSUInteger)nowWeek {
-    if (_nowWeek == nowWeek) {
-        return;
-    }
-    _nowWeek = nowWeek;
-    NSDate *date = NSDate.date;
-    NSUInteger originWeek = date.weekday;
-    originWeek = (originWeek + 6) % 7 + originWeek / 7;
-    NSTimeInterval beforNow = (_nowWeek - 1) * 7 * 24 * 60 * 60 + (date.weekday - 2) * 24 * 60 * 60;
-    _startDate = [NSDate dateWithTimeIntervalSinceNow:-beforNow];
+- (void)setBeginerWithExp:(NSTimeInterval)exp {
+    _startDate = [NSDate dateWithTimeIntervalSince1970:exp];
+    _nowWeek = ceil([NSDate.date timeIntervalSinceDate:_startDate] / (7 * 24 * 60 * 60));
 }
 
 @end

@@ -7,16 +7,48 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		141008DF295E88E20046E7BE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BC480F29164EB30063809E /* WidgetKit.framework */; };
+		141008E0295E88E20046E7BE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BC481129164EB30063809E /* SwiftUI.framework */; };
+		141008E3295E88E20046E7BE /* CyxbsWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141008E2295E88E20046E7BE /* CyxbsWidgetBundle.swift */; };
+		141008E5295E88E20046E7BE /* CyxbsWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141008E4295E88E20046E7BE /* CyxbsWidgetLiveActivity.swift */; };
+		141008E7295E88E20046E7BE /* ScheduleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141008E6295E88E20046E7BE /* ScheduleProvider.swift */; };
+		141008EA295E88E20046E7BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 141008E9295E88E20046E7BE /* Assets.xcassets */; };
+		141008EC295E88E20046E7BE /* CyxbsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 141008E8295E88E20046E7BE /* CyxbsWidget.intentdefinition */; };
+		141008ED295E88E20046E7BE /* CyxbsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 141008E8295E88E20046E7BE /* CyxbsWidget.intentdefinition */; };
+		141008F0295E88E20046E7BE /* CyxbsWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 141008DE295E88E20046E7BE /* CyxbsWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		141008F5295E899D0046E7BE /* ScheduleWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141008F4295E899D0046E7BE /* ScheduleWidget.swift */; };
+		141008F7295E8B7A0046E7BE /* ScheduleSystemLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141008F6295E8B7A0046E7BE /* ScheduleSystemLarge.swift */; };
+		141008F9295E8CF60046E7BE /* ScheduleSystemSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141008F8295E8CF60046E7BE /* ScheduleSystemSmall.swift */; };
+		141008FB295E8D520046E7BE /* ScheduleWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141008FA295E8D520046E7BE /* ScheduleWidgetEntryView.swift */; };
+		14100AE7295F08920046E7BE /* ScheduleContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AE6295F08920046E7BE /* ScheduleContentView.swift */; };
+		14100AEB295FDCF50046E7BE /* ScheduleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AEA295FDCF50046E7BE /* ScheduleSupplementaryView.swift */; };
+		14100AEC295FEE190046E7BE /* ScheduleCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D03BB6292DFECE001CA682 /* ScheduleCollectionViewModel.m */; };
+		14100AEE296005F20046E7BE /* ScheduleLeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AED296005F20046E7BE /* ScheduleLeadingView.swift */; };
+		14100AF029612DFE0046E7BE /* ScheduleTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AEF29612DFE0046E7BE /* ScheduleTopView.swift */; };
+		14100AF82961516B0046E7BE /* WidgetKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AF72961516B0046E7BE /* WidgetKitHelper.swift */; };
+		14100AFB29615DB80046E7BE /* ScheduleShareCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14592A6B2954659F006EB674 /* ScheduleShareCache.mm */; };
+		14100AFC29615DC10046E7BE /* ScheduleCourse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6028B4D283003D288B /* ScheduleCourse.mm */; };
+		14100AFD29615DCD0046E7BE /* ScheduleCombineItemSupport.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1459298A294A0083006EB674 /* ScheduleCombineItemSupport.mm */; };
+		14100AFE29615DF80046E7BE /* ScheduleTimelineSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E66AA6295C8AC90043CBE7 /* ScheduleTimelineSupport.m */; };
 		141DB246293AE9C90051A395 /* ScheduleMapModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 141DB245293AE9C90051A395 /* ScheduleMapModel.m */; };
 		1422240628D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422240528D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.m */; };
-		1422241F28D9B091009A4A54 /* NSDate+Rising.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422241628D9B091009A4A54 /* NSDate+Rising.m */; };
 		1422242028D9B091009A4A54 /* RisingFoundationExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422241728D9B091009A4A54 /* RisingFoundationExtention.m */; };
 		1422242128D9B091009A4A54 /* UIView+Rising.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422241C28D9B091009A4A54 /* UIView+Rising.m */; };
 		1422242228D9B091009A4A54 /* UIColor+Rising.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422241D28D9B091009A4A54 /* UIColor+Rising.m */; };
 		1422242628D9B31B009A4A54 /* RisingUIKitExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422242528D9B31B009A4A54 /* RisingUIKitExtension.m */; };
 		14320606291C9657003B0E11 /* UserAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14320605291C9657003B0E11 /* UserAgreementViewController.m */; };
 		1435613028CCA93500EF6987 /* ScheduleServiceSolve.m in Sources */ = {isa = PBXBuildFile; fileRef = 1435612F28CCA93500EF6987 /* ScheduleServiceSolve.m */; };
+		143762C72963EBC200979FA2 /* CyxbsWidgetKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143762C62963EBC200979FA2 /* CyxbsWidgetKind.swift */; };
+		143762C82963EBC700979FA2 /* CyxbsWidgetKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143762C62963EBC200979FA2 /* CyxbsWidgetKind.swift */; };
+		1437630229696A7300979FA2 /* ScheduleWidgetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1437630029696A7000979FA2 /* ScheduleWidgetModel.swift */; };
 		1441BF7C291FF29200591A0E /* UserAgreementConsentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1441BF7B291FF29200591A0E /* UserAgreementConsentView.m */; };
+		1448BFF52961CC830015768E /* WidgetKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AF72961516B0046E7BE /* WidgetKitHelper.swift */; };
+		1448BFF829627E350015768E /* ScheduleWidgetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448BFF729627E350015768E /* ScheduleWidgetCache.m */; };
+		1448BFF9296280FD0015768E /* ScheduleWidgetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448BFF729627E350015768E /* ScheduleWidgetCache.m */; };
+		1459296B294482CB006EB674 /* NSIndexPath+Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1459296A294482CB006EB674 /* NSIndexPath+Schedule.m */; };
+		1459298B294A0083006EB674 /* ScheduleCombineItemSupport.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1459298A294A0083006EB674 /* ScheduleCombineItemSupport.mm */; };
+		14592A6029516246006EB674 /* ScheduleAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 14592A5F29516246006EB674 /* ScheduleAPI.m */; };
+		14592A6C2954659F006EB674 /* ScheduleShareCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14592A6B2954659F006EB674 /* ScheduleShareCache.mm */; };
 		1466282628C4B1BD00AF584F /* ScheduleServiceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466282528C4B1BD00AF584F /* ScheduleServiceDataSource.m */; };
 		1466282928C4B1EC00AF584F /* ScheduleCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466282828C4B1EC00AF584F /* ScheduleCollectionViewLayout.m */; };
 		1466282C28C4EFE400AF584F /* ScheduleRequestType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466282B28C4EFE400AF584F /* ScheduleRequestType.m */; };
@@ -25,11 +57,19 @@
 		146AA0C528B65FA800391FD0 /* SchedulePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 146AA0C428B65FA800391FD0 /* SchedulePresenter.m */; };
 		146D144C2907F21700327AB8 /* FastLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D144B2907F21700327AB8 /* FastLoginViewController.m */; };
 		146D144F2908BB2800327AB8 /* UDKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D144E2908BB2800327AB8 /* UDKey.m */; };
-		1478633D28BB567A00C1E54B /* ScheduleCombineModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1478633C28BB567A00C1E54B /* ScheduleCombineModel.mm */; };
+		14880A4B296EB03900BC5368 /* Schedule.2021215154.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14880A49296EB03900BC5368 /* Schedule.2021215154.plist */; };
+		14880A4E296EB55A00BC5368 /* ScheduleWidgetPriview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14880A4D296EB55A00BC5368 /* ScheduleWidgetPriview.swift */; };
+		14880A50296EBE9600BC5368 /* ScheduleTimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14880A4F296EBE9600BC5368 /* ScheduleTimelineEntry.swift */; };
+		14880A52296F957000BC5368 /* Schedule.2022214857.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14880A51296F957000BC5368 /* Schedule.2022214857.plist */; };
 		14B46E6128B4D283003D288B /* ScheduleCourse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6028B4D283003D288B /* ScheduleCourse.mm */; };
 		14B46E6528B4D5D7003D288B /* ScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6328B4D5D7003D288B /* ScheduleModel.m */; };
-		14B46E6A28B4E504003D288B /* ScheduleInteractorRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6928B4E504003D288B /* ScheduleInteractorRequest.m */; };
+		14B46E6A28B4E504003D288B /* ScheduleNETRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6928B4E504003D288B /* ScheduleNETRequest.m */; };
 		14B73F27281BE6C200D08ADD /* CyxbsMobileImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */; };
+		14B7E41D295C46D40033653D /* TransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B7E41C295C46D40033653D /* TransitioningDelegate.m */; };
+		14B7E420295C4A150033653D /* PresentAnimatedTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B7E41F295C4A150033653D /* PresentAnimatedTransition.m */; };
+		14B7E423295C4B2C0033653D /* DismissAnimatedTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B7E422295C4B2C0033653D /* DismissAnimatedTransition.m */; };
+		14B7E426295C4B770033653D /* PresentDrivenInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B7E425295C4B770033653D /* PresentDrivenInteractiveTransition.m */; };
+		14B7E429295C4BE30033653D /* DismissDrivenInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B7E428295C4BE30033653D /* DismissDrivenInteractiveTransition.m */; };
 		14B9647828F66C1E00C984AB /* NetURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9647728F66C1E00C984AB /* NetURL.m */; };
 		14B9647B28F6701500C984AB /* FontName.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9647A28F6701500C984AB /* FontName.m */; };
 		14B9648028F67EEF00C984AB /* CyxbsTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9647F28F67EEF00C984AB /* CyxbsTabBarController.m */; };
@@ -38,34 +78,23 @@
 		14BC47F82914D76E0063809E /* SearchPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC47F72914D76E0063809E /* SearchPeopleViewController.m */; };
 		14BC47FB2914D80F0063809E /* SearchPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC47FA2914D80F0063809E /* SearchPerson.m */; };
 		14BC480929154D290063809E /* SearchPersonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC480829154D290063809E /* SearchPersonModel.m */; };
-		14BC481029164EB30063809E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BC480F29164EB30063809E /* WidgetKit.framework */; };
-		14BC481229164EB30063809E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BC481129164EB30063809E /* SwiftUI.framework */; };
-		14BC481529164EB30063809E /* ScheduleWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BC481429164EB30063809E /* ScheduleWidget.swift */; };
-		14BC481829164EB40063809E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14BC481729164EB40063809E /* Assets.xcassets */; };
-		14BC481A29164EB40063809E /* ScheduleWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 14BC481629164EB30063809E /* ScheduleWidget.intentdefinition */; };
-		14BC481B29164EB40063809E /* ScheduleWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 14BC481629164EB30063809E /* ScheduleWidget.intentdefinition */; };
-		14BC481E29164EB40063809E /* ScheduleWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 14BC480E29164EB30063809E /* ScheduleWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		14BC4825291650DB0063809E /* ScheduleWidgetEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BC4824291650740063809E /* ScheduleWidgetEntryView.swift */; };
-		14BC4827291652390063809E /* ScheduleWidgetLarge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BC4826291652390063809E /* ScheduleWidgetLarge.swift */; };
-		14BC4829291654020063809E /* ScheduleCourseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BC4828291654020063809E /* ScheduleCourseView.swift */; };
-		14BC482B29165B170063809E /* WidgetShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BC482A29165B170063809E /* WidgetShare.swift */; };
-		14BC482F29169E6E0063809E /* NSUserDefaults+Cyxbs.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC482E29169E6E0063809E /* NSUserDefaults+Cyxbs.m */; };
-		14BC48312917CFB80063809E /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BC48302917CFB80063809E /* ScheduleModel.swift */; };
-		14BC483229190E9F0063809E /* ScheduleCombineModel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1478633C28BB567A00C1E54B /* ScheduleCombineModel.mm */; };
-		14BC483429190FAE0063809E /* UDKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D144E2908BB2800327AB8 /* UDKey.m */; };
-		14BC4835291910660063809E /* ScheduleCourse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6028B4D283003D288B /* ScheduleCourse.mm */; };
 		14D03BB7292DFECE001CA682 /* ScheduleCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D03BB6292DFECE001CA682 /* ScheduleCollectionViewModel.m */; };
 		14D598C928FF90EB00C9798F /* ScheduleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598C828FF90EB00C9798F /* ScheduleHeaderView.m */; };
 		14D598CC28FF964100C9798F /* SameDrawUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598CB28FF964100C9798F /* SameDrawUI.m */; };
 		14D598DB2901801F00C9798F /* ScheduleDetailTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598DA2901801F00C9798F /* ScheduleDetailTableHeaderView.m */; };
 		14D598E729021BE400C9798F /* UIViewController+KNSemiModal.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598E629021BE400C9798F /* UIViewController+KNSemiModal.m */; };
+		14D64593296161BC001315B1 /* ScheduleFetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D64592296161BC001315B1 /* ScheduleFetchData.swift */; };
+		14D6459529616280001315B1 /* ScheduleMapModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 141DB245293AE9C90051A395 /* ScheduleMapModel.m */; };
+		14D6459629616289001315B1 /* NSIndexPath+Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1459296A294482CB006EB674 /* NSIndexPath+Schedule.m */; };
+		14D6459729616374001315B1 /* ScheduleRequestType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466282B28C4EFE400AF584F /* ScheduleRequestType.m */; };
 		14E3199B290C11CB00B951CE /* PlaceholderCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E3199A290C11CB00B951CE /* PlaceholderCollectionReusableView.m */; };
 		14E3199D290CC4F100B951CE /* UserAgreement.md in Resources */ = {isa = PBXBuildFile; fileRef = 14E3199C290CC4F100B951CE /* UserAgreement.md */; };
 		14E319A0290CC52D00B951CE /* UserAgreementView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E3199F290CC52D00B951CE /* UserAgreementView.m */; };
+		14E66AA7295C8AC90043CBE7 /* ScheduleTimelineSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E66AA6295C8AC90043CBE7 /* ScheduleTimelineSupport.m */; };
 		14E844F628FC40090037309F /* ScheduleDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E844F528FC40090037309F /* ScheduleDetailController.m */; };
 		14E8451128FEE9720037309F /* ScheduleDetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E8451028FEE9720037309F /* ScheduleDetailCollectionViewCell.m */; };
 		14E8451428FEE9A30037309F /* ScheduleDetailMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E8451328FEE9A30037309F /* ScheduleDetailMessageTableViewCell.m */; };
-		14F80C0929288AC500481F4B /* ScheduleCollectionViewLayoutAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F80C0829288AC500481F4B /* ScheduleCollectionViewLayoutAttributes.m */; };
+		14F80C0929288AC500481F4B /* ScheduleCollectionViewLayoutSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F80C0829288AC500481F4B /* ScheduleCollectionViewLayoutSupport.m */; };
 		14F8763A28B5B5FA0067642F /* ScheduleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8763928B5B5FA0067642F /* ScheduleController.m */; };
 		1A9B766C235F50A600725937 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B766B235F50A600725937 /* AppDelegate.m */; };
 		1A9B7677235F50A800725937 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A9B7675235F50A800725937 /* LaunchScreen.storyboard */; };
@@ -76,16 +105,16 @@
 		422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */; };
 		8666A879D21710F98690135D /* Pods_CyxbsMobile2019_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FFFE3B428490CBC7350A6B5 /* Pods_CyxbsMobile2019_iOSTests.framework */; };
 		D09081DA23F4571B00D5342D /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D09081D923F4571B00D5342D /* UserNotifications.framework */; };
-		D94FDC15AE131B12CEBC1024 /* Pods_ScheduleWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D972C56B5C8F641A182DDFAD /* Pods_ScheduleWidgetExtension.framework */; };
+		E1255F33062067C040B20333 /* Pods_CyxbsWidgetExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22FC2B46BAAE0BCC0463439 /* Pods_CyxbsWidgetExtension.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		14BC481C29164EB40063809E /* PBXContainerItemProxy */ = {
+		141008EE295E88E20046E7BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1A9B765F235F50A600725937 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 14BC480D29164EB30063809E;
-			remoteInfo = ScheduleWidgetExtension;
+			remoteGlobalIDString = 141008DD295E88E20046E7BE;
+			remoteInfo = CyxbsWidgetExtension;
 		};
 		1A9B7680235F50A900725937 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -110,7 +139,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				14BC481E29164EB40063809E /* ScheduleWidgetExtension.appex in Embed Foundation Extensions */,
+				141008F0295E88E20046E7BE /* CyxbsWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -120,15 +149,33 @@
 /* Begin PBXFileReference section */
 		0FFFE3B428490CBC7350A6B5 /* Pods_CyxbsMobile2019_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyxbsMobile2019_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		140374D228DCB61A008EDFAD /* RisingSingleClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RisingSingleClass.h; sourceTree = "<group>"; };
+		141008DE295E88E20046E7BE /* CyxbsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CyxbsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		141008E2295E88E20046E7BE /* CyxbsWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyxbsWidgetBundle.swift; sourceTree = "<group>"; };
+		141008E4295E88E20046E7BE /* CyxbsWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyxbsWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		141008E6295E88E20046E7BE /* ScheduleProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleProvider.swift; sourceTree = "<group>"; };
+		141008E8295E88E20046E7BE /* CyxbsWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = CyxbsWidget.intentdefinition; sourceTree = "<group>"; };
+		141008E9295E88E20046E7BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		141008EB295E88E20046E7BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		141008F4295E899D0046E7BE /* ScheduleWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWidget.swift; sourceTree = "<group>"; };
+		141008F6295E8B7A0046E7BE /* ScheduleSystemLarge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSystemLarge.swift; sourceTree = "<group>"; };
+		141008F8295E8CF60046E7BE /* ScheduleSystemSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSystemSmall.swift; sourceTree = "<group>"; };
+		141008FA295E8D520046E7BE /* ScheduleWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWidgetEntryView.swift; sourceTree = "<group>"; };
+		14100AE5295F021C0046E7BE /* CyxbsWidgetExtensionDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CyxbsWidgetExtensionDebug.entitlements; sourceTree = "<group>"; };
+		14100AE6295F08920046E7BE /* ScheduleContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleContentView.swift; sourceTree = "<group>"; };
+		14100AEA295FDCF50046E7BE /* ScheduleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSupplementaryView.swift; sourceTree = "<group>"; };
+		14100AED296005F20046E7BE /* ScheduleLeadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleLeadingView.swift; sourceTree = "<group>"; };
+		14100AEF29612DFE0046E7BE /* ScheduleTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTopView.swift; sourceTree = "<group>"; };
+		14100AF1296139020046E7BE /* CyxbsWidgetSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CyxbsWidgetSupport.h; sourceTree = "<group>"; };
+		14100AF62961516B0046E7BE /* CyxbsMobile2019_iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CyxbsMobile2019_iOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		14100AF72961516B0046E7BE /* WidgetKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetKitHelper.swift; sourceTree = "<group>"; };
+		14100AFA296154F60046E7BE /* CyxbsMobile2019_iOSDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CyxbsMobile2019_iOSDebug.entitlements; sourceTree = "<group>"; };
 		141DB244293AE9C90051A395 /* ScheduleMapModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleMapModel.h; sourceTree = "<group>"; };
 		141DB245293AE9C90051A395 /* ScheduleMapModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleMapModel.m; sourceTree = "<group>"; };
 		1422240428D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleSupplementaryCollectionViewCell.h; sourceTree = "<group>"; };
 		1422240528D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleSupplementaryCollectionViewCell.m; sourceTree = "<group>"; };
 		1422241328D9B091009A4A54 /* RisingExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingExtension.h; sourceTree = "<group>"; };
 		1422241528D9B091009A4A54 /* RisingFoundationExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingFoundationExtension.h; sourceTree = "<group>"; };
-		1422241628D9B091009A4A54 /* NSDate+Rising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Rising.m"; sourceTree = "<group>"; };
 		1422241728D9B091009A4A54 /* RisingFoundationExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RisingFoundationExtention.m; sourceTree = "<group>"; };
-		1422241828D9B091009A4A54 /* NSDate+Rising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Rising.h"; sourceTree = "<group>"; };
 		1422241A28D9B091009A4A54 /* UIView+Rising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Rising.h"; sourceTree = "<group>"; };
 		1422241B28D9B091009A4A54 /* UIColor+Rising.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Rising.h"; sourceTree = "<group>"; };
 		1422241C28D9B091009A4A54 /* UIView+Rising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Rising.m"; sourceTree = "<group>"; };
@@ -139,8 +186,22 @@
 		14320605291C9657003B0E11 /* UserAgreementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAgreementViewController.m; sourceTree = "<group>"; };
 		1435612E28CCA93500EF6987 /* ScheduleServiceSolve.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleServiceSolve.h; sourceTree = "<group>"; };
 		1435612F28CCA93500EF6987 /* ScheduleServiceSolve.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleServiceSolve.m; sourceTree = "<group>"; };
+		143762C62963EBC200979FA2 /* CyxbsWidgetKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyxbsWidgetKind.swift; sourceTree = "<group>"; };
+		1437630029696A7000979FA2 /* ScheduleWidgetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWidgetModel.swift; sourceTree = "<group>"; };
 		1441BF7A291FF29200591A0E /* UserAgreementConsentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAgreementConsentView.h; sourceTree = "<group>"; };
 		1441BF7B291FF29200591A0E /* UserAgreementConsentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAgreementConsentView.m; sourceTree = "<group>"; };
+		1448BFF629627E350015768E /* ScheduleWidgetCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleWidgetCache.h; sourceTree = "<group>"; };
+		1448BFF729627E350015768E /* ScheduleWidgetCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleWidgetCache.m; sourceTree = "<group>"; };
+		1459296829447E74006EB674 /* ScheduleCollectionViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionViewDataSource.h; sourceTree = "<group>"; };
+		14592969294482CB006EB674 /* NSIndexPath+Schedule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+Schedule.h"; sourceTree = "<group>"; };
+		1459296A294482CB006EB674 /* NSIndexPath+Schedule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+Schedule.m"; sourceTree = "<group>"; };
+		14592989294A0083006EB674 /* ScheduleCombineItemSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCombineItemSupport.h; sourceTree = "<group>"; };
+		1459298A294A0083006EB674 /* ScheduleCombineItemSupport.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ScheduleCombineItemSupport.mm; sourceTree = "<group>"; };
+		1459298C294A038B006EB674 /* ScheduleIdentifier+WCTTableCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScheduleIdentifier+WCTTableCoding.h"; sourceTree = "<group>"; };
+		14592A5E29516223006EB674 /* ScheduleAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleAPI.h; sourceTree = "<group>"; };
+		14592A5F29516246006EB674 /* ScheduleAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleAPI.m; sourceTree = "<group>"; };
+		14592A6A2954659F006EB674 /* ScheduleShareCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleShareCache.h; sourceTree = "<group>"; };
+		14592A6B2954659F006EB674 /* ScheduleShareCache.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ScheduleShareCache.mm; sourceTree = "<group>"; };
 		1466282428C4B1BD00AF584F /* ScheduleServiceDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleServiceDataSource.h; sourceTree = "<group>"; };
 		1466282528C4B1BD00AF584F /* ScheduleServiceDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleServiceDataSource.m; sourceTree = "<group>"; };
 		1466282728C4B1EC00AF584F /* ScheduleCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionViewLayout.h; sourceTree = "<group>"; };
@@ -157,18 +218,28 @@
 		146D144B2907F21700327AB8 /* FastLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FastLoginViewController.m; sourceTree = "<group>"; };
 		146D144D2908BB1C00327AB8 /* UDKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UDKey.h; sourceTree = "<group>"; };
 		146D144E2908BB2800327AB8 /* UDKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UDKey.m; sourceTree = "<group>"; };
-		146D1450290A614100327AB8 /* SwiftBrigeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftBrigeHeader.h; sourceTree = "<group>"; };
-		1478633B28BB567A00C1E54B /* ScheduleCombineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCombineModel.h; sourceTree = "<group>"; };
-		1478633C28BB567A00C1E54B /* ScheduleCombineModel.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ScheduleCombineModel.mm; sourceTree = "<group>"; };
+		14880A49296EB03900BC5368 /* Schedule.2021215154.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Schedule.2021215154.plist; sourceTree = "<group>"; };
+		14880A4D296EB55A00BC5368 /* ScheduleWidgetPriview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWidgetPriview.swift; sourceTree = "<group>"; };
+		14880A4F296EBE9600BC5368 /* ScheduleTimelineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTimelineEntry.swift; sourceTree = "<group>"; };
+		14880A51296F957000BC5368 /* Schedule.2022214857.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Schedule.2022214857.plist; sourceTree = "<group>"; };
 		14B46E5F28B4D282003D288B /* ScheduleCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleCourse.h; sourceTree = "<group>"; };
 		14B46E6028B4D283003D288B /* ScheduleCourse.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ScheduleCourse.mm; sourceTree = "<group>"; };
 		14B46E6228B4D4A1003D288B /* ScheduleCourse+WCTTableCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScheduleCourse+WCTTableCoding.h"; sourceTree = "<group>"; };
 		14B46E6328B4D5D7003D288B /* ScheduleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleModel.m; sourceTree = "<group>"; };
 		14B46E6428B4D5D7003D288B /* ScheduleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleModel.h; sourceTree = "<group>"; };
-		14B46E6728B4D69A003D288B /* RisingScheduleHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RisingScheduleHeader.h; sourceTree = "<group>"; };
-		14B46E6828B4E504003D288B /* ScheduleInteractorRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleInteractorRequest.h; sourceTree = "<group>"; };
-		14B46E6928B4E504003D288B /* ScheduleInteractorRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleInteractorRequest.m; sourceTree = "<group>"; };
+		14B46E6828B4E504003D288B /* ScheduleNETRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleNETRequest.h; sourceTree = "<group>"; };
+		14B46E6928B4E504003D288B /* ScheduleNETRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleNETRequest.m; sourceTree = "<group>"; };
 		14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CyxbsMobileImage.xcassets; sourceTree = "<group>"; };
+		14B7E41B295C46D40033653D /* TransitioningDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransitioningDelegate.h; sourceTree = "<group>"; };
+		14B7E41C295C46D40033653D /* TransitioningDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransitioningDelegate.m; sourceTree = "<group>"; };
+		14B7E41E295C4A150033653D /* PresentAnimatedTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresentAnimatedTransition.h; sourceTree = "<group>"; };
+		14B7E41F295C4A150033653D /* PresentAnimatedTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresentAnimatedTransition.m; sourceTree = "<group>"; };
+		14B7E421295C4B2C0033653D /* DismissAnimatedTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DismissAnimatedTransition.h; sourceTree = "<group>"; };
+		14B7E422295C4B2C0033653D /* DismissAnimatedTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DismissAnimatedTransition.m; sourceTree = "<group>"; };
+		14B7E424295C4B770033653D /* PresentDrivenInteractiveTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PresentDrivenInteractiveTransition.h; sourceTree = "<group>"; };
+		14B7E425295C4B770033653D /* PresentDrivenInteractiveTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PresentDrivenInteractiveTransition.m; sourceTree = "<group>"; };
+		14B7E427295C4BE30033653D /* DismissDrivenInteractiveTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DismissDrivenInteractiveTransition.h; sourceTree = "<group>"; };
+		14B7E428295C4BE30033653D /* DismissDrivenInteractiveTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DismissDrivenInteractiveTransition.m; sourceTree = "<group>"; };
 		14B9647628F66C1600C984AB /* NetURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetURL.h; sourceTree = "<group>"; };
 		14B9647728F66C1E00C984AB /* NetURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetURL.m; sourceTree = "<group>"; };
 		14B9647928F6700B00C984AB /* FontName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontName.h; sourceTree = "<group>"; };
@@ -186,22 +257,8 @@
 		14BC47FA2914D80F0063809E /* SearchPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchPerson.m; sourceTree = "<group>"; };
 		14BC480729154D290063809E /* SearchPersonModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchPersonModel.h; sourceTree = "<group>"; };
 		14BC480829154D290063809E /* SearchPersonModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchPersonModel.m; sourceTree = "<group>"; };
-		14BC480E29164EB30063809E /* ScheduleWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ScheduleWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		14BC480F29164EB30063809E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		14BC481129164EB30063809E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		14BC481429164EB30063809E /* ScheduleWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWidget.swift; sourceTree = "<group>"; };
-		14BC481629164EB30063809E /* ScheduleWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = ScheduleWidget.intentdefinition; sourceTree = "<group>"; };
-		14BC481729164EB40063809E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		14BC481929164EB40063809E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		14BC482329164F000063809E /* Bridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bridge.h; sourceTree = "<group>"; };
-		14BC4824291650740063809E /* ScheduleWidgetEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWidgetEntryView.swift; sourceTree = "<group>"; };
-		14BC4826291652390063809E /* ScheduleWidgetLarge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWidgetLarge.swift; sourceTree = "<group>"; };
-		14BC4828291654020063809E /* ScheduleCourseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCourseView.swift; sourceTree = "<group>"; };
-		14BC482A29165B170063809E /* WidgetShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetShare.swift; sourceTree = "<group>"; };
-		14BC482C29169C5E0063809E /* ScheduleWidgetExtensionDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ScheduleWidgetExtensionDebug.entitlements; sourceTree = "<group>"; };
-		14BC482D29169E6E0063809E /* NSUserDefaults+Cyxbs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Cyxbs.h"; sourceTree = "<group>"; };
-		14BC482E29169E6E0063809E /* NSUserDefaults+Cyxbs.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Cyxbs.m"; sourceTree = "<group>"; };
-		14BC48302917CFB80063809E /* ScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
 		14D03BB5292DFECE001CA682 /* ScheduleCollectionViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionViewModel.h; sourceTree = "<group>"; };
 		14D03BB6292DFECE001CA682 /* ScheduleCollectionViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCollectionViewModel.m; sourceTree = "<group>"; };
 		14D598C728FF90EB00C9798F /* ScheduleHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleHeaderView.h; sourceTree = "<group>"; };
@@ -212,19 +269,23 @@
 		14D598DA2901801F00C9798F /* ScheduleDetailTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleDetailTableHeaderView.m; sourceTree = "<group>"; };
 		14D598E529021BE400C9798F /* UIViewController+KNSemiModal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+KNSemiModal.h"; sourceTree = "<group>"; };
 		14D598E629021BE400C9798F /* UIViewController+KNSemiModal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+KNSemiModal.m"; sourceTree = "<group>"; };
+		14D64592296161BC001315B1 /* ScheduleFetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFetchData.swift; sourceTree = "<group>"; };
+		14D645942961620F001315B1 /* CyxbsWidget-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CyxbsWidget-Bridging-Header.h"; sourceTree = "<group>"; };
 		14E31999290C11CB00B951CE /* PlaceholderCollectionReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaceholderCollectionReusableView.h; sourceTree = "<group>"; };
 		14E3199A290C11CB00B951CE /* PlaceholderCollectionReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlaceholderCollectionReusableView.m; sourceTree = "<group>"; };
 		14E3199C290CC4F100B951CE /* UserAgreement.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = UserAgreement.md; sourceTree = "<group>"; };
 		14E3199E290CC52D00B951CE /* UserAgreementView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAgreementView.h; sourceTree = "<group>"; };
 		14E3199F290CC52D00B951CE /* UserAgreementView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAgreementView.m; sourceTree = "<group>"; };
+		14E66AA5295C8AC90043CBE7 /* ScheduleTimelineSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleTimelineSupport.h; sourceTree = "<group>"; };
+		14E66AA6295C8AC90043CBE7 /* ScheduleTimelineSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleTimelineSupport.m; sourceTree = "<group>"; };
 		14E844F428FC40090037309F /* ScheduleDetailController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleDetailController.h; sourceTree = "<group>"; };
 		14E844F528FC40090037309F /* ScheduleDetailController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleDetailController.m; sourceTree = "<group>"; };
 		14E8450F28FEE9720037309F /* ScheduleDetailCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleDetailCollectionViewCell.h; sourceTree = "<group>"; };
 		14E8451028FEE9720037309F /* ScheduleDetailCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleDetailCollectionViewCell.m; sourceTree = "<group>"; };
 		14E8451228FEE9A30037309F /* ScheduleDetailMessageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleDetailMessageTableViewCell.h; sourceTree = "<group>"; };
 		14E8451328FEE9A30037309F /* ScheduleDetailMessageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleDetailMessageTableViewCell.m; sourceTree = "<group>"; };
-		14F80C0729288AC500481F4B /* ScheduleCollectionViewLayoutAttributes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionViewLayoutAttributes.h; sourceTree = "<group>"; };
-		14F80C0829288AC500481F4B /* ScheduleCollectionViewLayoutAttributes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCollectionViewLayoutAttributes.m; sourceTree = "<group>"; };
+		14F80C0729288AC500481F4B /* ScheduleCollectionViewLayoutSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionViewLayoutSupport.h; sourceTree = "<group>"; };
+		14F80C0829288AC500481F4B /* ScheduleCollectionViewLayoutSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCollectionViewLayoutSupport.m; sourceTree = "<group>"; };
 		14F8763828B5B5FA0067642F /* ScheduleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleController.h; sourceTree = "<group>"; };
 		14F8763928B5B5FA0067642F /* ScheduleController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleController.m; sourceTree = "<group>"; };
 		1A9B7667235F50A600725937 /* 掌上重邮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "掌上重邮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -239,31 +300,31 @@
 		1A9B768A235F50A900725937 /* CyxbsMobile2019_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CyxbsMobile2019_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CyxbsMobile2019_iOSUITests.m; sourceTree = "<group>"; };
 		1A9B7690235F50A900725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		273603C33E04C52724DB3668 /* Pods-ScheduleWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScheduleWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-ScheduleWidgetExtension/Pods-ScheduleWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		1E71FE95C13C508377515DF9 /* Pods-CyxbsWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsWidgetExtension/Pods-CyxbsWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyxbsMobile2019_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		437715CC8C0C829ECA03DE7B /* Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests/Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6F3D5CAF0787713C5281B516 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		77D1AF943479D46CA3520A58 /* Pods-CyxbsMobile2019_iOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOSTests.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOSTests/Pods-CyxbsMobile2019_iOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		89FA795FFB7E294FDDCCAE33 /* Pods-CyxbsWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-CyxbsWidgetExtension/Pods-CyxbsWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		AA0DEF692668C88D00284112 /* 掌邮工具类.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "掌邮工具类.md"; sourceTree = "<group>"; usesTabs = 0; };
 		AA4496F7260625B5004B4E1A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		B96D229622E2F31FBCD33B4F /* Pods-CyxbsMobile2019_iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOSTests/Pods-CyxbsMobile2019_iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BD5C83DD4A5F87175B80CF25 /* Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests/Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D09081D923F4571B00D5342D /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "掌上重邮.entitlements"; sourceTree = "<group>"; };
-		D972C56B5C8F641A182DDFAD /* Pods_ScheduleWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ScheduleWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2CDED2CEDABF0D48DD6895F /* Pods-ScheduleWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ScheduleWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-ScheduleWidgetExtension/Pods-ScheduleWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
+		D22FC2B46BAAE0BCC0463439 /* Pods_CyxbsWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyxbsWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EEAADB28A20FD6183BC437D5 /* Pods_CyxbsMobile2019_iOS_CyxbsMobile2019_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyxbsMobile2019_iOS_CyxbsMobile2019_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		14BC480B29164EB30063809E /* Frameworks */ = {
+		141008DB295E88E20046E7BE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14BC481229164EB30063809E /* SwiftUI.framework in Frameworks */,
-				14BC481029164EB30063809E /* WidgetKit.framework in Frameworks */,
-				D94FDC15AE131B12CEBC1024 /* Pods_ScheduleWidgetExtension.framework in Frameworks */,
+				141008E0295E88E20046E7BE /* SwiftUI.framework in Frameworks */,
+				141008DF295E88E20046E7BE /* WidgetKit.framework in Frameworks */,
+				E1255F33062067C040B20333 /* Pods_CyxbsWidgetExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +356,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		141008E1295E88E20046E7BE /* CyxbsWidget */ = {
+			isa = PBXGroup;
+			children = (
+				141008E2295E88E20046E7BE /* CyxbsWidgetBundle.swift */,
+				141008E4295E88E20046E7BE /* CyxbsWidgetLiveActivity.swift */,
+				143762C62963EBC200979FA2 /* CyxbsWidgetKind.swift */,
+				141008E6295E88E20046E7BE /* ScheduleProvider.swift */,
+				141008F4295E899D0046E7BE /* ScheduleWidget.swift */,
+				14880A4F296EBE9600BC5368 /* ScheduleTimelineEntry.swift */,
+				141008FA295E8D520046E7BE /* ScheduleWidgetEntryView.swift */,
+				141008F8295E8CF60046E7BE /* ScheduleSystemSmall.swift */,
+				141008F6295E8B7A0046E7BE /* ScheduleSystemLarge.swift */,
+				14100AE6295F08920046E7BE /* ScheduleContentView.swift */,
+				14100AEF29612DFE0046E7BE /* ScheduleTopView.swift */,
+				14100AEA295FDCF50046E7BE /* ScheduleSupplementaryView.swift */,
+				14100AED296005F20046E7BE /* ScheduleLeadingView.swift */,
+				14D64592296161BC001315B1 /* ScheduleFetchData.swift */,
+				1437630029696A7000979FA2 /* ScheduleWidgetModel.swift */,
+				14880A4D296EB55A00BC5368 /* ScheduleWidgetPriview.swift */,
+				14880A49296EB03900BC5368 /* Schedule.2021215154.plist */,
+				14880A51296F957000BC5368 /* Schedule.2022214857.plist */,
+				14100AF1296139020046E7BE /* CyxbsWidgetSupport.h */,
+				14D645942961620F001315B1 /* CyxbsWidget-Bridging-Header.h */,
+				141008E8295E88E20046E7BE /* CyxbsWidget.intentdefinition */,
+				141008E9295E88E20046E7BE /* Assets.xcassets */,
+				141008EB295E88E20046E7BE /* Info.plist */,
+			);
+			path = CyxbsWidget;
+			sourceTree = "<group>";
+		};
 		1422241228D9B091009A4A54 /* Rising Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -311,8 +402,6 @@
 			children = (
 				1422241528D9B091009A4A54 /* RisingFoundationExtension.h */,
 				1422241728D9B091009A4A54 /* RisingFoundationExtention.m */,
-				1422241828D9B091009A4A54 /* NSDate+Rising.h */,
-				1422241628D9B091009A4A54 /* NSDate+Rising.m */,
 			);
 			path = "Foundation Extension";
 			sourceTree = "<group>";
@@ -353,44 +442,70 @@
 				146AA0C428B65FA800391FD0 /* SchedulePresenter.m */,
 				1466282728C4B1EC00AF584F /* ScheduleCollectionViewLayout.h */,
 				1466282828C4B1EC00AF584F /* ScheduleCollectionViewLayout.m */,
-				14F80C0729288AC500481F4B /* ScheduleCollectionViewLayoutAttributes.h */,
-				14F80C0829288AC500481F4B /* ScheduleCollectionViewLayoutAttributes.m */,
+				1459296829447E74006EB674 /* ScheduleCollectionViewDataSource.h */,
+				14F80C0729288AC500481F4B /* ScheduleCollectionViewLayoutSupport.h */,
+				14F80C0829288AC500481F4B /* ScheduleCollectionViewLayoutSupport.m */,
 				1435612E28CCA93500EF6987 /* ScheduleServiceSolve.h */,
 				1435612F28CCA93500EF6987 /* ScheduleServiceSolve.m */,
 				1466282428C4B1BD00AF584F /* ScheduleServiceDataSource.h */,
 				1466282528C4B1BD00AF584F /* ScheduleServiceDataSource.m */,
+				1448BFF629627E350015768E /* ScheduleWidgetCache.h */,
+				1448BFF729627E350015768E /* ScheduleWidgetCache.m */,
+				14592A6A2954659F006EB674 /* ScheduleShareCache.h */,
+				14592A6B2954659F006EB674 /* ScheduleShareCache.mm */,
 				14D598C728FF90EB00C9798F /* ScheduleHeaderView.h */,
 				14D598C828FF90EB00C9798F /* ScheduleHeaderView.m */,
 				1422240428D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.h */,
 				1422240528D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.m */,
 				1466283228C5CA4600AF584F /* ScheduleCollectionViewCell.h */,
 				1466283328C5CA4600AF584F /* ScheduleCollectionViewCell.m */,
-				14B46E6828B4E504003D288B /* ScheduleInteractorRequest.h */,
-				14B46E6928B4E504003D288B /* ScheduleInteractorRequest.m */,
+				14B46E6828B4E504003D288B /* ScheduleNETRequest.h */,
+				14B46E6928B4E504003D288B /* ScheduleNETRequest.m */,
 				14B46E6428B4D5D7003D288B /* ScheduleModel.h */,
 				14B46E6328B4D5D7003D288B /* ScheduleModel.m */,
 				141DB244293AE9C90051A395 /* ScheduleMapModel.h */,
 				141DB245293AE9C90051A395 /* ScheduleMapModel.m */,
 				14D03BB5292DFECE001CA682 /* ScheduleCollectionViewModel.h */,
 				14D03BB6292DFECE001CA682 /* ScheduleCollectionViewModel.m */,
-				1478633B28BB567A00C1E54B /* ScheduleCombineModel.h */,
-				1478633C28BB567A00C1E54B /* ScheduleCombineModel.mm */,
+				14592989294A0083006EB674 /* ScheduleCombineItemSupport.h */,
+				1459298A294A0083006EB674 /* ScheduleCombineItemSupport.mm */,
+				1459298C294A038B006EB674 /* ScheduleIdentifier+WCTTableCoding.h */,
 				14B46E5F28B4D282003D288B /* ScheduleCourse.h */,
 				14B46E6028B4D283003D288B /* ScheduleCourse.mm */,
 				14B46E6228B4D4A1003D288B /* ScheduleCourse+WCTTableCoding.h */,
+				14592969294482CB006EB674 /* NSIndexPath+Schedule.h */,
+				1459296A294482CB006EB674 /* NSIndexPath+Schedule.m */,
+				14E66AA5295C8AC90043CBE7 /* ScheduleTimelineSupport.h */,
+				14E66AA6295C8AC90043CBE7 /* ScheduleTimelineSupport.m */,
 				1466282D28C4EFF400AF584F /* ScheduleRequestType.h */,
 				1466282B28C4EFE400AF584F /* ScheduleRequestType.m */,
-				14B46E6728B4D69A003D288B /* RisingScheduleHeader.h */,
+				14592A5E29516223006EB674 /* ScheduleAPI.h */,
+				14592A5F29516246006EB674 /* ScheduleAPI.m */,
 			);
 			path = "Rising Schedule";
+			sourceTree = "<group>";
+		};
+		14B7E42A295C4C360033653D /* Rising Transition */ = {
+			isa = PBXGroup;
+			children = (
+				14B7E41B295C46D40033653D /* TransitioningDelegate.h */,
+				14B7E41C295C46D40033653D /* TransitioningDelegate.m */,
+				14B7E41E295C4A150033653D /* PresentAnimatedTransition.h */,
+				14B7E41F295C4A150033653D /* PresentAnimatedTransition.m */,
+				14B7E421295C4B2C0033653D /* DismissAnimatedTransition.h */,
+				14B7E422295C4B2C0033653D /* DismissAnimatedTransition.m */,
+				14B7E424295C4B770033653D /* PresentDrivenInteractiveTransition.h */,
+				14B7E425295C4B770033653D /* PresentDrivenInteractiveTransition.m */,
+				14B7E427295C4BE30033653D /* DismissDrivenInteractiveTransition.h */,
+				14B7E428295C4BE30033653D /* DismissDrivenInteractiveTransition.m */,
+			);
+			path = "Rising Transition";
 			sourceTree = "<group>";
 		};
 		14B9647D28F6715500C984AB /* CyxbsHeader */ = {
 			isa = PBXGroup;
 			children = (
 				14B9647C28F6712700C984AB /* CyxbsHeader.h */,
-				14BC482D29169E6E0063809E /* NSUserDefaults+Cyxbs.h */,
-				14BC482E29169E6E0063809E /* NSUserDefaults+Cyxbs.m */,
 				14B9647628F66C1600C984AB /* NetURL.h */,
 				14B9647728F66C1E00C984AB /* NetURL.m */,
 				14B9647928F6700B00C984AB /* FontName.h */,
@@ -428,23 +543,6 @@
 				14BC47FA2914D80F0063809E /* SearchPerson.m */,
 			);
 			path = "FastUp Tests";
-			sourceTree = "<group>";
-		};
-		14BC481329164EB30063809E /* ScheduleWidget */ = {
-			isa = PBXGroup;
-			children = (
-				14BC481429164EB30063809E /* ScheduleWidget.swift */,
-				14BC4824291650740063809E /* ScheduleWidgetEntryView.swift */,
-				14BC4826291652390063809E /* ScheduleWidgetLarge.swift */,
-				14BC4828291654020063809E /* ScheduleCourseView.swift */,
-				14BC48302917CFB80063809E /* ScheduleModel.swift */,
-				14BC482A29165B170063809E /* WidgetShare.swift */,
-				14BC482329164F000063809E /* Bridge.h */,
-				14BC481629164EB30063809E /* ScheduleWidget.intentdefinition */,
-				14BC481729164EB40063809E /* Assets.xcassets */,
-				14BC481929164EB40063809E /* Info.plist */,
-			);
-			path = ScheduleWidget;
 			sourceTree = "<group>";
 		};
 		14D598E829021E8400C9798F /* KNSemiModal */ = {
@@ -494,11 +592,11 @@
 		1A9B765E235F50A600725937 = {
 			isa = PBXGroup;
 			children = (
-				14BC482C29169C5E0063809E /* ScheduleWidgetExtensionDebug.entitlements */,
+				14100AE5295F021C0046E7BE /* CyxbsWidgetExtensionDebug.entitlements */,
 				1A9B7669235F50A600725937 /* CyxbsMobile2019_iOS */,
 				1A9B7682235F50A900725937 /* CyxbsMobile2019_iOSTests */,
 				1A9B768D235F50A900725937 /* CyxbsMobile2019_iOSUITests */,
-				14BC481329164EB30063809E /* ScheduleWidget */,
+				141008E1295E88E20046E7BE /* CyxbsWidget */,
 				1A9B7668235F50A600725937 /* Products */,
 				31CAD973D4E3B19C047677AE /* Pods */,
 				2CDC888D97D2E7657DB18FB6 /* Frameworks */,
@@ -512,7 +610,7 @@
 				1A9B7667235F50A600725937 /* 掌上重邮.app */,
 				1A9B767F235F50A900725937 /* CyxbsMobile2019_iOSTests.xctest */,
 				1A9B768A235F50A900725937 /* CyxbsMobile2019_iOSUITests.xctest */,
-				14BC480E29164EB30063809E /* ScheduleWidgetExtension.appex */,
+				141008DE295E88E20046E7BE /* CyxbsWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -520,13 +618,15 @@
 		1A9B7669235F50A600725937 /* CyxbsMobile2019_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				14100AFA296154F60046E7BE /* CyxbsMobile2019_iOSDebug.entitlements */,
 				14B4691D28B4C9D9003D288B /* Rising Schedule */,
 				14D598EB29021EF400C9798F /* Rising Schedule Detail */,
+				14B7E42A295C4C360033653D /* Rising Transition */,
 				14D598E929021E9F00C9798F /* Pod */,
 				14B9647D28F6715500C984AB /* CyxbsHeader */,
 				FE87CE1B27E98F82008D7148 /* Supporting Files */,
 				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
-				146D1450290A614100327AB8 /* SwiftBrigeHeader.h */,
+				14100AF62961516B0046E7BE /* CyxbsMobile2019_iOS-Bridging-Header.h */,
 				14BC47F52914D73F0063809E /* FastUp Tests */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				1A9B7678235F50A800725937 /* Info.plist */,
@@ -562,7 +662,7 @@
 				0FFFE3B428490CBC7350A6B5 /* Pods_CyxbsMobile2019_iOSTests.framework */,
 				14BC480F29164EB30063809E /* WidgetKit.framework */,
 				14BC481129164EB30063809E /* SwiftUI.framework */,
-				D972C56B5C8F641A182DDFAD /* Pods_ScheduleWidgetExtension.framework */,
+				D22FC2B46BAAE0BCC0463439 /* Pods_CyxbsWidgetExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -576,8 +676,8 @@
 				437715CC8C0C829ECA03DE7B /* Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests.release.xcconfig */,
 				B96D229622E2F31FBCD33B4F /* Pods-CyxbsMobile2019_iOSTests.debug.xcconfig */,
 				77D1AF943479D46CA3520A58 /* Pods-CyxbsMobile2019_iOSTests.release.xcconfig */,
-				273603C33E04C52724DB3668 /* Pods-ScheduleWidgetExtension.debug.xcconfig */,
-				E2CDED2CEDABF0D48DD6895F /* Pods-ScheduleWidgetExtension.release.xcconfig */,
+				1E71FE95C13C508377515DF9 /* Pods-CyxbsWidgetExtension.debug.xcconfig */,
+				89FA795FFB7E294FDDCCAE33 /* Pods-CyxbsWidgetExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -594,6 +694,7 @@
 			isa = PBXGroup;
 			children = (
 				1A9B7675235F50A800725937 /* LaunchScreen.storyboard */,
+				14100AF72961516B0046E7BE /* WidgetKitHelper.swift */,
 				1A9B7679235F50A800725937 /* main.m */,
 				14B9648128F67F8600C984AB /* CyxbsApplication.h */,
 				14B9648228F67F8600C984AB /* CyxbsApplication.m */,
@@ -608,22 +709,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		14BC480D29164EB30063809E /* ScheduleWidgetExtension */ = {
+		141008DD295E88E20046E7BE /* CyxbsWidgetExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 14BC482229164EB40063809E /* Build configuration list for PBXNativeTarget "ScheduleWidgetExtension" */;
+			buildConfigurationList = 141008F1295E88E30046E7BE /* Build configuration list for PBXNativeTarget "CyxbsWidgetExtension" */;
 			buildPhases = (
-				BC3B9ED8D438FD54C6594B3A /* [CP] Check Pods Manifest.lock */,
-				14BC480A29164EB30063809E /* Sources */,
-				14BC480B29164EB30063809E /* Frameworks */,
-				14BC480C29164EB30063809E /* Resources */,
+				87856A9CAD785DAAB7900576 /* [CP] Check Pods Manifest.lock */,
+				141008DA295E88E20046E7BE /* Sources */,
+				141008DB295E88E20046E7BE /* Frameworks */,
+				141008DC295E88E20046E7BE /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = ScheduleWidgetExtension;
-			productName = ScheduleWidgetExtension;
-			productReference = 14BC480E29164EB30063809E /* ScheduleWidgetExtension.appex */;
+			name = CyxbsWidgetExtension;
+			productName = CyxbsWidgetExtension;
+			productReference = 141008DE295E88E20046E7BE /* CyxbsWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		1A9B7666235F50A600725937 /* CyxbsMobile2019_iOS */ = {
@@ -641,7 +742,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				14BC481D29164EB40063809E /* PBXTargetDependency */,
+				141008EF295E88E20046E7BE /* PBXTargetDependency */,
 			);
 			name = CyxbsMobile2019_iOS;
 			productName = CyxbsMobile2019_iOS;
@@ -696,16 +797,16 @@
 				KnownAssetTags = (
 					idsBinding,
 				);
-				LastSwiftUpdateCheck = 1400;
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = Redrock;
 				TargetAttributes = {
-					14BC480D29164EB30063809E = {
-						CreatedOnToolsVersion = 14.0.1;
+					141008DD295E88E20046E7BE = {
+						CreatedOnToolsVersion = 14.1;
 					};
 					1A9B7666235F50A600725937 = {
 						CreatedOnToolsVersion = 10.3;
-						LastSwiftMigration = 1200;
+						LastSwiftMigration = 1410;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -746,17 +847,19 @@
 				1A9B7666235F50A600725937 /* CyxbsMobile2019_iOS */,
 				1A9B767E235F50A900725937 /* CyxbsMobile2019_iOSTests */,
 				1A9B7689235F50A900725937 /* CyxbsMobile2019_iOSUITests */,
-				14BC480D29164EB30063809E /* ScheduleWidgetExtension */,
+				141008DD295E88E20046E7BE /* CyxbsWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		14BC480C29164EB30063809E /* Resources */ = {
+		141008DC295E88E20046E7BE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14BC481829164EB40063809E /* Assets.xcassets in Resources */,
+				14880A4B296EB03900BC5368 /* Schedule.2021215154.plist in Resources */,
+				141008EA295E88E20046E7BE /* Assets.xcassets in Resources */,
+				14880A52296F957000BC5368 /* Schedule.2022214857.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -839,6 +942,28 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		87856A9CAD785DAAB7900576 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CyxbsWidgetExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B21145A9612AA583864D1A02 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -855,28 +980,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-CyxbsMobile2019_iOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BC3B9ED8D438FD54C6594B3A /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ScheduleWidgetExtension-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -925,20 +1028,37 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		14BC480A29164EB30063809E /* Sources */ = {
+		141008DA295E88E20046E7BE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14BC4829291654020063809E /* ScheduleCourseView.swift in Sources */,
-				14BC4835291910660063809E /* ScheduleCourse.mm in Sources */,
-				14BC48312917CFB80063809E /* ScheduleModel.swift in Sources */,
-				14BC483229190E9F0063809E /* ScheduleCombineModel.mm in Sources */,
-				14BC483429190FAE0063809E /* UDKey.m in Sources */,
-				14BC4827291652390063809E /* ScheduleWidgetLarge.swift in Sources */,
-				14BC4825291650DB0063809E /* ScheduleWidgetEntryView.swift in Sources */,
-				14BC482B29165B170063809E /* WidgetShare.swift in Sources */,
-				14BC481529164EB30063809E /* ScheduleWidget.swift in Sources */,
-				14BC481A29164EB40063809E /* ScheduleWidget.intentdefinition in Sources */,
+				14100AE7295F08920046E7BE /* ScheduleContentView.swift in Sources */,
+				1448BFF52961CC830015768E /* WidgetKitHelper.swift in Sources */,
+				14100AFB29615DB80046E7BE /* ScheduleShareCache.mm in Sources */,
+				1448BFF9296280FD0015768E /* ScheduleWidgetCache.m in Sources */,
+				141008E7295E88E20046E7BE /* ScheduleProvider.swift in Sources */,
+				14D6459529616280001315B1 /* ScheduleMapModel.m in Sources */,
+				1437630229696A7300979FA2 /* ScheduleWidgetModel.swift in Sources */,
+				14880A4E296EB55A00BC5368 /* ScheduleWidgetPriview.swift in Sources */,
+				141008F7295E8B7A0046E7BE /* ScheduleSystemLarge.swift in Sources */,
+				14D6459729616374001315B1 /* ScheduleRequestType.m in Sources */,
+				141008E5295E88E20046E7BE /* CyxbsWidgetLiveActivity.swift in Sources */,
+				14100AEE296005F20046E7BE /* ScheduleLeadingView.swift in Sources */,
+				14100AF029612DFE0046E7BE /* ScheduleTopView.swift in Sources */,
+				143762C82963EBC700979FA2 /* CyxbsWidgetKind.swift in Sources */,
+				141008F9295E8CF60046E7BE /* ScheduleSystemSmall.swift in Sources */,
+				14880A50296EBE9600BC5368 /* ScheduleTimelineEntry.swift in Sources */,
+				14100AEB295FDCF50046E7BE /* ScheduleSupplementaryView.swift in Sources */,
+				141008FB295E8D520046E7BE /* ScheduleWidgetEntryView.swift in Sources */,
+				14D6459629616289001315B1 /* NSIndexPath+Schedule.m in Sources */,
+				141008EC295E88E20046E7BE /* CyxbsWidget.intentdefinition in Sources */,
+				14D64593296161BC001315B1 /* ScheduleFetchData.swift in Sources */,
+				14100AFE29615DF80046E7BE /* ScheduleTimelineSupport.m in Sources */,
+				14100AFD29615DCD0046E7BE /* ScheduleCombineItemSupport.mm in Sources */,
+				14100AFC29615DC10046E7BE /* ScheduleCourse.mm in Sources */,
+				141008F5295E899D0046E7BE /* ScheduleWidget.swift in Sources */,
+				14100AEC295FEE190046E7BE /* ScheduleCollectionViewModel.m in Sources */,
+				141008E3295E88E20046E7BE /* CyxbsWidgetBundle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -946,10 +1066,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14F80C0929288AC500481F4B /* ScheduleCollectionViewLayoutAttributes.m in Sources */,
+				14F80C0929288AC500481F4B /* ScheduleCollectionViewLayoutSupport.m in Sources */,
 				14D03BB7292DFECE001CA682 /* ScheduleCollectionViewModel.m in Sources */,
+				14B7E423295C4B2C0033653D /* DismissAnimatedTransition.m in Sources */,
 				14E8451128FEE9720037309F /* ScheduleDetailCollectionViewCell.m in Sources */,
+				14592A6C2954659F006EB674 /* ScheduleShareCache.mm in Sources */,
 				1466282928C4B1EC00AF584F /* ScheduleCollectionViewLayout.m in Sources */,
+				1459296B294482CB006EB674 /* NSIndexPath+Schedule.m in Sources */,
 				14B9647828F66C1E00C984AB /* NetURL.m in Sources */,
 				14BC47F82914D76E0063809E /* SearchPeopleViewController.m in Sources */,
 				1422242128D9B091009A4A54 /* UIView+Rising.m in Sources */,
@@ -963,35 +1086,42 @@
 				146D144F2908BB2800327AB8 /* UDKey.m in Sources */,
 				14B9648F28F6883800C984AB /* HttpTool.m in Sources */,
 				14B46E6128B4D283003D288B /* ScheduleCourse.mm in Sources */,
-				14BC482F29169E6E0063809E /* NSUserDefaults+Cyxbs.m in Sources */,
-				1422241F28D9B091009A4A54 /* NSDate+Rising.m in Sources */,
 				141DB246293AE9C90051A395 /* ScheduleMapModel.m in Sources */,
+				14B7E426295C4B770033653D /* PresentDrivenInteractiveTransition.m in Sources */,
 				14E3199B290C11CB00B951CE /* PlaceholderCollectionReusableView.m in Sources */,
 				14D598E729021BE400C9798F /* UIViewController+KNSemiModal.m in Sources */,
 				1422240628D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.m in Sources */,
-				14B46E6A28B4E504003D288B /* ScheduleInteractorRequest.m in Sources */,
+				14B46E6A28B4E504003D288B /* ScheduleNETRequest.m in Sources */,
 				146AA0C528B65FA800391FD0 /* SchedulePresenter.m in Sources */,
 				1435613028CCA93500EF6987 /* ScheduleServiceSolve.m in Sources */,
 				1422242628D9B31B009A4A54 /* RisingUIKitExtension.m in Sources */,
 				1441BF7C291FF29200591A0E /* UserAgreementConsentView.m in Sources */,
+				14B7E41D295C46D40033653D /* TransitioningDelegate.m in Sources */,
 				1466283428C5CA4600AF584F /* ScheduleCollectionViewCell.m in Sources */,
 				1468F18729248C110080DA08 /* SearchPersonTableViewCell.m in Sources */,
 				14B46E6528B4D5D7003D288B /* ScheduleModel.m in Sources */,
+				141008ED295E88E20046E7BE /* CyxbsWidget.intentdefinition in Sources */,
+				14B7E429295C4BE30033653D /* DismissDrivenInteractiveTransition.m in Sources */,
 				14B9648028F67EEF00C984AB /* CyxbsTabBarController.m in Sources */,
 				14E319A0290CC52D00B951CE /* UserAgreementView.m in Sources */,
 				14BC47FB2914D80F0063809E /* SearchPerson.m in Sources */,
+				1459298B294A0083006EB674 /* ScheduleCombineItemSupport.mm in Sources */,
 				14BC480929154D290063809E /* SearchPersonModel.m in Sources */,
 				1422242028D9B091009A4A54 /* RisingFoundationExtention.m in Sources */,
+				14100AF82961516B0046E7BE /* WidgetKitHelper.swift in Sources */,
+				143762C72963EBC200979FA2 /* CyxbsWidgetKind.swift in Sources */,
 				14E844F628FC40090037309F /* ScheduleDetailController.m in Sources */,
-				14BC481B29164EB40063809E /* ScheduleWidget.intentdefinition in Sources */,
+				14E66AA7295C8AC90043CBE7 /* ScheduleTimelineSupport.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
+				14B7E420295C4A150033653D /* PresentAnimatedTransition.m in Sources */,
 				1466282628C4B1BD00AF584F /* ScheduleServiceDataSource.m in Sources */,
+				1448BFF829627E350015768E /* ScheduleWidgetCache.m in Sources */,
 				14D598CC28FF964100C9798F /* SameDrawUI.m in Sources */,
 				1466282C28C4EFE400AF584F /* ScheduleRequestType.m in Sources */,
+				14592A6029516246006EB674 /* ScheduleAPI.m in Sources */,
 				14E8451428FEE9A30037309F /* ScheduleDetailMessageTableViewCell.m in Sources */,
 				14F8763A28B5B5FA0067642F /* ScheduleController.m in Sources */,
 				14B9648328F67F8600C984AB /* CyxbsApplication.m in Sources */,
-				1478633D28BB567A00C1E54B /* ScheduleCombineModel.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1014,10 +1144,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		14BC481D29164EB40063809E /* PBXTargetDependency */ = {
+		141008EF295E88E20046E7BE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 14BC480D29164EB30063809E /* ScheduleWidgetExtension */;
-			targetProxy = 14BC481C29164EB40063809E /* PBXContainerItemProxy */;
+			target = 141008DD295E88E20046E7BE /* CyxbsWidgetExtension */;
+			targetProxy = 141008EE295E88E20046E7BE /* PBXContainerItemProxy */;
 		};
 		1A9B7681235F50A900725937 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1043,23 +1173,22 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		14BC482029164EB40063809E /* Debug */ = {
+		141008F2295E88E30046E7BE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 273603C33E04C52724DB3668 /* Pods-ScheduleWidgetExtension.debug.xcconfig */;
+			baseConfigurationReference = 1E71FE95C13C508377515DF9 /* Pods-CyxbsWidgetExtension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CODE_SIGN_ENTITLEMENTS = ScheduleWidgetExtensionDebug.entitlements;
+				CODE_SIGN_ENTITLEMENTS = CyxbsWidgetExtensionDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ScheduleWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ScheduleWidget;
+				INFOPLIST_FILE = CyxbsWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CyxbsWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Redrock. All rights reserved.";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1068,33 +1197,32 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.ScheduleWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.CyxbsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ScheduleWidget/Bridge.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsWidget/CyxbsWidget-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		14BC482129164EB40063809E /* Release */ = {
+		141008F3295E88E30046E7BE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E2CDED2CEDABF0D48DD6895F /* Pods-ScheduleWidgetExtension.release.xcconfig */;
+			baseConfigurationReference = 89FA795FFB7E294FDDCCAE33 /* Pods-CyxbsWidgetExtension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_LINK_OBJC_RUNTIME = NO;
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ScheduleWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = ScheduleWidget;
+				INFOPLIST_FILE = CyxbsWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CyxbsWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 Redrock. All rights reserved.";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1103,12 +1231,12 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.ScheduleWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs.CyxbsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/ScheduleWidget/Bridge.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsWidget/CyxbsWidget-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1172,6 +1300,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Debug;
 		};
@@ -1226,6 +1355,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1237,10 +1367,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
+				CODE_SIGN_ENTITLEMENTS = CyxbsMobile2019_iOS/CyxbsMobile2019_iOSDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
@@ -1279,14 +1409,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.4.4;
+				MARKETING_VERSION = 6.4.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = CyxbsMobile2019_iOS/SwiftBrigeHeader;
+				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/CyxbsMobile2019_iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1301,8 +1431,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
@@ -1341,14 +1472,14 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.4.4;
+				MARKETING_VERSION = 6.4.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = CyxbsMobile2019_iOS/SwiftBrigeHeader;
+				SWIFT_OBJC_BRIDGING_HEADER = "CyxbsMobile2019_iOS/CyxbsMobile2019_iOS-Bridging-Header.h";
 				SWIFT_VERSION = 5.7;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1358,6 +1489,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B96D229622E2F31FBCD33B4F /* Pods-CyxbsMobile2019_iOSTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1383,6 +1515,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 77D1AF943479D46CA3520A58 /* Pods-CyxbsMobile2019_iOSTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1407,6 +1540,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BD5C83DD4A5F87175B80CF25 /* Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D67VC378K4;
 				INFOPLIST_FILE = CyxbsMobile2019_iOSUITests/Info.plist;
@@ -1426,6 +1560,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 437715CC8C0C829ECA03DE7B /* Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D67VC378K4;
 				INFOPLIST_FILE = CyxbsMobile2019_iOSUITests/Info.plist;
@@ -1444,11 +1579,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		14BC482229164EB40063809E /* Build configuration list for PBXNativeTarget "ScheduleWidgetExtension" */ = {
+		141008F1295E88E30046E7BE /* Build configuration list for PBXNativeTarget "CyxbsWidgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				14BC482029164EB40063809E /* Debug */,
-				14BC482129164EB40063809E /* Release */,
+				141008F2295E88E30046E7BE /* Debug */,
+				141008F3295E88E30046E7BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

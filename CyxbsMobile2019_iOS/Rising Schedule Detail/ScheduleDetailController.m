@@ -42,13 +42,24 @@
 
 #pragma mark - Life cycle
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)loadView {
+    [super loadView];
     self.view.layer.cornerRadius = 16;
+    self.view.layer.shadowColor = UIColor.lightGrayColor.CGColor;
+    self.view.layer.shadowOffset = CGSizeMake(0, -2);
+    self.view.layer.shadowRadius = 5.0;
+    self.view.layer.shadowOpacity = 0.8;
+    self.view.layer.shouldRasterize = YES;
+    
     self.view.height = 252;
     self.view.backgroundColor =
     [UIColor Light:UIColorHex(#FFFFFF)
               Dark:UIColorHex(#2D2D2D)];
+    
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
     [self.view addSubview:self.collectionView];
     [self.view addSubview:self.pageControl];

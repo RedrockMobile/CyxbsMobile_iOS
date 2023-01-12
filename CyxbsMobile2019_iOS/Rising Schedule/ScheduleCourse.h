@@ -6,20 +6,20 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-/**一类课ScheduleCourse模型
- * 时刻注意你的inSections散列表
- * 特别是在自定义课表的时候，
- */
-
 #import <Foundation/Foundation.h>
 
 #import "ScheduleRequestType.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark - SchoolLesson
+@class ScheduleTimeline;
 
-@interface ScheduleCourse : NSObject
+/**MARK: ScheduleCourse
+ * 一类课程的体现，具体表现在`inSections`
+ * 注意，不满足`NSCopying`协议
+ */
+
+@interface ScheduleCourse : NSObject <NSSecureCoding>
 
 // !!!: Time
 
@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger inWeek;
 
 /// 所在周散列表
-@property (nonatomic, copy) NSMutableIndexSet *inSections;
+@property (nonatomic, copy) NSIndexSet *inSections;
 
 /// 第几-几节课，中午为4-5，晚上为8-9
 @property (nonatomic) NSRange period;
@@ -62,23 +62,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @“xx节”
 @property (nonatomic, copy) NSString *lesson;
 
-// !!!: Distributed
-
-/// sno
-@property (nonatomic, copy) NSString *sno;
-
-/// requestType
-@property (nonatomic, copy) ScheduleModelRequestType requestType;
-
 #pragma mark - Method
 
 /// 根据字典来赋值
 /// @param dic 字典（这里必须看文档，注意使用）
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
-
-/// 竖直方向上是否与另外一节课重合，不考虑周数
-/// @param course 另一节课
-- (BOOL)isAboveVerticalTimeAs:(ScheduleCourse *)course;
 
 @end
 
