@@ -105,20 +105,20 @@
 }
 
 - (void)animatedForFinishedWithContext:(id<UIViewControllerContextTransitioning>)context {
-    UIViewController *to = [context viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIViewController *from = [context viewControllerForKey:UITransitionContextFromViewControllerKey];
     
-    CGRect endFrame = to.view.frame;
+    CGRect endFrame = from.view.frame;
     endFrame.origin.y = context.containerView.frame.origin.y + context.containerView.frame.size.height;
     
-    to.view.frame = endFrame;
+    from.view.frame = endFrame;
 }
 
 - (void)completionWithWithContext:(id<UIViewControllerContextTransitioning>)context {
     UIViewController *from = [context viewControllerForKey:UITransitionContextFromViewControllerKey];
-    [super completionWithWithContext:context];
     if(![context transitionWasCancelled]){
         [from.view removeFromSuperview];
     }
+    [super completionWithWithContext:context];
 }
 
 @end

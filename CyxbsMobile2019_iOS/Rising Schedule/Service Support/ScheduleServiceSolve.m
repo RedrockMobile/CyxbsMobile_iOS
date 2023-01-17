@@ -107,7 +107,31 @@
 - (void)setHeaderView:(ScheduleHeaderView *)headerView {
     _headerView = headerView;
     _headerView.delegate = self;
+    if (self.viewController.modalPresentationStyle == UIModalPresentationCustom) {
+        UIView *_bar = [[UIView alloc] initWithFrame:CGRectMake(0, 9, 27, 5)];
+        _bar.centerX = _headerView.width / 2;
+        _bar.layer.cornerRadius = _bar.height / 2;
+        _bar.backgroundColor = [UIColor Light:UIColorHex(#E2EDFB) Dark:UIColorHex(#5A5A5A)];
+        [_headerView addSubview:_bar];
+        
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(_panDismiss:)];
+        [_headerView addGestureRecognizer:pan];
+    }
+    
     [self reloadHeaderView];
+}
+
+- (void)_panDismiss:(UIPanGestureRecognizer *)pan {
+    if (pan.state == UIGestureRecognizerStateBegan) {
+        TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
+        delegate.transitionDurationIfNeeded = 0.3;
+        delegate.panGestureIfNeeded = pan;
+        delegate.panInsetsIfNeeded = UIEdgeInsetsMake(self.viewController.view.top, 0, self.viewController.tabBarController.tabBar.height, 0);
+        self.viewController.transitioningDelegate = delegate;
+        self.viewController.modalPresentationStyle = UIModalPresentationCustom;
+        [self.viewController dismissViewControllerAnimated:YES completion:^{
+        }];;
+    }
 }
 
 #pragma mark - <UICollectionViewDelegate>

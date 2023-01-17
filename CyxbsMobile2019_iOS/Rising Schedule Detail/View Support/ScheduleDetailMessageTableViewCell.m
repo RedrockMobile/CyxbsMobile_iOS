@@ -39,10 +39,10 @@ NSString *ScheduleDetailMessageTableViewCellReuseIdentifier = @"ScheduleDetailMe
 }
 
 - (void)layoutSubviews {
-    self.rightLab.size = self.leftLab.size = CGSizeMake(self.contentView.width / 2, self.contentView.height);
-    
     self.leftLab.left = 16;
-    self.rightLab.right = self.contentView.SuperRight - 16;
+    self.leftLab.size = CGSizeMake(self.contentView.width / 4, self.contentView.height);
+    
+    self.rightLab.frame = CGRectMake(self.leftLab.right, 0, self.contentView.width - 16 - self.leftLab.right, self.contentView.height);
 }
 
 - (NSString *)leftDescription {
@@ -57,7 +57,7 @@ NSString *ScheduleDetailMessageTableViewCellReuseIdentifier = @"ScheduleDetailMe
 
 - (UILabel *)leftLab {
     if (_leftLab == nil) {
-        _leftLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width / 2, self.contentView.height)];
+        _leftLab = [[UILabel alloc] init];
         _leftLab.font = [UIFont fontWithName:FontName.PingFangSC.Regular size:15];
         _leftLab.textColor =
         [UIColor Light:UIColorHex(#112C54)
@@ -68,7 +68,7 @@ NSString *ScheduleDetailMessageTableViewCellReuseIdentifier = @"ScheduleDetailMe
 
 - (UILabel *)rightLab {
     if (_rightLab == nil) {
-        _rightLab = [[UILabel alloc] initWithFrame:CGRectMake(self.leftLab.right, 0, self.contentView.width / 2, self.contentView.height)];
+        _rightLab = [[UILabel alloc] init];
         _rightLab.font = [UIFont fontWithName:FontName.PingFangSC.Semibold size:15];
         _rightLab.textAlignment = NSTextAlignmentRight;
         _rightLab.textColor =
