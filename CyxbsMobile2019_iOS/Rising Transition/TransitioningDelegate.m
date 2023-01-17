@@ -8,11 +8,9 @@
 
 #import "TransitioningDelegate.h"
 
-#import "PresentAnimatedTransition.h"
-#import "DismissAnimatedTransition.h"
+#import "AnimatedTransitioningSupport.h"
 
-#import "PresentDrivenInteractiveTransition.h"
-#import "DismissDrivenInteractiveTransition.h"
+#import "DrivenInteractiveTransitionSupport.h"
 
 @implementation TransitioningDelegate
 
@@ -29,6 +27,7 @@
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
     PresentAnimatedTransition *transition = [[PresentAnimatedTransition alloc] init];
     transition.transitionDuration = self.transitionDurationIfNeeded;
+    transition.supportedTapOutsideBack = self.supportedTapOutsideBackWhenPresent;
     return transition;
 }
 
@@ -43,6 +42,7 @@
 - (id<UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id<UIViewControllerAnimatedTransitioning>)animator{
     if(self.panGestureIfNeeded) {
         PresentDrivenInteractiveTransition *transition = [[PresentDrivenInteractiveTransition alloc] initWithPanGesture:self.panGestureIfNeeded];
+        transition.panInsets = self.panInsetsIfNeeded;
         return transition;
     }
     return nil;
@@ -51,6 +51,7 @@
 - (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator{
     if(self.panGestureIfNeeded) {
         DismissDrivenInteractiveTransition *transition = [[DismissDrivenInteractiveTransition alloc] initWithPanGesture:self.panGestureIfNeeded];
+        transition.panInsets = self.panInsetsIfNeeded;
         return transition;
     }
     return nil;

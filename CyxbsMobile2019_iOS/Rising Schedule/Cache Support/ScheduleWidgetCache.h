@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property BOOL beDouble;
 
+@property BOOL allowedLocalCache;
+
 @end
 
 NS_ASSUME_NONNULL_END

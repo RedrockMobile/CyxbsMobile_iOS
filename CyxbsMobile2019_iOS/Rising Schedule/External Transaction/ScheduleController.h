@@ -24,10 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 掉用者
 @property (nonatomic, strong, readonly) SchedulePresenter *presenter;
 
-/// 是否是push布局
-/// (区别在于是否是全屏布局)
-@property (nonatomic) BOOL isPushStyle;
-
 - (instancetype)init NS_UNAVAILABLE;
 
 + (instancetype)new NS_UNAVAILABLE;

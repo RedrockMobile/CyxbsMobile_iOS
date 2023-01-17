@@ -66,8 +66,15 @@
     NSMutableArray *ary = NSMutableArray.array;
     for (NSArray <ScheduleCourse *> *kind in _statusMap.allValues) {
         for (ScheduleCourse *course in kind) {
-            if (course.inSections && course.inWeek == idxPath.week && NSLocationInRange(idxPath.location, course.period) ) {
-                [ary addObject:course];
+            if (course.inWeek == idxPath.week &&
+                NSLocationInRange(idxPath.location, course.period)) {
+                if (course.inSections) {
+                    if ([course.inSections containsIndex:idxPath.section]){
+                        [ary addObject:course];
+                    }
+                } else {
+                    [ary addObject:course];
+                }
             }
         }
     }

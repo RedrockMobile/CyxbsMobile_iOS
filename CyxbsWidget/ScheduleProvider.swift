@@ -15,19 +15,42 @@ typealias ScheduleWidgetConfiguration = ConfigurationIntent
 struct ScheduleProvider: IntentTimelineProvider {
     
     func placeholder(in context: Context) -> ScheduleTimelineEntry {
-        ScheduleTimelineEntry(date: Date(), show: ScheduleWidgetModel.priviewSection)
+        ScheduleTimelineEntry(date: Date())
     }
     
     func getSnapshot(for configuration: ScheduleWidgetConfiguration, in context: Context, completion: @escaping (ScheduleTimelineEntry) -> ())  {
         let date = Date()
-        let entry: ScheduleTimelineEntry!
+        let entry = ScheduleTimelineEntry(date: Date())
+        
+        let id1 = ScheduleWidgetCache().mainID
+        let id2 = ScheduleWidgetCache().otherID
         
         if context.isPreview {
-            entry = .init(date: Date())
-        } else {
-            let model = ScheduleWidgetModel(showSection: 0, showRange: 1..<7)
             
-            entry = ScheduleTimelineEntry(date: Date(), show: 13)
+            let item1 = ScheduleCombineItem.priview2021215154
+            let item2 = ScheduleCombineItem.priview2022214857
+            
+            entry.model.sno = "2021215154"
+            entry.model.combineItem(item1)
+            entry.model.combineItem(item2)
+            entry.model.finishCombine()
+            
+            completion(entry)
+            
+        } else {
+            
+            ScheduleNETRequest.request([
+                .student : [id1.sno, id2.sno]
+            ]) { item in
+                entry.model.combineItem(item)
+                completion(entry)
+            } failure: { error, id in
+                if ScheduleWidgetCache().allowedLocalCache {
+                    let errorItem = ScheduleShareCache().awake(for: id)
+                    
+                }
+            }
+
         }
         
         completion(entry)

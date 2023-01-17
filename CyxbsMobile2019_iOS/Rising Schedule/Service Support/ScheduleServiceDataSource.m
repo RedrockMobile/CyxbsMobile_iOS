@@ -58,6 +58,9 @@
     [view addSubview:self.backgroundView];
     
     view.dataSource = self;
+    if ([view.collectionViewLayout isKindOfClass:ScheduleCollectionViewLayout.class]) {
+        ((ScheduleCollectionViewLayout *)view.collectionViewLayout).dataSource = self;
+    }
 }
 
 #pragma mark - <UICollectionViewDataSource>

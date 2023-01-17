@@ -119,6 +119,7 @@
     
     TransitioningDelegate *transitionDelegate = [[TransitioningDelegate alloc] init];
     transitionDelegate.transitionDurationIfNeeded = 0.3;
+    transitionDelegate.supportedTapOutsideBackWhenPresent = YES;
     ScheduleDetailController *vc = [[ScheduleDetailController alloc] initWithCourses:courses];
     vc.transitioningDelegate = transitionDelegate;
     vc.modalPresentationStyle = UIModalPresentationCustom;

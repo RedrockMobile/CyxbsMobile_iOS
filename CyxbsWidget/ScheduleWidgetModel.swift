@@ -13,7 +13,7 @@ class ScheduleWidgetModel: ScheduleMapModel {
         set { section = (newValue < 0 ? 0 : newValue) }
         get { section }
     }
-    private var section: Int
+    private var section: Int = 0
     
     var showRange: Range<Int> {
         set { range = (newValue.contains(0) ? 1..<7 : newValue) }
@@ -28,7 +28,7 @@ class ScheduleWidgetModel: ScheduleMapModel {
     }
     private var earStart: Date?
     
-    init(showSection: Int, showRange: Range<Int>) {
+    init(showSection: Int = 0, showRange: Range<Int> = 1..<7) {
         section = (showSection < 0 ? 0 : showSection)
         range = (showRange.contains(0) ? 1..<7 : showRange)
         super.init()

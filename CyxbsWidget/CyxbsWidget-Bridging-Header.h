@@ -9,10 +9,10 @@
 #import "ScheduleWidgetCache.h"
 
 #import "ScheduleMapModel.h"
-
 #import "ScheduleCollectionViewModel.h"
 
 #import "NSIndexPath+Schedule.h"
 
 
+#import "ScheduleNETRequest.h"
 #import "ScheduleRequestType.h"

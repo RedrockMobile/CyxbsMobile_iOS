@@ -44,18 +44,22 @@
 
 - (void)loadView {
     [super loadView];
-    self.view.layer.cornerRadius = 16;
-    self.view.layer.shadowColor = UIColor.lightGrayColor.CGColor;
-    self.view.layer.shadowOffset = CGSizeMake(0, -2);
-    self.view.layer.shadowRadius = 5.0;
-    self.view.layer.shadowOpacity = 0.8;
-    self.view.layer.shouldRasterize = YES;
-    
     self.view.height = 252;
-    self.view.backgroundColor =
-    [UIColor Light:UIColorHex(#FFFFFF)
-              Dark:UIColorHex(#2D2D2D)];
+    self.view.backgroundColor = UIColor.clearColor;
+    self.view.layer.shadowRadius = 16;
+    self.view.layer.shadowColor = [UIColor Light:UIColor.lightGrayColor Dark:UIColor.darkGrayColor].CGColor;
+    self.view.layer.shadowOpacity = 0.7;
     
+    UIView *view = [[UIView alloc] initWithFrame:self.view.SuperFrame];
+    view.backgroundColor =
+    [UIColor Light:UIColorHex(#FFFFFF) Dark:UIColorHex(#2D2D2D)];
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight) cornerRadii:CGSizeMake(20, 20)];
+    CAShapeLayer *shapeLayer = [[CAShapeLayer alloc] init];
+    shapeLayer.frame = view.bounds;
+    shapeLayer.path = bezierPath.CGPath;
+    view.layer.mask = shapeLayer;
+    
+    [self.view addSubview:view];
 }
 
 - (void)viewDidLoad {
