@@ -34,12 +34,5 @@ extension ScheduleWidgetModel {
     
     static var priviewSection = 13
     
-    static var priview: ScheduleWidgetModel {
-        let model = ScheduleWidgetModel(showSection: priviewSection, showRange: 1..<7)
-        model.sno = ScheduleCombineItem.priviewMainSno
-        model.combineItem(.priview2021215154)
-        model.combineItem(.priview2022214857)
-        model.finishCombine()
-        return model
-    }
+    static var priviewRange = 1..<7
 }

@@ -16,10 +16,21 @@ NS_ASSUME_NONNULL_BEGIN
     UIViewControllerTransitioningDelegate
 >
 
-@property (nonatomic, weak) UIPanGestureRecognizer *panGestureIfNeeded;
+// animated support
 
 /// default is 0.5
 @property (nonatomic) NSTimeInterval transitionDurationIfNeeded;
+
+/// default is true
+@property (nonatomic) BOOL supportedTapOutsideBackWhenPresent;
+
+// driven interactive support
+
+/// default is nil
+@property (nonatomic, weak) UIPanGestureRecognizer *panGestureIfNeeded;
+
+/// default is UIEdgeInsetsZero
+@property (nonatomic) UIEdgeInsets panInsetsIfNeeded;
 
 @end
 

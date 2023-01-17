@@ -14,6 +14,8 @@
 
 #pragma mark - NSUserDefault
 
+// widgetSection
+
 - (void)setWidgetSection:(NSInteger)widgetSection {
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
     [userDefaults setInteger:widgetSection forKey:@"ScheduleIdentifier_WidgetSection"];
@@ -24,6 +26,8 @@
     return [userDefaults integerForKey:@"ScheduleIdentifier_WidgetSection"];
 }
 
+// beDouble
+
 - (void)setBeDouble:(BOOL)beDouble {
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
     [userDefaults setBool:beDouble forKey:@"ScheduleIdentifier_BeDouble"];
@@ -33,6 +37,8 @@
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
     return [userDefaults boolForKey:@"ScheduleIdentifier_BeDouble"];
 }
+
+// mainID &otherID
 
 - (void)setMainID:(ScheduleIdentifier *)mainID {
     [self _setID:mainID forKey:@"ScheduleIdentifier_MainID"];
@@ -49,6 +55,20 @@
 - (ScheduleIdentifier *)otherID {
     return [self _getForKey:@"ScheduleIdentifier_OtherID"];
 }
+
+// allowedLocalCache
+
+- (void)setAllowedLocalCache:(BOOL)allowedLocalCache {
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
+    [userDefaults setBool:allowedLocalCache forKey:@"ScheduleIdentifier_AllowedLocalCache"];
+}
+
+- (BOOL)allowedLocalCache {
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
+    return [userDefaults boolForKey:@"ScheduleIdentifier_AllowedLocalCache"];
+}
+
+// private
 
 - (void)_setID:(ScheduleIdentifier *)ID forKey:(NSString *)key {
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
