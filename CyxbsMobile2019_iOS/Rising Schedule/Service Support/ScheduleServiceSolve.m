@@ -10,17 +10,18 @@
 
 #import "ScheduleNETRequest.h"
 
-#import "ScheduleDetailController.h"
-
 #import "ScheduleShareCache.h"
 
 #import "TransitioningDelegate.h"
+#import "ScheduleDetailController.h"
+#import "ScheduleCustomViewController.h"
 
 #pragma mark - ScheduleServiceSolve ()
 
 @interface ScheduleServiceSolve () <
     UICollectionViewDelegate,
-    ScheduleHeaderViewDelegate
+    ScheduleHeaderViewDelegate,
+    UIGestureRecognizerDelegate
 >
 
 @end
@@ -33,6 +34,9 @@
     [super setCollectionView:view];
     _collectionView = view;
     view.delegate = self;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_emptyTap:)];
+    tap.delegate = self;
+    [view addGestureRecognizer:tap];
 }
 
 - (void)requestAndReloadData {
@@ -130,7 +134,14 @@
         self.viewController.transitioningDelegate = delegate;
         self.viewController.modalPresentationStyle = UIModalPresentationCustom;
         [self.viewController dismissViewControllerAnimated:YES completion:^{
-        }];;
+        }];
+    }
+}
+
+- (void)_emptyTap:(UITapGestureRecognizer *)tap {
+    if (tap.state == UIGestureRecognizerStateEnded) {
+        ScheduleCustomViewController *vc = [[ScheduleCustomViewController alloc] init];
+        [self.viewController.navigationController pushViewController:vc animated:YES];
     }
 }
 
@@ -168,6 +179,12 @@
 
 - (void)scheduleHeaderViewDidTapDouble:(ScheduleHeaderView *)view {
     [view setShowMuti:view.isShow isSingle:!view.isSingle];
+}
+
+#pragma mark - <UIGestureRecognizerDelegate>
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(nonnull UITouch *)touch {
+    return [touch.view isKindOfClass:UICollectionView.class];
 }
 
 @end

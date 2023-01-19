@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 2) 自动权属性: type
 /// @param success 成功返回
 /// @param failure 失败返回
-+ (void)appendCustom:(ScheduleCourse *)course
+- (void)appendCustom:(ScheduleCourse *)course
              success:(void (^)(ScheduleCombineItem *item))success
              failure:(void (^)(NSError *error))failure;
 
@@ -71,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 3) 自定义检查标识符为courseID
 /// @param success 成功返回
 /// @param failure 失败返回
-+ (void)editCustom:(ScheduleCourse *)course
+- (void)editCustom:(ScheduleCourse *)course
            success:(void (^)(ScheduleCombineItem *item))success
            failure:(void (^)(NSError *error))failure;
 
@@ -80,7 +80,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 1) 自定义检查标识符为customID
 /// @param success 成功返回
 /// @param failure 失败返回
-+ (void)deleteCustom:(ScheduleCourse *)course
+- (void)deleteCustom:(ScheduleCourse *)course
              success:(void (^)(ScheduleCombineItem *item))success
              failure:(void (^)(NSError *error))failure;
 

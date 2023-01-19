@@ -23,6 +23,8 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
 /// 多人
 @property (nonatomic, strong) UIView *multyView;
 
+@property (nonatomic, strong) UIImageView *backImgView;
+
 @end
 
 #pragma mark - ScheduleCollectionViewCell
@@ -38,6 +40,7 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
         self.backgroundColor = UIColor.clearColor;
         self.contentView.layer.cornerRadius = 8;
         self.contentView.clipsToBounds = YES;
+        [self.contentView addSubview:self.backImgView];
         [self.contentView addSubview:self.multyView];
         [self.contentView addSubview:self.titleLab];
         [self.contentView addSubview:self.contentLab];
@@ -49,6 +52,8 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
 
 - (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes {
     CGRect frame = layoutAttributes.frame;
+    
+    self.backImgView.size = frame.size;
     
     self.multyView.right = frame.size.width - 5;
     
@@ -91,6 +96,15 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
         _multyView.hidden = YES;
     }
     return _multyView;
+}
+
+- (UIImageView *)backImgView {
+    if (_backImgView == nil) {
+        _backImgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lineline"]];
+        _backImgView.contentMode = UIViewContentModeScaleAspectFill;
+        _backImgView.hidden = YES;
+    }
+    return _backImgView;
 }
 
 - (NSString *)courseTitle {
@@ -186,16 +200,14 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
                                   darkColor:UIColorHex(#F0F0F2CC)];
         } break;
             
-        /*ScheduleCollectionViewCellDrawCustom*/
-        case ScheduleCollectionViewCellDrawCustom: {
-            self.contentView.backgroundColor =
-            [UIColor dm_colorWithLightColor:UIColorHex(#E9ECF0)
-                                  darkColor:UIColorHex(#3C4E70)];
-            
-            self.titleLab.textColor = self.contentLab.textColor = self.multyView.backgroundColor =
-            [UIColor dm_colorWithLightColor:UIColorHex(#4D4D4D)
-                                  darkColor:UIColorHex(#F0F0F2CC)];
-        } break;
+        default: break;
+    }
+    
+    /*ScheduleCollectionViewCellDrawCustom*/
+    if (_drawType == ScheduleCollectionViewCellDrawCustom) {
+        self.backImgView.hidden = NO;
+    } else {
+        self.backImgView.hidden = YES;
     }
 }
 
