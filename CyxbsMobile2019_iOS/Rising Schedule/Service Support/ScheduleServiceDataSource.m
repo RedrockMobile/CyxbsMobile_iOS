@@ -163,7 +163,7 @@
     if (kind == UICollectionElementKindSectionLeading) {
         cell.isTitleOnly = YES;
         
-        cell.title = @(indexPath.item + 1).stringValue;
+        cell.title = _model.timeline[indexPath.item].title;
         
         return cell;
     }
@@ -178,7 +178,7 @@
         return 8;
     }
     if (kind == UICollectionElementKindSectionLeading) {
-        return 12;
+        return _model.timeline.count;
     }
     return 0;
 }

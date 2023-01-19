@@ -12,6 +12,8 @@
 
 #import "ScheduleCombineItemSupport.h"
 
+#import "ScheduleTimelineSupport.h"
+
 #import "NSIndexPath+Schedule.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -27,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 最终的布局mapTable，自定调用finishCombine
 @property (nonatomic, strong, readonly) NSMapTable <NSIndexPath *, ScheduleCollectionViewModel *> *mapTable;
+
+@property (nonatomic, readonly) ScheduleTimeline *timeline;
 
 /// 加入到Map管理，不做强保存
 /// @param model 加入map管理的model

@@ -107,15 +107,28 @@
 
 
 
+
+- (UIViewController *)_svc {
+    ScheduleIdentifier *mainID = ScheduleWidgetCache.shareCache.mainID;
+    [self.schedulePresenter setWithOnlyMainIdentifier:mainID];
+    ScheduleController *vc = [[ScheduleController alloc] initWithPresenter:self.schedulePresenter];
+    
+    return vc;
+}
+
+- (TransitioningDelegate *)_delegate {
+    TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
+    delegate.transitionDurationIfNeeded = 0.3;
+    delegate.panInsetsIfNeeded = UIEdgeInsetsMake(StatusBarHeight(), 0, self.tabBar.height, 0);
+    delegate.supportedTapOutsideBackWhenPresent = NO;
+    return delegate;
+}
+
 - (void)_tap:(UITapGestureRecognizer *)tap {
     if (tap.state == UIGestureRecognizerStateEnded) {
-        ScheduleIdentifier *mainID = ScheduleWidgetCache.shareCache.mainID;
-        [self.schedulePresenter setWithOnlyMainIdentifier:mainID];
-        ScheduleController *vc = [[ScheduleController alloc] initWithPresenter:self.schedulePresenter];
-        TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
-        delegate.transitionDurationIfNeeded = 0.3;
-        delegate.panInsetsIfNeeded = UIEdgeInsetsMake(StatusBarHeight(), 0, self.tabBar.height, 0);
-        delegate.supportedTapOutsideBackWhenPresent = NO;
+        UIViewController *vc = self._svc;
+        TransitioningDelegate *delegate = self._delegate;
+        
         vc.transitioningDelegate = delegate;
         vc.modalPresentationStyle = UIModalPresentationCustom;
         [self presentViewController:vc animated:YES completion:^{
@@ -126,14 +139,10 @@
 
 - (void)_pan:(UIPanGestureRecognizer *)pan {
     if (pan.state == UIGestureRecognizerStateBegan) {
-        ScheduleIdentifier *mainID = ScheduleWidgetCache.shareCache.mainID;
-        [self.schedulePresenter setWithOnlyMainIdentifier:mainID];
-        ScheduleController *vc = [[ScheduleController alloc] initWithPresenter:self.schedulePresenter];
-        TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
-        delegate.transitionDurationIfNeeded = 0.3;
+        UIViewController *vc = self._svc;
+        TransitioningDelegate *delegate = self._delegate;
         delegate.panGestureIfNeeded = pan;
-        delegate.panInsetsIfNeeded = UIEdgeInsetsMake(StatusBarHeight(), 0, self.tabBar.height, 0);
-        delegate.supportedTapOutsideBackWhenPresent = NO;
+        
         vc.transitioningDelegate = delegate;
         vc.modalPresentationStyle = UIModalPresentationCustom;
         [self presentViewController:vc animated:YES completion:^{
@@ -168,7 +177,7 @@
 - (UIViewController *)_test1 {
     FastLoginViewController *vc = [[FastLoginViewController alloc] init];
     vc.presenter = self.schedulePresenter;
-    return vc;
+    return [[UINavigationController alloc] initWithRootViewController:vc];
 }
 
 

@@ -15,9 +15,9 @@
 #import "ScheduleHeaderView.h"
 
 static CGFloat (^statusHeight)(void) = ^{
-        if (@available(iOS 13.0, *)) {
-            return [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager.statusBarFrame.size.height;
-        }
+    if (@available(iOS 13.0, *)) {
+        return UIApplication. sharedApplication.windows.firstObject.windowScene.statusBarManager.statusBarFrame.size.height;
+    }
     return [UIApplication sharedApplication].statusBarFrame.size.height;
 };
 
@@ -92,15 +92,7 @@ static CGFloat (^statusHeight)(void) = ^{
     if (_headerView == nil) {
         _headerView = [[ScheduleHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 64)];
         CGFloat top = 0;
-        if (self.modalPresentationStyle == UIModalPresentationCustom) {
-            UIView *_bar = [[UIView alloc] initWithFrame:CGRectMake(0, 9, 27, 5)];
-            _bar.centerX = _headerView.width / 2;
-            _bar.layer.cornerRadius = _bar.height / 2;
-            _bar.backgroundColor = [UIColor Light:UIColorHex(#E2EDFB) Dark:UIColorHex(#5A5A5A)];
-            [_headerView addSubview:_bar];
-            
-            
-        } else {
+        if (self.modalPresentationStyle != UIModalPresentationCustom){
             top = statusHeight();
         }
         _headerView.top = top;

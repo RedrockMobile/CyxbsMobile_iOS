@@ -50,13 +50,11 @@
     NSDateComponents *components = [NSCalendar.currentCalendar componentsInTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Chongqing"] fromDate:nowDate];
     NSInteger inWeek = (components.weekday + 6) % 8 + (components.weekday + 6) / 8;
     NSInteger inSection = [nowDate timeIntervalSinceDate:self.startDate] / (7 * 24 * 60 * 60);
-    NSInteger percent = [ScheduleTimeline.standardTimeLine percentWithDateComponents:components];
+    
     
     ScheduleIdentifier *selfIdentifier = [ScheduleIdentifier identifierWithSno:self.sno type:ScheduleModelRequestStudent];
     for (ScheduleCourse *course in _statusMap[selfIdentifier]) {
-        if ([course.inSections containsIndex:inSection] && course.inWeek == inWeek && NSLocationInRange(percent, course.period)) {
-            return course;
-        }
+        
     }
     
     return nil;
@@ -68,7 +66,7 @@
         for (ScheduleCourse *course in kind) {
             if (course.inWeek == idxPath.week &&
                 NSLocationInRange(idxPath.location, course.period)) {
-                if (course.inSections) {
+                if (idxPath.section) {
                     if ([course.inSections containsIndex:idxPath.section]){
                         [ary addObject:course];
                     }

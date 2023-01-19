@@ -37,6 +37,7 @@
                                           NSPointerFunctionsStrongMemory |
                                           NSPointerFunctionsObjectPersonality]
                    capacity:7];
+        _timeline = [[ScheduleTimeline alloc] init];
     }
     return self;
 }
@@ -46,15 +47,16 @@
 - (void)combineItem:(ScheduleCombineItem *)item {
     _clear = YES;
     for (ScheduleCourse *course in item.value) {
+        NSRange layoutRange = [self.timeline layoutRangeWithOriginRange:course.period];
         
         ScheduleCollectionViewModel *viewModel = [self _viewModelWithIdentifier:item.identifier course:course];
         [course.inSections enumerateIndexesUsingBlock:^(NSUInteger section, BOOL * __unused stop) {
-            NSIndexPath *indexPath = ScheduleIndexPathNew(section, course.inWeek, course.period.location);
+            NSIndexPath *indexPath = ScheduleIndexPathNew(section, course.inWeek, layoutRange.location);
             
             [self _setViewModel:viewModel forIndexPath:indexPath];
         }];
         
-        [self _setViewModel:viewModel forIndexPath:ScheduleIndexPathNew(0, course.inWeek, course.period.location)];
+        [self _setViewModel:viewModel forIndexPath:ScheduleIndexPathNew(0, course.inWeek, layoutRange.location)];
     }
 }
 

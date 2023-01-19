@@ -32,7 +32,6 @@ NSString *ScheduleSupplementaryCollectionViewCellReuseIdentifier = @"ScheduleSup
 #pragma mark - Init
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    static NSInteger count = 0;
     self = [super initWithFrame:frame];
     if (self) {
         self.contentView.layer.cornerRadius = 8;
@@ -97,6 +96,7 @@ NSString *ScheduleSupplementaryCollectionViewCellReuseIdentifier = @"ScheduleSup
         _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 6, -1, 20)];
         _titleLab.backgroundColor = UIColor.clearColor;
         _titleLab.textAlignment = NSTextAlignmentCenter;
+        _titleLab.numberOfLines = 2;
         _titleLab.font = [UIFont fontWithName:FontName.PingFangSC.Regular size:12];
         _titleLab.textColor =
         [UIColor dm_colorWithLightColor:UIColorHex(#15315B)

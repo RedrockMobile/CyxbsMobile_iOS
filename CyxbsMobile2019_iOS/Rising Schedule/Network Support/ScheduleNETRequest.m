@@ -40,6 +40,7 @@ static NSString *keyForType(ScheduleModelRequestType type) {
 }
 
 @implementation ScheduleNETRequest
+static ScheduleCombineItem *_customItem;
 
 #pragma mark - Method
 
@@ -89,6 +90,10 @@ static NSString *keyForType(ScheduleModelRequestType type) {
                     ScheduleWidgetCache.shareCache.nonatomicOtherID = item.identifier;
                     ScheduleWidgetCache.shareCache.otherID = item.identifier;
                 }
+                
+                if (item.identifier.type == ScheduleModelRequestCustom) {
+                    _customItem = item;
+                }
                
                 if (success) {
                     success(item);
@@ -104,19 +109,19 @@ static NSString *keyForType(ScheduleModelRequestType type) {
     }
 }
 
-+ (void)appendCustom:(ScheduleCourse *)course
+- (void)appendCustom:(ScheduleCourse *)course
              success:(void (^)(ScheduleCombineItem *))success
              failure:(void (^)(NSError *))failure {
     
 }
 
-+ (void)editCustom:(ScheduleCourse *)course
+- (void)editCustom:(ScheduleCourse *)course
            success:(nonnull void (^)(ScheduleCombineItem *))success
            failure:(nonnull void (^)(NSError *))failure {
     
 }
 
-+ (void)deleteCustom:(ScheduleCourse *)course
+- (void)deleteCustom:(ScheduleCourse *)course
              success:(void (^)(ScheduleCombineItem *))success
              failure:(void (^)(NSError *))failure {
     

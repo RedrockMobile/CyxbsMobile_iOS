@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		140F664D2973A63B0075C50A /* RyCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 140F664C2973A63B0075C50A /* RyCycleView.m */; };
+		140F666729779C750075C50A /* ScheduleCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140F666629779C750075C50A /* ScheduleCustomViewController.m */; };
 		141008DF295E88E20046E7BE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BC480F29164EB30063809E /* WidgetKit.framework */; };
 		141008E0295E88E20046E7BE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BC481129164EB30063809E /* SwiftUI.framework */; };
 		141008E3295E88E20046E7BE /* CyxbsWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141008E2295E88E20046E7BE /* CyxbsWidgetBundle.swift */; };
@@ -155,6 +156,8 @@
 		140374D228DCB61A008EDFAD /* RisingSingleClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RisingSingleClass.h; sourceTree = "<group>"; };
 		140F664B2973A63B0075C50A /* RyCycleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RyCycleView.h; sourceTree = "<group>"; };
 		140F664C2973A63B0075C50A /* RyCycleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RyCycleView.m; sourceTree = "<group>"; };
+		140F666529779C750075C50A /* ScheduleCustomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCustomViewController.h; sourceTree = "<group>"; };
+		140F666629779C750075C50A /* ScheduleCustomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCustomViewController.m; sourceTree = "<group>"; };
 		141008DE295E88E20046E7BE /* CyxbsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CyxbsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		141008E2295E88E20046E7BE /* CyxbsWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyxbsWidgetBundle.swift; sourceTree = "<group>"; };
 		141008E4295E88E20046E7BE /* CyxbsWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyxbsWidgetLiveActivity.swift; sourceTree = "<group>"; };
@@ -745,6 +748,8 @@
 				FE87CE1B27E98F82008D7148 /* Supporting Files */,
 				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
 				14100AF62961516B0046E7BE /* CyxbsMobile2019_iOS-Bridging-Header.h */,
+				140F666529779C750075C50A /* ScheduleCustomViewController.h */,
+				140F666629779C750075C50A /* ScheduleCustomViewController.m */,
 				14BC47F52914D73F0063809E /* FastUp Tests */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				1A9B7678235F50A800725937 /* Info.plist */,
@@ -1233,6 +1238,7 @@
 				14E66AA7295C8AC90043CBE7 /* ScheduleTimelineSupport.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
 				14B7E420295C4A150033653D /* AnimatedTransitioningSupport.m in Sources */,
+				140F666729779C750075C50A /* ScheduleCustomViewController.m in Sources */,
 				1466282628C4B1BD00AF584F /* ScheduleServiceDataSource.m in Sources */,
 				140F664D2973A63B0075C50A /* RyCycleView.m in Sources */,
 				1448BFF829627E350015768E /* ScheduleWidgetCache.m in Sources */,

@@ -10,17 +10,18 @@
 
 #import "ScheduleNETRequest.h"
 
-#import "ScheduleDetailController.h"
-
 #import "ScheduleShareCache.h"
 
 #import "TransitioningDelegate.h"
+#import "ScheduleDetailController.h"
+#import "ScheduleCustomViewController.h"
 
 #pragma mark - ScheduleServiceSolve ()
 
 @interface ScheduleServiceSolve () <
     UICollectionViewDelegate,
-    ScheduleHeaderViewDelegate
+    ScheduleHeaderViewDelegate,
+    UIGestureRecognizerDelegate
 >
 
 @end
@@ -33,6 +34,9 @@
     [super setCollectionView:view];
     _collectionView = view;
     view.delegate = self;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_emptyTap:)];
+    tap.delegate = self;
+    [view addGestureRecognizer:tap];
 }
 
 - (void)requestAndReloadData {
@@ -107,7 +111,38 @@
 - (void)setHeaderView:(ScheduleHeaderView *)headerView {
     _headerView = headerView;
     _headerView.delegate = self;
+    if (self.viewController.modalPresentationStyle == UIModalPresentationCustom) {
+        UIView *_bar = [[UIView alloc] initWithFrame:CGRectMake(0, 9, 27, 5)];
+        _bar.centerX = _headerView.width / 2;
+        _bar.layer.cornerRadius = _bar.height / 2;
+        _bar.backgroundColor = [UIColor Light:UIColorHex(#E2EDFB) Dark:UIColorHex(#5A5A5A)];
+        [_headerView addSubview:_bar];
+        
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(_panDismiss:)];
+        [_headerView addGestureRecognizer:pan];
+    }
+    
     [self reloadHeaderView];
+}
+
+- (void)_panDismiss:(UIPanGestureRecognizer *)pan {
+    if (pan.state == UIGestureRecognizerStateBegan) {
+        TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
+        delegate.transitionDurationIfNeeded = 0.3;
+        delegate.panGestureIfNeeded = pan;
+        delegate.panInsetsIfNeeded = UIEdgeInsetsMake(self.viewController.view.top, 0, self.viewController.tabBarController.tabBar.height, 0);
+        self.viewController.transitioningDelegate = delegate;
+        self.viewController.modalPresentationStyle = UIModalPresentationCustom;
+        [self.viewController dismissViewControllerAnimated:YES completion:^{
+        }];
+    }
+}
+
+- (void)_emptyTap:(UITapGestureRecognizer *)tap {
+    if (tap.state == UIGestureRecognizerStateEnded) {
+        ScheduleCustomViewController *vc = [[ScheduleCustomViewController alloc] init];
+        [self.viewController.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma mark - <UICollectionViewDelegate>
@@ -144,6 +179,12 @@
 
 - (void)scheduleHeaderViewDidTapDouble:(ScheduleHeaderView *)view {
     [view setShowMuti:view.isShow isSingle:!view.isSingle];
+}
+
+#pragma mark - <UIGestureRecognizerDelegate>
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(nonnull UITouch *)touch {
+    return [touch.view isKindOfClass:UICollectionView.class];
 }
 
 @end

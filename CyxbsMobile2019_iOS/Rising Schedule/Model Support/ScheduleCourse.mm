@@ -24,9 +24,13 @@
 
 #import "ScheduleCourse+WCTTableCoding.h"
 
-#ifdef WCDB_h
 
-@implementation ScheduleCourse 
+
+@implementation ScheduleCourse {
+    NSString *_timeStr;
+}
+
+#ifdef WCDB_h
 
 WCDB_IMPLEMENTATION(ScheduleCourse)
 
@@ -46,10 +50,6 @@ WCDB_SYNTHESIZE(ScheduleCourse, type)
 
 WCDB_SYNTHESIZE(ScheduleCourse, teacher)
 WCDB_SYNTHESIZE(ScheduleCourse, lesson)
-
-#else
-
-@implementation ScheduleCourse
 
 #endif
 
@@ -104,14 +104,17 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
 }
 
 - (NSString *)timeStr {
-    ScheduleTimeline *timeline = ScheduleTimeline.standardTimeLine;
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
-    formatter.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Chongqing"];
-    formatter.dateFormat = @"HH:mm";
-    NSString *beginStr = [formatter stringFromDate:(timeline[self.period.location - 1]).fromComponents.date];
-    NSString *endStr =[formatter stringFromDate:(timeline[NSMaxRange(self.period) - 2]).toComponents.date];
-    return [beginStr stringByAppendingFormat:@" - %@", endStr];
+    if (_timeStr == nil) {
+        SchedulePartTimeline *timeline = [ScheduleTimeline partTimeLineForOriginRange:self.period];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
+        formatter.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Chongqing"];
+        formatter.dateFormat = @"HH:mm";
+        NSString *beginStr = [formatter stringFromDate:timeline.fromComponents.date];
+        NSString *endStr = [formatter stringFromDate:timeline.toComponents.date];
+        _timeStr = [beginStr stringByAppendingFormat:@" - %@", endStr];
+    }
+    return _timeStr;
 }
 
 #pragma mark - override
