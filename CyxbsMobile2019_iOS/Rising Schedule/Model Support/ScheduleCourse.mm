@@ -9,6 +9,7 @@
 #import "ScheduleCourse.h"
 
 #import "ScheduleTimelineSupport.h"
+#import "ScheduleNeedsSupport.h"
 
 @interface ScheduleCourse ()
 
@@ -107,8 +108,8 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
     if (_timeStr == nil) {
         SchedulePartTimeline *timeline = [ScheduleTimeline partTimeLineForOriginRange:self.period];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
-        formatter.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Chongqing"];
+        formatter.locale = CNLocale();
+        formatter.timeZone = CQTimeZone();
         formatter.dateFormat = @"HH:mm";
         NSString *beginStr = [formatter stringFromDate:timeline.fromComponents.date];
         NSString *endStr = [formatter stringFromDate:timeline.toComponents.date];

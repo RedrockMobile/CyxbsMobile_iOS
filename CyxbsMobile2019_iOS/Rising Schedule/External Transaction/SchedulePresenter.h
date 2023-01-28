@@ -15,10 +15,6 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ScheduleController.h"
-
-#import "ScheduleServiceDataSource.h"
-
 #import "ScheduleServiceSolve.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -52,13 +48,23 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
+/* 单双人课表 */
+
 @interface SchedulePresenter (ScheduleDouble)
 
-- (void)setWithMainIdentifier:(ScheduleIdentifier *)main otherIdentifier:(ScheduleIdentifier *)other;
+- (void)setWithMainKey:(ScheduleIdentifier *)main;
 
-- (void)setWithOnlyMainIdentifier:(ScheduleIdentifier *)main;
+- (void)setWithMainKey:(ScheduleIdentifier *)main otherKey:(ScheduleIdentifier *)other;
 
 - (void)setWidgetSection:(NSInteger)section;
+
+@end
+
+/* 多人课表 */
+
+@interface SchedulePresenter (ScheduleGroup)
+
+
 
 @end
 

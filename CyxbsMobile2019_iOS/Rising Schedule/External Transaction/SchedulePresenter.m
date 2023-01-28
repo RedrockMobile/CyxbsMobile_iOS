@@ -8,15 +8,15 @@
 
 #import "SchedulePresenter.h"
 
+#import "ScheduleController.h"
+
 #import "ScheduleWidgetCache.h"
 
 #import "掌上重邮-Swift.h"
 
 #pragma mark - SchedulePresenter
 
-@implementation SchedulePresenter {
-    
-}
+@implementation SchedulePresenter 
 
 - (instancetype)init {
     self = [super init];
@@ -76,29 +76,26 @@
 
 @implementation SchedulePresenter (ScheduleDouble)
 
-- (void)setWithMainIdentifier:(ScheduleIdentifier *)main otherIdentifier:(ScheduleIdentifier *)other {
-    _service.model.sno = main.sno;
-    ScheduleWidgetCache.shareCache.nonatomicMainID = main;
-    ScheduleWidgetCache.shareCache.nonatomicOtherID = other;
-    ScheduleWidgetCache.shareCache.beDouble = YES;
-    _service.parameterIfNeeded = @{
-        ScheduleModelRequestStudent : @[main.sno, other.sno]
-    };
-    if (@available(iOS 14.0, *)) {
-        [WidgetKitHelper reloadAllTimelines];
+- (void)setWithMainKey:(ScheduleIdentifier *)main {
+    if (main == nil) {
+        return;
     }
-}
-
-- (void)setWithOnlyMainIdentifier:(ScheduleIdentifier *)main {
-    _service.model.sno = nil;
-    ScheduleWidgetCache.shareCache.nonatomicMainID = main;
-    ScheduleWidgetCache.shareCache.beDouble = NO;
+    _service.model.sno = main.sno;
+    [ScheduleWidgetCache.shareCache setKey:main withKeyName:ScheduleWidgetCacheKeyMain usingSupport:YES];
     _service.parameterIfNeeded = @{
         ScheduleModelRequestStudent : @[main.sno]
     };
-    if (@available(iOS 14.0, *)) {
-        [WidgetKitHelper reloadAllTimelines];
+}
+
+- (void)setWithMainKey:(ScheduleIdentifier *)main otherKey:(ScheduleIdentifier *)other {
+    [self setWithMainKey:main];
+    if (other == nil) {
+        return;
     }
+    [ScheduleWidgetCache.shareCache setKey:other withKeyName:ScheduleWidgetCacheKeyOther usingSupport:YES];
+    _service.parameterIfNeeded = @{
+        ScheduleModelRequestStudent : @[main.sno, other.sno]
+    };
 }
 
 - (void)setWidgetSection:(NSInteger)section {

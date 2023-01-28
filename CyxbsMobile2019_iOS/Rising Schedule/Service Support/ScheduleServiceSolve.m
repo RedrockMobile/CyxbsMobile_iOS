@@ -8,9 +8,9 @@
 
 #import "ScheduleServiceSolve.h"
 
-#import "ScheduleNETRequest.h"
-
+#import "SchedulePolicyService.h"
 #import "ScheduleShareCache.h"
+#import "ScheduleNeedsSupport.h"
 
 #import "TransitioningDelegate.h"
 #import "ScheduleDetailController.h"
@@ -24,11 +24,24 @@
     UIGestureRecognizerDelegate
 >
 
+@property (nonatomic, strong) SchedulePolicyService *policy;
+
 @end
 
 #pragma mark - ScheduleServiceSolve
 
 @implementation ScheduleServiceSolve
+
+- (instancetype)initWithModel:(ScheduleModel *)model {
+    self = [super initWithModel:model];
+    if (self) {
+        _policy = [[SchedulePolicyService alloc] init];
+        _policy.outRequestTime = 45 * 60 * 60;
+    }
+    return self;
+}
+
+#pragma mark - Method
 
 - (void)setCollectionView:(UICollectionView *)view {
     [super setCollectionView:view];
@@ -40,33 +53,9 @@
 }
 
 - (void)requestAndReloadData {
-    ScheduleRequestDictionary *dic = self.parameterIfNeeded;
-    // if dic is empty or have nothing, return
-    if (!dic || dic.count == 0) {
-        [self.collectionView reloadData];
-        return;
-    }
-    [self.model clear];
-    // check if Memenry have cache item
-    NSMutableArray <ScheduleIdentifier *> *unInMemIds = NSMutableArray.array;
-    NSArray <ScheduleIdentifier *> *ids = ScheduleIdentifiersFromScheduleRequestDictionary(dic);
-    for (ScheduleIdentifier *idsItem in ids) {
-        ScheduleCombineItem *cacheItem = [ScheduleShareCache.shareCache getItemForKey:idsItem.key];
-        if (cacheItem) {
-            [self.model combineItem:cacheItem];
-        } else {
-            [unInMemIds addObject:idsItem];
-        }
-    }
-    // if all in MEM, do nont request
-    if (unInMemIds.count == 0) {
-        return;
-    }
-    
-    dic = ScheduleRequestDictionaryFromScheduleIdentifiers(unInMemIds);
-    [ScheduleNETRequest
-     request:dic
-     success:^(ScheduleCombineItem * _Nonnull item) {
+    [self.policy
+     requestDic:self.parameterIfNeeded
+     policy:^(ScheduleCombineItem * _Nonnull item) {
         [self.model combineItem:item];
         [self.collectionView reloadData];
         [self scrollToSection:self.model.nowWeek];
@@ -75,9 +64,9 @@
             [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
         }
     }
-     failure:^(NSError * _Nonnull error, ScheduleIdentifier *errorID) {
+     unPolicy:^(ScheduleIdentifier * _Nonnull unpolicyKEY) {
         if (self.canUseAwake) {
-            ScheduleCombineItem *item = [ScheduleShareCache.shareCache awakeForIdentifier:errorID];
+            ScheduleCombineItem *item = [ScheduleShareCache.shareCache awakeForIdentifier:unpolicyKEY];
             [self.model combineItem:item];
             [self.collectionView reloadData];
             [self scrollToSection:self.model.nowWeek];
@@ -88,6 +77,9 @@
 #pragma mark - Method
 
 - (void)scrollToSection:(NSUInteger)page {
+    if (page > self.model.courseIdxPaths.count) {
+        page = 0;
+    }
     [self.collectionView setContentOffset:CGPointMake(page * self.collectionView.width, 0) animated:YES];
 }
 
@@ -96,7 +88,7 @@
         return @"整学期";
     }
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
+    formatter.locale = CNLocale();
     formatter.numberStyle = NSNumberFormatterSpellOutStyle;
     
     return [NSString stringWithFormat:@"第%@周", [formatter stringFromNumber:@(num)]];
@@ -141,7 +133,8 @@
 - (void)_emptyTap:(UITapGestureRecognizer *)tap {
     if (tap.state == UIGestureRecognizerStateEnded) {
         ScheduleCustomViewController *vc = [[ScheduleCustomViewController alloc] init];
-        [self.viewController.navigationController pushViewController:vc animated:YES];
+        TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
+        
     }
 }
 

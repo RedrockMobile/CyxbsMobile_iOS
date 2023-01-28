@@ -8,7 +8,7 @@
 
 #import "ScheduleNETRequest.h"
 
-#import "ScheduleWidgetCache.h"
+#import "ScheduleShareCache.h"
 #import "ScheduleCourse.h"
 
 #import "HttpTool.h"
@@ -81,15 +81,6 @@ static ScheduleCombineItem *_customItem;
                 }
                 
                 ScheduleCombineItem *item = [ScheduleCombineItem combineItemWithIdentifier:identifier value:ary];
-                
-                [ScheduleShareCache.shareCache cacheItem:item];
-                if ([item.identifier isEqual:ScheduleWidgetCache.shareCache.nonatomicMainID]) {
-                    ScheduleWidgetCache.shareCache.nonatomicMainID = item.identifier;
-                    ScheduleWidgetCache.shareCache.mainID = item.identifier;
-                } else if ([item.identifier isEqual:ScheduleWidgetCache.shareCache.nonatomicOtherID]) {
-                    ScheduleWidgetCache.shareCache.nonatomicOtherID = item.identifier;
-                    ScheduleWidgetCache.shareCache.otherID = item.identifier;
-                }
                 
                 if (item.identifier.type == ScheduleModelRequestCustom) {
                     _customItem = item;

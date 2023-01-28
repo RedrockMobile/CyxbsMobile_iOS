@@ -30,7 +30,7 @@ struct ScheduleFetchData {
         
         data = Array()
         section = ScheduleWidgetCache().widgetSection
-        let mainID = ScheduleWidgetCache().mainID
+        let mainID = ScheduleWidgetCache().getKeyWithKeyName(ScheduleWidgetCacheKeyMain, usingSupport: true)
         let mainItem = ScheduleShareCache().awake(for: mainID)
         beginTime = (mainItem?.identifier.exp)!
         
@@ -39,7 +39,7 @@ struct ScheduleFetchData {
         
         if ScheduleWidgetCache().beDouble {
             map.sno = mainID.sno
-            let otherID = ScheduleWidgetCache().otherID
+            let otherID = ScheduleWidgetCache().getKeyWithKeyName(ScheduleWidgetCacheKeyOther, usingSupport: true)
             let otherItem = ScheduleShareCache().awake(for: otherID)
             map.combineItem(otherItem!)
         }

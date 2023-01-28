@@ -22,8 +22,8 @@ struct ScheduleProvider: IntentTimelineProvider {
         let date = Date()
         let entry = ScheduleTimelineEntry(date: Date())
         
-        let id1 = ScheduleWidgetCache().mainID
-        let id2 = ScheduleWidgetCache().otherID
+        let id1 = ScheduleWidgetCache().getKeyWithKeyName(ScheduleWidgetCacheKeyMain, usingSupport: true)
+        let id2 = ScheduleWidgetCache().getKeyWithKeyName(ScheduleWidgetCacheKeyOther, usingSupport: true)
         
         if context.isPreview {
             

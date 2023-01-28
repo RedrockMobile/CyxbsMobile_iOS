@@ -144,7 +144,7 @@ ScheduleRequestDictionary *ScheduleRequestDictionaryFromScheduleIdentifiers(NSAr
         }
         [finDic[identifier.type] addObject:identifier.sno];
     }
-    return finDic;
+    return finDic.copy;
 }
 
 
@@ -159,6 +159,9 @@ ScheduleRequestDictionary *ScheduleRequestDictionaryFromScheduleIdentifiers(NSAr
 }
 
 - (instancetype)initWithIdentifier:(ScheduleIdentifier *)name value:(NSArray<ScheduleCourse *> *)value {
+    if (name == nil && value == nil) {
+        return nil;
+    }
     self = [super init];
     if (self) {
         _identifier = name;

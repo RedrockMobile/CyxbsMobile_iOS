@@ -10,7 +10,7 @@
 
 #import "ScheduleTimelineSupport.h"
 
-#import "ScheduleTimelineSupport.h"
+#import "ScheduleNeedsSupport.h"
 
 #pragma mark - ScheduleModel
 
@@ -46,16 +46,6 @@
 }
 
 - (ScheduleCourse *)nowCourse {
-    NSDate *nowDate = NSDate.date;
-    NSDateComponents *components = [NSCalendar.currentCalendar componentsInTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Chongqing"] fromDate:nowDate];
-    NSInteger inWeek = (components.weekday + 6) % 8 + (components.weekday + 6) / 8;
-    NSInteger inSection = [nowDate timeIntervalSinceDate:self.startDate] / (7 * 24 * 60 * 60);
-    
-    
-    ScheduleIdentifier *selfIdentifier = [ScheduleIdentifier identifierWithSno:self.sno type:ScheduleModelRequestStudent];
-    for (ScheduleCourse *course in _statusMap[selfIdentifier]) {
-        
-    }
     
     return nil;
 }

@@ -18,6 +18,8 @@
 
 #import "ScheduleMapModel.h"
 
+#import "ScheduleTouchItem.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - ScheduleModel

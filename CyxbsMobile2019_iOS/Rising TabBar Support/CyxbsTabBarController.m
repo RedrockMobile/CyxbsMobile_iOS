@@ -8,18 +8,15 @@
 
 #import "CyxbsTabBarController.h"
 
-#import "SchedulePresenter.h"
-
 #import "FastLoginViewController.h"
-
 #import "UserAgreementViewController.h"
 
+#import "SchedulePresenter.h"
 #import "ScheduleWidgetCache.h"
+#import "SchedulePolicyService.h"
 
 #import "ScheduleBar.h"
-
-
-
+#import "ScheduleController.h"
 #import "TransitioningDelegate.h"
 
 @interface CyxbsTabBarController ()
@@ -32,6 +29,8 @@
 @end
 
 @implementation CyxbsTabBarController
+
+#pragma mark - Life cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -51,6 +50,35 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    ScheduleIdentifier *mainKey = [ScheduleWidgetCache.shareCache getKeyWithKeyName:ScheduleWidgetCacheKeyMain usingSupport:YES];
+    if (mainKey) {
+        SchedulePolicyService *policy = [[SchedulePolicyService alloc] init];
+        policy.outRequestTime = 45 * 60 * 60;
+        [policy requestDic:@{
+            ScheduleModelRequestStudent : @[mainKey.sno]
+        } policy:^(ScheduleCombineItem * _Nonnull item) {
+            ScheduleTouchItem *touch = [[ScheduleTouchItem alloc] init];
+            touch.combining = item;
+            ScheduleCourse *now = touch.floorCourse;
+            if (now) {
+                self.scheduleBar.title = now.course;
+                self.scheduleBar.place = now.classRoom;
+                self.scheduleBar.time = now.timeStr;
+            } else {
+                self.scheduleBar.title = @"没课了";
+                self.scheduleBar.place = @"好好休息吧";
+                self.scheduleBar.time = @"明天再说";
+            }
+        } unPolicy:^(ScheduleIdentifier * _Nonnull unpolicyKEY) {
+            
+        }];
+        
+    }
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self _drawTabBarEffect];
@@ -58,6 +86,8 @@
     [self.view addSubview:self.scheduleBar];
     [self _drawScheduleBar];
 }
+
+#pragma mark - Getter
 
 - (ScheduleBar *)scheduleBar {
     if (_scheduleBar == nil) {
@@ -108,13 +138,6 @@
 
 
 
-- (UIViewController *)_svc {
-    ScheduleIdentifier *mainID = ScheduleWidgetCache.shareCache.mainID;
-    [self.schedulePresenter setWithOnlyMainIdentifier:mainID];
-    ScheduleController *vc = [[ScheduleController alloc] initWithPresenter:self.schedulePresenter];
-    
-    return vc;
-}
 
 - (TransitioningDelegate *)_delegate {
     TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
@@ -126,7 +149,7 @@
 
 - (void)_tap:(UITapGestureRecognizer *)tap {
     if (tap.state == UIGestureRecognizerStateEnded) {
-        UIViewController *vc = self._svc;
+        UIViewController *vc = [[ScheduleController alloc] initWithPresenter:self.schedulePresenter];;
         TransitioningDelegate *delegate = self._delegate;
         
         vc.transitioningDelegate = delegate;
@@ -139,7 +162,7 @@
 
 - (void)_pan:(UIPanGestureRecognizer *)pan {
     if (pan.state == UIGestureRecognizerStateBegan) {
-        UIViewController *vc = self._svc;
+        UIViewController *vc = [[ScheduleController alloc] initWithPresenter:self.schedulePresenter];;
         TransitioningDelegate *delegate = self._delegate;
         delegate.panGestureIfNeeded = pan;
         
@@ -185,13 +208,13 @@
     SchedulePresenter *presenter = [[SchedulePresenter alloc] init];
     presenter.useAwake = [NSUserDefaults.standardUserDefaults boolForKey:UDKey.isXXHB];
     
-    ScheduleIdentifier *mainID = ScheduleWidgetCache.shareCache.mainID;
+    ScheduleIdentifier *mainID = [ScheduleWidgetCache.shareCache getKeyWithKeyName:ScheduleWidgetCacheKeyMain usingSupport:YES];
     if (mainID.sno && ![mainID.sno isEqualToString:@""]) {
         if (ScheduleWidgetCache.shareCache.beDouble) {
-            ScheduleIdentifier *otherID = ScheduleWidgetCache.shareCache.otherID;
-            [presenter setWithMainIdentifier:mainID otherIdentifier:otherID];
+            ScheduleIdentifier *otherID = [ScheduleWidgetCache.shareCache getKeyWithKeyName:ScheduleWidgetCacheKeyOther usingSupport:YES];
+            [presenter setWithMainKey:mainID otherKey:otherID];
         } else {
-            [presenter setWithOnlyMainIdentifier:mainID];
+            [presenter setWithMainKey:mainID];
         }
     }
     
