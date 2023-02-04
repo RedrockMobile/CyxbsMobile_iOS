@@ -66,8 +66,6 @@
     if (_jwzxVC == nil) {
         _jwzxVC = [[DiscoverJWZXVC alloc] initWithWidth:self.width];
         _jwzxVC.view.top = self.bannerView.bottom + 14;
-        
-//        _jwzxVC = [[DiscoverJWZXVC alloc] initWithViewFrame:CGRectMake(0, self.bannerView.bottom + 14, self.width, 19.52)];
     }
     return _jwzxVC;
 }
@@ -142,28 +140,20 @@
     self.enterButtonArray = array;
     
     for (EnterButton *enterButton in self.enterButtonArray) {
-        if ([enterButton.label.text isEqual: @"空教室"]) {
-            [enterButton.imageButton addTarget:self action:@selector(touchFindClass) forControlEvents:UIControlEventTouchUpInside];
-        }else if([enterButton.label.text isEqual: @"查课表"]) {
+        if ([enterButton.label.text isEqual: @"查课表"]) {
             [enterButton.imageButton addTarget:self action:@selector(touchSchedule) forControlEvents:UIControlEventTouchUpInside];
-        }else if([enterButton.label.text isEqual: @"校车轨迹"]) {
+        } else if ([enterButton.label.text isEqual: @"校车轨迹"]) {
             [enterButton.imageButton addTarget:self action:@selector(touchSchoolCar) forControlEvents:UIControlEventTouchUpInside];
-        }else if([enterButton.label.text isEqual: @"更多功能"]) {
+        } else if ([enterButton.label.text isEqual: @"更多功能"]) {
             [enterButton.imageButton addTarget:self action:@selector(touchMore) forControlEvents:UIControlEventTouchUpInside];
-        }else if ([enterButton.label.text isEqual: @"没课约"]) {
+        } else if ([enterButton.label.text isEqual: @"没课约"]) {
             [enterButton.imageButton addTarget:self action:@selector(touchNoClassAppointment) forControlEvents:UIControlEventTouchUpInside];
-        }else if ([enterButton.label.text isEqual: @"我的考试"]) {
-        [enterButton.imageButton addTarget:self action:@selector(touchMyTest) forControlEvents:UIControlEventTouchUpInside];
-        }else if([enterButton.label.text isEqual: @"校历"]) {
-        [enterButton.imageButton addTarget:self action:@selector(touchSchoolCalender) forControlEvents:UIControlEventTouchUpInside];
-        }else if([enterButton.label.text isEqual:@"重邮地图"]){
-        [enterButton.imageButton addTarget:self action:@selector(touchMap) forControlEvents:UIControlEventTouchUpInside];
-        }
-        else if([enterButton.label.text isEqualToString:@"邮子清单"]){
+        } else if ([enterButton.label.text isEqual: @"校历"]) {
+            [enterButton.imageButton addTarget:self action:@selector(touchSchoolCalender) forControlEvents:UIControlEventTouchUpInside];
+        } else if ([enterButton.label.text isEqual:@"重邮地图"]){
+            [enterButton.imageButton addTarget:self action:@selector(touchMap) forControlEvents:UIControlEventTouchUpInside];
+        } else if ([enterButton.label.text isEqualToString:@"邮子清单"]){
             [enterButton.imageButton addTarget:self action:@selector(touchToDOListSender) forControlEvents:UIControlEventTouchUpInside];
-        }
-        else if([enterButton.label.text isEqualToString:@"体育打卡"]){
-            [enterButton.imageButton addTarget:self action:@selector(touchSportAttendanceSender) forControlEvents:UIControlEventTouchUpInside];
         }
         [self addSubview:enterButton];
     }
@@ -198,64 +188,55 @@
     }
     
 }
-//MARK: - 按钮触发事件部分实现
--(void) touchMyTest {
-    if([self.delegate respondsToSelector:@selector(touchMyTest)]) {
-        [self.delegate touchMyTest];
-    }
-}
+
+// MARK: - 按钮触发事件部分实现
 
 - (void) touchWriteButton {
-    if([self.delegate respondsToSelector:@selector(touchWriteButton)]) {
+    if ([self.delegate respondsToSelector:@selector(touchWriteButton)]) {
         [self.delegate touchWriteButton];
     }
 }
-- (void) touchFindClass {
-    if([self.delegate respondsToSelector:@selector(touchFindClass)]) {
-        [self.delegate touchFindClass];
-    }
-}
-- (void) touchSchoolCar {
-    if([self.delegate respondsToSelector:@selector(touchSchoolCar)]) {
+
+- (void)touchSchoolCar {
+    if ([self.delegate respondsToSelector:@selector(touchSchoolCar)]) {
         [self.delegate touchSchoolCar];
     }
-    
 }
-- (void) touchSchedule {
+
+- (void)touchSchedule {
     if ([self.delegate respondsToSelector:@selector(touchSchedule)]) {
         [self.delegate touchSchedule];
     }
 }
--(void)touchMap {
+
+- (void)touchMap {
     if ([self.delegate respondsToSelector:@selector(touchMap)]) {
         [self.delegate touchMap];
     }
 }
-- (void) touchMore {
+
+- (void)touchMore {
     if([self.delegate respondsToSelector:@selector(touchMore)]) {
         [self.delegate touchMore];
     }
 }
--(void) touchSchoolCalender {
+
+- (void)touchSchoolCalender {
     if ([self.delegate respondsToSelector:@selector(touchSchoolCalender)]) {
         [self.delegate touchSchoolCalender];
     }
 }
-- (void) touchNoClassAppointment{
+
+- (void)touchNoClassAppointment{
     if ([self.delegate respondsToSelector:@selector(touchNoClassAppointment)]) {
         [self.delegate touchNoClassAppointment];
     }
 }
+
 - (void)touchToDOListSender{
     if ([self.delegate respondsToSelector:@selector(touchToDOList)]) {
         [self.delegate touchToDOList];
     }
 }
-    
-- (void)touchSportAttendanceSender{
-    if ([self.delegate respondsToSelector:@selector(touchSportAttendance)]) {
-        [self.delegate touchSportAttendance];
-    }
-    
-}
+
 @end
