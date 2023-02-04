@@ -104,13 +104,6 @@
 		18CDF66E257F91BD006E8E5C /* EnterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F8257F91BC006E8E5C /* EnterButton.m */; };
 		18CDF66F257F91BD006E8E5C /* FinderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F9257F91BC006E8E5C /* FinderView.m */; };
 		18CDF670257F91BD006E8E5C /* VolunteerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4FE257F91BC006E8E5C /* VolunteerView.m */; };
-		18CDF671257F91BD006E8E5C /* ExamArrangeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF503257F91BC006E8E5C /* ExamArrangeModel.m */; };
-		18CDF672257F91BD006E8E5C /* ExamArrangeData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF504257F91BC006E8E5C /* ExamArrangeData.m */; };
-		18CDF673257F91BD006E8E5C /* ExamArrangeDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF506257F91BC006E8E5C /* ExamArrangeDataItem.m */; };
-		18CDF674257F91BD006E8E5C /* TestCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF50B257F91BC006E8E5C /* TestCardTableViewCell.m */; };
-		18CDF675257F91BD006E8E5C /* PointAndDottedLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF50C257F91BC006E8E5C /* PointAndDottedLineView.m */; };
-		18CDF676257F91BD006E8E5C /* TestArrangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF50F257F91BC006E8E5C /* TestArrangeViewController.m */; };
-		18CDF677257F91BD006E8E5C /* ScorePresentAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF510257F91BC006E8E5C /* ScorePresentAnimation.m */; };
 		18CDF678257F91BD006E8E5C /* ChooseStudentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF515257F91BC006E8E5C /* ChooseStudentListViewController.m */; };
 		18CDF679257F91BD006E8E5C /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF516257F91BC006E8E5C /* ScheduleViewController.m */; };
 		18CDF67A257F91BD006E8E5C /* ScheduleInquiryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF518257F91BC006E8E5C /* ScheduleInquiryViewController.m */; };
@@ -118,14 +111,6 @@
 		18CDF67C257F91BD006E8E5C /* ClassmatesList.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF51D257F91BC006E8E5C /* ClassmatesList.m */; };
 		18CDF67D257F91BD006E8E5C /* PeopleListCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF520257F91BC006E8E5C /* PeopleListCellTableViewCell.m */; };
 		18CDF67E257F91BD006E8E5C /* HistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF521257F91BC006E8E5C /* HistoryView.m */; };
-		18CDF681257F91BD006E8E5C /* EmptyClassPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF529257F91BC006E8E5C /* EmptyClassPresenter.m */; };
-		18CDF682257F91BD006E8E5C /* EmptyClassItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF52B257F91BC006E8E5C /* EmptyClassItem.m */; };
-		18CDF683257F91BD006E8E5C /* EmptyClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF52C257F91BC006E8E5C /* EmptyClassModel.m */; };
-		18CDF684257F91BD006E8E5C /* EmptyClassCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF530257F91BC006E8E5C /* EmptyClassCollectionViewCell.m */; };
-		18CDF685257F91BD006E8E5C /* EmptyClassTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF533257F91BC006E8E5C /* EmptyClassTableViewCell.m */; };
-		18CDF686257F91BD006E8E5C /* EmptyClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF535257F91BC006E8E5C /* EmptyClassViewController.m */; };
-		18CDF687257F91BD006E8E5C /* EmptyClassTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18CDF536257F91BC006E8E5C /* EmptyClassTableViewCell.xib */; };
-		18CDF688257F91BD006E8E5C /* EmptyClassContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF538257F91BC006E8E5C /* EmptyClassContentView.m */; };
 		18CDF689257F91BD006E8E5C /* WeDateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF53F257F91BC006E8E5C /* WeDateViewController.m */; };
 		18CDF68A257F91BD006E8E5C /* PeopleListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF540257F91BC006E8E5C /* PeopleListTableViewCell.m */; };
 		18CDF68B257F91BD006E8E5C /* ChoosePeopleListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF541257F91BC006E8E5C /* ChoosePeopleListView.m */; };
@@ -157,62 +142,7 @@
 		18CDF6A6257F91BD006E8E5C /* JWZXNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF582257F91BD006E8E5C /* JWZXNewsViewController.m */; };
 		18CDF6A7257F91BD006E8E5C /* NewDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF585257F91BD006E8E5C /* NewDetailViewController.m */; };
 		18CDF6AA257F91BD006E8E5C /* JWZXNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF589257F91BD006E8E5C /* JWZXNewsCell.m */; };
-		18CDF6AB257F91BD006E8E5C /* SCLineChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF58D257F91BD006E8E5C /* SCLineChart.m */; };
-		18CDF6AC257F91BD006E8E5C /* SCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF58F257F91BD006E8E5C /* SCTool.m */; };
-		18CDF6AD257F91BD006E8E5C /* SCCircleChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF591257F91BD006E8E5C /* SCCircleChart.m */; };
-		18CDF6AE257F91BD006E8E5C /* SCChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF594257F91BD006E8E5C /* SCChart.m */; };
-		18CDF6AF257F91BD006E8E5C /* SCGenericChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF595257F91BD006E8E5C /* SCGenericChart.m */; };
-		18CDF6B0257F91BD006E8E5C /* SCChartLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF596257F91BD006E8E5C /* SCChartLabel.m */; };
-		18CDF6B1257F91BD006E8E5C /* SCPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF598257F91BD006E8E5C /* SCPieChart.m */; };
-		18CDF6B2257F91BD006E8E5C /* SCColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF599257F91BD006E8E5C /* SCColor.m */; };
-		18CDF6B3257F91BD006E8E5C /* SCBarChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF59D257F91BD006E8E5C /* SCBarChart.m */; };
-		18CDF6B4257F91BD006E8E5C /* UICountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5A0257F91BD006E8E5C /* UICountingLabel.m */; };
-		18CDF6B5257F91BD006E8E5C /* SCBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5A1257F91BD006E8E5C /* SCBar.m */; };
-		18CDF6B6257F91BD006E8E5C /* SCPieChartDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5A4257F91BD006E8E5C /* SCPieChartDataItem.m */; };
-		18CDF6B8257F91BD006E8E5C /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5A9257F91BD006E8E5C /* ScoreViewController.m */; };
-		18CDF6B9257F91BD006E8E5C /* Credit.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5AE257F91BD006E8E5C /* Credit.m */; };
-		18CDF6BA257F91BD006E8E5C /* TermGrade.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5AF257F91BD006E8E5C /* TermGrade.m */; };
-		18CDF6BB257F91BD006E8E5C /* GPAItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5B0257F91BD006E8E5C /* GPAItem.m */; };
-		18CDF6BC257F91BE006E8E5C /* TermGrades.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5B1257F91BD006E8E5C /* TermGrades.m */; };
-		18CDF6BD257F91BE006E8E5C /* Credits.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5B3257F91BD006E8E5C /* Credits.m */; };
-		18CDF6BE257F91BE006E8E5C /* SingleGrade.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5B9257F91BD006E8E5C /* SingleGrade.m */; };
-		18CDF6BF257F91BE006E8E5C /* GPA.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5BA257F91BD006E8E5C /* GPA.m */; };
-		18CDF6C1257F91BE006E8E5C /* ABScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5C0257F91BD006E8E5C /* ABScoreView.m */; };
-		18CDF6C2257F91BE006E8E5C /* UserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5C3257F91BD006E8E5C /* UserInfoView.m */; };
-		18CDF6C3257F91BE006E8E5C /* DetailScorePerYearCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5C4257F91BD006E8E5C /* DetailScorePerYearCell.m */; };
-		18CDF6C4257F91BE006E8E5C /* DetailSubjectScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5C5257F91BD006E8E5C /* DetailSubjectScoreCell.m */; };
-		18CDF6C6257F91BE006E8E5C /* ScoreTwoTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5C7257F91BD006E8E5C /* ScoreTwoTitleView.m */; };
 		18CDF6C7257F91BE006E8E5C /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5CB257F91BD006E8E5C /* CalendarViewController.m */; };
-		18CDF6D0257F91BE006E8E5C /* MGDSliderBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5E2257F91BD006E8E5C /* MGDSliderBarItem.m */; };
-		18CDF6D1257F91BE006E8E5C /* MGDSliderBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5E4257F91BD006E8E5C /* MGDSliderBar.m */; };
-		18CDF6D2257F91BE006E8E5C /* MGDSliderContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5E6257F91BD006E8E5C /* MGDSliderContentView.m */; };
-		18CDF6D3257F91BE006E8E5C /* HeaderGifRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5E9257F91BD006E8E5C /* HeaderGifRefresh.m */; };
-		18CDF707257F91BE006E8E5C /* AllYearsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF621257F91BD006E8E5C /* AllYearsViewController.m */; };
-		18CDF708257F91BE006E8E5C /* QueryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF624257F91BD006E8E5C /* QueryViewController.m */; };
-		18CDF709257F91BE006E8E5C /* segmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF627257F91BD006E8E5C /* segmentTableViewCell.m */; };
-		18CDF70A257F91BE006E8E5C /* ActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF628257F91BD006E8E5C /* ActivityTableViewCell.m */; };
-		18CDF70B257F91BE006E8E5C /* HeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF62B257F91BD006E8E5C /* HeaderTableViewCell.m */; };
-		18CDF70C257F91BE006E8E5C /* TimeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF62D257F91BD006E8E5C /* TimeTableViewCell.m */; };
-		18CDF70D257F91BE006E8E5C /* QueryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF62E257F91BD006E8E5C /* QueryTableViewCell.m */; };
-		18CDF70E257F91BE006E8E5C /* YearTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF62F257F91BD006E8E5C /* YearTableViewCell.m */; };
-		18CDF70F257F91BE006E8E5C /* BackgroundTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF632257F91BD006E8E5C /* BackgroundTableViewCell.m */; };
-		18CDF710257F91BE006E8E5C /* QueryLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF634257F91BD006E8E5C /* QueryLoginViewController.m */; };
-		18CDF711257F91BE006E8E5C /* ActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF636257F91BD006E8E5C /* ActivityTableViewController.m */; };
-		18CDF712257F91BE006E8E5C /* TimeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF638257F91BD006E8E5C /* TimeTableViewController.m */; };
-		18CDF713257F91BE006E8E5C /* ArchiveTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF63B257F91BD006E8E5C /* ArchiveTool.m */; };
-		18CDF714257F91BE006E8E5C /* QueryHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF63E257F91BD006E8E5C /* QueryHeader.m */; };
-		18CDF715257F91BE006E8E5C /* VolunteerActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF641257F91BD006E8E5C /* VolunteerActivity.m */; };
-		18CDF716257F91BE006E8E5C /* VolunteerUnbinding.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF642257F91BD006E8E5C /* VolunteerUnbinding.m */; };
-		18CDF717257F91BE006E8E5C /* ActivityItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF643257F91BD006E8E5C /* ActivityItem.m */; };
-		18CDF718257F91BE006E8E5C /* VolunteeringEventItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF646257F91BD006E8E5C /* VolunteeringEventItem.m */; };
-		18CDF719257F91BE006E8E5C /* VolunteerItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF647257F91BD006E8E5C /* VolunteerItem.m */; };
-		18CDF71A257F91BE006E8E5C /* ActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF64F257F91BD006E8E5C /* ActivityView.m */; };
-		18CDF71B257F91BE006E8E5C /* VolunteerLoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF651257F91BD006E8E5C /* VolunteerLoginView.m */; };
-		18CDF71C257F91BE006E8E5C /* YearChooseBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF652257F91BD006E8E5C /* YearChooseBar.m */; };
-		18CDF71D257F91BE006E8E5C /* GestureTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF653257F91BD006E8E5C /* GestureTableView.m */; };
-		18CDF71E257F91BE006E8E5C /* LogOutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF654257F91BD006E8E5C /* LogOutView.m */; };
-		18CDF71F257F91BE006E8E5C /* VolunteerInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF656257F91BD006E8E5C /* VolunteerInfoView.m */; };
-		18CDF720257F91BE006E8E5C /* VolunteerLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF657257F91BD006E8E5C /* VolunteerLabel.m */; };
 		18CDF721257F91BE006E8E5C /* FinderToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF65D257F91BD006E8E5C /* FinderToolViewController.m */; };
 		18CDF722257F91BE006E8E5C /* FinderToolViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF660257F91BD006E8E5C /* FinderToolViewItem.m */; };
 		18FE64F625FDA186008748AE /* UIControl+MGD.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FE64F525FDA186008748AE /* UIControl+MGD.m */; };
@@ -531,12 +461,6 @@
 		AAE87797286B304F0091656B /* PrivacyTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE87796286B304E0091656B /* PrivacyTipView.swift */; };
 		AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */; };
 		B033366E294C971D004D141D /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B033366D294C971D004D141D /* HttpTool.m */; };
-		B0F08FDD28A2497F00986EB6 /* SportAttendanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FCE28A2497F00986EB6 /* SportAttendanceModel.m */; };
-		B0F08FDE28A2497F00986EB6 /* SportAttendanceItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FD128A2497F00986EB6 /* SportAttendanceItem.m */; };
-		B0F08FDF28A2497F00986EB6 /* SportAttendanceItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FD228A2497F00986EB6 /* SportAttendanceItemModel.m */; };
-		B0F08FE028A2497F00986EB6 /* SportAttendanceHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FD428A2497F00986EB6 /* SportAttendanceHeadView.m */; };
-		B0F08FE128A2497F00986EB6 /* SportAttendanceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FD528A2497F00986EB6 /* SportAttendanceTableViewCell.m */; };
-		B0F08FE328A2497F00986EB6 /* SportAttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FDB28A2497F00986EB6 /* SportAttendanceViewController.m */; };
 		B0F08FEB28A249E200986EB6 /* DiscoverSAVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FE628A249E200986EB6 /* DiscoverSAVC.m */; };
 		B0F08FEC28A249E200986EB6 /* DataContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FE928A249E200986EB6 /* DataContentView.m */; };
 		B0F08FF828A24F9000986EB6 /* IDSController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FF028A24F9000986EB6 /* IDSController.m */; };
@@ -662,10 +586,6 @@
 		FE2C136727AEF629001CF7AF /* TodoSyncTool.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C134827AEF629001CF7AF /* TodoSyncTool.m */; };
 		FE2C136827AEF629001CF7AF /* TodoSyncMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C134927AEF629001CF7AF /* TodoSyncMsg.m */; };
 		FEBA676427E9BAC000C4D231 /* updatePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBA676327E9BAC000C4D231 /* updatePopView.m */; };
-		FED345E2273D51DA004073C0 /* EmptyClassUnavailableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FED345E0273D51DA004073C0 /* EmptyClassUnavailableViewController.m */; };
-		FED345E3273D51DA004073C0 /* EmptyClassUnavailableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FED345E1273D51DA004073C0 /* EmptyClassUnavailableViewController.xib */; };
-		FED345E7273D5DD8004073C0 /* GPAUnavailableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FED345E5273D5DD8004073C0 /* GPAUnavailableViewController.m */; };
-		FED345E8273D5DD8004073C0 /* GPAUnavailableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FED345E6273D5DD8004073C0 /* GPAUnavailableViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -876,20 +796,6 @@
 		18CDF4FD257F91BC006E8E5C /* EnterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterButton.h; sourceTree = "<group>"; };
 		18CDF4FE257F91BC006E8E5C /* VolunteerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerView.m; sourceTree = "<group>"; };
 		18CDF4FF257F91BC006E8E5C /* FinderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderView.h; sourceTree = "<group>"; };
-		18CDF502257F91BC006E8E5C /* ExamArrangeDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamArrangeDataItem.h; sourceTree = "<group>"; };
-		18CDF503257F91BC006E8E5C /* ExamArrangeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamArrangeModel.m; sourceTree = "<group>"; };
-		18CDF504257F91BC006E8E5C /* ExamArrangeData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamArrangeData.m; sourceTree = "<group>"; };
-		18CDF505257F91BC006E8E5C /* ExamArrangeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamArrangeModel.h; sourceTree = "<group>"; };
-		18CDF506257F91BC006E8E5C /* ExamArrangeDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamArrangeDataItem.m; sourceTree = "<group>"; };
-		18CDF507257F91BC006E8E5C /* ExamArrangeData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamArrangeData.h; sourceTree = "<group>"; };
-		18CDF509257F91BC006E8E5C /* TestCardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCardTableViewCell.h; sourceTree = "<group>"; };
-		18CDF50A257F91BC006E8E5C /* PointAndDottedLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointAndDottedLineView.h; sourceTree = "<group>"; };
-		18CDF50B257F91BC006E8E5C /* TestCardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCardTableViewCell.m; sourceTree = "<group>"; };
-		18CDF50C257F91BC006E8E5C /* PointAndDottedLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointAndDottedLineView.m; sourceTree = "<group>"; };
-		18CDF50E257F91BC006E8E5C /* ScorePresentAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScorePresentAnimation.h; sourceTree = "<group>"; };
-		18CDF50F257F91BC006E8E5C /* TestArrangeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestArrangeViewController.m; sourceTree = "<group>"; };
-		18CDF510257F91BC006E8E5C /* ScorePresentAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScorePresentAnimation.m; sourceTree = "<group>"; };
-		18CDF511257F91BC006E8E5C /* TestArrangeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestArrangeViewController.h; sourceTree = "<group>"; };
 		18CDF514257F91BC006E8E5C /* ScheduleInquiryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleInquiryViewController.h; sourceTree = "<group>"; };
 		18CDF515257F91BC006E8E5C /* ChooseStudentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseStudentListViewController.m; sourceTree = "<group>"; };
 		18CDF516257F91BC006E8E5C /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
@@ -904,22 +810,6 @@
 		18CDF521257F91BC006E8E5C /* HistoryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryView.m; sourceTree = "<group>"; };
 		18CDF522257F91BC006E8E5C /* HistoryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryView.h; sourceTree = "<group>"; };
 		18CDF523257F91BC006E8E5C /* PeopleListCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleListCellTableViewCell.h; sourceTree = "<group>"; };
-		18CDF528257F91BC006E8E5C /* EmptyClassPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassPresenter.h; sourceTree = "<group>"; };
-		18CDF529257F91BC006E8E5C /* EmptyClassPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassPresenter.m; sourceTree = "<group>"; };
-		18CDF52B257F91BC006E8E5C /* EmptyClassItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassItem.m; sourceTree = "<group>"; };
-		18CDF52C257F91BC006E8E5C /* EmptyClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassModel.m; sourceTree = "<group>"; };
-		18CDF52D257F91BC006E8E5C /* EmptyClassItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassItem.h; sourceTree = "<group>"; };
-		18CDF52E257F91BC006E8E5C /* EmptyClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassModel.h; sourceTree = "<group>"; };
-		18CDF530257F91BC006E8E5C /* EmptyClassCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassCollectionViewCell.m; sourceTree = "<group>"; };
-		18CDF531257F91BC006E8E5C /* EmptyClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassViewController.h; sourceTree = "<group>"; };
-		18CDF532257F91BC006E8E5C /* EmptyClassContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassContentView.h; sourceTree = "<group>"; };
-		18CDF533257F91BC006E8E5C /* EmptyClassTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassTableViewCell.m; sourceTree = "<group>"; };
-		18CDF534257F91BC006E8E5C /* EmptyClassCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassCollectionViewCell.h; sourceTree = "<group>"; };
-		18CDF535257F91BC006E8E5C /* EmptyClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassViewController.m; sourceTree = "<group>"; };
-		18CDF536257F91BC006E8E5C /* EmptyClassTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyClassTableViewCell.xib; sourceTree = "<group>"; };
-		18CDF537257F91BC006E8E5C /* EmptyClassTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassTableViewCell.h; sourceTree = "<group>"; };
-		18CDF538257F91BC006E8E5C /* EmptyClassContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyClassContentView.m; sourceTree = "<group>"; };
-		18CDF53A257F91BC006E8E5C /* EmptyClassProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyClassProtocol.h; sourceTree = "<group>"; };
 		18CDF53C257F91BC006E8E5C /* PeopleListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleListTableViewCell.h; sourceTree = "<group>"; };
 		18CDF53D257F91BC006E8E5C /* WeDateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeDateViewController.h; sourceTree = "<group>"; };
 		18CDF53E257F91BC006E8E5C /* ChoosePeopleListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePeopleListView.h; sourceTree = "<group>"; };
@@ -983,120 +873,8 @@
 		18CDF585257F91BD006E8E5C /* NewDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewDetailViewController.m; sourceTree = "<group>"; };
 		18CDF589257F91BD006E8E5C /* JWZXNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWZXNewsCell.m; sourceTree = "<group>"; };
 		18CDF58B257F91BD006E8E5C /* JWZXNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWZXNewsCell.h; sourceTree = "<group>"; };
-		18CDF58D257F91BD006E8E5C /* SCLineChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLineChart.m; sourceTree = "<group>"; };
-		18CDF58E257F91BD006E8E5C /* SCChartDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChartDelegate.h; sourceTree = "<group>"; };
-		18CDF58F257F91BD006E8E5C /* SCTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTool.m; sourceTree = "<group>"; };
-		18CDF590257F91BD006E8E5C /* SCBarChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBarChart.h; sourceTree = "<group>"; };
-		18CDF591257F91BD006E8E5C /* SCCircleChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCCircleChart.m; sourceTree = "<group>"; };
-		18CDF592257F91BD006E8E5C /* SCBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCBar.h; sourceTree = "<group>"; };
-		18CDF593257F91BD006E8E5C /* UICountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICountingLabel.h; sourceTree = "<group>"; };
-		18CDF594257F91BD006E8E5C /* SCChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCChart.m; sourceTree = "<group>"; };
-		18CDF595257F91BD006E8E5C /* SCGenericChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCGenericChart.m; sourceTree = "<group>"; };
-		18CDF596257F91BD006E8E5C /* SCChartLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCChartLabel.m; sourceTree = "<group>"; };
-		18CDF597257F91BD006E8E5C /* SCPieChartDataItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPieChartDataItem.h; sourceTree = "<group>"; };
-		18CDF598257F91BD006E8E5C /* SCPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPieChart.m; sourceTree = "<group>"; };
-		18CDF599257F91BD006E8E5C /* SCColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCColor.m; sourceTree = "<group>"; };
-		18CDF59A257F91BD006E8E5C /* SCTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTool.h; sourceTree = "<group>"; };
-		18CDF59B257F91BD006E8E5C /* SCLineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLineChart.h; sourceTree = "<group>"; };
-		18CDF59C257F91BD006E8E5C /* SCCircleChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCCircleChart.h; sourceTree = "<group>"; };
-		18CDF59D257F91BD006E8E5C /* SCBarChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCBarChart.m; sourceTree = "<group>"; };
-		18CDF59E257F91BD006E8E5C /* SCGenericChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCGenericChart.h; sourceTree = "<group>"; };
-		18CDF59F257F91BD006E8E5C /* SCChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChart.h; sourceTree = "<group>"; };
-		18CDF5A0257F91BD006E8E5C /* UICountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICountingLabel.m; sourceTree = "<group>"; };
-		18CDF5A1257F91BD006E8E5C /* SCBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCBar.m; sourceTree = "<group>"; };
-		18CDF5A2257F91BD006E8E5C /* SCColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCColor.h; sourceTree = "<group>"; };
-		18CDF5A3257F91BD006E8E5C /* SCPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCPieChart.h; sourceTree = "<group>"; };
-		18CDF5A4257F91BD006E8E5C /* SCPieChartDataItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCPieChartDataItem.m; sourceTree = "<group>"; };
-		18CDF5A5257F91BD006E8E5C /* SCChartLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCChartLabel.h; sourceTree = "<group>"; };
-		18CDF5A7257F91BD006E8E5C /* ScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreViewController.h; sourceTree = "<group>"; };
-		18CDF5A9257F91BD006E8E5C /* ScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreViewController.m; sourceTree = "<group>"; };
-		18CDF5AB257F91BD006E8E5C /* GPA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPA.h; sourceTree = "<group>"; };
-		18CDF5AE257F91BD006E8E5C /* Credit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Credit.m; sourceTree = "<group>"; };
-		18CDF5AF257F91BD006E8E5C /* TermGrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermGrade.m; sourceTree = "<group>"; };
-		18CDF5B0257F91BD006E8E5C /* GPAItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPAItem.m; sourceTree = "<group>"; };
-		18CDF5B1257F91BD006E8E5C /* TermGrades.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermGrades.m; sourceTree = "<group>"; };
-		18CDF5B2257F91BD006E8E5C /* SingleGrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleGrade.h; sourceTree = "<group>"; };
-		18CDF5B3257F91BD006E8E5C /* Credits.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Credits.m; sourceTree = "<group>"; };
-		18CDF5B4257F91BD006E8E5C /* TermGrades.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermGrades.h; sourceTree = "<group>"; };
-		18CDF5B5257F91BD006E8E5C /* GPAItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPAItem.h; sourceTree = "<group>"; };
-		18CDF5B6257F91BD006E8E5C /* TermGrade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermGrade.h; sourceTree = "<group>"; };
-		18CDF5B7257F91BD006E8E5C /* Credit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Credit.h; sourceTree = "<group>"; };
-		18CDF5B8257F91BD006E8E5C /* Credits.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Credits.h; sourceTree = "<group>"; };
-		18CDF5B9257F91BD006E8E5C /* SingleGrade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleGrade.m; sourceTree = "<group>"; };
-		18CDF5BA257F91BD006E8E5C /* GPA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPA.m; sourceTree = "<group>"; };
-		18CDF5BD257F91BD006E8E5C /* DetailScorePerYearCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailScorePerYearCell.h; sourceTree = "<group>"; };
-		18CDF5BE257F91BD006E8E5C /* UserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoView.h; sourceTree = "<group>"; };
-		18CDF5BF257F91BD006E8E5C /* DetailSubjectScoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailSubjectScoreCell.h; sourceTree = "<group>"; };
-		18CDF5C0257F91BD006E8E5C /* ABScoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABScoreView.m; sourceTree = "<group>"; };
-		18CDF5C1257F91BD006E8E5C /* ScoreTwoTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreTwoTitleView.h; sourceTree = "<group>"; };
-		18CDF5C3257F91BD006E8E5C /* UserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoView.m; sourceTree = "<group>"; };
-		18CDF5C4257F91BD006E8E5C /* DetailScorePerYearCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailScorePerYearCell.m; sourceTree = "<group>"; };
-		18CDF5C5257F91BD006E8E5C /* DetailSubjectScoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailSubjectScoreCell.m; sourceTree = "<group>"; };
-		18CDF5C7257F91BD006E8E5C /* ScoreTwoTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreTwoTitleView.m; sourceTree = "<group>"; };
-		18CDF5C8257F91BD006E8E5C /* ABScoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABScoreView.h; sourceTree = "<group>"; };
 		18CDF5CA257F91BD006E8E5C /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		18CDF5CB257F91BD006E8E5C /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
-		18CDF5E1257F91BD006E8E5C /* MGDSliderBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDSliderBar.h; sourceTree = "<group>"; };
-		18CDF5E2257F91BD006E8E5C /* MGDSliderBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDSliderBarItem.m; sourceTree = "<group>"; };
-		18CDF5E3257F91BD006E8E5C /* MGDSliderContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDSliderContentView.h; sourceTree = "<group>"; };
-		18CDF5E4257F91BD006E8E5C /* MGDSliderBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDSliderBar.m; sourceTree = "<group>"; };
-		18CDF5E5257F91BD006E8E5C /* MGDSliderBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDSliderBarItem.h; sourceTree = "<group>"; };
-		18CDF5E6257F91BD006E8E5C /* MGDSliderContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDSliderContentView.m; sourceTree = "<group>"; };
-		18CDF5E8257F91BD006E8E5C /* HeaderGifRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderGifRefresh.h; sourceTree = "<group>"; };
-		18CDF5E9257F91BD006E8E5C /* HeaderGifRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderGifRefresh.m; sourceTree = "<group>"; };
-		18CDF620257F91BD006E8E5C /* AllYearsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllYearsViewController.h; sourceTree = "<group>"; };
-		18CDF621257F91BD006E8E5C /* AllYearsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllYearsViewController.m; sourceTree = "<group>"; };
-		18CDF622257F91BD006E8E5C /* QueryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryViewController.h; sourceTree = "<group>"; };
-		18CDF623257F91BD006E8E5C /* QueryLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryLoginViewController.h; sourceTree = "<group>"; };
-		18CDF624257F91BD006E8E5C /* QueryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryViewController.m; sourceTree = "<group>"; };
-		18CDF626257F91BD006E8E5C /* TimeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTableViewCell.h; sourceTree = "<group>"; };
-		18CDF627257F91BD006E8E5C /* segmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = segmentTableViewCell.m; sourceTree = "<group>"; };
-		18CDF628257F91BD006E8E5C /* ActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityTableViewCell.m; sourceTree = "<group>"; };
-		18CDF629257F91BD006E8E5C /* YearTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearTableViewCell.h; sourceTree = "<group>"; };
-		18CDF62A257F91BD006E8E5C /* QueryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryTableViewCell.h; sourceTree = "<group>"; };
-		18CDF62B257F91BD006E8E5C /* HeaderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderTableViewCell.m; sourceTree = "<group>"; };
-		18CDF62C257F91BD006E8E5C /* BackgroundTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundTableViewCell.h; sourceTree = "<group>"; };
-		18CDF62D257F91BD006E8E5C /* TimeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTableViewCell.m; sourceTree = "<group>"; };
-		18CDF62E257F91BD006E8E5C /* QueryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryTableViewCell.m; sourceTree = "<group>"; };
-		18CDF62F257F91BD006E8E5C /* YearTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearTableViewCell.m; sourceTree = "<group>"; };
-		18CDF630257F91BD006E8E5C /* ActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityTableViewCell.h; sourceTree = "<group>"; };
-		18CDF631257F91BD006E8E5C /* segmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = segmentTableViewCell.h; sourceTree = "<group>"; };
-		18CDF632257F91BD006E8E5C /* BackgroundTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundTableViewCell.m; sourceTree = "<group>"; };
-		18CDF633257F91BD006E8E5C /* HeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderTableViewCell.h; sourceTree = "<group>"; };
-		18CDF634257F91BD006E8E5C /* QueryLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryLoginViewController.m; sourceTree = "<group>"; };
-		18CDF636257F91BD006E8E5C /* ActivityTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityTableViewController.m; sourceTree = "<group>"; };
-		18CDF637257F91BD006E8E5C /* TimeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeTableViewController.h; sourceTree = "<group>"; };
-		18CDF638257F91BD006E8E5C /* TimeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTableViewController.m; sourceTree = "<group>"; };
-		18CDF639257F91BD006E8E5C /* ActivityTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityTableViewController.h; sourceTree = "<group>"; };
-		18CDF63B257F91BD006E8E5C /* ArchiveTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArchiveTool.m; sourceTree = "<group>"; };
-		18CDF63C257F91BD006E8E5C /* ArchiveTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArchiveTool.h; sourceTree = "<group>"; };
-		18CDF63E257F91BD006E8E5C /* QueryHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueryHeader.m; sourceTree = "<group>"; };
-		18CDF63F257F91BD006E8E5C /* VolunteerItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerItem.h; sourceTree = "<group>"; };
-		18CDF640257F91BD006E8E5C /* VolunteeringEventItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteeringEventItem.h; sourceTree = "<group>"; };
-		18CDF641257F91BD006E8E5C /* VolunteerActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerActivity.m; sourceTree = "<group>"; };
-		18CDF642257F91BD006E8E5C /* VolunteerUnbinding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerUnbinding.m; sourceTree = "<group>"; };
-		18CDF643257F91BD006E8E5C /* ActivityItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityItem.m; sourceTree = "<group>"; };
-		18CDF644257F91BD006E8E5C /* QueryHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryHeader.h; sourceTree = "<group>"; };
-		18CDF645257F91BD006E8E5C /* QueryDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryDataModel.h; sourceTree = "<group>"; };
-		18CDF646257F91BD006E8E5C /* VolunteeringEventItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteeringEventItem.m; sourceTree = "<group>"; };
-		18CDF647257F91BD006E8E5C /* VolunteerItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerItem.m; sourceTree = "<group>"; };
-		18CDF648257F91BD006E8E5C /* ActivityItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityItem.h; sourceTree = "<group>"; };
-		18CDF649257F91BD006E8E5C /* VolunteerUnbinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerUnbinding.h; sourceTree = "<group>"; };
-		18CDF64A257F91BD006E8E5C /* VolunteerActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerActivity.h; sourceTree = "<group>"; };
-		18CDF64C257F91BD006E8E5C /* GestureTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GestureTableView.h; sourceTree = "<group>"; };
-		18CDF64D257F91BD006E8E5C /* LogOutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogOutView.h; sourceTree = "<group>"; };
-		18CDF64E257F91BD006E8E5C /* VolunteerInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerInfoView.h; sourceTree = "<group>"; };
-		18CDF64F257F91BD006E8E5C /* ActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityView.m; sourceTree = "<group>"; };
-		18CDF650257F91BD006E8E5C /* VolunteerLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerLabel.h; sourceTree = "<group>"; };
-		18CDF651257F91BD006E8E5C /* VolunteerLoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerLoginView.m; sourceTree = "<group>"; };
-		18CDF652257F91BD006E8E5C /* YearChooseBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearChooseBar.m; sourceTree = "<group>"; };
-		18CDF653257F91BD006E8E5C /* GestureTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GestureTableView.m; sourceTree = "<group>"; };
-		18CDF654257F91BD006E8E5C /* LogOutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogOutView.m; sourceTree = "<group>"; };
-		18CDF655257F91BD006E8E5C /* ActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityView.h; sourceTree = "<group>"; };
-		18CDF656257F91BD006E8E5C /* VolunteerInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerInfoView.m; sourceTree = "<group>"; };
-		18CDF657257F91BD006E8E5C /* VolunteerLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerLabel.m; sourceTree = "<group>"; };
-		18CDF658257F91BD006E8E5C /* VolunteerLoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerLoginView.h; sourceTree = "<group>"; };
-		18CDF659257F91BD006E8E5C /* YearChooseBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YearChooseBar.h; sourceTree = "<group>"; };
 		18CDF65C257F91BD006E8E5C /* FinderToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderToolViewController.h; sourceTree = "<group>"; };
 		18CDF65D257F91BD006E8E5C /* FinderToolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderToolViewController.m; sourceTree = "<group>"; };
 		18CDF65F257F91BD006E8E5C /* FinderToolViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderToolViewItem.h; sourceTree = "<group>"; };
@@ -1750,18 +1528,6 @@
 		AAFD87CE24F50DB800CBBD11 /* FakeTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FakeTabBarView.h; sourceTree = "<group>"; };
 		AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FakeTabBarView.m; sourceTree = "<group>"; };
 		B033366D294C971D004D141D /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
-		B0F08FCC28A2497F00986EB6 /* SportAttendanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceModel.h; sourceTree = "<group>"; };
-		B0F08FCD28A2497F00986EB6 /* SportAttendanceItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceItemModel.h; sourceTree = "<group>"; };
-		B0F08FCE28A2497F00986EB6 /* SportAttendanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceModel.m; sourceTree = "<group>"; };
-		B0F08FD028A2497F00986EB6 /* SportAttendanceItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceItem.h; sourceTree = "<group>"; };
-		B0F08FD128A2497F00986EB6 /* SportAttendanceItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceItem.m; sourceTree = "<group>"; };
-		B0F08FD228A2497F00986EB6 /* SportAttendanceItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceItemModel.m; sourceTree = "<group>"; };
-		B0F08FD428A2497F00986EB6 /* SportAttendanceHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceHeadView.m; sourceTree = "<group>"; };
-		B0F08FD528A2497F00986EB6 /* SportAttendanceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceTableViewCell.m; sourceTree = "<group>"; };
-		B0F08FD728A2497F00986EB6 /* SportAttendanceHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceHeadView.h; sourceTree = "<group>"; };
-		B0F08FD928A2497F00986EB6 /* SportAttendanceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceTableViewCell.h; sourceTree = "<group>"; };
-		B0F08FDB28A2497F00986EB6 /* SportAttendanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SportAttendanceViewController.m; sourceTree = "<group>"; };
-		B0F08FDC28A2497F00986EB6 /* SportAttendanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SportAttendanceViewController.h; sourceTree = "<group>"; };
 		B0F08FE628A249E200986EB6 /* DiscoverSAVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverSAVC.m; sourceTree = "<group>"; };
 		B0F08FE728A249E200986EB6 /* DiscoverSAVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverSAVC.h; sourceTree = "<group>"; };
 		B0F08FE928A249E200986EB6 /* DataContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataContentView.m; sourceTree = "<group>"; };
@@ -2014,12 +1780,6 @@
 		FE2C134D27AEF629001CF7AF /* TodoSyncMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoSyncMsg.h; sourceTree = "<group>"; };
 		FEBA676227E9BAC000C4D231 /* updatePopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = updatePopView.h; sourceTree = "<group>"; };
 		FEBA676327E9BAC000C4D231 /* updatePopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = updatePopView.m; sourceTree = "<group>"; };
-		FED345DF273D51DA004073C0 /* EmptyClassUnavailableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyClassUnavailableViewController.h; sourceTree = "<group>"; };
-		FED345E0273D51DA004073C0 /* EmptyClassUnavailableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyClassUnavailableViewController.m; sourceTree = "<group>"; };
-		FED345E1273D51DA004073C0 /* EmptyClassUnavailableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyClassUnavailableViewController.xib; sourceTree = "<group>"; };
-		FED345E4273D5DD8004073C0 /* GPAUnavailableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPAUnavailableViewController.h; sourceTree = "<group>"; };
-		FED345E5273D5DD8004073C0 /* GPAUnavailableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GPAUnavailableViewController.m; sourceTree = "<group>"; };
-		FED345E6273D5DD8004073C0 /* GPAUnavailableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GPAUnavailableViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3056,18 +2816,12 @@
 				7AA4C48528922AE300E204C8 /* Source */,
 				18CDF4D5257F91BC006E8E5C /* Discover_MainPage */,
 				B0F08FEE28A24F9000986EB6 /* IDSBinding */,
-				B0F08FCA28A2497F00986EB6 /* Discover_SportAttendance */,
 				FE0D60362801702B00319A9E /* Discover_SchoolBus */,
-				18CDF500257F91BC006E8E5C /* Discover_TestArrange */,
 				FE2C131327AEF629001CF7AF /* ToDo */,
 				18CDF512257F91BC006E8E5C /* Discover_FindScheduleInquiry */,
-				18CDF525257F91BC006E8E5C /* Discover_EmptyClass */,
 				18CDF53B257F91BC006E8E5C /* Discover_WeDate */,
 				18CDF542257F91BC006E8E5C /* Discover_Map */,
-				18CDF58C257F91BD006E8E5C /* SCChart */,
-				18CDF5A6257F91BD006E8E5C /* Discover_scorePage */,
 				18CDF5C9257F91BD006E8E5C /* Discover_SchoolCalendar */,
-				18CDF5DE257F91BD006E8E5C /* Volunteer */,
 				18CDF65A257F91BD006E8E5C /* Disconver_ToolPage */,
 			);
 			path = Discover;
@@ -3151,54 +2905,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		18CDF500257F91BC006E8E5C /* Discover_TestArrange */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF501257F91BC006E8E5C /* Model */,
-				18CDF508257F91BC006E8E5C /* View */,
-				18CDF50D257F91BC006E8E5C /* ViewController */,
-			);
-			path = Discover_TestArrange;
-			sourceTree = "<group>";
-		};
-		18CDF501257F91BC006E8E5C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF502257F91BC006E8E5C /* ExamArrangeDataItem.h */,
-				18CDF503257F91BC006E8E5C /* ExamArrangeModel.m */,
-				18CDF504257F91BC006E8E5C /* ExamArrangeData.m */,
-				18CDF505257F91BC006E8E5C /* ExamArrangeModel.h */,
-				18CDF506257F91BC006E8E5C /* ExamArrangeDataItem.m */,
-				18CDF507257F91BC006E8E5C /* ExamArrangeData.h */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		18CDF508257F91BC006E8E5C /* View */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF509257F91BC006E8E5C /* TestCardTableViewCell.h */,
-				18CDF50A257F91BC006E8E5C /* PointAndDottedLineView.h */,
-				18CDF50B257F91BC006E8E5C /* TestCardTableViewCell.m */,
-				18CDF50C257F91BC006E8E5C /* PointAndDottedLineView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		18CDF50D257F91BC006E8E5C /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF50E257F91BC006E8E5C /* ScorePresentAnimation.h */,
-				18CDF50F257F91BC006E8E5C /* TestArrangeViewController.m */,
-				18CDF510257F91BC006E8E5C /* ScorePresentAnimation.m */,
-				18CDF511257F91BC006E8E5C /* TestArrangeViewController.h */,
-				FED345E4273D5DD8004073C0 /* GPAUnavailableViewController.h */,
-				FED345E5273D5DD8004073C0 /* GPAUnavailableViewController.m */,
-				FED345E6273D5DD8004073C0 /* GPAUnavailableViewController.xib */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
 		18CDF512257F91BC006E8E5C /* Discover_FindScheduleInquiry */ = {
 			isa = PBXGroup;
 			children = (
@@ -3242,64 +2948,6 @@
 				18CDF520257F91BC006E8E5C /* PeopleListCellTableViewCell.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		18CDF525257F91BC006E8E5C /* Discover_EmptyClass */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF527257F91BC006E8E5C /* Presenter */,
-				18CDF52A257F91BC006E8E5C /* Model */,
-				18CDF52F257F91BC006E8E5C /* View */,
-				18CDF539257F91BC006E8E5C /* Protocols */,
-			);
-			path = Discover_EmptyClass;
-			sourceTree = "<group>";
-		};
-		18CDF527257F91BC006E8E5C /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF528257F91BC006E8E5C /* EmptyClassPresenter.h */,
-				18CDF529257F91BC006E8E5C /* EmptyClassPresenter.m */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		18CDF52A257F91BC006E8E5C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF52B257F91BC006E8E5C /* EmptyClassItem.m */,
-				18CDF52C257F91BC006E8E5C /* EmptyClassModel.m */,
-				18CDF52D257F91BC006E8E5C /* EmptyClassItem.h */,
-				18CDF52E257F91BC006E8E5C /* EmptyClassModel.h */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		18CDF52F257F91BC006E8E5C /* View */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF534257F91BC006E8E5C /* EmptyClassCollectionViewCell.h */,
-				18CDF530257F91BC006E8E5C /* EmptyClassCollectionViewCell.m */,
-				18CDF532257F91BC006E8E5C /* EmptyClassContentView.h */,
-				18CDF538257F91BC006E8E5C /* EmptyClassContentView.m */,
-				18CDF531257F91BC006E8E5C /* EmptyClassViewController.h */,
-				18CDF535257F91BC006E8E5C /* EmptyClassViewController.m */,
-				18CDF536257F91BC006E8E5C /* EmptyClassTableViewCell.xib */,
-				18CDF537257F91BC006E8E5C /* EmptyClassTableViewCell.h */,
-				18CDF533257F91BC006E8E5C /* EmptyClassTableViewCell.m */,
-				FED345DF273D51DA004073C0 /* EmptyClassUnavailableViewController.h */,
-				FED345E0273D51DA004073C0 /* EmptyClassUnavailableViewController.m */,
-				FED345E1273D51DA004073C0 /* EmptyClassUnavailableViewController.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		18CDF539257F91BC006E8E5C /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF53A257F91BC006E8E5C /* EmptyClassProtocol.h */,
-			);
-			path = Protocols;
 			sourceTree = "<group>";
 		};
 		18CDF53B257F91BC006E8E5C /* Discover_WeDate */ = {
@@ -3462,95 +3110,6 @@
 			path = JWDetailNews_module;
 			sourceTree = "<group>";
 		};
-		18CDF58C257F91BD006E8E5C /* SCChart */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF58D257F91BD006E8E5C /* SCLineChart.m */,
-				18CDF58E257F91BD006E8E5C /* SCChartDelegate.h */,
-				18CDF58F257F91BD006E8E5C /* SCTool.m */,
-				18CDF590257F91BD006E8E5C /* SCBarChart.h */,
-				18CDF591257F91BD006E8E5C /* SCCircleChart.m */,
-				18CDF592257F91BD006E8E5C /* SCBar.h */,
-				18CDF593257F91BD006E8E5C /* UICountingLabel.h */,
-				18CDF594257F91BD006E8E5C /* SCChart.m */,
-				18CDF595257F91BD006E8E5C /* SCGenericChart.m */,
-				18CDF596257F91BD006E8E5C /* SCChartLabel.m */,
-				18CDF597257F91BD006E8E5C /* SCPieChartDataItem.h */,
-				18CDF598257F91BD006E8E5C /* SCPieChart.m */,
-				18CDF599257F91BD006E8E5C /* SCColor.m */,
-				18CDF59A257F91BD006E8E5C /* SCTool.h */,
-				18CDF59B257F91BD006E8E5C /* SCLineChart.h */,
-				18CDF59C257F91BD006E8E5C /* SCCircleChart.h */,
-				18CDF59D257F91BD006E8E5C /* SCBarChart.m */,
-				18CDF59E257F91BD006E8E5C /* SCGenericChart.h */,
-				18CDF59F257F91BD006E8E5C /* SCChart.h */,
-				18CDF5A0257F91BD006E8E5C /* UICountingLabel.m */,
-				18CDF5A1257F91BD006E8E5C /* SCBar.m */,
-				18CDF5A2257F91BD006E8E5C /* SCColor.h */,
-				18CDF5A3257F91BD006E8E5C /* SCPieChart.h */,
-				18CDF5A4257F91BD006E8E5C /* SCPieChartDataItem.m */,
-				18CDF5A5257F91BD006E8E5C /* SCChartLabel.h */,
-			);
-			path = SCChart;
-			sourceTree = "<group>";
-		};
-		18CDF5A6257F91BD006E8E5C /* Discover_scorePage */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF5A7257F91BD006E8E5C /* ScoreViewController.h */,
-				18CDF5A9257F91BD006E8E5C /* ScoreViewController.m */,
-				18CDF5AA257F91BD006E8E5C /* Model */,
-				18CDF5BC257F91BD006E8E5C /* View */,
-			);
-			path = Discover_scorePage;
-			sourceTree = "<group>";
-		};
-		18CDF5AA257F91BD006E8E5C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF5AB257F91BD006E8E5C /* GPA.h */,
-				18CDF5BA257F91BD006E8E5C /* GPA.m */,
-				18CDF5AD257F91BD006E8E5C /* Item */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		18CDF5AD257F91BD006E8E5C /* Item */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF5AE257F91BD006E8E5C /* Credit.m */,
-				18CDF5AF257F91BD006E8E5C /* TermGrade.m */,
-				18CDF5B0257F91BD006E8E5C /* GPAItem.m */,
-				18CDF5B1257F91BD006E8E5C /* TermGrades.m */,
-				18CDF5B2257F91BD006E8E5C /* SingleGrade.h */,
-				18CDF5B3257F91BD006E8E5C /* Credits.m */,
-				18CDF5B4257F91BD006E8E5C /* TermGrades.h */,
-				18CDF5B5257F91BD006E8E5C /* GPAItem.h */,
-				18CDF5B6257F91BD006E8E5C /* TermGrade.h */,
-				18CDF5B7257F91BD006E8E5C /* Credit.h */,
-				18CDF5B8257F91BD006E8E5C /* Credits.h */,
-				18CDF5B9257F91BD006E8E5C /* SingleGrade.m */,
-			);
-			path = Item;
-			sourceTree = "<group>";
-		};
-		18CDF5BC257F91BD006E8E5C /* View */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF5BD257F91BD006E8E5C /* DetailScorePerYearCell.h */,
-				18CDF5BE257F91BD006E8E5C /* UserInfoView.h */,
-				18CDF5BF257F91BD006E8E5C /* DetailSubjectScoreCell.h */,
-				18CDF5C0257F91BD006E8E5C /* ABScoreView.m */,
-				18CDF5C1257F91BD006E8E5C /* ScoreTwoTitleView.h */,
-				18CDF5C3257F91BD006E8E5C /* UserInfoView.m */,
-				18CDF5C4257F91BD006E8E5C /* DetailScorePerYearCell.m */,
-				18CDF5C5257F91BD006E8E5C /* DetailSubjectScoreCell.m */,
-				18CDF5C7257F91BD006E8E5C /* ScoreTwoTitleView.m */,
-				18CDF5C8257F91BD006E8E5C /* ABScoreView.h */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		18CDF5C9257F91BD006E8E5C /* Discover_SchoolCalendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -3558,146 +3117,6 @@
 				18CDF5CB257F91BD006E8E5C /* CalendarViewController.m */,
 			);
 			path = Discover_SchoolCalendar;
-			sourceTree = "<group>";
-		};
-		18CDF5DE257F91BD006E8E5C /* Volunteer */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF5E0257F91BD006E8E5C /* SliderBar */,
-				18CDF5E7257F91BD006E8E5C /* Refresh */,
-				18CDF61E257F91BD006E8E5C /* controller */,
-				18CDF63D257F91BD006E8E5C /* model */,
-				18CDF64B257F91BD006E8E5C /* view */,
-			);
-			path = Volunteer;
-			sourceTree = "<group>";
-		};
-		18CDF5E0257F91BD006E8E5C /* SliderBar */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF5E1257F91BD006E8E5C /* MGDSliderBar.h */,
-				18CDF5E2257F91BD006E8E5C /* MGDSliderBarItem.m */,
-				18CDF5E3257F91BD006E8E5C /* MGDSliderContentView.h */,
-				18CDF5E4257F91BD006E8E5C /* MGDSliderBar.m */,
-				18CDF5E5257F91BD006E8E5C /* MGDSliderBarItem.h */,
-				18CDF5E6257F91BD006E8E5C /* MGDSliderContentView.m */,
-			);
-			path = SliderBar;
-			sourceTree = "<group>";
-		};
-		18CDF5E7257F91BD006E8E5C /* Refresh */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF5E8257F91BD006E8E5C /* HeaderGifRefresh.h */,
-				18CDF5E9257F91BD006E8E5C /* HeaderGifRefresh.m */,
-			);
-			path = Refresh;
-			sourceTree = "<group>";
-		};
-		18CDF61E257F91BD006E8E5C /* controller */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF61F257F91BD006E8E5C /* years */,
-				18CDF622257F91BD006E8E5C /* QueryViewController.h */,
-				18CDF624257F91BD006E8E5C /* QueryViewController.m */,
-				18CDF623257F91BD006E8E5C /* QueryLoginViewController.h */,
-				18CDF634257F91BD006E8E5C /* QueryLoginViewController.m */,
-				18CDF625257F91BD006E8E5C /* cell */,
-				18CDF635257F91BD006E8E5C /* tableViewController */,
-				18CDF63A257F91BD006E8E5C /* Tool */,
-			);
-			path = controller;
-			sourceTree = "<group>";
-		};
-		18CDF61F257F91BD006E8E5C /* years */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF620257F91BD006E8E5C /* AllYearsViewController.h */,
-				18CDF621257F91BD006E8E5C /* AllYearsViewController.m */,
-			);
-			path = years;
-			sourceTree = "<group>";
-		};
-		18CDF625257F91BD006E8E5C /* cell */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF626257F91BD006E8E5C /* TimeTableViewCell.h */,
-				18CDF627257F91BD006E8E5C /* segmentTableViewCell.m */,
-				18CDF628257F91BD006E8E5C /* ActivityTableViewCell.m */,
-				18CDF629257F91BD006E8E5C /* YearTableViewCell.h */,
-				18CDF62A257F91BD006E8E5C /* QueryTableViewCell.h */,
-				18CDF62B257F91BD006E8E5C /* HeaderTableViewCell.m */,
-				18CDF62C257F91BD006E8E5C /* BackgroundTableViewCell.h */,
-				18CDF62D257F91BD006E8E5C /* TimeTableViewCell.m */,
-				18CDF62E257F91BD006E8E5C /* QueryTableViewCell.m */,
-				18CDF62F257F91BD006E8E5C /* YearTableViewCell.m */,
-				18CDF630257F91BD006E8E5C /* ActivityTableViewCell.h */,
-				18CDF631257F91BD006E8E5C /* segmentTableViewCell.h */,
-				18CDF632257F91BD006E8E5C /* BackgroundTableViewCell.m */,
-				18CDF633257F91BD006E8E5C /* HeaderTableViewCell.h */,
-			);
-			path = cell;
-			sourceTree = "<group>";
-		};
-		18CDF635257F91BD006E8E5C /* tableViewController */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF636257F91BD006E8E5C /* ActivityTableViewController.m */,
-				18CDF637257F91BD006E8E5C /* TimeTableViewController.h */,
-				18CDF638257F91BD006E8E5C /* TimeTableViewController.m */,
-				18CDF639257F91BD006E8E5C /* ActivityTableViewController.h */,
-			);
-			path = tableViewController;
-			sourceTree = "<group>";
-		};
-		18CDF63A257F91BD006E8E5C /* Tool */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF63B257F91BD006E8E5C /* ArchiveTool.m */,
-				18CDF63C257F91BD006E8E5C /* ArchiveTool.h */,
-			);
-			path = Tool;
-			sourceTree = "<group>";
-		};
-		18CDF63D257F91BD006E8E5C /* model */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF63E257F91BD006E8E5C /* QueryHeader.m */,
-				18CDF63F257F91BD006E8E5C /* VolunteerItem.h */,
-				18CDF640257F91BD006E8E5C /* VolunteeringEventItem.h */,
-				18CDF641257F91BD006E8E5C /* VolunteerActivity.m */,
-				18CDF642257F91BD006E8E5C /* VolunteerUnbinding.m */,
-				18CDF643257F91BD006E8E5C /* ActivityItem.m */,
-				18CDF644257F91BD006E8E5C /* QueryHeader.h */,
-				18CDF645257F91BD006E8E5C /* QueryDataModel.h */,
-				18CDF646257F91BD006E8E5C /* VolunteeringEventItem.m */,
-				18CDF647257F91BD006E8E5C /* VolunteerItem.m */,
-				18CDF648257F91BD006E8E5C /* ActivityItem.h */,
-				18CDF649257F91BD006E8E5C /* VolunteerUnbinding.h */,
-				18CDF64A257F91BD006E8E5C /* VolunteerActivity.h */,
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
-		18CDF64B257F91BD006E8E5C /* view */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF64C257F91BD006E8E5C /* GestureTableView.h */,
-				18CDF64D257F91BD006E8E5C /* LogOutView.h */,
-				18CDF64E257F91BD006E8E5C /* VolunteerInfoView.h */,
-				18CDF64F257F91BD006E8E5C /* ActivityView.m */,
-				18CDF650257F91BD006E8E5C /* VolunteerLabel.h */,
-				18CDF651257F91BD006E8E5C /* VolunteerLoginView.m */,
-				18CDF652257F91BD006E8E5C /* YearChooseBar.m */,
-				18CDF653257F91BD006E8E5C /* GestureTableView.m */,
-				18CDF654257F91BD006E8E5C /* LogOutView.m */,
-				18CDF655257F91BD006E8E5C /* ActivityView.h */,
-				18CDF656257F91BD006E8E5C /* VolunteerInfoView.m */,
-				18CDF657257F91BD006E8E5C /* VolunteerLabel.m */,
-				18CDF658257F91BD006E8E5C /* VolunteerLoginView.h */,
-				18CDF659257F91BD006E8E5C /* YearChooseBar.h */,
-			);
-			path = view;
 			sourceTree = "<group>";
 		};
 		18CDF65A257F91BD006E8E5C /* Disconver_ToolPage */ = {
@@ -5738,57 +5157,6 @@
 			path = ArticleRemarkPraise;
 			sourceTree = "<group>";
 		};
-		B0F08FCA28A2497F00986EB6 /* Discover_SportAttendance */ = {
-			isa = PBXGroup;
-			children = (
-				B0F08FDA28A2497F00986EB6 /* Controller */,
-				B0F08FD328A2497F00986EB6 /* View */,
-				B0F08FCB28A2497F00986EB6 /* Model */,
-			);
-			path = Discover_SportAttendance;
-			sourceTree = "<group>";
-		};
-		B0F08FCB28A2497F00986EB6 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				B0F08FCC28A2497F00986EB6 /* SportAttendanceModel.h */,
-				B0F08FCE28A2497F00986EB6 /* SportAttendanceModel.m */,
-				B0F08FCD28A2497F00986EB6 /* SportAttendanceItemModel.h */,
-				B0F08FD228A2497F00986EB6 /* SportAttendanceItemModel.m */,
-				B0F08FCF28A2497F00986EB6 /* SportAttendanceItem */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B0F08FCF28A2497F00986EB6 /* SportAttendanceItem */ = {
-			isa = PBXGroup;
-			children = (
-				B0F08FD028A2497F00986EB6 /* SportAttendanceItem.h */,
-				B0F08FD128A2497F00986EB6 /* SportAttendanceItem.m */,
-			);
-			path = SportAttendanceItem;
-			sourceTree = "<group>";
-		};
-		B0F08FD328A2497F00986EB6 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				B0F08FD928A2497F00986EB6 /* SportAttendanceTableViewCell.h */,
-				B0F08FD528A2497F00986EB6 /* SportAttendanceTableViewCell.m */,
-				B0F08FD728A2497F00986EB6 /* SportAttendanceHeadView.h */,
-				B0F08FD428A2497F00986EB6 /* SportAttendanceHeadView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		B0F08FDA28A2497F00986EB6 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				B0F08FDC28A2497F00986EB6 /* SportAttendanceViewController.h */,
-				B0F08FDB28A2497F00986EB6 /* SportAttendanceViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		B0F08FE428A249E200986EB6 /* SportAttendance */ = {
 			isa = PBXGroup;
 			children = (
@@ -6678,13 +6046,10 @@
 				DB34EB1F239BD4550052B65E /* DetailLessonController.xib in Resources */,
 				DB34EB27239BD4550052B65E /* AddRemindViewController.xib in Resources */,
 				7F101AC6260613E800F2034C /* YYZTopicCell.xib in Resources */,
-				18CDF687257F91BD006E8E5C /* EmptyClassTableViewCell.xib in Resources */,
 				DB34EB2B239BD4550052B65E /* RemindTableViewCell.xib in Resources */,
 				492C19AE26CE458000C485D9 /* Bauhaus-93.ttf in Resources */,
-				FED345E8273D5DD8004073C0 /* GPAUnavailableViewController.xib in Resources */,
 				AA0DEF6A2668C88D00284112 /* 掌邮工具类.md in Resources */,
 				49343A2426D4EAB2001A2892 /* CommonQuestionCell.xib in Resources */,
-				FED345E3273D51DA004073C0 /* EmptyClassUnavailableViewController.xib in Resources */,
 				14B73F27281BE6C200D08ADD /* CyxbsMobileImage.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6801,15 +6166,12 @@
 				18CDF67A257F91BD006E8E5C /* ScheduleInquiryViewController.m in Sources */,
 				14B73F6E281BED7B00D08ADD /* MessageSettingCell.m in Sources */,
 				AA7AB96B2873E5EA00BA6790 /* SegmentBarView.m in Sources */,
-				18CDF70E257F91BE006E8E5C /* YearTableViewCell.m in Sources */,
 				DB4064FB2466D889006CE5BC /* DLWeeklSelectView.m in Sources */,
 				646B1967282AA9420015DF28 /* BusGuideViewController.m in Sources */,
 				14B73F72281BED7B00D08ADD /* ActiveMessageCell.m in Sources */,
 				FE2C135027AEF629001CF7AF /* TodoTableViewCell.m in Sources */,
 				14D03A0B27FE69A800D6AE93 /* SSRTopBarBaseView.m in Sources */,
 				18CDF66E257F91BD006E8E5C /* EnterButton.m in Sources */,
-				18CDF710257F91BE006E8E5C /* QueryLoginViewController.m in Sources */,
-				18CDF676257F91BD006E8E5C /* TestArrangeViewController.m in Sources */,
 				18CDF4C4257F8DBD006E8E5C /* SetQuestionView.m in Sources */,
 				AA0DDB7C286C8B1A00802324 /* PMPIDCardTableViewCell.m in Sources */,
 				D0101F62243587A1004337ED /* UIScrollView+GKGestureHandle.m in Sources */,
@@ -6819,14 +6181,12 @@
 				73AAA1D726C918250084E44D /* DetailsCustomizeNavigationBar.m in Sources */,
 				AA7ABAA02873EA5400BA6790 /* ReportModel.m in Sources */,
 				AA7AB95D2873E5EA00BA6790 /* SZHHotSearchView.m in Sources */,
-				B0F08FE028A2497F00986EB6 /* SportAttendanceHeadView.m in Sources */,
 				14981FF627FEA8F200AD2A29 /* JWZXNewsAnnexModel.m in Sources */,
 				187DF4BB260310DD000BCDE9 /* UIScrollView+Empty.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
 				646B199D28313CDB0015DF28 /* StationView.m in Sources */,
 				FE2C135827AEF629001CF7AF /* ToDoDetailBar.m in Sources */,
 				18CDF6A6257F91BD006E8E5C /* JWZXNewsViewController.m in Sources */,
-				18CDF70D257F91BE006E8E5C /* QueryTableViewCell.m in Sources */,
 				49252DAA26D39CC9003A8A7F /* FeedBackMainPageViewController.m in Sources */,
 				49A50B6726D83B9600B25DDF /* CommonQuestionDetailVC.m in Sources */,
 				AA7ABAC32873EA5500BA6790 /* MGDCurrentTimeStr.m in Sources */,
@@ -6842,10 +6202,8 @@
 				4975628A26D5975F004499E6 /* FeedBackView.m in Sources */,
 				1A30F3AD23D33F1300FBBD83 /* CheckInModel.m in Sources */,
 				DB34EB31239BD4550052B65E /* RemindMatter.m in Sources */,
-				18CDF6B0257F91BD006E8E5C /* SCChartLabel.m in Sources */,
 				AA7AB9692873E5EA00BA6790 /* QASearchResultRootView.m in Sources */,
 				DB34EB34239BD4550052B65E /* LessonButton.m in Sources */,
-				18CDF6BD257F91BE006E8E5C /* Credits.m in Sources */,
 				DB34EB2A239BD4550052B65E /* LessonButtonController.m in Sources */,
 				1893DC8D26EA32F1007E871E /* MGDQueue.m in Sources */,
 				B0F08FEB28A249E200986EB6 /* DiscoverSAVC.m in Sources */,
@@ -6872,11 +6230,9 @@
 				AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */,
 				4931630D26CD7B6800140412 /* StampCenterCollectionHeaderView.m in Sources */,
 				B0FE5F29294C94540070E755 /* NSDate+Rising.m in Sources */,
-				18CDF675257F91BD006E8E5C /* PointAndDottedLineView.m in Sources */,
 				AA0DDB69286C8B1A00802324 /* FansAndFollowingSegmentView.m in Sources */,
 				D0101D592433C885004337ED /* SDMaskController.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
-				18CDF6D1257F91BE006E8E5C /* MGDSliderBar.m in Sources */,
 				AA7ABABF2873EA5500BA6790 /* NewQANoDataView.m in Sources */,
 				18CDF670257F91BD006E8E5C /* VolunteerView.m in Sources */,
 				14B73F8B2823577600D08ADD /* SSRButton.m in Sources */,
@@ -6890,7 +6246,6 @@
 				B51C500E28A5FFC00011465E /* LoginVC.m in Sources */,
 				AA0DDB80286C8B1A00802324 /* PMPEditingButton.m in Sources */,
 				FE2C135327AEF629001CF7AF /* ToDoTableView.m in Sources */,
-				18CDF674257F91BD006E8E5C /* TestCardTableViewCell.m in Sources */,
 				735BC55026D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.m in Sources */,
 				AA7ABAFE2873EA6D00BA6790 /* DynamicDetailTopBarView.m in Sources */,
 				AA7ABA9F2873EA5400BA6790 /* HotSearchModel.m in Sources */,
@@ -6904,14 +6259,10 @@
 				18CDF66B257F91BD006E8E5C /* DiscoverADs.m in Sources */,
 				B0FE5F2D294C94540070E755 /* UIColor+Rising.m in Sources */,
 				D0101F66243587A1004337ED /* GKWebImageManager.m in Sources */,
-				18CDF714257F91BE006E8E5C /* QueryHeader.m in Sources */,
 				14B73F70281BED7B00D08ADD /* ActiveMessageModel.m in Sources */,
-				18CDF717257F91BE006E8E5C /* ActivityItem.m in Sources */,
 				AAE3304725E2A0D800324750 /* ArticleViewController.m in Sources */,
 				D0101D6A24352092004337ED /* UITextView+Placeholder.m in Sources */,
 				AA7ABAF82873EA6D00BA6790 /* DKSKeyboardView.m in Sources */,
-				18CDF6B8257F91BD006E8E5C /* ScoreViewController.m in Sources */,
-				18CDF6AC257F91BD006E8E5C /* SCTool.m in Sources */,
 				14B73F80281BED7B00D08ADD /* MessagePresentView.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
 				AA7ABAAB2873EA5500BA6790 /* MGDClickParams.m in Sources */,
@@ -6919,14 +6270,11 @@
 				735BC54726D3BF3000F22678 /* FeedBackDetailsModel.m in Sources */,
 				D0101D5A2433C885004337ED /* SDMaskNotificationName.m in Sources */,
 				18CDF690257F91BD006E8E5C /* CQUPTMapDataItem.m in Sources */,
-				B0F08FDD28A2497F00986EB6 /* SportAttendanceModel.m in Sources */,
 				AA3F82DA24E8E03C00B65042 /* ClassDetailView.m in Sources */,
 				AA5368F02589E28800236CB5 /* QuitTipView.m in Sources */,
 				7311328A26CCEC2400EF88C1 /* TopView.m in Sources */,
 				646B1984282E8F000015DF28 /* StationGuideView.m in Sources */,
 				AA7AB96C2873E5EA00BA6790 /* QASearchResultTopView.m in Sources */,
-				18CDF718257F91BE006E8E5C /* VolunteeringEventItem.m in Sources */,
-				B0F08FE128A2497F00986EB6 /* SportAttendanceTableViewCell.m in Sources */,
 				14B73F7C281BED7B00D08ADD /* MineMessageModel.m in Sources */,
 				AA7ABAF42873EA6D00BA6790 /* DynamicDetailAddPhotoController.m in Sources */,
 				AA0DDB7E286C8B1A00802324 /* PMPHomePageHeaderView.m in Sources */,
@@ -6938,10 +6286,8 @@
 				14FBBD58280591E200D5B05D /* NewDownloadCell.m in Sources */,
 				DB4064F82466D889006CE5BC /* DLWeekButton.m in Sources */,
 				14B73F84281CCC3000D08ADD /* MessageDetailVC.m in Sources */,
-				18CDF6C3257F91BE006E8E5C /* DetailScorePerYearCell.m in Sources */,
 				18CDF6A0257F91BD006E8E5C /* CQUPTMapMoreImageViewController.m in Sources */,
 				B51C501628A5FFCE0011465E /* LoginTextFieldView.m in Sources */,
-				18CDF6B6257F91BD006E8E5C /* SCPieChartDataItem.m in Sources */,
 				73AAA1CE26C918250084E44D /* DetailsGoodsTableViewCell.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				AA4FA1DF25C2DE5F005139BA /* LearnMoreViewController.m in Sources */,
@@ -6949,8 +6295,6 @@
 				1893DC8926EA32A3007E871E /* MGDGCD.m in Sources */,
 				AA0DDB6C286C8B1A00802324 /* EditMyInfoModel.m in Sources */,
 				AA7ABAF72873EA6D00BA6790 /* UIView+FrameTool.m in Sources */,
-				18CDF682257F91BD006E8E5C /* EmptyClassItem.m in Sources */,
-				18CDF688257F91BD006E8E5C /* EmptyClassContentView.m in Sources */,
 				FE2C135527AEF629001CF7AF /* ToDoDetailTitleView.m in Sources */,
 				14B73F79281BED7B00D08ADD /* MessageMoreModel.m in Sources */,
 				18CDF6A7257F91BD006E8E5C /* NewDetailViewController.m in Sources */,
@@ -6964,15 +6308,12 @@
 				AA7ABAB72873EA5500BA6790 /* ReportView.m in Sources */,
 				18CDF4CA257F8DBD006E8E5C /* SelfSafeView.m in Sources */,
 				735BC54A26D3BF6400F22678 /* FeedBackReplyModel.m in Sources */,
-				18CDF713257F91BE006E8E5C /* ArchiveTool.m in Sources */,
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
 				4931631026CD7B6800140412 /* StampCenterTopView.m in Sources */,
 				FE2C135C27AEF629001CF7AF /* DiscoverTodoView.m in Sources */,
 				AA3F82E624EA4A8900B65042 /* LeftBar.m in Sources */,
 				18CDF67B257F91BD006E8E5C /* ClassmateItem.m in Sources */,
-				18CDF6AE257F91BD006E8E5C /* SCChart.m in Sources */,
-				18CDF672257F91BD006E8E5C /* ExamArrangeData.m in Sources */,
 				1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */,
 				646B19A5283885740015DF28 /* CircleMAPointAnnotation.m in Sources */,
 				18CDF69E257F91BD006E8E5C /* CQUPTMapBeforeSearchCell.m in Sources */,
@@ -6988,16 +6329,13 @@
 				4931630B26CD7B6800140412 /* GoodsCollectionViewCell.m in Sources */,
 				DB4065032466D889006CE5BC /* DLReminderView.m in Sources */,
 				DB4064F72466D889006CE5BC /* DLReminderSetDetailVC.m in Sources */,
-				18CDF6BF257F91BE006E8E5C /* GPA.m in Sources */,
 				AA9ABE9024EB63BF00D16BE0 /* ClassDetailViewShower.m in Sources */,
 				18CDF694257F91BD006E8E5C /* CQUPTMapSearchItem.m in Sources */,
 				AAC7CA3B25F89C9D00E6B5D5 /* MainPageModel.m in Sources */,
 				4931630E26CD7B6800140412 /* StampCenterSecondHeaderView.m in Sources */,
-				18CDF71F257F91BE006E8E5C /* VolunteerInfoView.m in Sources */,
 				18CDF722257F91BE006E8E5C /* FinderToolViewItem.m in Sources */,
 				FE2C136827AEF629001CF7AF /* TodoSyncMsg.m in Sources */,
 				FE0D60462801702B00319A9E /* SchoolBusBottomView.m in Sources */,
-				18CDF71B257F91BE006E8E5C /* VolunteerLoginView.m in Sources */,
 				AA7ABABC2873EA5500BA6790 /* ShareBtn.m in Sources */,
 				DB4064FC2466D889006CE5BC /* DLReminderModel.m in Sources */,
 				AA7ABAB42873EA5500BA6790 /* GroupBtn.m in Sources */,
@@ -7007,7 +6345,6 @@
 				18CDF67D257F91BD006E8E5C /* PeopleListCellTableViewCell.m in Sources */,
 				AA4CD60A25EF6747002D9394 /* IgnoreDataModel.m in Sources */,
 				B0F08FFD28A2509900986EB6 /* RisingRouter+Extension.m in Sources */,
-				18CDF71E257F91BE006E8E5C /* LogOutView.m in Sources */,
 				AAE87797286B304F0091656B /* PrivacyTipView.swift in Sources */,
 				DB34EB25239BD4550052B65E /* DetailViewController.m in Sources */,
 				18CDF4BE257F8DBD006E8E5C /* questionItem.m in Sources */,
@@ -7017,7 +6354,6 @@
 				FE2C135627AEF629001CF7AF /* ToDoDetailRepeatView.m in Sources */,
 				D0101F61243587A1004337ED /* GKLoadingView.m in Sources */,
 				1A799562252B43E400603253 /* SwiftyClient.swift in Sources */,
-				18CDF671257F91BD006E8E5C /* ExamArrangeModel.m in Sources */,
 				7311328526CCEC2400EF88C1 /* ExchangeCenterViewController.m in Sources */,
 				1AC2550823C9B14F00DF0475 /* DidNotCheckInDot.m in Sources */,
 				FE2C135F27AEF629001CF7AF /* DiscoverTodoSheetView.m in Sources */,
@@ -7032,16 +6368,12 @@
 				DB34EACE239BD4550052B65E /* DateModle.m in Sources */,
 				AA49098624F3B6B4007CB3BC /* ClassSchedulInterController.m in Sources */,
 				4931630926CD7B6800140412 /* TaskTableViewCellWithProgress.m in Sources */,
-				18CDF6B4257F91BD006E8E5C /* UICountingLabel.m in Sources */,
 				B0FE5F2B294C94540070E755 /* RisingUIKitExtension.m in Sources */,
 				7F9A212726218E8800CA86B2 /* YYZTopicModel.m in Sources */,
-				18CDF712257F91BE006E8E5C /* TimeTableViewController.m in Sources */,
-				18CDF711257F91BE006E8E5C /* ActivityTableViewController.m in Sources */,
 				AA0DDB70286C8B1A00802324 /* EditMyInfoContentView.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
 				B033366E294C971D004D141D /* HttpTool.m in Sources */,
 				AA7ABAA62873EA5500BA6790 /* FuncView.m in Sources */,
-				FED345E7273D5DD8004073C0 /* GPAUnavailableViewController.m in Sources */,
 				18CDF665257F91BD006E8E5C /* PickerModel.m in Sources */,
 				73AAA1D626C918250084E44D /* DetailsBaseTableViewCell.m in Sources */,
 				AA7ABA292873EA4100BA6790 /* CircleLabelBtn.m in Sources */,
@@ -7057,7 +6389,6 @@
 				AA0DD8FB286C50E500802324 /* MineMsgCntView.m in Sources */,
 				AA536DF5258C4F7600F69E73 /* IgnoreViewController.m in Sources */,
 				18CDF66C257F91BD006E8E5C /* DiscoverADModel.m in Sources */,
-				18CDF685257F91BD006E8E5C /* EmptyClassTableViewCell.m in Sources */,
 				18CDF663257F91BD006E8E5C /* ElectricFeeItem.m in Sources */,
 				AA289B0F24EF9CFA00FDF70C /* NoteDataModel.m in Sources */,
 				18CDF4BD257F8DBD006E8E5C /* questionModel.m in Sources */,
@@ -7098,34 +6429,25 @@
 				AA7ABAC52873EA5500BA6790 /* MGDRefreshTool.m in Sources */,
 				646B199A28313CB20015DF28 /* StationScrollView.m in Sources */,
 				AA7ABA9A2873EA5400BA6790 /* DeletePostModel.m in Sources */,
-				18CDF6AB257F91BD006E8E5C /* SCLineChart.m in Sources */,
-				18CDF6B3257F91BD006E8E5C /* SCBarChart.m in Sources */,
 				18CDF66D257F91BD006E8E5C /* ElectricityView.m in Sources */,
 				646B198D282FFC460015DF28 /* BusMAPointAnnotation.m in Sources */,
 				AAC7CA2025F7797000E6B5D5 /* RemarkParseModel.m in Sources */,
-				18CDF707257F91BE006E8E5C /* AllYearsViewController.m in Sources */,
 				AA7ABAA92873EA5500BA6790 /* ShareView.m in Sources */,
 				493162DE26CD7B6300140412 /* StampTaskData.m in Sources */,
-				18CDF683257F91BD006E8E5C /* EmptyClassModel.m in Sources */,
 				7FBF39F4257B79F30077494E /* ByPasswordViewController.m in Sources */,
 				DB4065022466D889006CE5BC /* DLReminderView+Reset.m in Sources */,
 				14E7E4B227F57FC800B67469 /* FeedBackQuestionButton.m in Sources */,
 				AA7ABAB02873EA5500BA6790 /* NewQAFollowTableView.m in Sources */,
-				18CDF681257F91BD006E8E5C /* EmptyClassPresenter.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
-				18CDF6AF257F91BD006E8E5C /* SCGenericChart.m in Sources */,
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
 				AA7ABA252873EA4100BA6790 /* SZHPhotoImageView.m in Sources */,
 				1A5A5EE52360100B00543BAE /* UserItem.m in Sources */,
 				AA7ABAF22873EA6D00BA6790 /* DynamicDetailViewModel.m in Sources */,
 				73AAA1D026C918250084E44D /* DetailsTaskTableViewCell.m in Sources */,
-				18CDF6B5257F91BD006E8E5C /* SCBar.m in Sources */,
 				AA7AB95A2873E5EA00BA6790 /* SZHSearchDataModel.m in Sources */,
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
 				18CDF4C0257F8DBD006E8E5C /* sendCodeModel.m in Sources */,
-				18CDF6BA257F91BD006E8E5C /* TermGrade.m in Sources */,
 				147842F227F080A7002359BA /* NSDate+Day.m in Sources */,
-				18CDF708257F91BE006E8E5C /* QueryViewController.m in Sources */,
 				D0101F68243587A1004337ED /* UIImage+GKDecoder.m in Sources */,
 				FE2C136127AEF629001CF7AF /* DiscoverTodoSetRemindBasicView.m in Sources */,
 				AA0DDB57286C8B1A00802324 /* UIView+JHFrameExtension.m in Sources */,
@@ -7133,9 +6455,6 @@
 				1A1691FB2430ECA70076EDC7 /* ClassTabBarController.m in Sources */,
 				646B1978282CE0340015DF28 /* StationsGuideTableViewCell.m in Sources */,
 				AA7ABA9B2873EA5400BA6790 /* PostModel.m in Sources */,
-				18CDF6B1257F91BD006E8E5C /* SCPieChart.m in Sources */,
-				18CDF716257F91BE006E8E5C /* VolunteerUnbinding.m in Sources */,
-				18CDF6BC257F91BE006E8E5C /* TermGrades.m in Sources */,
 				1AFE535124F7571300F42A74 /* IntroductionController.m in Sources */,
 				735BC53C26D3B33E00F22678 /* FeedBackDetailsViewController.m in Sources */,
 				AA7AB95E2873E5EA00BA6790 /* SZHSearchTableViewCell.m in Sources */,
@@ -7149,28 +6468,21 @@
 				AA7ABAF92873EA6D00BA6790 /* UIColor+SYColor.m in Sources */,
 				AA7ABAB32873EA5500BA6790 /* NewQAHeadrView.m in Sources */,
 				AA7AB9612873E5EA00BA6790 /* SearchBeiginView.m in Sources */,
-				B0F08FDE28A2497F00986EB6 /* SportAttendanceItem.m in Sources */,
 				14E7E4A927F5762500B67469 /* QuestionButton.m in Sources */,
-				18CDF6B2257F91BD006E8E5C /* SCColor.m in Sources */,
-				18CDF6D3257F91BE006E8E5C /* HeaderGifRefresh.m in Sources */,
 				AA7ABAF52873EA6D00BA6790 /* SHPopMenu.m in Sources */,
 				AA7ABAAF2873EA5500BA6790 /* NewQARecommenTableView.m in Sources */,
 				FE2C135227AEF629001CF7AF /* ToDoMainBarView.m in Sources */,
 				18CDF721257F91BE006E8E5C /* FinderToolViewController.m in Sources */,
-				18CDF719257F91BE006E8E5C /* VolunteerItem.m in Sources */,
 				1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */,
 				18CDF664257F91BD006E8E5C /* ElectricFeeModel.m in Sources */,
 				DB4064FA2466D889006CE5BC /* DLTextFiled.m in Sources */,
 				AA0DDB5F286C8B1A00802324 /* IDMsgDisplayView.m in Sources */,
-				B0F08FDF28A2497F00986EB6 /* SportAttendanceItemModel.m in Sources */,
 				147842EA27F0758F002359BA /* UIView+Frame.m in Sources */,
 				18CDF67E257F91BD006E8E5C /* HistoryView.m in Sources */,
 				7F101AC3260613E800F2034C /* YYZTopicDetailVC.m in Sources */,
 				14D03A0F27FE725E00D6AE93 /* JWZXDetailNewsModel.m in Sources */,
 				14B73F77281BED7B00D08ADD /* SystemMessageView.m in Sources */,
 				AA7ABAC62873EA5500BA6790 /* NewQAHud.m in Sources */,
-				FED345E2273D51DA004073C0 /* EmptyClassUnavailableViewController.m in Sources */,
-				18CDF6AD257F91BD006E8E5C /* SCCircleChart.m in Sources */,
 				DB34EB36239BD4550052B65E /* ChooseButton.m in Sources */,
 				647AC3102828012F009A2E35 /* SchoolBusMapSideBar.m in Sources */,
 				AAC7CA0125F5130900E6B5D5 /* PraiseParseModel.m in Sources */,
@@ -7190,20 +6502,12 @@
 				18CDF692257F91BD006E8E5C /* CQUPTMapPlaceDetailItem.m in Sources */,
 				AA0DDB5C286C8B1A00802324 /* PMPBasicTableViewCell.m in Sources */,
 				4999FA8326D44EA8005D0ADE /* HintView.m in Sources */,
-				18CDF6C1257F91BE006E8E5C /* ABScoreView.m in Sources */,
-				18CDF6D2257F91BE006E8E5C /* MGDSliderContentView.m in Sources */,
-				18CDF6D0257F91BE006E8E5C /* MGDSliderBarItem.m in Sources */,
 				14FBBD552805907E00D5B05D /* JWZXNewDownloadVC.m in Sources */,
 				AA7ABAA22873EA5400BA6790 /* FollowGroupModel.m in Sources */,
-				18CDF715257F91BE006E8E5C /* VolunteerActivity.m in Sources */,
 				AA7ABA9D2873EA5400BA6790 /* PostFocusModel.m in Sources */,
-				18CDF71A257F91BE006E8E5C /* ActivityView.m in Sources */,
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,
 				D0101D5F2433C885004337ED /* SDMaskBindingEvent.m in Sources */,
-				18CDF6C4257F91BE006E8E5C /* DetailSubjectScoreCell.m in Sources */,
 				493162DF26CD7B6300140412 /* StampGoodsData.m in Sources */,
-				18CDF71C257F91BE006E8E5C /* YearChooseBar.m in Sources */,
-				18CDF6C2257F91BE006E8E5C /* UserInfoView.m in Sources */,
 				DB34EB37239BD4550052B65E /* LZWeekScrollView.m in Sources */,
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
 				735BC54D26D3C05900F22678 /* FeedBackReplyTableViewCell.m in Sources */,
@@ -7232,7 +6536,6 @@
 				AA7ABA982873EA5400BA6790 /* PostItem.m in Sources */,
 				DB34EB23239BD4550052B65E /* TimeChooseViewController.m in Sources */,
 				1AFD153223819FBD004D9CEA /* EditMyInfoTransitionAnimator.m in Sources */,
-				18CDF720257F91BE006E8E5C /* VolunteerLabel.m in Sources */,
 				14B73F7D281BED7B00D08ADD /* MineMessageTopView.m in Sources */,
 				AA9ABE9324EB8ADB00D16BE0 /* LessonViewForAWeek.m in Sources */,
 				FE2C135A27AEF629001CF7AF /* TodoTitleInputTextField.m in Sources */,
@@ -7252,19 +6555,16 @@
 				1490FC8B28031BC200958892 /* FinderTopView.m in Sources */,
 				AA7ABAF02873EA6D00BA6790 /* DynamicDetailRequestDataModel.m in Sources */,
 				DB34EB38239BD4550052B65E /* MainView.m in Sources */,
-				18CDF70F257F91BE006E8E5C /* BackgroundTableViewCell.m in Sources */,
 				1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */,
 				DB34EB3A239BD4550052B65E /* CoverView.m in Sources */,
 				AA7ABAA32873EA5400BA6790 /* GroupModel.m in Sources */,
 				18CDF68F257F91BD006E8E5C /* CQUPTMapPlaceRect.m in Sources */,
 				B51C500F28A5FFC00011465E /* ModifyVC.m in Sources */,
 				AA4CD60425EF6311002D9394 /* IgnoreModel.m in Sources */,
-				18CDF70A257F91BE006E8E5C /* ActivityTableViewCell.m in Sources */,
 				AA0DDB65286C8B1A00802324 /* FansAndFollowersModel.m in Sources */,
 				647AC30A2826CCB0009A2E35 /* StationData.m in Sources */,
 				DB34EB22239BD4550052B65E /* AddRemindViewController.m in Sources */,
 				DB4064FD2466D889006CE5BC /* DLReminderSetTimeVC.m in Sources */,
-				18CDF686257F91BD006E8E5C /* EmptyClassViewController.m in Sources */,
 				AA0DDB6B286C8B1A00802324 /* EditMyInfoPresenter.m in Sources */,
 				AA0DDB7D286C8B1A00802324 /* PMPAvatarImgView.m in Sources */,
 				735BC52A26D387C200F22678 /* HistoricalFeedBackViewController.m in Sources */,
@@ -7282,12 +6582,9 @@
 				14981FFC27FEB41B00AD2A29 /* JWZXDetailView.m in Sources */,
 				AA7ABA232873EA4100BA6790 /* ReleaseDynamicModel.m in Sources */,
 				AA7ABAC02873EA5500BA6790 /* RecommentLabel.m in Sources */,
-				18CDF6C6257F91BE006E8E5C /* ScoreTwoTitleView.m in Sources */,
-				18CDF6BB257F91BD006E8E5C /* GPAItem.m in Sources */,
 				735BC53526D392D400F22678 /* FeedBackTableViewCell.m in Sources */,
 				D0101F64243587A1004337ED /* GKPhotoBrowser.m in Sources */,
 				18CDF666257F91BD006E8E5C /* JWZXNewsModel.m in Sources */,
-				18CDF684257F91BD006E8E5C /* EmptyClassCollectionViewCell.m in Sources */,
 				18CDF662257F91BD006E8E5C /* DiscoverViewController.m in Sources */,
 				AA19FCB82663A266004E9F5D /* DeviceUtils.swift in Sources */,
 				AA3F82E024E992C000B65042 /* LessonView.m in Sources */,
@@ -7317,7 +6614,6 @@
 				FE2C135727AEF629001CF7AF /* ToDoDetailCurrencyView.m in Sources */,
 				D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */,
 				AA0DDB56286C8B1900802324 /* MineTopBlurView.m in Sources */,
-				18CDF709257F91BE006E8E5C /* segmentTableViewCell.m in Sources */,
 				AA7ABAAE2873EA5500BA6790 /* MGDCircleLayer.m in Sources */,
 				14B73F7E281BED7B00D08ADD /* MineMessageVC.m in Sources */,
 				B0F08FEC28A249E200986EB6 /* DataContentView.m in Sources */,
@@ -7326,7 +6622,6 @@
 				AA7ABA282873EA4100BA6790 /* SZHCircleLabelView.m in Sources */,
 				147842EE27F07A5A002359BA /* UIColor+Color.m in Sources */,
 				AA7ABAC12873EA5500BA6790 /* MGDStatusBarHeight.m in Sources */,
-				B0F08FE328A2497F00986EB6 /* SportAttendanceViewController.m in Sources */,
 				735BC53226D38EA600F22678 /* HistoricalFeedBackTableView.m in Sources */,
 				B0FE5F2A294C94540070E755 /* RisingFoundationExtention.m in Sources */,
 				AA536DDA258C3F7C00F69E73 /* TopBarBasicViewController.m in Sources */,
@@ -7354,25 +6649,21 @@
 				7311328626CCEC2400EF88C1 /* Goods.m in Sources */,
 				AAE3308725E3AD5E00324750 /* MainPageNumBtn.m in Sources */,
 				AA7AB96A2873E5EA00BA6790 /* QASegementBarBtn.m in Sources */,
-				18CDF71D257F91BE006E8E5C /* GestureTableView.m in Sources */,
 				1A141368235F524B0001417E /* HttpClient.m in Sources */,
 				646B19A02833983E0015DF28 /* NextStationBtn.m in Sources */,
 				AA0DDB55286C8B1900802324 /* MineTableViewCell.m in Sources */,
 				AA7AB9682873E5EA00BA6790 /* QAVerticalScrollView.m in Sources */,
 				AAE3305925E2A42B00324750 /* RemarkTableViewCell.m in Sources */,
-				18CDF70B257F91BE006E8E5C /* HeaderTableViewCell.m in Sources */,
 				B51C501D28A625330011465E /* LoginView.m in Sources */,
 				DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */,
 				B0F08FFA28A24F9000986EB6 /* IdsBindingView.m in Sources */,
 				FE2C135427AEF629001CF7AF /* ToDoDetailRemarkView.m in Sources */,
 				49628E3C26D52E6C00805A08 /* TypeButton.m in Sources */,
 				18CDF6A4257F91BD006E8E5C /* CollectionViewSpaceLayout.m in Sources */,
-				18CDF6BE257F91BE006E8E5C /* SingleGrade.m in Sources */,
 				14E7E4B327F57FC800B67469 /* FeedBackSelectView.m in Sources */,
 				AA7ABAB12873EA5500BA6790 /* NewQAContentScrollView.m in Sources */,
 				18CDF4B8257F8DBD006E8E5C /* setEmailViewController.m in Sources */,
 				AA0DDB52286C8B1900802324 /* MineUserInfoModel.m in Sources */,
-				18CDF677257F91BD006E8E5C /* ScorePresentAnimation.m in Sources */,
 				AA7ABAA82873EA5500BA6790 /* NewQASelectorView.m in Sources */,
 				AA536DFC258C544800F69E73 /* IgnoreTableViewCell.m in Sources */,
 				AA0DDB6A286C8B1A00802324 /* PMPFansAndFollowingViewController.m in Sources */,
@@ -7381,8 +6672,6 @@
 				AA0DDB5D286C8B1A00802324 /* PMPBasicActionView.m in Sources */,
 				646B199728311B0E0015DF28 /* StationGuideBar.m in Sources */,
 				B0FE5F2C294C94540070E755 /* UIView+Rising.m in Sources */,
-				18CDF6B9257F91BD006E8E5C /* Credit.m in Sources */,
-				18CDF673257F91BD006E8E5C /* ExamArrangeDataItem.m in Sources */,
 				73AAA1D426C918250084E44D /* PurchaseInfoGoodsInfoView.m in Sources */,
 				AA7ABA2C2873EA4100BA6790 /* SZHReleaseTopBarView.m in Sources */,
 				18CDF66A257F91BD006E8E5C /* DiscoverAD.m in Sources */,
@@ -7394,7 +6683,6 @@
 				18CDF695257F91BD006E8E5C /* CQUPTMapPlaceItem.m in Sources */,
 				AA7ABA2B2873EA4100BA6790 /* originPhotoView.m in Sources */,
 				18CDF69A257F91BD006E8E5C /* CQUPTMapProgressView.m in Sources */,
-				18CDF70C257F91BE006E8E5C /* TimeTableViewCell.m in Sources */,
 				18CDF679257F91BD006E8E5C /* ScheduleViewController.m in Sources */,
 				1404747227F459B500307209 /* DiscoverADItem.m in Sources */,
 				B0F0900128A2605E00986EB6 /* popUpViewController.m in Sources */,

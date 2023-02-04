@@ -9,15 +9,11 @@
 #import "FinderToolViewController.h"
 #import "FinderToolViewItem.h"
 #import "ScheduleInquiryViewController.h"
-#import "TestArrangeViewController.h"
 #import "SchoolBusVC.h"
-#import "EmptyClassViewController.h"
 #import "CalendarViewController.h"
 #import "WeDateViewController.h"
 #import "CQUPTMapViewController.h"
-#import "EmptyClassUnavailableViewController.h"
 #import "TODOMainViewController.h"
-#import "SportAttendanceViewController.h"
 
 @interface FinderToolViewController ()<UIScrollViewDelegate>
 @property (nonatomic, weak) UIScrollView *scrollView;
@@ -332,7 +328,7 @@
     }else {
         TestArrangeViewController *vc = [[TestArrangeViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
-        
+
     }
 }
 
