@@ -6,23 +6,30 @@
 //  Copyright © 2019 Redrock. All rights reserved.
 //
 
+// VC
 #import "DiscoverViewController.h"
-
-#import "FinderToolViewController.h"
-#import "FinderView.h"
-#import "CheckInViewController.h"
-#import "WeDateViewController.h"  //没课约
-#import "CQUPTMapViewController.h"
 #import "LoginVC.h"
-#import "TODOMainViewController.h"  //邮子清单
-#import "ScheduleInquiryViewController.h"
+#import "CheckInViewController.h"
+#import "WeDateViewController.h"  // 没课约
+#import "CQUPTMapViewController.h"  // 地图
+#import "FinderToolViewController.h"  //工具
+#import "TODOMainViewController.h"  // 邮子清单
+#import "TODOMainViewController.h"  // 邮子清单
+#import "ScheduleInquiryViewController.h"  // 查课表
+#import "CalendarViewController.h"  // 校历
+#import "DiscoverADModel.h"  // banner
+#import "SchoolBusVC.h"  // 校车
+
+// View
+#import "FinderView.h"
 #import "ClassScheduleTabBarView.h"
 #import "ClassTabBar.h"
-#import "CalendarViewController.h"
-#import "DiscoverADModel.h"
-#import "SchoolBusVC.h"
-#import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
+
+// Tool
 #import "UserDefaultTool.h"
+
+// swift
+#import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
 
 typedef NS_ENUM(NSUInteger, LoginStates) {
     DidntLogin,
@@ -56,24 +63,15 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 @implementation DiscoverViewController
 
-#pragma mark - Getter
-- (LoginStates)loginStatus {
-    if (![UserItemTool defaultItem].token) {
-        return DidntLogin;
-    } else {
-        if (![[UserItemTool defaultItem].iat integerValue]
-            && [[UserItemTool defaultItem].iat integerValue] + 45 * 24 * 3600 < [NSDate nowTimestamp]) {
-            return LoginTimeOut;
-        } else {
-            return AlreadyLogin;
-        }
-    }
-}
 
 #pragma mark - Life cycle
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.tabBarController.tabBar.barTintColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
+    self.tabBarController.tabBar.barTintColor =
+    [UIColor dm_colorWithLightColor:
+        [UIColor colorWithHexString:@"#FFFFFF" alpha:1]
+                          darkColor:
+        [UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
     
     self.navigationController.navigationBar.hidden = YES;
     
@@ -111,13 +109,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }
 }
 
-// MARK: TODO: Method
-- (void)presentMySchedul{
-    ClassScheduleTabBarView *classTabBarView = ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView;
-    [classTabBarView.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
-    classTabBarView.mySchedul.fakeBar.alpha = 0;
-    [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addContentView];
@@ -127,7 +118,17 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     self.view.backgroundColor = self.finderView.backgroundColor;
 }
 
-// MARK: TODO: Method
+#pragma mark - Method
+
+/// 弹出课表
+- (void)presentMySchedul{
+    ClassScheduleTabBarView *classTabBarView = ((ClassTabBar *)(self.tabBarController.tabBar)).classScheduleTabBarView;
+    [classTabBarView.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
+    classTabBarView.mySchedul.fakeBar.alpha = 0;
+    [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
+}
+
+/// 添加通知中心
 - (void)addNotifications {
     // 自定义发现主页三个控件
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFinderViewUI) name:@"customizeMainPageViewSuccess" object:nil];
@@ -135,7 +136,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backToThisController) name:@"logout" object:nil];
 }
 
-
+/// 设置位置
 - (void)layoutSubviews {
     [self.contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         if(IS_IPHONEX) {
@@ -154,6 +155,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }];
 }
 
+/// 登录
 - (void)presentToLogin {
     LoginVC *loginVC = [[LoginVC alloc] init];
     
@@ -174,7 +176,89 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }
 }
 
-///这里有问题
+/// 导航栏状态
+- (void)configNavagationBar {
+    self.navigationController.navigationBar.translucent = NO;
+
+    if (@available(iOS 11.0, *)) {
+        self.navigationController.navigationBar.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
+    }
+    //隐藏导航栏的分割线
+    if (@available(iOS 11.0, *)) {
+        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
+    }
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+}
+
+/// 添加ScrollView 作为主View
+- (void)addContentView {
+    UIScrollView *contentView = [[UIScrollView alloc]init];
+    self.contentView = contentView;
+    self.contentView.delegate = self;
+    if (@available(iOS 11.0, *)) {
+        self.contentView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
+    } else {
+        self.contentView.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1];
+    }
+    self.contentView.showsVerticalScrollIndicator = NO;
+    self.contentView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0);
+    [self.view addSubview:self.contentView];
+}
+
+/// 添加FinderView
+- (void)addFinderView {
+    FinderView *finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 0)];
+    // Remake by SSR
+    [self addChildViewController:finderView.msgViewController];
+    
+    self.finderView = finderView;
+    self.finderView.delegate = self;
+    [self.contentView addSubview:finderView];
+}
+
+/// 更新Banner UI
+- (void)UpdateBannerViewUI {
+    NSMutableArray *urlStrings = [NSMutableArray array];
+    NSMutableArray *bannerGoToURL = [NSMutableArray array];
+    for(DiscoverAD *item in self.ADModel.ADCollectionInformation.ADCollection) {
+        [urlStrings addObject:item.pictureUrl];
+        [bannerGoToURL addObject:item.pictureGoToUrl];
+    }
+    self.finderView.bannerGoToURL = bannerGoToURL;
+    self.finderView.bannerURLStrings = urlStrings;
+    [self.finderView updateBannerViewIfNeeded];
+}
+
+/// 更新FinderView UI
+- (void)updateFinderViewUI {
+    [self.finderView remoreAllEnters];
+    [self.finderView addSomeEnters];
+    [self layoutSubviews];
+}
+
+- (void)reloadViewController:(UIViewController *)viewController {
+    NSArray *subviews = [viewController.view subviews];
+    if (subviews.count > 0) {
+        for (UIView *sub in subviews) {
+            [sub removeFromSuperview];
+        }
+    }
+    [viewController viewWillDisappear:YES];
+    [viewController viewDidDisappear:YES];
+    [viewController viewDidLoad];
+    [viewController viewWillAppear:YES];
+    [viewController viewDidAppear:YES];
+    [viewController viewWillLayoutSubviews];
+}
+
+- (void)backToThisController{
+    self.navigationController.tabBarController.selectedIndex = 0;
+    [self.navigationController popToRootViewControllerAnimated:NO];
+}
+
+// MARK: 网络请求
+
+// 登录状态时，网络请求签到信息
 static int requestCheckinInfo = 0;
 - (void)RequestCheckinInfo {
     if(![UserDefaultTool getStuNum]){
@@ -190,7 +274,7 @@ static int requestCheckinInfo = 0;
     }
     
     requestCheckinInfo = 0;
-    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[UserDefaultTool getStuNum],@"stunum",[UserDefaultTool getIdNum],@"idnum",nil];
+    NSDictionary *params = [NSDictionary dictionaryWithObjectsAndKeys:[UserDefaultTool getStuNum], @"stunum",[UserDefaultTool getIdNum], @"idnum",nil];
 
     [HttpTool.shareTool
      request:Mine_POST_checkInInfo_API
@@ -211,59 +295,7 @@ static int requestCheckinInfo = 0;
     }];
 }
 
-- (void)configNavagationBar {
-    self.navigationController.navigationBar.translucent = NO;
-
-    if (@available(iOS 11.0, *)) {
-        self.navigationController.navigationBar.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
-    }
-    //隐藏导航栏的分割线
-    if (@available(iOS 11.0, *)) {
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    }
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-}
-
-- (void)addContentView {
-    UIScrollView *contentView = [[UIScrollView alloc]init];
-    self.contentView = contentView;
-    self.contentView.delegate = self;
-    if (@available(iOS 11.0, *)) {
-        self.contentView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
-    } else {
-        self.contentView.backgroundColor = [UIColor colorWithRed:242/255.0 green:243/255.0 blue:248/255.0 alpha:1];
-    }
-    self.contentView.showsVerticalScrollIndicator = NO;
-    self.contentView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0);
-    [self.view addSubview:self.contentView];
-}
-
-- (void)addFinderView {
-    FinderView *finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 0)];
-    // Remake by SSR
-    [self addChildViewController:finderView.msgViewController];
-    
-    self.finderView = finderView;
-    self.finderView.delegate = self;
-    [self.contentView addSubview:finderView];
-}
-
-#pragma mark - 即将更改的东西
-
-- (void)UpdateBannerViewUI {
-    NSMutableArray *urlStrings = [NSMutableArray array];
-    NSMutableArray *bannerGoToURL = [NSMutableArray array];
-    for(DiscoverAD *item in self.ADModel.ADCollectionInformation.ADCollection) {
-        [urlStrings addObject:item.pictureUrl];
-        [bannerGoToURL addObject:item.pictureGoToUrl];
-    }
-    self.finderView.bannerGoToURL = bannerGoToURL;
-    self.finderView.bannerURLStrings = urlStrings;
-    [self.finderView updateBannerViewIfNeeded];
-}
-
-#pragma mark - 看不懂的网络请求骚操作
-
+// 很奇怪的网络请求
 - (void)request {
     [self.ADModel
      requestBannerSuccess:^{
@@ -274,54 +306,9 @@ static int requestCheckinInfo = 0;
     }];
 }
 
-#pragma mark - Lazy
+#pragma mark - Delegate
 
-- (DiscoverADModel *)ADModel {
-    if (_ADModel == nil) {
-        _ADModel = [[DiscoverADModel alloc] init];
-    }
-    return _ADModel;
-}
-
-#pragma mark - end
-
-- (void)updateFinderViewUI {
-    [self.finderView remoreAllEnters];
-    [self.finderView addSomeEnters];
-    [self layoutSubviews];
-}
-
-- (void)reloadElectricViewIfNeeded {
-    [self reloadViewController:self];
-}
-
-- (void)reloadVolViewIdNeeded {
-    [self reloadViewController:self];
-}
-
-- (void)reloadViewController:(UIViewController *)viewController {
-    NSArray *subviews = [viewController.view subviews];
-    if (subviews.count > 0) {
-        for (UIView *sub in subviews) {
-            [sub removeFromSuperview];
-        }
-    }
-    [viewController viewWillDisappear:YES];
-    [viewController viewDidDisappear:YES];
-    [viewController viewDidLoad];
-    [viewController viewWillAppear:YES];
-    [viewController viewDidAppear:YES];
-    [viewController viewWillLayoutSubviews];
-}
-
-- (void)sheetViewCancelBtnClicked {
-    //显示底部课表的tabBar
-    [UIView animateWithDuration:0.5 animations:^{
-        self.tabBarController.tabBar.alpha = 1;
-    }];
-}
-
-// MARK: - FinderView代理
+// MARK: <LQQFinderViewDelegate>
 
 - (void)touchWriteButton {
     NSLog(@"点击了签到button");
@@ -348,17 +335,11 @@ static int requestCheckinInfo = 0;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)touchMore {
-    NSLog(@"点击了更多功能");
-    FinderToolViewController *vc = [[FinderToolViewController alloc]init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 - (void)touchNoClassAppointment {
     NSLog(@"点击了没课约");
     UserItem *item = [[UserItem alloc] init];
-    WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:[@[@{@"name":item.realName,@"stuNum":item.stuNum}] mutableCopy]];
+    WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:
+                                [@[@{@"name":item.realName, @"stuNum":item.stuNum}] mutableCopy]];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -384,9 +365,33 @@ static int requestCheckinInfo = 0;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)backToThisController{
-    self.navigationController.tabBarController.selectedIndex = 0;
-    [self.navigationController popToRootViewControllerAnimated:NO];
+- (void)touchMore {
+    NSLog(@"点击了更多功能");
+    FinderToolViewController *vc = [[FinderToolViewController alloc]init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - Getter
+
+- (LoginStates)loginStatus {
+    if (![UserItemTool defaultItem].token) {
+        return DidntLogin;
+    } else {
+        if (![[UserItemTool defaultItem].iat integerValue]
+            && [[UserItemTool defaultItem].iat integerValue] + 45 * 24 * 3600 < [NSDate nowTimestamp]) {
+            return LoginTimeOut;
+        } else {
+            return AlreadyLogin;
+        }
+    }
+}
+
+- (DiscoverADModel *)ADModel {
+    if (_ADModel == nil) {
+        _ADModel = [[DiscoverADModel alloc] init];
+    }
+    return _ADModel;
 }
 
 @end
