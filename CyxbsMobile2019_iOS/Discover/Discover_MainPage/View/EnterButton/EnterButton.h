@@ -12,8 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface EnterButton : UIView
 
-@property (nonatomic, weak)UIButton *imageButton;
-@property (nonatomic, weak)UILabel *label;
+@property (nonatomic, weak) UIButton *imageButton;
+@property (nonatomic, weak) UILabel *label;
+
 - (instancetype)initWithImageButton:(UIButton *)button label:(UILabel *)label;
 @end
 

@@ -2618,12 +2618,12 @@
 				18CDF4D5257F91BC006E8E5C /* Discover_MainPage */,
 				B0F08FEE28A24F9000986EB6 /* IDSBinding */,
 				FE0D60362801702B00319A9E /* Discover_SchoolBus */,
-				FE2C131327AEF629001CF7AF /* ToDo */,
+				FE2C131327AEF629001CF7AF /* Discover_ToDo */,
 				18CDF512257F91BC006E8E5C /* Discover_FindScheduleInquiry */,
 				18CDF53B257F91BC006E8E5C /* Discover_WeDate */,
 				18CDF542257F91BC006E8E5C /* Discover_Map */,
 				18CDF5C9257F91BD006E8E5C /* Discover_SchoolCalendar */,
-				18CDF65A257F91BD006E8E5C /* Disconver_ToolPage */,
+				18CDF65A257F91BD006E8E5C /* Discover_ToolPage */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -2632,6 +2632,7 @@
 			isa = PBXGroup;
 			children = (
 				18CDF4D9257F91BC006E8E5C /* Controller */,
+				18CDF4F6257F91BC006E8E5C /* View */,
 				1404747F27F47F2A00307209 /* Discover_AD */,
 				14B73F29281BED7B00D08ADD /* Discover_MineMessage */,
 			);
@@ -2641,7 +2642,8 @@
 		18CDF4D9257F91BC006E8E5C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF4F6257F91BC006E8E5C /* View */,
+				18CDF4DA257F91BC006E8E5C /* DiscoverViewController.h */,
+				18CDF4DB257F91BC006E8E5C /* DiscoverViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2651,10 +2653,7 @@
 			children = (
 				18CDF4FF257F91BC006E8E5C /* FinderView.h */,
 				18CDF4F9257F91BC006E8E5C /* FinderView.m */,
-				18CDF4FD257F91BC006E8E5C /* EnterButton.h */,
-				18CDF4F8257F91BC006E8E5C /* EnterButton.m */,
-				18CDF4DA257F91BC006E8E5C /* DiscoverViewController.h */,
-				18CDF4DB257F91BC006E8E5C /* DiscoverViewController.m */,
+				B58F51FA298E58320008F85A /* EnterButton */,
 				1490FC8C28032A2100958892 /* FinderTopView */,
 			);
 			path = View;
@@ -2853,13 +2852,13 @@
 			path = Discover_SchoolCalendar;
 			sourceTree = "<group>";
 		};
-		18CDF65A257F91BD006E8E5C /* Disconver_ToolPage */ = {
+		18CDF65A257F91BD006E8E5C /* Discover_ToolPage */ = {
 			isa = PBXGroup;
 			children = (
 				18CDF65B257F91BD006E8E5C /* Controller */,
 				18CDF65E257F91BD006E8E5C /* View */,
 			);
-			path = Disconver_ToolPage;
+			path = Discover_ToolPage;
 			sourceTree = "<group>";
 		};
 		18CDF65B257F91BD006E8E5C /* Controller */ = {
@@ -5068,6 +5067,15 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		B58F51FA298E58320008F85A /* EnterButton */ = {
+			isa = PBXGroup;
+			children = (
+				18CDF4FD257F91BC006E8E5C /* EnterButton.h */,
+				18CDF4F8257F91BC006E8E5C /* EnterButton.m */,
+			);
+			path = EnterButton;
+			sourceTree = "<group>";
+		};
 		B5D558E928D7509E00DC22D8 /* Find Password */ = {
 			isa = PBXGroup;
 			children = (
@@ -5471,14 +5479,14 @@
 			path = UserDefaultTool;
 			sourceTree = "<group>";
 		};
-		FE2C131327AEF629001CF7AF /* ToDo */ = {
+		FE2C131327AEF629001CF7AF /* Discover_ToDo */ = {
 			isa = PBXGroup;
 			children = (
 				FE2C131427AEF629001CF7AF /* ToDoOffcialEntrance */,
 				FE2C132F27AEF629001CF7AF /* Discover_ToDo */,
 				FE2C134527AEF629001CF7AF /* Tool */,
 			);
-			path = ToDo;
+			path = Discover_ToDo;
 			sourceTree = "<group>";
 		};
 		FE2C131427AEF629001CF7AF /* ToDoOffcialEntrance */ = {
@@ -5494,8 +5502,8 @@
 			isa = PBXGroup;
 			children = (
 				FE2C131627AEF629001CF7AF /* ToDoDetaileViewController.h */,
-				FE2C131727AEF629001CF7AF /* TODOMainViewController.m */,
 				FE2C131827AEF629001CF7AF /* ToDoDetaileViewController.m */,
+				FE2C131727AEF629001CF7AF /* TODOMainViewController.m */,
 				FE2C131927AEF629001CF7AF /* TODOMainViewController.h */,
 			);
 			path = Controller;
@@ -5504,26 +5512,26 @@
 		FE2C131A27AEF629001CF7AF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FE2C132627AEF629001CF7AF /* TodoTableViewCell.h */,
 				FE2C131B27AEF629001CF7AF /* TodoTableViewCell.m */,
 				FE2C131C27AEF629001CF7AF /* ToDoDetailRepeatView.h */,
-				FE2C131D27AEF629001CF7AF /* ToDoEmptyCell.m */,
-				FE2C131E27AEF629001CF7AF /* ToDoMainBarView.m */,
-				FE2C131F27AEF629001CF7AF /* ToDoTableView.m */,
+				FE2C132527AEF629001CF7AF /* ToDoDetailRepeatView.m */,
 				FE2C132027AEF629001CF7AF /* ToDoDetailCurrencyView.h */,
+				FE2C132927AEF629001CF7AF /* ToDoDetailCurrencyView.m */,
+				FE2C132727AEF629001CF7AF /* ToDoDetailRemarkView.h */,
 				FE2C132127AEF629001CF7AF /* ToDoDetailRemarkView.m */,
 				FE2C132227AEF629001CF7AF /* ToDoDetailReminderTimeView.h */,
-				FE2C132327AEF629001CF7AF /* ToDoDetailBar.h */,
-				FE2C132427AEF629001CF7AF /* ToDoDetailTitleView.m */,
-				FE2C132527AEF629001CF7AF /* ToDoDetailRepeatView.m */,
-				FE2C132627AEF629001CF7AF /* TodoTableViewCell.h */,
-				FE2C132727AEF629001CF7AF /* ToDoDetailRemarkView.h */,
-				FE2C132827AEF629001CF7AF /* ToDoTableView.h */,
-				FE2C132927AEF629001CF7AF /* ToDoDetailCurrencyView.m */,
-				FE2C132A27AEF629001CF7AF /* ToDoMainBarView.h */,
-				FE2C132B27AEF629001CF7AF /* ToDoEmptyCell.h */,
-				FE2C132C27AEF629001CF7AF /* ToDoDetailBar.m */,
 				FE2C132D27AEF629001CF7AF /* ToDoDetailReminderTimeView.m */,
+				FE2C132327AEF629001CF7AF /* ToDoDetailBar.h */,
+				FE2C132C27AEF629001CF7AF /* ToDoDetailBar.m */,
+				FE2C132827AEF629001CF7AF /* ToDoTableView.h */,
+				FE2C131F27AEF629001CF7AF /* ToDoTableView.m */,
+				FE2C132B27AEF629001CF7AF /* ToDoEmptyCell.h */,
+				FE2C131D27AEF629001CF7AF /* ToDoEmptyCell.m */,
+				FE2C132A27AEF629001CF7AF /* ToDoMainBarView.h */,
+				FE2C131E27AEF629001CF7AF /* ToDoMainBarView.m */,
 				FE2C132E27AEF629001CF7AF /* ToDoDetailTitleView.h */,
+				FE2C132427AEF629001CF7AF /* ToDoDetailTitleView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5532,25 +5540,25 @@
 			isa = PBXGroup;
 			children = (
 				FE2C133027AEF629001CF7AF /* DiscoverTodoSelectRepeatView.h */,
-				FE2C133127AEF629001CF7AF /* TodoTitleInputTextField.m */,
-				FE2C133227AEF629001CF7AF /* DiscoverTodoSelectTimeView.h */,
-				FE2C133327AEF629001CF7AF /* DiscoverTodoSheetView.h */,
-				FE2C133427AEF629001CF7AF /* DiscoverTodoTableViewCell.m */,
-				FE2C133527AEF629001CF7AF /* DiscoverTodoView.m */,
-				FE2C133627AEF629001CF7AF /* DiscoverTodoTableViewAnimationView.m */,
-				FE2C133727AEF629001CF7AF /* DiscoverTodoSetRemindBasicView.h */,
-				FE2C133827AEF629001CF7AF /* YearBtnsView.h */,
-				FE2C133927AEF629001CF7AF /* TodoConflictStateView.h */,
-				FE2C133A27AEF629001CF7AF /* TodoTitleInputTextField.h */,
 				FE2C133B27AEF629001CF7AF /* DiscoverTodoSelectRepeatView.m */,
-				FE2C133C27AEF629001CF7AF /* DiscoverTodoView.h */,
-				FE2C133D27AEF629001CF7AF /* DiscoverTodoTableViewCell.h */,
-				FE2C133E27AEF629001CF7AF /* DiscoverTodoSheetView.m */,
+				FE2C133227AEF629001CF7AF /* DiscoverTodoSelectTimeView.h */,
 				FE2C133F27AEF629001CF7AF /* DiscoverTodoSelectTimeView.m */,
+				FE2C133327AEF629001CF7AF /* DiscoverTodoSheetView.h */,
+				FE2C133E27AEF629001CF7AF /* DiscoverTodoSheetView.m */,
+				FE2C133727AEF629001CF7AF /* DiscoverTodoSetRemindBasicView.h */,
 				FE2C134027AEF629001CF7AF /* DiscoverTodoSetRemindBasicView.m */,
-				FE2C134127AEF629001CF7AF /* DiscoverTodoTableViewAnimationView.h */,
-				FE2C134227AEF629001CF7AF /* TodoConflictStateView.m */,
+				FE2C133827AEF629001CF7AF /* YearBtnsView.h */,
 				FE2C134327AEF629001CF7AF /* YearBtnsView.m */,
+				FE2C133927AEF629001CF7AF /* TodoConflictStateView.h */,
+				FE2C134227AEF629001CF7AF /* TodoConflictStateView.m */,
+				FE2C133A27AEF629001CF7AF /* TodoTitleInputTextField.h */,
+				FE2C133127AEF629001CF7AF /* TodoTitleInputTextField.m */,
+				FE2C133C27AEF629001CF7AF /* DiscoverTodoView.h */,
+				FE2C133527AEF629001CF7AF /* DiscoverTodoView.m */,
+				FE2C133D27AEF629001CF7AF /* DiscoverTodoTableViewCell.h */,
+				FE2C133427AEF629001CF7AF /* DiscoverTodoTableViewCell.m */,
+				FE2C134127AEF629001CF7AF /* DiscoverTodoTableViewAnimationView.h */,
+				FE2C133627AEF629001CF7AF /* DiscoverTodoTableViewAnimationView.m */,
 			);
 			path = Discover_ToDo;
 			sourceTree = "<group>";
@@ -5558,14 +5566,14 @@
 		FE2C134527AEF629001CF7AF /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				FE2C134627AEF629001CF7AF /* TodoDateTool.m */,
-				FE2C134727AEF629001CF7AF /* TodoDataModel.m */,
-				FE2C134827AEF629001CF7AF /* TodoSyncTool.m */,
-				FE2C134927AEF629001CF7AF /* TodoSyncMsg.m */,
 				FE2C134A27AEF629001CF7AF /* TodoDateTool.h */,
+				FE2C134627AEF629001CF7AF /* TodoDateTool.m */,
 				FE2C134B27AEF629001CF7AF /* TodoSyncTool.h */,
+				FE2C134827AEF629001CF7AF /* TodoSyncTool.m */,
 				FE2C134C27AEF629001CF7AF /* TodoDataModel.h */,
+				FE2C134727AEF629001CF7AF /* TodoDataModel.m */,
 				FE2C134D27AEF629001CF7AF /* TodoSyncMsg.h */,
+				FE2C134927AEF629001CF7AF /* TodoSyncMsg.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";

@@ -258,8 +258,8 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 // MARK: 网络请求
 
-// 登录状态时，网络请求签到信息
 static int requestCheckinInfo = 0;
+/// 登录状态时，网络请求签到信息
 - (void)RequestCheckinInfo {
     if(![UserDefaultTool getStuNum]){
         requestCheckinInfo++;
@@ -295,7 +295,7 @@ static int requestCheckinInfo = 0;
     }];
 }
 
-// 很奇怪的网络请求
+/// 很奇怪的网络请求
 - (void)request {
     [self.ADModel
      requestBannerSuccess:^{

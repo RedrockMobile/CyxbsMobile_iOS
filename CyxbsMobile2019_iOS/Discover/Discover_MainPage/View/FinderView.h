@@ -7,11 +7,11 @@
 //
 
 // 此类为发现页的基础View，包括一系列跳转按钮，轮播图在内
-// TODO: 层级混乱
 
 #import <UIKit/UIKit.h>
 #import "EnterButton.h"
 NS_ASSUME_NONNULL_BEGIN
+
 @class SDCycleScrollView;
 @protocol LQQFinderViewDelegate <NSObject>
 
