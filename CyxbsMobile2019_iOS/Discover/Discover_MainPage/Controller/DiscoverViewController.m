@@ -10,15 +10,15 @@
 #import "DiscoverViewController.h"
 #import "LoginVC.h"
 #import "CheckInViewController.h"
-#import "WeDateViewController.h"  // 没课约
-#import "CQUPTMapViewController.h"  // 地图
-#import "FinderToolViewController.h"  //工具
-#import "TODOMainViewController.h"  // 邮子清单
-#import "TODOMainViewController.h"  // 邮子清单
+#import "WeDateViewController.h"           // 没课约
+#import "CQUPTMapViewController.h"         // 地图
+#import "FinderToolViewController.h"       //工具
+#import "TODOMainViewController.h"         // 邮子清单
+#import "TODOMainViewController.h"         // 邮子清单
 #import "ScheduleInquiryViewController.h"  // 查课表
-#import "CalendarViewController.h"  // 校历
-#import "DiscoverADModel.h"  // banner
-#import "SchoolBusVC.h"  // 校车
+#import "CalendarViewController.h"         // 校历
+#import "DiscoverADModel.h"                // banner
+#import "SchoolBusVC.h"                    // 校车
 
 // View
 #import "FinderView.h"
@@ -27,9 +27,10 @@
 
 // Tool
 #import "UserDefaultTool.h"
+#import <SDCycleScrollView.h>  // banner的无限滚动
 
-// swift
-#import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
+// swift (将Swift中的类暴露给OC)
+#import "掌上重邮-Swift.h"
 
 typedef NS_ENUM(NSUInteger, LoginStates) {
     DidntLogin,
@@ -39,7 +40,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
 @interface DiscoverViewController () <
     UIScrollViewDelegate,
-    LQQFinderViewDelegate
+    SDCycleScrollViewDelegate
 >
 
 @property (nonatomic, assign, readonly) LoginStates loginStatus;
@@ -113,6 +114,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [super viewDidLoad];
     [self addContentView];
     [self addFinderView];
+    [self addButtonTargetInFinderview];
     [self layoutSubviews];
     [self addNotifications];
     self.view.backgroundColor = self.finderView.backgroundColor;
@@ -134,6 +136,32 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFinderViewUI) name:@"customizeMainPageViewSuccess" object:nil];
     // 退出
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(backToThisController) name:@"logout" object:nil];
+}
+
+/// 给FinderView按钮添加事件
+- (void)addButtonTargetInFinderview {
+    // 签到按钮
+    [self.finderView.topView addSignBtnTarget:self action:@selector(touchWriteButton)];
+    
+    // 四个便捷按钮
+    for (EnterButton *enterButton in self.finderView.enterButtonArray) {
+        if ([enterButton.label.text isEqual: @"查课表"]) {
+            [enterButton.imageButton addTarget:self action:@selector(touchSchedule) forControlEvents:UIControlEventTouchUpInside];
+        } else if ([enterButton.label.text isEqual: @"校车轨迹"]) {
+            [enterButton.imageButton addTarget:self action:@selector(touchSchoolCar) forControlEvents:UIControlEventTouchUpInside];
+        } else if ([enterButton.label.text isEqual: @"更多功能"]) {
+            [enterButton.imageButton addTarget:self action:@selector(touchMore) forControlEvents:UIControlEventTouchUpInside];
+        } else if ([enterButton.label.text isEqual: @"没课约"]) {
+            [enterButton.imageButton addTarget:self action:@selector(touchNoClassAppointment) forControlEvents:UIControlEventTouchUpInside];
+        } else if ([enterButton.label.text isEqual: @"校历"]) {
+            [enterButton.imageButton addTarget:self action:@selector(touchSchoolCalender) forControlEvents:UIControlEventTouchUpInside];
+        } else if ([enterButton.label.text isEqual:@"重邮地图"]){
+            [enterButton.imageButton addTarget:self action:@selector(touchMap) forControlEvents:UIControlEventTouchUpInside];
+        } else if ([enterButton.label.text isEqualToString:@"邮子清单"]){
+            [enterButton.imageButton addTarget:self action:@selector(touchToDOList) forControlEvents:UIControlEventTouchUpInside];
+        }
+        [self.finderView addSubview:enterButton];
+    }
 }
 
 /// 设置位置
@@ -176,20 +204,6 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     }
 }
 
-/// 导航栏状态
-- (void)configNavagationBar {
-    self.navigationController.navigationBar.translucent = NO;
-
-    if (@available(iOS 11.0, *)) {
-        self.navigationController.navigationBar.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
-    }
-    //隐藏导航栏的分割线
-    if (@available(iOS 11.0, *)) {
-        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageWithColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]]] forBarPosition:UIBarPositionAny barMetrics:UIBarMetricsDefault];
-    }
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-}
-
 /// 添加ScrollView 作为主View
 - (void)addContentView {
     UIScrollView *contentView = [[UIScrollView alloc]init];
@@ -212,7 +226,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self addChildViewController:finderView.msgViewController];
     
     self.finderView = finderView;
-    self.finderView.delegate = self;
+    self.finderView.bannerView.delegate = self;  // 无限滚动
     [self.contentView addSubview:finderView];
 }
 
@@ -233,6 +247,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)updateFinderViewUI {
     [self.finderView remoreAllEnters];
     [self.finderView addSomeEnters];
+    [self addButtonTargetInFinderview];
     [self layoutSubviews];
 }
 
@@ -306,9 +321,7 @@ static int requestCheckinInfo = 0;
     }];
 }
 
-#pragma mark - Delegate
-
-// MARK: <LQQFinderViewDelegate>
+// MARK: SEL
 
 - (void)touchWriteButton {
     NSLog(@"点击了签到button");
@@ -370,6 +383,25 @@ static int requestCheckinInfo = 0;
     FinderToolViewController *vc = [[FinderToolViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - Delegate
+
+// MARK: <SDCycleScrollViewDelegate>
+
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index {
+    // 如果是http或者https协议的URL，用浏览器打开网页，如果是cyxbs协议的URL，打开对应页面
+    if ([self.finderView.bannerGoToURL[index] hasPrefix:@"http"]) {
+        URLController * controller = [[URLController alloc]init];
+        controller.hidesBottomBarWhenPushed = YES;
+        controller.toUrl = self.finderView.bannerGoToURL[index];
+        [self.navigationController pushViewController:controller animated:YES];
+
+    } else if ([self.finderView.bannerGoToURL[index] hasPrefix:@"cyxbs"]) {
+        
+        // TODO: 使用RisingRouter
+    }
+    
 }
 
 #pragma mark - Getter

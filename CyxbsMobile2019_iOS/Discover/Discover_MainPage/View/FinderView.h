@@ -10,46 +10,32 @@
 
 #import <UIKit/UIKit.h>
 #import "EnterButton.h"
+#import "FinderTopView.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @class SDCycleScrollView;
-@protocol LQQFinderViewDelegate <NSObject>
-
-- (void)touchWriteButton;
-- (void)touchSchoolCar;
-- (void)touchSchedule;
-- (void)touchMore;
-- (void)touchNoClassAppointment;
-- (void)touchSchoolCalender;
-- (void)touchMap;
-- (void)touchToDOList; //点击邮子清单
-
-@end
 
 #pragma mark - FinderView
 
 @interface FinderView : UIView
 
-@property (nonatomic, weak) SDCycleScrollView *bannerView;//
+@property (nonatomic, strong) FinderTopView *topView;
 
-@property (nonatomic, copy) NSMutableArray <EnterButton *> *enterButtonArray;//四个入口按钮
+@property (nonatomic, weak) SDCycleScrollView *bannerView;
 
-@property (nonatomic, weak) id<LQQFinderViewDelegate> delegate;
+@property (nonatomic, copy) NSMutableArray <EnterButton *> *enterButtonArray; // 四个入口按钮
 
 @property (nonatomic) NSMutableArray *bannerURLStrings;//轮播图urlString
 
 @property (nonatomic) NSMutableArray *bannerGoToURL;//轮播图目标网页url
 
-/// 应该在addChildViewController掉用这个 / Remake by SSR
-- (UIViewController *)jwzxViewController;
-
 - (UIViewController *)msgViewController;
 
-- (void)remoreAllEnters;//移除四个入口
+- (void)remoreAllEnters;  //移除四个入口
  
-- (void)addSomeEnters;//添加四个入口
+- (void)addSomeEnters;  //添加四个入口
  
-- (void)updateBannerViewIfNeeded;//在需要的时候更新bannerView
+- (void)updateBannerViewIfNeeded;  //在需要的时候更新bannerView
 
 @end
 
