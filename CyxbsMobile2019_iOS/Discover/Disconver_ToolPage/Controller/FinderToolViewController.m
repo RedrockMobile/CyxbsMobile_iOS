@@ -323,13 +323,13 @@
 
 //MARK: - 我的考试
 - (void)chooseTestArrange:(FinderToolViewItem *)sender  {
-    if (sender.isChooingNow == YES) {
-        [sender toggleFavoriteStates];
-    }else {
-        TestArrangeViewController *vc = [[TestArrangeViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-
-    }
+//    if (sender.isChooingNow == YES) {
+//        [sender toggleFavoriteStates];
+//    }else {
+//        TestArrangeViewController *vc = [[TestArrangeViewController alloc] init];
+//        [self.navigationController pushViewController:vc animated:YES];
+//
+//    }
 }
 
 //MARK: - 校车定位
@@ -346,15 +346,15 @@
 
 //MARK: - 空教室
 - (void)chooseEmptyClassRoom:(FinderToolViewItem *)sender  {
-    if (sender.isChooingNow == YES) {
-        [sender toggleFavoriteStates];
-    }else {
-//        EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
-        EmptyClassUnavailableViewController *vc = [[EmptyClassUnavailableViewController alloc]init];
-        
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+//    if (sender.isChooingNow == YES) {
+//        [sender toggleFavoriteStates];
+//    }else {
+////        EmptyClassViewController *vc = [[EmptyClassViewController alloc] init];
+//        EmptyClassUnavailableViewController *vc = [[EmptyClassUnavailableViewController alloc]init];
+//
+//        vc.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
 }
 
 //MARK: - 校历
@@ -391,13 +391,13 @@
 }
 // MARK: 体育打卡
 - (void)chooseSportAttendance:(FinderToolViewItem *)sender{
-    if (sender.isChooingNow == YES) {
-        [sender toggleFavoriteStates];
-    } else {
-        SportAttendanceViewController *vc = [[SportAttendanceViewController alloc] init];
-        vc.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+//    if (sender.isChooingNow == YES) {
+//        [sender toggleFavoriteStates];
+//    } else {
+//        SportAttendanceViewController *vc = [[SportAttendanceViewController alloc] init];
+//        vc.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
 }
 
 @end

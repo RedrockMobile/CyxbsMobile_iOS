@@ -14,7 +14,6 @@
 #import "StampCenterSecondHeaderView.h"
 #import "TaskTableViewCellWithProgress.h"
 #import "SZHReleaseDynamic.h"
-#import "QueryLoginViewController.h"
 #import "EditMyInfoViewController.h"
 #import "TableHeaderView.h"
 
@@ -695,8 +694,8 @@
 
 //跳转至界面
 - (void)jumpToZhiyuan{
-    QueryLoginViewController *QVC = [[QueryLoginViewController alloc]init];
-    [self.navigationController pushViewController:QVC animated:YES];
+//    QueryLoginViewController *QVC = [[QueryLoginViewController alloc]init];
+//    [self.navigationController pushViewController:QVC animated:YES];
 }
 
 //跳转至个人中心

@@ -92,18 +92,13 @@
 		18CDF4C9257F8DBD006E8E5C /* safePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4B3257F8DBD006E8E5C /* safePopView.m */; };
 		18CDF4CA257F8DBD006E8E5C /* SelfSafeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4B6257F8DBD006E8E5C /* SelfSafeView.m */; };
 		18CDF662257F91BD006E8E5C /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4DB257F91BC006E8E5C /* DiscoverViewController.m */; };
-		18CDF663257F91BD006E8E5C /* ElectricFeeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4DE257F91BC006E8E5C /* ElectricFeeItem.m */; };
-		18CDF664257F91BD006E8E5C /* ElectricFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4DF257F91BC006E8E5C /* ElectricFeeModel.m */; };
-		18CDF665257F91BD006E8E5C /* PickerModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4E3257F91BC006E8E5C /* PickerModel.m */; };
 		18CDF666257F91BD006E8E5C /* JWZXNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4E9257F91BC006E8E5C /* JWZXNewsModel.m */; };
 		18CDF668257F91BD006E8E5C /* JWZXNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4EB257F91BC006E8E5C /* JWZXNew.m */; };
 		18CDF66A257F91BD006E8E5C /* DiscoverAD.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F0257F91BC006E8E5C /* DiscoverAD.m */; };
 		18CDF66B257F91BD006E8E5C /* DiscoverADs.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F1257F91BC006E8E5C /* DiscoverADs.m */; };
 		18CDF66C257F91BD006E8E5C /* DiscoverADModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F2257F91BC006E8E5C /* DiscoverADModel.m */; };
-		18CDF66D257F91BD006E8E5C /* ElectricityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F7257F91BC006E8E5C /* ElectricityView.m */; };
 		18CDF66E257F91BD006E8E5C /* EnterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F8257F91BC006E8E5C /* EnterButton.m */; };
 		18CDF66F257F91BD006E8E5C /* FinderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F9257F91BC006E8E5C /* FinderView.m */; };
-		18CDF670257F91BD006E8E5C /* VolunteerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4FE257F91BC006E8E5C /* VolunteerView.m */; };
 		18CDF678257F91BD006E8E5C /* ChooseStudentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF515257F91BC006E8E5C /* ChooseStudentListViewController.m */; };
 		18CDF679257F91BD006E8E5C /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF516257F91BC006E8E5C /* ScheduleViewController.m */; };
 		18CDF67A257F91BD006E8E5C /* ScheduleInquiryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF518257F91BC006E8E5C /* ScheduleInquiryViewController.m */; };
@@ -461,13 +456,10 @@
 		AAE87797286B304F0091656B /* PrivacyTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE87796286B304E0091656B /* PrivacyTipView.swift */; };
 		AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */; };
 		B033366E294C971D004D141D /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B033366D294C971D004D141D /* HttpTool.m */; };
-		B0F08FEB28A249E200986EB6 /* DiscoverSAVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FE628A249E200986EB6 /* DiscoverSAVC.m */; };
-		B0F08FEC28A249E200986EB6 /* DataContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FE928A249E200986EB6 /* DataContentView.m */; };
 		B0F08FF828A24F9000986EB6 /* IDSController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FF028A24F9000986EB6 /* IDSController.m */; };
 		B0F08FF928A24F9000986EB6 /* IdsBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FF428A24F9000986EB6 /* IdsBinding.m */; };
 		B0F08FFA28A24F9000986EB6 /* IdsBindingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FF728A24F9000986EB6 /* IdsBindingView.m */; };
 		B0F08FFD28A2509900986EB6 /* RisingRouter+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FFB28A2509800986EB6 /* RisingRouter+Extension.m */; };
-		B0F0900128A2605E00986EB6 /* popUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F0900028A2605E00986EB6 /* popUpViewController.m */; };
 		B0FE5F29294C94540070E755 /* NSDate+Rising.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FE5F1F294C94540070E755 /* NSDate+Rising.m */; };
 		B0FE5F2A294C94540070E755 /* RisingFoundationExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FE5F20294C94540070E755 /* RisingFoundationExtention.m */; };
 		B0FE5F2B294C94540070E755 /* RisingUIKitExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FE5F25294C94540070E755 /* RisingUIKitExtension.m */; };
@@ -772,12 +764,6 @@
 		18CDF4B6257F8DBD006E8E5C /* SelfSafeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfSafeView.m; sourceTree = "<group>"; };
 		18CDF4DA257F91BC006E8E5C /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		18CDF4DB257F91BC006E8E5C /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
-		18CDF4DE257F91BC006E8E5C /* ElectricFeeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeItem.m; sourceTree = "<group>"; };
-		18CDF4DF257F91BC006E8E5C /* ElectricFeeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeModel.m; sourceTree = "<group>"; };
-		18CDF4E0257F91BC006E8E5C /* ElectricFeeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeItem.h; sourceTree = "<group>"; };
-		18CDF4E1257F91BC006E8E5C /* ElectricFeeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeModel.h; sourceTree = "<group>"; };
-		18CDF4E3257F91BC006E8E5C /* PickerModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerModel.m; sourceTree = "<group>"; };
-		18CDF4E4257F91BC006E8E5C /* PickerModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerModel.h; sourceTree = "<group>"; };
 		18CDF4E6257F91BC006E8E5C /* JWZXNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWZXNewsModel.h; sourceTree = "<group>"; };
 		18CDF4E8257F91BC006E8E5C /* JWZXNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWZXNew.h; sourceTree = "<group>"; };
 		18CDF4E9257F91BC006E8E5C /* JWZXNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWZXNewsModel.m; sourceTree = "<group>"; };
@@ -788,13 +774,9 @@
 		18CDF4F3257F91BC006E8E5C /* DiscoverADModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverADModel.h; sourceTree = "<group>"; };
 		18CDF4F4257F91BC006E8E5C /* DiscoverADs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverADs.h; sourceTree = "<group>"; };
 		18CDF4F5257F91BC006E8E5C /* DiscoverAD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverAD.h; sourceTree = "<group>"; };
-		18CDF4F7257F91BC006E8E5C /* ElectricityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricityView.m; sourceTree = "<group>"; };
 		18CDF4F8257F91BC006E8E5C /* EnterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterButton.m; sourceTree = "<group>"; };
 		18CDF4F9257F91BC006E8E5C /* FinderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderView.m; sourceTree = "<group>"; };
-		18CDF4FA257F91BC006E8E5C /* VolunteerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolunteerView.h; sourceTree = "<group>"; };
-		18CDF4FB257F91BC006E8E5C /* ElectricityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricityView.h; sourceTree = "<group>"; };
 		18CDF4FD257F91BC006E8E5C /* EnterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterButton.h; sourceTree = "<group>"; };
-		18CDF4FE257F91BC006E8E5C /* VolunteerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolunteerView.m; sourceTree = "<group>"; };
 		18CDF4FF257F91BC006E8E5C /* FinderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderView.h; sourceTree = "<group>"; };
 		18CDF514257F91BC006E8E5C /* ScheduleInquiryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleInquiryViewController.h; sourceTree = "<group>"; };
 		18CDF515257F91BC006E8E5C /* ChooseStudentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseStudentListViewController.m; sourceTree = "<group>"; };
@@ -1528,10 +1510,6 @@
 		AAFD87CE24F50DB800CBBD11 /* FakeTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FakeTabBarView.h; sourceTree = "<group>"; };
 		AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FakeTabBarView.m; sourceTree = "<group>"; };
 		B033366D294C971D004D141D /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
-		B0F08FE628A249E200986EB6 /* DiscoverSAVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverSAVC.m; sourceTree = "<group>"; };
-		B0F08FE728A249E200986EB6 /* DiscoverSAVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverSAVC.h; sourceTree = "<group>"; };
-		B0F08FE928A249E200986EB6 /* DataContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataContentView.m; sourceTree = "<group>"; };
-		B0F08FEA28A249E200986EB6 /* DataContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataContentView.h; sourceTree = "<group>"; };
 		B0F08FED28A24A4000986EB6 /* SportAttendanceHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SportAttendanceHeader.h; sourceTree = "<group>"; };
 		B0F08FF028A24F9000986EB6 /* IDSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDSController.m; sourceTree = "<group>"; };
 		B0F08FF128A24F9000986EB6 /* IDSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDSController.h; sourceTree = "<group>"; };
@@ -1541,8 +1519,6 @@
 		B0F08FF728A24F9000986EB6 /* IdsBindingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdsBindingView.m; sourceTree = "<group>"; };
 		B0F08FFB28A2509800986EB6 /* RisingRouter+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RisingRouter+Extension.m"; sourceTree = "<group>"; };
 		B0F08FFC28A2509800986EB6 /* RisingRouter+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RisingRouter+Extension.h"; sourceTree = "<group>"; };
-		B0F08FFF28A2605E00986EB6 /* popUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = popUpViewController.h; sourceTree = "<group>"; };
-		B0F0900028A2605E00986EB6 /* popUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = popUpViewController.m; sourceTree = "<group>"; };
 		B0FE5F1B294C94540070E755 /* RisingExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingExtension.h; sourceTree = "<group>"; };
 		B0FE5F1C294C94540070E755 /* RisingSingleClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingSingleClass.h; sourceTree = "<group>"; };
 		B0FE5F1E294C94540070E755 /* RisingFoundationExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingFoundationExtension.h; sourceTree = "<group>"; };
@@ -2831,7 +2807,6 @@
 			isa = PBXGroup;
 			children = (
 				18CDF4D9257F91BC006E8E5C /* Controller */,
-				B0F08FE428A249E200986EB6 /* SportAttendance */,
 				1404747F27F47F2A00307209 /* Discover_AD */,
 				18CDF580257F91BD006E8E5C /* DIscover_JWZX */,
 				14B73F29281BED7B00D08ADD /* Discover_MineMessage */,
@@ -2843,38 +2818,8 @@
 			isa = PBXGroup;
 			children = (
 				18CDF4F6257F91BC006E8E5C /* View */,
-				18CDF4DD257F91BC006E8E5C /* ElectricBill */,
-				18CDF4DC257F91BC006E8E5C /* Model */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		18CDF4DC257F91BC006E8E5C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF4E2257F91BC006E8E5C /* PickerView */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		18CDF4DD257F91BC006E8E5C /* ElectricBill */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF4E1257F91BC006E8E5C /* ElectricFeeModel.h */,
-				18CDF4DF257F91BC006E8E5C /* ElectricFeeModel.m */,
-				18CDF4E0257F91BC006E8E5C /* ElectricFeeItem.h */,
-				18CDF4DE257F91BC006E8E5C /* ElectricFeeItem.m */,
-			);
-			path = ElectricBill;
-			sourceTree = "<group>";
-		};
-		18CDF4E2257F91BC006E8E5C /* PickerView */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF4E4257F91BC006E8E5C /* PickerModel.h */,
-				18CDF4E3257F91BC006E8E5C /* PickerModel.m */,
-			);
-			path = PickerView;
 			sourceTree = "<group>";
 		};
 		18CDF4E5257F91BC006E8E5C /* Model */ = {
@@ -2892,10 +2837,6 @@
 			children = (
 				18CDF4FF257F91BC006E8E5C /* FinderView.h */,
 				18CDF4F9257F91BC006E8E5C /* FinderView.m */,
-				18CDF4FB257F91BC006E8E5C /* ElectricityView.h */,
-				18CDF4F7257F91BC006E8E5C /* ElectricityView.m */,
-				18CDF4FA257F91BC006E8E5C /* VolunteerView.h */,
-				18CDF4FE257F91BC006E8E5C /* VolunteerView.m */,
 				18CDF4FD257F91BC006E8E5C /* EnterButton.h */,
 				18CDF4F8257F91BC006E8E5C /* EnterButton.m */,
 				18CDF4DA257F91BC006E8E5C /* DiscoverViewController.h */,
@@ -5157,34 +5098,6 @@
 			path = ArticleRemarkPraise;
 			sourceTree = "<group>";
 		};
-		B0F08FE428A249E200986EB6 /* SportAttendance */ = {
-			isa = PBXGroup;
-			children = (
-				B0F08FFE28A2602F00986EB6 /* PopUpController */,
-				B0F08FE528A249E200986EB6 /* Controller */,
-				B0F08FE828A249E200986EB6 /* View */,
-			);
-			path = SportAttendance;
-			sourceTree = "<group>";
-		};
-		B0F08FE528A249E200986EB6 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				B0F08FE728A249E200986EB6 /* DiscoverSAVC.h */,
-				B0F08FE628A249E200986EB6 /* DiscoverSAVC.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		B0F08FE828A249E200986EB6 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				B0F08FEA28A249E200986EB6 /* DataContentView.h */,
-				B0F08FE928A249E200986EB6 /* DataContentView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		B0F08FEE28A24F9000986EB6 /* IDSBinding */ = {
 			isa = PBXGroup;
 			children = (
@@ -5220,15 +5133,6 @@
 				B0F08FF728A24F9000986EB6 /* IdsBindingView.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		B0F08FFE28A2602F00986EB6 /* PopUpController */ = {
-			isa = PBXGroup;
-			children = (
-				B0F08FFF28A2605E00986EB6 /* popUpViewController.h */,
-				B0F0900028A2605E00986EB6 /* popUpViewController.m */,
-			);
-			path = PopUpController;
 			sourceTree = "<group>";
 		};
 		B0FE5F1A294C94540070E755 /* Rising Extension */ = {
@@ -6206,7 +6110,6 @@
 				DB34EB34239BD4550052B65E /* LessonButton.m in Sources */,
 				DB34EB2A239BD4550052B65E /* LessonButtonController.m in Sources */,
 				1893DC8D26EA32F1007E871E /* MGDQueue.m in Sources */,
-				B0F08FEB28A249E200986EB6 /* DiscoverSAVC.m in Sources */,
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
 				18CDF4C1257F8DBD006E8E5C /* sendEmailModel.m in Sources */,
 				1A1691FE2430ECFE0076EDC7 /* ClassTabBar.m in Sources */,
@@ -6234,7 +6137,6 @@
 				D0101D592433C885004337ED /* SDMaskController.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
 				AA7ABABF2873EA5500BA6790 /* NewQANoDataView.m in Sources */,
-				18CDF670257F91BD006E8E5C /* VolunteerView.m in Sources */,
 				14B73F8B2823577600D08ADD /* SSRButton.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				FE2C136027AEF629001CF7AF /* DiscoverTodoSelectTimeView.m in Sources */,
@@ -6374,7 +6276,6 @@
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
 				B033366E294C971D004D141D /* HttpTool.m in Sources */,
 				AA7ABAA62873EA5500BA6790 /* FuncView.m in Sources */,
-				18CDF665257F91BD006E8E5C /* PickerModel.m in Sources */,
 				73AAA1D626C918250084E44D /* DetailsBaseTableViewCell.m in Sources */,
 				AA7ABA292873EA4100BA6790 /* CircleLabelBtn.m in Sources */,
 				73AAA1D526C918250084E44D /* PurchaseInfoOrderIDView.m in Sources */,
@@ -6389,7 +6290,6 @@
 				AA0DD8FB286C50E500802324 /* MineMsgCntView.m in Sources */,
 				AA536DF5258C4F7600F69E73 /* IgnoreViewController.m in Sources */,
 				18CDF66C257F91BD006E8E5C /* DiscoverADModel.m in Sources */,
-				18CDF663257F91BD006E8E5C /* ElectricFeeItem.m in Sources */,
 				AA289B0F24EF9CFA00FDF70C /* NoteDataModel.m in Sources */,
 				18CDF4BD257F8DBD006E8E5C /* questionModel.m in Sources */,
 				AA0DDB7F286C8B1A00802324 /* PMPTextButton.m in Sources */,
@@ -6429,7 +6329,6 @@
 				AA7ABAC52873EA5500BA6790 /* MGDRefreshTool.m in Sources */,
 				646B199A28313CB20015DF28 /* StationScrollView.m in Sources */,
 				AA7ABA9A2873EA5400BA6790 /* DeletePostModel.m in Sources */,
-				18CDF66D257F91BD006E8E5C /* ElectricityView.m in Sources */,
 				646B198D282FFC460015DF28 /* BusMAPointAnnotation.m in Sources */,
 				AAC7CA2025F7797000E6B5D5 /* RemarkParseModel.m in Sources */,
 				AA7ABAA92873EA5500BA6790 /* ShareView.m in Sources */,
@@ -6474,7 +6373,6 @@
 				FE2C135227AEF629001CF7AF /* ToDoMainBarView.m in Sources */,
 				18CDF721257F91BE006E8E5C /* FinderToolViewController.m in Sources */,
 				1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */,
-				18CDF664257F91BD006E8E5C /* ElectricFeeModel.m in Sources */,
 				DB4064FA2466D889006CE5BC /* DLTextFiled.m in Sources */,
 				AA0DDB5F286C8B1A00802324 /* IDMsgDisplayView.m in Sources */,
 				147842EA27F0758F002359BA /* UIView+Frame.m in Sources */,
@@ -6616,7 +6514,6 @@
 				AA0DDB56286C8B1900802324 /* MineTopBlurView.m in Sources */,
 				AA7ABAAE2873EA5500BA6790 /* MGDCircleLayer.m in Sources */,
 				14B73F7E281BED7B00D08ADD /* MineMessageVC.m in Sources */,
-				B0F08FEC28A249E200986EB6 /* DataContentView.m in Sources */,
 				14B73F74281BED7B00D08ADD /* SystemMsgModel.m in Sources */,
 				AA7ABAC22873EA5500BA6790 /* PostArchiveTool.m in Sources */,
 				AA7ABA282873EA4100BA6790 /* SZHCircleLabelView.m in Sources */,
@@ -6685,7 +6582,6 @@
 				18CDF69A257F91BD006E8E5C /* CQUPTMapProgressView.m in Sources */,
 				18CDF679257F91BD006E8E5C /* ScheduleViewController.m in Sources */,
 				1404747227F459B500307209 /* DiscoverADItem.m in Sources */,
-				B0F0900128A2605E00986EB6 /* popUpViewController.m in Sources */,
 				49343A2326D4EAB2001A2892 /* CommonQuestionCell.m in Sources */,
 				14B73F71281BED7B00D08ADD /* ActiveMessage.m in Sources */,
 				AA0DDB5B286C8B1A00802324 /* PMPBasicNavBarController.m in Sources */,
