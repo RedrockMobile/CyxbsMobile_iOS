@@ -11,9 +11,6 @@
 
 #import <UIKit/UIKit.h>
 #import "EnterButton.h"
-
-#import "DiscoverJWZXVC.h"
-
 NS_ASSUME_NONNULL_BEGIN
 @class SDCycleScrollView;
 @protocol LQQFinderViewDelegate <NSObject>

@@ -17,9 +17,6 @@
 		147842EE27F07A5A002359BA /* UIColor+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842ED27F07A59002359BA /* UIColor+Color.m */; };
 		147842F227F080A7002359BA /* NSDate+Day.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842F127F080A7002359BA /* NSDate+Day.m */; };
 		1490FC8B28031BC200958892 /* FinderTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1490FC8A28031BC200958892 /* FinderTopView.m */; };
-		14981FF627FEA8F200AD2A29 /* JWZXNewsAnnexModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FF527FEA8F200AD2A29 /* JWZXNewsAnnexModel.m */; };
-		14981FF927FEAEB800AD2A29 /* JWZXDetailNewsTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FF827FEAEB800AD2A29 /* JWZXDetailNewsTopView.m */; };
-		14981FFC27FEB41B00AD2A29 /* JWZXDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14981FFB27FEB41B00AD2A29 /* JWZXDetailView.m */; };
 		14B73F27281BE6C200D08ADD /* CyxbsMobileImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */; };
 		14B73F6E281BED7B00D08ADD /* MessageSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F2C281BED7B00D08ADD /* MessageSettingCell.m */; };
 		14B73F6F281BED7B00D08ADD /* MessageSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F30281BED7B00D08ADD /* MessageSettingVC.m */; };
@@ -47,17 +44,12 @@
 		14CED37E288A594600BADA8B /* RisingRouterResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CED378288A594500BADA8B /* RisingRouterResponse.m */; };
 		14CED37F288A594600BADA8B /* RisingRouterRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 14CED37B288A594600BADA8B /* RisingRouterRequest.m */; };
 		14D03A0B27FE69A800D6AE93 /* SSRTopBarBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D03A0A27FE69A800D6AE93 /* SSRTopBarBaseView.m */; };
-		14D03A0F27FE725E00D6AE93 /* JWZXDetailNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D03A0E27FE725E00D6AE93 /* JWZXDetailNewsModel.m */; };
 		14E7E4A827F5762500B67469 /* QuestionSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4A527F5762500B67469 /* QuestionSelectView.m */; };
 		14E7E4A927F5762500B67469 /* QuestionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4A727F5762500B67469 /* QuestionButton.m */; };
 		14E7E4B227F57FC800B67469 /* FeedBackQuestionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4AE27F57FC800B67469 /* FeedBackQuestionButton.m */; };
 		14E7E4B327F57FC800B67469 /* FeedBackSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4AF27F57FC800B67469 /* FeedBackSelectView.m */; };
-		14F0D3D02831DB670046D8F5 /* JWZXSectionNews.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F0D3CF2831DB670046D8F5 /* JWZXSectionNews.m */; };
-		14FBBD3B2805050300D5B05D /* DiscoverJWZXVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FBBD3A2805050300D5B05D /* DiscoverJWZXVC.m */; };
 		14FBBD41280505CC00D5B05D /* SSRTextCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FBBD3F280505CC00D5B05D /* SSRTextCycleView.m */; };
 		14FBBD4E2805489A00D5B05D /* SSRTextCycleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FBBD4D2805489A00D5B05D /* SSRTextCycleCell.m */; };
-		14FBBD552805907E00D5B05D /* JWZXNewDownloadVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FBBD542805907E00D5B05D /* JWZXNewDownloadVC.m */; };
-		14FBBD58280591E200D5B05D /* NewDownloadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FBBD57280591E200D5B05D /* NewDownloadCell.m */; };
 		187DF4BA260310DD000BCDE9 /* LYEmptyBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DF4AF260310DD000BCDE9 /* LYEmptyBaseView.m */; };
 		187DF4BB260310DD000BCDE9 /* UIScrollView+Empty.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DF4B2260310DD000BCDE9 /* UIScrollView+Empty.m */; };
 		187DF4BD260310DD000BCDE9 /* LYEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187DF4B6260310DD000BCDE9 /* LYEmptyView.m */; };
@@ -92,8 +84,6 @@
 		18CDF4C9257F8DBD006E8E5C /* safePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4B3257F8DBD006E8E5C /* safePopView.m */; };
 		18CDF4CA257F8DBD006E8E5C /* SelfSafeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4B6257F8DBD006E8E5C /* SelfSafeView.m */; };
 		18CDF662257F91BD006E8E5C /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4DB257F91BC006E8E5C /* DiscoverViewController.m */; };
-		18CDF666257F91BD006E8E5C /* JWZXNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4E9257F91BC006E8E5C /* JWZXNewsModel.m */; };
-		18CDF668257F91BD006E8E5C /* JWZXNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4EB257F91BC006E8E5C /* JWZXNew.m */; };
 		18CDF66A257F91BD006E8E5C /* DiscoverAD.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F0257F91BC006E8E5C /* DiscoverAD.m */; };
 		18CDF66B257F91BD006E8E5C /* DiscoverADs.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F1257F91BC006E8E5C /* DiscoverADs.m */; };
 		18CDF66C257F91BD006E8E5C /* DiscoverADModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F2257F91BC006E8E5C /* DiscoverADModel.m */; };
@@ -134,9 +124,6 @@
 		18CDF6A3257F91BD006E8E5C /* CQUPTMapDetailTagsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF57A257F91BD006E8E5C /* CQUPTMapDetailTagsCollectionViewCell.m */; };
 		18CDF6A4257F91BD006E8E5C /* CollectionViewSpaceLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF57E257F91BD006E8E5C /* CollectionViewSpaceLayout.m */; };
 		18CDF6A5257F91BD006E8E5C /* CQUPTMapDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF57F257F91BD006E8E5C /* CQUPTMapDetailView.m */; };
-		18CDF6A6257F91BD006E8E5C /* JWZXNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF582257F91BD006E8E5C /* JWZXNewsViewController.m */; };
-		18CDF6A7257F91BD006E8E5C /* NewDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF585257F91BD006E8E5C /* NewDetailViewController.m */; };
-		18CDF6AA257F91BD006E8E5C /* JWZXNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF589257F91BD006E8E5C /* JWZXNewsCell.m */; };
 		18CDF6C7257F91BE006E8E5C /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF5CB257F91BD006E8E5C /* CalendarViewController.m */; };
 		18CDF721257F91BE006E8E5C /* FinderToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF65D257F91BD006E8E5C /* FinderToolViewController.m */; };
 		18CDF722257F91BE006E8E5C /* FinderToolViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF660257F91BD006E8E5C /* FinderToolViewItem.m */; };
@@ -619,12 +606,6 @@
 		147E2CE928240C3A00DCC312 /* HttpTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpTool.h; sourceTree = "<group>"; };
 		1490FC8928031BC200958892 /* FinderTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinderTopView.h; sourceTree = "<group>"; };
 		1490FC8A28031BC200958892 /* FinderTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinderTopView.m; sourceTree = "<group>"; };
-		14981FF427FEA8F200AD2A29 /* JWZXNewsAnnexModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXNewsAnnexModel.h; sourceTree = "<group>"; };
-		14981FF527FEA8F200AD2A29 /* JWZXNewsAnnexModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWZXNewsAnnexModel.m; sourceTree = "<group>"; };
-		14981FF727FEAEB800AD2A29 /* JWZXDetailNewsTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXDetailNewsTopView.h; sourceTree = "<group>"; };
-		14981FF827FEAEB800AD2A29 /* JWZXDetailNewsTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWZXDetailNewsTopView.m; sourceTree = "<group>"; };
-		14981FFA27FEB41B00AD2A29 /* JWZXDetailView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXDetailView.h; sourceTree = "<group>"; };
-		14981FFB27FEB41B00AD2A29 /* JWZXDetailView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWZXDetailView.m; sourceTree = "<group>"; };
 		14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CyxbsMobileImage.xcassets; sourceTree = "<group>"; };
 		14B73F2C281BED7B00D08ADD /* MessageSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageSettingCell.m; sourceTree = "<group>"; };
 		14B73F2D281BED7B00D08ADD /* MessageSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageSettingCell.h; sourceTree = "<group>"; };
@@ -680,8 +661,6 @@
 		14CED37C288A594600BADA8B /* RisingRouterHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingRouterHandler.h; sourceTree = "<group>"; };
 		14D03A0927FE69A800D6AE93 /* SSRTopBarBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSRTopBarBaseView.h; sourceTree = "<group>"; };
 		14D03A0A27FE69A800D6AE93 /* SSRTopBarBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSRTopBarBaseView.m; sourceTree = "<group>"; };
-		14D03A0D27FE725E00D6AE93 /* JWZXDetailNewsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXDetailNewsModel.h; sourceTree = "<group>"; };
-		14D03A0E27FE725E00D6AE93 /* JWZXDetailNewsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWZXDetailNewsModel.m; sourceTree = "<group>"; };
 		14E7E4A427F5762500B67469 /* QuestionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionButton.h; sourceTree = "<group>"; };
 		14E7E4A527F5762500B67469 /* QuestionSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionSelectView.m; sourceTree = "<group>"; };
 		14E7E4A627F5762500B67469 /* QuestionSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionSelectView.h; sourceTree = "<group>"; };
@@ -690,19 +669,10 @@
 		14E7E4AF27F57FC800B67469 /* FeedBackSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackSelectView.m; sourceTree = "<group>"; };
 		14E7E4B027F57FC800B67469 /* FeedBackQuestionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackQuestionButton.h; sourceTree = "<group>"; };
 		14E7E4B127F57FC800B67469 /* FeedBackSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackSelectView.h; sourceTree = "<group>"; };
-		14F0D3CE2831DB670046D8F5 /* JWZXSectionNews.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXSectionNews.h; sourceTree = "<group>"; };
-		14F0D3CF2831DB670046D8F5 /* JWZXSectionNews.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWZXSectionNews.m; sourceTree = "<group>"; };
-		14F0D3D128329EAF0046D8F5 /* JWZXHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXHeader.h; sourceTree = "<group>"; };
-		14FBBD392805050300D5B05D /* DiscoverJWZXVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverJWZXVC.h; sourceTree = "<group>"; };
-		14FBBD3A2805050300D5B05D /* DiscoverJWZXVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverJWZXVC.m; sourceTree = "<group>"; };
 		14FBBD3E280505CC00D5B05D /* SSRTextCycleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSRTextCycleView.h; sourceTree = "<group>"; };
 		14FBBD3F280505CC00D5B05D /* SSRTextCycleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSRTextCycleView.m; sourceTree = "<group>"; };
 		14FBBD4C2805489A00D5B05D /* SSRTextCycleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSRTextCycleCell.h; sourceTree = "<group>"; };
 		14FBBD4D2805489A00D5B05D /* SSRTextCycleCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SSRTextCycleCell.m; sourceTree = "<group>"; };
-		14FBBD532805907E00D5B05D /* JWZXNewDownloadVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWZXNewDownloadVC.h; sourceTree = "<group>"; };
-		14FBBD542805907E00D5B05D /* JWZXNewDownloadVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWZXNewDownloadVC.m; sourceTree = "<group>"; };
-		14FBBD56280591E200D5B05D /* NewDownloadCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewDownloadCell.h; sourceTree = "<group>"; };
-		14FBBD57280591E200D5B05D /* NewDownloadCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewDownloadCell.m; sourceTree = "<group>"; };
 		187DF4AF260310DD000BCDE9 /* LYEmptyBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYEmptyBaseView.m; sourceTree = "<group>"; };
 		187DF4B0260310DD000BCDE9 /* LYEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYEmptyView.h; sourceTree = "<group>"; };
 		187DF4B1260310DD000BCDE9 /* FTEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTEmptyView.h; sourceTree = "<group>"; };
@@ -764,10 +734,6 @@
 		18CDF4B6257F8DBD006E8E5C /* SelfSafeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfSafeView.m; sourceTree = "<group>"; };
 		18CDF4DA257F91BC006E8E5C /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		18CDF4DB257F91BC006E8E5C /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
-		18CDF4E6257F91BC006E8E5C /* JWZXNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWZXNewsModel.h; sourceTree = "<group>"; };
-		18CDF4E8257F91BC006E8E5C /* JWZXNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWZXNew.h; sourceTree = "<group>"; };
-		18CDF4E9257F91BC006E8E5C /* JWZXNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWZXNewsModel.m; sourceTree = "<group>"; };
-		18CDF4EB257F91BC006E8E5C /* JWZXNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWZXNew.m; sourceTree = "<group>"; };
 		18CDF4F0257F91BC006E8E5C /* DiscoverAD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverAD.m; sourceTree = "<group>"; };
 		18CDF4F1257F91BC006E8E5C /* DiscoverADs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverADs.m; sourceTree = "<group>"; };
 		18CDF4F2257F91BC006E8E5C /* DiscoverADModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverADModel.m; sourceTree = "<group>"; };
@@ -849,12 +815,6 @@
 		18CDF57D257F91BD006E8E5C /* CQUPTMapDetailTagsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CQUPTMapDetailTagsCollectionViewCell.h; sourceTree = "<group>"; };
 		18CDF57E257F91BD006E8E5C /* CollectionViewSpaceLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewSpaceLayout.m; sourceTree = "<group>"; };
 		18CDF57F257F91BD006E8E5C /* CQUPTMapDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CQUPTMapDetailView.m; sourceTree = "<group>"; };
-		18CDF582257F91BD006E8E5C /* JWZXNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWZXNewsViewController.m; sourceTree = "<group>"; };
-		18CDF583257F91BD006E8E5C /* NewDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewDetailViewController.h; sourceTree = "<group>"; };
-		18CDF584257F91BD006E8E5C /* JWZXNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWZXNewsViewController.h; sourceTree = "<group>"; };
-		18CDF585257F91BD006E8E5C /* NewDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewDetailViewController.m; sourceTree = "<group>"; };
-		18CDF589257F91BD006E8E5C /* JWZXNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWZXNewsCell.m; sourceTree = "<group>"; };
-		18CDF58B257F91BD006E8E5C /* JWZXNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWZXNewsCell.h; sourceTree = "<group>"; };
 		18CDF5CA257F91BD006E8E5C /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
 		18CDF5CB257F91BD006E8E5C /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
 		18CDF65C257F91BD006E8E5C /* FinderToolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderToolViewController.h; sourceTree = "<group>"; };
@@ -1096,12 +1056,8 @@
 		7AA4C4722891237600E204C8 /* StampCenterHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StampCenterHeader.h; sourceTree = "<group>"; };
 		7AA4C473289123B700E204C8 /* FeedBackCenterHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedBackCenterHeader.h; sourceTree = "<group>"; };
 		7AA4C47628921BF400E204C8 /* SchoolCalendarHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolCalendarHeader.h; sourceTree = "<group>"; };
-		7AA4C47828921E9400E204C8 /* ElectricHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricHeader.h; sourceTree = "<group>"; };
-		7AA4C47A28921F0B00E204C8 /* ScorePageHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScorePageHeader.h; sourceTree = "<group>"; };
-		7AA4C47C28921F7C00E204C8 /* TestArrangeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestArrangeHeader.h; sourceTree = "<group>"; };
 		7AA4C47E2892206200E204C8 /* SchoolBusHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolBusHeader.h; sourceTree = "<group>"; };
 		7AA4C480289220CE00E204C8 /* ADHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ADHeader.h; sourceTree = "<group>"; };
-		7AA4C4822892213200E204C8 /* VolunteerHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VolunteerHeader.h; sourceTree = "<group>"; };
 		7AA4C4842892217100E204C8 /* MapHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapHeader.h; sourceTree = "<group>"; };
 		7AA4C48628922F9A00E204C8 /* ToDoHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ToDoHeader.h; sourceTree = "<group>"; };
 		7AA4C4882892368C00E204C8 /* MineMainPageHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineMainPageHeader.h; sourceTree = "<group>"; };
@@ -1510,7 +1466,6 @@
 		AAFD87CE24F50DB800CBBD11 /* FakeTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FakeTabBarView.h; sourceTree = "<group>"; };
 		AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FakeTabBarView.m; sourceTree = "<group>"; };
 		B033366D294C971D004D141D /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
-		B0F08FED28A24A4000986EB6 /* SportAttendanceHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SportAttendanceHeader.h; sourceTree = "<group>"; };
 		B0F08FF028A24F9000986EB6 /* IDSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDSController.m; sourceTree = "<group>"; };
 		B0F08FF128A24F9000986EB6 /* IDSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDSController.h; sourceTree = "<group>"; };
 		B0F08FF328A24F9000986EB6 /* IdsBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdsBinding.h; sourceTree = "<group>"; };
@@ -1852,25 +1807,6 @@
 			path = Discover_AD;
 			sourceTree = "<group>";
 		};
-		1404748027F48C2100307209 /* JWZXNew */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF4E8257F91BC006E8E5C /* JWZXNew.h */,
-				18CDF4EB257F91BC006E8E5C /* JWZXNew.m */,
-			);
-			path = JWZXNew;
-			sourceTree = "<group>";
-		};
-		1404748127F48C2B00307209 /* JWZXSectionNews */ = {
-			isa = PBXGroup;
-			children = (
-				14F0D3CE2831DB670046D8F5 /* JWZXSectionNews.h */,
-				14F0D3CF2831DB670046D8F5 /* JWZXSectionNews.m */,
-				1404748027F48C2100307209 /* JWZXNew */,
-			);
-			path = JWZXSectionNews;
-			sourceTree = "<group>";
-		};
 		1404748227F4A89600307209 /* UITextView+Placeholder */ = {
 			isa = PBXGroup;
 			children = (
@@ -1949,61 +1885,6 @@
 				1490FC8A28031BC200958892 /* FinderTopView.m */,
 			);
 			path = FinderTopView;
-			sourceTree = "<group>";
-		};
-		14981FFD27FEC15900AD2A29 /* JWZXNewsAnnexModel */ = {
-			isa = PBXGroup;
-			children = (
-				14981FF427FEA8F200AD2A29 /* JWZXNewsAnnexModel.h */,
-				14981FF527FEA8F200AD2A29 /* JWZXNewsAnnexModel.m */,
-			);
-			path = JWZXNewsAnnexModel;
-			sourceTree = "<group>";
-		};
-		14981FFE27FEC16800AD2A29 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				14D03A0D27FE725E00D6AE93 /* JWZXDetailNewsModel.h */,
-				14D03A0E27FE725E00D6AE93 /* JWZXDetailNewsModel.m */,
-				14981FFD27FEC15900AD2A29 /* JWZXNewsAnnexModel */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		14981FFF27FEC17500AD2A29 /* TopView */ = {
-			isa = PBXGroup;
-			children = (
-				14981FF727FEAEB800AD2A29 /* JWZXDetailNewsTopView.h */,
-				14981FF827FEAEB800AD2A29 /* JWZXDetailNewsTopView.m */,
-			);
-			path = TopView;
-			sourceTree = "<group>";
-		};
-		1498200027FEC18D00AD2A29 /* DetailView */ = {
-			isa = PBXGroup;
-			children = (
-				14981FFA27FEB41B00AD2A29 /* JWZXDetailView.h */,
-				14981FFB27FEB41B00AD2A29 /* JWZXDetailView.m */,
-			);
-			path = DetailView;
-			sourceTree = "<group>";
-		};
-		1498200127FEC1AC00AD2A29 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF583257F91BD006E8E5C /* NewDetailViewController.h */,
-				18CDF585257F91BD006E8E5C /* NewDetailViewController.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		1498200227FEC1C000AD2A29 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				14981FFF27FEC17500AD2A29 /* TopView */,
-				1498200027FEC18D00AD2A29 /* DetailView */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		14B3F21427F16DE3007B421C /* Controller */ = {
@@ -2523,34 +2404,6 @@
 			path = RisingRouter;
 			sourceTree = "<group>";
 		};
-		14D03A0027FDB76200D6AE93 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF584257F91BD006E8E5C /* JWZXNewsViewController.h */,
-				18CDF582257F91BD006E8E5C /* JWZXNewsViewController.m */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		14D03A0727FDD31B00D6AE93 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF58B257F91BD006E8E5C /* JWZXNewsCell.h */,
-				18CDF589257F91BD006E8E5C /* JWZXNewsCell.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		14D03A0827FDD3BB00D6AE93 /* JWNews_module */ = {
-			isa = PBXGroup;
-			children = (
-				14D03A0027FDB76200D6AE93 /* ViewController */,
-				14D03A0727FDD31B00D6AE93 /* View */,
-				18CDF4E5257F91BC006E8E5C /* Model */,
-			);
-			path = JWNews_module;
-			sourceTree = "<group>";
-		};
 		14D03A0C27FE6BE200D6AE93 /* SSRTopBarBaseView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2618,15 +2471,6 @@
 			path = TextCycleView;
 			sourceTree = "<group>";
 		};
-		14FBBD48280541AD00D5B05D /* DiscoverJWZX_module */ = {
-			isa = PBXGroup;
-			children = (
-				14FBBD392805050300D5B05D /* DiscoverJWZXVC.h */,
-				14FBBD3A2805050300D5B05D /* DiscoverJWZXVC.m */,
-			);
-			path = DiscoverJWZX_module;
-			sourceTree = "<group>";
-		};
 		14FBBD4F28054AE000D5B05D /* SSRTextCycleCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -2634,25 +2478,6 @@
 				14FBBD4D2805489A00D5B05D /* SSRTextCycleCell.m */,
 			);
 			path = SSRTextCycleCell;
-			sourceTree = "<group>";
-		};
-		14FBBD592805B13C00D5B05D /* NewDownloadCell */ = {
-			isa = PBXGroup;
-			children = (
-				14FBBD56280591E200D5B05D /* NewDownloadCell.h */,
-				14FBBD57280591E200D5B05D /* NewDownloadCell.m */,
-			);
-			path = NewDownloadCell;
-			sourceTree = "<group>";
-		};
-		14FBBD5A2805B14A00D5B05D /* JWDownload_module */ = {
-			isa = PBXGroup;
-			children = (
-				14FBBD532805907E00D5B05D /* JWZXNewDownloadVC.h */,
-				14FBBD542805907E00D5B05D /* JWZXNewDownloadVC.m */,
-				14FBBD592805B13C00D5B05D /* NewDownloadCell */,
-			);
-			path = JWDownload_module;
 			sourceTree = "<group>";
 		};
 		1817F00C2594D5C500FE1304 /* NewQA */ = {
@@ -2808,7 +2633,6 @@
 			children = (
 				18CDF4D9257F91BC006E8E5C /* Controller */,
 				1404747F27F47F2A00307209 /* Discover_AD */,
-				18CDF580257F91BD006E8E5C /* DIscover_JWZX */,
 				14B73F29281BED7B00D08ADD /* Discover_MineMessage */,
 			);
 			path = Discover_MainPage;
@@ -2820,16 +2644,6 @@
 				18CDF4F6257F91BC006E8E5C /* View */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		18CDF4E5257F91BC006E8E5C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF4E6257F91BC006E8E5C /* JWZXNewsModel.h */,
-				18CDF4E9257F91BC006E8E5C /* JWZXNewsModel.m */,
-				1404748127F48C2B00307209 /* JWZXSectionNews */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		18CDF4F6257F91BC006E8E5C /* View */ = {
@@ -3028,27 +2842,6 @@
 				18CDF57E257F91BD006E8E5C /* CollectionViewSpaceLayout.m */,
 			);
 			path = PlaceDetail;
-			sourceTree = "<group>";
-		};
-		18CDF580257F91BD006E8E5C /* DIscover_JWZX */ = {
-			isa = PBXGroup;
-			children = (
-				14FBBD48280541AD00D5B05D /* DiscoverJWZX_module */,
-				14D03A0827FDD3BB00D6AE93 /* JWNews_module */,
-				18CDF581257F91BD006E8E5C /* JWDetailNews_module */,
-				14FBBD5A2805B14A00D5B05D /* JWDownload_module */,
-			);
-			path = DIscover_JWZX;
-			sourceTree = "<group>";
-		};
-		18CDF581257F91BD006E8E5C /* JWDetailNews_module */ = {
-			isa = PBXGroup;
-			children = (
-				1498200127FEC1AC00AD2A29 /* ViewController */,
-				1498200227FEC1C000AD2A29 /* View */,
-				14981FFE27FEC16800AD2A29 /* Model */,
-			);
-			path = JWDetailNews_module;
 			sourceTree = "<group>";
 		};
 		18CDF5C9257F91BD006E8E5C /* Discover_SchoolCalendar */ = {
@@ -4022,17 +3815,11 @@
 			isa = PBXGroup;
 			children = (
 				7AA4C47E2892206200E204C8 /* SchoolBusHeader.h */,
-				7AA4C47828921E9400E204C8 /* ElectricHeader.h */,
 				7AA4C480289220CE00E204C8 /* ADHeader.h */,
-				14F0D3D128329EAF0046D8F5 /* JWZXHeader.h */,
 				14B73F32281BED7B00D08ADD /* MineMessageHeader.h */,
-				7AA4C47C28921F7C00E204C8 /* TestArrangeHeader.h */,
 				7AA4C4842892217100E204C8 /* MapHeader.h */,
-				7AA4C47A28921F0B00E204C8 /* ScorePageHeader.h */,
 				7AA4C47628921BF400E204C8 /* SchoolCalendarHeader.h */,
-				7AA4C4822892213200E204C8 /* VolunteerHeader.h */,
 				7AA4C48628922F9A00E204C8 /* ToDoHeader.h */,
-				B0F08FED28A24A4000986EB6 /* SportAttendanceHeader.h */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -6085,12 +5872,10 @@
 				73AAA1D726C918250084E44D /* DetailsCustomizeNavigationBar.m in Sources */,
 				AA7ABAA02873EA5400BA6790 /* ReportModel.m in Sources */,
 				AA7AB95D2873E5EA00BA6790 /* SZHHotSearchView.m in Sources */,
-				14981FF627FEA8F200AD2A29 /* JWZXNewsAnnexModel.m in Sources */,
 				187DF4BB260310DD000BCDE9 /* UIScrollView+Empty.m in Sources */,
 				DB34EB2D239BD4550052B65E /* DetailRemindTableViewCell.m in Sources */,
 				646B199D28313CDB0015DF28 /* StationView.m in Sources */,
 				FE2C135827AEF629001CF7AF /* ToDoDetailBar.m in Sources */,
-				18CDF6A6257F91BD006E8E5C /* JWZXNewsViewController.m in Sources */,
 				49252DAA26D39CC9003A8A7F /* FeedBackMainPageViewController.m in Sources */,
 				49A50B6726D83B9600B25DDF /* CommonQuestionDetailVC.m in Sources */,
 				AA7ABAC32873EA5500BA6790 /* MGDCurrentTimeStr.m in Sources */,
@@ -6102,7 +5887,6 @@
 				DB34EB39239BD4550052B65E /* TimeChooseScrollView.m in Sources */,
 				49C2E78326D563AF00AFBE6F /* TypeSelectView.m in Sources */,
 				1A2CEA8F250667C200A0EE0F /* ClassDetailModel.m in Sources */,
-				14F0D3D02831DB670046D8F5 /* JWZXSectionNews.m in Sources */,
 				4975628A26D5975F004499E6 /* FeedBackView.m in Sources */,
 				1A30F3AD23D33F1300FBBD83 /* CheckInModel.m in Sources */,
 				DB34EB31239BD4550052B65E /* RemindMatter.m in Sources */,
@@ -6185,7 +5969,6 @@
 				AA7ABAFB2873EA6D00BA6790 /* zhPopupController.m in Sources */,
 				AA0DDB82286C8B1A00802324 /* IDCardTableViewCell.m in Sources */,
 				AA7AB9662873E5EA00BA6790 /* QASearchResultVC.m in Sources */,
-				14FBBD58280591E200D5B05D /* NewDownloadCell.m in Sources */,
 				DB4064F82466D889006CE5BC /* DLWeekButton.m in Sources */,
 				14B73F84281CCC3000D08ADD /* MessageDetailVC.m in Sources */,
 				18CDF6A0257F91BD006E8E5C /* CQUPTMapMoreImageViewController.m in Sources */,
@@ -6199,7 +5982,6 @@
 				AA7ABAF72873EA6D00BA6790 /* UIView+FrameTool.m in Sources */,
 				FE2C135527AEF629001CF7AF /* ToDoDetailTitleView.m in Sources */,
 				14B73F79281BED7B00D08ADD /* MessageMoreModel.m in Sources */,
-				18CDF6A7257F91BD006E8E5C /* NewDetailViewController.m in Sources */,
 				AA0DDB73286C8B1A00802324 /* PMPIdentityTableViewController.m in Sources */,
 				AA3F82DD24E9343A00B65042 /* DayBarView.m in Sources */,
 				18CDF4BA257F8DBD006E8E5C /* ChangePwdViewController.m in Sources */,
@@ -6262,7 +6044,6 @@
 				FE2C136727AEF629001CF7AF /* TodoSyncTool.m in Sources */,
 				AAC7CA1725F778AF00E6B5D5 /* RemarkModel.m in Sources */,
 				AA7ABAFC2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.m in Sources */,
-				14981FF927FEAEB800AD2A29 /* JWZXDetailNewsTopView.m in Sources */,
 				EE131C212471362E00B6ED97 /* URLController.m in Sources */,
 				AA0DDB6F286C8B1A00802324 /* MineEditTextField.m in Sources */,
 				14E7E4A827F5762500B67469 /* QuestionSelectView.m in Sources */,
@@ -6283,7 +6064,6 @@
 				AA0DDB75286C8B1A00802324 /* JHPageController.m in Sources */,
 				AA7ABAAA2873EA5500BA6790 /* MGDClickCoreLayer.m in Sources */,
 				14CED37F288A594600BADA8B /* RisingRouterRequest.m in Sources */,
-				18CDF6AA257F91BD006E8E5C /* JWZXNewsCell.m in Sources */,
 				AA86E3B82636630800756F05 /* ScheduleInfoModel.m in Sources */,
 				D0101F69243587A1004337ED /* GKPhotoView.m in Sources */,
 				AA7AB9672873E5EA00BA6790 /* SZHSearchEndCv.m in Sources */,
@@ -6359,7 +6139,6 @@
 				AA7AB95E2873E5EA00BA6790 /* SZHSearchTableViewCell.m in Sources */,
 				18CDF68A257F91BD006E8E5C /* PeopleListTableViewCell.m in Sources */,
 				DB4065012466D889006CE5BC /* DLTimeSelectedButton.m in Sources */,
-				18CDF668257F91BD006E8E5C /* JWZXNew.m in Sources */,
 				AA0DDB81286C8B1A00802324 /* PMPDynamicTableViewCell.m in Sources */,
 				4931630A26CD7B6800140412 /* TaskTableViewCell.m in Sources */,
 				18CDF699257F91BD006E8E5C /* CQUPTMapContentView.m in Sources */,
@@ -6378,7 +6157,6 @@
 				147842EA27F0758F002359BA /* UIView+Frame.m in Sources */,
 				18CDF67E257F91BD006E8E5C /* HistoryView.m in Sources */,
 				7F101AC3260613E800F2034C /* YYZTopicDetailVC.m in Sources */,
-				14D03A0F27FE725E00D6AE93 /* JWZXDetailNewsModel.m in Sources */,
 				14B73F77281BED7B00D08ADD /* SystemMessageView.m in Sources */,
 				AA7ABAC62873EA5500BA6790 /* NewQAHud.m in Sources */,
 				DB34EB36239BD4550052B65E /* ChooseButton.m in Sources */,
@@ -6400,7 +6178,6 @@
 				18CDF692257F91BD006E8E5C /* CQUPTMapPlaceDetailItem.m in Sources */,
 				AA0DDB5C286C8B1A00802324 /* PMPBasicTableViewCell.m in Sources */,
 				4999FA8326D44EA8005D0ADE /* HintView.m in Sources */,
-				14FBBD552805907E00D5B05D /* JWZXNewDownloadVC.m in Sources */,
 				AA7ABAA22873EA5400BA6790 /* FollowGroupModel.m in Sources */,
 				AA7ABA9D2873EA5400BA6790 /* PostFocusModel.m in Sources */,
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,
@@ -6470,19 +6247,16 @@
 				14CED37D288A594600BADA8B /* RisingRouter.m in Sources */,
 				AAC7CA1125F7753E00E6B5D5 /* PraiseModel.m in Sources */,
 				AA7ABAB22873EA5500BA6790 /* TopFollowView.m in Sources */,
-				14FBBD3B2805050300D5B05D /* DiscoverJWZXVC.m in Sources */,
 				AAE3304D25E2A1C600324750 /* RemarkViewController.m in Sources */,
 				D0101D5C2433C885004337ED /* SDMaskGuidController.m in Sources */,
 				DB34EB26239BD4550052B65E /* DetailPageController.m in Sources */,
 				6464F93426E4F6EE008562C5 /* BuyModel.m in Sources */,
 				AA5D39B824F74A9800AB2DF5 /* LocalNotiManager.m in Sources */,
 				14B73F78281BED7B00D08ADD /* SystemMessageVC.m in Sources */,
-				14981FFC27FEB41B00AD2A29 /* JWZXDetailView.m in Sources */,
 				AA7ABA232873EA4100BA6790 /* ReleaseDynamicModel.m in Sources */,
 				AA7ABAC02873EA5500BA6790 /* RecommentLabel.m in Sources */,
 				735BC53526D392D400F22678 /* FeedBackTableViewCell.m in Sources */,
 				D0101F64243587A1004337ED /* GKPhotoBrowser.m in Sources */,
-				18CDF666257F91BD006E8E5C /* JWZXNewsModel.m in Sources */,
 				18CDF662257F91BD006E8E5C /* DiscoverViewController.m in Sources */,
 				AA19FCB82663A266004E9F5D /* DeviceUtils.swift in Sources */,
 				AA3F82E024E992C000B65042 /* LessonView.m in Sources */,

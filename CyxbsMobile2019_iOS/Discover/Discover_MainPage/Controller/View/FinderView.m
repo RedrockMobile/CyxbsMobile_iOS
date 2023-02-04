@@ -21,9 +21,6 @@
 /// 顶端视图 / Remake by SSR
 @property (nonatomic, strong) FinderTopView *topView;
 
-/// 教务在线 / Remake by SSR
-@property (nonatomic, strong) DiscoverJWZXVC *jwzxVC;
-
 @property (nonatomic, weak) SDCycleScrollView *cycleScrollView;
 
 @end
@@ -62,23 +59,11 @@
     return _topView;
 }
 
-- (DiscoverJWZXVC *)jwzxVC {
-    if (_jwzxVC == nil) {
-        _jwzxVC = [[DiscoverJWZXVC alloc] initWithWidth:self.width];
-        _jwzxVC.view.top = self.bannerView.bottom + 14;
-    }
-    return _jwzxVC;
-}
-
 - (UIViewController *)msgViewController {
     return self.topView.msgVC;
 }
 
 #pragma mark - Method
-
-- (UIViewController *)jwzxViewController {
-    return self.jwzxVC;
-}
 
 - (void) addBannerView {
 

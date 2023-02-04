@@ -11,12 +11,11 @@
 #import "FinderToolViewController.h"
 #import "FinderView.h"
 #import "CheckInViewController.h"
-#import "WeDateViewController.h"//没课约
+#import "WeDateViewController.h"  //没课约
 #import "CQUPTMapViewController.h"
 #import "LoginVC.h"
 #import "TODOMainViewController.h"  //邮子清单
 #import "ScheduleInquiryViewController.h"
-#import "JWZXNewsViewController.h"
 #import "ClassScheduleTabBarView.h"
 #import "ClassTabBar.h"
 #import "CalendarViewController.h"
@@ -237,7 +236,6 @@ static int requestCheckinInfo = 0;
     self.contentView.showsVerticalScrollIndicator = NO;
     self.contentView.contentInset = UIEdgeInsetsMake(0, 0, 70, 0);
     [self.view addSubview:self.contentView];
-
 }
 
 - (void)addFinderView {
@@ -385,7 +383,6 @@ static int requestCheckinInfo = 0;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
-
 
 - (void)backToThisController{
     self.navigationController.tabBarController.selectedIndex = 0;
