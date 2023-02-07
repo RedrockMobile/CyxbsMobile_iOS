@@ -10,13 +10,16 @@ import Foundation
 import WidgetKit
 import Intents
 
-struct ScheduleTimelineEntry: TimelineEntry {
-    let date: Date
-    let model: ScheduleWidgetModel
+class ScheduleTimelineEntry: TimelineEntry {
+    var date: Date // update time
+    var mainKey: ScheduleIdentifier?
+    var model: [ScheduleCombineItem]
+    var section: Int?
     let configuration: ScheduleWidgetConfiguration
-    init(date: Date) {
+    
+    init(date: Date, model: [ScheduleCombineItem] = []) {
         self.date = date
-        model = ScheduleWidgetModel()
         self.configuration = ScheduleWidgetConfiguration()
+        self.model = model
     }
 }

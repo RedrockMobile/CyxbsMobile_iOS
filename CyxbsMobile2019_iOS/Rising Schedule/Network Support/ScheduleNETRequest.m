@@ -8,7 +8,6 @@
 
 #import "ScheduleNETRequest.h"
 
-#import "ScheduleShareCache.h"
 #import "ScheduleCourse.h"
 
 #import "HttpTool.h"

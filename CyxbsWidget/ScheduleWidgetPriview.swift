@@ -13,20 +13,19 @@ extension ScheduleCombineItem {
     static var priviewMainSno = "2021215154"
     
     static var priview2021215154: ScheduleCombineItem {
-        priviewItem(sno: "2021215154", source: "Schedule.2021215154")
+        priviewItem(source: "student2021215154")
     }
     
     static var priview2022214857: ScheduleCombineItem {
-        priviewItem(sno: "2022214857", source: "Schedule.2022214857")
+        priviewItem(source: "student2022214857")
     }
     
-    private class func priviewItem(sno: String, source: String) -> ScheduleCombineItem {
-        let id = ScheduleIdentifier(sno: sno, type: .student)
-        id.exp = 1662369467
-        let url = Bundle.main.url(forResource: source, withExtension: "plist")
-        let ary = try! NSArray(contentsOf: url!, error: ()) as! [ScheduleCourse]?
-        let item = ScheduleCombineItem(identifier: id, value: ary)
-        return item
+    private class func priviewItem(source: String) -> ScheduleCombineItem {
+        
+//        [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects:ScheduleCombineItem.class, ScheduleIdentifier.class, ScheduleCourse.class, NSArray.class, NSString.class, nil] fromData:[NSData dataWithContentsOfFile:[NSString stringWithFormat:@"/Users/ssr/Downloads/%@.plist", identifier.key]] error:nil];
+        
+        let item = try! NSKeyedUnarchiver.unarchivedObject(ofClasses: [ScheduleCombineItem.self, ScheduleIdentifier.self, ScheduleCourse.self, NSString.self, NSArray.self], from: try! Data(contentsOf: Bundle.main.url(forResource: source, withExtension: "plist")!))
+        return item as! ScheduleCombineItem
     }
 }
 

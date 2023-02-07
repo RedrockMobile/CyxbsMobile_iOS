@@ -15,7 +15,7 @@ struct ScheduleSystemLarge: View {
     
     init(entry: ScheduleProvider.Entry) {
         self.entry = entry
-        let hour = Calendar.current.dateComponents(in: TimeZone(identifier: "Asia/Chongqing")!, from: entry.date).hour!
+        let hour = Calendar(identifier: .republicOfChina).dateComponents(in: TimeZone(identifier: "Asia/Chongqing")!, from: entry.date).hour!
         let range: Range<Int>!
         if hour < 10 {
             range = 1..<7
@@ -26,21 +26,29 @@ struct ScheduleSystemLarge: View {
         } else {
             range = 7..<13
         }
-        data = ScheduleFetchData(range: range)
+        data = ScheduleFetchData(range: range, section: entry.section)
+        data.sno = entry.mainKey?.sno
+        for entry in entry.model {
+            data.combineItem(entry)
+        }
     }
     
     var body: some View {
         VStack(spacing: 0) {
             ScheduleSectionTopView(title: title())
-                .padding(.bottom, 4)
+                .padding(.vertical, 5)
             Divider()
-            HStack(spacing: 2) {
-                ScheduleLeadingView(month: month(), range: data.range, height: 46)
-                    .frame(width: 26)
-                GeometryReader { entryA in
-                    VStack(spacing: 2) {
-                        ScheduleTopView(anyDate: data.start)
-                            .frame(height: entryA.size.width / 7 / 46 * 50)
+                .padding(.horizontal, 5)
+            
+            GeometryReader { allEntry in
+                VStack(spacing: 2) {
+                    ScheduleTopView(anyDate: data.start, width: 21)
+                        .frame(height: allEntry.size.width / 7)
+                    
+                    HStack {
+                        ScheduleLeadingView(range: data.range)
+                            .padding(.leading, 5)
+                            .frame(width: 21)
                         GeometryReader { entryB in
                             ForEach(data.data) { item in
                                 ContentView(item: item, size: entryB.size)
@@ -50,7 +58,6 @@ struct ScheduleSystemLarge: View {
                 }
             }
         }
-        .padding(.all, 6)
     }
 }
 
@@ -69,7 +76,7 @@ extension ScheduleSystemLarge {
                                    muti: vm.hadMuti)
         .frame(width: itemWidth, height: itemHeight * CGFloat(vm.lenth) + 2.0 * CGFloat(vm.lenth - 1))
         .padding(.top, (itemHeight + 2) * CGFloat(idx.location - data.range.lowerBound))
-        .padding(.leading, (itemWidth + 2.0) * CGFloat(idx.week - 1))
+        .padding(.leading, (itemWidth + 2.0) * CGFloat(idx.week - 1) - 2)
         
         func draw(_ kind: ScheduleBelongKind = .fistSystem, locate: Int) -> ScheduleContentView.DrawType {
             switch kind {
@@ -117,7 +124,7 @@ extension ScheduleSystemLarge {
 
 struct ScheduleSystemLarge_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduleSystemLarge(entry:ScheduleTimelineEntry(date: Date()))
+        ScheduleSystemLarge(entry: ScheduleTimelineEntry(date: Date()))
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

@@ -18,7 +18,7 @@ struct ScheduleContentView: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 6, style: .continuous)
+            RoundedRectangle(cornerRadius: 10, style: .continuous)
                 .foregroundColor(draw.color(.background, scheme))
             VStack {
                 TypeText(title)
@@ -56,8 +56,7 @@ extension ScheduleContentView {
     func TypeText(_ str: String) -> some View {
         Text(str)
             .font(.system(size: 10))
-            .padding(.leading, 7)
-            .padding(.trailing, 7)
+            .padding(.horizontal, 7)
             .lineLimit(3)
             .foregroundColor(draw.color(.text, scheme))
     }

@@ -28,7 +28,7 @@ struct ScheduleSupplementaryView: View {
                     TypeText(content, place: .content)
                         .padding(.bottom, 8)
                 } else {
-                    TypeText(title)
+                    OnlyText(title)
                 }
             }
         }
@@ -42,13 +42,18 @@ extension ScheduleSupplementaryView {
         case background
     }
     
-    func TypeText(_ str: String, place: Place = .title) -> some View{
+    func TypeText(_ str: String, place: Place = .title) -> some View {
         Text(str)
             .font(.system(size: 10))
-            .padding(.leading, 7)
-            .padding(.trailing, 7)
+            .padding(.horizontal, 7)
             .lineLimit(3)
             .foregroundColor(color(place))
+    }
+    
+    func OnlyText(_ str: String) -> some View {
+        Text(title)
+            .font(.system(size: 10))
+            .foregroundColor(color(.title))
     }
     
     func color(_ place: Place) -> Color {

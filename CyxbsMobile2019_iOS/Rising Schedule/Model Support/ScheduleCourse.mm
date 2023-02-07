@@ -134,7 +134,7 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder {
     self.inWeek = [decoder decodeIntegerForKey:@"inWeek"];
-    self.inSections = ((NSMutableIndexSet *)[decoder decodeObjectOfClass:NSMutableIndexSet.class forKey:@"inSections"]).mutableCopy;
+    self.inSections = [decoder decodeObjectOfClass:NSIndexSet.class forKey:@"inSections"];
     self.period_location = [decoder decodeIntegerForKey:@"location"];
     self.period_lenth = [decoder decodeIntegerForKey:@"lenth"];
     self.course = [decoder decodeObjectForKey:@"course"];

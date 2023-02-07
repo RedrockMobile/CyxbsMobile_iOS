@@ -49,7 +49,12 @@
     ScheduleRequestDictionary *dic = ScheduleRequestDictionaryFromScheduleIdentifiers(unInMemIds);
     [ScheduleNETRequest
      request:dic
-     success:policy
+     success:^(ScheduleCombineItem * _Nonnull item) {
+        [ScheduleShareCache.shareCache cacheItem:item];
+        if (policy) {
+            policy(item);
+        }
+    }
      failure:^(NSError * _Nonnull error, ScheduleIdentifier *errorID) {
         if (unpolicy) {
             unpolicy(errorID);

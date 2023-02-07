@@ -15,41 +15,27 @@ typealias ScheduleWidgetConfiguration = ConfigurationIntent
 struct ScheduleProvider: IntentTimelineProvider {
     
     func placeholder(in context: Context) -> ScheduleTimelineEntry {
-        ScheduleTimelineEntry(date: Date())
+        var entry = ScheduleTimelineEntry(date: Date())
+        return entry
     }
     
     func getSnapshot(for configuration: ScheduleWidgetConfiguration, in context: Context, completion: @escaping (ScheduleTimelineEntry) -> ())  {
-        let date = Date()
-        let entry = ScheduleTimelineEntry(date: Date())
         
-        let id1 = ScheduleWidgetCache().getKeyWithKeyName(ScheduleWidgetCacheKeyMain, usingSupport: true)
-        let id2 = ScheduleWidgetCache().getKeyWithKeyName(ScheduleWidgetCacheKeyOther, usingSupport: true)
+        var entry = ScheduleTimelineEntry(date: Date())
+        
+        let item1 = ScheduleCombineItem.priview2021215154
+        let item2 = ScheduleCombineItem.priview2022214857
+        entry.model.append(item1)
+        entry.model.append(item2)
+        entry.mainKey = ScheduleCombineItem.priview2021215154.identifier
         
         if context.isPreview {
             
-            let item1 = ScheduleCombineItem.priview2021215154
-            let item2 = ScheduleCombineItem.priview2022214857
-            
-            entry.model.sno = "2021215154"
-            entry.model.combineItem(item1)
-            entry.model.combineItem(item2)
-            entry.model.finishCombine()
-            
-            completion(entry)
+            entry.section = 0
             
         } else {
             
-            ScheduleNETRequest.request([
-                .student : [id1.sno, id2.sno]
-            ]) { item in
-                entry.model.combineItem(item)
-                completion(entry)
-            } failure: { error, id in
-                if ScheduleWidgetCache().allowedLocalCache {
-                    let errorItem = ScheduleShareCache().awake(for: id)
-                    
-                }
-            }
+            entry.section = nil
 
         }
         
@@ -60,12 +46,31 @@ struct ScheduleProvider: IntentTimelineProvider {
         
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         var entries: [ScheduleTimelineEntry] = []
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = ScheduleTimelineEntry(date: entryDate)
-            entries.append(entry)
+        
+        let entry = ScheduleTimelineEntry(date: Date())
+        Task {
+            do {
+                let item = try await ScheduleWidgetRequest.shared.request(sno: "2021215154")
+                entry.model.append(item!)
+            } catch {
+                print("Request failed with error: \(error)")
+            }
         }
+        
+        
+        entries.append(entry)
+        
+//        for hourOffset in 0 ..< 5 {
+//            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: Date())!
+//            var entry = ScheduleTimelineEntry(date: entryDate)
+//            let item1 = ScheduleCombineItem.priview2021215154
+//            let item2 = ScheduleCombineItem.priview2022214857
+//            entry.model.append(item1)
+//            entry.model.append(item2)
+//            entry.mainKey = ScheduleCombineItem.priview2021215154.identifier
+//            entries.append(entry)
+//        }
+        
         
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)

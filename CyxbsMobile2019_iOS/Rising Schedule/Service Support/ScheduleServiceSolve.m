@@ -133,8 +133,10 @@
 - (void)_emptyTap:(UITapGestureRecognizer *)tap {
     if (tap.state == UIGestureRecognizerStateEnded) {
         ScheduleCustomViewController *vc = [[ScheduleCustomViewController alloc] init];
+        vc.modalPresentationStyle = UIModalPresentationCustom;
         TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
-        
+        vc.transitioningDelegate = delegate;
+        [self.viewController presentViewController:vc animated:YES completion:nil];
     }
 }
 

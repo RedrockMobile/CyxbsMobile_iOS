@@ -8,47 +8,59 @@
 
 import Foundation
 
-struct ScheduleFetchData {
+class ScheduleFetchData: ScheduleMapModel {
     struct PartItem: Identifiable {
         var indexPath: NSIndexPath
         var viewModel: ScheduleCollectionViewModel
         var id: IndexPath { indexPath as IndexPath }
     }
-    var data: [PartItem]
-    var beginTime: TimeInterval
-    var section: Int // start + $section = date!.show
-    var range: Range<Int> // Timeline Entry
-    var start: Date? { // get only
-        if section <= 0 {
-            return Date(timeIntervalSince1970: beginTime + Double(section - 1) * 7.0 * 24 * 60 * 60)
+    
+    var data = [PartItem]() // 最终显示的模型
+    var range: Range<Int> // From Timeline Entry
+    var beginTime: TimeInterval? // 从ScheduleCombineItem中取
+    var section: Int
+    
+    var start: Date? {
+        if let begin = beginTime {
+            return Date(timeIntervalSince1970: begin)
+        } else {
+            return nil
         }
-        return Date(timeIntervalSince1970: beginTime + Double(section - 1) * 7.0 * 24 * 60 * 60)
     }
     
-    init(range: Range<Int>) {
+    init(range: Range<Int>, section: Int?) {
         self.range = range
-        
-        data = Array()
-        section = ScheduleWidgetCache().widgetSection
-        let mainID = ScheduleWidgetCache().getKeyWithKeyName(ScheduleWidgetCacheKeyMain, usingSupport: true)
-        let mainItem = ScheduleShareCache().awake(for: mainID)
-        beginTime = (mainItem?.identifier.exp)!
-        
-        let map = ScheduleMapModel()
-        map.combineItem(mainItem!)
-        
-        if ScheduleWidgetCache().beDouble {
-            map.sno = mainID.sno
-            let otherID = ScheduleWidgetCache().getKeyWithKeyName(ScheduleWidgetCacheKeyOther, usingSupport: true)
-            let otherItem = ScheduleShareCache().awake(for: otherID)
-            map.combineItem(otherItem!)
-        }
-        map.finishCombine()
-        
-        for key in map.mapTable.keyEnumerator().allObjects as! [NSIndexPath] {
-            if key.section == section && range.contains(key.location) {
-                data.append(PartItem(indexPath: key, viewModel: map.mapTable.object(forKey: key)!))
+        if let section = section {
+            self.section = section
+        } else {
+            if let begin = beginTime {
+                self.section = Int((Date().timeIntervalSince1970 - begin) / (7.0 * 60 * 60 * 60))
+            } else {
+                self.section = 0
             }
         }
+    }
+    
+    // MARK: Method
+    
+    override func combineItem(_ model: ScheduleCombineItem) {
+        super.combineItem(model)
+        if model.identifier.exp >= 1 {
+            beginTime = model.identifier.exp
+        } else {
+            beginTime = nil
+        }
+        
+        for key in self.mapTable.keyEnumerator().allObjects as! [NSIndexPath] {
+            if (key.section == section && range.contains(key.location)) {
+                let part = PartItem(indexPath: key, viewModel: self.mapTable.object(forKey: key)!)
+                data.append(part)
+            }
+        }
+    }
+    
+    override func clear() {
+        super.clear()
+        data = [PartItem]()
     }
 }

@@ -101,9 +101,6 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
     self = [self initWithSno:sno type:type];
     self.iat = iat;
     self.exp = exp;
-    if (!self) {
-        return nil;
-    }
     return self;
 }
 
@@ -155,7 +152,7 @@ ScheduleRequestDictionary *ScheduleRequestDictionaryFromScheduleIdentifiers(NSAr
 @implementation ScheduleCombineItem
 
 - (instancetype)init {
-    return [self initWithIdentifier:[ScheduleIdentifier alloc] value:nil];
+    return [self initWithIdentifier:nil value:nil];
 }
 
 - (instancetype)initWithIdentifier:(ScheduleIdentifier *)name value:(NSArray<ScheduleCourse *> *)value {
@@ -186,11 +183,8 @@ ScheduleRequestDictionary *ScheduleRequestDictionaryFromScheduleIdentifiers(NSAr
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder {
     ScheduleIdentifier *identifier = [decoder decodeObjectOfClass:ScheduleIdentifier. class forKey:@"name"];
-    NSArray <ScheduleCourse *> *courses = [decoder decodeObjectOfClass:NSArray.class forKey:@"value"];
+    NSArray <ScheduleCourse *> *courses = [decoder decodeObjectForKey:@"value"];
     self = [self initWithIdentifier:identifier value:courses];
-    if (!self) {
-        return nil;
-    }
     return self;
 }
 

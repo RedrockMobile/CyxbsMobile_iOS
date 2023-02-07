@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		140AFE592988C7B500249C43 /* student2021215154.data in Resources */ = {isa = PBXBuildFile; fileRef = 140AFE572988C7B500249C43 /* student2021215154.data */; };
+		140AFE5A2988C7B500249C43 /* student2022214857.data in Resources */ = {isa = PBXBuildFile; fileRef = 140AFE582988C7B500249C43 /* student2022214857.data */; };
 		140F664D2973A63B0075C50A /* RyCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 140F664C2973A63B0075C50A /* RyCycleView.m */; };
 		140F666729779C750075C50A /* ScheduleCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140F666629779C750075C50A /* ScheduleCustomViewController.m */; };
 		140F6699298218050075C50A /* SchedulePolicyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 140F6698298218050075C50A /* SchedulePolicyService.m */; };
@@ -52,6 +54,9 @@
 		1459298B294A0083006EB674 /* ScheduleCombineItemSupport.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1459298A294A0083006EB674 /* ScheduleCombineItemSupport.mm */; };
 		14592A6029516246006EB674 /* ScheduleAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 14592A5F29516246006EB674 /* ScheduleAPI.m */; };
 		14592A6C2954659F006EB674 /* ScheduleShareCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14592A6B2954659F006EB674 /* ScheduleShareCache.mm */; };
+		1463DC52298E32F5002758B2 /* student2022214857.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1463DC50298E32F5002758B2 /* student2022214857.plist */; };
+		1463DC53298E32F5002758B2 /* student2021215154.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1463DC51298E32F5002758B2 /* student2021215154.plist */; };
+		1463DC7A29926BBF002758B2 /* ScheduleWidgetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1463DC7929926BBF002758B2 /* ScheduleWidgetRequest.swift */; };
 		1466282628C4B1BD00AF584F /* ScheduleServiceDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466282528C4B1BD00AF584F /* ScheduleServiceDataSource.m */; };
 		1466282928C4B1EC00AF584F /* ScheduleCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466282828C4B1EC00AF584F /* ScheduleCollectionViewLayout.m */; };
 		1466282C28C4EFE400AF584F /* ScheduleRequestType.m in Sources */ = {isa = PBXBuildFile; fileRef = 1466282B28C4EFE400AF584F /* ScheduleRequestType.m */; };
@@ -60,18 +65,12 @@
 		146AA0C528B65FA800391FD0 /* SchedulePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 146AA0C428B65FA800391FD0 /* SchedulePresenter.m */; };
 		146D144C2907F21700327AB8 /* FastLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D144B2907F21700327AB8 /* FastLoginViewController.m */; };
 		146D144F2908BB2800327AB8 /* UDKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D144E2908BB2800327AB8 /* UDKey.m */; };
-		1476817A296FA78000E2D34D /* ScheduleNETRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6928B4E504003D288B /* ScheduleNETRequest.m */; };
-		1476817B296FA78600E2D34D /* ScheduleAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 14592A5F29516246006EB674 /* ScheduleAPI.m */; };
-		1476817C296FAA8400E2D34D /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9648D28F6883800C984AB /* HttpTool.m */; };
-		1476817D296FAA9800E2D34D /* NetURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9647728F66C1E00C984AB /* NetURL.m */; };
 		147681B7297156AF00E2D34D /* ScheduleBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 147681B6297156AF00E2D34D /* ScheduleBar.m */; };
 		147C2E5B29821C1500F58266 /* ScheduleTouchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 147C2E5A29821C1500F58266 /* ScheduleTouchItem.m */; };
 		147C2E5E298221F700F58266 /* ScheduleNeedsSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 147C2E5D298221F700F58266 /* ScheduleNeedsSupport.m */; };
 		147C2E5F298221FB00F58266 /* ScheduleNeedsSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 147C2E5D298221F700F58266 /* ScheduleNeedsSupport.m */; };
-		14880A4B296EB03900BC5368 /* Schedule.2021215154.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14880A49296EB03900BC5368 /* Schedule.2021215154.plist */; };
 		14880A4E296EB55A00BC5368 /* ScheduleWidgetPriview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14880A4D296EB55A00BC5368 /* ScheduleWidgetPriview.swift */; };
 		14880A50296EBE9600BC5368 /* ScheduleTimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14880A4F296EBE9600BC5368 /* ScheduleTimelineEntry.swift */; };
-		14880A52296F957000BC5368 /* Schedule.2022214857.plist in Resources */ = {isa = PBXBuildFile; fileRef = 14880A51296F957000BC5368 /* Schedule.2022214857.plist */; };
 		14B46E6128B4D283003D288B /* ScheduleCourse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6028B4D283003D288B /* ScheduleCourse.mm */; };
 		14B46E6528B4D5D7003D288B /* ScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6328B4D5D7003D288B /* ScheduleModel.m */; };
 		14B46E6A28B4E504003D288B /* ScheduleNETRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6928B4E504003D288B /* ScheduleNETRequest.m */; };
@@ -158,6 +157,8 @@
 /* Begin PBXFileReference section */
 		0FFFE3B428490CBC7350A6B5 /* Pods_CyxbsMobile2019_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyxbsMobile2019_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		140374D228DCB61A008EDFAD /* RisingSingleClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RisingSingleClass.h; sourceTree = "<group>"; };
+		140AFE572988C7B500249C43 /* student2021215154.data */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = student2021215154.data; sourceTree = "<group>"; };
+		140AFE582988C7B500249C43 /* student2022214857.data */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = student2022214857.data; sourceTree = "<group>"; };
 		140F664B2973A63B0075C50A /* RyCycleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RyCycleView.h; sourceTree = "<group>"; };
 		140F664C2973A63B0075C50A /* RyCycleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RyCycleView.m; sourceTree = "<group>"; };
 		140F666529779C750075C50A /* ScheduleCustomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCustomViewController.h; sourceTree = "<group>"; };
@@ -217,6 +218,9 @@
 		14592A5F29516246006EB674 /* ScheduleAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleAPI.m; sourceTree = "<group>"; };
 		14592A6A2954659F006EB674 /* ScheduleShareCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleShareCache.h; sourceTree = "<group>"; };
 		14592A6B2954659F006EB674 /* ScheduleShareCache.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ScheduleShareCache.mm; sourceTree = "<group>"; };
+		1463DC50298E32F5002758B2 /* student2022214857.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = student2022214857.plist; sourceTree = "<group>"; };
+		1463DC51298E32F5002758B2 /* student2021215154.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = student2021215154.plist; sourceTree = "<group>"; };
+		1463DC7929926BBF002758B2 /* ScheduleWidgetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWidgetRequest.swift; sourceTree = "<group>"; };
 		1466282428C4B1BD00AF584F /* ScheduleServiceDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleServiceDataSource.h; sourceTree = "<group>"; };
 		1466282528C4B1BD00AF584F /* ScheduleServiceDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleServiceDataSource.m; sourceTree = "<group>"; };
 		1466282728C4B1EC00AF584F /* ScheduleCollectionViewLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionViewLayout.h; sourceTree = "<group>"; };
@@ -239,10 +243,8 @@
 		147C2E5A29821C1500F58266 /* ScheduleTouchItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleTouchItem.m; sourceTree = "<group>"; };
 		147C2E5C298221AF00F58266 /* ScheduleNeedsSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleNeedsSupport.h; sourceTree = "<group>"; };
 		147C2E5D298221F700F58266 /* ScheduleNeedsSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleNeedsSupport.m; sourceTree = "<group>"; };
-		14880A49296EB03900BC5368 /* Schedule.2021215154.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Schedule.2021215154.plist; sourceTree = "<group>"; };
 		14880A4D296EB55A00BC5368 /* ScheduleWidgetPriview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWidgetPriview.swift; sourceTree = "<group>"; };
 		14880A4F296EBE9600BC5368 /* ScheduleTimelineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleTimelineEntry.swift; sourceTree = "<group>"; };
-		14880A51296F957000BC5368 /* Schedule.2022214857.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Schedule.2022214857.plist; sourceTree = "<group>"; };
 		14B46E5F28B4D282003D288B /* ScheduleCourse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleCourse.h; sourceTree = "<group>"; };
 		14B46E6028B4D283003D288B /* ScheduleCourse.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ScheduleCourse.mm; sourceTree = "<group>"; };
 		14B46E6228B4D4A1003D288B /* ScheduleCourse+WCTTableCoding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ScheduleCourse+WCTTableCoding.h"; sourceTree = "<group>"; };
@@ -543,6 +545,7 @@
 				141008E4295E88E20046E7BE /* CyxbsWidgetLiveActivity.swift */,
 				143762C62963EBC200979FA2 /* CyxbsWidgetKind.swift */,
 				141008E6295E88E20046E7BE /* ScheduleProvider.swift */,
+				1463DC7929926BBF002758B2 /* ScheduleWidgetRequest.swift */,
 				141008F4295E899D0046E7BE /* ScheduleWidget.swift */,
 				14880A4F296EBE9600BC5368 /* ScheduleTimelineEntry.swift */,
 				141008FA295E8D520046E7BE /* ScheduleWidgetEntryView.swift */,
@@ -555,8 +558,10 @@
 				14D64592296161BC001315B1 /* ScheduleFetchData.swift */,
 				1437630029696A7000979FA2 /* ScheduleWidgetModel.swift */,
 				14880A4D296EB55A00BC5368 /* ScheduleWidgetPriview.swift */,
-				14880A49296EB03900BC5368 /* Schedule.2021215154.plist */,
-				14880A51296F957000BC5368 /* Schedule.2022214857.plist */,
+				1463DC51298E32F5002758B2 /* student2021215154.plist */,
+				1463DC50298E32F5002758B2 /* student2022214857.plist */,
+				140AFE572988C7B500249C43 /* student2021215154.data */,
+				140AFE582988C7B500249C43 /* student2022214857.data */,
 				14100AF1296139020046E7BE /* CyxbsWidgetSupport.h */,
 				14D645942961620F001315B1 /* CyxbsWidget-Bridging-Header.h */,
 				141008E8295E88E20046E7BE /* CyxbsWidget.intentdefinition */,
@@ -994,9 +999,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				14880A4B296EB03900BC5368 /* Schedule.2021215154.plist in Resources */,
+				140AFE592988C7B500249C43 /* student2021215154.data in Resources */,
+				1463DC52298E32F5002758B2 /* student2022214857.plist in Resources */,
+				1463DC53298E32F5002758B2 /* student2021215154.plist in Resources */,
+				140AFE5A2988C7B500249C43 /* student2022214857.data in Resources */,
 				141008EA295E88E20046E7BE /* Assets.xcassets in Resources */,
-				14880A52296F957000BC5368 /* Schedule.2022214857.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1169,8 +1176,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1476817A296FA78000E2D34D /* ScheduleNETRequest.m in Sources */,
 				14100AE7295F08920046E7BE /* ScheduleContentView.swift in Sources */,
+				1463DC7A29926BBF002758B2 /* ScheduleWidgetRequest.swift in Sources */,
 				1448BFF52961CC830015768E /* WidgetKitHelper.swift in Sources */,
 				14100AFB29615DB80046E7BE /* ScheduleShareCache.mm in Sources */,
 				1448BFF9296280FD0015768E /* ScheduleWidgetCache.m in Sources */,
@@ -1183,14 +1190,12 @@
 				14D6459729616374001315B1 /* ScheduleRequestType.m in Sources */,
 				141008E5295E88E20046E7BE /* CyxbsWidgetLiveActivity.swift in Sources */,
 				14100AEE296005F20046E7BE /* ScheduleLeadingView.swift in Sources */,
-				1476817B296FA78600E2D34D /* ScheduleAPI.m in Sources */,
 				14100AF029612DFE0046E7BE /* ScheduleTopView.swift in Sources */,
 				143762C82963EBC700979FA2 /* CyxbsWidgetKind.swift in Sources */,
 				141008F9295E8CF60046E7BE /* ScheduleSystemSmall.swift in Sources */,
 				14880A50296EBE9600BC5368 /* ScheduleTimelineEntry.swift in Sources */,
 				14100AEB295FDCF50046E7BE /* ScheduleSupplementaryView.swift in Sources */,
 				141008FB295E8D520046E7BE /* ScheduleWidgetEntryView.swift in Sources */,
-				1476817D296FAA9800E2D34D /* NetURL.m in Sources */,
 				14D6459629616289001315B1 /* NSIndexPath+Schedule.m in Sources */,
 				141008EC295E88E20046E7BE /* CyxbsWidget.intentdefinition in Sources */,
 				14D64593296161BC001315B1 /* ScheduleFetchData.swift in Sources */,
@@ -1200,7 +1205,6 @@
 				141008F5295E899D0046E7BE /* ScheduleWidget.swift in Sources */,
 				14100AEC295FEE190046E7BE /* ScheduleCollectionViewModel.m in Sources */,
 				141008E3295E88E20046E7BE /* CyxbsWidgetBundle.swift in Sources */,
-				1476817C296FAA8400E2D34D /* HttpTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

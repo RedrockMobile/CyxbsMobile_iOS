@@ -11,9 +11,12 @@ import WidgetKit
 
 struct ScheduleTopView: View {
     var anyDate: Date?
+    var width: CGFloat
     
     var body: some View {
         HStack(spacing: 2) {
+            ScheduleSupplementaryView(title: month(), target: false)
+                .frame(width: width)
             ForEach(data(), id: \.self) { entry in
                 ScheduleSupplementaryView(title: title(entry), content: content(entry), target: target(entry))
             }
@@ -53,6 +56,17 @@ extension ScheduleTopView {
         formatter.timeZone = TimeZone(identifier: "Asia/Chongqing")!
         formatter.locale = Locale(identifier: "zh_CN")
         return formatter
+    }
+    
+    func month() -> String {
+        if let date = anyDate {
+            let formatter = formatter
+            formatter.dateFormat = "M"
+            let month = formatter.string(from: date)
+            return "\(month)月"
+        } else {
+            return "学期"
+        }
     }
     
     func title(_ date: Date) -> String {
@@ -98,9 +112,9 @@ struct ScheduleTopView_Previews: PreviewProvider {
         VStack {
             ScheduleSectionTopView(title: "第2周")
             Divider()
-            ScheduleTopView(anyDate: Date())
+            ScheduleTopView(anyDate: Date(), width: 35)
                 .frame(width: 312, height: 46)
-            ScheduleTopView()
+            ScheduleTopView(width: 35)
                 .frame(width: 312, height: 46)
         }
         .previewContext(WidgetPreviewContext(family: .systemLarge))
