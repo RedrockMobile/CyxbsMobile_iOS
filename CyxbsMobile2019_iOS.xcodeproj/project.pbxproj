@@ -334,6 +334,9 @@
 		7ABE46FC298FDD9D002F8389 /* ExpressPickGetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ABE46FB298FDD9D002F8389 /* ExpressPickGetModel.m */; };
 		7ABE46FF298FDE5F002F8389 /* ExpressPickPutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ABE46FE298FDE5F002F8389 /* ExpressPickPutModel.m */; };
 		7ABE4702298FDE9C002F8389 /* ExpressDeclareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ABE4701298FDE9C002F8389 /* ExpressDeclareModel.m */; };
+		7AE0312429925A520006571F /* AttitudeMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE0312329925A520006571F /* AttitudeMainModel.m */; };
+		7AE03127299260650006571F /* AttitudeMainPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE03126299260650006571F /* AttitudeMainPageVC.m */; };
+		7AE0312A299262150006571F /* AttitudeHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AE03129299262150006571F /* AttitudeHomeCell.m */; };
 		7F101AC2260613E800F2034C /* YYZTopicGroupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101AB7260613E800F2034C /* YYZTopicGroupVC.m */; };
 		7F101AC3260613E800F2034C /* YYZTopicDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101AB8260613E800F2034C /* YYZTopicDetailVC.m */; };
 		7F101AC5260613E800F2034C /* YYZTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F101ABF260613E800F2034C /* YYZTopicCell.m */; };
@@ -1357,6 +1360,13 @@
 		7ABE46FE298FDE5F002F8389 /* ExpressPickPutModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpressPickPutModel.m; sourceTree = "<group>"; };
 		7ABE4700298FDE9C002F8389 /* ExpressDeclareModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpressDeclareModel.h; sourceTree = "<group>"; };
 		7ABE4701298FDE9C002F8389 /* ExpressDeclareModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpressDeclareModel.m; sourceTree = "<group>"; };
+		7AE0311F2992559E0006571F /* AttitudeHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttitudeHeader.h; sourceTree = "<group>"; };
+		7AE0312229925A520006571F /* AttitudeMainModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttitudeMainModel.h; sourceTree = "<group>"; };
+		7AE0312329925A520006571F /* AttitudeMainModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttitudeMainModel.m; sourceTree = "<group>"; };
+		7AE03125299260650006571F /* AttitudeMainPageVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttitudeMainPageVC.h; sourceTree = "<group>"; };
+		7AE03126299260650006571F /* AttitudeMainPageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttitudeMainPageVC.m; sourceTree = "<group>"; };
+		7AE03128299262150006571F /* AttitudeHomeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttitudeHomeCell.h; sourceTree = "<group>"; };
+		7AE03129299262150006571F /* AttitudeHomeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttitudeHomeCell.m; sourceTree = "<group>"; };
 		7F101AB7260613E800F2034C /* YYZTopicGroupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicGroupVC.m; sourceTree = "<group>"; };
 		7F101AB8260613E800F2034C /* YYZTopicDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYZTopicDetailVC.m; sourceTree = "<group>"; };
 		7F101AB9260613E800F2034C /* YYZTopicGroupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYZTopicGroupVC.h; sourceTree = "<group>"; };
@@ -4715,19 +4725,19 @@
 		7ABE46F4298FDD27002F8389 /* YouCity */ = {
 			isa = PBXGroup;
 			children = (
-				7ABE46F5298FDD44002F8389 /* Express */,
+				7AE0311B299254B70006571F /* Attitude */,
 			);
 			path = YouCity;
 			sourceTree = "<group>";
 		};
-		7ABE46F5298FDD44002F8389 /* Express */ = {
+		7ABE46F5298FDD44002F8389 /* ExpressDetailPage */ = {
 			isa = PBXGroup;
 			children = (
+				7ABE46F6298FDD55002F8389 /* Model */,
 				7ABE46F9298FDD6D002F8389 /* Controller */,
 				7ABE46F7298FDD5C002F8389 /* View */,
-				7ABE46F6298FDD55002F8389 /* Model */,
 			);
-			path = Express;
+			path = ExpressDetailPage;
 			sourceTree = "<group>";
 		};
 		7ABE46F6298FDD55002F8389 /* Model */ = {
@@ -4746,6 +4756,7 @@
 		7ABE46F7298FDD5C002F8389 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7AE03117299251770006571F /* Model */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4755,6 +4766,100 @@
 			children = (
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		7AE03110299246EF0006571F /* PublishPage */ = {
+			isa = PBXGroup;
+			children = (
+				7AE03113299247150006571F /* Model */,
+				7AE031122992470D0006571F /* View */,
+				7AE03111299246FE0006571F /* Controller */,
+			);
+			path = PublishPage;
+			sourceTree = "<group>";
+		};
+		7AE03111299246FE0006571F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7AE031122992470D0006571F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7AE03113299247150006571F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7AE03114299251540006571F /* AttitudeMainPage */ = {
+			isa = PBXGroup;
+			children = (
+				7AE0312129925A330006571F /* Model */,
+				7AE03116299251730006571F /* View */,
+				7AE031152992516C0006571F /* Controller */,
+			);
+			path = AttitudeMainPage;
+			sourceTree = "<group>";
+		};
+		7AE031152992516C0006571F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7AE03125299260650006571F /* AttitudeMainPageVC.h */,
+				7AE03126299260650006571F /* AttitudeMainPageVC.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		7AE03116299251730006571F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7AE03128299262150006571F /* AttitudeHomeCell.h */,
+				7AE03129299262150006571F /* AttitudeHomeCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7AE03117299251770006571F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7AE0311B299254B70006571F /* Attitude */ = {
+			isa = PBXGroup;
+			children = (
+				7AE0311C299254C60006571F /* Source */,
+				7AE03114299251540006571F /* AttitudeMainPage */,
+				7AE03110299246EF0006571F /* PublishPage */,
+				7ABE46F5298FDD44002F8389 /* ExpressDetailPage */,
+			);
+			path = Attitude;
+			sourceTree = "<group>";
+		};
+		7AE0311C299254C60006571F /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				7AE0311F2992559E0006571F /* AttitudeHeader.h */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		7AE0312129925A330006571F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7AE0312229925A520006571F /* AttitudeMainModel.h */,
+				7AE0312329925A520006571F /* AttitudeMainModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		7F101AB5260613E800F2034C /* YYZTopicGroup */ = {
@@ -6904,6 +7009,7 @@
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
 				18CDF4C1257F8DBD006E8E5C /* sendEmailModel.m in Sources */,
 				1A1691FE2430ECFE0076EDC7 /* ClassTabBar.m in Sources */,
+				7AE0312429925A520006571F /* AttitudeMainModel.m in Sources */,
 				AA7ABA272873EA4100BA6790 /* CYRleaseSaveDraftAlertBtn.m in Sources */,
 				73AAA1CD26C918250084E44D /* DetailsMainViewController.m in Sources */,
 				187DF4BE260310DD000BCDE9 /* FTEmptyView.m in Sources */,
@@ -6996,6 +7102,7 @@
 				18CDF6B6257F91BD006E8E5C /* SCPieChartDataItem.m in Sources */,
 				73AAA1CE26C918250084E44D /* DetailsGoodsTableViewCell.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
+				7AE0312A299262150006571F /* AttitudeHomeCell.m in Sources */,
 				AA4FA1DF25C2DE5F005139BA /* LearnMoreViewController.m in Sources */,
 				AA7AB9652873E5EA00BA6790 /* CYSearchEndKnowledgeDetailView.m in Sources */,
 				1893DC8926EA32A3007E871E /* MGDGCD.m in Sources */,
@@ -7125,6 +7232,7 @@
 				AA7ABAF12873EA6D00BA6790 /* DynamicDetailCommentTableCellModel.m in Sources */,
 				1A4A466C24C97E2A0033734E /* UserProtocolViewController.m in Sources */,
 				1893DC9126EA3375007E871E /* MGDGroup.m in Sources */,
+				7AE03127299260650006571F /* AttitudeMainPageVC.m in Sources */,
 				73AAA1CF26C918250084E44D /* DetailsGoodsTableView.m in Sources */,
 				4931631326CD7B6800140412 /* TableHeaderView.m in Sources */,
 				1451EA58282BAF0C00A5BB55 /* MessageDetailTitleView.m in Sources */,

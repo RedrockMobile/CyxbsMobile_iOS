@@ -92,4 +92,6 @@
 
 #import "RisingScheduleHeader.h"
 
+#import "AttitudeHeader.h"
+
 #endif /* CyxbsMobilePathAndKey_h */

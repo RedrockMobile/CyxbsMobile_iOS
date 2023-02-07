@@ -49,6 +49,8 @@
 //#import "TodoSyncTool.h"
 //#import "TodoSyncMsg.h"
 
+// 测试
+#import "AttitudeMainPageVC.h"
 
 typedef NS_ENUM(NSUInteger, LoginStates) {
     DidntLogin,
@@ -907,9 +909,15 @@ static int requestCheckinInfo = 0;
 
 - (void)touchMore {
     NSLog(@"点击了更多功能");
-    FinderToolViewController *vc = [[FinderToolViewController alloc]init];
+    // 🥺
+    AttitudeMainPageVC *vc = [[AttitudeMainPageVC alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
+    NSLog(@"===============aasdfasfewfadfawefaefefasdfwefasdfawefasdfawefa");
     [self.navigationController pushViewController:vc animated:YES];
+    
+//    FinderToolViewController *vc = [[FinderToolViewController alloc]init];
+//    vc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)touchNoClassAppointment {

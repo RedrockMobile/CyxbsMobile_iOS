@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 //@property (nonatomic, copy) NSString *statisticStr;
 //@property (nonatomic, copy) NSNumber *statisticNum;
 
+
+
 @end
 
 NS_ASSUME_NONNULL_END
