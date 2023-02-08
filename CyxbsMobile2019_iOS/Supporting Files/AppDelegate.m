@@ -270,15 +270,17 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     // 测试环境
     baseURL = @"https://be-dev.redrock.cqupt.edu.cn/";
 //    baseURL = @"https://be-prod.redrock.team/";
+    [NSUserDefaults.standardUserDefaults setObject:baseURL forKey:@"baseURL"];
 #else
     // 正式环境
     baseURL = @"https://be-prod.redrock.cqupt.edu.cn/";
-#endif
     [NSUserDefaults.standardUserDefaults setObject:baseURL forKey:@"baseURL"];
+    
     [UserItemTool checkVisibleAPI:^(NSString * _Nonnull url) {
         // 容灾环境
         [NSUserDefaults.standardUserDefaults setObject:url forKey:@"baseURL"];
     }];
+#endif
 }
 
 ///检查是否有最新的掌邮，并提示用户获取
