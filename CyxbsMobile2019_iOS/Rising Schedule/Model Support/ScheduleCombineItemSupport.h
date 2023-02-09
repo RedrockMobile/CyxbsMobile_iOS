@@ -64,9 +64,9 @@ FOUNDATION_EXPORT ScheduleRequestDictionary *ScheduleRequestDictionaryFromSchedu
     NSArray <ScheduleCourse *> *_value;
 }
 
-- (instancetype)initWithIdentifier:(ScheduleIdentifier *)identifier value:(nullable NSArray <ScheduleCourse *> *)value NS_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithIdentifier:(nullable ScheduleIdentifier *)identifier value:(nullable NSArray <ScheduleCourse *> *)value NS_DESIGNATED_INITIALIZER;
 
-+ (instancetype)combineItemWithIdentifier:(ScheduleIdentifier *)identifier value:(nullable NSArray <ScheduleCourse *> *)value;
++ (nullable instancetype)combineItemWithIdentifier:(nullable ScheduleIdentifier *)identifier value:(nullable NSArray <ScheduleCourse *> *)value;
 
 @property (readonly) ScheduleIdentifier *identifier;
 

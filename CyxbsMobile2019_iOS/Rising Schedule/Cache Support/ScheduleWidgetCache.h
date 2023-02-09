@@ -10,17 +10,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NSString * ScheduleWidgetCacheKeyName;
+FOUNDATION_EXTERN ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyMain;
+FOUNDATION_EXTERN ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyOther;
+
 @interface ScheduleWidgetCache : ScheduleShareCache
 
-/* Memenry Cache */
+/* Key Support */
 
-@property (nonatomic, copy) ScheduleIdentifier *nonatomicMainID;
-@property (nonatomic, copy) ScheduleIdentifier *nonatomicOtherID;
+- (void)setKey:(ScheduleIdentifier *)key withKeyName:(ScheduleWidgetCacheKeyName)keyname usingSupport:(BOOL)support;
+- (ScheduleIdentifier *)getKeyWithKeyName:(ScheduleWidgetCacheKeyName)keyname usingSupport:(BOOL)support;
 
-/* UserDefault Cache */
-
-@property ScheduleIdentifier *mainID;
-@property ScheduleIdentifier *otherID;
+/* Widget Support */
 
 @property NSInteger widgetSection;
 

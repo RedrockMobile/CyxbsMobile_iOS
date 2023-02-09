@@ -10,7 +10,48 @@
 
 #import "CyxbsWidgetSupport.h"
 
-@implementation ScheduleWidgetCache
+ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyMain = @"ScheduleWidgetCacheKeyMain";
+ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyOther = @"ScheduleWidgetCacheKeyOther";
+
+@implementation ScheduleWidgetCache {
+    NSMutableDictionary <NSString *, ScheduleIdentifier *> *_keyCache;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _keyCache = NSMutableDictionary.dictionary;
+    }
+    return self;
+}
+
+/* KEY */
+
+- (void)setKey:(ScheduleIdentifier *)key withKeyName:(ScheduleWidgetCacheKeyName)keyname usingSupport:(BOOL)support {
+    if (support) {
+        NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
+        NSArray <NSString *> *ary = @[key.type, key.sno, @(key.exp).stringValue, @(key.iat).stringValue];
+        [userDefaults setObject:[ary componentsJoinedByString:@"$%"] forKey:keyname];
+    } else {
+        [_keyCache setObject:key forKey:keyname];
+    }
+}
+
+- (ScheduleIdentifier *)getKeyWithKeyName:(ScheduleWidgetCacheKeyName)keyname usingSupport:(BOOL)support {
+    if (support) {
+        NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
+        NSArray <NSString *> *ary = [[userDefaults objectForKey:keyname] componentsSeparatedByString:@"$%"];
+        if (ary == nil || ary.count != 4) {
+            return nil;
+        }
+        ScheduleIdentifier *identifier = [ScheduleIdentifier identifierWithSno:ary[1] type:ary[0]];
+        identifier.exp = ary[2].doubleValue;
+        identifier.iat = ary[3].doubleValue;
+        return identifier;
+    } else {
+        return [_keyCache objectForKey:keyname];
+    }
+}
 
 #pragma mark - NSUserDefault
 
@@ -38,23 +79,6 @@
     return [userDefaults boolForKey:@"ScheduleIdentifier_BeDouble"];
 }
 
-// mainID &otherID
-
-- (void)setMainID:(ScheduleIdentifier *)mainID {
-    [self _setID:mainID forKey:@"ScheduleIdentifier_MainID"];
-}
-
-- (void)setOtherID:(ScheduleIdentifier *)otherID {
-    [self _setID:otherID forKey:@"ScheduleIdentifier_OtherID"];
-}
-
-- (ScheduleIdentifier *)mainID {
-    return [self _getForKey:@"ScheduleIdentifier_MainID"];
-}
-
-- (ScheduleIdentifier *)otherID {
-    return [self _getForKey:@"ScheduleIdentifier_OtherID"];
-}
 
 // allowedLocalCache
 
@@ -66,23 +90,6 @@
 - (BOOL)allowedLocalCache {
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
     return [userDefaults boolForKey:@"ScheduleIdentifier_AllowedLocalCache"];
-}
-
-// private
-
-- (void)_setID:(ScheduleIdentifier *)ID forKey:(NSString *)key {
-    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
-    NSArray <NSString *> *ary = @[ID.type, ID.sno, @(ID.exp).stringValue, @(ID.iat).stringValue];
-    [userDefaults setObject:[ary componentsJoinedByString:@"$%"] forKey:key];
-}
-
-- (ScheduleIdentifier *)_getForKey:(NSString *)key {
-    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
-    NSArray <NSString *> *ary = [[userDefaults objectForKey:key] componentsSeparatedByString:@"$%"];
-    ScheduleIdentifier *identifier = [ScheduleIdentifier identifierWithSno:ary[1] type:ary[0]];
-    identifier.exp = ary[2].doubleValue;
-    identifier.iat = ary[3].doubleValue;
-    return identifier;
 }
 
 @end

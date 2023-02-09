@@ -10,19 +10,15 @@ import SwiftUI
 import WidgetKit
 
 struct ScheduleLeadingView: View {
-    var month: String
     var range: Range<Int>
-    var height: CGFloat
     @Environment(\.colorScheme) var scheme
     
     var body: some View {
         GeometryReader { entry in
             VStack(spacing: 0) {
-                TypeText(month)
-                    .frame(height: height)
                 ForEach(range, id:\.self) { index in
                     TypeText("\(index)")
-                        .frame(height: (entry.size.height - height) / CGFloat(range.upperBound - range.lowerBound))
+                        .frame(height: (entry.size.height) / CGFloat(range.upperBound - range.lowerBound))
                 }
             }
         }
@@ -52,7 +48,7 @@ extension ScheduleLeadingView {
 
 struct ScheduleLeadingView_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduleLeadingView(month: "12月", range: 1..<9, height: 46)
+        ScheduleLeadingView(range: 1..<9)
             .frame(width: 29)
             .padding()
             .previewContext(WidgetPreviewContext(family: .systemLarge))

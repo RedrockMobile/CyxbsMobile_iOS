@@ -9,6 +9,7 @@
 #import "ScheduleCourse.h"
 
 #import "ScheduleTimelineSupport.h"
+#import "ScheduleNeedsSupport.h"
 
 @interface ScheduleCourse ()
 
@@ -107,8 +108,8 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
     if (_timeStr == nil) {
         SchedulePartTimeline *timeline = [ScheduleTimeline partTimeLineForOriginRange:self.period];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
-        formatter.timeZone = [NSTimeZone timeZoneWithName:@"Asia/Chongqing"];
+        formatter.locale = CNLocale();
+        formatter.timeZone = CQTimeZone();
         formatter.dateFormat = @"HH:mm";
         NSString *beginStr = [formatter stringFromDate:timeline.fromComponents.date];
         NSString *endStr = [formatter stringFromDate:timeline.toComponents.date];
@@ -133,7 +134,7 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder {
     self.inWeek = [decoder decodeIntegerForKey:@"inWeek"];
-    self.inSections = ((NSMutableIndexSet *)[decoder decodeObjectOfClass:NSMutableIndexSet.class forKey:@"inSections"]).mutableCopy;
+    self.inSections = [decoder decodeObjectOfClass:NSIndexSet.class forKey:@"inSections"];
     self.period_location = [decoder decodeIntegerForKey:@"location"];
     self.period_lenth = [decoder decodeIntegerForKey:@"lenth"];
     self.course = [decoder decodeObjectForKey:@"course"];

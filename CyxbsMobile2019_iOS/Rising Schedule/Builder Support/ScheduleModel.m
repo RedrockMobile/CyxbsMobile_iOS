@@ -10,7 +10,7 @@
 
 #import "ScheduleTimelineSupport.h"
 
-#import "ScheduleTimelineSupport.h"
+#import "ScheduleNeedsSupport.h"
 
 #pragma mark - ScheduleModel
 
@@ -23,6 +23,7 @@
     self = [super init];
     if (self) {
         _statusMap = NSMutableDictionary.dictionary;
+        _touchItem = [[ScheduleTouchItem alloc] init];
     }
     return self;
 }
@@ -36,29 +37,16 @@
     [super combineItem:model];
     _statusMap[model.identifier] = model.value;
     _courseIdxPaths = nil;
-    [self setBeginerWithExp:model.identifier.exp];
+    self.touchItem.combining = model;
 }
 
 - (void)clear {
     [super clear];
     [_statusMap removeAllObjects];
     _courseIdxPaths = nil;
+    self.touchItem.combining = nil;
 }
 
-- (ScheduleCourse *)nowCourse {
-    NSDate *nowDate = NSDate.date;
-    NSDateComponents *components = [NSCalendar.currentCalendar componentsInTimeZone:[NSTimeZone timeZoneWithName:@"Asia/Chongqing"] fromDate:nowDate];
-    NSInteger inWeek = (components.weekday + 6) % 8 + (components.weekday + 6) / 8;
-    NSInteger inSection = [nowDate timeIntervalSinceDate:self.startDate] / (7 * 24 * 60 * 60);
-    
-    
-    ScheduleIdentifier *selfIdentifier = [ScheduleIdentifier identifierWithSno:self.sno type:ScheduleModelRequestStudent];
-    for (ScheduleCourse *course in _statusMap[selfIdentifier]) {
-        
-    }
-    
-    return nil;
-}
 
 - (NSArray<ScheduleCourse *> *)coursesWithLocationIdxPath:(NSIndexPath *)idxPath {
     NSMutableArray *ary = NSMutableArray.array;
@@ -94,13 +82,6 @@
         }
     }
     return _courseIdxPaths;
-}
-
-#pragma mark - Private
-
-- (void)setBeginerWithExp:(NSTimeInterval)exp {
-    _startDate = [NSDate dateWithTimeIntervalSince1970:exp];
-    _nowWeek = ceil([NSDate.date timeIntervalSinceDate:_startDate] / (7 * 24 * 60 * 60));
 }
 
 @end

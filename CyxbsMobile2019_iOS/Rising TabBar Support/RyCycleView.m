@@ -123,8 +123,10 @@
                 self->_view1 = self->_view2;
                 self->_view2 = t;
                 self.direction = self->_direction;
+                __weak RyCycleView *ry = self;
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.dwellTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self _animation];
+                    RyCycleView *sry = ry;
+                    [sry _animation];
                 });
             }
         }];

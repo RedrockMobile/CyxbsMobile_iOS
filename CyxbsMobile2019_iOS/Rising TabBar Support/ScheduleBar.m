@@ -51,6 +51,20 @@
     return self;
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    self.titleCycleView.centerY =
+    self.timeImgView.centerY = self.timeLab.centerY =
+    self.placeImgView.centerY = self.placeLab.centerY = self.height / 2;
+    
+    self.timeImgView.left = self.width / 3 + 12;
+    self.timeLab.left = self.timeImgView.right + 5;
+    
+    self.placeImgView.left = self.width / 3 * 2 + 9;
+    self.placeLab.left = self.placeImgView.right + 5;
+}
+
 #pragma mark - Lazy
 
 - (RyCycleView *)titleCycleView {

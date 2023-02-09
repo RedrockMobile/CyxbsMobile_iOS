@@ -1,0 +1,33 @@
+//
+//  ScheduleTouchItem.h
+//  CyxbsMobile2019_iOS
+//
+//  Created by SSR on 2023/1/26.
+//  Copyright © 2023 Redrock. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+#import "ScheduleCombineItemSupport.h"
+
+#import "ScheduleCourse.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface ScheduleTouchItem : NSObject
+
+/// 连立的课程，会通过一系列算法得到下面的所有数据
+@property (nonatomic, strong, nullable) ScheduleCombineItem *combining;
+
+/// 开始的时间，nil表示不可用
+@property (nonatomic, readonly, nullable) NSDate *startDate;
+
+/// 当周(0代表整周)
+@property (nonatomic, readonly) NSUInteger nowWeek;
+
+/// 当前正在上课/下一节课/当天已经没有课
+@property (nonatomic, readonly, nullable) ScheduleCourse *floorCourse;
+
+@end
+
+NS_ASSUME_NONNULL_END

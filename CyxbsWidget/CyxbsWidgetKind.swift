@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 @objc enum WidgetKind: Int {
     case schedule
     var rawValue: String {

@@ -137,10 +137,10 @@
         NSString *otherSno = self.otherField.text.copy;
         ScheduleIdentifier *otherID = [ScheduleIdentifier identifierWithSno:otherSno type:ScheduleModelRequestStudent];
         
-        [self.presenter setWithMainIdentifier:mainID otherIdentifier:otherID];
+        [self.presenter setWithMainKey:mainID otherKey:otherID];
     } else {
         // only
-        [self.presenter setWithOnlyMainIdentifier:mainID];
+        [self.presenter setWithMainKey:mainID];
     }
     self.snoField.text = nil;
     self.otherField.text = nil;

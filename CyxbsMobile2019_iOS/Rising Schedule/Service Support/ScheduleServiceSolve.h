@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) UICollectionView *collectionView;
 
+@property (nonatomic) BOOL mainSevice;
+
 /// XXHB, default is NO
 @property (nonatomic) BOOL canUseAwake __deprecated_msg("⚠️XXHB");
 

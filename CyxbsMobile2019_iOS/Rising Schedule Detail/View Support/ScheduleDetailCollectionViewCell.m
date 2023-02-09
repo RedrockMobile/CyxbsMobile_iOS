@@ -8,8 +8,9 @@
 
 #import "ScheduleDetailCollectionViewCell.h"
 
-#import "ScheduleDetailMessageTableViewCell.h"
+#import "ScheduleNeedsSupport.h"
 
+#import "ScheduleDetailMessageTableViewCell.h"
 #import "ScheduleDetailTableHeaderView.h"
 
 NSString *ScheduleDetailCollectionViewCellReuseIdentifier = @"ScheduleDetailCollectionViewCellReuseIdentifier";
@@ -109,7 +110,7 @@ NSString *ScheduleDetailCollectionViewCellReuseIdentifier = @"ScheduleDetailColl
             static NSArray *ary;
             if (!ary) {
                 NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                formatter.locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
+                formatter.locale = CNLocale();
                 ary = formatter.weekdaySymbols;
             }
             cell.leftDescription = @"时间";
