@@ -28,21 +28,22 @@ struct ScheduleSystemLarge: View {
         }
         data = ScheduleFetchData(range: range, section: entry.section)
         data.sno = entry.mainKey?.sno
-        for entry in entry.model {
-            data.combineItem(entry)
+        for item in entry.combineItems {
+            data.combineItem(item)
         }
     }
     
     var body: some View {
         VStack(spacing: 0) {
             ScheduleSectionTopView(title: title())
-                .padding(.vertical, 5)
+                .padding(.vertical, 8)
+                .padding(.leading, 5)
             Divider()
-                .padding(.horizontal, 5)
+                .padding(.horizontal, 8)
             
             GeometryReader { allEntry in
                 VStack(spacing: 2) {
-                    ScheduleTopView(anyDate: data.start, width: 21)
+                    ScheduleTopView(anyDate: topDate(), width: 21)
                         .frame(height: allEntry.size.width / 7)
                     
                     HStack {
@@ -54,6 +55,7 @@ struct ScheduleSystemLarge: View {
                                 ContentView(item: item, size: entryB.size)
                             }
                         }
+                        .clipped()
                     }
                 }
             }
@@ -95,6 +97,14 @@ extension ScheduleSystemLarge {
             @unknown default:
                return .empty
             }
+        }
+    }
+    
+    func topDate() -> Date? {
+        if self.data.section <= 0 {
+            return nil
+        } else {
+            return data.start
         }
     }
     

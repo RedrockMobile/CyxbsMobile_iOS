@@ -24,7 +24,7 @@ final class ScheduleWidgetRequest {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         let response = try await URLSession.shared.data(for: request as URLRequest)
         print("Requet success with response: \(response)")
-        if let dic = JSON(response).dictionary {
+        if let dic = JSON(response.0).dictionary {
             let sno = dic["stuNum"]?.string!
             let nowWeek = dic["nowWeek"]?.int!
             let key = ScheduleIdentifier(sno: sno!, type: .student)
@@ -41,7 +41,5 @@ final class ScheduleWidgetRequest {
         } else {
             return nil
         }
-        
     }
-    
 }

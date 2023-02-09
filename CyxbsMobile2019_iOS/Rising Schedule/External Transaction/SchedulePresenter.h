@@ -15,7 +15,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "ScheduleServiceSolve.h"
+#import "ScheduleCombineItemSupport.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,19 +28,17 @@ NS_ASSUME_NONNULL_BEGIN
 /// 控制器（不用赋值，会自动生成）
 @property (nonatomic, weak) UIViewController *controller;
 
-/// 响应式业务
-@property (nonatomic, readonly) ScheduleServiceSolve *service;
+/// 绘制collecitonView
+/// - Parameters:
+///   - collectionView: 传一个local的collecitonView，调用结束后会生成一个collecitonView
+///   - width: 准备工作所需要的宽度
+- (void)setingCollectionView:(UICollectionView *__strong  _Nonnull *_Nonnull)collectionView withPrepareWidth:(CGFloat)width;
 
 /// 设置collectionView
-@property (nonatomic, assign) UICollectionView *collectionView;
+@property (nonatomic, readonly) UICollectionView *collectionView;
 
-// *property readwrite
 
-/// 重设模型数据
-//@property (nonatomic, assign) ScheduleModel *model;
-
-/// 设置下一次请求
-//@property (nonatomic, assign) ScheduleRequestDictionary *nextRequestDic;
+- (void)requestAndReloadData;
 
 /// XXHB
 @property (nonatomic) BOOL useAwake __deprecated_msg("注意使用");
@@ -48,8 +46,10 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-/* 单双人课表 */
 
+/* 单/双人课表扩展
+ * 使用下面的方法使主程序以及小组件进行改变
+ */
 @interface SchedulePresenter (ScheduleDouble)
 
 - (void)setWithMainKey:(ScheduleIdentifier *)main;
@@ -60,12 +60,34 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-/* 多人课表 */
 
+
+/* 多人课表
+ * 使用下面的方法使主程序改变
+ */
 @interface SchedulePresenter (ScheduleGroup)
-
 
 
 @end
 
 NS_ASSUME_NONNULL_END
+
+
+
+
+#if __has_include("ScheduleHeaderView.h")
+#import "ScheduleHeaderView.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface SchedulePresenter (ScheduleHeaderView)
+
+@property (nonatomic, readwrite) ScheduleHeaderView *headerView;
+
+@end
+
+NS_ASSUME_NONNULL_END
+
+#endif
+
+

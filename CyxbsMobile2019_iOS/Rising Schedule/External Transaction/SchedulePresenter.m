@@ -12,7 +12,17 @@
 
 #import "ScheduleWidgetCache.h"
 
+#import "ScheduleServiceSolve.h"
+
 #import "掌上重邮-Swift.h"
+
+#pragma mark - SchedulePresenter ()
+
+@interface SchedulePresenter ()
+
+@property (nonatomic, strong) ScheduleServiceSolve *service;
+
+@end
 
 #pragma mark - SchedulePresenter
 
@@ -26,16 +36,23 @@
     return self;
 }
 
-- (void)setModel:(ScheduleModel *)model {
-    _service.model = model;
+
+
+/* CollectionView */
+
+- (void)setingCollectionView:(UICollectionView *__strong  _Nonnull *)collectionView withPrepareWidth:(CGFloat)width {
+    [self.service setingCollectionView:collectionView withPrepareWidth:width];
 }
 
-- (ScheduleModel *)model {
-    return _service.model;
+- (UICollectionView *)collectionView {
+    return self.service.collectionView;
 }
 
 
-- (void)setController:(ScheduleController *)controller {
+
+/* Controller */
+
+- (void)setController:(UIViewController *)controller {
     _service.viewController = controller;
 }
 
@@ -44,14 +61,8 @@
 }
 
 
-- (void)setCollectionView:(UICollectionView *)collectionView {
-    _service.collectionView = collectionView;
-}
 
-- (UICollectionView *)collectionView {
-    return _service.collectionView;
-}
-
+/* Next Request */
 
 - (void)setNextRequestDic:(ScheduleRequestDictionary *)nextRequestDic {
     _service.parameterIfNeeded = nextRequestDic;
@@ -61,6 +72,10 @@
     return _service.parameterIfNeeded;
 }
 
+
+- (void)requestAndReloadData {
+    [self.service requestAndReloadData];
+}
 
 - (void)setUseAwake:(BOOL)useAwake {
     _service.canUseAwake = useAwake;
@@ -103,6 +118,18 @@
     if (@available(iOS 14.0, *)) {
         [WidgetKitHelper reloadAllTimelines];
     }
+}
+
+@end
+
+@implementation SchedulePresenter (ScheduleHeaderView)
+
+- (void)setHeaderView:(ScheduleHeaderView *)headerView {
+    self.service.headerView = headerView;
+}
+
+- (ScheduleHeaderView *)headerView {
+    return self.service.headerView;
 }
 
 @end

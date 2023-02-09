@@ -14,6 +14,7 @@
 #import "SchedulePresenter.h"
 #import "ScheduleWidgetCache.h"
 #import "SchedulePolicyService.h"
+#import "ScheduleTouchItem.h"
 
 #import "ScheduleBar.h"
 #import "ScheduleController.h"
@@ -34,7 +35,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.schedulePresenter = [[SchedulePresenter alloc] init];
+    
     self.viewControllers = @[
         self._test1
     ];
@@ -73,18 +76,25 @@
                 self.scheduleBar.time = @"明天再说";
             }
         } unPolicy:^(ScheduleIdentifier * _Nonnull unpolicyKEY) {
-            
+            self.scheduleBar.title = @"网络请求失败";
+            self.scheduleBar.place = @"请检查网络";
+            self.scheduleBar.time = @"退出重试";
         }];
-        
+        [self.schedulePresenter setWithMainKey:mainKey];
     }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self _drawTabBarEffect];
     
-    [self.view addSubview:self.scheduleBar];
-    [self _drawScheduleBar];
+    static BOOL _draw = NO;
+    if (!_draw) {
+        _draw = YES;
+        [self _drawTabBarEffect];
+        
+        [self.view addSubview:self.scheduleBar];
+        [self _drawScheduleBar];
+    }
 }
 
 #pragma mark - Getter
@@ -174,6 +184,12 @@
     }
 }
 
+#pragma mark - Setter
+
+- (void)setScheduleBarHidden:(BOOL)scheduleBarHidden {
+    _scheduleBarHidden = scheduleBarHidden;
+    self.scheduleBar.hidden = scheduleBarHidden;
+}
 
 
 

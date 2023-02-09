@@ -17,6 +17,16 @@ ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyOther = @"ScheduleWidgetC
     NSMutableDictionary <NSString *, ScheduleIdentifier *> *_keyCache;
 }
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _keyCache = NSMutableDictionary.dictionary;
+    }
+    return self;
+}
+
+/* KEY */
+
 - (void)setKey:(ScheduleIdentifier *)key withKeyName:(ScheduleWidgetCacheKeyName)keyname usingSupport:(BOOL)support {
     if (support) {
         NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
@@ -31,7 +41,7 @@ ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyOther = @"ScheduleWidgetC
     if (support) {
         NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
         NSArray <NSString *> *ary = [[userDefaults objectForKey:keyname] componentsSeparatedByString:@"$%"];
-        if (ary == nil) {
+        if (ary == nil || ary.count != 4) {
             return nil;
         }
         ScheduleIdentifier *identifier = [ScheduleIdentifier identifierWithSno:ary[1] type:ary[0]];

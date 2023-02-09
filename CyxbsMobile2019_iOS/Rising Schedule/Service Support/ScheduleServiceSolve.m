@@ -43,13 +43,13 @@
 
 #pragma mark - Method
 
-- (void)setCollectionView:(UICollectionView *)view {
-    [super setCollectionView:view];
-    _collectionView = view;
-    view.delegate = self;
+- (void)setingCollectionView:(UICollectionView *__strong  _Nonnull *)view withPrepareWidth:(CGFloat)width {
+    [super setingCollectionView:view withPrepareWidth:width];
+    _collectionView = (*view);
+    (*view).delegate = self;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_emptyTap:)];
     tap.delegate = self;
-    [view addGestureRecognizer:tap];
+    [*view addGestureRecognizer:tap];
 }
 
 - (void)requestAndReloadData {
@@ -58,7 +58,7 @@
      policy:^(ScheduleCombineItem * _Nonnull item) {
         [self.model combineItem:item];
         [self.collectionView reloadData];
-        [self scrollToSection:self.model.nowWeek];
+        [self scrollToSection:self.model.touchItem.nowWeek];
         
         if (self.canUseAwake) {
             [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
@@ -69,7 +69,7 @@
             ScheduleCombineItem *item = [ScheduleShareCache.shareCache awakeForIdentifier:unpolicyKEY];
             [self.model combineItem:item];
             [self.collectionView reloadData];
-            [self scrollToSection:self.model.nowWeek];
+            [self scrollToSection:self.model.touchItem.nowWeek];
         }
     }];
 }
@@ -97,7 +97,7 @@
 - (void)reloadHeaderView {
     NSInteger page = self.collectionView.contentOffset.x / self.collectionView.width;
     self.headerView.title = [self _titleForNum:page];
-    self.headerView.reBack = (page == self.model.nowWeek);
+    self.headerView.reBack = (page == self.model.touchItem.nowWeek);
 }
 
 - (void)setHeaderView:(ScheduleHeaderView *)headerView {
@@ -169,7 +169,7 @@
 #pragma mark - <ScheduleHeaderViewDelegate>
 
 - (void)scheduleHeaderView:(ScheduleHeaderView *)view didSelectedBtn:(UIButton *)btn {
-    [self scrollToSection:self.model.nowWeek];
+    [self scrollToSection:self.model.touchItem.nowWeek];
 }
 
 - (void)scheduleHeaderViewDidTapDouble:(ScheduleHeaderView *)view {

@@ -42,8 +42,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithModel:(ScheduleModel * _Nonnull)model;
 
 /// 设置collectionView
-/// @param view datasource本质代理
-- (void)setCollectionView:(UICollectionView *)view NS_REQUIRES_SUPER;
+/// @param collectionView datasource本质代理
+- (void)setingCollectionView:(UICollectionView *__strong  _Nonnull *_Nonnull)collectionView withPrepareWidth:(CGFloat)width NS_REQUIRES_SUPER;
 
 @end
 

@@ -10,6 +10,8 @@
 
 #import "ScheduleCombineItemSupport.h"
 
+#import "ScheduleCourse.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ScheduleTouchItem : NSObject

@@ -49,18 +49,25 @@
 
 #pragma mark - Setter
 
-- (void)setCollectionView:(UICollectionView *)view {
-    NSParameterAssert(view);
+- (void)setingCollectionView:(UICollectionView *__strong  _Nonnull *)view withPrepareWidth:(CGFloat)width {
     
-    [view registerClass:ScheduleCollectionViewCell.class forCellWithReuseIdentifier:ScheduleCollectionViewCellReuseIdentifier];
-    [view registerClass:ScheduleSupplementaryCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier];
-    [view registerClass:ScheduleSupplementaryCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier];
+    ScheduleCollectionViewLayout *layout = [[ScheduleCollectionViewLayout alloc] init];
+    layout.widthForLeadingSupplementaryView = 30;
+    layout.lineSpacing = 2;
+    layout.columnSpacing = 2;
+    layout.heightForHeaderSupplementaryView = ((width - layout.widthForLeadingSupplementaryView) / 7 - layout.columnSpacing) / 46 * 50;
     
-    [view addSubview:self.backgroundView];
+    *view = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, width, 0) collectionViewLayout:layout];
     
-    view.dataSource = self;
-    if ([view.collectionViewLayout isKindOfClass:ScheduleCollectionViewLayout.class]) {
-        ((ScheduleCollectionViewLayout *)view.collectionViewLayout).dataSource = self;
+    [*view registerClass:ScheduleCollectionViewCell.class forCellWithReuseIdentifier:ScheduleCollectionViewCellReuseIdentifier];
+    [*view registerClass:ScheduleSupplementaryCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier];
+    [*view registerClass:ScheduleSupplementaryCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier];
+    
+    [*view addSubview:self.backgroundView];
+    
+    (*view).dataSource = self;
+    if ([(*view).collectionViewLayout isKindOfClass:ScheduleCollectionViewLayout.class]) {
+        ((ScheduleCollectionViewLayout *)(*view).collectionViewLayout).dataSource = self;
     }
 }
 
@@ -136,7 +143,7 @@
     
     if (kind == UICollectionElementKindSectionHeader) {
         
-        NSDate *showDate = [NSDate dateWithTimeInterval:(indexPath.section - 1) * 7 * 24 * 60 * 60 + (indexPath.item - 1) * 24 * 60 * 60 sinceDate:_model.startDate];
+        NSDate *showDate = [NSDate dateWithTimeInterval:(indexPath.section - 1) * 7 * 24 * 60 * 60 + (indexPath.item - 1) * 24 * 60 * 60 sinceDate:_model.touchItem.startDate];
         
         NSDateComponents *component = [ScheduleCalendar() componentsInTimeZone:CQTimeZone() fromDate:showDate];
         
@@ -157,7 +164,7 @@
         cell.content = [NSString stringWithFormat:@"%ld日", component.day];
         
         cell.isCurrent = (indexPath.section == 0 ? NO :
-                          (indexPath.section != _model.nowWeek ? NO :
+                          (indexPath.section != _model.touchItem.nowWeek ? NO :
                            indexPath.item == todayWeek));
         
         return cell;

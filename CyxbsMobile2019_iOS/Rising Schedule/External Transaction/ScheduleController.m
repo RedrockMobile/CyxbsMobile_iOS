@@ -10,8 +10,6 @@
 
 #import "SchedulePresenter.h"
 
-#import "ScheduleCollectionViewLayout.h"
-
 #import "ScheduleHeaderView.h"
 
 static CGFloat (^statusHeight)(void) = ^{
@@ -38,7 +36,6 @@ static CGFloat (^statusHeight)(void) = ^{
     if (self) {
         _presenter = presenter;
         presenter.controller = self;
-        
         [self _drawTabbar];
     }
     return self;
@@ -72,10 +69,8 @@ static CGFloat (^statusHeight)(void) = ^{
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.presenter.collectionView = self.collectionView;
-    self.presenter.service.headerView = self.headerView;
-    
+
+    self.presenter.headerView = self.headerView;
     [self.view addSubview:self.headerView];
     [self.view addSubview:self.collectionView];
 }
@@ -83,7 +78,7 @@ static CGFloat (^statusHeight)(void) = ^{
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self.presenter.service requestAndReloadData];
+    [self.presenter requestAndReloadData];
 }
 
 #pragma mark - Getter
@@ -102,17 +97,10 @@ static CGFloat (^statusHeight)(void) = ^{
 
 - (UICollectionView *)collectionView {
     if (_collectionView == nil) {
-        CGFloat width = self.view.width;
         
-        ScheduleCollectionViewLayout *layout = [[ScheduleCollectionViewLayout alloc] init];
-        layout.widthForLeadingSupplementaryView = 30;
-        layout.lineSpacing = 2;
-        layout.columnSpacing = 2;
-        layout.heightForHeaderSupplementaryView = ((width - layout.widthForLeadingSupplementaryView) / 7 - layout.columnSpacing) / 46 * 50;
-        
-        CGFloat top = self.headerView.bottom;
-        CGFloat height = self.view.height - top;
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, top, self.view.width, height) collectionViewLayout:layout];
+        [self.presenter setingCollectionView:(&_collectionView) withPrepareWidth:self.view.width];
+        _collectionView.top = self.headerView.bottom;
+        _collectionView.height = self.view.height - _collectionView.top;
         _collectionView.contentInset = UIEdgeInsetsMake(0, 0, self.tabBarController.tabBar.height, 0);
         _collectionView.directionalLockEnabled = YES;
         _collectionView.pagingEnabled = YES;

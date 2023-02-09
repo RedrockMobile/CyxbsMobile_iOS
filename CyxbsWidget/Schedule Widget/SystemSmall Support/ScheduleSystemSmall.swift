@@ -7,15 +7,17 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct ScheduleSystemSmall: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Small行为组件暂时没写，请添加Large行为组件")
     }
 }
 
 struct ScheduleSystemSmall_Previews: PreviewProvider {
     static var previews: some View {
         ScheduleSystemSmall()
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

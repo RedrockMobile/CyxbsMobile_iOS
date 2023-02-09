@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CyxbsTabBarController : UITabBarController
 
+@property (nonatomic, getter=isScheduleBarHidden) BOOL scheduleBarHidden;
+
 @end
 
 NS_ASSUME_NONNULL_END

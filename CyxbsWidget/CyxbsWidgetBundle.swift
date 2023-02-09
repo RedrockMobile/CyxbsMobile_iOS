@@ -11,9 +11,12 @@ import SwiftUI
 
 @main
 struct CyxbsWidgetBundle: WidgetBundle {
+    
     @WidgetBundleBuilder
     var body: some Widget {
+        
         ScheduleWidget()
+        
         if #available(iOS 16.1, *) {
             CyxbsWidgetLiveActivity()
         }
