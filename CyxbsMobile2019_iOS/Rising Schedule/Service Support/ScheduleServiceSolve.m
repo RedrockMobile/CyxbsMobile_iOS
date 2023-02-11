@@ -9,7 +9,7 @@
 #import "ScheduleServiceSolve.h"
 
 #import "SchedulePolicyService.h"
-#import "ScheduleShareCache.h"
+#import "ScheduleWidgetCache.h"
 #import "ScheduleNeedsSupport.h"
 
 #import "TransitioningDelegate.h"
@@ -53,6 +53,7 @@
 }
 
 - (void)requestAndReloadData {
+    [self.model clear];
     [self.policy
      requestDic:self.parameterIfNeeded
      policy:^(ScheduleCombineItem * _Nonnull item) {
@@ -173,7 +174,25 @@
 }
 
 - (void)scheduleHeaderViewDidTapDouble:(ScheduleHeaderView *)view {
-    [view setShowMuti:view.isShow isSingle:!view.isSingle];
+    if (view.isSingle) {
+        ScheduleIdentifier *otherKey = [ScheduleWidgetCache.shareCache getKeyWithKeyName:ScheduleWidgetCacheKeyOther usingSupport:NO];
+        otherKey = otherKey ? otherKey : [ScheduleWidgetCache.shareCache getKeyWithKeyName:ScheduleWidgetCacheKeyOther usingSupport:YES];
+        if (otherKey == nil) {
+            return;
+        }
+        
+        self.parameterIfNeeded = @{
+            ScheduleModelRequestStudent : @[self.model.sno, otherKey.sno]
+        };
+        
+    } else {
+        self.parameterIfNeeded = @{
+            ScheduleModelRequestStudent : @[self.model.sno]
+        };
+    }
+    
+    [view setShowMuti:YES isSingle:!view.isSingle];
+    [self requestAndReloadData];
 }
 
 #pragma mark - <UIGestureRecognizerDelegate>

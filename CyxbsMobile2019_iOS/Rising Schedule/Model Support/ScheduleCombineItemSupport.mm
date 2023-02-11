@@ -73,7 +73,14 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
     NSUInteger weekday = [NSCalendar.currentCalendar components:NSCalendarUnitWeekday fromDate:NSDate.date].weekday;
     NSUInteger aboveWeek = weekday + 6;
     NSUInteger todayWeek = aboveWeek % 8 + aboveWeek / 8;
-    NSTimeInterval beforNow = (nowWeek - 1) * 7 * 24 * 60 * 60 + (todayWeek - 1) * 24 * 60 * 60;
+    NSTimeInterval beforNow = 0;
+    if (nowWeek > 0) {
+        beforNow = (nowWeek - 1) * 7 * 24 * 60 * 60 + (todayWeek - 1) * 24 * 60 * 60;
+    } else if (nowWeek == 0) {
+        beforNow = -(fabs(8 - todayWeek) * 24 * 60 * 60);
+    } else {
+        beforNow = -((nowWeek + 1) * 7 * 24 * 60 * 60 + fabs(8 - todayWeek) * 24 * 60 * 60);
+    }
     _exp = [NSDate dateWithTimeIntervalSinceNow:-beforNow].timeIntervalSince1970;
 }
 

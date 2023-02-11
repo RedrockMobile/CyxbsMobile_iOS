@@ -95,22 +95,31 @@
     if (main == nil) {
         return;
     }
-    _service.model.sno = main.sno;
+    
     [ScheduleWidgetCache.shareCache setKey:main withKeyName:ScheduleWidgetCacheKeyMain usingSupport:YES];
+    _service.model.sno = main.sno;
     _service.parameterIfNeeded = @{
         ScheduleModelRequestStudent : @[main.sno]
     };
+    [_service.headerView setShowMuti:YES isSingle:YES];
 }
 
 - (void)setWithMainKey:(ScheduleIdentifier *)main otherKey:(ScheduleIdentifier *)other {
-    [self setWithMainKey:main];
-    if (other == nil) {
+    if (main == nil) {
         return;
+    } else {
+        if (other == nil) {
+            return;
+        } else {
+            [self setWithMainKey:main];
+        }
     }
+    
     [ScheduleWidgetCache.shareCache setKey:other withKeyName:ScheduleWidgetCacheKeyOther usingSupport:YES];
     _service.parameterIfNeeded = @{
         ScheduleModelRequestStudent : @[main.sno, other.sno]
     };
+    [_service.headerView setShowMuti:YES isSingle:NO];
 }
 
 - (void)setWidgetSection:(NSInteger)section {

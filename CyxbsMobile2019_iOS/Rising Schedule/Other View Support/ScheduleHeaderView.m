@@ -33,6 +33,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.sectionLab];
+        [self addSubview:self.doubleImgView];
         [self addSubview:self.reBackBtn];
     }
     return self;
@@ -84,6 +85,7 @@
 - (UIImageView *)doubleImgView {
     if (_doubleImgView == nil) {
         _doubleImgView = [[UIImageView alloc] initWithFrame:CGRectMake(-1, -1, 16, 18)];
+        _doubleImgView.hidden = YES;
         _doubleImgView.right = self.SuperRight - 130;
         _doubleImgView.centerY = self.reBackBtn.centerY;
         _doubleImgView.image = [UIImage imageNamed:@"per.single"];
@@ -112,15 +114,15 @@
 - (void)setShowMuti:(BOOL)show isSingle:(BOOL)isSingle {
     _isShow = show;
     _isSingle = isSingle;
-    if (!show) {
-        self.doubleImgView.hidden = 0;
-        return;
-    }
+    
+    self.doubleImgView.hidden = !show;
     if (isSingle) {
         self.doubleImgView.image = [UIImage imageNamed:@"per.single"];
     } else {
         self.doubleImgView.image = [UIImage imageNamed:@"per.double"];
     }
+    
+    NSLog(@"hidden:%d %@", self.doubleImgView.hidden, self.doubleImgView);
 }
 
 @end
