@@ -22,16 +22,9 @@ extension ScheduleCombineItem {
     
     private class func priviewItem(source: String) -> ScheduleCombineItem {
         
-//        [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects:ScheduleCombineItem.class, ScheduleIdentifier.class, ScheduleCourse.class, NSArray.class, NSString.class, nil] fromData:[NSData dataWithContentsOfFile:[NSString stringWithFormat:@"/Users/ssr/Downloads/%@.plist", identifier.key]] error:nil];
+        //        [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects:ScheduleCombineItem.class, ScheduleIdentifier.class, ScheduleCourse.class, NSArray.class, NSString.class, nil] fromData:[NSData dataWithContentsOfFile:[NSString stringWithFormat:@"/Users/ssr/Downloads/%@.plist", identifier.key]] error:nil];
         
         let item = try! NSKeyedUnarchiver.unarchivedObject(ofClasses: [ScheduleCombineItem.self, ScheduleIdentifier.self, ScheduleCourse.self, NSString.self, NSArray.self], from: try! Data(contentsOf: Bundle.main.url(forResource: source, withExtension: "plist")!))
         return item as! ScheduleCombineItem
     }
-}
-
-extension ScheduleWidgetModel {
-    
-    static var priviewSection = 13
-    
-    static var priviewRange = 1..<7
 }

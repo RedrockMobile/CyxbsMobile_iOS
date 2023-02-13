@@ -24,9 +24,11 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - btn: 操作的btn
 - (void)scheduleHeaderView:(ScheduleHeaderView *)view didSelectedBtn:(UIButton *)btn;
 
-/// 点击了双人图标
+/// 点击了双人图标，但自己不会发生变化
 /// - Parameter view: 视图
 - (void)scheduleHeaderViewDidTapDouble:(ScheduleHeaderView *)view;
+
+- (void)scheduleHeaderViewDidTapWidget:(ScheduleHeaderView *)view;
 
 @end
 
@@ -56,6 +58,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 是否单双
 @property (nonatomic, readonly) BOOL isSingle;
+
+@property (nonatomic) BOOL widget;
 
 - (instancetype)init NS_UNAVAILABLE;
 

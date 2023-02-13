@@ -56,6 +56,7 @@
     layout.lineSpacing = 2;
     layout.columnSpacing = 2;
     layout.heightForHeaderSupplementaryView = ((width - layout.widthForLeadingSupplementaryView) / 7 - layout.columnSpacing) / 46 * 50;
+    layout.dataSource = self;
     
     *view = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, width, 0) collectionViewLayout:layout];
     
@@ -66,9 +67,6 @@
     [*view addSubview:self.backgroundView];
     
     (*view).dataSource = self;
-    if ([(*view).collectionViewLayout isKindOfClass:ScheduleCollectionViewLayout.class]) {
-        ((ScheduleCollectionViewLayout *)(*view).collectionViewLayout).dataSource = self;
-    }
 }
 
 #pragma mark - <UICollectionViewDataSource>
@@ -152,18 +150,24 @@
         formatter.locale = CNLocale();
         formatter.dateFormat = @"EEE";
         
-        NSUInteger todayWeek = ScheduleWeekOfComponentsWeek(component.weekday);
+        NSUInteger todayWeek = ScheduleWeekOfComponentsWeek([ScheduleCalendar() component:NSCalendarUnitWeekday fromDate:NSDate.date]);
         
         
-        cell.isTitleOnly = (indexPath.section == 0 ? YES : indexPath.item == 0);
+        cell.isTitleOnly = (indexPath.section == 0 ? YES : // 第0周只展示标题
+                            // ⬇️假期，也就是非正常显示时，则只显示标题
+                            (_model.touchItem.nowWeek >= _model.courseIdxPaths.count ? YES :
+                            indexPath.item == 0)); // 其他情况则则判断是不是 “月份” 所在位置
         
-        cell.title = ((indexPath.section == 0 && indexPath.item == 0) ? @"学期" :
+        cell.title = ((indexPath.section == 0 && indexPath.item == 0) ? @"学期" : // 0周 “月份” 为 “学期”
+                      // ⬇️假期，也就是非正常显示时,则显示假期
+                      (_model.touchItem.nowWeek >= _model.courseIdxPaths.count && indexPath.item == 0) ? @"" :
+                      // ⬇️如果是0位置，则为正常的月信息
                       ((indexPath.item == 0) ? [NSString stringWithFormat:@"%ld月", component.month] :
-                       [formatter stringFromDate:showDate]));
+                       [formatter stringFromDate:showDate])); // 非0位置，则从formatter读取
         
         cell.content = [NSString stringWithFormat:@"%ld日", component.day];
-        
-        cell.isCurrent = (indexPath.section == 0 ? NO :
+
+        cell.isCurrent = ((indexPath.section == 0 && indexPath.item == todayWeek) ? YES :
                           (indexPath.section != _model.touchItem.nowWeek ? NO :
                            indexPath.item == todayWeek));
         

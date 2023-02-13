@@ -10,7 +10,7 @@ import SwiftUI
 import WidgetKit
 
 struct ScheduleWidget: Widget {
-    let kind: String = WidgetKind.schedule.rawValue
+    let kind: String = CyxbsWidgetSchedule
 
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ScheduleWidgetConfiguration.self, provider: ScheduleProvider()) { entry in
@@ -24,15 +24,16 @@ struct ScheduleWidget: Widget {
 
 extension ScheduleWidget {
     var supportedFamilies: Array<WidgetFamily> {
-        var ary: Array<WidgetFamily> = [.systemSmall, .systemMedium, .systemLarge]
-        if #available(iOS 15.0, *) {
-            ary.append(.systemExtraLarge)
-        }
-        if #available(iOS 16.0, *) {
-            ary.append(.accessoryCircular)
-            ary.append(.accessoryRectangular)
-            ary.append(.accessoryInline)
-        }
-        return ary
+        return [.systemLarge]
+//        var ary: Array<WidgetFamily> = [.systemSmall, .systemMedium, .systemLarge]
+//        if #available(iOS 15.0, *) {
+//            ary.append(.systemExtraLarge)
+//        }
+//        if #available(iOS 16.0, *) {
+//            ary.append(.accessoryCircular)
+//            ary.append(.accessoryRectangular)
+//            ary.append(.accessoryInline)
+//        }
+//        return ary
     }
 }

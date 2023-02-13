@@ -20,6 +20,9 @@
 /// double image
 @property (nonatomic, strong) UIImageView *doubleImgView;
 
+/// widget image
+@property (nonatomic, strong) UIImageView *widgetImgView;
+
 /// return btn
 @property (nonatomic, strong) UIButton *reBackBtn;
 
@@ -33,6 +36,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.sectionLab];
+        [self addSubview:self.doubleImgView];
         [self addSubview:self.reBackBtn];
     }
     return self;
@@ -46,9 +50,15 @@
     }
 }
 
-- (void)_muti {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(scheduleHeaderViewDidTapDouble:)]) {
+- (void)_muti:(UITapGestureRecognizer *)tap {
+    if (tap.state == UIGestureRecognizerStateEnded && self.delegate && [self.delegate respondsToSelector:@selector(scheduleHeaderViewDidTapDouble:)]) {
         [self.delegate scheduleHeaderViewDidTapDouble:self];
+    }
+}
+
+- (void)_widget {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(scheduleHeaderViewDidTapWidget:)]) {
+        [self.delegate scheduleHeaderViewDidTapWidget:self];
     }
 }
 
@@ -83,15 +93,31 @@
 
 - (UIImageView *)doubleImgView {
     if (_doubleImgView == nil) {
-        _doubleImgView = [[UIImageView alloc] initWithFrame:CGRectMake(-1, -1, 16, 18)];
-        _doubleImgView.right = self.SuperRight - 130;
+        _doubleImgView = [[UIImageView alloc] initWithFrame:CGRectMake(-1, -1, 22.5, 18)];
+        _doubleImgView.hidden = YES;
+        _doubleImgView.right = self.reBackBtn.left - 30;
         _doubleImgView.centerY = self.reBackBtn.centerY;
         _doubleImgView.image = [UIImage imageNamed:@"per.single"];
+        _doubleImgView.userInteractionEnabled = YES;
         
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_muti)];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_muti:)];
         [_doubleImgView addGestureRecognizer:tap];
     }
     return _doubleImgView;
+}
+
+- (UIImageView *)widgetImgView {
+    if (_widgetImgView == nil) {
+        _widgetImgView = [[UIImageView alloc] initWithFrame:CGRectMake(-1, -1, 22.5, 18)];
+        _widgetImgView.hidden = YES;
+        _widgetImgView.right = self.doubleImgView.left - 30;
+        _widgetImgView.centerY = self.reBackBtn.centerY;
+        _widgetImgView.image = [UIImage imageNamed:@"widget"];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_widget)];
+        [_widgetImgView addGestureRecognizer:tap];
+    }
+    return _widgetImgView;
 }
 
 - (NSString *)title {
@@ -112,14 +138,21 @@
 - (void)setShowMuti:(BOOL)show isSingle:(BOOL)isSingle {
     _isShow = show;
     _isSingle = isSingle;
-    if (!show) {
-        self.doubleImgView.hidden = 0;
-        return;
-    }
+    
+    self.doubleImgView.hidden = !show;
     if (isSingle) {
         self.doubleImgView.image = [UIImage imageNamed:@"per.single"];
     } else {
         self.doubleImgView.image = [UIImage imageNamed:@"per.double"];
+    }
+}
+
+- (void)setWidget:(BOOL)widget {
+    if (@available(iOS 14.0, *)) {
+        _widget = widget;
+        if (_widget) {
+            self.widgetImgView.hidden = !widget;
+        }
     }
 }
 

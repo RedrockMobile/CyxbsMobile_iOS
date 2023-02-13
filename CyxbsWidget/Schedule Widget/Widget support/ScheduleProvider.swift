@@ -20,7 +20,6 @@ struct ScheduleProvider: IntentTimelineProvider {
     }
     
     func getSnapshot(for configuration: ScheduleWidgetConfiguration, in context: Context, completion: @escaping (ScheduleTimelineEntry) -> ())  {
-        
         let entry = ScheduleTimelineEntry(date: Date())
         
         let item1 = ScheduleCombineItem.priview2021215154
@@ -42,16 +41,28 @@ struct ScheduleProvider: IntentTimelineProvider {
         Task {
             do {
                 var entries: [ScheduleTimelineEntry] = []
-                for hourOffset in 0 ..< 7 {
-                    let currentDate = Date()
-                    let entryDate = Calendar.current.date(byAdding: .day, value: hourOffset, to: currentDate)!
-                    let entry = ScheduleTimelineEntry(date: entryDate)
-                    entries.append(entry)
-
-                    if let item = try await ScheduleWidgetRequest.shared.request(sno: "2021215154") {
-                        entry.combineItems.append(item)
-                        entry.mainKey = item.identifier
+                let mainKey = ScheduleWidgetCache().getKeyWithKeyName(ScheduleWidgetCacheKeyMain, usingSupport: true)
+                let otherKey = ScheduleWidgetCache().getKeyWithKeyName(ScheduleWidgetCacheKeyOther, usingSupport: true)
+                
+                var mainItem: ScheduleCombineItem?
+                var otherItem: ScheduleCombineItem?
+                if let mainKey = mainKey {
+                    mainItem = try await ScheduleWidgetRequest.shared.request(sno: mainKey.sno)
+                    if ScheduleWidgetCache().beDouble, let otherKey = otherKey {
+                        otherItem = try await ScheduleWidgetRequest.shared.request(sno: otherKey.sno)
                     }
+                }
+                
+                for entryDate in ScheduleTimelineEntry.getUpdates() {
+                    let entry = ScheduleTimelineEntry(date: entryDate)
+                    if let main = mainItem {
+                        entry.combineItems.append(main)
+                        entry.mainKey = main.identifier
+                    }
+                    if let other = otherItem {
+                        entry.combineItems.append(other)
+                    }
+                    entries.append(entry)
                 }
                 let timeline = Timeline(entries: entries, policy: .atEnd)
                 completion(timeline)

@@ -19,9 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
   
 @interface ScheduleServiceSolve : ScheduleServiceDataSource
 
-/// request schedule
-@property (nonatomic, strong) ScheduleRequestDictionary *parameterIfNeeded;
-
 /// header view
 @property (nonatomic, strong, null_resettable) ScheduleHeaderView *headerView;
 
@@ -30,14 +27,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) UICollectionView *collectionView;
 
-@property (nonatomic) BOOL mainSevice;
+
+
+/// request schedule
+@property (nonatomic, strong) ScheduleRequestDictionary *parameterIfNeeded;
+
+@property (nonatomic) ScheduleModelShowType onShow;
+
+
+
 
 /// XXHB, default is NO
 @property (nonatomic) BOOL canUseAwake __deprecated_msg("⚠️XXHB");
 
-- (void)requestAndReloadData;
+- (void)requestAndReloadData:(void (^ _Nullable)(void))complition;
 
-- (void)scrollToSection:(NSUInteger)page;
+- (void)scrollToSection:(NSInteger)page;
 
 - (void)reloadHeaderView;
 

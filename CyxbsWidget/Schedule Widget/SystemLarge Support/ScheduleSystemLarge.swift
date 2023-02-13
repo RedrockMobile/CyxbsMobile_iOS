@@ -36,20 +36,21 @@ struct ScheduleSystemLarge: View {
     var body: some View {
         VStack(spacing: 0) {
             ScheduleSectionTopView(title: title())
-                .padding(.vertical, 8)
+                .padding(.vertical, 5)
                 .padding(.leading, 5)
             Divider()
                 .padding(.horizontal, 8)
+                .padding(.bottom, 2)
             
             GeometryReader { allEntry in
                 VStack(spacing: 2) {
-                    ScheduleTopView(anyDate: topDate(), width: 21)
+                    ScheduleTopView(anyDate: topDate(), width: 23)
                         .frame(height: allEntry.size.width / 7)
                     
-                    HStack {
+                    HStack(spacing: 5) {
                         ScheduleLeadingView(range: data.range)
                             .padding(.leading, 5)
-                            .frame(width: 21)
+                            .frame(width: 20)
                         GeometryReader { entryB in
                             ForEach(data.data) { item in
                                 ContentView(item: item, size: entryB.size)
@@ -78,7 +79,7 @@ extension ScheduleSystemLarge {
                                    muti: vm.hadMuti)
         .frame(width: itemWidth, height: itemHeight * CGFloat(vm.lenth) + 2.0 * CGFloat(vm.lenth - 1))
         .padding(.top, (itemHeight + 2) * CGFloat(idx.location - data.range.lowerBound))
-        .padding(.leading, (itemWidth + 2.0) * CGFloat(idx.week - 1) - 2)
+        .padding(.leading, (itemWidth + 2.0) * CGFloat(idx.week - 1))
         
         func draw(_ kind: ScheduleBelongKind = .fistSystem, locate: Int) -> ScheduleContentView.DrawType {
             switch kind {

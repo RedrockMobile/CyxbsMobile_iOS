@@ -10,14 +10,39 @@ import SwiftUI
 import WidgetKit
 
 struct ScheduleSystemSmall: View {
+    var entry: ScheduleProvider.Entry
+    var data: ScheduleFetchData
+    
+    init(entry: ScheduleProvider.Entry) {
+        self.entry = entry
+        let hour = Calendar(identifier: .republicOfChina).dateComponents(in: TimeZone(identifier: "Asia/Chongqing")!, from: entry.date).hour!
+        let range: Range<Int>!
+        if hour < 10 {
+            range = 1..<7
+        } else if hour < 12 {
+            range = 3..<9
+        } else if hour < 16 {
+            range = 5..<11
+        } else {
+            range = 7..<13
+        }
+        data = ScheduleFetchData(range: range, section: entry.section)
+        data.sno = entry.mainKey?.sno
+        for item in entry.combineItems {
+            data.combineItem(item)
+        }
+    }
+    
     var body: some View {
-        Text("Small行为组件暂时没写，请添加Large行为组件")
+        HStack {
+            Text("")
+        }
     }
 }
 
 struct ScheduleSystemSmall_Previews: PreviewProvider {
     static var previews: some View {
-        ScheduleSystemSmall()
+        ScheduleSystemSmall(entry: ScheduleTimelineEntry(date: Date()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

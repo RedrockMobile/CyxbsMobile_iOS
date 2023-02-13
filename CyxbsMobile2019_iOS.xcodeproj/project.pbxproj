@@ -41,9 +41,6 @@
 		1422242628D9B31B009A4A54 /* RisingUIKitExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 1422242528D9B31B009A4A54 /* RisingUIKitExtension.m */; };
 		14320606291C9657003B0E11 /* UserAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14320605291C9657003B0E11 /* UserAgreementViewController.m */; };
 		1435613028CCA93500EF6987 /* ScheduleServiceSolve.m in Sources */ = {isa = PBXBuildFile; fileRef = 1435612F28CCA93500EF6987 /* ScheduleServiceSolve.m */; };
-		143762C72963EBC200979FA2 /* CyxbsWidgetKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143762C62963EBC200979FA2 /* CyxbsWidgetKind.swift */; };
-		143762C82963EBC700979FA2 /* CyxbsWidgetKind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 143762C62963EBC200979FA2 /* CyxbsWidgetKind.swift */; };
-		1437630229696A7300979FA2 /* ScheduleWidgetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1437630029696A7000979FA2 /* ScheduleWidgetModel.swift */; };
 		1441BF7C291FF29200591A0E /* UserAgreementConsentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1441BF7B291FF29200591A0E /* UserAgreementConsentView.m */; };
 		1448BFF52961CC830015768E /* WidgetKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AF72961516B0046E7BE /* WidgetKitHelper.swift */; };
 		1448BFF829627E350015768E /* ScheduleWidgetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448BFF729627E350015768E /* ScheduleWidgetCache.m */; };
@@ -198,8 +195,6 @@
 		14320605291C9657003B0E11 /* UserAgreementViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAgreementViewController.m; sourceTree = "<group>"; };
 		1435612E28CCA93500EF6987 /* ScheduleServiceSolve.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleServiceSolve.h; sourceTree = "<group>"; };
 		1435612F28CCA93500EF6987 /* ScheduleServiceSolve.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleServiceSolve.m; sourceTree = "<group>"; };
-		143762C62963EBC200979FA2 /* CyxbsWidgetKind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyxbsWidgetKind.swift; sourceTree = "<group>"; };
-		1437630029696A7000979FA2 /* ScheduleWidgetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWidgetModel.swift; sourceTree = "<group>"; };
 		1441BF7A291FF29200591A0E /* UserAgreementConsentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAgreementConsentView.h; sourceTree = "<group>"; };
 		1441BF7B291FF29200591A0E /* UserAgreementConsentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAgreementConsentView.m; sourceTree = "<group>"; };
 		1448BFF629627E350015768E /* ScheduleWidgetCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleWidgetCache.h; sourceTree = "<group>"; };
@@ -539,7 +534,6 @@
 			children = (
 				141008E2295E88E20046E7BE /* CyxbsWidgetBundle.swift */,
 				141008E4295E88E20046E7BE /* CyxbsWidgetLiveActivity.swift */,
-				143762C62963EBC200979FA2 /* CyxbsWidgetKind.swift */,
 				1463DC7F29949FF0002758B2 /* Schedule Widget */,
 				14100AF1296139020046E7BE /* CyxbsWidgetSupport.h */,
 				14D645942961620F001315B1 /* CyxbsWidget-Bridging-Header.h */,
@@ -601,7 +595,6 @@
 			isa = PBXGroup;
 			children = (
 				14D64592296161BC001315B1 /* ScheduleFetchData.swift */,
-				1437630029696A7000979FA2 /* ScheduleWidgetModel.swift */,
 				14880A4D296EB55A00BC5368 /* ScheduleWidgetPriview.swift */,
 				1463DC51298E32F5002758B2 /* student2021215154.plist */,
 				1463DC50298E32F5002758B2 /* student2022214857.plist */,
@@ -1215,7 +1208,6 @@
 				1448BFF9296280FD0015768E /* ScheduleWidgetCache.m in Sources */,
 				141008E7295E88E20046E7BE /* ScheduleProvider.swift in Sources */,
 				14D6459529616280001315B1 /* ScheduleMapModel.m in Sources */,
-				1437630229696A7300979FA2 /* ScheduleWidgetModel.swift in Sources */,
 				14880A4E296EB55A00BC5368 /* ScheduleWidgetPriview.swift in Sources */,
 				141008F7295E8B7A0046E7BE /* ScheduleSystemLarge.swift in Sources */,
 				147C2E5F298221FB00F58266 /* ScheduleNeedsSupport.m in Sources */,
@@ -1223,7 +1215,6 @@
 				141008E5295E88E20046E7BE /* CyxbsWidgetLiveActivity.swift in Sources */,
 				14100AEE296005F20046E7BE /* ScheduleLeadingView.swift in Sources */,
 				14100AF029612DFE0046E7BE /* ScheduleTopView.swift in Sources */,
-				143762C82963EBC700979FA2 /* CyxbsWidgetKind.swift in Sources */,
 				141008F9295E8CF60046E7BE /* ScheduleSystemSmall.swift in Sources */,
 				14880A50296EBE9600BC5368 /* ScheduleTimelineEntry.swift in Sources */,
 				14100AEB295FDCF50046E7BE /* ScheduleSupplementaryView.swift in Sources */,
@@ -1289,7 +1280,6 @@
 				147C2E5E298221F700F58266 /* ScheduleNeedsSupport.m in Sources */,
 				147681B7297156AF00E2D34D /* ScheduleBar.m in Sources */,
 				140F6699298218050075C50A /* SchedulePolicyService.m in Sources */,
-				143762C72963EBC200979FA2 /* CyxbsWidgetKind.swift in Sources */,
 				14E844F628FC40090037309F /* ScheduleDetailController.m in Sources */,
 				14E66AA7295C8AC90043CBE7 /* ScheduleTimelineSupport.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
@@ -1366,7 +1356,7 @@
 				CODE_SIGN_ENTITLEMENTS = CyxbsWidgetExtensionDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CyxbsWidget/Info.plist;
@@ -1400,7 +1390,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CyxbsWidget/Info.plist;
@@ -1552,7 +1542,7 @@
 				CODE_SIGN_ENTITLEMENTS = CyxbsMobile2019_iOS/CyxbsMobile2019_iOSDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
@@ -1615,7 +1605,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";

@@ -10,9 +10,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class SchedulePresenter;
+@class SchedulePresenter, FastLoginViewController;
+
+@protocol FastLoginViewControllerDelegate <NSObject>
+
+@optional
+
+- (void)viewControllerTapBegin:(FastLoginViewController *)vc;
+
+@end
 
 @interface FastLoginViewController : UIViewController
+
+@property (nonatomic, weak) id <FastLoginViewControllerDelegate> delegate;
 
 /// <#description#>
 @property (nonatomic) SchedulePresenter *presenter;

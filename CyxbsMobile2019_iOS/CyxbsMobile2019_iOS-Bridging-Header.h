@@ -11,3 +11,5 @@
  * 所以用到的时候使用
  * `#import "掌上重邮-Swift.h"`
  */
+
+#import "CyxbsWidgetSupport.h"

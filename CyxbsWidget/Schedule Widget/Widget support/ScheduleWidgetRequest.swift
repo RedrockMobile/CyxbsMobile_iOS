@@ -27,6 +27,7 @@ final class ScheduleWidgetRequest {
         if let dic = JSON(response.0).dictionary {
             let sno = dic["stuNum"]?.string!
             let nowWeek = dic["nowWeek"]?.int!
+            
             let key = ScheduleIdentifier(sno: sno!, type: .student)
             key.setExpWithNowWeek(nowWeek!)
             
