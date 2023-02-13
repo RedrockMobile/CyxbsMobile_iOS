@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// - Parameter view: 视图
 - (void)scheduleHeaderViewDidTapDouble:(ScheduleHeaderView *)view;
 
+- (void)scheduleHeaderViewDidTapWidget:(ScheduleHeaderView *)view;
+
 @end
 
 #pragma mark - ScheduleHeaderView
@@ -56,6 +58,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 是否单双
 @property (nonatomic, readonly) BOOL isSingle;
+
+@property (nonatomic) BOOL widget;
 
 - (instancetype)init NS_UNAVAILABLE;
 

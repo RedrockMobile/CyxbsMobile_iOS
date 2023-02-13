@@ -13,4 +13,8 @@
 
 static NSString * const CyxbsWidgetAppGroups = @"group.com.mredrock.cyxbs.widget";
 
+typedef NSString * CysbxsWidgetKind;
+
+static CysbxsWidgetKind const CyxbsWidgetSchedule = @"ScheduleWidget";
+
 #endif /* CyxbsWidgetSupport_h */

@@ -59,7 +59,11 @@ class ScheduleFetchData: ScheduleMapModel {
     init(range: Range<Int>, section: Int?) {
         self.range = range
         if let section = section {
-            self.section = section
+            if section >= 23 || section < 0 {
+                self.section = 0
+            } else {
+                self.section = section
+            }
         } else {
             if let begin = beginTime {
                 self.section = Int((Date().timeIntervalSince1970 - begin) / (7.0 * 60 * 60 * 60))
@@ -80,7 +84,7 @@ class ScheduleFetchData: ScheduleMapModel {
         }
         
         for key in self.mapTable.keyEnumerator().allObjects as! [NSIndexPath] {
-            if (key.section == section && range.contains(key.location)) {
+            if (key.section == section) {
                 let part = PartItem(indexPath: key, viewModel: self.mapTable.object(forKey: key)!)
                 data.append(part)
             }

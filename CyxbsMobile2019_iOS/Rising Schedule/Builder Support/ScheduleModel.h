@@ -26,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ScheduleModel : ScheduleMapModel
 
+@property (nonatomic, readonly) NSUInteger showWeek;
+
 @property (nonatomic, readonly) ScheduleTouchItem *touchItem;
 
 @property (nonatomic, readonly) NSArray <NSArray <NSIndexPath *> *> *courseIdxPaths;

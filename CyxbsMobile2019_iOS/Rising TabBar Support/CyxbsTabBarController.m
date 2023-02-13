@@ -20,7 +20,7 @@
 #import "ScheduleController.h"
 #import "TransitioningDelegate.h"
 
-@interface CyxbsTabBarController ()
+@interface CyxbsTabBarController () <FastLoginViewControllerDelegate>
 
 @property (nonatomic, strong) ScheduleBar *scheduleBar;
 
@@ -41,16 +41,6 @@
     self.viewControllers = @[
         self._test1
     ];
-    
-    BOOL hadReadAgreement = [NSUserDefaults.standardUserDefaults boolForKey:UDKey.hadReadAgreement];
-    if (!hadReadAgreement) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.53 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                UIViewController *vc = [[UserAgreementViewController alloc] init];
-                vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-                [self presentViewController:vc animated:YES completion:nil];
-                self.selectedIndex = 1;
-        });
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -94,6 +84,24 @@
         
         [self.view addSubview:self.scheduleBar];
         [self _drawScheduleBar];
+        
+        BOOL hadReadAgreement = [NSUserDefaults.standardUserDefaults boolForKey:UDKey.hadReadAgreement];
+        if (!hadReadAgreement) {
+            UIViewController *vc = [[UserAgreementViewController alloc] init];
+            vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+            [self presentViewController:vc animated:YES completion:nil];
+            self.selectedIndex = 1;
+        } else {
+            ScheduleIdentifier *main = [ScheduleWidgetCache.shareCache getKeyWithKeyName:ScheduleWidgetCacheKeyMain usingSupport:YES];
+            ScheduleIdentifier *other = [ScheduleWidgetCache.shareCache getKeyWithKeyName:ScheduleWidgetCacheKeyOther usingSupport:YES];
+            if (!main) { return; }
+            if (ScheduleWidgetCache.shareCache.beDouble) {
+                [self.schedulePresenter setWithMainKey:main otherKey:other];
+            } else {
+                [self.schedulePresenter setWithMainKey:main];
+            }
+            [self _presentScheduleControllerWithPan:nil];
+        }
     }
 }
 
@@ -149,38 +157,32 @@
 
 
 
-- (TransitioningDelegate *)_delegate {
+- (void)_presentScheduleControllerWithPan:(UIPanGestureRecognizer * _Nullable)pan  {
+    UIViewController *vc = [[ScheduleController alloc] initWithPresenter:self.schedulePresenter];
     TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
     delegate.transitionDurationIfNeeded = 0.3;
     delegate.panInsetsIfNeeded = UIEdgeInsetsMake(StatusBarHeight(), 0, self.tabBar.height, 0);
     delegate.supportedTapOutsideBackWhenPresent = NO;
-    return delegate;
+    if (pan) {
+        delegate.panGestureIfNeeded = pan;
+    }
+    
+    vc.transitioningDelegate = delegate;
+    vc.modalPresentationStyle = UIModalPresentationCustom;
+    [self presentViewController:vc animated:YES completion:^{
+                
+    }];
 }
 
 - (void)_tap:(UITapGestureRecognizer *)tap {
     if (tap.state == UIGestureRecognizerStateEnded) {
-        UIViewController *vc = [[ScheduleController alloc] initWithPresenter:self.schedulePresenter];;
-        TransitioningDelegate *delegate = self._delegate;
-        
-        vc.transitioningDelegate = delegate;
-        vc.modalPresentationStyle = UIModalPresentationCustom;
-        [self presentViewController:vc animated:YES completion:^{
-                    
-        }];
+        [self _presentScheduleControllerWithPan:nil];
     }
 }
 
 - (void)_pan:(UIPanGestureRecognizer *)pan {
     if (pan.state == UIGestureRecognizerStateBegan) {
-        UIViewController *vc = [[ScheduleController alloc] initWithPresenter:self.schedulePresenter];;
-        TransitioningDelegate *delegate = self._delegate;
-        delegate.panGestureIfNeeded = pan;
-        
-        vc.transitioningDelegate = delegate;
-        vc.modalPresentationStyle = UIModalPresentationCustom;
-        [self presentViewController:vc animated:YES completion:^{
-                    
-        }];
+        [self _presentScheduleControllerWithPan:pan];
     }
 }
 
@@ -216,30 +218,12 @@
 - (UIViewController *)_test1 {
     FastLoginViewController *vc = [[FastLoginViewController alloc] init];
     vc.presenter = self.schedulePresenter;
+    vc.delegate = self;
     return [[UINavigationController alloc] initWithRootViewController:vc];
 }
 
-
-- (UIViewController *)_vc1 {
-    SchedulePresenter *presenter = [[SchedulePresenter alloc] init];
-    presenter.useAwake = [NSUserDefaults.standardUserDefaults boolForKey:UDKey.isXXHB];
-    
-    ScheduleIdentifier *mainID = [ScheduleWidgetCache.shareCache getKeyWithKeyName:ScheduleWidgetCacheKeyMain usingSupport:YES];
-    if (mainID.sno && ![mainID.sno isEqualToString:@""]) {
-        if (ScheduleWidgetCache.shareCache.beDouble) {
-            ScheduleIdentifier *otherID = [ScheduleWidgetCache.shareCache getKeyWithKeyName:ScheduleWidgetCacheKeyOther usingSupport:YES];
-            [presenter setWithMainKey:mainID otherKey:otherID];
-        } else {
-            [presenter setWithMainKey:mainID];
-        }
-    }
-    
-    ScheduleController *vc = [[ScheduleController alloc] initWithPresenter:presenter];
-    self.schedulePresenter = presenter;
-    
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
-    nav.navigationBarHidden = YES;
-    return nav;
+- (void)viewControllerTapBegin:(FastLoginViewController *)vc {
+    [self _presentScheduleControllerWithPan:nil];
 }
 
 @end

@@ -22,8 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 开始的时间，nil表示不可用
 @property (nonatomic, readonly, nullable) NSDate *startDate;
 
-/// 当周(0代表整周)
-@property (nonatomic, readonly) NSUInteger nowWeek;
+/// 当周(0代表整周)，有可能为负数
+@property (nonatomic, readonly) NSInteger nowWeek;
 
 /// 当前正在上课/下一节课/当天已经没有课
 @property (nonatomic, readonly, nullable) ScheduleCourse *floorCourse;

@@ -47,7 +47,7 @@ RisingSingleClass_IMPLEMENTATION(Cache)
 #pragma mark - <NSCacheDelegate>
 
 - (void)cache:(NSCache *)cache willEvictObject:(id)obj {
-    NSLog(@"课表cache已达上限，将移除:\n%@", obj);
+    NSLog(@"课表cache将移除:\n%@", obj);
 }
 
 @end

@@ -19,7 +19,7 @@ FOUNDATION_EXTERN ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyOther;
 /* Key Support */
 
 - (void)setKey:(ScheduleIdentifier *)key withKeyName:(ScheduleWidgetCacheKeyName)keyname usingSupport:(BOOL)support;
-- (ScheduleIdentifier *)getKeyWithKeyName:(ScheduleWidgetCacheKeyName)keyname usingSupport:(BOOL)support;
+- (nullable ScheduleIdentifier *)getKeyWithKeyName:(ScheduleWidgetCacheKeyName)keyname usingSupport:(BOOL)support;
 
 /* Widget Support */
 

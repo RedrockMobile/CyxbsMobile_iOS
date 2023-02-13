@@ -7,6 +7,7 @@
 //
 
 #import "ScheduleWidgetCache.h"
+#import "CyxbsWidgetSupport.h"
 
 #import "ScheduleMapModel.h"
 #import "ScheduleCollectionViewModel.h"

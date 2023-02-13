@@ -48,7 +48,7 @@
     [self.view addSubview:self.snoField];
     [self.view addSubview:self.otherField];
     [self.view addSubview:self.cleBtn];
-    [self.view addSubview:self.widgetField];
+//    [self.view addSubview:self.widgetField];
 }
 
 #pragma mark - TT
@@ -117,7 +117,7 @@
         _cleBtn.layer.cornerRadius = _cleBtn.height / 3;
         _cleBtn.clipsToBounds = YES;
         _cleBtn.titleLabel.font = [UIFont fontWithName:FontName.PingFangSC.Semibold size:16];
-        [_cleBtn setTitle:@"注  销" forState:UIControlStateNormal];
+        [_cleBtn setTitle:@"开  始" forState:UIControlStateNormal];
         [_cleBtn setTitleColor:UIColorHex(#FFFFFF) forState:UIControlStateNormal];
         [_cleBtn bringSubviewToFront:_cleBtn.titleLabel];
         [_cleBtn addTarget:self action:@selector(_cletap:)
@@ -133,27 +133,31 @@
     NSString *sno = self.snoField.text.copy;
     ScheduleIdentifier *mainID = [ScheduleIdentifier identifierWithSno:sno type:ScheduleModelRequestStudent];
     if (self.otherField.text && ![self.otherField.text isEqualToString:@""]) {
-        // be double
         NSString *otherSno = self.otherField.text.copy;
         ScheduleIdentifier *otherID = [ScheduleIdentifier identifierWithSno:otherSno type:ScheduleModelRequestStudent];
         
         [self.presenter setWithMainKey:mainID otherKey:otherID];
     } else {
-        // only
         [self.presenter setWithMainKey:mainID];
     }
-    self.snoField.text = nil;
-    self.otherField.text = nil;
     
-    if (self.widgetField.text && ![self.widgetField.text isEqualToString:@""]) {
-        [self.presenter setWidgetSection:self.widgetField.text.integerValue];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(viewControllerTapBegin:)]) {
+        [self.delegate viewControllerTapBegin:self];
     }
+    
+//    if (self.widgetField.text && ![self.widgetField.text isEqualToString:@""]) {
+//        [self.presenter setWidgetSection:self.widgetField.text.integerValue];
+//    }
 }
 
 - (void)_outside:(UIButton *)btn {
     [NSUserDefaults.standardUserDefaults setBool:YES forKey:UDKey.isXXHB];
     self.presenter.useAwake = YES;
 }
+
+
+
+
 
 - (void)_drawTabbar {
     UIImage *selectImg = [[[UIImage imageNamed:@"more"] imageByResizeToSize:CGSizeMake(20, 20) contentMode:UIViewContentModeScaleAspectFit] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

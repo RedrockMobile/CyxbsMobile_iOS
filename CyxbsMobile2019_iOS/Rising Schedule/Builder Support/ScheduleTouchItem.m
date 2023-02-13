@@ -23,7 +23,6 @@
     _combining = combining;
     _startDate = [NSDate dateWithTimeIntervalSince1970:combining.identifier.exp];
     double nowWeek = ceil([NSDate.date timeIntervalSinceDate:_startDate] / (7 * 24 * 60 * 60));
-    nowWeek = nowWeek < 0 ? 0 : nowWeek;
     _nowWeek = nowWeek;
     
     _maxSection = 0;

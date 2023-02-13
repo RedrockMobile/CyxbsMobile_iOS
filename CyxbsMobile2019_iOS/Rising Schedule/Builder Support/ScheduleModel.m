@@ -84,4 +84,12 @@
     return _courseIdxPaths;
 }
 
+- (NSUInteger)showWeek {
+    if (self.touchItem.nowWeek >= self.courseIdxPaths.count || self.touchItem.nowWeek < 0) {
+        return 0;
+    } else {
+        return self.touchItem.nowWeek;
+    }
+}
+
 @end

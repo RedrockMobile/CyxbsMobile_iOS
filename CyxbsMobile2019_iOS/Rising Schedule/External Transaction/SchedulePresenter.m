@@ -74,7 +74,9 @@
 
 
 - (void)requestAndReloadData {
-    [self.service requestAndReloadData];
+    [self.service requestAndReloadData:^{
+        [self.service scrollToSection:self.service.model.touchItem.nowWeek];
+    }];
 }
 
 - (void)setUseAwake:(BOOL)useAwake {
@@ -97,11 +99,13 @@
     }
     
     [ScheduleWidgetCache.shareCache setKey:main withKeyName:ScheduleWidgetCacheKeyMain usingSupport:YES];
+    ScheduleWidgetCache.shareCache.beDouble = NO;
+    
     _service.model.sno = main.sno;
     _service.parameterIfNeeded = @{
         ScheduleModelRequestStudent : @[main.sno]
     };
-    [_service.headerView setShowMuti:YES isSingle:YES];
+    _service.onShow = ScheduleModelShowSingle;
 }
 
 - (void)setWithMainKey:(ScheduleIdentifier *)main otherKey:(ScheduleIdentifier *)other {
@@ -116,10 +120,12 @@
     }
     
     [ScheduleWidgetCache.shareCache setKey:other withKeyName:ScheduleWidgetCacheKeyOther usingSupport:YES];
+    ScheduleWidgetCache.shareCache.beDouble = YES;
+    
     _service.parameterIfNeeded = @{
         ScheduleModelRequestStudent : @[main.sno, other.sno]
     };
-    [_service.headerView setShowMuti:YES isSingle:NO];
+    _service.onShow = ScheduleModelShowDouble;
 }
 
 - (void)setWidgetSection:(NSInteger)section {

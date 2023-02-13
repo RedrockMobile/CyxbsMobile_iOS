@@ -16,9 +16,9 @@ import WidgetKit
         #endif
     }
     
-    class func reloadTimelines(ofKind kind: WidgetKind) {
+    class func reloadTimelines(ofKind kind: CysbxsWidgetKind) {
         #if arch(arm64) || arch(i386) || arch(x86_64)
-        WidgetCenter.shared.reloadTimelines(ofKind: kind.rawValue)
+        WidgetCenter.shared.reloadTimelines(ofKind: kind as String)
         #endif
     }
 }

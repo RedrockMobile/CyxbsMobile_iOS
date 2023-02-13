@@ -52,14 +52,16 @@
     [*view addGestureRecognizer:tap];
 }
 
-- (void)requestAndReloadData {
+- (void)requestAndReloadData:(void (^)(void))complition {
     [self.model clear];
     [self.policy
      requestDic:self.parameterIfNeeded
      policy:^(ScheduleCombineItem * _Nonnull item) {
         [self.model combineItem:item];
         [self.collectionView reloadData];
-        [self scrollToSection:self.model.touchItem.nowWeek];
+        if (complition) {
+            complition();
+        }
         
         if (self.canUseAwake) {
             [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
@@ -70,15 +72,15 @@
             ScheduleCombineItem *item = [ScheduleShareCache.shareCache awakeForIdentifier:unpolicyKEY];
             [self.model combineItem:item];
             [self.collectionView reloadData];
-            [self scrollToSection:self.model.touchItem.nowWeek];
+//            [self scrollToSection:self.model.touchItem.nowWeek];
         }
     }];
 }
 
 #pragma mark - Method
 
-- (void)scrollToSection:(NSUInteger)page {
-    if (page > self.model.courseIdxPaths.count) {
+- (void)scrollToSection:(NSInteger)page {
+    if (page > self.model.showWeek || page < 0) {
         page = 0;
     }
     [self.collectionView setContentOffset:CGPointMake(page * self.collectionView.width, 0) animated:YES];
@@ -96,9 +98,26 @@
 }
 
 - (void)reloadHeaderView {
-    NSInteger page = self.collectionView.contentOffset.x / self.collectionView.width;
-    self.headerView.title = [self _titleForNum:page];
-    self.headerView.reBack = (page == self.model.touchItem.nowWeek);
+    if (self.headerView) {
+        NSInteger page = self.collectionView.contentOffset.x / self.collectionView.width;
+        self.headerView.title = [self _titleForNum:page];
+        
+        self.headerView.reBack = (page == self.model.showWeek);
+        switch (self.onShow) {
+            case ScheduleModelShowGroup:
+                [self.headerView setShowMuti:NO isSingle:YES];
+                break;
+            case ScheduleModelShowSingle:
+                [self.headerView setShowMuti:YES isSingle:YES];
+                break;
+            case ScheduleModelShowDouble:
+                [self.headerView setShowMuti:YES isSingle:NO];
+                break;
+            case ScheduleModelShowWidget:
+                
+                break;
+        }
+    }
 }
 
 - (void)setHeaderView:(ScheduleHeaderView *)headerView {
@@ -132,13 +151,20 @@
 }
 
 - (void)_emptyTap:(UITapGestureRecognizer *)tap {
-    if (tap.state == UIGestureRecognizerStateEnded) {
+    if (tap.state == UIGestureRecognizerStateEnded && self.onShow != ScheduleModelShowGroup) {
         ScheduleCustomViewController *vc = [[ScheduleCustomViewController alloc] init];
         vc.modalPresentationStyle = UIModalPresentationCustom;
         TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
         vc.transitioningDelegate = delegate;
         [self.viewController presentViewController:vc animated:YES completion:nil];
     }
+}
+
+#pragma mark - Setter
+
+- (void)setOnShow:(ScheduleModelShowType)onShow {
+    _onShow = onShow;
+    [self reloadHeaderView];
 }
 
 #pragma mark - <UICollectionViewDelegate>
@@ -170,7 +196,7 @@
 #pragma mark - <ScheduleHeaderViewDelegate>
 
 - (void)scheduleHeaderView:(ScheduleHeaderView *)view didSelectedBtn:(UIButton *)btn {
-    [self scrollToSection:self.model.touchItem.nowWeek];
+    [self scrollToSection:self.model.showWeek];
 }
 
 - (void)scheduleHeaderViewDidTapDouble:(ScheduleHeaderView *)view {
@@ -192,7 +218,7 @@
     }
     
     [view setShowMuti:YES isSingle:!view.isSingle];
-    [self requestAndReloadData];
+    [self requestAndReloadData:nil];
 }
 
 #pragma mark - <UIGestureRecognizerDelegate>

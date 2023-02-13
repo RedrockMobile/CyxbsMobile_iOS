@@ -18,7 +18,7 @@ struct ScheduleContentView: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 10, style: .continuous)
+            RoundedRectangle(cornerRadius: 8, style: .continuous)
                 .foregroundColor(draw.color(.background, scheme))
             VStack {
                 TypeText(title)
