@@ -58,7 +58,7 @@ extension ScheduleTimelineEntry {
         updates.append(canlaner.date(bySettingHour: 22, minute: 00, second: 00, of: today)!)
         
         var new = updates.filter { canlaner.component(.hour, from: $0) >= nowHour }
-        new.insert(Date(), at: 0)
+        new.insert(canlaner.date(byAdding: .second, value: 3, to: Date()) ?? Date(), at: 0)
         
         return new
     }
