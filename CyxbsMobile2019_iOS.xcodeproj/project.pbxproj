@@ -796,12 +796,12 @@
 				FE87CE1B27E98F82008D7148 /* Supporting Files */,
 				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
 				14100AF62961516B0046E7BE /* CyxbsMobile2019_iOS-Bridging-Header.h */,
+				14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */,
 				140F666529779C750075C50A /* ScheduleCustomViewController.h */,
 				140F666629779C750075C50A /* ScheduleCustomViewController.m */,
 				14BC47F52914D73F0063809E /* FastUp Tests */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				1A9B7678235F50A800725937 /* Info.plist */,
-				14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */,
 			);
 			path = CyxbsMobile2019_iOS;
 			sourceTree = "<group>";
@@ -1356,7 +1356,7 @@
 				CODE_SIGN_ENTITLEMENTS = CyxbsWidgetExtensionDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CyxbsWidget/Info.plist;
@@ -1390,7 +1390,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CyxbsWidget/Info.plist;
@@ -1542,7 +1542,7 @@
 				CODE_SIGN_ENTITLEMENTS = CyxbsMobile2019_iOS/CyxbsMobile2019_iOSDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
@@ -1605,7 +1605,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";

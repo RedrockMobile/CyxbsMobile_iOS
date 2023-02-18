@@ -52,8 +52,22 @@ struct ScheduleSystemLarge: View {
                             .padding(.leading, 5)
                             .frame(width: 20)
                         GeometryReader { entryB in
-                            ForEach(data.data) { item in
-                                ContentView(item: item, size: entryB.size)
+                            if data.data.count != 0 {
+                                ForEach(data.data) { item in
+                                    ContentView(item: item, size: entryB.size)
+                                        .widgetURL(URL(string: "https://redrock.team/schedule/detail?section=\(item.indexPath.section)&week=\(item.indexPath.week)&location=\(item.indexPath.location)"))
+                                }
+                            } else {
+                                VStack (alignment: .leading) {
+                                    Text("小组件请求错误，请检查网络或设置学号")
+                                    Text("\(entry.date)")
+                                    if entry.errorKeys.count >= 1 {
+                                        Text("信息: \(entry.errorKeys[0])")
+                                    } else {
+                                        Text("信息: 未确定主学号")
+                                    }
+                                }
+                                .font(.system(size: 13))
                             }
                         }
                         .clipped()

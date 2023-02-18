@@ -129,7 +129,20 @@
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+
+    NSURLComponents *componets = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:YES];
+    if ([componets.path isEqualToString:@"/schedule/detail"]) {
+        CyxbsTabBarController *tabController = (CyxbsTabBarController *)self.window.rootViewController;
+        [tabController presentScheduleControllerWithPan:nil completion:^(UIViewController * _Nonnull vc) {
+            id service = [[vc performSelector:NSSelectorFromString(@"presenter")] performSelector:NSSelectorFromString(@"service")];
+            NSUInteger idx[3] = {componets.queryItems[0].value.integerValue, componets.queryItems[1].value.integerValue, componets.queryItems[2].value.integerValue};
+            [service performSelector:NSSelectorFromString(@"collectionView:didSelectItemAtIndexPath:") withObject:[service performSelector:NSSelectorFromString(@"collectionView")] withObject:[NSIndexPath indexPathWithIndexes:idx length:3]];
+        }];
+    }
     
+#pragma clang diagnostic pop
     return YES;
 }
 

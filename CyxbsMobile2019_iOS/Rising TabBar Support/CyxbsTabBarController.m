@@ -100,7 +100,7 @@
             } else {
                 [self.schedulePresenter setWithMainKey:main];
             }
-            [self _presentScheduleControllerWithPan:nil];
+            [self presentScheduleControllerWithPan:nil completion:nil];
         }
     }
 }
@@ -157,7 +157,11 @@
 
 
 
-- (void)_presentScheduleControllerWithPan:(UIPanGestureRecognizer * _Nullable)pan  {
+- (void)presentScheduleControllerWithPan:(UIPanGestureRecognizer * _Nullable)pan completion:(void (^ __nullable)(UIViewController *vc))completion {
+    if (self.presentedViewController) {
+        completion(self.presentedViewController);
+        return;
+    }
     UIViewController *vc = [[ScheduleController alloc] initWithPresenter:self.schedulePresenter];
     TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
     delegate.transitionDurationIfNeeded = 0.3;
@@ -170,19 +174,21 @@
     vc.transitioningDelegate = delegate;
     vc.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:vc animated:YES completion:^{
-                
+        if (completion) {
+            completion(vc);
+        }
     }];
 }
 
 - (void)_tap:(UITapGestureRecognizer *)tap {
     if (tap.state == UIGestureRecognizerStateEnded) {
-        [self _presentScheduleControllerWithPan:nil];
+        [self presentScheduleControllerWithPan:nil completion:nil];
     }
 }
 
 - (void)_pan:(UIPanGestureRecognizer *)pan {
     if (pan.state == UIGestureRecognizerStateBegan) {
-        [self _presentScheduleControllerWithPan:pan];
+        [self presentScheduleControllerWithPan:pan completion:nil];
     }
 }
 
@@ -223,7 +229,7 @@
 }
 
 - (void)viewControllerTapBegin:(FastLoginViewController *)vc {
-    [self _presentScheduleControllerWithPan:nil];
+    [self presentScheduleControllerWithPan:nil completion:nil];
 }
 
 @end

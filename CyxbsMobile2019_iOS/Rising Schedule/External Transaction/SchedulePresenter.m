@@ -106,6 +106,8 @@
         ScheduleModelRequestStudent : @[main.sno]
     };
     _service.onShow = ScheduleModelShowSingle;
+    
+    [self _widgetReload];
 }
 
 - (void)setWithMainKey:(ScheduleIdentifier *)main otherKey:(ScheduleIdentifier *)other {
@@ -126,10 +128,16 @@
         ScheduleModelRequestStudent : @[main.sno, other.sno]
     };
     _service.onShow = ScheduleModelShowDouble;
+    
+    [self _widgetReload];
 }
 
 - (void)setWidgetSection:(NSInteger)section {
     ScheduleWidgetCache.shareCache.widgetSection = section;
+    [self _widgetReload];
+}
+
+- (void)_widgetReload {
     if (@available(iOS 14.0, *)) {
         [WidgetKitHelper reloadAllTimelines];
     }

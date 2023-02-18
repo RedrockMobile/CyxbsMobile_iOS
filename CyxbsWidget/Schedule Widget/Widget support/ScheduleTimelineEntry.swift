@@ -23,6 +23,11 @@ class ScheduleTimelineEntry: TimelineEntry {
      */
     var combineItems = [ScheduleCombineItem]()
     
+    /* errorKeys
+     * 与网络请求搭配，错误的请求信息将在这里添加
+     */
+    var errorKeys = [ScheduleIdentifier]()
+    
     /* mainKey
      * 提供mainKey用力绘制双人课表，nil则不绘制
      */
@@ -39,29 +44,4 @@ class ScheduleTimelineEntry: TimelineEntry {
         self.date = date
         self.configuration = ScheduleWidgetConfiguration()
     }
-}
-
-extension ScheduleTimelineEntry {
-    class func getUpdates() -> [Date] {
-        let today = Date()
-        var updates = [Date]()
-        let canlaner = Calendar(identifier: .republicOfChina)
-        let nowHour = canlaner.component(.hour, from: today)
-        
-        updates.append(canlaner.date(bySettingHour: 6, minute: 00, second: 00, of: today)!)
-        updates.append(canlaner.date(bySettingHour: 8, minute: 00, second: 00, of: today)!)
-        updates.append(canlaner.date(bySettingHour: 12, minute: 00, second: 00, of: today)!)
-        updates.append(canlaner.date(bySettingHour: 14, minute: 00, second: 00, of: today)!)
-        updates.append(canlaner.date(bySettingHour: 16, minute: 00, second: 00, of: today)!)
-        updates.append(canlaner.date(bySettingHour: 18, minute: 00, second: 00, of: today)!)
-        updates.append(canlaner.date(bySettingHour: 20, minute: 00, second: 00, of: today)!)
-        updates.append(canlaner.date(bySettingHour: 22, minute: 00, second: 00, of: today)!)
-        
-        var new = updates.filter { canlaner.component(.hour, from: $0) >= nowHour }
-        new.insert(Date(), at: 0)
-        
-        return new
-    }
-    
-    
 }

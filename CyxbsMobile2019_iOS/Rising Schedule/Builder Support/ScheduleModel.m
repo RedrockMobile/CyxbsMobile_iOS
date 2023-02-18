@@ -49,22 +49,25 @@
 
 
 - (NSArray<ScheduleCourse *> *)coursesWithLocationIdxPath:(NSIndexPath *)idxPath {
-    NSMutableArray *ary = NSMutableArray.array;
+    NSMutableSet *set = NSMutableSet.set;
     for (NSArray <ScheduleCourse *> *kind in _statusMap.allValues) {
         for (ScheduleCourse *course in kind) {
-            if (course.inWeek == idxPath.week &&
-                NSLocationInRange(idxPath.location, course.period)) {
-                if (idxPath.section) {
-                    if ([course.inSections containsIndex:idxPath.section]){
-                        [ary addObject:course];
+            if (course.inWeek == idxPath.week) {
+                for (NSInteger i = 0; i < [self.mapTable objectForKey:idxPath].lenth; i++) {
+                    if (NSLocationInRange(idxPath.location + i, course.period)) {
+                        if (idxPath.section) {
+                            if ([course.inSections containsIndex:idxPath.section]){
+                                [set addObject:course];
+                            }
+                        } else {
+                            [set addObject:course];
+                        }
                     }
-                } else {
-                    [ary addObject:course];
                 }
             }
         }
     }
-    return ary;
+    return set.allObjects;
 }
 
 #pragma mark - Getter

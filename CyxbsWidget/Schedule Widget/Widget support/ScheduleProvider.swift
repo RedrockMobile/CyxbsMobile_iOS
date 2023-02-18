@@ -53,15 +53,28 @@ struct ScheduleProvider: IntentTimelineProvider {
                     }
                 }
                 
-                for entryDate in ScheduleTimelineEntry.getUpdates() {
+                let currentDate = Date()
+                for hourOffset in 0 ..< 12 {
+                    let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+
                     let entry = ScheduleTimelineEntry(date: entryDate)
                     if let main = mainItem {
                         entry.combineItems.append(main)
                         entry.mainKey = main.identifier
+                    } else {
+                        if let mainKey = mainKey {
+                            entry.errorKeys.append(mainKey)
+                        }
                     }
+                    
                     if let other = otherItem {
                         entry.combineItems.append(other)
+                    } else {
+                        if let otherKey = otherKey {
+                            entry.errorKeys.append(otherKey)
+                        }
                     }
+                    
                     entries.append(entry)
                 }
                 let timeline = Timeline(entries: entries, policy: .atEnd)
