@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, getter=isScheduleBarHidden) BOOL scheduleBarHidden;
 
+- (void)presentScheduleControllerWithPan:(UIPanGestureRecognizer * _Nullable)pan completion:(void (^ __nullable)(UIViewController *vc))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END
