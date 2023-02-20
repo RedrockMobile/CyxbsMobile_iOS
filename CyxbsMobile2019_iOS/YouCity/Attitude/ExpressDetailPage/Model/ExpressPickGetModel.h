@@ -9,23 +9,12 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+// 获取表态页详细信息
 @interface ExpressPickGetModel : NSObject
-// id
-@property (nonatomic, copy) NSNumber *getId;
-// title
-@property (nonatomic, copy) NSString *title;
-// choices
-@property (nonatomic, copy) NSArray *choices;
-// voted
-@property (nonatomic, copy) NSString *getVoted;
-// statistic
-@property (nonatomic, copy) NSDictionary *getStatistic;
-//@property (nonatomic, copy) NSString *statisticStr;
-//@property (nonatomic, copy) NSNumber *statisticNum;
 
-
-
+- (void)requestGetDetailDataWithId:(NSNumber *)theId
+                           Success:(void(^)(NSArray *array))success
+                           Failure:(void(^)(void))failure;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -11,14 +11,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AttitudeMainModel : NSObject
-// id
-@property (nonatomic, copy) NSString *theId;
-// title
-@property (nonatomic, copy) NSString *title;
 
-+ (instancetype)initWithDic:(NSDictionary *)dic;
-+ (void)requestAttitudeDataWithSuccess:(void(^)(NSArray *array))success
-                              Failure:(void(^)(void))falure;
+- (void)requestAttitudeDataWithOffset:(NSInteger)offset
+                                Limit:(NSInteger)limit
+                              Success:(void (^)(NSArray * array))success
+                              Failure:(void (^)(void))falure;
 
 @end
 

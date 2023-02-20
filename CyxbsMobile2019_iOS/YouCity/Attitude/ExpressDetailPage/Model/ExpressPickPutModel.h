@@ -9,12 +9,10 @@
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+// 表态投票
 @interface ExpressPickPutModel : NSObject
-// statistic
-@property (nonatomic, copy) NSDictionary *putStatistic;
-// voted
-@property (nonatomic, copy) NSString *putVoted;
+
+- (void)requestPickDataWithId:(NSNumber *)theID Choice:(NSString *)choice Success:(void(^)(NSArray *array))success Failure:(void(^)(void))failure;
 
 @end
 

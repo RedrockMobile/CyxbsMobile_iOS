@@ -7,36 +7,34 @@
 //
 
 #import "AttitudeMainModel.h"
+#import "AttitudeMainPageItem.h"
 
 @implementation AttitudeMainModel
 
-
-+ (instancetype)initWithDic:(NSDictionary *)dic {
-    AttitudeMainModel *model = [[AttitudeMainModel alloc] init];
-    model.title = dic[@"id"];
-    model.theId = dic[@"title"];
-    return model;
-}
-
-// json
-+ (void)requestAttitudeDataWithSuccess:(void (^)(NSArray * _Nonnull))success
-                               Failure:(void (^)(void))falure {
+- (void)requestAttitudeDataWithOffset:(NSInteger)offset
+                                Limit:(NSInteger)limit
+                              Success:(void (^)(NSArray *array))success
+                              Failure:(void (^)(void))falure {
+    
+    NSDictionary *param = @{
+        @"limit": [NSNumber numberWithLong:limit],
+        @"offset": [NSNumber numberWithLong:offset]
+    };
     [HttpTool.shareTool
      request:Attitude_GET_homePageData_API
      type:HttpToolRequestTypeGet
-     serializer:HttpToolRequestSerializerJSON
-     bodyParameters:nil // offset参数未选默认为0，limit默认20
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:param // offset参数未选默认为0，limit默认20
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-        
         NSMutableArray *mutarray = [NSMutableArray array];
         
-        for (NSDictionary *dic in object) {
-            AttitudeMainModel *model = [AttitudeMainModel initWithDic:dic];
+        for (NSDictionary *dic in object[@"data"]) {
+            AttitudeMainPageItem *model = [AttitudeMainPageItem initWithDic:dic];
             [mutarray addObject:model];
-            NSLog(@"啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊");
         }
         if (success) {
+            NSLog(@"==============主页success");
             success(mutarray.copy);
         }
     }

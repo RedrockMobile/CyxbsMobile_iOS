@@ -7,20 +7,30 @@
 //
 
 #import "ExpressPickGetModel.h"
+#import "ExpressPickGetItem.h"
 
 @implementation ExpressPickGetModel
 
-- (instancetype)initWithDic:(NSDictionary *)dic {
-    self = [super init];
-    if (self) {
-        self.getId = dic[@"id"];
-        self.choices = dic[@"choices"];
-        self.getStatistic = dic[@"statistic"]; // 也是字典 { string: number }
-//        self.statisticStr =
-        self.title = dic[@"title"];
-        self.choices = dic[@"choices"];
-    }
-    return self;
+// 获取表态页详细信息 参数id
+- (void)requestGetDetailDataWithId:(NSNumber *)theId
+                           Success:(void(^)(NSArray *array))success
+                           Failure:(void(^)(void))failure {
+    [HttpTool.shareTool
+    request:Attitude_GET_expressDetailData_API
+     type:HttpToolRequestTypeGet
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:theId
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        ExpressPickGetItem *model = [[ExpressPickGetItem alloc] initWithDic:object];
+        NSMutableArray *dataArray = [NSMutableArray array];
+        [dataArray addObject:model];
+        if (success) {
+            success(dataArray.copy);
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"failure");
+    }];
 }
 
 @end

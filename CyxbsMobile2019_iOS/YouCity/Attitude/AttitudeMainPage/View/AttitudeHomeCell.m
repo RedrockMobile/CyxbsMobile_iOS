@@ -51,7 +51,7 @@
 
 - (void)setPosition {
     [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self);
+        make.left.equalTo(self);
         make.centerY.equalTo(self);
     }];
 }

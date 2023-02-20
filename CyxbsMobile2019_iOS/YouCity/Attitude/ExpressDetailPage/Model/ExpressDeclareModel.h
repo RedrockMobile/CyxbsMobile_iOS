@@ -11,8 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ExpressDeclareModel : NSObject
-// id
-@property (nonatomic, copy) NSNumber *declareId;
+
+- (void)requestDeclareDataWithId:(NSNumber *)theId
+                         Success:(void(^)(NSArray *array))success
+                         Failure:(void(^)(void))failure;
 
 @end
 
