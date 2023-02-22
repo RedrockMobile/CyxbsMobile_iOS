@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ScheduleCourse.h"
+#import "ScheduleDetailPartContext.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -20,7 +20,7 @@ UIKIT_EXTERN NSString *ScheduleDetailCollectionViewCellReuseIdentifier;
 @interface ScheduleDetailCollectionViewCell : UICollectionViewCell
 
 /// Data sourse
-@property (nonatomic, strong) ScheduleCourse *course;
+@property (nonatomic, strong) ScheduleDetailPartContext *context;
 
 - (instancetype)init NS_UNAVAILABLE;
 

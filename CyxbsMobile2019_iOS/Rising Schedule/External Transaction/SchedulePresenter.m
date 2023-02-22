@@ -79,14 +79,16 @@
     }];
 }
 
-- (void)setUseAwake:(BOOL)useAwake {
-    _service.canUseAwake = useAwake;
+
+
+- (void)setAwakeable:(BOOL)awakeable {
+    self.service.awakeable = awakeable;
+    ScheduleShareCache.shareCache.awakeable = awakeable;
 }
 
-- (BOOL)useAwake {
-    return _service.canUseAwake;
+- (BOOL)awakeable {
+    return self.service.awakeable;
 }
-
 
 @end
 

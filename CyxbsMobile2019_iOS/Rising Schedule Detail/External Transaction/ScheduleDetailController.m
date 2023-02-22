@@ -18,7 +18,7 @@
 >
 
 /// data
-@property (nonatomic, strong) NSArray<ScheduleCourse *> *couseAry;
+@property (nonatomic, strong) NSArray<ScheduleDetailPartContext *> *contextAry;
 
 /// collection view
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -32,10 +32,10 @@
 
 @implementation ScheduleDetailController
 
-- (instancetype)initWithCourses:(NSArray<ScheduleCourse *> *)courses {
+- (instancetype)initWithContexts:(NSArray<ScheduleDetailPartContext *> *)contexts {
     self = [super init];
     if (self) {
-        self.couseAry = courses;
+        self.contextAry = contexts;
     }
     return self;
 }
@@ -96,7 +96,7 @@
     if (_pageControl == nil) {
         _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(-1, -1, self.view.width, 10)];
         _pageControl.bottom = self.view.SuperBottom - 18;
-        _pageControl.numberOfPages = self.couseAry.count;
+        _pageControl.numberOfPages = self.contextAry.count;
         _pageControl.currentPage = 0;
         _pageControl.pageIndicatorTintColor = UIColorHex(#888888);
         _pageControl.currentPageIndicatorTintColor = UIColorHex(#788EFB);
@@ -107,16 +107,16 @@
 #pragma mark - <UICollectionViewDataSource>
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (!self.couseAry) {
+    if (!self.contextAry) {
         return 0;
     }
-    return self.couseAry.count;
+    return self.contextAry.count;
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ScheduleDetailCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ScheduleDetailCollectionViewCellReuseIdentifier forIndexPath:indexPath];
     
-    cell.course = self.couseAry[indexPath.item];
+    cell.context = self.contextAry[indexPath.item];
     return cell;
 }
 

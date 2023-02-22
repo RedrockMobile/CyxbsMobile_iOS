@@ -52,14 +52,21 @@ struct ScheduleSystemLarge: View {
                             .padding(.leading, 5)
                             .frame(width: 20)
                         GeometryReader { entryB in
-                            if data.data.count != 0 {
-                                ForEach(data.data) { item in
-                                    ContentView(item: item, size: entryB.size)
-                                        .widgetURL(URL(string: "https://redrock.team/schedule/detail?section=\(item.indexPath.section)&week=\(item.indexPath.week)&location=\(item.indexPath.location)"))
+                            if entry.combineItems.count != 0 {
+                                if data.data.count != 0 {
+                                    ForEach(data.data) { item in
+                                        Link(destination: url(in: item.indexPath)) {
+                                            ContentView(item: item, size: entryB.size)
+                                        }
+                                    }
+                                } else {
+                                    Text("这个时间段暂时没有课")
+                                        .font(.system(size: 13))
+                                        .padding()
                                 }
                             } else {
                                 VStack (alignment: .leading) {
-                                    Text("小组件请求错误，请检查网络或设置学号")
+                                    Text("小组件请求错误，打开App并检查网络或设置学号")
                                     Text("\(entry.date)")
                                     if entry.errorKeys.count >= 1 {
                                         Text("信息: \(entry.errorKeys[0])")
@@ -79,6 +86,10 @@ struct ScheduleSystemLarge: View {
 }
 
 extension ScheduleSystemLarge {
+    
+    func url(in indexPath: NSIndexPath) -> URL {
+        URL(string: "https://redrock.team/schedule/detail?section=\(indexPath.section)&week=\(indexPath.week)&location=\(indexPath.location)")!
+    }
     
     func ContentView(item: ScheduleFetchData.PartItem, size: CGSize) -> some View {
         let itemHeight = (size.height - 2.0 * 7) / CGFloat(data.range.count)

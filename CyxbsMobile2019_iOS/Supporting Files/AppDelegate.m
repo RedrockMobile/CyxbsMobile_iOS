@@ -131,17 +131,24 @@
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-
-    NSURLComponents *componets = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:YES];
-    if ([componets.path isEqualToString:@"/schedule/detail"]) {
-        CyxbsTabBarController *tabController = (CyxbsTabBarController *)self.window.rootViewController;
-        [tabController presentScheduleControllerWithPan:nil completion:^(UIViewController * _Nonnull vc) {
-            id service = [[vc performSelector:NSSelectorFromString(@"presenter")] performSelector:NSSelectorFromString(@"service")];
-            NSUInteger idx[3] = {componets.queryItems[0].value.integerValue, componets.queryItems[1].value.integerValue, componets.queryItems[2].value.integerValue};
-            [service performSelector:NSSelectorFromString(@"collectionView:didSelectItemAtIndexPath:") withObject:[service performSelector:NSSelectorFromString(@"collectionView")] withObject:[NSIndexPath indexPathWithIndexes:idx length:3]];
-        }];
-    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
     
+        NSURLComponents *componets = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:YES];
+        
+        if ([componets.path isEqualToString:@"/schedule/detail"]) {
+            CyxbsTabBarController *tabController = (CyxbsTabBarController *)self.window.rootViewController;
+            [tabController presentScheduleControllerWithPan:nil completion:^(UIViewController * _Nonnull vc) {
+                id service = [[vc performSelector:NSSelectorFromString(@"presenter")] performSelector:NSSelectorFromString(@"service")];
+                
+                
+                NSUInteger idx[3] = {componets.queryItems[0].value.integerValue, componets.queryItems[1].value.integerValue, componets.queryItems[2].value.integerValue};
+                NSIndexPath *idxPath = [NSIndexPath indexPathWithIndexes:idx length:3];
+                [service performSelector:NSSelectorFromString(@"scrollToSection:") withObject:@(idx[0])];
+                [service performSelector:NSSelectorFromString(@"collectionView:didSelectItemAtIndexPath:") withObject:[service performSelector:NSSelectorFromString(@"collectionView")] withObject:idxPath];
+            }];
+        }
+        
+    });
 #pragma clang diagnostic pop
     return YES;
 }

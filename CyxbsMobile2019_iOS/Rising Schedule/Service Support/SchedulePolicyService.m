@@ -13,6 +13,19 @@
 
 @implementation SchedulePolicyService
 
+static SchedulePolicyService * _currentPolicy;
++ (SchedulePolicyService *)current {
+    if (_currentPolicy == nil) {
+        _currentPolicy = [[SchedulePolicyService alloc] init];
+        _currentPolicy.outRequestTime = 45 * 60 * 60;
+    }
+    return _currentPolicy;
+}
+
++ (void)setCurrent:(SchedulePolicyService *)current {
+    _currentPolicy = current;
+}
+
 - (void)requestDic:(ScheduleRequestDictionary *)dic
             policy:(void (^)(ScheduleCombineItem *item))policy
           unPolicy:(void (^)(ScheduleIdentifier *unpolicyKEY))unpolicy {
@@ -29,15 +42,20 @@
              policy:(void (^)(ScheduleCombineItem *item))policy
            unPolicy:(void (^)(ScheduleIdentifier *unpolicyKEY))unpolicy {
     NSMutableArray <ScheduleIdentifier *> *unInMemIds = NSMutableArray.array;
-    for (ScheduleIdentifier *idsItem in keys) {
-        if (NSDate.date.timeIntervalSince1970 - idsItem.iat >= self.outRequestTime) {
-            [unInMemIds addObject:idsItem];
+    for (ScheduleIdentifier *key in keys) {
+        if (NSDate.date.timeIntervalSince1970 - key.iat >= self.outRequestTime) {
+            [unInMemIds addObject:key];
         } else {
-            ScheduleCombineItem *cacheItem = [ScheduleShareCache.shareCache getItemForKey:idsItem.key];
+            ScheduleCombineItem *cacheItem = [ScheduleShareCache.shareCache getItemForKey:key.key];
             if (cacheItem) {
                 policy(cacheItem);
             } else {
-                [unInMemIds addObject:idsItem];
+                if (self.awakeable) {
+                    ScheduleCombineItem *item = [ScheduleShareCache.shareCache awakeForIdentifier:key];
+                    policy(item);
+                } else {
+                    [unInMemIds addObject:key];
+                }
             }
         }
     }
@@ -53,6 +71,9 @@
         [ScheduleShareCache.shareCache cacheItem:item];
         if (policy) {
             policy(item);
+        }
+        if (self.awakeable) {
+            [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
         }
     }
      failure:^(NSError * _Nonnull error, ScheduleIdentifier *errorID) {

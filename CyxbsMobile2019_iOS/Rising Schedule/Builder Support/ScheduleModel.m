@@ -48,19 +48,21 @@
 }
 
 
-- (NSArray<ScheduleCourse *> *)coursesWithLocationIdxPath:(NSIndexPath *)idxPath {
+- (NSArray <ScheduleDetailPartContext *> *)contextsWithLocationIdxPath:(NSIndexPath *)idxPath {
     NSMutableSet *set = NSMutableSet.set;
-    for (NSArray <ScheduleCourse *> *kind in _statusMap.allValues) {
+    for (ScheduleIdentifier *key in _statusMap.allKeys) {
+        NSArray <ScheduleCourse *> *kind = [_statusMap objectForKey:key];
         for (ScheduleCourse *course in kind) {
             if (course.inWeek == idxPath.week) {
+                ScheduleDetailPartContext *context = [ScheduleDetailPartContext contextWithKey:key course:course];
                 for (NSInteger i = 0; i < [self.mapTable objectForKey:idxPath].lenth; i++) {
                     if (NSLocationInRange(idxPath.location + i, course.period)) {
                         if (idxPath.section) {
-                            if ([course.inSections containsIndex:idxPath.section]){
-                                [set addObject:course];
+                            if ([course.inSections containsIndex:idxPath.section]) {
+                                [set addObject:context];
                             }
                         } else {
-                            [set addObject:course];
+                            [set addObject:context];
                         }
                     }
                 }

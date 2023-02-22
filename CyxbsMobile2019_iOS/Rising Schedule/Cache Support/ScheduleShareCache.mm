@@ -64,6 +64,16 @@ RisingSingleClass_IMPLEMENTATION(Cache)
 
 @implementation ScheduleShareCache (XXHB)
 
+- (void)setAwakeable:(BOOL)awakeable {
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
+    [userDefaults setBool:awakeable forKey:@"ScheduleShareCache_awakeable"];
+}
+
+- (BOOL)awakeable {
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
+    return [userDefaults boolForKey:@"ScheduleShareCache_awakeable"];
+}
+
 #ifdef WCDB_h
 
 - (WCTDatabase *)DB {
@@ -93,6 +103,9 @@ RisingSingleClass_IMPLEMENTATION(Cache)
 }
 
 - (ScheduleCombineItem *)awakeForIdentifier:(ScheduleIdentifier *)identifier {
+    if (![self.DB isTableExists:identifier.key]) {
+        return nil;
+    }
     ScheduleIdentifier *idl = [self.DB getObjectsOfClass:ScheduleIdentifier.class fromTable:@"Cyxbs_key" where:ScheduleIdentifier.sno == identifier.sno && ScheduleIdentifier.type == identifier.type].lastObject;
     NSArray *value = [self.DB getAllObjectsOfClass:ScheduleCourse.class fromTable:identifier.key];
     ScheduleCombineItem *item = [ScheduleCombineItem combineItemWithIdentifier:idl value:value];

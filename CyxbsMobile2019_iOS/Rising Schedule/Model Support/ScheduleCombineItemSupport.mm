@@ -60,7 +60,7 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%@, %p>; [%@, %@] : (exp: %lf, iat: %lf)", NSStringFromClass(self.class), self, self.sno, self.type, self.exp, self.iat];
+    return [NSString stringWithFormat:@"<%@, %p>; [%@, %@] : (exp: %.0lf, iat: %.0lf)", NSStringFromClass(self.class), self, self.sno, self.type, self.exp, self.iat];
 }
 
 #pragma mark - Method

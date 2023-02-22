@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// detail
 @property (nonatomic, copy) NSString *detail;
 
+/// sno
+@property (nonatomic, copy) NSString *sno;
+
 - (instancetype)init NS_UNAVAILABLE;
 
 + (instancetype)new NS_UNAVAILABLE;

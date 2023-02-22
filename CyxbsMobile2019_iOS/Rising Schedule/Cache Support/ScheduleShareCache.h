@@ -42,6 +42,8 @@ RisingSingleClass_PROPERTY(Cache)
 
 @interface ScheduleShareCache (XXHB)
 
+@property BOOL awakeable;
+
 /// refresh local cache
 /// use `- cacheItem:` before
 /// - Parameter key: the key from ScheduleCombineItem

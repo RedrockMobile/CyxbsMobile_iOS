@@ -33,7 +33,22 @@ class ScheduleFetchData: ScheduleMapModel {
     /* section
      * 得到需要展示的周数，这里必须填写
      */
-    var section: Int
+    var section: Int {
+        if let section = trueSection {
+            if section >= 23 || section < 0 {
+                return 0
+            } else {
+                return section
+            }
+        } else {
+            if let begin = beginTime {
+                return Int(ceil(Date().timeIntervalSince(Date(timeIntervalSince1970: begin)) / (7.0 * 24 * 60 * 60)))
+            } else {
+                return 0
+            }
+        }
+    }
+    private var trueSection: Int?
     
     /* beginTime
      * 为了计算具体日期而使用，与start配对使用
@@ -58,30 +73,14 @@ class ScheduleFetchData: ScheduleMapModel {
      */
     init(range: Range<Int>, section: Int?) {
         self.range = range
-        if let section = section {
-            if section >= 23 || section < 0 {
-                self.section = 0
-            } else {
-                self.section = section
-            }
-        } else {
-            if let begin = beginTime {
-                self.section = Int((Date().timeIntervalSince1970 - begin) / (7.0 * 60 * 60 * 60))
-            } else {
-                self.section = 0
-            }
-        }
+        self.trueSection = section
     }
     
     // MARK: override
     
     override func combineItem(_ model: ScheduleCombineItem) {
         super.combineItem(model)
-        if model.identifier.exp >= 1 {
-            beginTime = model.identifier.exp
-        } else {
-            beginTime = nil
-        }
+        beginTime = model.identifier.exp
         
         for key in self.mapTable.keyEnumerator().allObjects as! [NSIndexPath] {
             if (key.section == section) {

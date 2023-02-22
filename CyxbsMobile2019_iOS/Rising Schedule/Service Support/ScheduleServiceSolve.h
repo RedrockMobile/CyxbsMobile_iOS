@@ -38,7 +38,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /// XXHB, default is NO
-@property (nonatomic) BOOL canUseAwake __deprecated_msg("⚠️XXHB");
+@property (nonatomic) BOOL awakeable;
+
+
 
 - (void)requestAndReloadData:(void (^ _Nullable)(void))complition;
 

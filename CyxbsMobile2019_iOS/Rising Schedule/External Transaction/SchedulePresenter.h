@@ -40,8 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)requestAndReloadData;
 
-/// XXHB
-@property (nonatomic) BOOL useAwake __deprecated_msg("注意使用");
+@property (nonatomic) BOOL awakeable;
 
 @end
 
@@ -67,6 +66,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface SchedulePresenter (ScheduleGroup)
 
+- (void)setWithGroup:(ScheduleRequestDictionary *)group;
+
+- (void)setWithGroupKeys:(NSArray<ScheduleIdentifier *> *)gKeys;
 
 @end
 

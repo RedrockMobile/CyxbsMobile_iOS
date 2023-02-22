@@ -24,22 +24,11 @@
     UIGestureRecognizerDelegate
 >
 
-@property (nonatomic, strong) SchedulePolicyService *policy;
-
 @end
 
 #pragma mark - ScheduleServiceSolve
 
 @implementation ScheduleServiceSolve
-
-- (instancetype)initWithModel:(ScheduleModel *)model {
-    self = [super initWithModel:model];
-    if (self) {
-        _policy = [[SchedulePolicyService alloc] init];
-        _policy.outRequestTime = 45 * 60 * 60;
-    }
-    return self;
-}
 
 #pragma mark - Method
 
@@ -54,7 +43,7 @@
 
 - (void)requestAndReloadData:(void (^)(void))complition {
     [self.model clear];
-    [self.policy
+    [SchedulePolicyService.current
      requestDic:self.parameterIfNeeded
      policy:^(ScheduleCombineItem * _Nonnull item) {
         [self.model combineItem:item];
@@ -62,18 +51,9 @@
         if (complition) {
             complition();
         }
-        
-        if (self.canUseAwake) {
-            [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
-        }
     }
      unPolicy:^(ScheduleIdentifier * _Nonnull unpolicyKEY) {
-        if (self.canUseAwake) {
-            ScheduleCombineItem *item = [ScheduleShareCache.shareCache awakeForIdentifier:unpolicyKEY];
-            [self.model combineItem:item];
-            [self.collectionView reloadData];
-//            [self scrollToSection:self.model.touchItem.nowWeek];
-        }
+        
     }];
 }
 
@@ -155,6 +135,7 @@
         ScheduleCustomViewController *vc = [[ScheduleCustomViewController alloc] init];
         vc.modalPresentationStyle = UIModalPresentationCustom;
         TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
+        delegate.transitionDurationIfNeeded = 0.3;
         vc.transitioningDelegate = delegate;
         [self.viewController presentViewController:vc animated:YES completion:nil];
     }
@@ -167,17 +148,25 @@
     [self reloadHeaderView];
 }
 
+- (void)setAwakeable:(BOOL)awakeable {
+    SchedulePolicyService.current.awakeable = awakeable;
+}
+
+- (BOOL)awakeable {
+    return SchedulePolicyService.current.awakeable;
+}
+
 #pragma mark - <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [[[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium] impactOccurred];
     NSIndexPath *locationIdxPath = self.model.courseIdxPaths[indexPath.section][indexPath.item];
-    NSArray <ScheduleCourse *> *courses = [self.model coursesWithLocationIdxPath:locationIdxPath];
+    NSArray <ScheduleDetailPartContext *> *contexts = [self.model contextsWithLocationIdxPath:locationIdxPath];
     
     TransitioningDelegate *transitionDelegate = [[TransitioningDelegate alloc] init];
     transitionDelegate.transitionDurationIfNeeded = 0.3;
     transitionDelegate.supportedTapOutsideBackWhenPresent = YES;
-    ScheduleDetailController *vc = [[ScheduleDetailController alloc] initWithCourses:courses];
+    ScheduleDetailController *vc = [[ScheduleDetailController alloc] initWithContexts:contexts];
     vc.transitioningDelegate = transitionDelegate;
     vc.modalPresentationStyle = UIModalPresentationCustom;
     [self.viewController presentViewController:vc animated:YES completion:nil];

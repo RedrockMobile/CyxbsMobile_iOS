@@ -22,7 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
  * base layout class
  */
 
-@interface ScheduleMapModel : NSObject
+@interface ScheduleMapModel : NSObject {
+    NSMapTable <NSIndexPath *, NSPointerArray *> *_dayMap;
+}
 
 /// 设置学号，使map呈现不同效果
 @property (nonatomic, copy, nullable) NSString *sno;
@@ -32,14 +34,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) ScheduleTimeline *timeline;
 
-/// 加入到Map管理，不做强保存
+/// 纳入到 dayMap 管理，不对model做强引用
 /// @param model 加入map管理的model
 - (void)combineItem:(ScheduleCombineItem *)model NS_REQUIRES_SUPER;
 
+/// 将 dayMap 转到 mapTable
 - (void)finishCombine;
 
 /// 清理掉所有模型
 - (void)clear NS_REQUIRES_SUPER;
+
+- (ScheduleCollectionViewModel *)viewModelWithKey:(ScheduleIdentifier *)identifier forCourse:(ScheduleCourse *)course;
 
 @end
 
