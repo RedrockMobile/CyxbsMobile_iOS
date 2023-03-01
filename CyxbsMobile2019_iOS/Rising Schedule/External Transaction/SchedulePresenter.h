@@ -34,9 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - width: 准备工作所需要的宽度
 - (void)setingCollectionView:(UICollectionView *__strong  _Nonnull *_Nonnull)collectionView withPrepareWidth:(CGFloat)width;
 
-/// 设置collectionView
-@property (nonatomic, readonly) UICollectionView *collectionView;
+// *useable
 
+@property (nonatomic, readonly) UICollectionView *collectionView;
 
 - (void)requestAndReloadData;
 

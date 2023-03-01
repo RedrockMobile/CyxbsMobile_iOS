@@ -42,6 +42,11 @@
 		14320606291C9657003B0E11 /* UserAgreementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14320605291C9657003B0E11 /* UserAgreementViewController.m */; };
 		1435613028CCA93500EF6987 /* ScheduleServiceSolve.m in Sources */ = {isa = PBXBuildFile; fileRef = 1435612F28CCA93500EF6987 /* ScheduleServiceSolve.m */; };
 		14371CC529A5BE3500DFD1F1 /* ScheduleDetailPartContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 14371CC429A5BE3500DFD1F1 /* ScheduleDetailPartContext.m */; };
+		14371D4329ACC4EC00DFD1F1 /* WCDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14371D4229ACC4EC00DFD1F1 /* WCDB.framework */; };
+		14371D4529ACC4F100DFD1F1 /* sqlcipher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14371D4429ACC4F100DFD1F1 /* sqlcipher.framework */; };
+		14371D4729ACC52600DFD1F1 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14371D4629ACC52600DFD1F1 /* SwiftyJSON.framework */; };
+		14371D9529AE1AFF00DFD1F1 /* ScheduleCustomEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14371D9429AE1AFF00DFD1F1 /* ScheduleCustomEditView.m */; };
+		14371D9829AE3BB200DFD1F1 /* ScheduleCustomEditCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14371D9729AE3BB200DFD1F1 /* ScheduleCustomEditCollectionViewCell.m */; };
 		1441BF7C291FF29200591A0E /* UserAgreementConsentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1441BF7B291FF29200591A0E /* UserAgreementConsentView.m */; };
 		1448BFF52961CC830015768E /* WidgetKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AF72961516B0046E7BE /* WidgetKitHelper.swift */; };
 		1448BFF829627E350015768E /* ScheduleWidgetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448BFF729627E350015768E /* ScheduleWidgetCache.m */; };
@@ -198,6 +203,13 @@
 		1435612F28CCA93500EF6987 /* ScheduleServiceSolve.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleServiceSolve.m; sourceTree = "<group>"; };
 		14371CC329A5BE3500DFD1F1 /* ScheduleDetailPartContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleDetailPartContext.h; sourceTree = "<group>"; };
 		14371CC429A5BE3500DFD1F1 /* ScheduleDetailPartContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleDetailPartContext.m; sourceTree = "<group>"; };
+		14371D4229ACC4EC00DFD1F1 /* WCDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = WCDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		14371D4429ACC4F100DFD1F1 /* sqlcipher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = sqlcipher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		14371D4629ACC52600DFD1F1 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		14371D9329AE1AFF00DFD1F1 /* ScheduleCustomEditView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCustomEditView.h; sourceTree = "<group>"; };
+		14371D9429AE1AFF00DFD1F1 /* ScheduleCustomEditView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCustomEditView.m; sourceTree = "<group>"; };
+		14371D9629AE3BB200DFD1F1 /* ScheduleCustomEditCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCustomEditCollectionViewCell.h; sourceTree = "<group>"; };
+		14371D9729AE3BB200DFD1F1 /* ScheduleCustomEditCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCustomEditCollectionViewCell.m; sourceTree = "<group>"; };
 		1441BF7A291FF29200591A0E /* UserAgreementConsentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAgreementConsentView.h; sourceTree = "<group>"; };
 		1441BF7B291FF29200591A0E /* UserAgreementConsentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAgreementConsentView.m; sourceTree = "<group>"; };
 		1448BFF629627E350015768E /* ScheduleWidgetCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleWidgetCache.h; sourceTree = "<group>"; };
@@ -335,6 +347,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14371D4729ACC52600DFD1F1 /* SwiftyJSON.framework in Frameworks */,
+				14371D4529ACC4F100DFD1F1 /* sqlcipher.framework in Frameworks */,
+				14371D4329ACC4EC00DFD1F1 /* WCDB.framework in Frameworks */,
 				141008E0295E88E20046E7BE /* SwiftUI.framework in Frameworks */,
 				141008DF295E88E20046E7BE /* WidgetKit.framework in Frameworks */,
 				E1255F33062067C040B20333 /* Pods_CyxbsWidgetExtension.framework in Frameworks */,
@@ -589,6 +604,19 @@
 			path = "Builder Support";
 			sourceTree = "<group>";
 		};
+		14371DAF29AEF0D400DFD1F1 /* Rising Schedule Custom */ = {
+			isa = PBXGroup;
+			children = (
+				140F666529779C750075C50A /* ScheduleCustomViewController.h */,
+				140F666629779C750075C50A /* ScheduleCustomViewController.m */,
+				14371D9329AE1AFF00DFD1F1 /* ScheduleCustomEditView.h */,
+				14371D9429AE1AFF00DFD1F1 /* ScheduleCustomEditView.m */,
+				14371D9629AE3BB200DFD1F1 /* ScheduleCustomEditCollectionViewCell.h */,
+				14371D9729AE3BB200DFD1F1 /* ScheduleCustomEditCollectionViewCell.m */,
+			);
+			path = "Rising Schedule Custom";
+			sourceTree = "<group>";
+		};
 		1441BF79291F4E0100591A0E /* Rising User Agreenent */ = {
 			isa = PBXGroup;
 			children = (
@@ -802,6 +830,7 @@
 				14100AFA296154F60046E7BE /* CyxbsMobile2019_iOSDebug.entitlements */,
 				14B4691D28B4C9D9003D288B /* Rising Schedule */,
 				14D598EB29021EF400C9798F /* Rising Schedule Detail */,
+				14371DAF29AEF0D400DFD1F1 /* Rising Schedule Custom */,
 				14B7E42A295C4C360033653D /* Rising Transition */,
 				140F6657297507FE0075C50A /* Rising TabBar Support */,
 				14D598E929021E9F00C9798F /* Pod */,
@@ -810,8 +839,6 @@
 				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
 				14100AF62961516B0046E7BE /* CyxbsMobile2019_iOS-Bridging-Header.h */,
 				14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */,
-				140F666529779C750075C50A /* ScheduleCustomViewController.h */,
-				140F666629779C750075C50A /* ScheduleCustomViewController.m */,
 				14BC47F52914D73F0063809E /* FastUp Tests */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				1A9B7678235F50A800725937 /* Info.plist */,
@@ -840,6 +867,9 @@
 		2CDC888D97D2E7657DB18FB6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				14371D4629ACC52600DFD1F1 /* SwiftyJSON.framework */,
+				14371D4429ACC4F100DFD1F1 /* sqlcipher.framework */,
+				14371D4229ACC4EC00DFD1F1 /* WCDB.framework */,
 				D09081D923F4571B00D5342D /* UserNotifications.framework */,
 				378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */,
 				EEAADB28A20FD6183BC437D5 /* Pods_CyxbsMobile2019_iOS_CyxbsMobile2019_iOSUITests.framework */,
@@ -1302,7 +1332,9 @@
 				1466282628C4B1BD00AF584F /* ScheduleServiceDataSource.m in Sources */,
 				140F664D2973A63B0075C50A /* RyCycleView.m in Sources */,
 				1448BFF829627E350015768E /* ScheduleWidgetCache.m in Sources */,
+				14371D9529AE1AFF00DFD1F1 /* ScheduleCustomEditView.m in Sources */,
 				14D598CC28FF964100C9798F /* SameDrawUI.m in Sources */,
+				14371D9829AE3BB200DFD1F1 /* ScheduleCustomEditCollectionViewCell.m in Sources */,
 				1466282C28C4EFE400AF584F /* ScheduleRequestType.m in Sources */,
 				14592A6029516246006EB674 /* ScheduleAPI.m in Sources */,
 				14E8451428FEE9A30037309F /* ScheduleDetailMessageTableViewCell.m in Sources */,
@@ -1370,7 +1402,7 @@
 				CODE_SIGN_ENTITLEMENTS = CyxbsWidgetExtensionDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CyxbsWidget/Info.plist;
@@ -1404,7 +1436,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CyxbsWidget/Info.plist;
@@ -1556,7 +1588,7 @@
 				CODE_SIGN_ENTITLEMENTS = CyxbsMobile2019_iOS/CyxbsMobile2019_iOSDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
@@ -1619,7 +1651,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";

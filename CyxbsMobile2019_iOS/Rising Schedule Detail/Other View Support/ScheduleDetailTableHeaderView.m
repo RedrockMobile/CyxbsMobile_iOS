@@ -42,7 +42,7 @@
     self.detailLab.frame = CGRectMake(self.titleLab.left, self.titleLab.bottom + 8, self.titleLab.width, 18);
     
     [self.snoLab sizeToFit];
-    self.snoLab.bottom = self.titleLab.bottom;
+    self.snoLab.centerY = self.detailLab.centerY;
     self.snoLab.right = self.width - 16;
 }
 

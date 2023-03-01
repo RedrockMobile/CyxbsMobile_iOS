@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "RisingSingleClass.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TransitioningDelegate : NSObject <

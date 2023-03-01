@@ -97,10 +97,9 @@ static CGFloat (^statusHeight)(void) = ^{
 
 - (UICollectionView *)collectionView {
     if (_collectionView == nil) {
-        
         [self.presenter setingCollectionView:(&_collectionView) withPrepareWidth:self.view.width];
         _collectionView.top = self.headerView.bottom;
-        _collectionView.height = self.view.height - _collectionView.top;
+        _collectionView.height = self.view.height - _collectionView.top - 20;
         _collectionView.contentInset = UIEdgeInsetsMake(0, 0, self.tabBarController.tabBar.height, 0);
         _collectionView.directionalLockEnabled = YES;
         _collectionView.pagingEnabled = YES;

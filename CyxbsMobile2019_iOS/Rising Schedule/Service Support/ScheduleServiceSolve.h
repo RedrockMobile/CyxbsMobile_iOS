@@ -45,6 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)requestAndReloadData:(void (^ _Nullable)(void))complition;
 
 - (void)scrollToSection:(NSInteger)page;
+- (void)scrollToSectionNumber:(NSNumber *)page;
 
 - (void)reloadHeaderView;
 

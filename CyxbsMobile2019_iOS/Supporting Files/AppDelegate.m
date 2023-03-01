@@ -140,10 +140,9 @@
             [tabController presentScheduleControllerWithPan:nil completion:^(UIViewController * _Nonnull vc) {
                 id service = [[vc performSelector:NSSelectorFromString(@"presenter")] performSelector:NSSelectorFromString(@"service")];
                 
-                
                 NSUInteger idx[3] = {componets.queryItems[0].value.integerValue, componets.queryItems[1].value.integerValue, componets.queryItems[2].value.integerValue};
                 NSIndexPath *idxPath = [NSIndexPath indexPathWithIndexes:idx length:3];
-                [service performSelector:NSSelectorFromString(@"scrollToSection:") withObject:@(idx[0])];
+                [service performSelector:NSSelectorFromString(@"scrollToSectionNumber:") withObject:@(idx[0])];
                 [service performSelector:NSSelectorFromString(@"collectionView:didSelectItemAtIndexPath:") withObject:[service performSelector:NSSelectorFromString(@"collectionView")] withObject:idxPath];
             }];
         }

@@ -130,7 +130,7 @@ extension ScheduleSystemLarge {
         if self.data.section <= 0 {
             return nil
         } else {
-            return data.start
+            return data.start?.addingTimeInterval(TimeInterval((self.data.section - 1) * 7 * 24 * 60 * 60))
         }
     }
     

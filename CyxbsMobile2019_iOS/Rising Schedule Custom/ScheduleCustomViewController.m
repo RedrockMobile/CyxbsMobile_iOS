@@ -8,7 +8,7 @@
 
 #import "ScheduleCustomViewController.h"
 
-#import <AFNetworking/AFNetworking.h>
+#import "ScheduleCustomEditView.h"
 
 #import "HttpTool.h"
 
@@ -18,6 +18,8 @@
 
 @property (nonatomic, strong) UIImageView *bkImgView;
 
+@property (nonatomic, strong) ScheduleCustomEditView *editView;
+
 @end
 
 @implementation ScheduleCustomViewController
@@ -26,14 +28,18 @@
     [super viewDidLoad];
     
     [self.view addSubview:self.bkImgView];
+    [self.view addSubview:self.editView];
     [self.view addSubview:self.backBtn];
     
     [self test];
 }
 
+#pragma mark - Lazy
+
 - (UIButton *)backBtn {
     if (_backBtn == nil) {
-        _backBtn = [[UIButton alloc] initWithFrame:CGRectMake(17, StatusBarHeight() + 10, 60, 18)];
+        _backBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, StatusBarHeight() + 10, 60, 40)];
+        _backBtn.right = self.view.width - 17;
         [_backBtn setTitle:@"取消" forState:UIControlStateNormal];
         [_backBtn setTitleColor:UIColorHex(#4841E2) forState:UIControlStateNormal];
         [_backBtn addTarget:self action:@selector(_cancel:) forControlEvents:UIControlEventTouchUpInside];
@@ -47,6 +53,20 @@
         _bkImgView.image = [UIImage imageNamed:@"schedule.custom.bk"];
     }
     return _bkImgView;
+}
+
+- (ScheduleCustomEditView *)editView {
+    if (_editView == nil) {
+        CGFloat top = self.backBtn.top;
+        _editView = [[ScheduleCustomEditView alloc] initWithFrame:CGRectMake(0, top, self.view.width, self.view.height - top)];
+        }
+    return _editView;
+}
+
+#pragma mark - method
+
+- (void)_cancel:(UIButton *)btn {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)test {
@@ -81,10 +101,6 @@
     }];
     [dataTask resume];
     dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-}
-
-- (void)_cancel:(UIButton *)btn {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

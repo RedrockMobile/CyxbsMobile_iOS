@@ -15,9 +15,6 @@
 /// 获取section的值
 @property (nonatomic) NSInteger sections;
 
-/// 正常视图每一小节课的大小
-@property (nonatomic) CGSize itemSize;
-
 /// 正常视图布局
 @property (nonatomic, strong) NSMutableDictionary <NSIndexPath *, ScheduleCollectionViewLayoutAttributes *> *itemAttributes;
 

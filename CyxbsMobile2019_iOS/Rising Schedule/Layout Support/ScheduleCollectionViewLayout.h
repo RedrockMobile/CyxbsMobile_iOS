@@ -79,6 +79,9 @@ __deprecated_msg("即将部署该API，测试阶段");
 /// 头部装饰视图高
 @property (nonatomic) CGFloat heightForHeaderSupplementaryView;
 
+/// 正常视图每一小节课的大小
+@property (nonatomic, readonly) CGSize itemSize;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -60,10 +60,14 @@
 #pragma mark - Method
 
 - (void)scrollToSection:(NSInteger)page {
-    if (page > self.model.showWeek || page < 0) {
+    if (page > self.model.courseIdxPaths.count || page < 0) {
         page = 0;
     }
     [self.collectionView setContentOffset:CGPointMake(page * self.collectionView.width, 0) animated:YES];
+}
+
+- (void)scrollToSectionNumber:(NSNumber *)page {
+    [self scrollToSection:page.longValue];
 }
 
 - (NSString *)_titleForNum:(NSInteger)num {
