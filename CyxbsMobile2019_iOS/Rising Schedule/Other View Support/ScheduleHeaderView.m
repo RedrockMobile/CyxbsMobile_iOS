@@ -57,9 +57,9 @@
 }
 
 - (void)_widget {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(scheduleHeaderViewDidTapWidget:)]) {
-        [self.delegate scheduleHeaderViewDidTapWidget:self];
-    }
+//    if (self.delegate && [self.delegate respondsToSelector:@selector(scheduleHeaderViewDidTapWidget:)]) {
+//        [self.delegate scheduleHeaderViewDidTapWidget:self];
+//    }
 }
 
 #pragma mark - Getter

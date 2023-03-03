@@ -105,7 +105,8 @@
     
     _service.model.sno = main.sno;
     _service.parameterIfNeeded = @{
-        ScheduleModelRequestStudent : @[main.sno]
+        ScheduleModelRequestStudent : @[main.sno],
+        ScheduleModelRequestCustom : @[main.sno]
     };
     _service.onShow = ScheduleModelShowSingle;
     
@@ -127,7 +128,8 @@
     ScheduleWidgetCache.shareCache.beDouble = YES;
     
     _service.parameterIfNeeded = @{
-        ScheduleModelRequestStudent : @[main.sno, other.sno]
+        ScheduleModelRequestStudent : @[main.sno, other.sno],
+        ScheduleModelRequestCustom : @[main.sno]
     };
     _service.onShow = ScheduleModelShowDouble;
     

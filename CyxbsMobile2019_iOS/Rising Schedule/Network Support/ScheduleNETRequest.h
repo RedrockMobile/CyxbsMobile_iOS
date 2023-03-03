@@ -36,6 +36,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ScheduleNETRequest : NSObject
 
++ (instancetype)current;
+@property (nonatomic, strong) ScheduleCombineItem *customItem;
+
 - (instancetype)init NS_UNAVAILABLE;
 
 + (instancetype)new NS_UNAVAILABLE;

@@ -12,9 +12,25 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class ScheduleCustomViewController;
+
+@protocol ScheduleCustomViewControllerDelegate <NSObject>
+
+@optional
+
+- (void)scheduleCustomViewController:(ScheduleCustomViewController *)viewController finishingWithAppending:(BOOL)append;
+
+@end
+
 @interface ScheduleCustomViewController : UIViewController
 
-@property (nonatomic, strong) ScheduleCourse *courseIfNeeded;
+@property (nonatomic, null_resettable) ScheduleCourse *courseIfNeeded;
+
+@property (nonatomic, weak) id <ScheduleCustomViewControllerDelegate> delegate;
+
+- (instancetype)initWithAppendingInSection:(NSUInteger)section week:(NSUInteger)week location:(NSUInteger)location;
+
+- (instancetype)initWithEditingWithCourse:(ScheduleCourse *)course;
 
 @end
 

@@ -13,10 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 复用标志
 UIKIT_EXTERN NSString *ScheduleCustomEditCollectionViewCellReuseIdentifier;
 
-@interface ScheduleCustomEditCollectionViewCell : UICollectionViewCell {
-@protected
-    UILabel *_titleLab;
-}
+@interface ScheduleCustomEditCollectionViewCell : UICollectionViewCell
 
 @property (nonatomic, copy) NSString *title;
 

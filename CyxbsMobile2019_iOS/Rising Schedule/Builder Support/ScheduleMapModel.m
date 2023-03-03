@@ -82,7 +82,7 @@
         return viewModel;
     }
     if ([identifier.sno isEqualToString:self.sno]) {
-        if (![identifier.type isEqualToString:ScheduleModelRequestCustom]) {
+        if (identifier.type != ScheduleModelRequestCustom) {
             viewModel.kind = ScheduleBelongFistSystem;
             return viewModel;
         } else {

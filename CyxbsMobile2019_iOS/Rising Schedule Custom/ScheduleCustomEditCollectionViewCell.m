@@ -14,7 +14,7 @@ NSString *ScheduleCustomEditCollectionViewCellReuseIdentifier = @"ScheduleCustom
 
 @interface ScheduleCustomEditCollectionViewCell ()
 
-- (UILabel *)titleLab;
+@property (nonatomic, strong) UILabel *titleLab;
 
 @end
 
@@ -27,7 +27,7 @@ NSString *ScheduleCustomEditCollectionViewCellReuseIdentifier = @"ScheduleCustom
     if (self) {
         self.backgroundColor = UIColor.clearColor;
         
-        self.contentView.layer.cornerRadius = 9;
+        self.contentView.layer.cornerRadius = 8;
         self.contentView.backgroundColor =
         [UIColor Light:UIColorHex(#F2F3F7) Dark:UIColorHex(#2D2D2D)];
         

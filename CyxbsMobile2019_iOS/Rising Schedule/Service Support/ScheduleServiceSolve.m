@@ -82,7 +82,7 @@
 }
 
 - (void)reloadHeaderView {
-    if (self.headerView) {
+    if (_headerView) {
         NSInteger page = self.collectionView.contentOffset.x / self.collectionView.width;
         self.headerView.title = [self _titleForNum:page];
         
@@ -129,8 +129,7 @@
         delegate.panInsetsIfNeeded = UIEdgeInsetsMake(self.viewController.view.top, 0, self.viewController.tabBarController.tabBar.height, 0);
         self.viewController.transitioningDelegate = delegate;
         self.viewController.modalPresentationStyle = UIModalPresentationCustom;
-        [self.viewController dismissViewControllerAnimated:YES completion:^{
-        }];
+        [self.viewController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -203,14 +202,15 @@
         self.parameterIfNeeded = @{
             ScheduleModelRequestStudent : @[self.model.sno, otherKey.sno]
         };
+        self.onShow = ScheduleModelShowDouble;
         
     } else {
         self.parameterIfNeeded = @{
             ScheduleModelRequestStudent : @[self.model.sno]
         };
+        self.onShow = ScheduleModelShowSingle;
     }
-    
-    [view setShowMuti:YES isSingle:!view.isSingle];
+    [self reloadHeaderView];
     [self requestAndReloadData:nil];
 }
 

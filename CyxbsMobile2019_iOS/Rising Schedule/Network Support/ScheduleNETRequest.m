@@ -39,7 +39,15 @@ static NSString *keyForType(ScheduleModelRequestType type) {
 }
 
 @implementation ScheduleNETRequest
-static ScheduleCombineItem *_customItem;
+
+static ScheduleNETRequest *_current;
++ (ScheduleNETRequest *)current {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _current = [[ScheduleNETRequest alloc] init];
+    });
+    return _current;
+}
 
 #pragma mark - Method
 
@@ -82,7 +90,7 @@ static ScheduleCombineItem *_customItem;
                 ScheduleCombineItem *item = [ScheduleCombineItem combineItemWithIdentifier:identifier value:ary];
                 
                 if (item.identifier.type == ScheduleModelRequestCustom) {
-                    _customItem = item;
+                    ScheduleNETRequest.current.customItem = item;
                 }
                
                 if (success) {

@@ -19,7 +19,11 @@
     UICollectionViewDataSource,
 
     UIPickerViewDelegate,
-    UIPickerViewDataSource
+    UIPickerViewDataSource,
+
+    UIGestureRecognizerDelegate,
+
+    UITextFieldDelegate
 >
 
 @property (nonatomic, strong) UILabel *topLab;
@@ -36,11 +40,17 @@
 @property (nonatomic, strong) UILabel *periodLab;
 @property (nonatomic, strong) UIPickerView *periodPicker;
 
+@property (nonatomic, strong) UIButton *finBtn;
+
+@property (nonatomic, copy) NSIndexPath *l_idx;
+
 @end
 
 #pragma mark - ScheduleCustomEditView
 
-@implementation ScheduleCustomEditView
+@implementation ScheduleCustomEditView {
+    NSMutableIndexSet *_mutiIdxSet;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -60,10 +70,83 @@
         [self addSubview:self.periodLab];
         [self addSubview:self.periodPicker];
         
+        [self addSubview:self.finBtn];
+        
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_endEdit:)];
+        tap.delegate = self;
         [self addGestureRecognizer:tap];
+        
+        _period = NSMakeRange(1, 1);
+        _mutiIdxSet = NSMutableIndexSet.indexSet;
     }
     return self;
+}
+
+#pragma mark - Method
+
+// title
+
+- (void)setTitle:(NSString *)title {
+    if ([title isEqualToString:@""]) {
+        title = nil;
+    }
+    self.titleTextField.text = title;
+}
+
+- (NSString *)title {
+    return self.titleTextField.text.copy;
+}
+
+// content
+
+- (void)setContent:(NSString *)content {
+    if ([content isEqualToString:@""]) {
+        content = nil;
+    }
+    self.contentTextField.text = content;
+}
+
+- (NSString *)content {
+    return self.contentTextField.text.copy;
+}
+
+// sections
+
+- (void)setSections:(NSIndexSet *)sections {
+    _mutiIdxSet = sections.mutableCopy;
+    if (_collectionView) {
+        [self.collectionView reloadData];
+    }
+}
+
+- (NSIndexSet *)sections {
+    return _mutiIdxSet.copy;
+}
+
+// inWeek
+
+- (void)setInWeek:(NSInteger)inWeek {
+    if (inWeek < 1 || inWeek > 7) {
+        inWeek = 0;
+    }
+    [self.periodPicker selectRow:inWeek - 1 inComponent:0 animated:YES];
+}
+
+- (NSInteger)inWeek {
+    return [self.periodPicker selectedRowInComponent:0] + 1;
+}
+
+// period
+
+- (void)setPeriod:(NSRange)period {
+    if (period.location < 1 || period.location > 12) {
+        period.location = 1;
+        period.length = 1;
+    }
+    _period = period;
+    [self.periodPicker selectRow:period.location - 1 inComponent:1 animated:YES];
+    [self.periodPicker reloadComponent:2];
+    [self.periodPicker selectRow:period.length - 1 inComponent:2 animated:YES];
 }
 
 #pragma mark - Lazy
@@ -135,7 +218,7 @@
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.minimumLineSpacing = 2;
         layout.minimumInteritemSpacing = 2;
-        layout.sectionInset = UIEdgeInsetsMake(4, 0, 4, 0);
+        layout.sectionInset = UIEdgeInsetsMake(3, 0, 3, 0);
         
         CGFloat left = self.sectionLab.left;
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(left, self.sectionLab.bottom + 10, self.width - 2 * left, 105) collectionViewLayout:layout];
@@ -145,7 +228,7 @@
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.bounces = NO;
-        _collectionView.allowsSelection = YES;
+        _collectionView.allowsMultipleSelection = YES;
         [_collectionView registerClass:ScheduleCustomEditCollectionViewCell.class forCellWithReuseIdentifier:ScheduleCustomEditCollectionViewCellReuseIdentifier];
     }
     return _collectionView;
@@ -165,11 +248,28 @@
 - (UIPickerView *)periodPicker {
     if (_periodPicker == nil) {
         CGFloat left = self.periodLab.left;
-        _periodPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(left, self.periodLab.bottom - 20, self.width - 2 * left, 0)];
+        _periodPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(left, self.periodLab.bottom - 20, self.width - 2 * left, 216)];
         _periodPicker.delegate = self;
         _periodPicker.dataSource = self;
     }
     return _periodPicker;
+}
+
+- (UIButton *)finBtn {
+    if (_finBtn == nil) {
+        _finBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 66, 66)];
+        _finBtn.centerX = self.width / 2;
+        _finBtn.centerY = (self.periodPicker.bottom + self.height) / 2;
+        _finBtn.layer.cornerRadius = 20;
+        _finBtn.backgroundColor = UIColorHex(#AABBFF);
+        _finBtn.enabled = NO;
+        
+        [_finBtn setImage:[UIImage imageNamed:@"nextpage"] forState:UIControlStateNormal];
+        _finBtn.imageEdgeInsets = UIEdgeInsetsMake(20, 20, 20, 20);
+        
+        [_finBtn addTarget:self action:@selector(_tapBtn:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _finBtn;
 }
 
 #pragma mark - Private
@@ -180,19 +280,58 @@
     }
 }
 
+- (void)_tapBtn:(UIButton *)btn {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(scheduleCustomEditViewDidFinishEditing:)]) {
+        [self.delegate scheduleCustomEditViewDidFinishEditing:self];
+    }
+}
+
+- (void)_checkBtn {
+    if (self.title && self.content && _mutiIdxSet.count != 0) {
+        self.finBtn.enabled = YES;
+        self.finBtn.backgroundColor = UIColorHex(#4841E2);
+    } else {
+        self.finBtn.enabled = NO;
+        self.finBtn.backgroundColor = UIColorHex(#AABBFF);
+    }
+}
+
+#pragma mark - <UITextFieldDelegate>
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [self _checkBtn];
+}
+
+#pragma mark - <UIGestureRecognizerDelegate>
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    CGPoint point = [gestureRecognizer locationInView:self];
+    if (CGRectContainsPoint(self.collectionView.frame, point)) {
+        return NO;
+    }
+    if (CGRectContainsPoint(self.finBtn.frame, point)) {
+        return NO;
+    }
+    return YES;
+}
+
 #pragma mark - <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    cell.selected = !cell.selected;
-    NSLog(@"我cao");
+    [_mutiIdxSet addIndex:indexPath.section * 8 + indexPath.item + 1];
+    [self _checkBtn];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [_mutiIdxSet removeIndex:indexPath.section * 8 + indexPath.item + 1];
+    [self _checkBtn];
 }
 
 #pragma mark - <UICollectionViewDelegateFlowLayout>
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat width = collectionView.width / 8 - 2;
-    return CGSizeMake(width, width * 0.6);
+    return CGSizeMake(width, width * 0.62);
 }
 
 #pragma mark - <UICollectionViewDataSource>
@@ -207,7 +346,9 @@
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ScheduleCustomEditCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ScheduleCustomEditCollectionViewCellReuseIdentifier forIndexPath:indexPath];
-    cell.title = [NSString stringWithFormat:@"第%ld周", indexPath.section * 8 + indexPath.item + 1];
+    NSUInteger week = indexPath.section * 8 + indexPath.item + 1;
+    cell.title = [NSString stringWithFormat:@"第%ld周", week];
+    cell.selected = [_mutiIdxSet containsIndex:week];
     return cell;
 }
 
@@ -225,7 +366,7 @@
         return 12;
     }
     if (component == 2) {
-        return 12;
+        return 13 - self.period.location;
     }
     return 0;
 }
@@ -250,7 +391,7 @@
         str = [NSString stringWithFormat:@"从第%ld节", row + 1];
     }
     if (component == 2) {
-        str = [NSString stringWithFormat:@"到第%ld节", row + 1];
+        str = [NSString stringWithFormat:@"到第%ld节", self.period.location + row];
     }
     return [[NSAttributedString alloc] initWithString:str attributes:@{
         NSFontAttributeName: [UIFont fontWithName:FontName.PingFangSC.Medium size:18],
@@ -259,7 +400,10 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    NSLog(@"ABC");
+    if (component == 1) {
+        _period = NSMakeRange(row + 1, [pickerView selectedRowInComponent:2] + 1);
+        [pickerView reloadComponent:2];
+    }
 }
 
 #pragma mark - Factory

@@ -81,6 +81,13 @@ static CGFloat (^statusHeight)(void) = ^{
     [self.presenter requestAndReloadData];
 }
 
+- (void)beginAppearanceTransition:(BOOL)isAppearing animated:(BOOL)animated {
+    [super beginAppearanceTransition:isAppearing animated:animated];
+    if (isAppearing) {
+        [self.presenter requestAndReloadData];
+    }
+}
+
 #pragma mark - Getter
 
 - (ScheduleHeaderView *)headerView {

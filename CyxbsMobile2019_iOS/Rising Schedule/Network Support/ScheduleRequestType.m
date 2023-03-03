@@ -15,3 +15,16 @@ ScheduleModelRequestType const ScheduleModelRequestStudent = @"student";
 ScheduleModelRequestType const ScheduleModelRequestCustom = @"custom";
 
 ScheduleModelRequestType const ScheduleModelRequestTeacher = @"teacher";
+
+ScheduleModelRequestType const requestTypeForString(NSString *str) {
+    if ([str isEqualToString:ScheduleModelRequestStudent]) {
+        return ScheduleModelRequestStudent;
+    }
+    if ([str isEqualToString:ScheduleModelRequestCustom]) {
+        return ScheduleModelRequestCustom;
+    }
+    if ([str isEqualToString:ScheduleModelRequestTeacher]) {
+        return ScheduleModelRequestTeacher;
+    }
+    return ScheduleModelRequestStudent;
+}

@@ -10,9 +10,12 @@
 
 #import "ScheduleCustomEditView.h"
 
+#import "TransitioningDelegate.h"
 #import "HttpTool.h"
 
-@interface ScheduleCustomViewController ()
+@interface ScheduleCustomViewController () <
+    ScheduleCustomEditViewDelegate
+>
 
 @property (nonatomic, strong) UIButton *backBtn;
 
@@ -24,6 +27,27 @@
 
 @implementation ScheduleCustomViewController
 
+- (instancetype)initWithAppendingInSection:(NSUInteger)section week:(NSUInteger)week location:(NSUInteger)location {
+    self = [super init];
+    if (self) {
+        _courseIfNeeded = [[ScheduleCourse alloc] init];
+        self.courseIfNeeded.type = @"事务";
+        self.courseIfNeeded.inSections = (section == 0 ? [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 12)] : [NSIndexSet indexSetWithIndex:section]);
+        self.courseIfNeeded.inWeek = week;
+        self.courseIfNeeded.period = NSMakeRange(location, 1);
+        self.courseIfNeeded.inWeek = week;
+    }
+    return self;
+}
+
+- (instancetype)initWithEditingWithCourse:(ScheduleCourse *)course {
+    self = [super init];
+    if (self) {
+        _courseIfNeeded = course;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -31,7 +55,20 @@
     [self.view addSubview:self.editView];
     [self.view addSubview:self.backBtn];
     
-    [self test];
+//    [self test];
+    self.courseIfNeeded = self.courseIfNeeded;
+}
+
+#pragma mark - Method
+
+- (void)setCourseIfNeeded:(ScheduleCourse *)courseIfNeeded {
+    if (_editView) {
+        self.editView.title = courseIfNeeded.course;
+        self.editView.content = courseIfNeeded.classRoom;
+        self.editView.period = courseIfNeeded.period;
+        self.editView.sections = courseIfNeeded.inSections;
+        self.editView.inWeek = courseIfNeeded.inWeek;
+    }
 }
 
 #pragma mark - Lazy
@@ -59,13 +96,30 @@
     if (_editView == nil) {
         CGFloat top = self.backBtn.top;
         _editView = [[ScheduleCustomEditView alloc] initWithFrame:CGRectMake(0, top, self.view.width, self.view.height - top)];
-        }
+        _editView.delegate = self;
+    }
     return _editView;
 }
 
-#pragma mark - method
+#pragma mark - <ScheduleCustomEditViewDelegate>
+
+- (void)scheduleCustomEditViewDidFinishEditing:(ScheduleCustomEditView *)view {
+    [self _dismissWithAppending:YES];
+}
+
+#pragma mark - private
 
 - (void)_cancel:(UIButton *)btn {
+    [self _dismissWithAppending:NO];
+}
+
+- (void)_dismissWithAppending:(BOOL)append {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(scheduleCustomViewController:finishingWithAppending:)]) {
+        [self.delegate scheduleCustomViewController:self finishingWithAppending:append];
+    }
+    TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
+    delegate.transitionDurationIfNeeded = 0.3;
+    self.transitioningDelegate = delegate;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

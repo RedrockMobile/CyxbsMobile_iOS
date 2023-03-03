@@ -47,7 +47,7 @@ static SchedulePolicyService * _currentPolicy;
             [unInMemIds addObject:key];
         } else {
             ScheduleCombineItem *cacheItem = [ScheduleShareCache.shareCache getItemForKey:key.key];
-            if (cacheItem) {
+            if (cacheItem && cacheItem.identifier.type != ScheduleModelRequestCustom) {
                 policy(cacheItem);
             } else {
                 if (self.awakeable) {
@@ -72,12 +72,18 @@ static SchedulePolicyService * _currentPolicy;
         if (policy) {
             policy(item);
         }
-        if (self.awakeable) {
+        if (self.awakeable || item.identifier.type == ScheduleModelRequestCustom) {
             [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
         }
     }
      failure:^(NSError * _Nonnull error, ScheduleIdentifier *errorID) {
-        if (unpolicy) {
+        if (errorID.type == ScheduleModelRequestCustom) {
+            ScheduleCombineItem *custom = [ScheduleCombineItem combineItemWithIdentifier:errorID value:NSArray.array];
+            ScheduleNETRequest.current.customItem = custom;
+            if (policy) {
+                policy(custom);
+            }
+        } else if (unpolicy) {
             unpolicy(errorID);
         }
     }];
