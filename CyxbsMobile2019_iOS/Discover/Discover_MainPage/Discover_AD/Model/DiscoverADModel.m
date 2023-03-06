@@ -36,29 +36,6 @@
             failure(error);
         }
     }];
-    
-    // 网络请求，因为必须alloc，所以传出不需要东西
-//    [HttpClient.defaultClient
-//     requestWithPath:Discover_GET_bannerView_API
-//     method:HttpRequestGet
-//     parameters:nil
-//     prepareExecute:nil
-//     progress:nil
-//     success:^(NSURLSessionDataTask *task, id responseObject) {
-//        NSLog(@"🟢AD:\n%@", responseObject);
-//
-//        DiscoverADs *ADs = [[DiscoverADs alloc] initWithDictionary:responseObject];
-//
-//        self.ADCollectionInformation = ADs;
-//
-//        setModel();
-//    }
-//     failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        NSLog(@"🔴Discover AD Model Error:\n%@", error);
-//        if (failure) {
-//            failure(error);
-//        }
-//    }];
 }
 
 #pragma mark - <UICollectionViewDataSource>

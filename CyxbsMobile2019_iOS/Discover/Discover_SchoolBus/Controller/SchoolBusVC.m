@@ -17,7 +17,7 @@
 #import "StationMAPointAnnotation.h"
 #import "CircleMAPointAnnotation.h"
 
-@interface SchoolBusVC ()<
+@interface SchoolBusVC () <
     SchoolBusMapViewDelegate,
     SchoolBusBottomViewDelegate,
     CLLocationManagerDelegate

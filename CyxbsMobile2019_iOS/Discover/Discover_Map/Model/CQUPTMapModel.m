@@ -36,23 +36,6 @@
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", error);
     }];
-    
-//    [[HttpClient defaultClient] requestWithPath:Discover_GET_cquptMapBasicData_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//        if ([responseObject[@"status"] intValue] == 200) {
-//
-//            // 继续请求热词
-//            [self requestHotPlaceSuccess:^(NSArray<CQUPTMapHotPlaceItem *> * _Nonnull hotPlaceItemArray) {
-//                CQUPTMapDataItem *mapDataItem = [[CQUPTMapDataItem alloc] initWithDict:responseObject];
-//                success(mapDataItem, hotPlaceItemArray);
-//            }];
-//
-//        } else {
-//            failed([[NSError alloc] init]);
-//        }
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        NSLog(@"%@", error);
-//    }];
-    
 }
 
 + (void)requestHotPlaceSuccess:(void (^)(NSArray<CQUPTMapHotPlaceItem *> * _Nonnull))success {
@@ -78,20 +61,6 @@
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@", error);
     }];
-    
-//    [[HttpClient defaultClient] requestWithPath:Discover_GET_cquptMapHotPlace_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//        if ([responseObject[@"status"] intValue] == 200) {
-//            NSMutableArray *tmpArray = [NSMutableArray array];
-//            for (NSDictionary *dict in responseObject[@"data"][@"button_info"]) {
-//                CQUPTMapHotPlaceItem *hotPlaceItem = [[CQUPTMapHotPlaceItem alloc] initWithDict:dict];
-//                [tmpArray addObject:hotPlaceItem];
-//            }
-//            success(tmpArray);
-//        }
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        NSLog(@"%@", error);
-//    }];
-    
 }
 
 + (void)requestStarListSuccess:(void (^)(CQUPTMapStarPlaceItem * _Nonnull))success
@@ -121,24 +90,6 @@
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
-    
-    
-//    [[HttpClient defaultClient] requestWithPath:Discover_GET_cquptMapMyStar_API method:HttpRequestGet parameters:nil prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//        if ([responseObject[@"status"] intValue] == 200) {
-//            
-//            CQUPTMapStarPlaceItem *item = [[CQUPTMapStarPlaceItem alloc] initWithDice:responseObject];
-//            
-//            success(item);
-//        } else if ([responseObject[@"data"] isEqualToString:@""]) {
-//            // 这里后端的逻辑很奇怪，没有收藏的时候data本来应该是@{}，但是却返回了一个@""，并且status是500。
-//            // 所以这里只有单独写一个判断了。
-//            CQUPTMapStarPlaceItem *item = [[CQUPTMapStarPlaceItem alloc] init];
-//            
-//            success(item);
-//        }
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        
-//    }];
 }
 
 + (void)requestPlaceDataWithPlaceID:(NSString *)placeID success:(nonnull void (^)(CQUPTMapPlaceDetailItem * _Nonnull))success failed:(nonnull void (^)(NSError * _Nonnull))failed {
@@ -164,16 +115,6 @@
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
-    
-//    [[HttpClient defaultClient] requestWithPath:Discover_POST_cquptMapPlaceDetail_API method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//        if ([responseObject[@"status"] intValue] == 200) {
-//            CQUPTMapPlaceDetailItem *item = [[CQUPTMapPlaceDetailItem alloc] initWithDict:responseObject[@"data"]];
-//            item.placeID = placeID;
-//            success(item);
-//        }
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//
-//    }];
 }
 
 + (void)starPlaceWithPlaceID:(NSString *)placeID {
@@ -195,16 +136,6 @@
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
-    
-//    [[HttpClient defaultClient] requestWithPath:Discover_PATCH_cquptMapAddCollect_API method:HttpRequestPatch parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//
-//        CQUPTMapStarPlaceItem *item = [NSKeyedUnarchiver unarchiveObjectWithFile:[CQUPTMapStarPlaceItem archivePath]];
-//        [item.starPlaceArray addObject:placeID];
-//        [item archiveItem];
-//
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//
-//    }];
 }
 
 + (void)deleteStarPlaceWithPlaceID:(NSString *)placeID {
@@ -226,14 +157,6 @@
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
-    
-//    [[HttpClient defaultClient] requestWithPath:Discover_POST_cquptMapDeleteCollect_API method:HttpRequestPost parameters:params prepareExecute:nil progress:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-//        CQUPTMapStarPlaceItem *item = [NSKeyedUnarchiver unarchiveObjectWithFile:[CQUPTMapStarPlaceItem archivePath]];
-//        [item.starPlaceArray removeObject:placeID];
-//        [item archiveItem];
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//
-//    }];
 }
 
 @end

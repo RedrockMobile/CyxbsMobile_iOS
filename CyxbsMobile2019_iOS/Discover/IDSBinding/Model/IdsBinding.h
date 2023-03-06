@@ -11,8 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface IdsBinding : NSObject
-@property (nonatomic, strong)NSString *idsNum;
-@property (nonatomic, strong)NSString *idsPassword;
+@property (nonatomic, strong) NSString *idsNum;
+@property (nonatomic, strong) NSString *idsPassword;
 
 
 -(instancetype)initWithIdsNum:(NSString *)idsNum isPassword:(NSString *)idsPassword;

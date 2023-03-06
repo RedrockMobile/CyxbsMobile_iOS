@@ -4,7 +4,7 @@
 //
 //  Created by 千千 on 2020/1/20.
 //  Copyright © 2020 Redrock. All rights reserved.
-//这个控制器是查课表页的总控制器
+// 这个控制器是查课表页的总控制器
 
 #import "ScheduleInquiryViewController.h"
 #import "QAListSegmentView.h"
