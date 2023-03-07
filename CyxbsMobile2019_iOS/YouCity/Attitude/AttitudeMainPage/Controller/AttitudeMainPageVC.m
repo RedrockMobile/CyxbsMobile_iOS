@@ -45,11 +45,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getRequestData];
-    self.view.backgroundColor = [UIColor colorWithHexString:@"#FFFFF"];
+    [self setBarView];
     [self.view addSubview:self.tableView];
+    
+}
+- (void)setBarView {
+    self.view.backgroundColor = [UIColor whiteColor];
     self.VCTitleStr = @"表态区";
+    self.titlePosition = TopBarViewTitlePositionLeft;
     self.topBarView.backgroundColor = [UIColor whiteColor];
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
+    // 按钮
+//    UIBarButtonItem *publishBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Express_mainPublish"] style:UIBarButtonItemStylePlain target:self action:@selector(clickPublishBtn)];
+//    [publishBtn setImage:[UIImage imageNamed:@"Express_mainPublish"]];
+    UIButton *publishBtn = [[UIButton alloc] init];
+    [publishBtn setImage:[UIImage imageNamed:@"Express_mainPublish"] forState:UIControlStateNormal];
+    [publishBtn addTarget:self action:@selector(clickPublishBtn) forControlEvents:UIControlEventTouchUpInside];
+    [self.topBarView addSubview:publishBtn];
+    
+}
+
+- (void)clickPublishBtn {
+    NSLog(@"点击发布按钮");
 }
 
 - (void)getRequestData {
@@ -100,7 +117,10 @@
 
 // 点击cell跳进投票
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    ExpressDetailPageVC *detailPage = [[ExpressDetailPageVC alloc] init];
+    // 传入当前id
+    ExpressPickGetItem *item = self.dataArray[indexPath.row];
+    NSNumber *theId = item.getId;
+    ExpressDetailPageVC *detailPage = [[ExpressDetailPageVC alloc] initWithTheId:theId];
     [self.navigationController pushViewController:detailPage animated:YES];
     NSLog(@"页面跳转");
 }
@@ -113,11 +133,7 @@
         
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        if (@available(iOS 13.0, *)) {
-            _tableView.backgroundColor = [UIColor systemGray4Color];
-        } else {
-            // Fallback on earlier versions
-        }
+        _tableView.backgroundColor = [UIColor colorWithRed:0.949 green:0.953 blue:0.973 alpha:1];
     }
     return _tableView;
 }

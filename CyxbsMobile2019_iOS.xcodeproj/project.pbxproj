@@ -334,6 +334,7 @@
 		7A8F5AFF29A369A800969A4D /* ExpressPickPutItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8F5AFE29A369A800969A4D /* ExpressPickPutItem.m */; };
 		7A8F5B0229A369B600969A4D /* ExpressPickGetItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8F5B0129A369B600969A4D /* ExpressPickGetItem.m */; };
 		7A8F5B0529A36A2100969A4D /* ExpressDeclareItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8F5B0429A36A2100969A4D /* ExpressDeclareItem.m */; };
+		7A8F5B0829A47ADA00969A4D /* ExpressDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8F5B0729A47ADA00969A4D /* ExpressDetailCell.m */; };
 		7ABE46FC298FDD9D002F8389 /* ExpressPickGetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ABE46FB298FDD9D002F8389 /* ExpressPickGetModel.m */; };
 		7ABE46FF298FDE5F002F8389 /* ExpressPickPutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ABE46FE298FDE5F002F8389 /* ExpressPickPutModel.m */; };
 		7ABE4702298FDE9C002F8389 /* ExpressDeclareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ABE4701298FDE9C002F8389 /* ExpressDeclareModel.m */; };
@@ -1350,6 +1351,8 @@
 		7A8F5B0129A369B600969A4D /* ExpressPickGetItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpressPickGetItem.m; sourceTree = "<group>"; };
 		7A8F5B0329A36A2100969A4D /* ExpressDeclareItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpressDeclareItem.h; sourceTree = "<group>"; };
 		7A8F5B0429A36A2100969A4D /* ExpressDeclareItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpressDeclareItem.m; sourceTree = "<group>"; };
+		7A8F5B0629A47ADA00969A4D /* ExpressDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpressDetailCell.h; sourceTree = "<group>"; };
+		7A8F5B0729A47ADA00969A4D /* ExpressDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpressDetailCell.m; sourceTree = "<group>"; };
 		7AA4C469288D23A700E204C8 /* MineHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineHeader.h; sourceTree = "<group>"; };
 		7AA4C46E288FCEA800E204C8 /* ClassScheduleHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassScheduleHeader.h; sourceTree = "<group>"; };
 		7AA4C4712891230900E204C8 /* ChangePasswordHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangePasswordHeader.h; sourceTree = "<group>"; };
@@ -4785,7 +4788,8 @@
 		7ABE46F7298FDD5C002F8389 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7AE03117299251770006571F /* Model */,
+				7A8F5B0629A47ADA00969A4D /* ExpressDetailCell.h */,
+				7A8F5B0729A47ADA00969A4D /* ExpressDetailCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4856,13 +4860,6 @@
 				7AE03129299262150006571F /* AttitudeHomeCell.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		7AE03117299251770006571F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		7AE0311B299254B70006571F /* Attitude */ = {
@@ -7495,6 +7492,7 @@
 				735BC53526D392D400F22678 /* FeedBackTableViewCell.m in Sources */,
 				D0101F64243587A1004337ED /* GKPhotoBrowser.m in Sources */,
 				18CDF666257F91BD006E8E5C /* JWZXNewsModel.m in Sources */,
+				7A8F5B0829A47ADA00969A4D /* ExpressDetailCell.m in Sources */,
 				18CDF684257F91BD006E8E5C /* EmptyClassCollectionViewCell.m in Sources */,
 				18CDF662257F91BD006E8E5C /* DiscoverViewController.m in Sources */,
 				AA19FCB82663A266004E9F5D /* DeviceUtils.swift in Sources */,

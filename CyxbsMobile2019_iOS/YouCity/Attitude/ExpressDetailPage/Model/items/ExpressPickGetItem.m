@@ -15,7 +15,6 @@
         self.getId = dic[@"id"];
         self.choices = dic[@"choices"];
         self.getStatistic = dic[@"statistic"]; // 也是字典 { string: number }
-//        self.statisticStr =
         self.title = dic[@"title"];
         self.choices = dic[@"choices"];
     }

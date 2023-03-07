@@ -28,7 +28,8 @@
 
 // 间隙+圆角
 -(void)setFrame:(CGRect)frame {
-    frame.origin.x = 10; // 这里间距为10，可以根据自己的情况调整
+    frame.origin.x = 10;
+    frame.origin.y += 20;
     frame.size.width -= 2 * frame.origin.x;
     frame.size.height -= 2 * frame.origin.x;
     self.layer.masksToBounds = YES;
