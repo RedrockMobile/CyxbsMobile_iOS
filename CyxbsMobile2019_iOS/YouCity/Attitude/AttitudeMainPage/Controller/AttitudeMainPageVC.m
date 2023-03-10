@@ -13,6 +13,7 @@
 // VC
 #import "AttitudeMainPageVC.h"
 #import "ExpressDetailPageVC.h"
+#import "PublishViewController.h"
 // Model
 /// 主页数据
 #import "AttitudeMainModel.h"
@@ -22,7 +23,7 @@
 #import "ExpressPickGetItem.h"
 // View
 #import "AttitudeHomeCell.h"
-
+#import "AttitudeMainDefaultView.h"
 
 @interface AttitudeMainPageVC () <
     UITableViewDelegate,
@@ -32,6 +33,7 @@
 @property (nonatomic, strong) AttitudeMainPageItem *modelItem;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, copy) NSArray *dataArray;
+@property (nonatomic, strong) AttitudeMainDefaultView *defaultView;
 
 @end
 
@@ -44,14 +46,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self getRequestData];
     [self setBarView];
-    [self.view addSubview:self.tableView];
     
+    if (self.dataArray.count == 0) {
+        [self.view addSubview:self.defaultView];
+    }
+    else {
+        [self getRequestData];
+        [self.view addSubview:self.tableView];
+    }
 }
+// 表态Bar
 - (void)setBarView {
     self.view.backgroundColor = [UIColor whiteColor];
     self.VCTitleStr = @"表态区";
+    self.splitLineHidden = YES;
     self.titlePosition = TopBarViewTitlePositionLeft;
     self.topBarView.backgroundColor = [UIColor whiteColor];
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
@@ -62,11 +71,19 @@
     [publishBtn setImage:[UIImage imageNamed:@"Express_mainPublish"] forState:UIControlStateNormal];
     [publishBtn addTarget:self action:@selector(clickPublishBtn) forControlEvents:UIControlEventTouchUpInside];
     [self.topBarView addSubview:publishBtn];
+    [publishBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.topBarView);
+        make.right.equalTo(self.topBarView).mas_offset(-16);
+        make.height.equalTo(@18);
+        make.width.equalTo(@18);
+    }];
     
 }
 
 - (void)clickPublishBtn {
     NSLog(@"点击发布按钮");
+    PublishViewController *publishVC = [[PublishViewController alloc] init];
+    [self.navigationController pushViewController:publishVC animated:YES];
 }
 
 - (void)getRequestData {
@@ -81,12 +98,38 @@
     NSLog(@"%ld", self.dataArray.count);
 }
 
-
-
 // 加载更多数据
 - (void)loadMoreData {
     
 }
+
+// 缺省页
+/*
+- (void)setDefaultView {
+//    [self.view removeAllSubviews];
+    UIImageView *defaultView = [[UIImageView alloc] init];
+    defaultView.image = [UIImage imageNamed:@"Attitude_defaultPage"];
+    UILabel *defaultLabel = [[UILabel alloc] init];
+    defaultLabel.text = @"菌似乎还没有发布过话题,点击右上角去发布吧!";
+    defaultLabel.font = [UIFont fontWithName:PingFangSC size:16];
+    defaultLabel.textColor = [UIColor colorWithHexString:@"#112C54" alpha:0.6];
+    defaultLabel.numberOfLines = 0;
+    [self.view addSubview:defaultView];
+    [self.view addSubview:defaultLabel];
+    [defaultView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(self.view).mas_offset(245);
+        make.width.equalTo(@170);
+        make.height.equalTo(@102);
+    }];
+    [defaultLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(defaultView.mas_bottom).mas_offset(16);
+        make.height.equalTo(@50);
+        make.width.equalTo(@201);
+    }];
+}
+*/
 
 #pragma mark - UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -112,6 +155,7 @@
         }
     self.modelItem = self.dataArray[indexPath.row];
     cell.title.text = self.modelItem.title;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
@@ -143,6 +187,15 @@
         _attitudeModel = [[AttitudeMainModel alloc] init];
     }
     return _attitudeModel;
+}
+// 缺省页
+- (AttitudeMainDefaultView *)defaultView {
+    CGFloat y = self.topBarView.bottom;
+    if (!_defaultView) {
+        _defaultView = [[AttitudeMainDefaultView alloc] initWithDefaultPage];
+        _defaultView.frame = CGRectMake(0, y, kScreenWidth, kScreenHeight - y);
+    }
+    return _defaultView;
 }
 
 /*

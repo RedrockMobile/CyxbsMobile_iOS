@@ -331,6 +331,9 @@
 		73AAA1D526C918250084E44D /* PurchaseInfoOrderIDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1C226C918240084E44D /* PurchaseInfoOrderIDView.m */; };
 		73AAA1D626C918250084E44D /* DetailsBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1C726C918240084E44D /* DetailsBaseTableViewCell.m */; };
 		73AAA1D726C918250084E44D /* DetailsCustomizeNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1C826C918240084E44D /* DetailsCustomizeNavigationBar.m */; };
+		7A574C7829B8C73400197154 /* AttitudeMainDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A574C7729B8C73400197154 /* AttitudeMainDefaultView.m */; };
+		7A574C7B29B8CD4300197154 /* PublishViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A574C7A29B8CD4300197154 /* PublishViewController.m */; };
+		7A574C7E29B8CF1100197154 /* PublishTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A574C7D29B8CF1100197154 /* PublishTopView.m */; };
 		7A8F5AFF29A369A800969A4D /* ExpressPickPutItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8F5AFE29A369A800969A4D /* ExpressPickPutItem.m */; };
 		7A8F5B0229A369B600969A4D /* ExpressPickGetItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8F5B0129A369B600969A4D /* ExpressPickGetItem.m */; };
 		7A8F5B0529A36A2100969A4D /* ExpressDeclareItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8F5B0429A36A2100969A4D /* ExpressDeclareItem.m */; };
@@ -1344,6 +1347,12 @@
 		73AAA1C726C918240084E44D /* DetailsBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsBaseTableViewCell.m; sourceTree = "<group>"; };
 		73AAA1C826C918240084E44D /* DetailsCustomizeNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsCustomizeNavigationBar.m; sourceTree = "<group>"; };
 		73AAA1C926C918240084E44D /* DetailsBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsBaseTableViewCell.h; sourceTree = "<group>"; };
+		7A574C7629B8C73400197154 /* AttitudeMainDefaultView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttitudeMainDefaultView.h; sourceTree = "<group>"; };
+		7A574C7729B8C73400197154 /* AttitudeMainDefaultView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttitudeMainDefaultView.m; sourceTree = "<group>"; };
+		7A574C7929B8CD4300197154 /* PublishViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishViewController.h; sourceTree = "<group>"; };
+		7A574C7A29B8CD4300197154 /* PublishViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishViewController.m; sourceTree = "<group>"; };
+		7A574C7C29B8CF1100197154 /* PublishTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishTopView.h; sourceTree = "<group>"; };
+		7A574C7D29B8CF1100197154 /* PublishTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishTopView.m; sourceTree = "<group>"; };
 		7A64BFF32892826F007CCB1E /* NewQAHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAHeader.h; sourceTree = "<group>"; };
 		7A8F5AFD29A369A800969A4D /* ExpressPickPutItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpressPickPutItem.h; sourceTree = "<group>"; };
 		7A8F5AFE29A369A800969A4D /* ExpressPickPutItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpressPickPutItem.m; sourceTree = "<group>"; };
@@ -4816,6 +4825,8 @@
 		7AE03111299246FE0006571F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7A574C7929B8CD4300197154 /* PublishViewController.h */,
+				7A574C7A29B8CD4300197154 /* PublishViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4823,6 +4834,8 @@
 		7AE031122992470D0006571F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7A574C7C29B8CF1100197154 /* PublishTopView.h */,
+				7A574C7D29B8CF1100197154 /* PublishTopView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4858,6 +4871,8 @@
 			children = (
 				7AE03128299262150006571F /* AttitudeHomeCell.h */,
 				7AE03129299262150006571F /* AttitudeHomeCell.m */,
+				7A574C7629B8C73400197154 /* AttitudeMainDefaultView.h */,
+				7A574C7729B8C73400197154 /* AttitudeMainDefaultView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7360,6 +7375,7 @@
 				AA7ABAAF2873EA5500BA6790 /* NewQARecommenTableView.m in Sources */,
 				FE2C135227AEF629001CF7AF /* ToDoMainBarView.m in Sources */,
 				18CDF721257F91BE006E8E5C /* FinderToolViewController.m in Sources */,
+				7A574C7829B8C73400197154 /* AttitudeMainDefaultView.m in Sources */,
 				18CDF719257F91BE006E8E5C /* VolunteerItem.m in Sources */,
 				1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */,
 				18CDF664257F91BD006E8E5C /* ElectricFeeModel.m in Sources */,
@@ -7494,6 +7510,7 @@
 				18CDF666257F91BD006E8E5C /* JWZXNewsModel.m in Sources */,
 				7A8F5B0829A47ADA00969A4D /* ExpressDetailCell.m in Sources */,
 				18CDF684257F91BD006E8E5C /* EmptyClassCollectionViewCell.m in Sources */,
+				7A574C7B29B8CD4300197154 /* PublishViewController.m in Sources */,
 				18CDF662257F91BD006E8E5C /* DiscoverViewController.m in Sources */,
 				AA19FCB82663A266004E9F5D /* DeviceUtils.swift in Sources */,
 				AA3F82E024E992C000B65042 /* LessonView.m in Sources */,
@@ -7603,6 +7620,7 @@
 				AA7ABA2B2873EA4100BA6790 /* originPhotoView.m in Sources */,
 				18CDF69A257F91BD006E8E5C /* CQUPTMapProgressView.m in Sources */,
 				18CDF70C257F91BE006E8E5C /* TimeTableViewCell.m in Sources */,
+				7A574C7E29B8CF1100197154 /* PublishTopView.m in Sources */,
 				18CDF679257F91BD006E8E5C /* ScheduleViewController.m in Sources */,
 				1404747227F459B500307209 /* DiscoverADItem.m in Sources */,
 				B0F0900128A2605E00986EB6 /* popUpViewController.m in Sources */,
