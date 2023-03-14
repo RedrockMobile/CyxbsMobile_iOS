@@ -573,6 +573,7 @@
 		B51C501728A5FFCE0011465E /* LoginBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501428A5FFCE0011465E /* LoginBaseView.m */; };
 		B51C501D28A625330011465E /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501C28A625330011465E /* LoginView.m */; };
 		B51C502D28A6493D0011465E /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500828A5FFBF0011465E /* LoginVC.m */; };
+		B5B454FA29C08D1600875DF7 /* CenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B454F929C08D1600875DF7 /* CenterVC.m */; };
 		D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */; };
 		D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D422433C885004337ED /* UIResponder+SDMask.m */; };
 		D0101D592433C885004337ED /* SDMaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D452433C885004337ED /* SDMaskController.m */; };
@@ -1853,6 +1854,8 @@
 		B51C501528A5FFCE0011465E /* LoginTextFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTextFieldView.h; sourceTree = "<group>"; };
 		B51C501B28A625330011465E /* LoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		B51C501C28A625330011465E /* LoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
+		B5B454F829C08D1600875DF7 /* CenterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CenterVC.h; sourceTree = "<group>"; };
+		B5B454F929C08D1600875DF7 /* CenterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CenterVC.m; sourceTree = "<group>"; };
 		D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+SDMask.m"; sourceTree = "<group>"; };
 		D0101D402433C885004337ED /* NSLayoutConstraint+SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+SDMask.h"; sourceTree = "<group>"; };
 		D0101D412433C885004337ED /* SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMask.h; sourceTree = "<group>"; };
@@ -4765,6 +4768,7 @@
 		7ABE46F4298FDD27002F8389 /* YouCity */ = {
 			isa = PBXGroup;
 			children = (
+				B5B454F729C08CEF00875DF7 /* Center */,
 				7AE0311B299254B70006571F /* Attitude */,
 			);
 			path = YouCity;
@@ -6239,6 +6243,15 @@
 			path = User;
 			sourceTree = "<group>";
 		};
+		B5B454F729C08CEF00875DF7 /* Center */ = {
+			isa = PBXGroup;
+			children = (
+				B5B454F829C08D1600875DF7 /* CenterVC.h */,
+				B5B454F929C08D1600875DF7 /* CenterVC.m */,
+			);
+			path = Center;
+			sourceTree = "<group>";
+		};
 		B5D558E928D7509E00DC22D8 /* Find Password */ = {
 			isa = PBXGroup;
 			children = (
@@ -7338,6 +7351,7 @@
 				AA7ABAF22873EA6D00BA6790 /* DynamicDetailViewModel.m in Sources */,
 				73AAA1D026C918250084E44D /* DetailsTaskTableViewCell.m in Sources */,
 				18CDF6B5257F91BD006E8E5C /* SCBar.m in Sources */,
+				B5B454FA29C08D1600875DF7 /* CenterVC.m in Sources */,
 				AA7AB95A2873E5EA00BA6790 /* SZHSearchDataModel.m in Sources */,
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
 				18CDF4C0257F8DBD006E8E5C /* sendCodeModel.m in Sources */,
