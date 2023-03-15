@@ -9,6 +9,7 @@
 #import "ScheduleServiceSolve.h"
 
 #import "SchedulePolicyService.h"
+#import "ScheduleNETRequest.h"
 #import "ScheduleWidgetCache.h"
 #import "ScheduleNeedsSupport.h"
 
@@ -21,7 +22,8 @@
 @interface ScheduleServiceSolve () <
     UICollectionViewDelegate,
     ScheduleHeaderViewDelegate,
-    UIGestureRecognizerDelegate
+    UIGestureRecognizerDelegate,
+    ScheduleCustomViewControllerDelegate
 >
 
 @end
@@ -135,8 +137,12 @@
 
 - (void)_emptyTap:(UITapGestureRecognizer *)tap {
     if (tap.state == UIGestureRecognizerStateEnded && self.onShow != ScheduleModelShowGroup) {
-        ScheduleCustomViewController *vc = [[ScheduleCustomViewController alloc] init];
+        ScheduleCollectionViewLayout *layout = (ScheduleCollectionViewLayout *)self.collectionView.collectionViewLayout;
+        NSIndexPath *idx = [layout indexPathAtPoint:[tap locationInView:self.collectionView]];
+        
+        ScheduleCustomViewController *vc = [[ScheduleCustomViewController alloc] initWithAppendingInSection:idx.section week:idx.week location:idx.location];
         vc.modalPresentationStyle = UIModalPresentationCustom;
+        vc.delegate = self;
         TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
         delegate.transitionDurationIfNeeded = 0.3;
         vc.transitioningDelegate = delegate;
@@ -157,6 +163,30 @@
 
 - (BOOL)awakeable {
     return SchedulePolicyService.current.awakeable;
+}
+
+#pragma mark - <ScheduleCustomViewControllerDelegate>
+
+- (void)scheduleCustomViewController:(ScheduleCustomViewController *)viewController finishingWithAppending:(BOOL)append {
+//    if (append) {
+//        [ScheduleNETRequest.current
+//         appendCustom:viewController.courseIfNeeded
+//         success:^(ScheduleCombineItem * _Nonnull item) {
+//            
+//        }
+//         failure:^(NSError * _Nonnull error) {
+//
+//        }];
+//    } else {
+//        [ScheduleNETRequest.current
+//         editCustom:viewController.courseIfNeeded
+//         success:^(ScheduleCombineItem * _Nonnull item) {
+//            
+//        }
+//         failure:^(NSError * _Nonnull error) {
+//            
+//        }];
+//    }
 }
 
 #pragma mark - <UICollectionViewDelegate>

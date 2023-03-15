@@ -38,7 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, readonly) UICollectionView *collectionView;
 
-- (void)requestAndReloadData;
+- (void)requestAndReloadDataWithRollback:(BOOL)rollBack;
 
 @property (nonatomic) BOOL awakeable;
 

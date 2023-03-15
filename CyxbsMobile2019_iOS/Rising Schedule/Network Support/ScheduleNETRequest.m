@@ -16,13 +16,13 @@
 
 static NSString *urlForRequest(ScheduleModelRequestType type) {
     if (type == ScheduleModelRequestStudent) {
-        return STRS(NetURL.base.bedev, scheule.stu);
+        return @"https://be-prod.redrock.cqupt.edu.cn/magipoke-jwzx/kebiao";
     }
     if (type == ScheduleModelRequestCustom) {
-        return STRS(NetURL.base.bedev, scheule.transaction.get);
+        return STRS(NetURL.base.beprod, scheule.transaction.get);
     }
     if (type == ScheduleModelRequestTeacher) {
-        return STRS(NetURL.base.bedev, scheule.tea);
+        return STRS(NetURL.base.beprod, scheule.tea);
     }
     return @"";
 }
@@ -62,7 +62,7 @@ static ScheduleNETRequest *_current;
              type:HttpToolRequestTypePost
              serializer:HttpToolRequestSerializerHTTP
              bodyParameters:@{
-                keyForType(type) : sno,
+                @"stu_num" : sno
             }
              progress:nil
              success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable object) {
@@ -110,6 +110,11 @@ static ScheduleNETRequest *_current;
 - (void)appendCustom:(ScheduleCourse *)course
              success:(void (^)(ScheduleCombineItem *))success
              failure:(void (^)(NSError *))failure {
+    NSMutableArray *ary = [NSMutableArray arrayWithArray:ScheduleNETRequest.current.customItem.value];
+    [ary addObject:course];
+    if (success) {
+        success([ScheduleCombineItem combineItemWithIdentifier:ScheduleNETRequest.current.customItem.identifier value:ary]);
+    }
     
 }
 

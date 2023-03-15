@@ -13,6 +13,8 @@
 #import "TransitioningDelegate.h"
 #import "HttpTool.h"
 
+#pragma mark - ScheduleCustomViewController ()
+
 @interface ScheduleCustomViewController () <
     ScheduleCustomEditViewDelegate
 >
@@ -25,17 +27,22 @@
 
 @end
 
-@implementation ScheduleCustomViewController
+#pragma mark - ScheduleCustomViewController
+
+@implementation ScheduleCustomViewController {
+    BOOL _isAdding;
+}
 
 - (instancetype)initWithAppendingInSection:(NSUInteger)section week:(NSUInteger)week location:(NSUInteger)location {
     self = [super init];
     if (self) {
         _courseIfNeeded = [[ScheduleCourse alloc] init];
-        self.courseIfNeeded.type = @"事务";
-        self.courseIfNeeded.inSections = (section == 0 ? [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 12)] : [NSIndexSet indexSetWithIndex:section]);
-        self.courseIfNeeded.inWeek = week;
-        self.courseIfNeeded.period = NSMakeRange(location, 1);
-        self.courseIfNeeded.inWeek = week;
+        _courseIfNeeded.type = @"事务";
+        _courseIfNeeded.inSections = (section == 0 ? [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, 24)] : [NSIndexSet indexSetWithIndex:section]);
+        _courseIfNeeded.inWeek = week;
+        _courseIfNeeded.period = NSMakeRange(location, 1);
+        _courseIfNeeded.inWeek = week;
+        _isAdding = YES;
     }
     return self;
 }
@@ -43,6 +50,11 @@
 - (instancetype)initWithEditingWithCourse:(ScheduleCourse *)course {
     self = [super init];
     if (self) {
+        if (course == nil) {
+            course = [[ScheduleCourse alloc] init];
+            course.inSections = NSIndexSet.indexSet;
+            _isAdding = NO;
+        }
         _courseIfNeeded = course;
     }
     return self;
@@ -56,7 +68,7 @@
     [self.view addSubview:self.backBtn];
     
 //    [self test];
-    self.courseIfNeeded = self.courseIfNeeded;
+    self.courseIfNeeded = _courseIfNeeded;
 }
 
 #pragma mark - Method
@@ -104,17 +116,17 @@
 #pragma mark - <ScheduleCustomEditViewDelegate>
 
 - (void)scheduleCustomEditViewDidFinishEditing:(ScheduleCustomEditView *)view {
-    [self _dismissWithAppending:YES];
+    [self _dismissWithCall:YES appending:_isAdding];
 }
 
 #pragma mark - private
 
 - (void)_cancel:(UIButton *)btn {
-    [self _dismissWithAppending:NO];
+    [self _dismissWithCall:NO appending:NO];
 }
 
-- (void)_dismissWithAppending:(BOOL)append {
-    if (self.delegate && [self.delegate respondsToSelector:@selector(scheduleCustomViewController:finishingWithAppending:)]) {
+- (void)_dismissWithCall:(BOOL)callDelegate appending:(BOOL)append {
+    if (callDelegate && self.delegate && [self.delegate respondsToSelector:@selector(scheduleCustomViewController:finishingWithAppending:)]) {
         [self.delegate scheduleCustomViewController:self finishingWithAppending:append];
     }
     TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];

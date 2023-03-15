@@ -113,9 +113,12 @@
 // sections
 
 - (void)setSections:(NSIndexSet *)sections {
-    _mutiIdxSet = sections.mutableCopy;
+    _mutiIdxSet = sections ? sections.mutableCopy : NSMutableIndexSet.indexSet;
     if (_collectionView) {
-        [self.collectionView reloadData];
+        [sections enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL * __unused stop) {
+            NSIndexPath *idxPath = [NSIndexPath indexPathForItem:(idx - 1) % 8 inSection:(idx - 1) / 8];
+            [self.collectionView selectItemAtIndexPath:idxPath animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+        }];
     }
 }
 
@@ -176,7 +179,7 @@
 - (UITextField *)titleTextField {
     if (_titleTextField == nil) {
         _titleTextField = self._textField;
-        _titleTextField.frame = CGRectMake(self.titleLab.left, self.titleLab.bottom + 10, self.width - 2 * 16, 50);
+        _titleTextField.frame = CGRectMake(self.titleLab.left, self.titleLab.bottom + 5, self.width - 2 * 16, 50);
         _titleTextField.placeholder = @"标题";
     }
     return _titleTextField;
@@ -196,7 +199,7 @@
 - (UITextField *)contentTextField {
     if (_contentTextField == nil) {
         _contentTextField = self._textField;
-        _contentTextField.frame = CGRectMake(self.contentLab.left, self.contentLab.bottom + 10, self.width - 2 * 16, 50);
+        _contentTextField.frame = CGRectMake(self.contentLab.left, self.contentLab.bottom + 5, self.width - 2 * 16, 50);
         _contentTextField.placeholder = @"内容";
     }
     return _contentTextField;
@@ -221,7 +224,7 @@
         layout.sectionInset = UIEdgeInsetsMake(3, 0, 3, 0);
         
         CGFloat left = self.sectionLab.left;
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(left, self.sectionLab.bottom + 10, self.width - 2 * left, 105) collectionViewLayout:layout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(left, self.sectionLab.bottom + 5, self.width - 2 * left, 105) collectionViewLayout:layout];
         _collectionView.backgroundColor = UIColor.clearColor;
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
@@ -239,7 +242,7 @@
         _periodLab = self._lab;
         _periodLab.text = @"确定时间";
         [_periodLab sizeToFit];
-        _periodLab.top = self.collectionView.bottom + 20;
+        _periodLab.top = self.collectionView.bottom + 15;
         _periodLab.left = self.collectionView.left;
     }
     return _periodLab;
@@ -277,6 +280,7 @@
 - (void)_endEdit:(UITapGestureRecognizer *)tap {
     if (tap.state == UIGestureRecognizerStateEnded) {
         [self endEditing:YES];
+        [self _checkBtn];
     }
 }
 
@@ -346,9 +350,10 @@
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     ScheduleCustomEditCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ScheduleCustomEditCollectionViewCellReuseIdentifier forIndexPath:indexPath];
+    
     NSUInteger week = indexPath.section * 8 + indexPath.item + 1;
     cell.title = [NSString stringWithFormat:@"第%ld周", week];
-    cell.selected = [_mutiIdxSet containsIndex:week];
+    
     return cell;
 }
 

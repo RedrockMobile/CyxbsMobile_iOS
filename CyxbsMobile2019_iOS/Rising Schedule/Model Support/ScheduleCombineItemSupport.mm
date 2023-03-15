@@ -190,20 +190,25 @@ ScheduleRequestDictionary *ScheduleRequestDictionaryFromScheduleIdentifiers(NSAr
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder {
     ScheduleIdentifier *identifier = [decoder decodeObjectOfClass:ScheduleIdentifier. class forKey:@"name"];
+    BOOL awaked = [decoder decodeBoolForKey:@"awaked"];
     NSArray <ScheduleCourse *> *courses = [decoder decodeObjectForKey:@"value"];
     self = [self initWithIdentifier:identifier value:courses];
+    self.awaked = awaked;
     return self;
 }
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
     [coder encodeObject:_identifier forKey:@"name"];
     [coder encodeObject:_value forKey:@"value"];
+    [coder encodeBool:_awaked forKey:@"book"];
 }
 
 #pragma mark - <NSCopying>
 
 - (nonnull id)copyWithZone:(nullable NSZone *)zone {
-    return [[ScheduleCombineItem allocWithZone:zone] initWithIdentifier:self.identifier.copy value:self.value.copy];
+    ScheduleCombineItem *item = [[ScheduleCombineItem allocWithZone:zone] initWithIdentifier:self.identifier.copy value:self.value.copy];
+    item.awaked = self.awaked;
+    return item;
 }
 
 @end

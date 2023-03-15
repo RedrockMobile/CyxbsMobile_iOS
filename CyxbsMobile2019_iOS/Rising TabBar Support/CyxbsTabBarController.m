@@ -87,6 +87,7 @@
         
         BOOL hadReadAgreement = [NSUserDefaults.standardUserDefaults boolForKey:UDKey.hadReadAgreement];
         if (!hadReadAgreement) {
+            // 用户协议以及登录请在这里进行改变
             UIViewController *vc = [[UserAgreementViewController alloc] init];
             vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
             [self presentViewController:vc animated:YES completion:nil];

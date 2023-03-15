@@ -88,6 +88,7 @@
 		14BC47FB2914D80F0063809E /* SearchPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC47FA2914D80F0063809E /* SearchPerson.m */; };
 		14BC480929154D290063809E /* SearchPersonModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC480829154D290063809E /* SearchPersonModel.m */; };
 		14D03BB7292DFECE001CA682 /* ScheduleCollectionViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D03BB6292DFECE001CA682 /* ScheduleCollectionViewModel.m */; };
+		14D1C52429BF54C000B5BF51 /* SchedulePlaceholderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D1C52329BF54C000B5BF51 /* SchedulePlaceholderCollectionViewCell.m */; };
 		14D598C928FF90EB00C9798F /* ScheduleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598C828FF90EB00C9798F /* ScheduleHeaderView.m */; };
 		14D598CC28FF964100C9798F /* SameDrawUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598CB28FF964100C9798F /* SameDrawUI.m */; };
 		14D598DB2901801F00C9798F /* ScheduleDetailTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D598DA2901801F00C9798F /* ScheduleDetailTableHeaderView.m */; };
@@ -286,6 +287,8 @@
 		14BC481129164EB30063809E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		14D03BB5292DFECE001CA682 /* ScheduleCollectionViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionViewModel.h; sourceTree = "<group>"; };
 		14D03BB6292DFECE001CA682 /* ScheduleCollectionViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCollectionViewModel.m; sourceTree = "<group>"; };
+		14D1C52229BF54C000B5BF51 /* SchedulePlaceholderCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchedulePlaceholderCollectionViewCell.h; sourceTree = "<group>"; };
+		14D1C52329BF54C000B5BF51 /* SchedulePlaceholderCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchedulePlaceholderCollectionViewCell.m; sourceTree = "<group>"; };
 		14D598C728FF90EB00C9798F /* ScheduleHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleHeaderView.h; sourceTree = "<group>"; };
 		14D598C828FF90EB00C9798F /* ScheduleHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleHeaderView.m; sourceTree = "<group>"; };
 		14D598CA28FF963600C9798F /* SameDrawUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SameDrawUI.h; sourceTree = "<group>"; };
@@ -445,6 +448,8 @@
 				1422240528D83DDD009A4A54 /* ScheduleSupplementaryCollectionViewCell.m */,
 				1466283228C5CA4600AF584F /* ScheduleCollectionViewCell.h */,
 				1466283328C5CA4600AF584F /* ScheduleCollectionViewCell.m */,
+				14D1C52229BF54C000B5BF51 /* SchedulePlaceholderCollectionViewCell.h */,
+				14D1C52329BF54C000B5BF51 /* SchedulePlaceholderCollectionViewCell.m */,
 			);
 			path = "View Support";
 			sourceTree = "<group>";
@@ -1325,6 +1330,7 @@
 				147681B7297156AF00E2D34D /* ScheduleBar.m in Sources */,
 				140F6699298218050075C50A /* SchedulePolicyService.m in Sources */,
 				14E844F628FC40090037309F /* ScheduleDetailController.m in Sources */,
+				14D1C52429BF54C000B5BF51 /* SchedulePlaceholderCollectionViewCell.m in Sources */,
 				14E66AA7295C8AC90043CBE7 /* ScheduleTimelineSupport.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
 				14B7E420295C4A150033653D /* AnimatedTransitioningSupport.m in Sources */,

@@ -33,7 +33,8 @@
         _itemAttributes = NSMutableDictionary.dictionary;
         _supplementaryAttributes = @{
             UICollectionElementKindSectionHeader : NSMutableDictionary.dictionary,
-            UICollectionElementKindSectionLeading : NSMutableDictionary.dictionary
+            UICollectionElementKindSectionLeading : NSMutableDictionary.dictionary,
+            UICollectionElementKindSectionPlaceholder : NSMutableDictionary.dictionary
         }.mutableCopy;
     }
     return self;
@@ -48,8 +49,8 @@
         // SupplementaryView attributes
         for (NSString *elementKind in _supplementaryAttributes.allKeys) {
             id <ScheduleCollectionViewDataSource> dataSource = (id <ScheduleCollectionViewDataSource>)self.collectionView.dataSource;
-            NSInteger supplementaryCount = ![dataSource respondsToSelector:@selector(collectionView:numberOfSupplementaryOfKind:inSection:)]?:
-            [dataSource collectionView:self.collectionView numberOfSupplementaryOfKind:elementKind inSection:section];
+            NSInteger supplementaryCount = ![dataSource respondsToSelector:@selector(collectionView:numberOfSupplementaryOfKind:inSection:)] ? 0 :
+                [dataSource collectionView:self.collectionView numberOfSupplementaryOfKind:elementKind inSection:section];
             for (NSInteger item = 0; item < supplementaryCount; item++) {
                 
                 NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
@@ -171,7 +172,7 @@
     // Placeholder Element
     if ([elementKind isEqualToString:UICollectionElementKindSectionPlaceholder]) {
         CGFloat x = indexPath.section * self.collectionView.width + self.widthForLeadingSupplementaryView;
-        CGFloat y = self.heightForHeaderSupplementaryView;
+        CGFloat y = self.collectionView.contentOffset.y;// + self.heightForHeaderSupplementaryView;
         CGFloat width = self.collectionView.width - self.widthForLeadingSupplementaryView;
         CGFloat height = self.collectionView.height - self.heightForHeaderSupplementaryView;
         
@@ -179,13 +180,18 @@
         
         attributes.frame = frame;
         
-        if (self.dataSource) {
-            NSUInteger itemCount = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:indexPath.section];
-            attributes.hidden = (itemCount > 0 ? 0 : 1);
-        }
-        
         return ;
     }
+}
+
+#pragma mark - Method
+
+- (NSIndexPath *)indexPathAtPoint:(CGPoint)point {
+    NSInteger section = point.x / self.collectionView.width;
+    NSInteger week = (point.x - section * self.collectionView.width - self.widthForLeadingSupplementaryView) / (self.itemSize.width + self.columnSpacing) + 1;
+    NSInteger location = (point.y + self.collectionView.contentOffset.y) / (self.itemSize.height + self.lineSpacing);
+    
+    return [NSIndexPath indexPathForLocation:location inWeek:week inSection:section];
 }
 
 #pragma mark - Others
@@ -207,32 +213,11 @@
     return contentSize;
 }
 
-//- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity {
-//    
-//    CGPoint point = [super targetContentOffsetForProposedContentOffset:proposedContentOffset withScrollingVelocity:velocity];
-//    
-//    if (velocity.x) {
-//        CGFloat y = self.collectionView.contentOffset.y;
-//        point.y = y;
-//        return point;
-//    }
-//    
-//    CGFloat oneLenValue = (self.collectionView.contentOffset.y - self.heightForHeaderSupplementaryView) / (_itemSize.height + self.lineSpacing);
-//    CGFloat currentTop = (velocity.y > 0.0) ? floor(oneLenValue) : ceil(oneLenValue);
-//    CGFloat nextTop = (velocity.y > 0.0) ? ceil(oneLenValue) : floor(oneLenValue);
-//    
-//    BOOL pannedLessThanAPage = fabs(1 + currentTop - oneLenValue) > 0.5;
-//    BOOL flicked = fabs(velocity.y) > 0.02;
-//    if (pannedLessThanAPage && flicked) {
-//        point.y = nextTop * self.pageWidth;
-//    } else {
-//        point.y = round(rawPageValue) * self.pageWidth;
-//    }
-//    
-//    return point;
-//    
-//
-//}
+- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity {
+    CGPoint point = [super targetContentOffsetForProposedContentOffset:proposedContentOffset withScrollingVelocity:velocity];
+    NSLog(@"from point:%@ with velocity:%@ to:%@", NSStringFromCGPoint(proposedContentOffset), NSStringFromCGPoint(velocity), NSStringFromCGPoint(point));
+    return point;
+}
 
 #pragma mark - (UISubclassingHooks)
 

@@ -35,7 +35,7 @@ static CGFloat (^statusHeight)(void) = ^{
     self = [super init];
     if (self) {
         _presenter = presenter;
-        presenter.controller = self;
+        presenter.controller = self;UIListContentConfiguration *a;
         [self _drawTabbar];
     }
     return self;
@@ -73,19 +73,8 @@ static CGFloat (^statusHeight)(void) = ^{
     self.presenter.headerView = self.headerView;
     [self.view addSubview:self.headerView];
     [self.view addSubview:self.collectionView];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
     
-    [self.presenter requestAndReloadData];
-}
-
-- (void)beginAppearanceTransition:(BOOL)isAppearing animated:(BOOL)animated {
-    [super beginAppearanceTransition:isAppearing animated:animated];
-    if (isAppearing) {
-        [self.presenter requestAndReloadData];
-    }
+    [self.presenter requestAndReloadDataWithRollback:YES];
 }
 
 #pragma mark - Getter

@@ -73,9 +73,11 @@
 }
 
 
-- (void)requestAndReloadData {
+- (void)requestAndReloadDataWithRollback:(BOOL)rollBack {
     [self.service requestAndReloadData:^{
-        [self.service scrollToSection:self.service.model.touchItem.nowWeek];
+        if (rollBack) {
+            [self.service scrollToSection:self.service.model.touchItem.nowWeek];
+        }
     }];
 }
 

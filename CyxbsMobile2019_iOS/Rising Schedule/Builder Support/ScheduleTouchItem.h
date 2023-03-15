@@ -14,7 +14,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ScheduleTouchItem : NSObject
+@interface ScheduleTouchItem : NSObject <NSCopying, NSSecureCoding>
 
 /// 连立的课程，会通过一系列算法得到下面的所有数据
 @property (nonatomic, strong, nullable) ScheduleCombineItem *combining;
