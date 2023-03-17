@@ -573,6 +573,7 @@
 		B51C501728A5FFCE0011465E /* LoginBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501428A5FFCE0011465E /* LoginBaseView.m */; };
 		B51C501D28A625330011465E /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501C28A625330011465E /* LoginView.m */; };
 		B51C502D28A6493D0011465E /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500828A5FFBF0011465E /* LoginVC.m */; };
+		B5B4551D29C45DC800875DF7 /* PublishTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B4551C29C45DC800875DF7 /* PublishTextView.m */; };
 		D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */; };
 		D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D422433C885004337ED /* UIResponder+SDMask.m */; };
 		D0101D592433C885004337ED /* SDMaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D452433C885004337ED /* SDMaskController.m */; };
@@ -1853,6 +1854,8 @@
 		B51C501528A5FFCE0011465E /* LoginTextFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTextFieldView.h; sourceTree = "<group>"; };
 		B51C501B28A625330011465E /* LoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		B51C501C28A625330011465E /* LoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
+		B5B4551B29C45DC800875DF7 /* PublishTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishTextView.h; sourceTree = "<group>"; };
+		B5B4551C29C45DC800875DF7 /* PublishTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishTextView.m; sourceTree = "<group>"; };
 		D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+SDMask.m"; sourceTree = "<group>"; };
 		D0101D402433C885004337ED /* NSLayoutConstraint+SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+SDMask.h"; sourceTree = "<group>"; };
 		D0101D412433C885004337ED /* SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMask.h; sourceTree = "<group>"; };
@@ -4815,7 +4818,6 @@
 		7AE03110299246EF0006571F /* PublishPage */ = {
 			isa = PBXGroup;
 			children = (
-				7AE03113299247150006571F /* Model */,
 				7AE031122992470D0006571F /* View */,
 				7AE03111299246FE0006571F /* Controller */,
 			);
@@ -4836,15 +4838,10 @@
 			children = (
 				7A574C7C29B8CF1100197154 /* PublishTopView.h */,
 				7A574C7D29B8CF1100197154 /* PublishTopView.m */,
+				B5B4551B29C45DC800875DF7 /* PublishTextView.h */,
+				B5B4551C29C45DC800875DF7 /* PublishTextView.m */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		7AE03113299247150006571F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		7AE03114299251540006571F /* AttitudeMainPage */ = {
@@ -7147,6 +7144,7 @@
 				AA0DDB82286C8B1A00802324 /* IDCardTableViewCell.m in Sources */,
 				AA7AB9662873E5EA00BA6790 /* QASearchResultVC.m in Sources */,
 				14FBBD58280591E200D5B05D /* NewDownloadCell.m in Sources */,
+				B5B4551D29C45DC800875DF7 /* PublishTextView.m in Sources */,
 				DB4064F82466D889006CE5BC /* DLWeekButton.m in Sources */,
 				14B73F84281CCC3000D08ADD /* MessageDetailVC.m in Sources */,
 				18CDF6C3257F91BE006E8E5C /* DetailScorePerYearCell.m in Sources */,
