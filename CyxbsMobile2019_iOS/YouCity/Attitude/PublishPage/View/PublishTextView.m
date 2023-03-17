@@ -99,7 +99,7 @@
 
 - (UIButton *)sureBtn {
     if (_sureBtn == nil) {
-        _sureBtn.backgroundColor = [UIColor colorWithHexString:@"#4841E2" alpha:1.0];
+        _sureBtn.backgroundColor = [UIColor colorWithHexString:@"#C3D4EE" alpha:1.0];
         _sureBtn.layer.masksToBounds = YES;
         _sureBtn.layer.cornerRadius = 24;
         _sureBtn.titleLabel.text = @"确认";
