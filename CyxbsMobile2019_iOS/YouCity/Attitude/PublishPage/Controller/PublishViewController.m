@@ -11,6 +11,7 @@
 // View
 #import "PublishTopView.h"
 #import "PublishTextView.h"
+#import "PublishMakeSureView.h"
 
 @interface PublishViewController () <
     UITextViewDelegate
@@ -23,6 +24,9 @@
 
 /// 选项Option输入框
 @property (nonatomic, strong) PublishTextView *publishOptionTextView;
+
+/// 确认输入提示框
+@property (nonatomic, strong) PublishMakeSureView *publishMakeSureView;
 
 /// 背景蒙版
 @property (nonatomic, strong) UIView *backView;
@@ -46,7 +50,7 @@
 
 /// TODO: 点击title跳转提示框方法
 - (void)clickTitle {
-    UIWindow *window = self.view.window;
+//    UIWindow *window = self.view.window;
     // 加入背景蒙版
     [self.view.window addSubview:self.backView];
     // 加入输入框
@@ -55,11 +59,20 @@
 
 /// TODO: 点击cell跳转提示框方法
 - (void)clickCell {
-    UIWindow *window = self.view.window;
+//    UIWindow *window = self.view.window;
     // 加入背景蒙版
     [self.view.window addSubview:self.backView];
     // 加入输入框
     [self.view.window addSubview:self.publishOptionTextView];
+}
+
+// TODO: 点击完成编辑出现确认提示框
+- (void)clickFinishBtn:(UIButton *)sender {
+    UIView *view = [sender superview];
+    // 加入背景蒙版
+    [self.view.window addSubview:self.backView];
+    // 加入确认提示框
+    [self.view.window addSubview:self.publishMakeSureView];
 }
 
 /// 给按钮加SEL
@@ -67,10 +80,13 @@
     // 1.取消按钮都是一样的
     [self.publishTitleTextView.cancelBtn addTarget:self action:@selector(cancelInput) forControlEvents:UIControlEventTouchUpInside];
     [self.publishOptionTextView.cancelBtn addTarget:self action:@selector(cancelInput) forControlEvents:UIControlEventTouchUpInside];
+    [self.publishMakeSureView.cancelBtn addTarget:self action:@selector(cancelInput) forControlEvents:UIControlEventTouchUpInside];
     // 2.publishTitleTextView 的确认，textView 里面的内容被放到title 中
     [self.publishTitleTextView.sureBtn addTarget:self action:@selector(sureTitle) forControlEvents:UIControlEventTouchUpInside];
     // 3.publishOptionTextView 的确认，textView 里面的内容被放到option 中
     [self.publishOptionTextView.sureBtn addTarget:self action:@selector(sureOption) forControlEvents:UIControlEventTouchUpInside];
+    // 4.确认框
+    [self.publishMakeSureView.sureBtn addTarget:self action:@selector(surePublish) forControlEvents:UIControlEventTouchUpInside];
 }
 
 // MARK: SEL
@@ -81,10 +97,12 @@
 
 /// 取消输入
 - (void)cancelInput {
-    if (self.publishTitleTextView == nil) {
+    if (self.publishTitleTextView != nil) {
         [self.publishTitleTextView removeFromSuperview];
-    } else if (self.publishOptionTextView == nil) {
+    } else if (self.publishOptionTextView != nil) {
         [self.publishOptionTextView removeFromSuperview];
+    } else if (self.publishMakeSureView != nil) {
+        [self.publishMakeSureView removeFromSuperview];
     }
     // 取消蒙版
     [self.backView removeFromSuperview];
@@ -96,7 +114,8 @@
     NSLog(@"🥑%@", titleStr);
     // TODO: 传输文字
     
-    // 取消蒙版
+    // 框消失与取消蒙版
+    [self.publishTitleTextView removeFromSuperview];
     [self.backView removeFromSuperview];
 }
 
@@ -106,7 +125,17 @@
     NSLog(@"🌮%@", optionStr);
     // TODO: 传输文字
     
-    // 取消蒙版
+    // 框消失与取消蒙版
+    [self.publishOptionTextView removeFromSuperview];
+    [self.backView removeFromSuperview];
+}
+
+/// 确认发表
+- (void)surePublish {
+    // TODO: 需要回掉信息？还是要上传后端数据库
+    
+    // 框消失与取消蒙版
+    [self.publishMakeSureView removeFromSuperview];
     [self.backView removeFromSuperview];
 }
 
@@ -175,6 +204,13 @@
         _publishOptionTextView.publishTextView.text = @"0/15";
     }
     return _publishOptionTextView;
+}
+
+- (PublishMakeSureView *)publishMakeSureView {
+    if (_publishMakeSureView == nil) {
+        _publishMakeSureView = [[PublishMakeSureView alloc] initWithFrame:CGRectMake(60, STATUSBARHEIGHT + 190, SCREEN_WIDTH - 120, 206)];
+    }
+    return _publishMakeSureView;
 }
 
 - (UIView *)backView {

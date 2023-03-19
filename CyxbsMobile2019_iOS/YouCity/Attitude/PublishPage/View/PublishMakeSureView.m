@@ -23,8 +23,8 @@
 
 @implementation PublishMakeSureView
 
-- (instancetype)init {
-    self = [super init];
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.titleLab];
         [self addSubview:self.textLabAhead];
