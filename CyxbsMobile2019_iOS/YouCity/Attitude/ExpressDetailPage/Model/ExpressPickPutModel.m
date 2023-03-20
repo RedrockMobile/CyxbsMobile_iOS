@@ -27,7 +27,12 @@
      bodyParameters:params
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-        
+        ExpressPickPutItem *pickItem = [[ExpressPickPutItem alloc] initWithDictionary:object];
+        NSMutableArray *dataArray = [NSMutableArray array];
+        [dataArray addObject:pickItem];
+        if (success) {
+            success(dataArray.copy);
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"failure");
     }];

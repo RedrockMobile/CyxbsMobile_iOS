@@ -78,6 +78,10 @@
         make.width.equalTo(@18);
     }];
     
+    // MARK: Test详情页
+//    ExpressDetailPageVC *exVC = [[ExpressDetailPageVC alloc] initWithTheId:0];
+//    [self.view addSubview:exVC];
+    
 }
 
 - (void)clickPublishBtn {
