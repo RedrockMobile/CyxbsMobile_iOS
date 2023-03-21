@@ -34,7 +34,7 @@
     [self.titleLbl mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.backBtn);
         make.left.equalTo(self.backBtn).mas_offset(13);
-        make.width.equalTo(@66);
+        make.width.equalTo(@88);
         make.height.equalTo(@31);
     }];
 }
@@ -51,7 +51,7 @@
 - (UILabel *)titleLbl {
     if (!_titleLbl) {
         _titleLbl = [[UILabel alloc] init];
-        _titleLbl.text = @"表态区";
+        _titleLbl.text = @"个人中心";
         _titleLbl.font = [UIFont fontWithName:PingFangSCBold size:22];
         _titleLbl.textColor = [UIColor colorWithHexString:@"#15315B"];
     }

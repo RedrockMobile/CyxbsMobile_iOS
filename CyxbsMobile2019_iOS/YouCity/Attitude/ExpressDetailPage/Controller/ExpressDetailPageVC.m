@@ -46,6 +46,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.splitLineHidden = YES;
+    self.titleColor = [UIColor whiteColor]; // 导航栏标题颜色
+    [self.backBtn setImage:[UIImage imageNamed:@"Express_whiteBackBtn"] forState:UIControlStateNormal]; // 导航栏返回按钮
     self.detailItem = self.dataArray[0];
     [self votedPercentCalculate:self.percentArray];
     
@@ -127,8 +129,9 @@
         _detailTitle.numberOfLines = 0;
         _detailTitle.textColor = [UIColor whiteColor];
         _detailTitle.font = [UIFont fontWithName:PingFangSCBold size:18];
-//        _detailTitle.text = self.detailItem.title;
-        _detailTitle.text = @"你是否支持iPhone的接口将要被统—为type-c接口?你是否支持iPhone的接口将要被统?";
+        _detailTitle.text = self.detailItem.title;
+        NSLog(@"%@",self.detailItem.title);
+//        _detailTitle.text = @"你是否支持iPhone的接口将要被统—为type-c接口?你是否支持iPhone的接口将要被统?";
     }
     return _detailTitle;
 }
@@ -154,12 +157,19 @@
     }
 }
 
-//- (ExpressPickGetItem *)detailItem {
-//    if (!_detailItem) {
-//        _detailItem = [[ExpressPickGetItem alloc] init];
-//    }
-//    return _detailItem;
-//}
+- (ExpressPickGetItem *)detailItem {
+    if (!_detailItem) {
+        _detailItem = [[ExpressPickGetItem alloc] init];
+    }
+    return _detailItem;
+}
+
+- (ExpressPickGetModel *)detailModel {
+    if (!_detailModel) {
+        _detailModel = [[ExpressPickGetModel alloc] init];
+    }
+    return _detailModel;
+}
 /*
 #pragma mark - Navigation
 

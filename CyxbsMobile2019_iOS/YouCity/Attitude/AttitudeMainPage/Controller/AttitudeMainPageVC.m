@@ -14,6 +14,7 @@
 #import "AttitudeMainPageVC.h"
 #import "ExpressDetailPageVC.h"
 #import "PublishViewController.h"
+#import "AttitudeSelfPageViewController.h"
 // Model
 /// 主页数据
 #import "AttitudeMainModel.h"
@@ -21,6 +22,9 @@
 /// 详情数据
 #import "ExpressPickGetModel.h"
 #import "ExpressPickGetItem.h"
+/// 鉴权
+#import "AttitudeSelfPageModel.h"
+#import "AttitudeSelfPageItem.h"
 // View
 #import "AttitudeHomeCell.h"
 #import "AttitudeMainDefaultView.h"
@@ -31,9 +35,8 @@
 >
 @property (nonatomic, strong) AttitudeMainModel *attitudeModel;
 @property (nonatomic, strong) AttitudeMainPageItem *modelItem;
-@property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, copy) NSArray *dataArray;
 @property (nonatomic, strong) AttitudeMainDefaultView *defaultView;
+@property (nonatomic, assign) BOOL isPermission;
 
 @end
 
@@ -46,15 +49,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self getRequestData];
     [self setBarView];
-    
-    if (self.dataArray.count == 0) {
-        [self.view addSubview:self.defaultView];
-    }
-    else {
-        [self getRequestData];
-        [self.view addSubview:self.tableView];
-    }
+    [self addTopBarButton];
+    [self getPermission];// 鉴权
+    self.isTopBarButtonHidden = NO;
+    [self.view addSubview:self.tableView];
 }
 // 表态Bar
 - (void)setBarView {
@@ -64,72 +64,60 @@
     self.titlePosition = TopBarViewTitlePositionLeft;
     self.topBarView.backgroundColor = [UIColor whiteColor];
     self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
-    // 按钮
-//    UIBarButtonItem *publishBtn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Express_mainPublish"] style:UIBarButtonItemStylePlain target:self action:@selector(clickPublishBtn)];
-//    [publishBtn setImage:[UIImage imageNamed:@"Express_mainPublish"]];
-    UIButton *publishBtn = [[UIButton alloc] init];
-    [publishBtn setImage:[UIImage imageNamed:@"Express_mainPublish"] forState:UIControlStateNormal];
-    [publishBtn addTarget:self action:@selector(clickPublishBtn) forControlEvents:UIControlEventTouchUpInside];
-    [self.topBarView addSubview:publishBtn];
-    [publishBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+    
+}
+// BarButton
+- (void)addTopBarButton {
+    // 鉴权：如果没有权限则隐藏进入个人中心按钮
+//    if (self.isPermission == 0) {
+//        self.isTopBarButtonHidden = YES;
+//    }
+    self.topBarButton.hidden = self.isTopBarButtonHidden;
+    [self.topBarView addSubview:self.topBarButton];
+    [self.topBarButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.topBarView);
         make.right.equalTo(self.topBarView).mas_offset(-16);
         make.height.equalTo(@18);
         make.width.equalTo(@18);
     }];
-    
 }
-
+// 点击事件
 - (void)clickPublishBtn {
-    NSLog(@"点击发布按钮");
-    PublishViewController *publishVC = [[PublishViewController alloc] init];
-    [self.navigationController pushViewController:publishVC animated:YES];
+    NSLog(@"点击按钮进入个人中心");
+    AttitudeSelfPageViewController *selfPage = [[AttitudeSelfPageViewController alloc] init];
+    [self.navigationController pushViewController:selfPage animated:YES];
 }
-
+// 请求数据
 - (void)getRequestData {
-    NSLog(@"1⃣️");
     [self.attitudeModel requestAttitudeDataWithOffset:0 Limit:20 Success:^(NSArray *array) {
         self.dataArray = array;
-        NSLog(@"%ld", self.dataArray.count);
+        [self.tableView reloadData];
+        // 缺省页
+        if (self.dataArray.count == 0) {
+            [self.view addSubview:self.defaultView];
+        }
+        NSLog(@"%lu",array.count);
         } Failure:^{
             NSLog(@"falure");
         }];
-    NSLog(@"1⃣️1⃣️");
-    NSLog(@"%ld", self.dataArray.count);
 }
 
 // 加载更多数据
 - (void)loadMoreData {
     
 }
-
-// 缺省页
-/*
-- (void)setDefaultView {
-//    [self.view removeAllSubviews];
-    UIImageView *defaultView = [[UIImageView alloc] init];
-    defaultView.image = [UIImage imageNamed:@"Attitude_defaultPage"];
-    UILabel *defaultLabel = [[UILabel alloc] init];
-    defaultLabel.text = @"菌似乎还没有发布过话题,点击右上角去发布吧!";
-    defaultLabel.font = [UIFont fontWithName:PingFangSC size:16];
-    defaultLabel.textColor = [UIColor colorWithHexString:@"#112C54" alpha:0.6];
-    defaultLabel.numberOfLines = 0;
-    [self.view addSubview:defaultView];
-    [self.view addSubview:defaultLabel];
-    [defaultView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view);
-        make.top.equalTo(self.view).mas_offset(245);
-        make.width.equalTo(@170);
-        make.height.equalTo(@102);
-    }];
-    [defaultLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view);
-        make.top.equalTo(defaultView.mas_bottom).mas_offset(16);
-        make.height.equalTo(@50);
-        make.width.equalTo(@201);
+// 请求鉴权
+- (void)getPermission {
+    self.isPermission = 0;
+    AttitudeSelfPageModel *model = [[AttitudeSelfPageModel alloc] init];
+    [model requestAttitudePermissionWithSuccess:^(NSArray * _Nonnull array) {
+        AttitudeSelfPageItem *item = [[AttitudeSelfPageItem alloc] init];
+        item = array[0];
+        self.isPermission = [item.isPerm boolValue];
+        } Failure:^{
+            NSLog(@"failure");
     }];
 }
-*/
 
 #pragma mark - UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -141,13 +129,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    return self.dataArray.count;
-    return 2;
+    return self.dataArray.count;
 }
 
 #pragma mark - UITableViewDelegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"2⃣️");
     static NSString *identify = @"identify";
     AttitudeHomeCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
     if (cell == nil) {
@@ -155,6 +141,7 @@
         }
     self.modelItem = self.dataArray[indexPath.row];
     cell.title.text = self.modelItem.title;
+    NSLog(@"%@", cell.title.text);
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -162,24 +149,12 @@
 // 点击cell跳进投票
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // 传入当前id
-    ExpressPickGetItem *item = self.dataArray[indexPath.row];
-    NSNumber *theId = item.getId;
+    AttitudeMainPageItem *item = self.dataArray[indexPath.row];
+    NSNumber *theId = item.theId;
+    NSLog(@"%@",item.theId);
     ExpressDetailPageVC *detailPage = [[ExpressDetailPageVC alloc] initWithTheId:theId];
     [self.navigationController pushViewController:detailPage animated:YES];
     NSLog(@"页面跳转");
-}
-
-
-- (UITableView *)tableView {
-    if (!_tableView) {
-        CGFloat y = self.topBarView.bottom;
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, y, kScreenWidth, kScreenHeight - y) style:UITableViewStylePlain];
-        
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.backgroundColor = [UIColor colorWithRed:0.949 green:0.953 blue:0.973 alpha:1];
-    }
-    return _tableView;
 }
 
 - (AttitudeMainModel *)attitudeModel {
@@ -188,6 +163,25 @@
     }
     return _attitudeModel;
 }
+
+- (UITableView *)tableView {
+    if (!_tableView) {
+        CGFloat y = self.topBarView.bottom;
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, y, kScreenWidth, kScreenHeight - y) style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.backgroundColor = [UIColor colorWithRed:0.949 green:0.953 blue:0.973 alpha:1];
+        /*
+        _tableView.backgroundColor = [UIColor whiteColor];
+        //设置阴影
+        _tableView.layer.shadowOpacity = 0.33f;
+        _tableView.layer.shadowColor = [UIColor dm_colorWithLightColor: [UIColor colorWithHexString:@"#AEB6D3" alpha:0.16] darkColor: [UIColor colorWithHexString:@"#AEB6D3" alpha:0.16]].CGColor;
+        _tableView.layer.shadowOffset = CGSizeMake(0, -5);
+         */
+    }
+    return _tableView;
+}
+
 // 缺省页
 - (AttitudeMainDefaultView *)defaultView {
     CGFloat y = self.topBarView.bottom;
@@ -196,6 +190,15 @@
         _defaultView.frame = CGRectMake(0, y, kScreenWidth, kScreenHeight - y);
     }
     return _defaultView;
+}
+
+- (UIButton *)topBarButton {
+    if (!_topBarButton) {
+        _topBarButton = [[UIButton alloc] init];
+        [_topBarButton setImage:[UIImage imageNamed:@"Express_mainPublish"] forState:UIControlStateNormal];
+        [_topBarButton addTarget:self action:@selector(clickPublishBtn) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _topBarButton;
 }
 
 /*

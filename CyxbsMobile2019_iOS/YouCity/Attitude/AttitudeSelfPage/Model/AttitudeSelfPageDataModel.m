@@ -1,27 +1,27 @@
 //
-//  AttitudeMainModel.m
+//  AttitudeSelfPageDataModel.m
 //  CyxbsMobile2019_iOS
 //
-//  Created by 艾 on 2023/2/7.
+//  Created by 艾 on 2023/3/19.
 //  Copyright © 2023 Redrock. All rights reserved.
 //
 
-#import "AttitudeMainModel.h"
-#import "AttitudeMainPageItem.h"
+#import "AttitudeSelfPageDataModel.h"
+#import "AttitudeSelfPageDataItem.h"
 
-@implementation AttitudeMainModel
+@implementation AttitudeSelfPageDataModel
 
 - (void)requestAttitudeDataWithOffset:(NSInteger)offset
                                 Limit:(NSInteger)limit
                               Success:(void (^)(NSArray *array))success
                               Failure:(void (^)(void))falure {
-    
     NSDictionary *param = @{
         @"limit": [NSNumber numberWithLong:limit],
         @"offset": [NSNumber numberWithLong:offset]
     };
     [HttpTool.shareTool
-     request:Attitude_GET_homePageData_API
+     request:@"https://metersphere.redrock.team/mock/100002/declare/posts?offset=0&limit=5"
+     //Attitude_GET_selfPageData_API
      type:HttpToolRequestTypeGet
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:param // offset参数未选默认为0，limit默认20
@@ -29,18 +29,17 @@
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         NSMutableArray *mutarray = [NSMutableArray array];
         for (NSDictionary *dic in object[@"data"]) {
-            AttitudeMainPageItem *model = [AttitudeMainPageItem initWithDic:dic];
+            AttitudeSelfPageDataItem *model = [AttitudeSelfPageDataItem initWithDic:dic];
             [mutarray addObject:model];
         }
         if (success) {
-            NSLog(@"==============主页success");
+            NSLog(@"==============个人中心success");
             success(mutarray.copy);
         }
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"=====================表态主页数据获取失败");
+        NSLog(@"=====================个人中心数据获取失败");
     }];
 }
-
 
 @end

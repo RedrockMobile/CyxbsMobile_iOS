@@ -11,7 +11,14 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AttitudeMainPageVC : TopBarBasicViewController
-
+@property (nonatomic, assign) BOOL isTopBarButtonHidden;
+@property (nonatomic, copy) NSArray *dataArray;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIButton *topBarButton;
+/// 获取数据
+- (void)getRequestData;
+/// 点击按钮方法
+- (void)clickPublishBtn;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -15,11 +15,12 @@
 - (void)requestGetDetailDataWithId:(NSNumber *)theId
                            Success:(void(^)(NSArray *array))success
                            Failure:(void(^)(void))failure {
+    NSDictionary *param = @{ @"id": theId };
     [HttpTool.shareTool
     request:Attitude_GET_expressDetailData_API
      type:HttpToolRequestTypeGet
      serializer:HttpToolRequestSerializerHTTP
-     bodyParameters:theId
+     bodyParameters:param
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         ExpressPickGetItem *model = [[ExpressPickGetItem alloc] initWithDic:object];
@@ -29,7 +30,7 @@
             success(dataArray.copy);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"failure");
+        NSLog(@"failure-----------");
     }];
 }
 
