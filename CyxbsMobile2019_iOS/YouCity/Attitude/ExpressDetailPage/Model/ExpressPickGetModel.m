@@ -7,13 +7,12 @@
 //
 
 #import "ExpressPickGetModel.h"
-#import "ExpressPickGetItem.h"
 
 @implementation ExpressPickGetModel
 
 // 获取表态页详细信息 参数id
 - (void)requestGetDetailDataWithId:(NSNumber *)theId
-                           Success:(void(^)(NSArray *array))success
+                           Success:(void(^)(ExpressPickGetItem *model))success
                            Failure:(void(^)(void))failure {
     NSDictionary *param = @{ @"id": theId };
     [HttpTool.shareTool
@@ -24,10 +23,11 @@
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         ExpressPickGetItem *model = [[ExpressPickGetItem alloc] initWithDic:object];
-        NSMutableArray *dataArray = [NSMutableArray array];
-        [dataArray addObject:model];
+        // 转换成百分比字符数组
+        [model votedPercentCalculateToString:model.getStatistic];
+        [model votedPercenteCalculateToNSNumber:model.getStatistic];
         if (success) {
-            success(dataArray.copy);
+            success(model);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"failure-----------");
