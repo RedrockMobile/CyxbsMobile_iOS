@@ -9,9 +9,6 @@
 #import "AttitudeMainDefaultView.h"
 @interface AttitudeMainDefaultView()
 
-@property (nonatomic, strong) UIImageView *defaultView;
-@property (nonatomic, strong) UILabel *defaultLabel;
-
 @end
 
 @implementation AttitudeMainDefaultView
@@ -19,7 +16,7 @@
 - (instancetype)initWithDefaultPage {
     if (self) {
         self = [super init];
-        self.backgroundColor = [UIColor colorWithHexString:@"#F2F3F8"];
+        self.backgroundColor = [UIColor colorWithHexString:@"#FFFFFF"];
         [self addSubview:self.defaultView];
         [self addSubview:self.defaultLabel];
         [self setPosition];
@@ -30,7 +27,7 @@
 - (UIImageView *)defaultView {
     if (!_defaultView) {
         _defaultView = [[UIImageView alloc] init];
-        _defaultView.image = [UIImage imageNamed:@"Attitude_defaultPage"];
+        _defaultView.image = [UIImage imageNamed:@"Attitude_MainPageDefault"];
     }
     return _defaultView;
 }
@@ -38,7 +35,7 @@
 - (UILabel *)defaultLabel {
     if (!_defaultLabel) {
         _defaultLabel = [[UILabel alloc] init];
-        _defaultLabel.text = @"菌似乎还没有发布过话题,点击右上角去发布吧!";
+        _defaultLabel.text = @"话题菌伺服偷懒了";
         _defaultLabel.font = [UIFont fontWithName:PingFangSC size:16];
         _defaultLabel.textColor = [UIColor colorWithHexString:@"#112C54" alpha:0.6];
         _defaultLabel.numberOfLines = 0;
@@ -49,15 +46,15 @@
 - (void)setPosition {
     [self.defaultView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
-        make.top.equalTo(self).mas_offset(135);
-        make.width.equalTo(@170);
-        make.height.equalTo(@102);
+        make.bottom.equalTo(self).mas_offset(-449);
+        make.width.equalTo(@185);
+        make.height.equalTo(@141);
     }];
     [self.defaultLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
         make.top.equalTo(self.defaultView.mas_bottom).mas_offset(16);
-        make.height.equalTo(@50);
-        make.width.equalTo(@201);
+        make.height.equalTo(@22);
+        make.width.equalTo(@128);
     }];
 }
 

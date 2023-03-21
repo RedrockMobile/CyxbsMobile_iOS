@@ -11,6 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AttitudeMainDefaultView : UIView
+@property (nonatomic, strong) UIImageView *defaultView;
+@property (nonatomic, strong) UILabel *defaultLabel;
+
 - (instancetype)initWithDefaultPage;
 @end
 

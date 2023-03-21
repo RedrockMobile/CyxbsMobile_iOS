@@ -62,6 +62,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) TopBarViewTitlePosition titlePosition;
 /// 分割线的颜色
 @property (nonatomic, strong) UIColor * splitLineColor;
+/// 返回按钮
+@property (nonatomic,strong)UIButton *backBtn;
 
 /// 整个导航栏的高度，包括状态栏和内容的高度
 /// 状态栏是根据机型不同而变化

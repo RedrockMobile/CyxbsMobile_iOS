@@ -23,4 +23,10 @@
 // 表态撤销投票
 #define Attitude_DELETE_expressDeletePick_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare"]
 
+// 是否有权发布投票
+#define Attitude_GET_permissionOfPick_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"declare/perm"]
+
+// 获取自己发布的投票
+#define Attitude_GET_selfPageData_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"declare/posts"]
+
 #endif /* AttitudeHeader_h */
