@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ExpressPickPutItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 // 表态投票
 @interface ExpressPickPutModel : NSObject
 
-- (void)requestPickDataWithId:(NSNumber *)theID Choice:(NSString *)choice Success:(void(^)(NSArray *array))success Failure:(void(^)(void))failure;
+- (void)requestPickDataWithId:(NSNumber *)theID Choice:(NSString *)choice Success:(void(^)(ExpressPickPutItem *model))success Failure:(void(^)(void))failure;
 
 @end
 

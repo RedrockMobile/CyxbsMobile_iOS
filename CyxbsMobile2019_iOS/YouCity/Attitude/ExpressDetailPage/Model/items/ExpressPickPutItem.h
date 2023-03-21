@@ -15,7 +15,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSDictionary *putStatistic;
 // voted
 @property (nonatomic, copy) NSString *putVoted;
+
+/// 小数数组（使用时需要将NSNumber 转换成CGFloat）
+@property (nonatomic, strong) NSArray<NSNumber *> *percentNumArray;
+
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
+
+/// 小数数组（使用时需要将NSNumber 转换成CGFloat）
+- (void)votedPercenteCalculateToNSNumber:(NSDictionary *)staticDic;
+
 @end
 
 NS_ASSUME_NONNULL_END

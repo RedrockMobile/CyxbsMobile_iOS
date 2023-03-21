@@ -7,13 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ExpressPickGetItem.h"
 
 NS_ASSUME_NONNULL_BEGIN
 // 获取表态页详细信息
 @interface ExpressPickGetModel : NSObject
 
 - (void)requestGetDetailDataWithId:(NSNumber *)theId
-                           Success:(void(^)(NSArray *array))success
+                           Success:(void(^)(ExpressPickGetItem *model))success
                            Failure:(void(^)(void))failure;
 @end
 
