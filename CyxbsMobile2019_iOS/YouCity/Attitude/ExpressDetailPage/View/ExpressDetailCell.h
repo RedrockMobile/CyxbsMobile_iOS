@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIImageView *checkImage;
 @property (nonatomic, strong) UILabel *percent;
 
+/// 设置对勾图片
+- (void)setCheckImagePosition;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ExpressDeclareModel : NSObject
 
 - (void)requestDeclareDataWithId:(NSNumber *)theId
-                         Success:(void(^)(NSArray *array))success
+                         Success:(void(^)(bool declareSuccess))success
                          Failure:(void(^)(void))failure;
 
 @end

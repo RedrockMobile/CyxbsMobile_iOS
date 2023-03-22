@@ -55,6 +55,7 @@
     [self getPermission];// 鉴权
     self.isTopBarButtonHidden = NO;
     [self.view addSubview:self.tableView];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#FFFFF"];
 }
 // 表态Bar
 - (void)setBarView {
@@ -80,6 +81,7 @@
         make.height.equalTo(@18);
         make.width.equalTo(@18);
     }];
+
 }
 // 点击事件
 - (void)clickPublishBtn {

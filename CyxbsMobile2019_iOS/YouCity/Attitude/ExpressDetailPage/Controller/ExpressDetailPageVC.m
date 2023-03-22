@@ -14,6 +14,8 @@
 #import "ExpressPickGetItem.h"
 #import "ExpressPickPutModel.h"
 #import "ExpressPickPutItem.h"
+#import "ExpressDeclareItem.h"
+#import "ExpressDeclareModel.h"
 
 // view
 #import "ExpressDetailCell.h"
@@ -24,6 +26,10 @@
 >
 /// id
 @property (nonatomic, copy) NSNumber *theId;
+
+/// 投票选项的NSInteger，未投票时是-1，每一次更改投票都会随之改变
+@property (nonatomic, assign) NSInteger votedRow;
+
 @property (nonatomic, strong) UITableView *tableView;
 /// 标题
 @property (nonatomic, strong) UILabel *detailTitle;
@@ -39,6 +45,11 @@
 
 /// 发布投票
 @property (nonatomic, strong) ExpressPickPutItem *pickItem;
+
+/// 撤销投票
+@property (nonatomic, strong) ExpressDeclareModel *declareModel;
+
+@property (nonatomic, strong) ExpressDeclareItem *declareItem;
 
 ///// 投票后的数组
 //@property (nonatomic, strong) NSArray *putPercentArray;  // 放票数百分比的数组
@@ -63,8 +74,6 @@
     self.splitLineHidden = YES;
     self.titleColor = [UIColor whiteColor]; // 导航栏标题颜色
     [self.backBtn setImage:[UIImage imageNamed:@"Express_whiteBackBtn"] forState:UIControlStateNormal]; // 导航栏返回按钮
-    self.detailItem = self.dataArray[0];
-    [self votedPercentCalculate:self.percentArray];
     
     [self.view addSubview:self.backgroundImage];
     [self.view addSubview:self.detailTitle];
@@ -72,6 +81,8 @@
     
     [self setFrontView];
     
+    // request
+    [self requestDetails];
 }
 
 #pragma mark - Method
@@ -85,7 +96,7 @@
         // 不管有没有投过票，都要展示choice
         // 重新加载tableView
         [self.tableView reloadData];
-        NSLog(@"%@", model);
+        NSLog(@"detailModel---%@", model.title);
     } Failure:^{
         // TODO: 弹窗
         NSLog(@"请求详情页失败");
@@ -94,27 +105,41 @@
 
 /// 投票动画
 - (void)putAnimation:(NSIndexPath *)selectIndexPath {
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:selectIndexPath];
+    ExpressDetailCell *cell = [self.tableView cellForRowAtIndexPath:selectIndexPath];
     // 获取cell的宽度
     CGFloat cellWidth = cell.bounds.size.width;
     // 占比宽度
     CGFloat gradientWidth;
     // 所有的cell都变颜色
-    for (UITableViewCell *cell in self.tableView.visibleCells) {
-        // TODO: buttonWidth
+    for (ExpressDetailCell *cell in self.tableView.visibleCells) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        // 先全部恢复原始状态
+        [cell removeAllSubviews];
+//        cell.contentView.backgroundColor = UIColor.clearColor;
+        cell.backgroundColor = [UIColor colorWithHexString:@"#0028FC" alpha:0.05];
+        
+        
         // 分别得到gradientWidth
-        gradientWidth = cellWidth * [self.pickItem.percentNumArray[indexPath.row] floatValue];
+//        gradientWidth = cellWidth * [self.pickItem.percentNumArray[indexPath.row] floatValue];
+        gradientWidth = 160;  // test
         // 深色填充层
         UIView *gradientView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, cell.bounds.size.height)];
-        gradientView.backgroundColor = [UIColor colorWithHexString:@"#554FFD" alpha:1.0];
+        if (indexPath == selectIndexPath) {
+            // 是选中的cell
+            gradientView.backgroundColor = [UIColor colorWithHexString:@"#534EF3" alpha:1.0];
+            // 加入对勾
+            [cell setCheckImagePosition];
+//            cell.contentView.backgroundColor = UIColor.clearColor;
+            cell.backgroundColor = [UIColor colorWithHexString:@"#6C68EE" alpha:1.0];
+        } else {
+            gradientView.backgroundColor = [UIColor colorWithHexString:@"#4A44E4" alpha:0.1];
+        }
 //        gradientView.tag = 1001;
         [cell addSubview:gradientView];
         // 渐变动画
         [UIView animateWithDuration:1.0 animations:^{
             gradientView.frame = CGRectMake(0, 0, gradientWidth, cell.bounds.size.height);
         } completion:^(BOOL finished) {
-            cell.backgroundColor = [UIColor colorWithHexString:@"#6C68EE" alpha:1.0];
             gradientView.frame = CGRectMake(0, 0, gradientWidth, cell.bounds.size.height);
         }];
         
@@ -157,8 +182,6 @@
 
 #pragma mark - Delegate
 
-
-
 // MARK: <UITableViewDataSource>
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -184,8 +207,13 @@
         // 如果已经投票
         if (self.detailItem.getVoted != NULL) {
             cell.percent.text = self.detailItem.percentStrArray[indexPath.row];
-            
             // 动画
+            if ([cell.title.text isEqual:self.detailItem.getVoted]) {
+                self.votedRow = indexPath.row;
+                [self putAnimation:indexPath];
+            }
+        } else {
+            self.votedRow = -1;
         }
         
     }
@@ -201,11 +229,28 @@
 // 选中
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ExpressDetailCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    // TODO: 鉴权？和PUT
+    [self putAnimation:indexPath];
+    // TODO: 鉴权
+    
+    // DELETE 撤销投票
+    // 只有没有投过票才不用撤销投票
+    if (self.votedRow != -1) {
+        [self.declareModel requestDeclareDataWithId:self.theId Success:^(bool declareSuccess) {
+            if (declareSuccess) {
+                NSLog(@"撤销成功");
+            }
+        } Failure:^{
+            // TODO: 弹窗
+            
+        }];
+    }
+    // 更新投票选项
+    self.votedRow = indexPath.row;
+    // PUT 投票
     [self.pickModel requestPickDataWithId:self.theId Choice:cell.title.text Success:^(ExpressPickPutItem * _Nonnull model) {
         NSLog(@"发布成功");
         // TODO: 展示已投票结果
-        
+
         // TODO: 雷达
         [self tapFeedback];
         // TODO: 动画
@@ -213,7 +258,7 @@
     } Failure:^{
         NSLog(@"发布失败");
         // TODO: 弹窗
-        
+
     }];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -268,14 +313,5 @@
     }
     return _detailModel;
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

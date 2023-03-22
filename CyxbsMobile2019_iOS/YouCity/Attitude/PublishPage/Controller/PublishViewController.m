@@ -58,7 +58,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _count = 4;
-    [self setDefaultTagData];
     
     self.view.backgroundColor = [UIColor colorWithHexString:@"#F2F3F8"];
     [self.view addSubview:self.topView];
@@ -92,7 +91,7 @@
 
 // TODO: 点击完成编辑出现确认提示框
 - (void)clickFinishBtn:(UIButton *)sender {
-    UIView *view = [sender superview];
+//    UIView *view = [sender superview];
     // 加入背景蒙版
     [self.view.window addSubview:self.backView];
     // 加入确认提示框
@@ -348,8 +347,6 @@
     return _headerView;
 }
 
-/*
-#pragma mark - Navigation
 
 
 - (PublishTextView *)publishOptionTextView {
