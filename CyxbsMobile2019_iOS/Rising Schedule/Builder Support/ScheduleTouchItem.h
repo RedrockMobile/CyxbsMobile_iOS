@@ -20,10 +20,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nullable) ScheduleCombineItem *combining;
 
 /// 开始的时间，nil表示不可用
-@property (nonatomic, readonly, nullable) NSDate *startDate;
+@property (nonatomic, readonly, nullable, copy) NSDate *startDate;
 
 /// 当周(0代表整周)，有可能为负数
 @property (nonatomic, readonly) NSInteger nowWeek;
+
+/// 表示最后一周是哪一周。如果为0，则表示不可用
+@property (nonatomic, readonly) NSUInteger lastSection;
 
 /// 当前正在上课/下一节课/当天已经没有课
 @property (nonatomic, readonly, nullable) ScheduleCourse *floorCourse;

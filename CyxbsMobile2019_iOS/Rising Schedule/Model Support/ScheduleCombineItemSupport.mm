@@ -14,9 +14,9 @@
 
 #import "ScheduleIdentifier+WCTTableCoding.h"
 
-#ifdef WCDB_h
-
 @implementation ScheduleIdentifier
+
+#ifdef WCDB_h
 
 WCDB_IMPLEMENTATION(ScheduleIdentifier)
 
@@ -24,10 +24,6 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, sno)
 WCDB_SYNTHESIZE(ScheduleIdentifier, type)
 WCDB_SYNTHESIZE(ScheduleIdentifier, iat)
 WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
-
-#else
-
-@implementation ScheduleIdentifier
 
 #endif
 

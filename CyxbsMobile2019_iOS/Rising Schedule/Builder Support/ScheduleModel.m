@@ -37,7 +37,9 @@
     [super combineItem:model];
     _statusMap[model.identifier] = model.value;
     _courseIdxPaths = nil;
-    self.touchItem.combining = model;
+    if ([model.identifier isEqual:[ScheduleIdentifier identifierWithSno:self.sno type:ScheduleModelRequestStudent]]) {
+        self.touchItem.combining = model;
+    }
 }
 
 - (void)clear {
@@ -70,6 +72,15 @@
         }
     }
     return set.allObjects;
+}
+
+- (void)changeCustomTo:(ScheduleCombineItem *)item {
+    _statusMap[item.identifier] = item.value;
+    NSDictionary <ScheduleIdentifier *, NSArray<ScheduleCourse *> *> *dic = _statusMap.copy;
+    [self clear];
+    [dic enumerateKeysAndObjectsUsingBlock:^(ScheduleIdentifier * _Nonnull key, NSArray<ScheduleCourse *> * _Nonnull obj, BOOL * __unused stop) {
+        [self combineItem:[ScheduleCombineItem combineItemWithIdentifier:key value:obj]];
+    }];
 }
 
 #pragma mark - Getter

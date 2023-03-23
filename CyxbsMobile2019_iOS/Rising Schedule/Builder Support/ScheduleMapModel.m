@@ -59,23 +59,6 @@
     }
 }
 
-- (void)clear {
-    [_dayMap removeAllObjects];
-    _finished = NO;
-}
-
-- (NSMapTable<NSIndexPath *,ScheduleCollectionViewModel *> *)mapTable {
-    if (_finished == NO) {
-        [self finishCombine];
-    }
-    return _mapTable;
-}
-
-#pragma mark - private
-
-#define _getVM_atAry(i) ((__bridge ScheduleCollectionViewModel *)[pointerAry pointerAtIndex:i])
-#define _setVM_atAry(viewModel, i) [pointerAry replacePointerAtIndex:i withPointer:(__bridge void *)(viewModel)]
-
 - (ScheduleCollectionViewModel *)viewModelWithKey:(ScheduleIdentifier *)identifier forCourse:(ScheduleCourse *)course {
     ScheduleCollectionViewModel *viewModel = [[ScheduleCollectionViewModel alloc] initWithScheduleCourse:course];
     if (!self.sno || [self.sno isEqualToString:@""]) {
@@ -93,6 +76,23 @@
     viewModel.kind = ScheduleBelongSecondSystem;
     return viewModel;
 }
+
+- (void)clear {
+    [_dayMap removeAllObjects];
+    _finished = NO;
+}
+
+- (NSMapTable<NSIndexPath *,ScheduleCollectionViewModel *> *)mapTable {
+    if (_finished == NO) {
+        [self finishCombine];
+    }
+    return _mapTable;
+}
+
+#pragma mark - private
+
+#define _getVM_atAry(i) ((__bridge ScheduleCollectionViewModel *)[pointerAry pointerAtIndex:i])
+#define _setVM_atAry(viewModel, i) [pointerAry replacePointerAtIndex:i withPointer:(__bridge void *)(viewModel)]
 
 - (NSPointerArray *)_getAryAt:(NSIndexPath *)idx {
     NSPointerArray *pointerAry = [_dayMap objectForKey:idx];

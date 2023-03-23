@@ -37,104 +37,77 @@
 
 #import "RisingSingleClass.h"
 
-@implementation ScheduleTimeline {
-    NSMutableArray *_timelineAry;
-}
-
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        self.type = ScheduleTimelineSimple;
-        _timelineAry = [[NSMutableArray alloc] initWithArray:self.class._simple copyItems:YES];
-    }
-    return self;
-}
+@implementation ScheduleTimeline
 
 - (NSUInteger)count {
-    return _timelineAry.count;
+    switch (self.type) {
+        case ScheduleTimelineSimple:
+            return 12;
+            break;
+        case ScheduleTimelineNoon:
+            return 13;
+            break;
+        case ScheduleTimelineNight:
+            return 13;
+            break;
+        case ScheduleTimelineNoonAndNight:
+            return 14;
+            break;
+    }
+    return 0;
 }
 
-- (SchedulePartTimeline *)objectAtIndexedSubscript:(NSUInteger)idx {
-    return [_timelineAry objectAtIndexedSubscript:idx];
+- (SchedulePartTimeline *)partTimelineAtPosition:(NSUInteger)position {
+    if (position == 0 || position > 14) { return nil; }
+    switch (self.type) {
+        case ScheduleTimelineSimple: {
+            if (position <= 4) { return ScheduleTimeline._simple[position - 1]; } // [1, 4] -> [0...3]
+            else if (position <= 8) { return ScheduleTimeline._simple[position]; } // [5, 8] -> [5...8]
+            else if (position <= 12) { return ScheduleTimeline._simple[position + 1]; } // [9, 12] -> [10...14]
+            else { return  nil; }
+            break;
+        };
+        case ScheduleTimelineNoon: {
+            if (position <= 9 ) { return ScheduleTimeline._simple[position - 1]; } // [1, 8] -> [0...7]
+            else if (position <= 13) { return ScheduleTimeline._simple[position + 1]; } // [9, 13] -> [10...14]
+            else { return nil; }
+            break;
+        }
+        case ScheduleTimelineNight: {
+            if (position <= 4 ) { return ScheduleTimeline._simple[position - 1]; } // [1, 4] -> [0...3]
+            else if (position <= 13) { return ScheduleTimeline._simple[position]; } // [5, 13] -> [5...13]
+            else { return nil; }
+            break;
+        }
+        case ScheduleTimelineNoonAndNight: {
+            return ScheduleTimeline._simple[position - 1]; // [1, 14] -> [0...13]
+        }
+    }
+    return nil;
 }
 
 - (NSRange)layoutRangeWithOriginRange:(NSRange)range {
-    if (range.location < 1) { range.location = 1; }
-    if (NSMaxRange(range) > self.count) {
-        range.length -= NSMaxRange(range) - self.count;
-    }
-    // noon support
-    BOOL noon = NO;
-    if (self.type & ScheduleTimelineNoon) {
-        noon = YES;
-        if (range.location >= 5) {
-            range.location += 1;
-        } else if (NSLocationInRange(5, range)) {
-            range.length += 1;
+    switch (self.type) {
+        case ScheduleTimelineSimple: {
+            return range;
+            break;
         }
-    }
-    // night support
-    if (self.type & ScheduleTimelineNight) {
-        if (range.location >= (noon ? 10 : 9)) {
-            range.location += 1;
-        } else if (NSLocationInRange((noon ? 10 : 9), range)) {
-            range.length += 1;
+            /*
+        case ScheduleTimelineNoon: {
+            if (NSLocationInRange(<#NSUInteger loc#>, <#NSRange range#>))
+            if (range.location >= 4) { range.location += 1; }
+            break;
         }
+        case ScheduleTimelineNight:
+            <#code#>
+            break;
+        case ScheduleTimelineNoonAndNight:
+            <#code#>
+            break;
+             */
+        default: break;
     }
-    
-    return range;
-}
-
-+ (SchedulePartTimeline *)partTimeLineForOriginRange:(NSRange)range {
-    NSArray <SchedulePartTimeline *> *simpleAry = self._simple;
-    SchedulePartTimeline *timeline = [[SchedulePartTimeline alloc] init];;
-    
-    if (range.location == 13) {
-        timeline.fromComponents = self._noon.fromComponents;
-        range.location = 5;
-        range.length -= 1;
-    } else if (range.length == 14) {
-        timeline.fromComponents = self._night.fromComponents;
-        range.length = 9;
-        range.length -= 1;
-    } else {
-        timeline.fromComponents = simpleAry[range.location - 1].fromComponents;
-    }
-    
-    if (range.location < 5 && NSMaxRange(range) > 5) {
-        range.length -= 1;
-    } else if (range.location < 9 && NSMaxRange(range) > 9) {
-        range.length -= 1;
-    }
-    if (range.length == 0) {
-        timeline.toComponents = timeline.fromComponents.copy;
-    } else {
-        timeline.toComponents = simpleAry[NSMaxRange(range) - 2].toComponents.copy;
-    }
-    
-    return timeline;
-}
-
-- (void)setType:(ScheduleTimelineType)type {
-    NSAssert(type & ScheduleTimelineSimple, @"你想干嘛？");
-    type &= ScheduleTimelineSimple;
-    if (type == _type) {
-        return;
-    }
-    
-    ScheduleTimelineType diff = type ^ _type;
-    BOOL noon = YES;
-    if (diff & ScheduleTimelineNoon) {
-        [_timelineAry removeObjectAtIndex:4];
-        noon = NO;
-    } else {
-        [_timelineAry insertObject:self.class._noon atIndex:4];
-    }
-    if (diff & ScheduleTimelineNight) {
-        [_timelineAry removeObjectAtIndex:(noon ? 9 : 8)];
-    } else {
-        [_timelineAry insertObject:self.class._night atIndex:(noon ? 9 : 8)];
-    }
+    return NSMakeRange(0, 0);
 }
 
 #pragma mark - pravate
@@ -144,31 +117,27 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _simple = @[
-            _partFromTo( @"1",  8, 00,  8, 45),
+            _partFromTo( @"1",  8, 00,  8, 45),  // 0
             _partFromTo( @"2",  8, 55,  9, 40),
             _partFromTo( @"3", 10, 15, 11, 00),
             _partFromTo( @"4", 11, 10, 11, 55),
             
-            _partFromTo( @"5", 14, 00, 14, 45),
+            _partFromTo(@"中\n午", 12, 10, 13, 50), // 4
+            
+            _partFromTo( @"5", 14, 00, 14, 45), // 5
             _partFromTo( @"6", 14, 55, 15, 40),
             _partFromTo( @"7", 16, 15, 17, 00),
             _partFromTo( @"8", 17, 10, 17, 55),
             
-            _partFromTo( @"9", 19, 00, 19, 45),
+            _partFromTo(@"晚\n上", 18, 10, 18, 50), // 9
+            
+            _partFromTo( @"9", 19, 00, 19, 45), // 10
             _partFromTo(@"10", 19, 55, 20, 40),
             _partFromTo(@"11", 20, 50, 21, 35),
-            _partFromTo(@"12", 21, 45, 22, 30),
+            _partFromTo(@"12", 21, 45, 22, 30), // 14
         ];
     });
     return _simple;
-}
-
-+ (SchedulePartTimeline *)_noon {
-    return _partFromTo(@"中\n午", 12, 10, 13, 50);
-}
-
-+ (SchedulePartTimeline *)_night {
-    return _partFromTo(@"晚\n上", 18, 10, 18, 50);
 }
 
 static SchedulePartTimeline * _partFromTo(NSString *title, NSInteger f_h, NSInteger f_m, NSInteger e_h, NSInteger e_m) {
@@ -176,9 +145,28 @@ static SchedulePartTimeline * _partFromTo(NSString *title, NSInteger f_h, NSInte
     item.title = title;
     item.fromComponents.hour = f_h;
     item.fromComponents.minute = f_m;
+    item.fromComponents.second = 0;
     item.toComponents.hour = e_h;
     item.toComponents.minute = e_m;
+    item.toComponents.second = 0;
     return item;
+}
+
+@end
+
+@implementation ScheduleTimeline (ScheduleCourse)
+
++ (SchedulePartTimeline *)partTimeLineWithCouse:(ScheduleCourse *)course {
+    ScheduleTimeline *timeline = [[ScheduleTimeline alloc] init];
+    SchedulePartTimeline *from = [timeline partTimelineAtPosition:course.period.location];
+    SchedulePartTimeline *to = [timeline partTimelineAtPosition:NSMaxRange(course.period) - 1];
+    from.fromComponents.weekday = course.inWeek;
+    to.toComponents.weekday = course.inWeek;
+    SchedulePartTimeline *fin = [[SchedulePartTimeline alloc] init];
+    fin.title = from.title;
+    fin.fromComponents = from.fromComponents;
+    fin.toComponents = to.toComponents;
+    return fin;
 }
 
 @end

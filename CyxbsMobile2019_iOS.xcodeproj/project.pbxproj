@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		140F664D2973A63B0075C50A /* RyCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 140F664C2973A63B0075C50A /* RyCycleView.m */; };
 		140F666729779C750075C50A /* ScheduleCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140F666629779C750075C50A /* ScheduleCustomViewController.m */; };
 		140F6699298218050075C50A /* SchedulePolicyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 140F6698298218050075C50A /* SchedulePolicyService.m */; };
 		141008DF295E88E20046E7BE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BC480F29164EB30063809E /* WidgetKit.framework */; };
@@ -51,6 +50,7 @@
 		1448BFF52961CC830015768E /* WidgetKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AF72961516B0046E7BE /* WidgetKitHelper.swift */; };
 		1448BFF829627E350015768E /* ScheduleWidgetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448BFF729627E350015768E /* ScheduleWidgetCache.m */; };
 		1448BFF9296280FD0015768E /* ScheduleWidgetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448BFF729627E350015768E /* ScheduleWidgetCache.m */; };
+		14545CDB29CA9B8D001C0908 /* RyTrottingHorseLampLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14545CD929CA9B8D001C0908 /* RyTrottingHorseLampLabel.m */; };
 		1459296B294482CB006EB674 /* NSIndexPath+Schedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1459296A294482CB006EB674 /* NSIndexPath+Schedule.m */; };
 		1459298B294A0083006EB674 /* ScheduleCombineItemSupport.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1459298A294A0083006EB674 /* ScheduleCombineItemSupport.mm */; };
 		14592A6029516246006EB674 /* ScheduleAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 14592A5F29516246006EB674 /* ScheduleAPI.m */; };
@@ -79,7 +79,6 @@
 		14B7E41D295C46D40033653D /* TransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B7E41C295C46D40033653D /* TransitioningDelegate.m */; };
 		14B7E420295C4A150033653D /* AnimatedTransitioningSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B7E41F295C4A150033653D /* AnimatedTransitioningSupport.m */; };
 		14B7E426295C4B770033653D /* DrivenInteractiveTransitionSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B7E425295C4B770033653D /* DrivenInteractiveTransitionSupport.m */; };
-		14B9647828F66C1E00C984AB /* NetURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9647728F66C1E00C984AB /* NetURL.m */; };
 		14B9647B28F6701500C984AB /* FontName.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9647A28F6701500C984AB /* FontName.m */; };
 		14B9648028F67EEF00C984AB /* CyxbsTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9647F28F67EEF00C984AB /* CyxbsTabBarController.m */; };
 		14B9648328F67F8600C984AB /* CyxbsApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9648228F67F8600C984AB /* CyxbsApplication.m */; };
@@ -159,8 +158,6 @@
 /* Begin PBXFileReference section */
 		0FFFE3B428490CBC7350A6B5 /* Pods_CyxbsMobile2019_iOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyxbsMobile2019_iOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		140374D228DCB61A008EDFAD /* RisingSingleClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RisingSingleClass.h; sourceTree = "<group>"; };
-		140F664B2973A63B0075C50A /* RyCycleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RyCycleView.h; sourceTree = "<group>"; };
-		140F664C2973A63B0075C50A /* RyCycleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RyCycleView.m; sourceTree = "<group>"; };
 		140F666529779C750075C50A /* ScheduleCustomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCustomViewController.h; sourceTree = "<group>"; };
 		140F666629779C750075C50A /* ScheduleCustomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCustomViewController.m; sourceTree = "<group>"; };
 		140F6697298218050075C50A /* SchedulePolicyService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchedulePolicyService.h; sourceTree = "<group>"; };
@@ -215,6 +212,8 @@
 		1441BF7B291FF29200591A0E /* UserAgreementConsentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAgreementConsentView.m; sourceTree = "<group>"; };
 		1448BFF629627E350015768E /* ScheduleWidgetCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleWidgetCache.h; sourceTree = "<group>"; };
 		1448BFF729627E350015768E /* ScheduleWidgetCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleWidgetCache.m; sourceTree = "<group>"; };
+		14545CD929CA9B8D001C0908 /* RyTrottingHorseLampLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RyTrottingHorseLampLabel.m; sourceTree = "<group>"; };
+		14545CDA29CA9B8D001C0908 /* RyTrottingHorseLampLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RyTrottingHorseLampLabel.h; sourceTree = "<group>"; };
 		1459296829447E74006EB674 /* ScheduleCollectionViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionViewDataSource.h; sourceTree = "<group>"; };
 		14592969294482CB006EB674 /* NSIndexPath+Schedule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+Schedule.h"; sourceTree = "<group>"; };
 		1459296A294482CB006EB674 /* NSIndexPath+Schedule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+Schedule.m"; sourceTree = "<group>"; };
@@ -266,8 +265,6 @@
 		14B7E41F295C4A150033653D /* AnimatedTransitioningSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimatedTransitioningSupport.m; sourceTree = "<group>"; };
 		14B7E424295C4B770033653D /* DrivenInteractiveTransitionSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrivenInteractiveTransitionSupport.h; sourceTree = "<group>"; };
 		14B7E425295C4B770033653D /* DrivenInteractiveTransitionSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrivenInteractiveTransitionSupport.m; sourceTree = "<group>"; };
-		14B9647628F66C1600C984AB /* NetURL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetURL.h; sourceTree = "<group>"; };
-		14B9647728F66C1E00C984AB /* NetURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetURL.m; sourceTree = "<group>"; };
 		14B9647928F6700B00C984AB /* FontName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontName.h; sourceTree = "<group>"; };
 		14B9647A28F6701500C984AB /* FontName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FontName.m; sourceTree = "<group>"; };
 		14B9647C28F6712700C984AB /* CyxbsHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CyxbsHeader.h; sourceTree = "<group>"; };
@@ -394,8 +391,8 @@
 				14B9647F28F67EEF00C984AB /* CyxbsTabBarController.m */,
 				147681B5297156AF00E2D34D /* ScheduleBar.h */,
 				147681B6297156AF00E2D34D /* ScheduleBar.m */,
-				140F664B2973A63B0075C50A /* RyCycleView.h */,
-				140F664C2973A63B0075C50A /* RyCycleView.m */,
+				14545CDA29CA9B8D001C0908 /* RyTrottingHorseLampLabel.h */,
+				14545CD929CA9B8D001C0908 /* RyTrottingHorseLampLabel.m */,
 			);
 			path = "Rising TabBar Support";
 			sourceTree = "<group>";
@@ -724,8 +721,6 @@
 			isa = PBXGroup;
 			children = (
 				14B9647C28F6712700C984AB /* CyxbsHeader.h */,
-				14B9647628F66C1600C984AB /* NetURL.h */,
-				14B9647728F66C1E00C984AB /* NetURL.m */,
 				14B9647928F6700B00C984AB /* FontName.h */,
 				14B9647A28F6701500C984AB /* FontName.m */,
 				146D144D2908BB1C00327AB8 /* UDKey.h */,
@@ -1289,7 +1284,7 @@
 				14592A6C2954659F006EB674 /* ScheduleShareCache.mm in Sources */,
 				1466282928C4B1EC00AF584F /* ScheduleCollectionViewLayout.m in Sources */,
 				1459296B294482CB006EB674 /* NSIndexPath+Schedule.m in Sources */,
-				14B9647828F66C1E00C984AB /* NetURL.m in Sources */,
+				14545CDB29CA9B8D001C0908 /* RyTrottingHorseLampLabel.m in Sources */,
 				14BC47F82914D76E0063809E /* SearchPeopleViewController.m in Sources */,
 				1422242128D9B091009A4A54 /* UIView+Rising.m in Sources */,
 				147C2E5B29821C1500F58266 /* ScheduleTouchItem.m in Sources */,
@@ -1336,7 +1331,6 @@
 				14B7E420295C4A150033653D /* AnimatedTransitioningSupport.m in Sources */,
 				140F666729779C750075C50A /* ScheduleCustomViewController.m in Sources */,
 				1466282628C4B1BD00AF584F /* ScheduleServiceDataSource.m in Sources */,
-				140F664D2973A63B0075C50A /* RyCycleView.m in Sources */,
 				1448BFF829627E350015768E /* ScheduleWidgetCache.m in Sources */,
 				14371D9529AE1AFF00DFD1F1 /* ScheduleCustomEditView.m in Sources */,
 				14D598CC28FF964100C9798F /* SameDrawUI.m in Sources */,

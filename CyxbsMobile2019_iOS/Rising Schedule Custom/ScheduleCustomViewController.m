@@ -116,6 +116,13 @@
 #pragma mark - <ScheduleCustomEditViewDelegate>
 
 - (void)scheduleCustomEditViewDidFinishEditing:(ScheduleCustomEditView *)view {
+    self.courseIfNeeded.course = view.title;
+    self.courseIfNeeded.classRoom = view.content;
+    self.courseIfNeeded.period = view.period;
+    self.courseIfNeeded.inSections = view.sections;
+    self.editView.inWeek = view.inWeek;
+    self.courseIfNeeded.teacher = @"自定义";
+    self.courseIfNeeded.type = @"事务";
     [self _dismissWithCall:YES appending:_isAdding];
 }
 

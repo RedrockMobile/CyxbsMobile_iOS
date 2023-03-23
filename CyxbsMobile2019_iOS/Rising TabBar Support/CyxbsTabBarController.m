@@ -51,7 +51,8 @@
         SchedulePolicyService *policy = [[SchedulePolicyService alloc] init];
         policy.outRequestTime = 45 * 60 * 60;
         [policy requestDic:@{
-            ScheduleModelRequestStudent : @[mainKey.sno]
+            ScheduleModelRequestStudent : @[mainKey.sno],
+            ScheduleModelRequestCustom : @[mainKey.sno]
         } policy:^(ScheduleCombineItem * _Nonnull item) {
             ScheduleTouchItem *touch = [[ScheduleTouchItem alloc] init];
             touch.combining = item;

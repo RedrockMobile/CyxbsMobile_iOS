@@ -206,7 +206,7 @@
 
 - (CGSize)collectionViewContentSize {
     
-    NSInteger itemCount = 12;
+    NSInteger itemCount = 13;
     
     CGSize contentSize = CGSizeMake(_sections * self.collectionView.bounds.size.width, self.heightForHeaderSupplementaryView + itemCount * (_itemSize.height + self.lineSpacing));
     

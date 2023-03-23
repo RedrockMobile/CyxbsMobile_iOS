@@ -168,25 +168,27 @@
 #pragma mark - <ScheduleCustomViewControllerDelegate>
 
 - (void)scheduleCustomViewController:(ScheduleCustomViewController *)viewController finishingWithAppending:(BOOL)append {
-//    if (append) {
-//        [ScheduleNETRequest.current
-//         appendCustom:viewController.courseIfNeeded
-//         success:^(ScheduleCombineItem * _Nonnull item) {
-//            
-//        }
-//         failure:^(NSError * _Nonnull error) {
-//
-//        }];
-//    } else {
-//        [ScheduleNETRequest.current
-//         editCustom:viewController.courseIfNeeded
-//         success:^(ScheduleCombineItem * _Nonnull item) {
-//            
-//        }
-//         failure:^(NSError * _Nonnull error) {
-//            
-//        }];
-//    }
+    if (append) {
+        [ScheduleNETRequest.current
+         appendCustom:viewController.courseIfNeeded
+         success:^(ScheduleCombineItem * _Nonnull item) {
+            [self.model changeCustomTo:item];
+            [self.collectionView reloadData];
+        }
+         failure:^(NSError * _Nonnull error) {
+
+        }];
+    } else {
+        [ScheduleNETRequest.current
+         editCustom:viewController.courseIfNeeded
+         success:^(ScheduleCombineItem * _Nonnull item) {
+            [self.model changeCustomTo:item];
+            [self.collectionView reloadData];
+        }
+         failure:^(NSError * _Nonnull error) {
+            
+        }];
+    }
 }
 
 #pragma mark - <UICollectionViewDelegate>
@@ -230,13 +232,15 @@
         }
         
         self.parameterIfNeeded = @{
-            ScheduleModelRequestStudent : @[self.model.sno, otherKey.sno]
+            ScheduleModelRequestStudent : @[self.model.sno, otherKey.sno],
+            ScheduleModelRequestCustom : @[self.model.sno]
         };
         self.onShow = ScheduleModelShowDouble;
         
     } else {
         self.parameterIfNeeded = @{
-            ScheduleModelRequestStudent : @[self.model.sno]
+            ScheduleModelRequestStudent : @[self.model.sno],
+            ScheduleModelRequestCustom : @[self.model.sno]
         };
         self.onShow = ScheduleModelShowSingle;
     }

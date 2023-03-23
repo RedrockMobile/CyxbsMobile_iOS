@@ -37,6 +37,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 传进来的idxPath，至少week和location位置有值
 - (NSArray <ScheduleDetailPartContext *> *)contextsWithLocationIdxPath:(NSIndexPath *)idxPath;
 
+- (void)changeCustomTo:(ScheduleCombineItem *)item;
+
 @end
 
 NS_ASSUME_NONNULL_END

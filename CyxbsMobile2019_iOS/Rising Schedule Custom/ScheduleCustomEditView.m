@@ -409,6 +409,9 @@
         _period = NSMakeRange(row + 1, [pickerView selectedRowInComponent:2] + 1);
         [pickerView reloadComponent:2];
     }
+    if (component == 2) {
+        _period.length = [pickerView selectedRowInComponent:2] + 1;
+    }
 }
 
 #pragma mark - Factory

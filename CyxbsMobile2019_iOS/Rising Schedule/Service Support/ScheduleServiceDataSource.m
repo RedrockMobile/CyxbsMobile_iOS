@@ -136,9 +136,7 @@
         
         ScheduleSupplementaryCollectionViewCell *cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier forIndexPath:indexPath];
         cell.backgroundColor = collectionView.backgroundColor;
-        
-        NSLog(@"touch %@", _model.touchItem);
-        
+                
         NSDate *showDate = [NSDate dateWithTimeInterval:(indexPath.section - 1) * 7 * 24 * 60 * 60 + (indexPath.item - 1) * 24 * 60 * 60 sinceDate:_model.touchItem.startDate];
         
         NSDateComponents *component = [ScheduleCalendar() componentsInTimeZone:CQTimeZone() fromDate:showDate];
@@ -178,7 +176,7 @@
         cell.backgroundColor = collectionView.backgroundColor;
         cell.isTitleOnly = YES;
         
-        cell.title = _model.timeline[indexPath.item].title;
+        cell.title = [_model.timeline partTimelineAtPosition:indexPath.item + 1].title;
         
         return cell;
     }

@@ -43,7 +43,7 @@ static SchedulePolicyService * _currentPolicy;
            unPolicy:(void (^)(ScheduleIdentifier *unpolicyKEY))unpolicy {
     NSMutableArray <ScheduleIdentifier *> *unInMemIds = NSMutableArray.array;
     for (ScheduleIdentifier *key in keys) {
-        if (NSDate.date.timeIntervalSince1970 - key.iat >= self.outRequestTime) {
+        if (key.iat - NSDate.date.timeIntervalSince1970 >= self.outRequestTime) {
             [unInMemIds addObject:key];
         } else {
             ScheduleCombineItem *cacheItem = [ScheduleShareCache.shareCache getItemForKey:key.key];
@@ -78,10 +78,16 @@ static SchedulePolicyService * _currentPolicy;
     }
      failure:^(NSError * _Nonnull error, ScheduleIdentifier *errorID) {
         if (errorID.type == ScheduleModelRequestCustom) {
-            ScheduleCombineItem *custom = [ScheduleCombineItem combineItemWithIdentifier:errorID value:NSArray.array];
-            ScheduleNETRequest.current.customItem = custom;
+            ScheduleCombineItem *nilc = [ScheduleShareCache.shareCache awakeForIdentifier:errorID];
+            if (nilc == nil || nilc.value.count == 0) {
+                nilc = [ScheduleCombineItem combineItemWithIdentifier:errorID value:NSMutableArray.array];
+            }
+            if (![nilc.value isKindOfClass:NSMutableArray.class]) {
+                nilc = [ScheduleCombineItem combineItemWithIdentifier:errorID value:nilc.value.mutableCopy];
+            }
+            ScheduleNETRequest.current.customItem = nilc;
             if (policy) {
-                policy(custom);
+                policy(nilc);
             }
         } else if (unpolicy) {
             unpolicy(errorID);

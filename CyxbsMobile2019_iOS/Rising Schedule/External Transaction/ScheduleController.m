@@ -35,7 +35,7 @@ static CGFloat (^statusHeight)(void) = ^{
     self = [super init];
     if (self) {
         _presenter = presenter;
-        presenter.controller = self;UIListContentConfiguration *a;
+        presenter.controller = self;
         [self _drawTabbar];
     }
     return self;
@@ -95,7 +95,7 @@ static CGFloat (^statusHeight)(void) = ^{
     if (_collectionView == nil) {
         [self.presenter setingCollectionView:(&_collectionView) withPrepareWidth:self.view.width];
         _collectionView.top = self.headerView.bottom;
-        _collectionView.height = self.view.height - _collectionView.top - 20;
+        _collectionView.height = self.view.height - _collectionView.top;
         _collectionView.contentInset = UIEdgeInsetsMake(0, 0, self.tabBarController.tabBar.height, 0);
         _collectionView.directionalLockEnabled = YES;
         _collectionView.pagingEnabled = YES;
