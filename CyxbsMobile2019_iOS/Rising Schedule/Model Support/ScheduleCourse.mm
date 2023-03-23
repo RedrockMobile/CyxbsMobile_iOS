@@ -106,7 +106,7 @@ WCDB_SYNTHESIZE(ScheduleCourse, lesson)
 
 - (NSString *)timeStr {
     if (_timeStr == nil) {
-        SchedulePartTimeline *timeline = [ScheduleTimeline partTimeLineForOriginRange:self.period];
+        SchedulePartTimeline *timeline = [ScheduleTimeline partTimeLineWithCouse:self];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.locale = CNLocale();
         formatter.timeZone = CQTimeZone();

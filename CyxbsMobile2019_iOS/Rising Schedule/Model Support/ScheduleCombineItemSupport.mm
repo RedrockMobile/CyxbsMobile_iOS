@@ -14,9 +14,9 @@
 
 #import "ScheduleIdentifier+WCTTableCoding.h"
 
-#ifdef WCDB_h
-
 @implementation ScheduleIdentifier
+
+#ifdef WCDB_h
 
 WCDB_IMPLEMENTATION(ScheduleIdentifier)
 
@@ -25,17 +25,13 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, type)
 WCDB_SYNTHESIZE(ScheduleIdentifier, iat)
 WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
 
-#else
-
-@implementation ScheduleIdentifier
-
 #endif
 
 - (instancetype)initWithSno:(NSString *)name type:(ScheduleModelRequestType)type {
     self = [super init];
     if (self) {
         _sno = name.copy;
-        _type = type;
+        _type = requestTypeForString(type);
         _iat = NSDate.date.timeIntervalSince1970;
     }
     return self;
@@ -60,7 +56,7 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%@, %p>; [%@, %@] : (exp: %lf, iat: %lf)", NSStringFromClass(self.class), self, self.sno, self.type, self.exp, self.iat];
+    return [NSString stringWithFormat:@"<%@, %p>; [%@, %@] : (exp: %.0lf, iat: %.0lf)", NSStringFromClass(self.class), self, self.sno, self.type, self.exp, self.iat];
 }
 
 #pragma mark - Method
@@ -91,7 +87,7 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
 }
 
 - (void)setType:(ScheduleModelRequestType)type {
-    _type = type;
+    _type = requestTypeForString(type);
 }
 
 #pragma mark - <NSSecureCoding>
@@ -105,7 +101,7 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
     NSString *type = [decoder decodeObjectOfClass:NSString.class forKey:@"type"];
     NSTimeInterval iat = [decoder decodeDoubleForKey:@"iat"];
     NSTimeInterval exp = [decoder decodeDoubleForKey:@"exp"];
-    self = [self initWithSno:sno type:type];
+    self = [self initWithSno:sno type:requestTypeForString(type)];
     self.iat = iat;
     self.exp = exp;
     return self;
@@ -190,20 +186,25 @@ ScheduleRequestDictionary *ScheduleRequestDictionaryFromScheduleIdentifiers(NSAr
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder {
     ScheduleIdentifier *identifier = [decoder decodeObjectOfClass:ScheduleIdentifier. class forKey:@"name"];
+    BOOL awaked = [decoder decodeBoolForKey:@"awaked"];
     NSArray <ScheduleCourse *> *courses = [decoder decodeObjectForKey:@"value"];
     self = [self initWithIdentifier:identifier value:courses];
+    self.awaked = awaked;
     return self;
 }
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
     [coder encodeObject:_identifier forKey:@"name"];
     [coder encodeObject:_value forKey:@"value"];
+    [coder encodeBool:_awaked forKey:@"book"];
 }
 
 #pragma mark - <NSCopying>
 
 - (nonnull id)copyWithZone:(nullable NSZone *)zone {
-    return [[ScheduleCombineItem allocWithZone:zone] initWithIdentifier:self.identifier.copy value:self.value.copy];
+    ScheduleCombineItem *item = [[ScheduleCombineItem allocWithZone:zone] initWithIdentifier:self.identifier.copy value:self.value.copy];
+    item.awaked = self.awaked;
+    return item;
 }
 
 @end

@@ -12,6 +12,7 @@
 
 #import "ScheduleCollectionViewCell.h"
 #import "ScheduleSupplementaryCollectionViewCell.h"
+#import "SchedulePlaceholderCollectionViewCell.h"
 
 #pragma mark - ScheduleServiceDataSource ()
 
@@ -59,11 +60,11 @@
     layout.dataSource = self;
     
     *view = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, width, 0) collectionViewLayout:layout];
-    
-    [*view registerClass:ScheduleCollectionViewCell.class forCellWithReuseIdentifier:ScheduleCollectionViewCellReuseIdentifier];
-    [*view registerClass:ScheduleSupplementaryCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier];
-    [*view registerClass:ScheduleSupplementaryCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier];
-    
+
+    [*view registerClass:ScheduleCollectionViewCell.class forCellWithReuseIdentifier:ScheduleCollectionViewCellReuseIdentifier]; // cell
+    [*view registerClass:ScheduleSupplementaryCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier]; // section header
+    [*view registerClass:ScheduleSupplementaryCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier]; // section leading
+    [*view registerClass:SchedulePlaceholderCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionPlaceholder withReuseIdentifier:SchedulePlaceholderCollectionViewCellReuseIdentifier]; // section placeholder
     [*view addSubview:self.backgroundView];
     
     (*view).dataSource = self;
@@ -72,15 +73,15 @@
 #pragma mark - <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    if (!_model) {
-        return 0;
+    if (!_model || _model.courseIdxPaths.count < 1) {
+        return 1; // 如果网络请求失败，则返回1
     }
-    return _model.courseIdxPaths.count;
+    return MAX(_model.courseIdxPaths.count, 24); // 最大应为24周
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (!_model.courseIdxPaths[section]) {
-        return 0;
+    if (section >= _model.courseIdxPaths.count || !_model.courseIdxPaths[section]) {
+        return 0; // 如果周数够不着，或者不存在数量
     }
     return _model.courseIdxPaths[section].count;
 }
@@ -130,17 +131,12 @@
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
            viewForSupplementaryElementOfKind:(NSString *)kind
                                  atIndexPath:(NSIndexPath *)indexPath {
-    if (kind != UICollectionElementKindSectionHeader && kind != UICollectionElementKindSectionLeading) {
-        return nil;
-    }
-    
-    ScheduleSupplementaryCollectionViewCell *cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier forIndexPath:indexPath];
-    
-    // set
-    cell.backgroundColor = collectionView.backgroundColor;
     
     if (kind == UICollectionElementKindSectionHeader) {
         
+        ScheduleSupplementaryCollectionViewCell *cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier forIndexPath:indexPath];
+        cell.backgroundColor = collectionView.backgroundColor;
+                
         NSDate *showDate = [NSDate dateWithTimeInterval:(indexPath.section - 1) * 7 * 24 * 60 * 60 + (indexPath.item - 1) * 24 * 60 * 60 sinceDate:_model.touchItem.startDate];
         
         NSDateComponents *component = [ScheduleCalendar() componentsInTimeZone:CQTimeZone() fromDate:showDate];
@@ -175,9 +171,24 @@
     }
     
     if (kind == UICollectionElementKindSectionLeading) {
+        ScheduleSupplementaryCollectionViewCell *cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier forIndexPath:indexPath];
+        
+        cell.backgroundColor = collectionView.backgroundColor;
         cell.isTitleOnly = YES;
         
-        cell.title = _model.timeline[indexPath.item].title;
+        cell.title = [_model.timeline partTimelineAtPosition:indexPath.item + 1].title;
+        
+        return cell;
+    }
+    
+    if (kind == UICollectionElementKindSectionPlaceholder) {
+        SchedulePlaceholderCollectionViewCell *cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:SchedulePlaceholderCollectionViewCellReuseIdentifier forIndexPath:indexPath];
+        
+        if (self.model.touchItem.combining == nil) {
+            cell.isError404 = YES;
+        } else {
+            cell.isError404 = NO;
+        }
         
         return cell;
     }
@@ -193,6 +204,9 @@
     }
     if (kind == UICollectionElementKindSectionLeading) {
         return _model.timeline.count;
+    }
+    if (kind == UICollectionElementKindSectionPlaceholder) {
+        return section >= _model.courseIdxPaths.count ? 1 : (_model.courseIdxPaths[section].count == 0 ? 1 : 0);
     }
     return 0;
 }

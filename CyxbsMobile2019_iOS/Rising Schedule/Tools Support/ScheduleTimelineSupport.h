@@ -10,6 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**SchedulePartTimeline
+ * `weekday, hour, minute, second` are all rights
+ * within `others are wrong`
+ * weekday is true in [1, 7]
+ */
+
 @interface SchedulePartTimeline : NSObject <NSCopying>
 
 @property (nonatomic, copy) NSString *title;
@@ -24,16 +30,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-
-
-typedef NS_OPTIONS(NSUInteger, ScheduleTimelineType) {
-    ScheduleTimelineSimple = 1 << 0,
-    ScheduleTimelineNoon = 1 << 1,
-    ScheduleTimelineNight = 1 << 2,
-    
-    ScheduleTimelineSimpleNoon = (ScheduleTimelineSimple | ScheduleTimelineNoon),
-    ScheduleTimelineSimpleNight = (ScheduleTimelineSimple | ScheduleTimelineNight),
-    ScheduleTimelineAll = (ScheduleTimelineSimple | ScheduleTimelineNoon | ScheduleTimelineNight)
+typedef NS_ENUM(NSUInteger, ScheduleTimelineType) {
+    ScheduleTimelineSimple,
+    ScheduleTimelineNoon,
+    ScheduleTimelineNight,
+    ScheduleTimelineNoonAndNight
 };
 
 @interface ScheduleTimeline : NSObject
@@ -42,16 +43,34 @@ typedef NS_OPTIONS(NSUInteger, ScheduleTimelineType) {
 @property (nonatomic) ScheduleTimelineType type;
 
 - (NSUInteger)count;
-- (SchedulePartTimeline *)objectAtIndexedSubscript:(NSUInteger)idx;
 
-+ (SchedulePartTimeline *)partTimeLineForOriginRange:(NSRange)range;
+/// position: [1, 14] or null
+- (nullable SchedulePartTimeline *)partTimelineAtPosition:(NSUInteger)position;
 
+/// location: [1, 14];  lenth: [1, 14]
 - (NSRange)layoutRangeWithOriginRange:(NSRange)range;
 
-- (CGFloat)percentWithComponents:(NSDateComponents *)componets;
+//- (CGFloat)percentWithComponents:(NSDateComponents *)componets;
 
 @end
 
+NS_ASSUME_NONNULL_END
 
+
+
+
+
+#if __has_include("ScheduleCourse.h")
+#import "ScheduleCourse.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
+@interface ScheduleTimeline (ScheduleCourse)
+
++ (SchedulePartTimeline *)partTimeLineWithCouse:(ScheduleCourse *)course;
+
+@end
 
 NS_ASSUME_NONNULL_END
+
+#endif

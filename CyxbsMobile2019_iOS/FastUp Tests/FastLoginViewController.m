@@ -152,7 +152,7 @@
 
 - (void)_outside:(UIButton *)btn {
     [NSUserDefaults.standardUserDefaults setBool:YES forKey:UDKey.isXXHB];
-    self.presenter.useAwake = YES;
+    self.presenter.awakeable = YES;
 }
 
 

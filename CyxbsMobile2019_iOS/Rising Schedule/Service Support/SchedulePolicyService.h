@@ -14,7 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SchedulePolicyService : NSObject
 
+@property (nonatomic, strong, nonnull, class) SchedulePolicyService *current;
+
 @property (nonatomic) NSTimeInterval outRequestTime;
+
+@property (nonatomic) BOOL awakeable;
 
 - (void)requestDic:(ScheduleRequestDictionary *)dic
             policy:(void (^)(ScheduleCombineItem *item))policy

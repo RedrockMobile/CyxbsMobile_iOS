@@ -10,7 +10,6 @@
 
 @implementation ScheduleMapModel {
     NSMapTable <NSIndexPath *, ScheduleCollectionViewModel *> *_mapTable;
-    NSMapTable <NSIndexPath *, NSPointerArray *> *_dayMap;
     BOOL _finished;
 }
 
@@ -49,7 +48,7 @@
     for (ScheduleCourse *course in item.value) {
         NSRange layoutRange = [self.timeline layoutRangeWithOriginRange:course.period];
         
-        ScheduleCollectionViewModel *viewModel = [self _viewModelWithIdentifier:item.identifier course:course];
+        ScheduleCollectionViewModel *viewModel = [self viewModelWithKey:item.identifier forCourse:course];
         [course.inSections enumerateIndexesUsingBlock:^(NSUInteger section, BOOL * __unused stop) {
             NSIndexPath *indexPath = ScheduleIndexPathNew(section, course.inWeek, layoutRange.location);
             
@@ -58,6 +57,24 @@
         
         [self _setViewModel:viewModel forIndexPath:ScheduleIndexPathNew(0, course.inWeek, layoutRange.location)];
     }
+}
+
+- (ScheduleCollectionViewModel *)viewModelWithKey:(ScheduleIdentifier *)identifier forCourse:(ScheduleCourse *)course {
+    ScheduleCollectionViewModel *viewModel = [[ScheduleCollectionViewModel alloc] initWithScheduleCourse:course];
+    if (!self.sno || [self.sno isEqualToString:@""]) {
+        return viewModel;
+    }
+    if ([identifier.sno isEqualToString:self.sno]) {
+        if (identifier.type != ScheduleModelRequestCustom) {
+            viewModel.kind = ScheduleBelongFistSystem;
+            return viewModel;
+        } else {
+            viewModel.kind = ScheduleBelongFistCustom;
+            return viewModel;
+        }
+    }
+    viewModel.kind = ScheduleBelongSecondSystem;
+    return viewModel;
 }
 
 - (void)clear {
@@ -76,24 +93,6 @@
 
 #define _getVM_atAry(i) ((__bridge ScheduleCollectionViewModel *)[pointerAry pointerAtIndex:i])
 #define _setVM_atAry(viewModel, i) [pointerAry replacePointerAtIndex:i withPointer:(__bridge void *)(viewModel)]
-
-- (ScheduleCollectionViewModel *)_viewModelWithIdentifier:(ScheduleIdentifier *)identifier course:(ScheduleCourse *)course {
-    ScheduleCollectionViewModel *viewModel = [[ScheduleCollectionViewModel alloc] initWithScheduleCourse:course];
-    if (!self.sno || [self.sno isEqualToString:@""]) {
-        return viewModel;
-    }
-    if ([identifier.sno isEqualToString:self.sno]) {
-        if (![identifier.type isEqualToString:ScheduleModelRequestCustom]) {
-            viewModel.kind = ScheduleBelongFistSystem;
-            return viewModel;
-        } else {
-            viewModel.kind = ScheduleBelongFistCustom;
-            return viewModel;
-        }
-    }
-    viewModel.kind = ScheduleBelongSecondSystem;
-    return viewModel;
-}
 
 - (NSPointerArray *)_getAryAt:(NSIndexPath *)idx {
     NSPointerArray *pointerAry = [_dayMap objectForKey:idx];

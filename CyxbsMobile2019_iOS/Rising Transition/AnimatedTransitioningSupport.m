@@ -45,7 +45,7 @@
 }
 
 - (void)completionWithWithContext:(id<UIViewControllerContextTransitioning>)context {
-    [context completeTransition:![context transitionWasCancelled]];
+    [context completeTransition:!context.transitionWasCancelled];
 }
 
 @end
@@ -61,12 +61,10 @@
 }
 
 - (void)prepareForAnimateWithContext:(id<UIViewControllerContextTransitioning>)context {
+    UIViewController *from = [context viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *to = [context viewControllerForKey:UITransitionContextToViewControllerKey];
     
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-variable"
-    UIViewController *from = [context viewControllerForKey:UITransitionContextFromViewControllerKey];
-#pragma clang diagnostic pop
+    [from beginAppearanceTransition:NO animated:YES];
     
     CGRect beginFrame = to.view.frame;
     beginFrame.origin.y = context.containerView.frame.origin.y + context.containerView.frame.size.height;
@@ -86,6 +84,7 @@
 
 - (void)completionWithWithContext:(id<UIViewControllerContextTransitioning>)context {
     UIViewController *to = [context viewControllerForKey:UITransitionContextToViewControllerKey];
+    
     if([context transitionWasCancelled]){
         [to.view removeFromSuperview];
     } else {
@@ -102,6 +101,11 @@
 @implementation DismissAnimatedTransition
 
 - (void)prepareForAnimateWithContext:(id<UIViewControllerContextTransitioning>)context {
+    UIViewController *from = [context viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController *to = [context viewControllerForKey:UITransitionContextToViewControllerKey];
+    
+    [from beginAppearanceTransition:NO animated:YES];
+    [to beginAppearanceTransition:YES animated:YES];
 }
 
 - (void)animatedForFinishedWithContext:(id<UIViewControllerContextTransitioning>)context {

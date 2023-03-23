@@ -19,6 +19,7 @@
 #import "ScheduleMapModel.h"
 
 #import "ScheduleTouchItem.h"
+#import "ScheduleDetailPartContext.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -34,7 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 返回同一时间段的所有重复课程
 /// 传进来的idxPath，至少week和location位置有值
-- (NSArray <ScheduleCourse *> *)coursesWithLocationIdxPath:(NSIndexPath *)idxPath;
+- (NSArray <ScheduleDetailPartContext *> *)contextsWithLocationIdxPath:(NSIndexPath *)idxPath;
+
+- (void)changeCustomTo:(ScheduleCombineItem *)item;
 
 @end
 

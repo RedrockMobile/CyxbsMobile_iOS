@@ -11,18 +11,17 @@
 #import "ScheduleCourse.h"
 
 #import "HttpTool.h"
-#import "NetURL.h"
 #import "ScheduleAPI.h"
 
 static NSString *urlForRequest(ScheduleModelRequestType type) {
     if (type == ScheduleModelRequestStudent) {
-        return STRS(NetURL.base.bedev, scheule.stu);
+        return @"https://be-prod.redrock.cqupt.edu.cn/magipoke-jwzx/kebiao";
     }
     if (type == ScheduleModelRequestCustom) {
-        return STRS(NetURL.base.bedev, scheule.transaction.get);
+        return @"https://be-prod.redrock.cqupt.edu.cn/magipoke-jwzx/kebiao";
     }
     if (type == ScheduleModelRequestTeacher) {
-        return STRS(NetURL.base.bedev, scheule.tea);
+        return @"https://be-prod.redrock.cqupt.edu.cn/magipoke-jwzx/kebiao";
     }
     return @"";
 }
@@ -39,7 +38,15 @@ static NSString *keyForType(ScheduleModelRequestType type) {
 }
 
 @implementation ScheduleNETRequest
-static ScheduleCombineItem *_customItem;
+
+static ScheduleNETRequest *_current;
++ (ScheduleNETRequest *)current {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _current = [[ScheduleNETRequest alloc] init];
+    });
+    return _current;
+}
 
 #pragma mark - Method
 
@@ -48,13 +55,18 @@ static ScheduleCombineItem *_customItem;
         failure:(nonnull void (^)(NSError * _Nonnull, ScheduleIdentifier * _Nonnull))failure {
     
     for (ScheduleModelRequestType type in requestDictionary.allKeys) {
+        if (type == ScheduleModelRequestCustom) {
+            NSString *sno = requestDictionary[type].firstObject;
+            [self.current requestCustom:sno success:success failure:failure];
+            continue;
+        }
         for (NSString *sno in requestDictionary[type]) {
             [HttpTool.shareTool
              request:urlForRequest(type)
              type:HttpToolRequestTypePost
              serializer:HttpToolRequestSerializerHTTP
              bodyParameters:@{
-                keyForType(type) : sno,
+                @"stu_num" : sno
             }
              progress:nil
              success:^(NSURLSessionDataTask * _Nonnull task, id _Nullable object) {
@@ -80,10 +92,6 @@ static ScheduleCombineItem *_customItem;
                 }
                 
                 ScheduleCombineItem *item = [ScheduleCombineItem combineItemWithIdentifier:identifier value:ary];
-                
-                if (item.identifier.type == ScheduleModelRequestCustom) {
-                    _customItem = item;
-                }
                
                 if (success) {
                     success(item);
@@ -99,9 +107,35 @@ static ScheduleCombineItem *_customItem;
     }
 }
 
+- (void)requestCustom:(NSString *)sno
+              success:(void (^)(ScheduleCombineItem *))success
+              failure:(nonnull void (^)(NSError * _Nonnull, ScheduleIdentifier * _Nonnull))failure {
+    ScheduleIdentifier *key = [ScheduleIdentifier identifierWithSno:sno type:ScheduleModelRequestCustom];
+    if (self.customItem == nil) {
+        if (failure) {
+            failure([NSError errorWithDomain:NSCocoaErrorDomain code:1001 userInfo:@{@"info": @"无事务"}], key);
+            return;
+        }
+    }
+    if (![self.customItem.value isKindOfClass:NSMutableArray.class]) {
+        self.customItem = [ScheduleCombineItem combineItemWithIdentifier:key value:self.customItem.value.mutableCopy];
+    }
+    if (success) {
+        success(self.customItem);
+    }
+}
+
 - (void)appendCustom:(ScheduleCourse *)course
              success:(void (^)(ScheduleCombineItem *))success
              failure:(void (^)(NSError *))failure {
+    if (![self.customItem.value isKindOfClass:NSMutableArray.class]) {
+        self.customItem = [ScheduleCombineItem combineItemWithIdentifier:self.customItem.identifier value:self.customItem.value.mutableCopy];
+    }
+    NSMutableArray *ary = (NSMutableArray *)self.customItem.value;
+    [ary addObject:course];
+    if (success) {
+        success(self.customItem);
+    }
     
 }
 

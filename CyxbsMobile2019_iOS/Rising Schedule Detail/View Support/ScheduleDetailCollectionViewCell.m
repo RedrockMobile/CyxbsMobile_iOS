@@ -77,18 +77,20 @@ NSString *ScheduleDetailCollectionViewCellReuseIdentifier = @"ScheduleDetailColl
         _tableHeaderView = [[ScheduleDetailTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width, 100)];
         _tableHeaderView.title = @"正在加载课程名...";
         _tableHeaderView.detail = @"正在加载时间与老师...";
+        _tableHeaderView.sno = @"正在加载所属学号...";;;
     }
     return _tableHeaderView;
 }
 
 #pragma mark - Setter
 
-- (void)setCourse:(ScheduleCourse *)scheduleCourse {
-    _course = scheduleCourse;
+- (void)setContext:(ScheduleDetailPartContext *)context {
+    _context = context;
     [self.tableView reloadData];
-    self.tableHeaderView.title = scheduleCourse.course;
+    self.tableHeaderView.title = context.course.course;
     self.tableHeaderView.detail =
-    [NSString stringWithFormat:@"%@ > %@", scheduleCourse.classRoom, scheduleCourse.teacher];
+    [NSString stringWithFormat:@"%@ > %@", context.course.classRoom, context.course.teacher];
+    self.tableHeaderView.sno = context.key.sno;
 }
 
 #pragma mark - <UITableViewDataSource>
@@ -103,7 +105,7 @@ NSString *ScheduleDetailCollectionViewCellReuseIdentifier = @"ScheduleDetailColl
     switch (indexPath.item) {
         case 0: {
             cell.leftDescription = @"周期";
-            cell.rightDetail = [NSString stringWithFormat:@"%@ %lu节连上", self.course.rawWeek, self.course.period.length];
+            cell.rightDetail = [NSString stringWithFormat:@"%@ %lu节连上", self.context.course.rawWeek, self.context.course.period.length];
         } break;
             
         case 1: {
@@ -114,12 +116,12 @@ NSString *ScheduleDetailCollectionViewCellReuseIdentifier = @"ScheduleDetailColl
                 ary = formatter.weekdaySymbols;
             }
             cell.leftDescription = @"时间";
-            cell.rightDetail = [NSString stringWithFormat:@"%@ %@", ary[self.course.inWeek % 7], self.course.timeStr];
+            cell.rightDetail = [NSString stringWithFormat:@"%@ %@", ary[self.context.course.inWeek % 7], self.context.course.timeStr];
         } break;
             
         case 2: {
             cell.leftDescription = @"课程类型";
-            cell.rightDetail = self.course.type;
+            cell.rightDetail = self.context.course.type;
         } break;
             
         default:

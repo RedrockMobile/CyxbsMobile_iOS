@@ -9,8 +9,6 @@
 #ifndef CyxbsHeader_h
 #define CyxbsHeader_h
 
-#import "NetURL.h"
-
 #import "FontName.h"
 
 #import "UDKey.h"

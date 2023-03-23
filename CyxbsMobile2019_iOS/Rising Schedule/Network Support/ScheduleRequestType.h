@@ -48,6 +48,8 @@ FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestTeacher;
 /// 自定义 mutable
 FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestCustom;
 
+FOUNDATION_EXPORT ScheduleModelRequestType const requestTypeForString(NSString *str);
+
 typedef NS_ENUM(NSUInteger, ScheduleModelShowType) {
     ScheduleModelShowGroup = 0,
     ScheduleModelShowSingle = 1,

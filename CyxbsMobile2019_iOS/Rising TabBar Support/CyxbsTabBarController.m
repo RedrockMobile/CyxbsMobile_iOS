@@ -51,7 +51,8 @@
         SchedulePolicyService *policy = [[SchedulePolicyService alloc] init];
         policy.outRequestTime = 45 * 60 * 60;
         [policy requestDic:@{
-            ScheduleModelRequestStudent : @[mainKey.sno]
+            ScheduleModelRequestStudent : @[mainKey.sno],
+            ScheduleModelRequestCustom : @[mainKey.sno]
         } policy:^(ScheduleCombineItem * _Nonnull item) {
             ScheduleTouchItem *touch = [[ScheduleTouchItem alloc] init];
             touch.combining = item;
@@ -87,6 +88,7 @@
         
         BOOL hadReadAgreement = [NSUserDefaults.standardUserDefaults boolForKey:UDKey.hadReadAgreement];
         if (!hadReadAgreement) {
+            // 用户协议以及登录请在这里进行改变
             UIViewController *vc = [[UserAgreementViewController alloc] init];
             vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
             [self presentViewController:vc animated:YES completion:nil];

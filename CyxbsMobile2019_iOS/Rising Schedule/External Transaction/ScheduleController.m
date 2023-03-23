@@ -73,12 +73,8 @@ static CGFloat (^statusHeight)(void) = ^{
     self.presenter.headerView = self.headerView;
     [self.view addSubview:self.headerView];
     [self.view addSubview:self.collectionView];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
     
-    [self.presenter requestAndReloadData];
+    [self.presenter requestAndReloadDataWithRollback:YES];
 }
 
 #pragma mark - Getter
@@ -97,7 +93,6 @@ static CGFloat (^statusHeight)(void) = ^{
 
 - (UICollectionView *)collectionView {
     if (_collectionView == nil) {
-        
         [self.presenter setingCollectionView:(&_collectionView) withPrepareWidth:self.view.width];
         _collectionView.top = self.headerView.bottom;
         _collectionView.height = self.view.height - _collectionView.top;

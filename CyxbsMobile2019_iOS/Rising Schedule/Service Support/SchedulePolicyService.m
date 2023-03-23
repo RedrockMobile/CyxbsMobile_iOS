@@ -13,6 +13,19 @@
 
 @implementation SchedulePolicyService
 
+static SchedulePolicyService * _currentPolicy;
++ (SchedulePolicyService *)current {
+    if (_currentPolicy == nil) {
+        _currentPolicy = [[SchedulePolicyService alloc] init];
+        _currentPolicy.outRequestTime = 45 * 60 * 60;
+    }
+    return _currentPolicy;
+}
+
++ (void)setCurrent:(SchedulePolicyService *)current {
+    _currentPolicy = current;
+}
+
 - (void)requestDic:(ScheduleRequestDictionary *)dic
             policy:(void (^)(ScheduleCombineItem *item))policy
           unPolicy:(void (^)(ScheduleIdentifier *unpolicyKEY))unpolicy {
@@ -29,15 +42,20 @@
              policy:(void (^)(ScheduleCombineItem *item))policy
            unPolicy:(void (^)(ScheduleIdentifier *unpolicyKEY))unpolicy {
     NSMutableArray <ScheduleIdentifier *> *unInMemIds = NSMutableArray.array;
-    for (ScheduleIdentifier *idsItem in keys) {
-        if (NSDate.date.timeIntervalSince1970 - idsItem.iat >= self.outRequestTime) {
-            [unInMemIds addObject:idsItem];
+    for (ScheduleIdentifier *key in keys) {
+        if (key.iat - NSDate.date.timeIntervalSince1970 >= self.outRequestTime) {
+            [unInMemIds addObject:key];
         } else {
-            ScheduleCombineItem *cacheItem = [ScheduleShareCache.shareCache getItemForKey:idsItem.key];
-            if (cacheItem) {
+            ScheduleCombineItem *cacheItem = [ScheduleShareCache.shareCache getItemForKey:key.key];
+            if (cacheItem && cacheItem.identifier.type != ScheduleModelRequestCustom) {
                 policy(cacheItem);
             } else {
-                [unInMemIds addObject:idsItem];
+                if (self.awakeable) {
+                    ScheduleCombineItem *item = [ScheduleShareCache.shareCache awakeForIdentifier:key];
+                    policy(item);
+                } else {
+                    [unInMemIds addObject:key];
+                }
             }
         }
     }
@@ -54,9 +72,24 @@
         if (policy) {
             policy(item);
         }
+        if (self.awakeable || item.identifier.type == ScheduleModelRequestCustom) {
+            [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
+        }
     }
      failure:^(NSError * _Nonnull error, ScheduleIdentifier *errorID) {
-        if (unpolicy) {
+        if (errorID.type == ScheduleModelRequestCustom) {
+            ScheduleCombineItem *nilc = [ScheduleShareCache.shareCache awakeForIdentifier:errorID];
+            if (nilc == nil || nilc.value.count == 0) {
+                nilc = [ScheduleCombineItem combineItemWithIdentifier:errorID value:NSMutableArray.array];
+            }
+            if (![nilc.value isKindOfClass:NSMutableArray.class]) {
+                nilc = [ScheduleCombineItem combineItemWithIdentifier:errorID value:nilc.value.mutableCopy];
+            }
+            ScheduleNETRequest.current.customItem = nilc;
+            if (policy) {
+                policy(nilc);
+            }
+        } else if (unpolicy) {
             unpolicy(errorID);
         }
     }];

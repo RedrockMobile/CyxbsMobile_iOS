@@ -9,6 +9,7 @@
 #import "ScheduleServiceSolve.h"
 
 #import "SchedulePolicyService.h"
+#import "ScheduleNETRequest.h"
 #import "ScheduleWidgetCache.h"
 #import "ScheduleNeedsSupport.h"
 
@@ -21,25 +22,15 @@
 @interface ScheduleServiceSolve () <
     UICollectionViewDelegate,
     ScheduleHeaderViewDelegate,
-    UIGestureRecognizerDelegate
+    UIGestureRecognizerDelegate,
+    ScheduleCustomViewControllerDelegate
 >
-
-@property (nonatomic, strong) SchedulePolicyService *policy;
 
 @end
 
 #pragma mark - ScheduleServiceSolve
 
 @implementation ScheduleServiceSolve
-
-- (instancetype)initWithModel:(ScheduleModel *)model {
-    self = [super initWithModel:model];
-    if (self) {
-        _policy = [[SchedulePolicyService alloc] init];
-        _policy.outRequestTime = 45 * 60 * 60;
-    }
-    return self;
-}
 
 #pragma mark - Method
 
@@ -54,7 +45,7 @@
 
 - (void)requestAndReloadData:(void (^)(void))complition {
     [self.model clear];
-    [self.policy
+    [SchedulePolicyService.current
      requestDic:self.parameterIfNeeded
      policy:^(ScheduleCombineItem * _Nonnull item) {
         [self.model combineItem:item];
@@ -62,28 +53,23 @@
         if (complition) {
             complition();
         }
-        
-        if (self.canUseAwake) {
-            [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
-        }
     }
      unPolicy:^(ScheduleIdentifier * _Nonnull unpolicyKEY) {
-        if (self.canUseAwake) {
-            ScheduleCombineItem *item = [ScheduleShareCache.shareCache awakeForIdentifier:unpolicyKEY];
-            [self.model combineItem:item];
-            [self.collectionView reloadData];
-//            [self scrollToSection:self.model.touchItem.nowWeek];
-        }
+        
     }];
 }
 
 #pragma mark - Method
 
 - (void)scrollToSection:(NSInteger)page {
-    if (page > self.model.showWeek || page < 0) {
+    if (page > self.model.courseIdxPaths.count || page < 0) {
         page = 0;
     }
     [self.collectionView setContentOffset:CGPointMake(page * self.collectionView.width, 0) animated:YES];
+}
+
+- (void)scrollToSectionNumber:(NSNumber *)page {
+    [self scrollToSection:page.longValue];
 }
 
 - (NSString *)_titleForNum:(NSInteger)num {
@@ -98,7 +84,7 @@
 }
 
 - (void)reloadHeaderView {
-    if (self.headerView) {
+    if (_headerView) {
         NSInteger page = self.collectionView.contentOffset.x / self.collectionView.width;
         self.headerView.title = [self _titleForNum:page];
         
@@ -145,16 +131,20 @@
         delegate.panInsetsIfNeeded = UIEdgeInsetsMake(self.viewController.view.top, 0, self.viewController.tabBarController.tabBar.height, 0);
         self.viewController.transitioningDelegate = delegate;
         self.viewController.modalPresentationStyle = UIModalPresentationCustom;
-        [self.viewController dismissViewControllerAnimated:YES completion:^{
-        }];
+        [self.viewController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
 - (void)_emptyTap:(UITapGestureRecognizer *)tap {
     if (tap.state == UIGestureRecognizerStateEnded && self.onShow != ScheduleModelShowGroup) {
-        ScheduleCustomViewController *vc = [[ScheduleCustomViewController alloc] init];
+        ScheduleCollectionViewLayout *layout = (ScheduleCollectionViewLayout *)self.collectionView.collectionViewLayout;
+        NSIndexPath *idx = [layout indexPathAtPoint:[tap locationInView:self.collectionView]];
+        
+        ScheduleCustomViewController *vc = [[ScheduleCustomViewController alloc] initWithAppendingInSection:idx.section week:idx.week location:idx.location];
         vc.modalPresentationStyle = UIModalPresentationCustom;
+        vc.delegate = self;
         TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
+        delegate.transitionDurationIfNeeded = 0.3;
         vc.transitioningDelegate = delegate;
         [self.viewController presentViewController:vc animated:YES completion:nil];
     }
@@ -167,17 +157,51 @@
     [self reloadHeaderView];
 }
 
+- (void)setAwakeable:(BOOL)awakeable {
+    SchedulePolicyService.current.awakeable = awakeable;
+}
+
+- (BOOL)awakeable {
+    return SchedulePolicyService.current.awakeable;
+}
+
+#pragma mark - <ScheduleCustomViewControllerDelegate>
+
+- (void)scheduleCustomViewController:(ScheduleCustomViewController *)viewController finishingWithAppending:(BOOL)append {
+    if (append) {
+        [ScheduleNETRequest.current
+         appendCustom:viewController.courseIfNeeded
+         success:^(ScheduleCombineItem * _Nonnull item) {
+            [self.model changeCustomTo:item];
+            [self.collectionView reloadData];
+        }
+         failure:^(NSError * _Nonnull error) {
+
+        }];
+    } else {
+        [ScheduleNETRequest.current
+         editCustom:viewController.courseIfNeeded
+         success:^(ScheduleCombineItem * _Nonnull item) {
+            [self.model changeCustomTo:item];
+            [self.collectionView reloadData];
+        }
+         failure:^(NSError * _Nonnull error) {
+            
+        }];
+    }
+}
+
 #pragma mark - <UICollectionViewDelegate>
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [[[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleMedium] impactOccurred];
     NSIndexPath *locationIdxPath = self.model.courseIdxPaths[indexPath.section][indexPath.item];
-    NSArray <ScheduleCourse *> *courses = [self.model coursesWithLocationIdxPath:locationIdxPath];
+    NSArray <ScheduleDetailPartContext *> *contexts = [self.model contextsWithLocationIdxPath:locationIdxPath];
     
     TransitioningDelegate *transitionDelegate = [[TransitioningDelegate alloc] init];
     transitionDelegate.transitionDurationIfNeeded = 0.3;
     transitionDelegate.supportedTapOutsideBackWhenPresent = YES;
-    ScheduleDetailController *vc = [[ScheduleDetailController alloc] initWithCourses:courses];
+    ScheduleDetailController *vc = [[ScheduleDetailController alloc] initWithContexts:contexts];
     vc.transitioningDelegate = transitionDelegate;
     vc.modalPresentationStyle = UIModalPresentationCustom;
     [self.viewController presentViewController:vc animated:YES completion:nil];
@@ -208,16 +232,19 @@
         }
         
         self.parameterIfNeeded = @{
-            ScheduleModelRequestStudent : @[self.model.sno, otherKey.sno]
+            ScheduleModelRequestStudent : @[self.model.sno, otherKey.sno],
+            ScheduleModelRequestCustom : @[self.model.sno]
         };
+        self.onShow = ScheduleModelShowDouble;
         
     } else {
         self.parameterIfNeeded = @{
-            ScheduleModelRequestStudent : @[self.model.sno]
+            ScheduleModelRequestStudent : @[self.model.sno],
+            ScheduleModelRequestCustom : @[self.model.sno]
         };
+        self.onShow = ScheduleModelShowSingle;
     }
-    
-    [view setShowMuti:YES isSingle:!view.isSingle];
+    [self reloadHeaderView];
     [self requestAndReloadData:nil];
 }
 

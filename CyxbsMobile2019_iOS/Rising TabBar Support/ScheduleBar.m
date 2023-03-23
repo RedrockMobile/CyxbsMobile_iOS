@@ -8,13 +8,13 @@
 
 #import "ScheduleBar.h"
 
-#import "RyCycleView.h"
+#import "RyTrottingHorseLampLabel.h"
 
 #pragma mark - ScheduleBar ()
 
 @interface ScheduleBar ()
 
-@property (nonatomic, strong) RyCycleView *titleCycleView;
+@property (nonatomic, strong) RyTrottingHorseLampLabel *lampLab;
 
 @property (nonatomic, strong) UIImageView *timeImgView;
 
@@ -39,7 +39,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        [self addSubview:self.titleCycleView];
+        [self addSubview:self.lampLab];
         [self addSubview:self.timeImgView];
         [self addSubview:self.timeLab];
         [self addSubview:self.placeImgView];
@@ -54,7 +54,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    self.titleCycleView.centerY =
+    self.lampLab.centerY =
     self.timeImgView.centerY = self.timeLab.centerY =
     self.placeImgView.centerY = self.placeLab.centerY = self.height / 2;
     
@@ -67,14 +67,15 @@
 
 #pragma mark - Lazy
 
-- (RyCycleView *)titleCycleView {
-    if (_titleCycleView == nil) {
-        _titleCycleView = [[RyCycleView alloc] initWithFrame:CGRectMake(16, 0, 120, 30)];
-        _titleCycleView.centerY = self.height / 2;
-        _titleCycleView.dwellTime = 3;
-        _titleCycleView.animateDuration = 4;
+- (RyTrottingHorseLampLabel *)lampLab {
+    if (_lampLab == nil) {
+        _lampLab = [[RyTrottingHorseLampLabel alloc] initWithFrame:CGRectMake(16, 0, 120, 30)];
+        [_lampLab trottingHorseLampWithLabel:^(UILabel * _Nonnull label) {
+            label.font = [UIFont fontWithName:FontName.PingFangSC.Semibold size:22];
+            label.textColor = [UIColor Light:UIColorHex(#15315B) Dark:UIColorHex(#F0F0F2)];
+        }];
     }
-    return _titleCycleView;
+    return _lampLab;
 }
 
 - (UILabel *)_cycleLab {
@@ -155,10 +156,15 @@
 
 - (void)setTitle:(NSString *)title {
     _title = title;
-    UILabel *lab = [self _cycleLab];
-    lab.text = title;
-    [lab sizeToFit];
-    [self.titleCycleView setCycleView:lab];
+    [self.lampLab trottingHorseLampWithLabel:^(UILabel * _Nonnull label) {
+        label.text = title;
+        [label sizeToFit];
+    }];
+    [self.lampLab animationPrepare:^(id<RyTrottingHorseLampLabelAnimationContext>  _Nonnull context) {
+        context.hoverDuration = 2;
+        context.animationDuration = 4;
+        context.spacing = 60;
+    }];
 }
 
 - (void)setTime:(NSString *)time {

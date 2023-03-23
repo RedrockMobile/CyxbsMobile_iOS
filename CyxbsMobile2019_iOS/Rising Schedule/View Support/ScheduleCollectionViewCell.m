@@ -206,6 +206,8 @@ NSString *ScheduleCollectionViewCellReuseIdentifier = @"ScheduleCollectionViewCe
     /*ScheduleCollectionViewCellDrawCustom*/
     if (_drawType == ScheduleCollectionViewCellDrawCustom) {
         self.backImgView.hidden = NO;
+        self.titleLab.textColor = self.contentLab.textColor = self.multyView.backgroundColor =
+        [UIColor dm_colorWithLightColor:UIColor.blackColor darkColor:UIColor.whiteColor];
     } else {
         self.backImgView.hidden = YES;
     }

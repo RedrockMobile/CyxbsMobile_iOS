@@ -8,12 +8,8 @@
 
 /**课表Request业务
  * 可以不创建该业务直接类方法请求不同数据
- * 自定义时创建该业务并绑定combine模型
- * 利用该业务进行网络CRUD行为
- *
- * 该对象强持有combine模型，但有可能在- request后被改变
- * 但可以在合适的时候通过该类去获取到所绑定的对象
- * 使用时，请务必注意是否需要自定义类型
+ * 当你需要使用事务，创建并设置customItem
+ * 当然也可以使用全局current或设置它
  */
 
 #import <Foundation/Foundation.h>
@@ -24,17 +20,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-/**ScheduleWidgetCache Support
- * when `success` a kind of item,
- * ScheduleNETRequest will check out \c nonatomicMainID and \c nonatomicOtherID
- *
- * ScheduleShareCache Support
- * when `success` a kind of item,
- * Memenry will cache the item, not use XXHB
- */
 @class ScheduleWidgetCache;
 
 @interface ScheduleNETRequest : NSObject
+
++ (instancetype)current;
+@property (nonatomic, strong) ScheduleCombineItem *customItem;
 
 - (instancetype)init NS_UNAVAILABLE;
 

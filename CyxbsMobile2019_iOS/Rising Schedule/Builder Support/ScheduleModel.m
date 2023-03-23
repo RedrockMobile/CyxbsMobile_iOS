@@ -37,7 +37,9 @@
     [super combineItem:model];
     _statusMap[model.identifier] = model.value;
     _courseIdxPaths = nil;
-    self.touchItem.combining = model;
+    if ([model.identifier isEqual:[ScheduleIdentifier identifierWithSno:self.sno type:ScheduleModelRequestStudent]]) {
+        self.touchItem.combining = model;
+    }
 }
 
 - (void)clear {
@@ -48,19 +50,21 @@
 }
 
 
-- (NSArray<ScheduleCourse *> *)coursesWithLocationIdxPath:(NSIndexPath *)idxPath {
+- (NSArray <ScheduleDetailPartContext *> *)contextsWithLocationIdxPath:(NSIndexPath *)idxPath {
     NSMutableSet *set = NSMutableSet.set;
-    for (NSArray <ScheduleCourse *> *kind in _statusMap.allValues) {
+    for (ScheduleIdentifier *key in _statusMap.allKeys) {
+        NSArray <ScheduleCourse *> *kind = [_statusMap objectForKey:key];
         for (ScheduleCourse *course in kind) {
             if (course.inWeek == idxPath.week) {
+                ScheduleDetailPartContext *context = [ScheduleDetailPartContext contextWithKey:key course:course];
                 for (NSInteger i = 0; i < [self.mapTable objectForKey:idxPath].lenth; i++) {
                     if (NSLocationInRange(idxPath.location + i, course.period)) {
                         if (idxPath.section) {
-                            if ([course.inSections containsIndex:idxPath.section]){
-                                [set addObject:course];
+                            if ([course.inSections containsIndex:idxPath.section]) {
+                                [set addObject:context];
                             }
                         } else {
-                            [set addObject:course];
+                            [set addObject:context];
                         }
                     }
                 }
@@ -68,6 +72,15 @@
         }
     }
     return set.allObjects;
+}
+
+- (void)changeCustomTo:(ScheduleCombineItem *)item {
+    _statusMap[item.identifier] = item.value;
+    NSDictionary <ScheduleIdentifier *, NSArray<ScheduleCourse *> *> *dic = _statusMap.copy;
+    [self clear];
+    [dic enumerateKeysAndObjectsUsingBlock:^(ScheduleIdentifier * _Nonnull key, NSArray<ScheduleCourse *> * _Nonnull obj, BOOL * __unused stop) {
+        [self combineItem:[ScheduleCombineItem combineItemWithIdentifier:key value:obj]];
+    }];
 }
 
 #pragma mark - Getter

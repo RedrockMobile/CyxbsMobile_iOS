@@ -34,14 +34,13 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - width: 准备工作所需要的宽度
 - (void)setingCollectionView:(UICollectionView *__strong  _Nonnull *_Nonnull)collectionView withPrepareWidth:(CGFloat)width;
 
-/// 设置collectionView
+// *useable
+
 @property (nonatomic, readonly) UICollectionView *collectionView;
 
+- (void)requestAndReloadDataWithRollback:(BOOL)rollBack;
 
-- (void)requestAndReloadData;
-
-/// XXHB
-@property (nonatomic) BOOL useAwake __deprecated_msg("注意使用");
+@property (nonatomic) BOOL awakeable;
 
 @end
 
@@ -67,6 +66,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface SchedulePresenter (ScheduleGroup)
 
+- (void)setWithGroup:(ScheduleRequestDictionary *)group;
+
+- (void)setWithGroupKeys:(NSArray<ScheduleIdentifier *> *)gKeys;
 
 @end
 

@@ -24,14 +24,14 @@
 
 // Animation Supported
 
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     PresentAnimatedTransition *transition = [[PresentAnimatedTransition alloc] init];
     transition.transitionDuration = self.transitionDurationIfNeeded;
     transition.supportedTapOutsideBack = self.supportedTapOutsideBackWhenPresent;
     return transition;
 }
 
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
     DismissAnimatedTransition *transition = [[DismissAnimatedTransition alloc] init];
     transition.transitionDuration = self.transitionDurationIfNeeded;
     return transition;
@@ -39,7 +39,7 @@
 
 // Interactive Supported
 
-- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id<UIViewControllerAnimatedTransitioning>)animator{
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id<UIViewControllerAnimatedTransitioning>)animator {
     if(self.panGestureIfNeeded) {
         PresentDrivenInteractiveTransition *transition = [[PresentDrivenInteractiveTransition alloc] initWithPanGesture:self.panGestureIfNeeded];
         transition.panInsets = self.panInsetsIfNeeded;
@@ -48,7 +48,7 @@
     return nil;
 }
 
-- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator{
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
     if(self.panGestureIfNeeded) {
         DismissDrivenInteractiveTransition *transition = [[DismissDrivenInteractiveTransition alloc] initWithPanGesture:self.panGestureIfNeeded];
         transition.panInsets = self.panInsetsIfNeeded;

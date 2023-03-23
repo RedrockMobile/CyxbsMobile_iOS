@@ -30,7 +30,7 @@
                failure:(void (^)(NSError * _Nonnull))failure {
     
     [HttpTool.shareTool
-     request:STRS(NetURL.base.bedev, NetURL.search.stu)
+     request:@"https://be-dev.redrock.cqupt.edu.cn/magipoke-text/search/people"
      type:HttpToolRequestTypeGet
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:@{

@@ -14,52 +14,74 @@
 #import "ScheduleCourse.h"
 
 @implementation ScheduleTouchItem {
-    NSMutableArray <ScheduleCourse *> *_todayCourse;
-    NSUInteger _maxSection;
+    NSMutableArray <ScheduleCourse *> *_sectionCourseAry;
 }
 
 - (void)setCombining:(ScheduleCombineItem *)combining {
-    _todayCourse = NSMutableArray.array;
     _combining = combining;
-    _startDate = [NSDate dateWithTimeIntervalSince1970:combining.identifier.exp];
-    double nowWeek = ceil([NSDate.date timeIntervalSinceDate:_startDate] / (7 * 24 * 60 * 60));
-    _nowWeek = nowWeek;
     
-    _maxSection = 0;
+    _startDate = _combining.identifier.exp < NSTimeIntervalSince1970 ? nil :
+        [NSDate dateWithTimeIntervalSince1970:_combining.identifier.exp];
+    _nowWeek = ceil([NSDate.date timeIntervalSinceDate:self.startDate] / (7 * 24 * 60 * 60));
+    
+    _sectionCourseAry = NSMutableArray.array;
     for (ScheduleCourse *course in self.combining.value) {
-        _maxSection = MAX(_maxSection, course.inSections.lastIndex);
-        if ([course.inSections containsIndex:self.nowWeek]) {
-            [_todayCourse addObject:course];
+        _lastSection = MAX(_lastSection, course.inSections.lastIndex);
+        if (self.nowWeek > 0 && [course.inSections containsIndex:self.nowWeek]) {
+            [_sectionCourseAry addObject:course];
         }
     }
     
     __weak ScheduleTouchItem *blockItem = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(45 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        ScheduleTouchItem *item = blockItem;
-        [item setCombining:combining];
-    });
+    if (blockItem) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(45 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            ScheduleTouchItem *item = blockItem;
+            [item setCombining:combining];
+        });
+    }
 }
 
 - (ScheduleCourse *)floorCourse {
-    if (_todayCourse.count == 0) {
+    if (self.nowWeek <= 0 || self.nowWeek > self.lastSection || _sectionCourseAry.count == 0) {
         return nil;
     }
-    NSInteger (^timesInDay)(NSDateComponents *) = ^NSInteger(NSDateComponents *components) {
-        return (components.hour * 60 + components.minute);
-    };
-    NSDateComponents *components = [ScheduleCalendar() componentsInTimeZone:CQTimeZone() fromDate:NSDate.date];
-    NSInteger times = timesInDay(components);
-    ScheduleCourse *next;
-    for (ScheduleCourse *course in _todayCourse) {
-        SchedulePartTimeline *part = [ScheduleTimeline partTimeLineForOriginRange:course.period];
-        if (times >= timesInDay(part.fromComponents)) {
-            next = course;
-            if (times < timesInDay(part.toComponents)) {
-                return course;
-            }
-        }
-    }
+    
+    ScheduleCourse *next = nil;
+    
+    
+    
     return next;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@, %p> %@", NSStringFromClass(self.class), self, self.combining];
+}
+
+#pragma mark - <NSCopying>
+
+- (nonnull id)copyWithZone:(nullable NSZone *)zone {
+    ScheduleTouchItem *item = [[ScheduleTouchItem alloc] init];
+    item.combining = self.combining;
+    return item;
+}
+
+#pragma mark - <NSSecureCoding>
+
++ (BOOL)supportsSecureCoding {
+    return YES;
+}
+
+- (void)encodeWithCoder:(nonnull NSCoder *)coder {
+    [coder encodeObject:self.combining forKey:@"combining"];
+}
+
+- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
+    self = [super init];
+    if (self) {
+        ScheduleCombineItem *item = [coder decodeObjectForKey:@"combining"];
+        self.combining = item;
+    }
+    return self;
 }
 
 @end

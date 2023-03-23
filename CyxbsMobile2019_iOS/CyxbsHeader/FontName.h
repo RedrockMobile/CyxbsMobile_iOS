@@ -9,6 +9,8 @@
 #ifndef FontName_h
 #define FontName_h
 
+#import <Foundation/Foundation.h>
+
 extern const struct FontName {
     // PingFangSC
     const struct PingFangSC {

@@ -73,20 +73,24 @@
 }
 
 
-- (void)requestAndReloadData {
+- (void)requestAndReloadDataWithRollback:(BOOL)rollBack {
     [self.service requestAndReloadData:^{
-        [self.service scrollToSection:self.service.model.touchItem.nowWeek];
+        if (rollBack) {
+            [self.service scrollToSection:self.service.model.touchItem.nowWeek];
+        }
     }];
 }
 
-- (void)setUseAwake:(BOOL)useAwake {
-    _service.canUseAwake = useAwake;
+
+
+- (void)setAwakeable:(BOOL)awakeable {
+    self.service.awakeable = awakeable;
+    ScheduleShareCache.shareCache.awakeable = awakeable;
 }
 
-- (BOOL)useAwake {
-    return _service.canUseAwake;
+- (BOOL)awakeable {
+    return self.service.awakeable;
 }
-
 
 @end
 
@@ -103,7 +107,8 @@
     
     _service.model.sno = main.sno;
     _service.parameterIfNeeded = @{
-        ScheduleModelRequestStudent : @[main.sno]
+        ScheduleModelRequestStudent : @[main.sno],
+        ScheduleModelRequestCustom : @[main.sno]
     };
     _service.onShow = ScheduleModelShowSingle;
     
@@ -125,7 +130,8 @@
     ScheduleWidgetCache.shareCache.beDouble = YES;
     
     _service.parameterIfNeeded = @{
-        ScheduleModelRequestStudent : @[main.sno, other.sno]
+        ScheduleModelRequestStudent : @[main.sno, other.sno],
+        ScheduleModelRequestCustom : @[main.sno]
     };
     _service.onShow = ScheduleModelShowDouble;
     
