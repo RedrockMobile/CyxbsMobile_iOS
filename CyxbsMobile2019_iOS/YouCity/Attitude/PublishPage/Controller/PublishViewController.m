@@ -249,6 +249,7 @@
         self.table.frame = CGRectMake(self.table.frame.origin.x, self.table.frame.origin.y, self.table.frame.size.width, newHeight);
     }];
 }
+
 #pragma mark - DataSource
 // 暂定高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -14,7 +14,6 @@
 #import "ExpressPickGetItem.h"
 #import "ExpressPickPutModel.h"
 #import "ExpressPickPutItem.h"
-#import "ExpressDeclareItem.h"
 #import "ExpressDeclareModel.h"
 
 // view
@@ -42,9 +41,9 @@
 @property (nonatomic, strong) UILabel *detailTitle;
 @property (nonatomic, strong) UIImageView *backgroundImage;
 
+/// 详细信息
 @property (nonatomic, strong) ExpressPickGetModel *detailModel;
 
-/// 详细信息
 @property (nonatomic, strong) ExpressPickGetItem *detailItem;
 
 /// PUT 投票
@@ -55,8 +54,6 @@
 
 /// 撤销投票
 @property (nonatomic, strong) ExpressDeclareModel *declareModel;
-
-@property (nonatomic, strong) ExpressDeclareItem *declareItem;
 
 /// 投票百分比数组
 @property (nonatomic, strong) NSArray *putPercentArray;  // 放票数百分比的数组
@@ -78,9 +75,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self addViews];
-    [self setFrontView];
+    [self setPosition];
     [self addSEL];
     // request
     [self requestDetails];
@@ -97,7 +93,6 @@
 }
 
 - (void)addSEL {
-    
     [self.backBtn addTarget:self action:@selector(clickBack) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -108,7 +103,6 @@
         // 标题
 //        self.detailTitle.text = model.title;
         self.putPercentArray = self.detailItem.percentStrArray;
-        // 不管有没有投过票，都要展示choice
         // 重新加载tableView
         [self.tableView reloadData];
         NSLog(@"detailModel---%@", model.title);
@@ -133,7 +127,6 @@
         // 分别得到gradientWidth
 //        gradientWidth = cellWidth * [self.pickItem.percentNumArray[indexPath.row] floatValue];
         gradientWidth = 160;  // test
-//        cell.percent.text = self.putPercentArray[indexPath.row];
         cell.percent.text = @"50%";
         if (indexPath == selectIndexPath) {
             // 是选中的cell
@@ -141,7 +134,6 @@
         } else {
             [cell otherCell];
         }
-        // TODO: 加百分比 同时把字放最前面
         // 渐变动画
         [UIView animateWithDuration:1.0 animations:^{
             cell.gradientView.frame = CGRectMake(0, 0, gradientWidth, cell.bounds.size.height);
@@ -159,16 +151,14 @@
     [feedbackGenerator impactOccurred];
 }
 
-- (void)setFrontView {
+- (void)setPosition {
     [self.backgroundImage mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view);
-        make.left.equalTo(self.view);
-        make.right.equalTo(self.view);
+        make.centerX.right.left.equalTo(self.view);
         make.height.equalTo(@226);
     }];
     
-    self.backBtn.frame = CGRectMake(16, STATUSBARHEIGHT + 40, 14, 32);
-    self.titleLab.frame = CGRectMake(self.backBtn.bounds.origin.x + self.backBtn.bounds.size.width + 30, STATUSBARHEIGHT + 40, 66, 31);
+    self.backBtn.frame = CGRectMake(16, STATUSBARHEIGHT + 33, 14, 32);
+    self.titleLab.frame = CGRectMake(self.backBtn.bounds.origin.x + self.backBtn.bounds.size.width + 30, STATUSBARHEIGHT + 33, 66, 31);
     
     [self.detailTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).mas_offset(@16);
@@ -193,7 +183,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    TODO: section 数量
 //    return self.detailItem.choices.count;
     return 2;
 }
@@ -212,6 +201,7 @@
             cell.percent.text = self.detailItem.percentStrArray[indexPath.row];
             // 动画
             if ([cell.title.text isEqual:self.detailItem.getVoted]) {
+                // 记录投票的选项
                 self.votedRow = indexPath.row;
                 [self putAnimation:indexPath];
             }
@@ -223,7 +213,7 @@
     return cell;
 }
 
-#pragma mark - <UITableViewDelegate>
+// MARK: <UITableViewDelegate>
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 80;
@@ -233,8 +223,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     ExpressDetailCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [self putAnimation:indexPath];
-    // TODO: 鉴权
-    
+    [self tapFeedback];
     // DELETE 撤销投票
     // 只有没有投过票才不用撤销投票
     if (self.votedRow != -1) {
@@ -252,18 +241,15 @@
     // PUT 投票
     [self.pickModel requestPickDataWithId:self.theId Choice:cell.title.text Success:^(ExpressPickPutItem * _Nonnull model) {
         NSLog(@"发布成功");
-        // TODO: 展示已投票结果
-        // TODO: 投票数组
+        // 更新百分比数组
         self.putPercentArray = model.percentStrArray;
-        [self tapFeedback];
-        // TODO: 动画
-        [self putAnimation:indexPath];
+        [self putAnimation:indexPath];  // 动画
+        [self tapFeedback];  // 雷达效果
     } Failure:^{
         NSLog(@"发布失败");
         // TODO: 弹窗
 
     }];
-    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -293,7 +279,7 @@
     if (_tableView == nil) {
         _tableView = [[UITableView alloc] init];
         _tableView.layer.cornerRadius = 8;
-        _tableView.frame = CGRectMake(0, STATUSBARHEIGHT + 195, kScreenWidth, kScreenHeight);
+        _tableView.frame = CGRectMake(0, 215, kScreenWidth, kScreenHeight);
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -307,7 +293,7 @@
         _detailTitle.numberOfLines = 0 ;
         _detailTitle.textAlignment = NSTextAlignmentLeft;
         _detailTitle.textColor = [UIColor whiteColor];
-        _detailTitle.font = [UIFont fontWithName:PingFangSCMedium size:18];
+        _detailTitle.font = [UIFont fontWithName:PingFangSCSemibold size:18];
         _detailTitle.text = @"你是否支持iPhone的接口将要被统—为接口你是否支持iPhone的接口将要被统";
     }
     return _detailTitle;

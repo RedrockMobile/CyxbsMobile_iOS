@@ -60,7 +60,7 @@
         make.centerY.equalTo(self.contentView);
         make.left.equalTo(self.contentView).mas_offset(36);
         make.height.mas_equalTo(20);
-        make.right.mas_equalTo(-78);
+        make.right.mas_equalTo(-71);
     }];
     
     [self.percent mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -75,8 +75,8 @@
     [self.contentView addSubview:self.checkImage];
     [self.checkImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView);
-        make.right.equalTo(self.contentView).mas_offset(-54);
-        make.size.mas_equalTo(CGSizeMake(22, 14));
+        make.right.equalTo(self.contentView).mas_offset(-51);
+        make.size.mas_equalTo(CGSizeMake(17, 14));
     }];
 }
 
@@ -86,7 +86,7 @@
         make.centerY.equalTo(self.contentView);
         make.left.equalTo(self.contentView).mas_offset(36);
         make.height.mas_equalTo(20);
-        make.right.mas_equalTo(-78);
+        make.right.mas_equalTo(-71);
     }];
 }
 
