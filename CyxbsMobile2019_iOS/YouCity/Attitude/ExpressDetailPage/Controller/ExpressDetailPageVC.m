@@ -31,6 +31,13 @@
 @property (nonatomic, assign) NSInteger votedRow;
 
 @property (nonatomic, strong) UITableView *tableView;
+
+/// 返回按钮
+@property (nonatomic, strong) UIButton *backBtn;
+
+/// 标题
+@property (nonatomic, strong) UILabel *titleLab;
+
 /// 标题
 @property (nonatomic, strong) UILabel *detailTitle;
 @property (nonatomic, strong) UIImageView *backgroundImage;
@@ -51,8 +58,8 @@
 
 @property (nonatomic, strong) ExpressDeclareItem *declareItem;
 
-///// 投票后的数组
-//@property (nonatomic, strong) NSArray *putPercentArray;  // 放票数百分比的数组
+/// 投票百分比数组
+@property (nonatomic, strong) NSArray *putPercentArray;  // 放票数百分比的数组
 
 @end
 
@@ -62,7 +69,7 @@
     self = [super init];
     if (self) {
         self.theId = theId;
-        
+        self.putPercentArray = [NSArray array];
     }
     return self;
 }
@@ -71,28 +78,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.splitLineHidden = YES;
-    self.titleColor = [UIColor whiteColor]; // 导航栏标题颜色
-    [self.backBtn setImage:[UIImage imageNamed:@"Express_whiteBackBtn"] forState:UIControlStateNormal]; // 导航栏返回按钮
     
-    [self.view addSubview:self.backgroundImage];
-    [self.view addSubview:self.detailTitle];
-    [self.view addSubview:self.tableView];
-    
+    [self addViews];
     [self setFrontView];
-    
+    [self addSEL];
     // request
     [self requestDetails];
 }
 
 #pragma mark - Method
 
+- (void)addViews {
+    [self.view addSubview:self.backgroundImage];
+    [self.view addSubview:self.backBtn];
+    [self.backgroundImage addSubview:self.titleLab];
+    [self.view addSubview:self.detailTitle];
+    [self.view addSubview:self.tableView];
+}
+
+- (void)addSEL {
+    
+    [self.backBtn addTarget:self action:@selector(clickBack) forControlEvents:UIControlEventTouchUpInside];
+}
+
 /// 首先请求获取详情信息
 - (void)requestDetails {
     [self.detailModel requestGetDetailDataWithId:self.theId Success:^(ExpressPickGetItem * _Nonnull model) {
         self.detailItem = model;
         // 标题
-        self.detailTitle.text = model.title;
+//        self.detailTitle.text = model.title;
+        self.putPercentArray = self.detailItem.percentStrArray;
         // 不管有没有投过票，都要展示choice
         // 重新加载tableView
         [self.tableView reloadData];
@@ -114,46 +129,26 @@
     for (ExpressDetailCell *cell in self.tableView.visibleCells) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         // 先全部恢复原始状态
-        [cell removeAllSubviews];
-//        cell.contentView.backgroundColor = UIColor.clearColor;
-        cell.backgroundColor = [UIColor colorWithHexString:@"#0028FC" alpha:0.05];
-        
-        
+        [cell backToOriginState];
         // 分别得到gradientWidth
 //        gradientWidth = cellWidth * [self.pickItem.percentNumArray[indexPath.row] floatValue];
         gradientWidth = 160;  // test
-        // 深色填充层
-        UIView *gradientView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, cell.bounds.size.height)];
+//        cell.percent.text = self.putPercentArray[indexPath.row];
+        cell.percent.text = @"50%";
         if (indexPath == selectIndexPath) {
             // 是选中的cell
-            gradientView.backgroundColor = [UIColor colorWithHexString:@"#534EF3" alpha:1.0];
-            // 加入对勾
-            [cell setCheckImagePosition];
-//            cell.contentView.backgroundColor = UIColor.clearColor;
-            cell.backgroundColor = [UIColor colorWithHexString:@"#6C68EE" alpha:1.0];
+            [cell selectCell];
         } else {
-            gradientView.backgroundColor = [UIColor colorWithHexString:@"#4A44E4" alpha:0.1];
+            [cell otherCell];
         }
-//        gradientView.tag = 1001;
-        [cell addSubview:gradientView];
+        // TODO: 加百分比 同时把字放最前面
         // 渐变动画
         [UIView animateWithDuration:1.0 animations:^{
-            gradientView.frame = CGRectMake(0, 0, gradientWidth, cell.bounds.size.height);
+            cell.gradientView.frame = CGRectMake(0, 0, gradientWidth, cell.bounds.size.height);
         } completion:^(BOOL finished) {
-            gradientView.frame = CGRectMake(0, 0, gradientWidth, cell.bounds.size.height);
+            cell.gradientView.frame = CGRectMake(0, 0, gradientWidth, cell.bounds.size.height);
         }];
-        
     }
-    
-//    // TODO: 是否是在别的点击中才用到
-//    // 检查是否存在深色填充层，如果存在则移除
-//    UIView *gradientView = [selectCell viewWithTag:1001];
-//
-//    if (gradientView) {
-//        [gradientView removeFromSuperview];
-//        selectCell.backgroundColor = [UIColor colorWithHexString:@"#0028FC" alpha:1.0];
-//        return;
-//    }
 }
 
 /// 雷达效果
@@ -172,12 +167,21 @@
         make.height.equalTo(@226);
     }];
     
+    self.backBtn.frame = CGRectMake(16, STATUSBARHEIGHT + 40, 14, 32);
+    self.titleLab.frame = CGRectMake(self.backBtn.bounds.origin.x + self.backBtn.bounds.size.width + 30, STATUSBARHEIGHT + 40, 66, 31);
+    
     [self.detailTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view);
         make.left.equalTo(self.view).mas_offset(@16);
         make.right.equalTo(self.view).mas_offset(@-15);
-        make.bottom.equalTo(self.backgroundImage).mas_offset(@-30);
+        make.bottom.equalTo(self.backgroundImage).mas_offset(@-31);
     }];
+}
+
+// MARK: SEL
+
+/// 返回上一级
+- (void)clickBack {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Delegate
@@ -200,10 +204,9 @@
     if (cell == nil) {
         cell = [[ExpressDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
     }
-    // 展示数据
+    // 展示已投票数据
     if (self.detailItem != NULL) {
         cell.title = self.detailItem.choices[indexPath.row];
-        // TODO: 百分比
         // 如果已经投票
         if (self.detailItem.getVoted != NULL) {
             cell.percent.text = self.detailItem.percentStrArray[indexPath.row];
@@ -250,8 +253,8 @@
     [self.pickModel requestPickDataWithId:self.theId Choice:cell.title.text Success:^(ExpressPickPutItem * _Nonnull model) {
         NSLog(@"发布成功");
         // TODO: 展示已投票结果
-
-        // TODO: 雷达
+        // TODO: 投票数组
+        self.putPercentArray = model.percentStrArray;
         [self tapFeedback];
         // TODO: 动画
         [self putAnimation:indexPath];
@@ -267,10 +270,30 @@
 
 #pragma mark - Getter
 
+- (UIButton *)backBtn {
+    if (_backBtn == nil) {
+        _backBtn = [[UIButton alloc] init];
+        [_backBtn setImage:[UIImage imageNamed:@"Express_whiteBackBtn"] forState:UIControlStateNormal];
+    }
+    return _backBtn;
+}
+
+- (UILabel *)titleLab {
+    if (_titleLab == nil) {
+        _titleLab = [[UILabel alloc] init];
+        _titleLab.text = @"表态区";
+        _titleLab.textColor = [UIColor colorWithHexString:@"#FFFFFF" alpha:1.0];
+        _titleLab.font = [UIFont fontWithName:PingFangSCMedium size:22];
+        _titleLab.textAlignment = NSTextAlignmentLeft;
+    }
+    return _titleLab;
+}
+
 - (UITableView *)tableView {
-    if (!_tableView) {
+    if (_tableView == nil) {
         _tableView = [[UITableView alloc] init];
-        _tableView.frame = CGRectMake(0, 226, kScreenWidth, kScreenHeight);
+        _tableView.layer.cornerRadius = 8;
+        _tableView.frame = CGRectMake(0, STATUSBARHEIGHT + 195, kScreenWidth, kScreenHeight);
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -279,20 +302,19 @@
 }
 
 - (UILabel *)detailTitle {
-    if (!_detailTitle) {
+    if (_detailTitle == nil) {
         _detailTitle = [[UILabel alloc] init];
-        _detailTitle.numberOfLines = 0;
+        _detailTitle.numberOfLines = 0 ;
+        _detailTitle.textAlignment = NSTextAlignmentLeft;
         _detailTitle.textColor = [UIColor whiteColor];
-        _detailTitle.font = [UIFont fontWithName:PingFangSCBold size:18];
-        _detailTitle.text = self.detailItem.title;
-        NSLog(@"%@",self.detailItem.title);
-//        _detailTitle.text = @"你是否支持iPhone的接口将要被统—为type-c接口?你是否支持iPhone的接口将要被统?";
+        _detailTitle.font = [UIFont fontWithName:PingFangSCMedium size:18];
+        _detailTitle.text = @"你是否支持iPhone的接口将要被统—为接口你是否支持iPhone的接口将要被统";
     }
     return _detailTitle;
 }
 
 - (UIImageView *)backgroundImage {
-    if (!_backgroundImage) {
+    if (_backgroundImage == nil) {
         _backgroundImage = [[UIImageView alloc] init];
         _backgroundImage.image = [UIImage imageNamed:@"Express_detailBackground"];
     }

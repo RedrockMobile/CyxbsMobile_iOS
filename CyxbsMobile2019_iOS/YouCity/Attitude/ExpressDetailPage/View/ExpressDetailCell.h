@@ -15,9 +15,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UILabel *title;
 @property (nonatomic, strong) UIImageView *checkImage;
 @property (nonatomic, strong) UILabel *percent;
+/// 渐变层
+@property (nonatomic, strong) UIView *gradientView;
 
-/// 设置对勾图片
-- (void)setCheckImagePosition;
+/// 选中后的第一步是恢复初始状态
+- (void)backToOriginState;
+
+/// 选中的cell的UI情况
+- (void)selectCell;
+
+/// 其他cell的UI情况
+- (void)otherCell;
 
 @end
 
