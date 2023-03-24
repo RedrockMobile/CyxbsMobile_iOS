@@ -60,6 +60,8 @@
 - (void)setBarView {
     self.view.backgroundColor = [UIColor whiteColor];
     self.VCTitleStr = @"表态区";
+    self.titleColor = [UIColor colorWithHexString:@"#15315B"];
+    [self.backBtn setImage:[UIImage imageNamed:@"Publish_backBtn"] forState:UIControlStateNormal];
     self.splitLineHidden = YES;
     self.titlePosition = TopBarViewTitlePositionLeft;
     self.topBarView.backgroundColor = [UIColor whiteColor];
@@ -142,6 +144,7 @@
     self.modelItem = self.dataArray[indexPath.row];
     cell.title.text = self.modelItem.title;
     NSLog(@"%@", cell.title.text);
+    cell.backgroundColor = [UIColor whiteColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -171,6 +174,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = [UIColor colorWithRed:0.949 green:0.953 blue:0.973 alpha:1];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         /*
         _tableView.backgroundColor = [UIColor whiteColor];
         //设置阴影

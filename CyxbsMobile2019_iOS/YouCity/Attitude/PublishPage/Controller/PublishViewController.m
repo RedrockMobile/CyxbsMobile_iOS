@@ -13,11 +13,13 @@
 #import "PublishPageCell.h"
 #import "PublishTableAddTagView.h"
 #import "PublishTableHeadView.h"
-
+// Model
+#import "PublishPageModel.h"
 
 #import "PublishTextView.h"
 #import "PublishMakeSureView.h"
 
+#define TABLEVIEWHEIGHT self.tableView.frame.size.height
 @interface PublishViewController () <
     UITextViewDelegate,
     UITableViewDataSource,
@@ -26,10 +28,10 @@
 
 @property (nonatomic, strong) PublishTopView *topView;
 
-@property (nonatomic, strong) UITableView *table;
+@property (nonatomic, strong) UITableView *tableView;
 
 // 获取tableview的高度
-@property (nonatomic, assign) CGFloat tableViewHeight;
+//@property (nonatomic, assign) CGFloat tableViewHeight;
 
 @property (nonatomic, strong) PublishTableAddTagView *addTagView;
 @property (nonatomic, strong) PublishTableHeadView *headerView;
@@ -58,14 +60,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _count = 4;
-    [self setDefaultTagData];
     
     self.view.backgroundColor = [UIColor colorWithHexString:@"#F2F3F8"];
     [self.view addSubview:self.topView];
     [self.view addSubview:self.headerView];
+    [self.view addSubview:self.tableView];
     [self.view addSubview:self.addTagView];
-    [self.view addSubview:self.table];
-    self.table.editing = YES;
+    
 }
 
 
@@ -116,7 +117,6 @@
 // MARK: SEL
 
 // 回退页面
-
 - (void)didClickBackBtn {
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -209,45 +209,87 @@
 // 添加cell方法
 - (void)addCell:(UIButton *)button{
     if (_count < 10) {
-
-        [self.table beginUpdates];
+        [self.tableView beginUpdates];
         _count += 1;
-        [self.table insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_count - 1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-        
         // 动态变化tableview高度：增加
-        if (self.table.frame.size.height < self.view.frame.size.height - 100) {
+        if (TABLEVIEWHEIGHT < kScreenHeight - 220) {
             [self tableViewChangeHeight];
         }
-        [self.table endUpdates];
+        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_count - 1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView endUpdates];
     }
     else {
         // 设置提示弹窗🥺
+        [NewQAHud showHudAtWindowWithStr:@"最多仅可以添加10个选项" enableInteract:YES];
         NSLog(@"最大只能添加10个");
     }
+}
+
+// 点击完成编辑按钮后：发布投票
+- (void)uploadTagDataToPost {
+    NSMutableArray *choicesArray = [NSMutableArray array];
+    for (PublishPageCell *cell in [self.tableView visibleCells]) {
+        [choicesArray addObject:cell.tagLabel.text];
+    }
+    NSString *title = [NSString string];
+    title = self.headerView.headerLabel.text;
+    PublishPageModel *model = [[PublishPageModel alloc] init];
+    [model postTagWithTitle:title andChoices:choicesArray withSuccess:^{
+        NSLog(@"发布投票success");
+    } Failure:^{
+        NSLog(@"发布投票failure");
+    }];
+}
+
+// 发布投票
+- (void)clickedOkEdit {
+    NSLog(@"发布投票--------");
+    [self uploadTagDataToPost];
+}
+
+// 4个选项
+- (void)setTableViewPosition {
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view);
+        make.top.equalTo(self.view).mas_offset(120);
+        make.width.equalTo(@345);
+        make.height.equalTo(@459);
+    }];
 }
 
 #pragma mark - PublishPageCellDelegate
 // 点击按钮删除cell
 - (void)tableViewCellPressDeleteCell:(PublishPageCell *)cell {
-    [self.table beginUpdates];
+    [self.tableView beginUpdates];
     _count -= 1;
-    [self.table deleteRowsAtIndexPaths:@[[self.table indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView deleteRowsAtIndexPaths:@[[self.tableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView endUpdates];
+    NSLog(@"----------删除前%f",self.tableView.frame.size.height);
     // 动态变化tableview高度
-    [self tableViewChangeHeight];
-    [self.table endUpdates];
+    CGFloat newHeight = [self getTableViewNewHeight];
+    if (newHeight <= kScreenHeight - 220) {
+        [self tableViewChangeHeight];
+        NSLog(@"----------删除后%f",self.tableView.frame.size.height);
+    }
 }
 
+// 获取最新高度
+- (CGFloat)getTableViewNewHeight {
+    NSInteger numberOfCells = [self tableView:self.tableView numberOfRowsInSection:0];
+    // 获取每个cell的高度
+    CGFloat cellHeight = [self tableView:self.tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    // 计算tableview应该展示的高度
+    CGFloat newHeight = numberOfCells * cellHeight + [self tableView:self.tableView heightForFooterInSection:0];
+    return newHeight;
+}
+
+// 高度变化
 - (void)tableViewChangeHeight {
     [UIView animateWithDuration:0.3 animations:^{
-        NSInteger numberOfCells = [self numberOfSectionsInTableView:self.table];
-        // 获取每个cell的高度
-        CGFloat cellHeight = [self tableView:self.table heightForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-        // 计算tableview应该展示的高度
-        CGFloat newHeight = (numberOfCells + 2) * cellHeight;
+        CGFloat newHeight = [self getTableViewNewHeight];
         // 设置tableview的高度不能小于最小高度
-        newHeight = MAX(newHeight, 50 * 7);
-        // 设置tableview的高度
-        self.table.frame = CGRectMake(self.table.frame.origin.x, self.table.frame.origin.y, self.table.frame.size.width, newHeight);
+        newHeight = MAX(newHeight, 50 * 4 + 100);
+        self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, newHeight);
     }];
 }
 #pragma mark - DataSource
@@ -264,17 +306,10 @@
     return 1;
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-//    return 110;
-//}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 100;
 }
 #pragma mark - Delegate
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-//    return self.headerView;
-//}
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     return self.addTagView;
@@ -286,11 +321,10 @@
     if (cell == nil) {
         cell = [[PublishPageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
     }
-    cell.tagLabel.text = [NSString stringWithFormat:@"aa%ld", indexPath.row + 1];
+    cell.tagLabel.text = [NSString stringWithFormat:@"选项%ld", indexPath.row + 1];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
     cell.delegate = self;
-    
+    cell.backgroundColor = [UIColor colorWithHexString:@"#FFFFFF"];
     return cell;
 }
 
@@ -316,17 +350,19 @@
     return _publishTitleTextView;
 }
 
-- (UITableView *)table {
-    if (!_table) {
-        self.tableViewHeight = 50 * 7;
-        _table = [[UITableView alloc] initWithFrame:CGRectMake(15, 200, self.view.frame.size.width - 30, self.tableViewHeight) style:UITableViewStylePlain];
-        _table.delegate = self;
-        _table.dataSource = self;
+- (UITableView *)tableView {
+    if (!_tableView) {
+//        CGFloat tableViewH = 50 * 4 + [self tableView:_tableView heightForFooterInSection:0];
+        _tableView = [[UITableView alloc] init];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(15, 180, self.view.frame.size.width - 30, 50 * 4 + 100) style:UITableViewStylePlain];
+        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
         // tableView的圆角，暂定15
-        _table.layer.cornerRadius = 15;
-        _table.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.layer.cornerRadius = 15;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
-    return _table;
+    return _tableView;
 }
 
 - (PublishTableAddTagView *)addTagView {
@@ -334,6 +370,7 @@
         _addTagView = [[PublishTableAddTagView alloc] initWithView];
         _addTagView.backgroundColor = [UIColor whiteColor];
         [_addTagView.btn addTarget:self action:@selector(addCell:) forControlEvents:UIControlEventTouchUpInside];
+        [_addTagView.okEditBtn addTarget:self action:@selector(clickedOkEdit) forControlEvents:UIControlEventTouchUpInside];
     }
     return _addTagView;
 }
@@ -341,37 +378,38 @@
 - (PublishTableHeadView *)headerView {
     if (!_headerView) {
         _headerView = [[PublishTableHeadView alloc] initWithHeaderView];
-        _headerView.frame = CGRectMake(self.table.origin.x, self.table.origin.y - 80, self.view.frame.size.width - 30, 100);
+        _headerView.frame = CGRectMake(self.tableView.origin.x, self.tableView.origin.y - 80, self.tableView.frame.size.width, 100);
         _headerView.backgroundColor = [UIColor whiteColor];
         _headerView.layer.cornerRadius = 15;
     }
     return _headerView;
 }
 
-/*
-#pragma mark - Navigation
 
+ 
+ 
 
-- (PublishTextView *)publishOptionTextView {
-    if (_publishOptionTextView == nil) {
-        _publishOptionTextView = [[PublishTextView alloc] initWithFrame:CGRectMake(15, STATUSBARHEIGHT + 190, SCREEN_WIDTH - 30, 210)];
-        _publishOptionTextView.publishTextView.text = @"0/15";
-    }
-    return _publishOptionTextView;
-}
-
-- (PublishMakeSureView *)publishMakeSureView {
-    if (_publishMakeSureView == nil) {
-        _publishMakeSureView = [[PublishMakeSureView alloc] initWithFrame:CGRectMake(60, STATUSBARHEIGHT + 190, SCREEN_WIDTH - 120, 206)];
-    }
-    return _publishMakeSureView;
-}
-
-- (UIView *)backView {
-    if (_backView == nil) {
-        _backView = [[UIView alloc] initWithFrame:self.view.bounds];
-        _backView.backgroundColor = [UIColor colorWithHexString:@"#000000" alpha:0.47];
-    }
-    return _backView;
-}
-@end
+ - (PublishTextView *)publishOptionTextView {
+     if (_publishOptionTextView == nil) {
+         _publishOptionTextView = [[PublishTextView alloc] initWithFrame:CGRectMake(15, STATUSBARHEIGHT + 190, SCREEN_WIDTH - 30, 210)];
+         _publishOptionTextView.publishTextView.text = @"0/15";
+     }
+     return _publishOptionTextView;
+ }
+ 
+ - (PublishMakeSureView *)publishMakeSureView {
+     if (_publishMakeSureView == nil) {
+         _publishMakeSureView = [[PublishMakeSureView alloc] initWithFrame:CGRectMake(60, STATUSBARHEIGHT + 190, SCREEN_WIDTH - 120, 206)];
+     }
+     return _publishMakeSureView;
+ }
+ 
+ - (UIView *)backView {
+     if (_backView == nil) {
+         _backView = [[UIView alloc] initWithFrame:self.view.bounds];
+         _backView.backgroundColor = [UIColor colorWithHexString:@"#000000" alpha:0.47];
+     }
+     return _backView;
+ }
+ @end
+ 

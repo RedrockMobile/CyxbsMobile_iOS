@@ -63,8 +63,6 @@
     self.splitLineHidden = YES;
     self.titleColor = [UIColor whiteColor]; // 导航栏标题颜色
     [self.backBtn setImage:[UIImage imageNamed:@"Express_whiteBackBtn"] forState:UIControlStateNormal]; // 导航栏返回按钮
-    self.detailItem = self.dataArray[0];
-    [self votedPercentCalculate:self.percentArray];
     
     [self.view addSubview:self.backgroundImage];
     [self.view addSubview:self.detailTitle];

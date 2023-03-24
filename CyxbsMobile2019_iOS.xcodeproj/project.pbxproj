@@ -343,6 +343,7 @@
 		7A574CBA29C8A07100197154 /* PublishPageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A574CB929C8A07100197154 /* PublishPageCell.m */; };
 		7A574CBD29C94A8700197154 /* PublishTableAddTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A574CBC29C94A8700197154 /* PublishTableAddTagView.m */; };
 		7A574CC029C9735D00197154 /* PublishTableHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A574CBF29C9735D00197154 /* PublishTableHeadView.m */; };
+		7A574CC429C9EEF800197154 /* PublishPageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A574CC329C9EEF800197154 /* PublishPageModel.m */; };
 		7A8F5AFF29A369A800969A4D /* ExpressPickPutItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8F5AFE29A369A800969A4D /* ExpressPickPutItem.m */; };
 		7A8F5B0229A369B600969A4D /* ExpressPickGetItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8F5B0129A369B600969A4D /* ExpressPickGetItem.m */; };
 		7A8F5B0529A36A2100969A4D /* ExpressDeclareItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A8F5B0429A36A2100969A4D /* ExpressDeclareItem.m */; };
@@ -1382,6 +1383,8 @@
 		7A574CBC29C94A8700197154 /* PublishTableAddTagView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishTableAddTagView.m; sourceTree = "<group>"; };
 		7A574CBE29C9735D00197154 /* PublishTableHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishTableHeadView.h; sourceTree = "<group>"; };
 		7A574CBF29C9735D00197154 /* PublishTableHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishTableHeadView.m; sourceTree = "<group>"; };
+		7A574CC229C9EEF800197154 /* PublishPageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PublishPageModel.h; sourceTree = "<group>"; };
+		7A574CC329C9EEF800197154 /* PublishPageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PublishPageModel.m; sourceTree = "<group>"; };
 		7A64BFF32892826F007CCB1E /* NewQAHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAHeader.h; sourceTree = "<group>"; };
 		7A8F5AFD29A369A800969A4D /* ExpressPickPutItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExpressPickPutItem.h; sourceTree = "<group>"; };
 		7A8F5AFE29A369A800969A4D /* ExpressPickPutItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpressPickPutItem.m; sourceTree = "<group>"; };
@@ -4775,6 +4778,23 @@
 			path = Item;
 			sourceTree = "<group>";
 		};
+		7A574CC129C9EE7E00197154 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7A574CC529C9F2AD00197154 /* Item */,
+				7A574CC229C9EEF800197154 /* PublishPageModel.h */,
+				7A574CC329C9EEF800197154 /* PublishPageModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7A574CC529C9F2AD00197154 /* Item */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Item;
+			sourceTree = "<group>";
+		};
 		7A64BFF22892826F007CCB1E /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -4895,6 +4915,7 @@
 		7AE03110299246EF0006571F /* PublishPage */ = {
 			isa = PBXGroup;
 			children = (
+				7A574CC129C9EE7E00197154 /* Model */,
 				7AE031122992470D0006571F /* View */,
 				7AE03111299246FE0006571F /* Controller */,
 			);
@@ -4915,12 +4936,10 @@
 			children = (
 				7A574C7C29B8CF1100197154 /* PublishTopView.h */,
 				7A574C7D29B8CF1100197154 /* PublishTopView.m */,
-
 				B5B4551B29C45DC800875DF7 /* PublishTextView.h */,
 				B5B4551C29C45DC800875DF7 /* PublishTextView.m */,
 				B5B4551E29C4ABE800875DF7 /* PublishMakeSureView.h */,
 				B5B4551F29C4ABE800875DF7 /* PublishMakeSureView.m */,
-
 				7A574CB829C8A07000197154 /* PublishPageCell.h */,
 				7A574CB929C8A07100197154 /* PublishPageCell.m */,
 				7A574CBB29C94A8700197154 /* PublishTableAddTagView.h */,
@@ -7595,6 +7614,7 @@
 				14FBBD3B2805050300D5B05D /* DiscoverJWZXVC.m in Sources */,
 				AAE3304D25E2A1C600324750 /* RemarkViewController.m in Sources */,
 				D0101D5C2433C885004337ED /* SDMaskGuidController.m in Sources */,
+				7A574CC429C9EEF800197154 /* PublishPageModel.m in Sources */,
 				DB34EB26239BD4550052B65E /* DetailPageController.m in Sources */,
 				6464F93426E4F6EE008562C5 /* BuyModel.m in Sources */,
 				AA5D39B824F74A9800AB2DF5 /* LocalNotiManager.m in Sources */,
