@@ -10,11 +10,15 @@
 
 #import "ScheduleDetailCollectionViewCell.h"
 
+#import "TransitioningDelegate.h"
+#import "ScheduleCustomViewController.h"
+
 #pragma mark - ScheduleDetailController ()
 
 @interface ScheduleDetailController () <
     UICollectionViewDataSource,
-    UICollectionViewDelegateFlowLayout
+    UICollectionViewDelegateFlowLayout,
+    ScheduleDetailCollectionViewCellDelegate
 >
 
 /// data
@@ -117,6 +121,8 @@
     ScheduleDetailCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ScheduleDetailCollectionViewCellReuseIdentifier forIndexPath:indexPath];
     
     cell.context = self.contextAry[indexPath.item];
+    cell.delegate = self;
+    
     return cell;
 }
 
@@ -130,6 +136,25 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     self.pageControl.currentPage = scrollView.contentOffset.x / scrollView.width;
+}
+
+#pragma mark - <ScheduleDetailCollectionViewCellDelegate>
+
+- (void)collectionViewCell:(ScheduleDetailCollectionViewCell *)cell editWithButton:(UIButton *)btn {
+    NSIndexPath *idxPath = [self.collectionView indexPathForCell:cell];
+    
+    __block ScheduleCourse *course = self.contextAry[idxPath.item].course;
+    __block UIViewController *vc = self.presentingViewController;
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        ScheduleCustomViewController *to = [[ScheduleCustomViewController alloc] initWithEditingWithCourse:course];
+        to.modalPresentationStyle = UIModalPresentationCustom;
+        to.delegate = self.delegateIfNeeded;
+        TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
+        delegate.transitionDurationIfNeeded = 0.3;
+        to.transitioningDelegate = delegate;
+        [vc presentViewController:to animated:YES completion:nil];
+    }];
 }
 
 @end

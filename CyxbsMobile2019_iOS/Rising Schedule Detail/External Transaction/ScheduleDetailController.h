@@ -12,6 +12,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol ScheduleCustomViewControllerDelegate;
+
 @interface ScheduleDetailController : UIViewController
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -19,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)new NS_UNAVAILABLE;
 
 - (instancetype)initWithContexts:(NSArray <ScheduleDetailPartContext *> *)contexts;
+
+@property (nonatomic, weak) id <ScheduleCustomViewControllerDelegate> delegateIfNeeded;
 
 @end
 

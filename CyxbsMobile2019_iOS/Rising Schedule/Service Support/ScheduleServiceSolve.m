@@ -167,28 +167,43 @@
 
 #pragma mark - <ScheduleCustomViewControllerDelegate>
 
-- (void)scheduleCustomViewController:(ScheduleCustomViewController *)viewController finishingWithAppending:(BOOL)append {
-    if (append) {
-        [ScheduleNETRequest.current
-         appendCustom:viewController.courseIfNeeded
-         success:^(ScheduleCombineItem * _Nonnull item) {
-            [self.model changeCustomTo:item];
-            [self.collectionView reloadData];
-        }
-         failure:^(NSError * _Nonnull error) {
-
-        }];
-    } else {
-        [ScheduleNETRequest.current
-         editCustom:viewController.courseIfNeeded
-         success:^(ScheduleCombineItem * _Nonnull item) {
-            [self.model changeCustomTo:item];
-            [self.collectionView reloadData];
-        }
-         failure:^(NSError * _Nonnull error) {
-            
-        }];
+- (void)viewController:(ScheduleCustomViewController *)viewController appended:(BOOL)appended {
+    [ScheduleNETRequest.current
+     appendCustom:viewController.courseIfNeeded
+     success:^(ScheduleCombineItem * _Nonnull item) {
+        [self _changeCustom:item];
     }
+     failure:^(NSError * _Nonnull error) {
+    }];
+}
+
+- (void)viewController:(ScheduleCustomViewController *)viewController edited:(BOOL)edited {
+    [ScheduleNETRequest.current
+     editCustom:viewController.courseIfNeeded
+     success:^(ScheduleCombineItem * _Nonnull item) {
+        [self _changeCustom:item];
+    }
+     failure:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
+- (void)viewController:(ScheduleCustomViewController *)viewController deleted:(BOOL)deleted {
+    [ScheduleNETRequest.current
+     deleteCustom:viewController.courseIfNeeded
+     success:^(ScheduleCombineItem * _Nonnull item) {
+        [self _changeCustom:item];
+    }
+     failure:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
+- (void)_changeCustom:(ScheduleCombineItem *)item {
+    [self.model changeCustomTo:item];
+    [ScheduleShareCache.shareCache cacheItem:item];
+    [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
+    [self.collectionView reloadData];
 }
 
 #pragma mark - <UICollectionViewDelegate>
@@ -202,6 +217,7 @@
     transitionDelegate.transitionDurationIfNeeded = 0.3;
     transitionDelegate.supportedTapOutsideBackWhenPresent = YES;
     ScheduleDetailController *vc = [[ScheduleDetailController alloc] initWithContexts:contexts];
+    vc.delegateIfNeeded = self;
     vc.transitioningDelegate = transitionDelegate;
     vc.modalPresentationStyle = UIModalPresentationCustom;
     [self.viewController presentViewController:vc animated:YES completion:nil];

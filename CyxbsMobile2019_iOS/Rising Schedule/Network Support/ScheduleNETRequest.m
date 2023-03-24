@@ -142,13 +142,22 @@ static ScheduleNETRequest *_current;
 - (void)editCustom:(ScheduleCourse *)course
            success:(nonnull void (^)(ScheduleCombineItem *))success
            failure:(nonnull void (^)(NSError *))failure {
-    
+    if (success && [self.customItem.value containsObject:course]) {
+        success(self.customItem);
+    }
 }
 
 - (void)deleteCustom:(ScheduleCourse *)course
              success:(void (^)(ScheduleCombineItem *))success
              failure:(void (^)(NSError *))failure {
-    
+    if (![self.customItem.value isKindOfClass:NSMutableArray.class]) {
+        self.customItem = [ScheduleCombineItem combineItemWithIdentifier:self.customItem.identifier value:self.customItem.value.mutableCopy];
+    }
+    NSMutableArray *ary = (NSMutableArray *)self.customItem.value;
+    [ary removeObject:course];
+    if (success) {
+        success(self.customItem);
+    }
 }
 
 @end

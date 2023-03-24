@@ -8,7 +8,7 @@
 
 #import "FastLoginViewController.h"
 
-#import "SameDrawUI.h"
+#import "ScheduleNeedsSupport.h"
 
 #import "SchedulePresenter.h"
 

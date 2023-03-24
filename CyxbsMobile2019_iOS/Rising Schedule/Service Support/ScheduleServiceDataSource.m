@@ -139,15 +139,14 @@
                 
         NSDate *showDate = [NSDate dateWithTimeInterval:(indexPath.section - 1) * 7 * 24 * 60 * 60 + (indexPath.item - 1) * 24 * 60 * 60 sinceDate:_model.touchItem.startDate];
         
-        NSDateComponents *component = [ScheduleCalendar() componentsInTimeZone:CQTimeZone() fromDate:showDate];
+        NSDateComponents *component = [NSCalendar.republicOfChina componentsInTimeZone:CQTimeZone() fromDate:showDate];
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         formatter.timeZone = CQTimeZone();
         formatter.locale = CNLocale();
         formatter.dateFormat = @"EEE";
         
-        NSUInteger todayWeek = ScheduleWeekOfComponentsWeek([ScheduleCalendar() component:NSCalendarUnitWeekday fromDate:NSDate.date]);
-        
+        NSUInteger todayWeek = [NSCalendar.republicOfChina componentsInTimeZone:CQTimeZone() fromDate:NSDate.date].scheduleWeekday;
         
         cell.isTitleOnly = (indexPath.section == 0 ? YES : // 第0周只展示标题
                             // ⬇️假期，也就是非正常显示时，则只显示标题

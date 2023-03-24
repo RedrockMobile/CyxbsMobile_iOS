@@ -5,6 +5,8 @@
 //  Created by SSR on 2022/7/28.
 //
 
+#define UIColorRGBA255(r, g, b, a) [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:a]
+
 #if __has_include(<YYKit/UIColor+YYAdd.h>)
 #import <YYKit/UIColor+YYAdd.h>
 
@@ -42,7 +44,7 @@ NS_ASSUME_NONNULL_END
 
 #endif
 
-//#if __has_include(<UIColor+DarkModeKit.h>)
+#if __has_include(<FluentDarkModeKit/FluentDarkModeKit.h>)
 #import <FluentDarkModeKit/FluentDarkModeKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -56,4 +58,4 @@ NS_ASSUME_NONNULL_BEGIN
 
 NS_ASSUME_NONNULL_END
 
-//#endif
+#endif

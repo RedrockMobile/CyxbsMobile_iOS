@@ -14,13 +14,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class ScheduleCustomViewController;
 
+#pragma mark - ScheduleCustomViewControllerDelegate
+
 @protocol ScheduleCustomViewControllerDelegate <NSObject>
 
 @optional
 
-- (void)scheduleCustomViewController:(ScheduleCustomViewController *)viewController finishingWithAppending:(BOOL)append;
+- (void)viewController:(ScheduleCustomViewController *)viewController appended:(BOOL)appended;
+
+- (void)viewController:(ScheduleCustomViewController *)viewController edited:(BOOL)edited;
+
+- (void)viewController:(ScheduleCustomViewController *)viewController deleted:(BOOL)deleted;
 
 @end
+
+#pragma mark - ScheduleCustomViewController
 
 @interface ScheduleCustomViewController : UIViewController
 
