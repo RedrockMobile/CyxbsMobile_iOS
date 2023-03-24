@@ -21,6 +21,7 @@
         [self.contentView addSubview:self.imageLeft];
         [self.contentView addSubview:self.imageRight];
         [self setPosition];
+        self.backgroundColor = [UIColor colorWithHexString:@"#FFFFF"];
     }
     return self;
 }

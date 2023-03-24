@@ -28,6 +28,7 @@
     if (!_headerLabel) {
         _headerLabel = [[UILabel alloc] init];
         _headerLabel.text = @"请输入话题";
+        _headerLabel.textAlignment = NSTextAlignmentCenter;
         _headerLabel.textColor = [UIColor colorWithHexString:@"#15315B" alpha:0.6];
         _headerLabel.font = [UIFont fontWithName:PingFangSC size:16];
     }

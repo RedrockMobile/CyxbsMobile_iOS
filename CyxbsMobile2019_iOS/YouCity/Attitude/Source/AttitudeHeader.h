@@ -29,4 +29,6 @@
 // 获取自己发布的投票
 #define Attitude_GET_selfPageData_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"declare/posts"]
 
+// 发布投票
+#define Attitude_POST_publishTag_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"declare"]
 #endif /* AttitudeHeader_h */
