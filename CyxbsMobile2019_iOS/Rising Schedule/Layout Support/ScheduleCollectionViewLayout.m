@@ -213,11 +213,11 @@
     return contentSize;
 }
 
-- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity {
-    CGPoint point = [super targetContentOffsetForProposedContentOffset:proposedContentOffset withScrollingVelocity:velocity];
-    NSLog(@"from point:%@ with velocity:%@ to:%@", NSStringFromCGPoint(proposedContentOffset), NSStringFromCGPoint(velocity), NSStringFromCGPoint(point));
-    return point;
-}
+//- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity {
+//    CGPoint point = [super targetContentOffsetForProposedContentOffset:proposedContentOffset withScrollingVelocity:velocity];
+//    NSLog(@"from point:%@ with velocity:%@ to:%@", NSStringFromCGPoint(proposedContentOffset), NSStringFromCGPoint(velocity), NSStringFromCGPoint(point));
+//    return point;
+//}
 
 #pragma mark - (UISubclassingHooks)
 

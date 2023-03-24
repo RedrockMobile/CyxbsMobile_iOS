@@ -21,6 +21,8 @@
 
 @property (nonatomic, strong) UIButton *backBtn;
 
+@property (nonatomic, strong) UIButton *deleteBtn;
+
 @property (nonatomic, strong) UIImageView *bkImgView;
 
 @property (nonatomic, strong) ScheduleCustomEditView *editView;
@@ -66,8 +68,10 @@
     [self.view addSubview:self.bkImgView];
     [self.view addSubview:self.editView];
     [self.view addSubview:self.backBtn];
+    if (!_isAdding) {
+        [self.view addSubview:self.deleteBtn];
+    }
     
-//    [self test];
     self.courseIfNeeded = _courseIfNeeded;
 }
 
@@ -94,6 +98,17 @@
         [_backBtn addTarget:self action:@selector(_cancel:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _backBtn;
+}
+
+- (UIButton *)deleteBtn {
+    if (_deleteBtn == nil) {
+        _deleteBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.backBtn.top, 60, 40)];
+        _deleteBtn.right = self.backBtn.left - 10;
+        [_deleteBtn setTitle:@"删除" forState:UIControlStateNormal];
+        [_deleteBtn setTitleColor:UIColorHex(#4841E2) forState:UIControlStateNormal];
+        [_deleteBtn addTarget:self action:@selector(_delete:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _deleteBtn;
 }
 
 - (UIImageView *)bkImgView {
@@ -123,57 +138,33 @@
     self.editView.inWeek = view.inWeek;
     self.courseIfNeeded.teacher = @"自定义";
     self.courseIfNeeded.type = @"事务";
-    [self _dismissWithCall:YES appending:_isAdding];
+    
+    if (self.delegate) {
+        if (_isAdding && [self.delegate respondsToSelector:@selector(viewController:appended:)]) {
+            [self.delegate viewController:self appended:YES];
+        } else if (!_isAdding && [self.delegate respondsToSelector:@selector(viewController:edited:)]) {
+            [self.delegate viewController:self edited:YES];
+        }
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - private
 
 - (void)_cancel:(UIButton *)btn {
-    [self _dismissWithCall:NO appending:NO];
-}
-
-- (void)_dismissWithCall:(BOOL)callDelegate appending:(BOOL)append {
-    if (callDelegate && self.delegate && [self.delegate respondsToSelector:@selector(scheduleCustomViewController:finishingWithAppending:)]) {
-        [self.delegate scheduleCustomViewController:self finishingWithAppending:append];
-    }
-    TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
-    delegate.transitionDurationIfNeeded = 0.3;
-    self.transitioningDelegate = delegate;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)test {
-    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"https://be-prod.redrock.cqupt.edu.cn/magipoke/token"]
-       cachePolicy:NSURLRequestUseProtocolCachePolicy
-       timeoutInterval:10.0];
-    NSDictionary *headers = @{
-       @"Content-Type": @"application/json"
-    };
-
-    [request setAllHTTPHeaderFields:headers];
-    NSData *postData = [[NSData alloc] initWithData:[@"{\"stuNum\":\"oNgyg$\",\"idNum\":\"B^z1xS]\"\n}" dataUsingEncoding:NSUTF8StringEncoding]];
-    [request setHTTPBody:postData];
-
-    [request setHTTPMethod:@"POST"];
-
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request
-    completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-       if (error) {
-          NSLog(@"%@", error);
-          dispatch_semaphore_signal(sema);
-       } else {
-          NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-          NSError *parseError = nil;
-          NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
-          NSLog(@"%@",responseDictionary);
-          dispatch_semaphore_signal(sema);
-       }
-    }];
-    [dataTask resume];
-    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+- (void)_delete:(UIButton *)btn {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"删除事务警告" message:@"若删除该事务，整个周期的事务将全部删除" preferredStyle:UIAlertControllerStyleActionSheet];
+    [alert addAction:[UIAlertAction actionWithTitle:@"继续修改事务" style:UIAlertActionStyleCancel handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"删除该项事务" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(viewController:deleted:)]) {
+            [self.delegate viewController:self deleted:YES];
+        }
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 @end

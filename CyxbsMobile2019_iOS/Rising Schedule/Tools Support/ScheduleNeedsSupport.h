@@ -12,9 +12,36 @@
 #import <Foundation/Foundation.h>
 
 FOUNDATION_EXPORT NSTimeZone *CQTimeZone(void);
-FOUNDATION_EXPORT NSCalendar *ScheduleCalendar(void);
 FOUNDATION_EXPORT NSLocale *CNLocale(void);
 
-FOUNDATION_EXPORT NSUInteger ScheduleWeekOfComponentsWeek(NSUInteger week);
+
+@interface NSCalendar (schedule)
+
+@property (nonatomic, readonly, class) NSCalendar *republicOfChina;
+
+@end
+
+@interface NSDateComponents (schedule)
+
+@property (nonatomic, readonly) NSUInteger scheduleWeekday;
+
+@end
+
+
+
+#if __has_include(<UIKit/UIKit.h>)
+
+#import <UIKit/UIKit.h>
+
+@interface UIView (SameDrawUI)
+
+/// 添加渐变蓝色
+- (void)addGradientBlueLayer;
+
+@end
+
+#endif
+
+
 
 #endif /* ScheduleNeedsSupport_h */

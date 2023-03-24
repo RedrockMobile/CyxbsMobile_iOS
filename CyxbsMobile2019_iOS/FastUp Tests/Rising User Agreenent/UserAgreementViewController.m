@@ -8,11 +8,10 @@
 
 #import "UserAgreementViewController.h"
 
+#import "ScheduleNeedsSupport.h"
+
 #import "UserAgreementView.h"
-
 #import "UserAgreementConsentView.h"
-
-#import "SameDrawUI.h"
 
 #pragma mark - UserAgreementViewController ()
 

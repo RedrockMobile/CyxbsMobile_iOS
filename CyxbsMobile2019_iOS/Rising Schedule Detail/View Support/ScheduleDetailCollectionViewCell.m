@@ -19,7 +19,8 @@ NSString *ScheduleDetailCollectionViewCellReuseIdentifier = @"ScheduleDetailColl
 
 @interface ScheduleDetailCollectionViewCell () <
     UITableViewDataSource,
-    UITableViewDelegate
+    UITableViewDelegate,
+    ScheduleDetailTableHeaderViewDelegate
 >
 
 /// table veiw
@@ -77,7 +78,8 @@ NSString *ScheduleDetailCollectionViewCellReuseIdentifier = @"ScheduleDetailColl
         _tableHeaderView = [[ScheduleDetailTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.width, 100)];
         _tableHeaderView.title = @"正在加载课程名...";
         _tableHeaderView.detail = @"正在加载时间与老师...";
-        _tableHeaderView.sno = @"正在加载所属学号...";;;
+        _tableHeaderView.sno = @"正在加载所属学号...";
+        _tableHeaderView.delegate = self;
     }
     return _tableHeaderView;
 }
@@ -91,6 +93,7 @@ NSString *ScheduleDetailCollectionViewCellReuseIdentifier = @"ScheduleDetailColl
     self.tableHeaderView.detail =
     [NSString stringWithFormat:@"%@ > %@", context.course.classRoom, context.course.teacher];
     self.tableHeaderView.sno = context.key.sno;
+    self.tableHeaderView.edit = (context.key.type == ScheduleModelRequestCustom);
 }
 
 #pragma mark - <UITableViewDataSource>
@@ -135,6 +138,14 @@ NSString *ScheduleDetailCollectionViewCellReuseIdentifier = @"ScheduleDetailColl
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 50;
+}
+
+#pragma mark - <ScheduleDetailTableHeaderViewDelegate>
+
+- (void)tableHeaderView:(ScheduleDetailTableHeaderView *)view editWithButton:(UIButton *)btn {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(collectionViewCell:editWithButton:)]) {
+        [self.delegate collectionViewCell:self editWithButton:btn];
+    }
 }
 
 @end

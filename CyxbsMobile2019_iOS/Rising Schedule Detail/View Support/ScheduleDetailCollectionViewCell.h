@@ -15,12 +15,26 @@ NS_ASSUME_NONNULL_BEGIN
 /// 复用标志
 UIKIT_EXTERN NSString *ScheduleDetailCollectionViewCellReuseIdentifier;
 
+@class ScheduleDetailCollectionViewCell;
+
+#pragma mark - ScheduleDetailCollectionViewCellDelegate
+
+@protocol ScheduleDetailCollectionViewCellDelegate <NSObject>
+
+@optional
+
+- (void)collectionViewCell:(ScheduleDetailCollectionViewCell *)cell editWithButton:(UIButton *)btn;
+
+@end
+
 #pragma mark - ScheduleDetailCollectionViewCell
 
 @interface ScheduleDetailCollectionViewCell : UICollectionViewCell
 
 /// Data sourse
 @property (nonatomic, strong) ScheduleDetailPartContext *context;
+
+@property (nonatomic, weak) id <ScheduleDetailCollectionViewCellDelegate> delegate;
 
 - (instancetype)init NS_UNAVAILABLE;
 

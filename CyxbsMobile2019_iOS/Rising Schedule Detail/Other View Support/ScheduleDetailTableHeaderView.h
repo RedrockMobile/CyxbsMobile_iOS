@@ -10,6 +10,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class ScheduleDetailTableHeaderView;
+
+#pragma mark - ScheduleDetailTableHeaderViewDelegate
+
+@protocol ScheduleDetailTableHeaderViewDelegate <NSObject>
+
+@optional
+
+- (void)tableHeaderView:(ScheduleDetailTableHeaderView *)view editWithButton:(UIButton *)btn;
+
+@end
+
 #pragma mark - ScheduleDetailTableHeaderView
 
 @interface ScheduleDetailTableHeaderView : UIView
@@ -26,6 +38,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init NS_UNAVAILABLE;
 
 + (instancetype)new NS_UNAVAILABLE;
+
+/// edit
+@property (nonatomic) BOOL edit;
+
+/// delegate
+@property (nonatomic, weak) id <ScheduleDetailTableHeaderViewDelegate> delegate;
 
 @end
 

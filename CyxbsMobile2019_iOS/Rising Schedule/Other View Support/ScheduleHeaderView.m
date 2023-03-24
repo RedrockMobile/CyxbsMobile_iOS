@@ -8,7 +8,7 @@
 
 #import "ScheduleHeaderView.h"
 
-#import "SameDrawUI.h"
+#import "ScheduleNeedsSupport.h"
 
 #pragma mark - ScheduleHeaderView ()
 
