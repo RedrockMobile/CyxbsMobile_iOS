@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.VCTitleStr = @"个人中心";
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#FFFFFF"];
     [self.topBarButton setImage:[UIImage imageNamed:@"Attitude_SelfPageTopBarButton"] forState:UIControlStateNormal];
     [self getRequestData];
     
