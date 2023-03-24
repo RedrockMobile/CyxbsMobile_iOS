@@ -13,7 +13,7 @@
 
 // 表态撤销投票。参数id
 - (void)requestDeclareDataWithId:(NSNumber *)theId
-                         Success:(void(^)(NSArray *array))success
+                         Success:(void(^)(bool declareSuccess))success
                          Failure:(void(^)(void))failure {
 //    NSDictionary *param = @{
 //        @"id": theId
@@ -25,7 +25,11 @@
      bodyParameters:theId
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-        
+        if (object[@"id"] == theId) {
+            if (success) {
+                success(true);
+            }
+        }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"failure");
     }];

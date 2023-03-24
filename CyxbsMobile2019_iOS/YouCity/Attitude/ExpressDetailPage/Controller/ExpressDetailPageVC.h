@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ExpressDetailPageVC : TopBarBasicViewController
+@interface ExpressDetailPageVC : UIViewController
 - (ExpressDetailPageVC *)initWithTheId:(NSNumber *)theId;
 @end
 

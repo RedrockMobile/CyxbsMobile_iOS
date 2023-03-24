@@ -93,7 +93,7 @@
 
 // TODO: 点击完成编辑出现确认提示框
 - (void)clickFinishBtn:(UIButton *)sender {
-    UIView *view = [sender superview];
+//    UIView *view = [sender superview];
     // 加入背景蒙版
     [self.view.window addSubview:self.backView];
     // 加入确认提示框
@@ -292,6 +292,7 @@
         self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, self.tableView.frame.origin.y, self.tableView.frame.size.width, newHeight);
     }];
 }
+
 #pragma mark - DataSource
 // 暂定高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
