@@ -55,7 +55,7 @@
     [self getPermission];// 鉴权
     self.isTopBarButtonHidden = NO;
     [self.view addSubview:self.tableView];
-    self.view.backgroundColor = [UIColor colorWithHexString:@"#FFFFF"];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#FFFFFF"];
 }
 // 表态Bar
 - (void)setBarView {

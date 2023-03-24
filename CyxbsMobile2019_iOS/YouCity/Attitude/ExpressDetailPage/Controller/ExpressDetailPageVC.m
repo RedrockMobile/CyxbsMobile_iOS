@@ -283,6 +283,7 @@
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
 }

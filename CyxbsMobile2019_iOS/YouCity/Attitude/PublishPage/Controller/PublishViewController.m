@@ -23,6 +23,7 @@
 @interface PublishViewController () <
     UITextViewDelegate,
     UITableViewDataSource,
+    UITableViewDelegate,
     PublishPageCellDelegate
 >
 
@@ -139,7 +140,7 @@
     NSString *titleStr = self.publishTitleTextView.publishTextView.text;
     NSLog(@"🥑%@", titleStr);
     // TODO: 传输文字
-    
+    self.headerView.headerLabel.text = titleStr;
     // 框消失与取消蒙版
     [self.publishTitleTextView removeFromSuperview];
     [self.backView removeFromSuperview];
@@ -326,7 +327,15 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
     cell.backgroundColor = [UIColor colorWithHexString:@"#FFFFFF"];
+    
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self clickCell];
+    PublishPageCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+//    cell.tagLabel.text = 
+    
 }
 
 #pragma mark - Getter
