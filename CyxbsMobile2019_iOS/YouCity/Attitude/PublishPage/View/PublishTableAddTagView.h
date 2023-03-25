@@ -16,5 +16,4 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithView;
 @end
 
-//bijbkkjb
 NS_ASSUME_NONNULL_END

@@ -13,11 +13,11 @@
 #import "PublishPageCell.h"
 #import "PublishTableAddTagView.h"
 #import "PublishTableHeadView.h"
-// Model
-#import "PublishPageModel.h"
-
 #import "PublishTextView.h"
 #import "PublishMakeSureView.h"
+
+// Model
+#import "PublishPageModel.h"
 
 #define TABLEVIEWHEIGHT self.tableView.frame.size.height
 @interface PublishViewController () <
@@ -61,34 +61,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _count = 4;
-    
     self.view.backgroundColor = [UIColor colorWithHexString:@"#F2F3F8"];
     [self.view addSubview:self.topView];
     [self.view addSubview:self.headerView];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.addTagView];
+    [self addTargetToBtn];
 }
-
-
 
 #pragma mark - Method
 
 /// TODO: 点击title跳转提示框方法
 - (void)clickTitle {
-//    UIWindow *window = self.view.window;
     // 加入背景蒙版
-    [self.view.window addSubview:self.backView];
+    [self.view addSubview:self.backView];
     // 加入输入框
-    [self.view.window addSubview:self.publishTitleTextView];
+    [self.backView addSubview:self.publishTitleTextView];
+    [self.publishTitleTextView.publishTextView clearAllDecoratedFoundText];
+    self.publishTitleTextView.publishTextView.delegate = self;
 }
 
 /// TODO: 点击cell跳转提示框方法
 - (void)clickCell {
-//    UIWindow *window = self.view.window;
     // 加入背景蒙版
-    [self.view.window addSubview:self.backView];
+    [self.view addSubview:self.backView];
     // 加入输入框
-    [self.view.window addSubview:self.publishOptionTextView];
+    [self.backView addSubview:self.publishOptionTextView];
+    [self.publishOptionTextView.publishTextView clearAllDecoratedFoundText];
+    self.publishOptionTextView.publishTextView.delegate = self;
 }
 
 // TODO: 点击完成编辑出现确认提示框
@@ -174,28 +174,33 @@
     // 获取字数
     NSInteger stringsCount = textView.text.length;
     
-    if ([textView isEqual:self.publishTitleTextView]) {
+    if ([textView isEqual:self.publishTitleTextView.publishTextView]) {
         // 输入为0
         if (stringsCount == 0) {
             self.publishTitleTextView.sureBtn.enabled = NO;
             self.publishTitleTextView.sureBtn.backgroundColor = [UIColor colorWithHexString:@"#C3D4EE" alpha:1.0];
         } else {
-            // 不断改变现在的字数
-            self.publishTitleTextView.stringsLab.text = [NSString stringWithFormat:@"%ld/30", stringsCount];
+            self.publishTitleTextView.sureBtn.enabled = YES;
+            self.publishTitleTextView.sureBtn.backgroundColor = [UIColor colorWithHexString:@"#4841E2" alpha:1.0];
         }
-    } else if ([textView isEqual:self.publishOptionTextView]) {
+        // 不断改变现在的字数
+        self.publishTitleTextView.stringsLab.text = [NSString stringWithFormat:@"%ld/30", stringsCount];
+        
+    } else if ([textView isEqual:self.publishOptionTextView.publishTextView]) {
         if (stringsCount == 0) {
             self.publishOptionTextView.sureBtn.enabled = NO;
             self.publishOptionTextView.sureBtn.backgroundColor = [UIColor colorWithHexString:@"#C3D4EE" alpha:1.0];
         } else {
-            self.publishOptionTextView.stringsLab.text = [NSString stringWithFormat:@"%ld/15", stringsCount];
+            self.publishOptionTextView.sureBtn.enabled = YES;
+            self.publishOptionTextView.sureBtn.backgroundColor = [UIColor colorWithHexString:@"#4841E2" alpha:1.0];
         }
+        self.publishOptionTextView.stringsLab.text = [NSString stringWithFormat:@"%ld/15", stringsCount];
     }
 }
 
 /// 超过字数不再输入
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    if (([textView isEqual:self.publishTitleTextView] && range.location >= 30) || ([textView isEqual:self.publishOptionTextView] && range.location >= 15)) {
+    if (([textView isEqual:self.publishTitleTextView.publishTextView] && range.location >= 30) || ([textView isEqual:self.publishOptionTextView.publishTextView] && range.location >= 15)) {
         // TODO: 弹出提示框 您已达到最大输入限制
         
         return NO;
@@ -203,7 +208,6 @@
         return YES;
     }
 }
-
 
 
 // 添加cell方法
@@ -391,21 +395,19 @@
         _publishTitleTextView = [[PublishTextView alloc] initWithFrame:CGRectMake(15, STATUSBARHEIGHT + 190, SCREEN_WIDTH - 30, 250)];
         _publishTitleTextView.publishTextView.frame = CGRectMake(22, 22, SCREEN_WIDTH - 30 - 44, 142);
         _publishTitleTextView.stringsLab.text = @"0/30";
-        _publishTitleTextView.publishTextView.delegate = self;
     }
     return _publishTitleTextView;
 }
  
 
- - (PublishTextView *)publishOptionTextView {
-     if (_publishOptionTextView == nil) {
-         _publishOptionTextView = [[PublishTextView alloc] initWithFrame:CGRectMake(15, STATUSBARHEIGHT + 190, SCREEN_WIDTH - 30, 210)];
-         _publishOptionTextView.publishTextView.frame = CGRectMake(22, 22, SCREEN_WIDTH - 30 - 44, 102);
-         _publishOptionTextView.stringsLab.text = @"0/15";
-         _publishOptionTextView.publishTextView.delegate = self;
-     }
-     return _publishOptionTextView;
- }
+- (PublishTextView *)publishOptionTextView {
+    if (_publishOptionTextView == nil) {
+        _publishOptionTextView = [[PublishTextView alloc] initWithFrame:CGRectMake(15, STATUSBARHEIGHT + 190,SCREEN_WIDTH - 30, 210)];
+        _publishOptionTextView.publishTextView.frame = CGRectMake(22, 22, SCREEN_WIDTH - 30 - 44, 102);
+        _publishOptionTextView.stringsLab.text = @"0/15";
+    }
+    return _publishOptionTextView;
+}
  
  - (PublishMakeSureView *)publishMakeSureView {
      if (_publishMakeSureView == nil) {
