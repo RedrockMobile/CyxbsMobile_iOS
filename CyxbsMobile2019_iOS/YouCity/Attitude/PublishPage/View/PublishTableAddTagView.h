@@ -14,8 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIButton *btn;
 @property (nonatomic, strong) UIButton *okEditBtn;
 - (instancetype)initWithView;
-
-//ajjajjjjajj
 @end
 
 NS_ASSUME_NONNULL_END
