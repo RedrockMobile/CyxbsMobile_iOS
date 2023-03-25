@@ -31,31 +31,32 @@
 /// 设置控件位置
 - (void)setPosition {
     // publishTextView
-    // TODO:make.top.left?
-    [self.publishTextView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self).offset(22);
-        make.left.equalTo(self).offset(22);
-        make.right.equalTo(self).offset(-22);
-        make.height.mas_equalTo(142);
-    }];
-    // stringsLab
+    // TODO: 两个高度不同
+    
+//    [self.publishTextView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self).offset(22);
+//        make.left.equalTo(self).offset(22);
+//        make.right.equalTo(self).offset(-22);
+//        make.height.mas_equalTo(142);
+//    }];
+//    // stringsLab
     [self.stringsLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.publishTextView).offset(-10);
-        make.bottom.equalTo(self.publishTextView).offset(-10);
+        make.right.equalTo(self).offset(-32);
+        make.bottom.equalTo(self).offset(-96);
         make.size.mas_equalTo(CGSizeMake(35, 20));
     }];
     // cancelBtn
     [self.cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.publishTextView).offset(6);
+        make.left.equalTo(self).offset(28);
         make.right.mas_equalTo(self.centerX).offset(-14.5);
-        make.top.equalTo(self.publishTextView.mas_bottom).offset(22);
+        make.bottom.equalTo(self).offset(-24);
         make.height.mas_equalTo(40);
     }];
     // sureBtn
     [self.sureBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(self.cancelBtn);
-        make.right.equalTo(self.publishTextView).offset(-6);
-        make.right.mas_equalTo(self.centerX).offset(14.5);
+        make.right.equalTo(self).offset(28);
+        make.left.mas_equalTo(self.centerX).offset(14.5);
     }];
 }
 

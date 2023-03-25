@@ -67,7 +67,6 @@
     [self.view addSubview:self.headerView];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.addTagView];
-    
 }
 
 
@@ -351,15 +350,6 @@
     return _topView;
 }
 
-
-- (PublishTextView *)publishTitleTextView {
-    if (_publishTitleTextView == nil) {
-        _publishTitleTextView = [[PublishTextView alloc] initWithFrame:CGRectMake(15, STATUSBARHEIGHT + 190, SCREEN_WIDTH - 30, 250)];
-        _publishTitleTextView.publishTextView.text = @"0/30";
-    }
-    return _publishTitleTextView;
-}
-
 - (UITableView *)tableView {
     if (!_tableView) {
 //        CGFloat tableViewH = 50 * 4 + [self tableView:_tableView heightForFooterInSection:0];
@@ -396,13 +386,23 @@
 }
 
 
- 
+- (PublishTextView *)publishTitleTextView {
+    if (_publishTitleTextView == nil) {
+        _publishTitleTextView = [[PublishTextView alloc] initWithFrame:CGRectMake(15, STATUSBARHEIGHT + 190, SCREEN_WIDTH - 30, 250)];
+        _publishTitleTextView.publishTextView.frame = CGRectMake(22, 22, SCREEN_WIDTH - 30 - 44, 142);
+        _publishTitleTextView.stringsLab.text = @"0/30";
+        _publishTitleTextView.publishTextView.delegate = self;
+    }
+    return _publishTitleTextView;
+}
  
 
  - (PublishTextView *)publishOptionTextView {
      if (_publishOptionTextView == nil) {
          _publishOptionTextView = [[PublishTextView alloc] initWithFrame:CGRectMake(15, STATUSBARHEIGHT + 190, SCREEN_WIDTH - 30, 210)];
-         _publishOptionTextView.publishTextView.text = @"0/15";
+         _publishOptionTextView.publishTextView.frame = CGRectMake(22, 22, SCREEN_WIDTH - 30 - 44, 102);
+         _publishOptionTextView.stringsLab.text = @"0/15";
+         _publishOptionTextView.publishTextView.delegate = self;
      }
      return _publishOptionTextView;
  }
