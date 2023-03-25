@@ -7940,7 +7940,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 727CVV9PLJ;
+				DEVELOPMENT_TEAM = 67QNT8WT7R;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -7977,7 +7977,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.4.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
+				PRODUCT_BUNDLE_IDENTIFIER = aaa;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -7999,7 +7999,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 727CVV9PLJ;
+				DEVELOPMENT_TEAM = 67QNT8WT7R;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -8036,7 +8036,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 6.4.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
+				PRODUCT_BUNDLE_IDENTIFIER = aaa;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

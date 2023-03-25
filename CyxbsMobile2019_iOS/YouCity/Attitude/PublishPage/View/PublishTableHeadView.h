@@ -12,7 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PublishTableHeadView : UIView
 @property (nonatomic, strong) UILabel *headerLabel;
-
+// label底部view
+@property (nonatomic, strong) UIView *backView;
 - (instancetype)initWithHeaderView;
 @end
 

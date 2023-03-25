@@ -72,6 +72,7 @@
     if (!_okEditBtn) {
         _okEditBtn = [[UIButton alloc] init];
         [_okEditBtn setTitle:@"完成编辑" forState:UIControlStateNormal];
+        _okEditBtn.titleLabel.font = [UIFont fontWithName:PingFangSC size:18];
         _okEditBtn.backgroundColor = [UIColor colorWithHexString:@"#5D5DF7"];
         [_okEditBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _okEditBtn.layer.cornerRadius = 20;

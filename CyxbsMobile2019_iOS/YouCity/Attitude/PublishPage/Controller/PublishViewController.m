@@ -61,15 +61,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     _count = 4;
+    [self addTitleTap];// 使title可点击
     self.view.backgroundColor = [UIColor colorWithHexString:@"#F2F3F8"];
     [self.view addSubview:self.topView];
     [self.view addSubview:self.headerView];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.addTagView];
+
     [self addTargetToBtn];
 }
 
 #pragma mark - Method
+// 给title添加点击方法
+- (void)addTitleTap {
+    NSLog(@"addTitleTap使title可以点");
+    [self.headerView.headerLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickTitle)]];
+    [self.headerView.backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickTitle)]];
+}
 
 /// TODO: 点击title跳转提示框方法
 - (void)clickTitle {
@@ -221,11 +229,11 @@
         }
         [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_count - 1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView endUpdates];
+        [self.tableView reloadData];
     }
     else {
         // 设置提示弹窗🥺
         [NewQAHud showHudAtWindowWithStr:@"最多仅可以添加10个选项" enableInteract:YES];
-        NSLog(@"最大只能添加10个");
     }
 }
 
@@ -251,29 +259,19 @@
     [self uploadTagDataToPost];
 }
 
-// 4个选项
-- (void)setTableViewPosition {
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view);
-        make.top.equalTo(self.view).mas_offset(120);
-        make.width.equalTo(@345);
-        make.height.equalTo(@459);
-    }];
-}
 
-#pragma mark - PublishPageCellDelegate
+
+// MARK: <PublishPageCellDelegate>
 // 点击按钮删除cell
 - (void)tableViewCellPressDeleteCell:(PublishPageCell *)cell {
     [self.tableView beginUpdates];
     _count -= 1;
     [self.tableView deleteRowsAtIndexPaths:@[[self.tableView indexPathForCell:cell]] withRowAnimation:UITableViewRowAnimationFade];
     [self.tableView endUpdates];
-    NSLog(@"----------删除前%f",self.tableView.frame.size.height);
     // 动态变化tableview高度
     CGFloat newHeight = [self getTableViewNewHeight];
     if (newHeight <= kScreenHeight - 220) {
         [self tableViewChangeHeight];
-        NSLog(@"----------删除后%f",self.tableView.frame.size.height);
     }
 }
 
@@ -297,7 +295,7 @@
     }];
 }
 
-#pragma mark - DataSource
+// MARK: <UITableViewDataSource>
 // 暂定高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 50;
@@ -314,7 +312,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 100;
 }
-#pragma mark - Delegate
+// MARK: <UITableViewDelegate>
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     return self.addTagView;
@@ -330,20 +328,18 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
     cell.backgroundColor = [UIColor colorWithHexString:@"#FFFFFF"];
-    
+    cell.tagLabel.textAlignment = NSTextAlignmentCenter;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self clickCell];
-    PublishPageCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-//    cell.tagLabel.text = 
+//    PublishPageCell * cell = [tableView cellForRowAtIndexPath:indexPath];
+//    cell.tagLabel.text =
     
 }
 
 #pragma mark - Getter
-
-
 - (PublishTopView *)topView {
     if (!_topView) {
         CGFloat h = getStatusBarHeight_Double + 44;
