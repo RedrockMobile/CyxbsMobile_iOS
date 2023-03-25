@@ -52,7 +52,7 @@
     if (!_titleLbl) {
         _titleLbl = [[UILabel alloc] init];
         _titleLbl.text = @"个人中心";
-        _titleLbl.font = [UIFont fontWithName:PingFangSCBold size:22];
+        _titleLbl.font = [UIFont fontWithName:PingFangSCMedium size:22];
         _titleLbl.textColor = [UIColor colorWithHexString:@"#15315B"];
     }
     return _titleLbl;

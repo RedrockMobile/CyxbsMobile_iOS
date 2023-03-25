@@ -66,7 +66,7 @@
     self.splitLineHidden = YES;
     self.titlePosition = TopBarViewTitlePositionLeft;
     self.topBarView.backgroundColor = [UIColor whiteColor];
-    self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
+    self.titleFont = [UIFont fontWithName:PingFangSCMedium size:22];
     
 }
 // BarButton

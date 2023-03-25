@@ -8,8 +8,7 @@
 
 #import "PublishTableHeadView.h"
 @interface PublishTableHeadView()
-// label底部view
-@property (nonatomic, strong) UIView *backView;
+
 @end
 @implementation PublishTableHeadView
 
@@ -31,6 +30,7 @@
         _headerLabel.textAlignment = NSTextAlignmentCenter;
         _headerLabel.textColor = [UIColor colorWithHexString:@"#15315B" alpha:0.6];
         _headerLabel.font = [UIFont fontWithName:PingFangSC size:16];
+        _headerLabel.userInteractionEnabled = YES;
     }
     return _headerLabel;
 }
@@ -40,6 +40,7 @@
         _backView = [[UIView alloc] init];
         _backView.backgroundColor = [UIColor colorWithHexString:@"#E8F1FC" alpha:0.5];
         _backView.layer.cornerRadius = 10;
+        _backView.userInteractionEnabled = YES;
     }
     return _backView;
 }
