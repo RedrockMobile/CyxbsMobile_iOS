@@ -67,8 +67,6 @@
     [self.view addSubview:self.headerView];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.addTagView];
-    // test 确认框
-    [self clickFinishBtn];
     [self addTargetToBtn];
 }
 
@@ -290,8 +288,6 @@
     NSLog(@"发布投票--------");
     [self uploadTagDataToPost];
 }
-
-
 
 // MARK: <PublishPageCellDelegate>
 // 点击按钮删除cell
