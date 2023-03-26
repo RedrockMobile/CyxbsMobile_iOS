@@ -4936,16 +4936,13 @@
 			children = (
 				7A574C7C29B8CF1100197154 /* PublishTopView.h */,
 				7A574C7D29B8CF1100197154 /* PublishTopView.m */,
-				B5B4551B29C45DC800875DF7 /* PublishTextView.h */,
-				B5B4551C29C45DC800875DF7 /* PublishTextView.m */,
-				B5B4551E29C4ABE800875DF7 /* PublishMakeSureView.h */,
-				B5B4551F29C4ABE800875DF7 /* PublishMakeSureView.m */,
 				7A574CB829C8A07000197154 /* PublishPageCell.h */,
 				7A574CB929C8A07100197154 /* PublishPageCell.m */,
 				7A574CBB29C94A8700197154 /* PublishTableAddTagView.h */,
 				7A574CBC29C94A8700197154 /* PublishTableAddTagView.m */,
 				7A574CBE29C9735D00197154 /* PublishTableHeadView.h */,
 				7A574CBF29C9735D00197154 /* PublishTableHeadView.m */,
+				B5195C3329D026C40052105C /* PublishPopUpsView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6236,6 +6233,17 @@
 				B0FE5F28294C94540070E755 /* RisingUIKitExtension.h */,
 			);
 			path = "UIKit Extension";
+			sourceTree = "<group>";
+		};
+		B5195C3329D026C40052105C /* PublishPopUpsView */ = {
+			isa = PBXGroup;
+			children = (
+				B5B4551B29C45DC800875DF7 /* PublishTextView.h */,
+				B5B4551C29C45DC800875DF7 /* PublishTextView.m */,
+				B5B4551E29C4ABE800875DF7 /* PublishMakeSureView.h */,
+				B5B4551F29C4ABE800875DF7 /* PublishMakeSureView.m */,
+			);
+			path = PublishPopUpsView;
 			sourceTree = "<group>";
 		};
 		B51C501F28A625DA0011465E /* Login */ = {
@@ -7940,7 +7948,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 67QNT8WT7R;
+				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -7999,7 +8007,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 67QNT8WT7R;
+				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (

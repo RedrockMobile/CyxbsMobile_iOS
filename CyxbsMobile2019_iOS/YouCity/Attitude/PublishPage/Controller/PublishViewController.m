@@ -72,6 +72,7 @@
 }
 
 #pragma mark - Method
+
 // 给title添加点击方法
 - (void)addTitleTap {
     NSLog(@"addTitleTap使title可以点");
@@ -85,7 +86,8 @@
     [self.view addSubview:self.backView];
     // 加入输入框
     [self.backView addSubview:self.publishTitleTextView];
-    [self.publishTitleTextView.publishTextView clearAllDecoratedFoundText];
+    self.publishTitleTextView.stringsLab.text = @"0/30";
+    [self.publishTitleTextView.publishTextView setText:@""];
     self.publishTitleTextView.publishTextView.delegate = self;
 }
 
@@ -95,7 +97,8 @@
     [self.view addSubview:self.backView];
     // 加入输入框
     [self.backView addSubview:self.publishOptionTextView];
-    [self.publishOptionTextView.publishTextView clearAllDecoratedFoundText];
+    [self.publishOptionTextView.publishTextView setText:@""];
+    self.publishOptionTextView.stringsLab.text = @"0/15";
     self.publishOptionTextView.publishTextView.delegate = self;
 }
 
@@ -106,6 +109,24 @@
     [self.view.window addSubview:self.backView];
     // 加入确认提示框
     [self.view.window addSubview:self.publishMakeSureView];
+}
+
+/// 如果当前输入法为拼音输入法，则将拼音字符数量减去
+- (NSInteger)numberOfChars:(NSString *)text textView:(UITextView *)textView {
+    NSInteger numberOfChars = [text length];
+    // 获取当前输入法
+    NSString *lang = [[UITextInputMode currentInputMode] primaryLanguage];
+    // 如果当前输入法为拼音输入法，则将拼音字符数量减去
+    if ([lang isEqualToString:@"zh-Hans"]) {
+        UITextRange *selectedRange = [textView markedTextRange];
+        if (selectedRange) {
+            NSInteger startOffset = [textView offsetFromPosition:textView.beginningOfDocument toPosition:selectedRange.start];
+            NSInteger endOffset = [textView offsetFromPosition:textView.beginningOfDocument toPosition:selectedRange.end];
+            NSInteger markedChars = endOffset - startOffset;
+            numberOfChars -= markedChars;
+        }
+    }
+    return numberOfChars;
 }
 
 /// 给按钮加SEL
@@ -177,46 +198,57 @@
 
 // MARK: <UITextViewDelegate>
 
-// 监听文本框输入内容
-- (void)textViewDidChange:(UITextView *)textView {
-    // 获取字数
-    NSInteger stringsCount = textView.text.length;
-    
-    if ([textView isEqual:self.publishTitleTextView.publishTextView]) {
-        // 输入为0
-        if (stringsCount == 0) {
-            self.publishTitleTextView.sureBtn.enabled = NO;
-            self.publishTitleTextView.sureBtn.backgroundColor = [UIColor colorWithHexString:@"#C3D4EE" alpha:1.0];
-        } else {
-            self.publishTitleTextView.sureBtn.enabled = YES;
-            self.publishTitleTextView.sureBtn.backgroundColor = [UIColor colorWithHexString:@"#4841E2" alpha:1.0];
-        }
-        // 不断改变现在的字数
-        self.publishTitleTextView.stringsLab.text = [NSString stringWithFormat:@"%ld/30", stringsCount];
-        
-    } else if ([textView isEqual:self.publishOptionTextView.publishTextView]) {
-        if (stringsCount == 0) {
-            self.publishOptionTextView.sureBtn.enabled = NO;
-            self.publishOptionTextView.sureBtn.backgroundColor = [UIColor colorWithHexString:@"#C3D4EE" alpha:1.0];
-        } else {
-            self.publishOptionTextView.sureBtn.enabled = YES;
-            self.publishOptionTextView.sureBtn.backgroundColor = [UIColor colorWithHexString:@"#4841E2" alpha:1.0];
-        }
-        self.publishOptionTextView.stringsLab.text = [NSString stringWithFormat:@"%ld/15", stringsCount];
-    }
-}
-
-/// 超过字数不再输入
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    if (([textView isEqual:self.publishTitleTextView.publishTextView] && range.location >= 30) || ([textView isEqual:self.publishOptionTextView.publishTextView] && range.location >= 15)) {
-        // TODO: 弹出提示框 您已达到最大输入限制
-        
+    // 获取当前文本框中字符的总数
+    NSString *newText = [textView.text stringByReplacingCharactersInRange:range withString:text];
+    NSInteger numberOfChars = [self numberOfChars:newText textView:textView];
+    // 如果字符数量大于15，则不允许继续输入
+    if (([textView isEqual:self.publishTitleTextView.publishTextView] && numberOfChars > 30) || ([textView isEqual:self.publishOptionTextView.publishTextView] && numberOfChars > 15)) {
+        // 阻止输入
         return NO;
     } else {
+        // 允许输入
         return YES;
     }
 }
 
+- (void)textViewDidChange:(UITextView *)textView {
+    // 获取当前文本框中字符的总数
+    NSString *text = textView.text;
+    NSInteger numberOfChars = [self numberOfChars:text textView:textView];
+    if ([textView isEqual:self.publishTitleTextView.publishTextView]) {
+        // 输入为0
+        if (numberOfChars == 0) {
+            self.publishTitleTextView.sureBtn.enabled = NO;
+            self.publishTitleTextView.sureBtn.backgroundColor = [UIColor colorWithHexString:@"#C3D4EE"alpha:1.0];
+        } else {
+            self.publishTitleTextView.sureBtn.enabled = YES;
+            self.publishTitleTextView.sureBtn.backgroundColor = [UIColor colorWithHexString:@"#4841E2"alpha:1.0];
+        }
+        // 如果字符数量大于15，则截取前15个字符
+        if (numberOfChars > 30) {
+            NSString *newText = [text substringToIndex:30];
+            textView.text = newText;
+        }
+        numberOfChars = numberOfChars > 30 ? 30: numberOfChars;
+        // 不断改变现在的字数
+        self.publishTitleTextView.stringsLab.text = [NSString stringWithFormat:@"%ld/30", numberOfChars];
+    } else if ([textView isEqual:self.publishOptionTextView.publishTextView]) {
+        if (numberOfChars == 0) {
+            self.publishOptionTextView.sureBtn.enabled = NO;
+            self.publishOptionTextView.sureBtn.backgroundColor = [UIColor colorWithHexString:@"#C3D4EE"alpha:1.0];
+        } else {
+            self.publishOptionTextView.sureBtn.enabled = YES;
+            self.publishOptionTextView.sureBtn.backgroundColor = [UIColor colorWithHexString:@"#4841E2"alpha:1.0];
+        }
+        if (numberOfChars > 15) {
+            NSString *newText = [text substringToIndex:15];
+            textView.text = newText;
+        }
+        numberOfChars = numberOfChars > 15 ? 15: numberOfChars;
+        self.publishOptionTextView.stringsLab.text = [NSString stringWithFormat:@"%ld/15", numberOfChars];
+    }
+}
 
 // 添加cell方法
 - (void)addCell:(UIButton *)button{
@@ -390,6 +422,9 @@
     if (_publishTitleTextView == nil) {
         _publishTitleTextView = [[PublishTextView alloc] initWithFrame:CGRectMake(15, STATUSBARHEIGHT + 190, SCREEN_WIDTH - 30, 250)];
         _publishTitleTextView.publishTextView.frame = CGRectMake(22, 22, SCREEN_WIDTH - 30 - 44, 142);
+        // 设置边界和文本显示区域之间的距离
+        _publishTitleTextView.publishTextView.contentInset = UIEdgeInsetsMake(14, 12, 30, 13);
+        _publishTitleTextView.publishTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
         _publishTitleTextView.stringsLab.text = @"0/30";
     }
     return _publishTitleTextView;
@@ -400,6 +435,9 @@
     if (_publishOptionTextView == nil) {
         _publishOptionTextView = [[PublishTextView alloc] initWithFrame:CGRectMake(15, STATUSBARHEIGHT + 190,SCREEN_WIDTH - 30, 210)];
         _publishOptionTextView.publishTextView.frame = CGRectMake(22, 22, SCREEN_WIDTH - 30 - 44, 102);
+        // 设置边界和文本显示区域之间的距离
+        _publishOptionTextView.publishTextView.contentInset = UIEdgeInsetsMake(14, 12, 30, 13);
+        _publishOptionTextView.publishTextView.textContainerInset = UIEdgeInsetsMake(0, 0, 0, 0);
         _publishOptionTextView.stringsLab.text = @"0/15";
     }
     return _publishOptionTextView;

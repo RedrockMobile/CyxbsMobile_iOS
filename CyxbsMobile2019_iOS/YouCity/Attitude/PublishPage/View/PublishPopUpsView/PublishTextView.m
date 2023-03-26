@@ -64,8 +64,8 @@
         _publishTextView.font = [UIFont fontWithName:PingFangSCMedium size:16];
         _publishTextView.textColor = [UIColor colorWithHexString:@"#15315B" alpha:0.8];
         _publishTextView.textAlignment = NSTextAlignmentLeft;
-        // 文本间距
-        _publishTextView.contentInset = UIEdgeInsetsMake(14, 12, 30, 13);
+        // 禁用滚动功能
+        _publishTextView.scrollEnabled = NO;
     }
     return _publishTextView;
 }
