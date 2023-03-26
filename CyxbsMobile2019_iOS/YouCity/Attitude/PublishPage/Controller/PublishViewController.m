@@ -67,7 +67,8 @@
     [self.view addSubview:self.headerView];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.addTagView];
-
+    // test 确认框
+    [self clickFinishBtn];
     [self addTargetToBtn];
 }
 
@@ -80,7 +81,7 @@
     [self.headerView.backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickTitle)]];
 }
 
-/// TODO: 点击title跳转提示框方法
+/// 点击title跳转提示框方法
 - (void)clickTitle {
     // 加入背景蒙版
     [self.view addSubview:self.backView];
@@ -91,7 +92,7 @@
     self.publishTitleTextView.publishTextView.delegate = self;
 }
 
-/// TODO: 点击cell跳转提示框方法
+/// 点击cell跳转提示框方法
 - (void)clickCell {
     // 加入背景蒙版
     [self.view addSubview:self.backView];
@@ -103,12 +104,11 @@
 }
 
 // TODO: 点击完成编辑出现确认提示框
-- (void)clickFinishBtn:(UIButton *)sender {
-//    UIView *view = [sender superview];
+- (void)clickFinishBtn {
     // 加入背景蒙版
-    [self.view.window addSubview:self.backView];
+    [self.view addSubview:self.backView];
     // 加入确认提示框
-    [self.view.window addSubview:self.publishMakeSureView];
+    [self.backView addSubview:self.publishMakeSureView];
 }
 
 /// 如果当前输入法为拼音输入法，则将拼音字符数量减去
