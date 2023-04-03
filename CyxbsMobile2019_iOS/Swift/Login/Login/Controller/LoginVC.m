@@ -242,6 +242,7 @@
          progress:nil
          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
             // TODO: success
+            NSLog(@"🫥登陆信息上传成功");
         }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             
@@ -254,8 +255,7 @@
         if (isNet) {
             // 网络弹窗
             self.networkWrongHud = [NewQAHud showhudWithCustomView:self.networkWrongView AddView:self.mainView];
-            
-        }else {  // 网络没问题则是账号密码有问题
+        } else {  // 网络没问题则是账号密码有问题
             // 1 设置弹窗内容
             [self setFailureHudData];
             // 2 展示弹窗并且保存该弹窗

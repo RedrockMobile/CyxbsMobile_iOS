@@ -460,7 +460,6 @@
 		B51C501728A5FFCE0011465E /* LoginBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501428A5FFCE0011465E /* LoginBaseView.m */; };
 		B51C501D28A625330011465E /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501C28A625330011465E /* LoginView.m */; };
 		B51C502D28A6493D0011465E /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500828A5FFBF0011465E /* LoginVC.m */; };
-		B55F772529D6D9AD003DBFE3 /* LoginRecordInformationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B55F772429D6D9AD003DBFE3 /* LoginRecordInformationModel.m */; };
 		D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */; };
 		D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D422433C885004337ED /* UIResponder+SDMask.m */; };
 		D0101D592433C885004337ED /* SDMaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D452433C885004337ED /* SDMaskController.m */; };
@@ -1502,8 +1501,6 @@
 		B51C501528A5FFCE0011465E /* LoginTextFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTextFieldView.h; sourceTree = "<group>"; };
 		B51C501B28A625330011465E /* LoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		B51C501C28A625330011465E /* LoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
-		B55F772329D6D9AD003DBFE3 /* LoginRecordInformationModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginRecordInformationModel.h; sourceTree = "<group>"; };
-		B55F772429D6D9AD003DBFE3 /* LoginRecordInformationModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginRecordInformationModel.m; sourceTree = "<group>"; };
 		D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+SDMask.m"; sourceTree = "<group>"; };
 		D0101D402433C885004337ED /* NSLayoutConstraint+SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+SDMask.h"; sourceTree = "<group>"; };
 		D0101D412433C885004337ED /* SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMask.h; sourceTree = "<group>"; };
@@ -4994,8 +4991,6 @@
 			isa = PBXGroup;
 			children = (
 				1A79956B252B5BC300603253 /* LoginModel.swift */,
-				B55F772329D6D9AD003DBFE3 /* LoginRecordInformationModel.h */,
-				B55F772429D6D9AD003DBFE3 /* LoginRecordInformationModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5910,7 +5905,6 @@
 				DB34EAD9239BD4550052B65E /* TimeHandle.m in Sources */,
 				18CDF4C1257F8DBD006E8E5C /* sendEmailModel.m in Sources */,
 				1A1691FE2430ECFE0076EDC7 /* ClassTabBar.m in Sources */,
-				B55F772529D6D9AD003DBFE3 /* LoginRecordInformationModel.m in Sources */,
 				AA7ABA272873EA4100BA6790 /* CYRleaseSaveDraftAlertBtn.m in Sources */,
 				73AAA1CD26C918250084E44D /* DetailsMainViewController.m in Sources */,
 				187DF4BE260310DD000BCDE9 /* FTEmptyView.m in Sources */,
