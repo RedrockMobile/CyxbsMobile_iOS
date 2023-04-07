@@ -29,4 +29,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+
+
+@interface ScheduleDetailPartContext (Calender)
+
+@property (nonatomic, readonly) NSString *keyTitle;
+
+@property (nonatomic, readonly) NSString *calenderTitle;
+
+@property (nonatomic, readonly) NSString *calenderContent;
+
+@property (nonatomic, readonly) NSArray <NSDate *> *froms;
+
+@property (nonatomic, readonly) NSTimeInterval continues;
+
+@end
+
 NS_ASSUME_NONNULL_END

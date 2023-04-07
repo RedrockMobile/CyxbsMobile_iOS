@@ -26,7 +26,7 @@ class ScheduleTimelineEntry: TimelineEntry {
     /* errorKeys
      * 与网络请求搭配，错误的请求信息将在这里添加
      */
-    var errorKeys = [ScheduleIdentifier]()
+    var errorMsg: String?
     
     /* mainKey
      * 提供mainKey用力绘制双人课表，nil则不绘制

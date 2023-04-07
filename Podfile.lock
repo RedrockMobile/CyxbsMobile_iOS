@@ -17,6 +17,7 @@ PODS:
   - Alamofire (5.6.4)
   - cmark (0.21.0)
   - FluentDarkModeKit (1.0.4)
+  - hpple (0.2.0)
   - IGListDiffKit (4.0.0)
   - IGListKit (4.0.0):
     - IGListDiffKit (= 4.0.0)
@@ -70,6 +71,7 @@ DEPENDENCIES:
   - AFNetworking (~> 4.0)
   - Alamofire
   - FluentDarkModeKit
+  - hpple
   - IGListKit
   - JGProgressHUD
   - LookinServer
@@ -92,6 +94,7 @@ SPEC REPOS:
     - Alamofire
     - cmark
     - FluentDarkModeKit
+    - hpple
     - IGListDiffKit
     - IGListKit
     - JGProgressHUD
@@ -118,6 +121,7 @@ SPEC CHECKSUMS:
   Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
   cmark: d4af340aaaac5f28f17780c8ea5483691ec2424a
   FluentDarkModeKit: b6317653a00329564582884772ec57c4eaad1a1f
+  hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
   IGListDiffKit: 665d6cf43ce726e676013db9c7d6c4294259b6b2
   IGListKit: fd5a5d21935298f5849fa49d426843cff97b77c7
   JGProgressHUD: d83d7a981b85d11205e19ff8ad5bb9c40571c847
@@ -139,6 +143,6 @@ SPEC CHECKSUMS:
   WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 509bc22ae7d1b06e9778f1c559c236b2fcb216ad
+PODFILE CHECKSUM: 54cf925b9d531e4dde856cc0572110671c27cbe2
 
 COCOAPODS: 1.11.3

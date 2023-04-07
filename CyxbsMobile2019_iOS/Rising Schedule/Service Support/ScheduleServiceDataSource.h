@@ -27,7 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ScheduleServiceDataSource : NSObject <
     ScheduleCollectionViewDataSource,
-    ScheduleCollectionViewLayoutDataSource
+    ScheduleCollectionViewLayoutDataSource,
+    UIScrollViewDelegate
 >
 
 /// 模型

@@ -46,12 +46,16 @@ struct ScheduleProvider: IntentTimelineProvider {
                 
                 var mainItem: ScheduleCombineItem?
                 var otherItem: ScheduleCombineItem?
+                var customItem: ScheduleCombineItem?
+                
                 if let mainKey = mainKey {
                     mainItem = try await ScheduleWidgetRequest.shared.request(sno: mainKey.sno)
+                    customItem = ScheduleWidgetRequest.shared.request(custom: mainKey.sno)
                     if ScheduleWidgetCache().beDouble, let otherKey = otherKey {
                         otherItem = try await ScheduleWidgetRequest.shared.request(sno: otherKey.sno)
                     }
                 }
+                
                 
                 let currentDate = Date()
                 for hourOffset in 0 ..< 12 {
@@ -63,7 +67,7 @@ struct ScheduleProvider: IntentTimelineProvider {
                         entry.mainKey = main.identifier
                     } else {
                         if let mainKey = mainKey {
-                            entry.errorKeys.append(mainKey)
+                            entry.errorMsg = mainKey.description
                         }
                     }
                     
@@ -71,8 +75,12 @@ struct ScheduleProvider: IntentTimelineProvider {
                         entry.combineItems.append(other)
                     } else {
                         if let otherKey = otherKey {
-                            entry.errorKeys.append(otherKey)
+                            entry.errorMsg = entry.errorMsg ?? "" + otherKey.description
                         }
+                    }
+                    
+                    if let customItem = customItem {
+                        entry.combineItems.append(customItem)
                     }
                     
                     entries.append(entry)

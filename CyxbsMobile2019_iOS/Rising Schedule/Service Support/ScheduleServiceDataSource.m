@@ -16,7 +16,9 @@
 
 #pragma mark - ScheduleServiceDataSource ()
 
-@interface ScheduleServiceDataSource ()
+@interface ScheduleServiceDataSource () <
+    UICollectionViewDelegate
+>
 
 /// 背景图
 @property (nonatomic, strong) UIView *backgroundView;
@@ -43,14 +45,14 @@
         _backgroundView.backgroundColor =
         [UIColor Light:UIColorHexARGB(#80E8F0FC)
                   Dark:UIColorHexARGB(#40000000)];
-        _backgroundView.hidden = YES;
+        _backgroundView.userInteractionEnabled = NO;
     }
     return _backgroundView;
 }
 
 #pragma mark - Setter
 
-- (void)setingCollectionView:(UICollectionView *__strong  _Nonnull *)view withPrepareWidth:(CGFloat)width {
+- (void)setingCollectionView:(UICollectionView *__strong _Nonnull *)view withPrepareWidth:(CGFloat)width {
     
     ScheduleCollectionViewLayout *layout = [[ScheduleCollectionViewLayout alloc] init];
     layout.widthForLeadingSupplementaryView = 30;
@@ -65,9 +67,9 @@
     [*view registerClass:ScheduleSupplementaryCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier]; // section header
     [*view registerClass:ScheduleSupplementaryCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier]; // section leading
     [*view registerClass:SchedulePlaceholderCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionPlaceholder withReuseIdentifier:SchedulePlaceholderCollectionViewCellReuseIdentifier]; // section placeholder
-    [*view addSubview:self.backgroundView];
     
     (*view).dataSource = self;
+    (*view).delegate = self;
 }
 
 #pragma mark - <UICollectionViewDataSource>
@@ -166,6 +168,13 @@
                           (indexPath.section != _model.touchItem.nowWeek ? NO :
                            indexPath.item == todayWeek));
         
+        if (cell.isCurrent && indexPath.section != 0) {
+            ScheduleCollectionViewLayout *layout = (ScheduleCollectionViewLayout *)collectionView.collectionViewLayout;
+            UICollectionViewLayoutAttributes *attributes = [layout layoutAttributesForSupplementaryViewOfKind:kind atIndexPath:indexPath];
+            self.backgroundView.frame = CGRectMake(attributes.frame.origin.x, 10, attributes.size.width, collectionView.height + 10);
+            [collectionView insertSubview:self.backgroundView atIndex:0];
+        }
+        
         return cell;
     }
     
@@ -223,6 +232,12 @@
   lenthForLocationIndexPath:(NSIndexPath *)indexPath {
     ScheduleCollectionViewModel *vm = [_model.mapTable objectForKey:indexPath];
     return vm.lenth;
+}
+
+#pragma mark - <UIScrollViewDelegate>
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    self.backgroundView.top = scrollView.contentOffset.y + 10;
 }
 
 @end

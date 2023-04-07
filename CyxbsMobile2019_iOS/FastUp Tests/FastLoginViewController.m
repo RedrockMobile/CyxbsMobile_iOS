@@ -9,12 +9,20 @@
 #import "FastLoginViewController.h"
 
 #import "ScheduleNeedsSupport.h"
-
 #import "SchedulePresenter.h"
-
 #import "ScheduleWidgetCache.h"
 
-@interface FastLoginViewController () <UITextFieldDelegate>
+#import "SearchPeopleViewController.h"
+#import "ScheduleWebHppleViewController.h"
+
+#import "TransitioningDelegate.h"
+
+@interface FastLoginViewController () <
+    UITextFieldDelegate,
+    ScheduleWebHppleViewControllerDelegate
+>
+
+@property (nonatomic, strong) UIImageView *imgView;
 
 /// <#description#>
 @property (nonatomic, strong) UITextField *snoField;
@@ -27,28 +35,33 @@
 
 @property (nonatomic, strong) UITextField *widgetField;
 
+
+
+@property (nonatomic, strong) UILabel *doingLab;
+
 @end
 
 @implementation FastLoginViewController
 
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-        [self _drawTabbar];
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self _drawTabbar];
     self.view.backgroundColor =
     [UIColor Light:UIColorHex(#FFFFFF)
               Dark:UIColorHex(#1D1D1D)];
     
+//    [self.view addSubview:self.imgView];
     [self.view addSubview:self.snoField];
     [self.view addSubview:self.otherField];
     [self.view addSubview:self.cleBtn];
+    [self.view addSubview:self.doingLab];
 //    [self.view addSubview:self.widgetField];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.tabBarController.tabBar.hidden = NO;
 }
 
 #pragma mark - TT
@@ -59,9 +72,32 @@
 
 #pragma mark - Setter
 
+- (UILabel *)doingLab {
+    if (_doingLab == nil) {
+        _doingLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.snoField.width, 100)];
+        _doingLab.textColor = [UIColor Light:UIColorHex(#8B8B8B) Dark:UIColorHex(#C2C2C2)];
+        _doingLab.numberOfLines = 0;
+        _doingLab.font = [UIFont fontWithName:FontName.PingFangSC.Regular size:14];
+        _doingLab.text = @"内网查课表说明:\n1.连接校园内网\n2.输入对应学号\n3.点击左边图片\n4.请求结束后单击开始";
+        [_doingLab sizeToFit];
+        _doingLab.centerX = self.snoField.centerX;
+        _doingLab.top = self.otherField.bottom + 22;
+    }
+    return _doingLab;
+}
+
+- (UIImageView *)imgView {
+    if (_imgView == nil) {
+        _imgView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+        _imgView.image = [UIImage imageNamed:@"test001"];
+    }
+    return _imgView;
+}
+
 - (UITextField *)snoField {
     if (_snoField == nil) {
         _snoField = [self _kindFieldWithPlaceholder:@"请输入您的学号" imgName:@"logo.sno"];
+        _snoField.text = [ScheduleWidgetCache.shareCache getKeyWithKeyName:ScheduleWidgetCacheKeyMain usingSupport:YES].sno;
         _snoField.frame = CGRectMake(-1, StatusBarHeight() + 100, 281, 44);
         _snoField.centerX = self.view.width / 2;
     }
@@ -71,6 +107,7 @@
 - (UITextField *)otherField {
     if (_otherField == nil) {
         _otherField = [self _kindFieldWithPlaceholder:@"请输入对方的学号" imgName:@"logo.reset"];
+        _otherField.text = [ScheduleWidgetCache.shareCache getKeyWithKeyName:ScheduleWidgetCacheKeyOther usingSupport:YES].sno;
         _otherField.frame = CGRectMake(-1, self.snoField.bottom + 22, 281, 44);
         _otherField.centerX = self.view.width / 2;
     }
@@ -100,8 +137,10 @@
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 46, 44)];
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 18, 15)];
+    imgView.userInteractionEnabled = YES;
     imgView.center = view.SuperCenter;
     imgView.image = [UIImage imageNamed:imgName];
+    [imgView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_toWebView:)]];
     [view addSubview:imgView];
     textField.leftView = view;
     textField.leftViewMode = UITextFieldViewModeAlways;
@@ -129,6 +168,17 @@
 
 #pragma mark - private
 
+- (void)_toWebView:(UITapGestureRecognizer *)tap {
+    UITextField *view = (UITextField *)tap.view.superview.superview;
+    ScheduleWebHppleViewController *vc = [[ScheduleWebHppleViewController alloc] initWithSno:view.text];
+    vc.delegate = self;
+    vc.modalPresentationStyle = UIModalPresentationCustom;
+    TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
+    delegate.transitionDurationIfNeeded = 0.3;
+    vc.transitioningDelegate = delegate;
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
 - (void)_cletap:(UIButton *)btn {
     NSString *sno = self.snoField.text.copy;
     ScheduleIdentifier *mainID = [ScheduleIdentifier identifierWithSno:sno type:ScheduleModelRequestStudent];
@@ -153,6 +203,11 @@
 - (void)_outside:(UIButton *)btn {
     [NSUserDefaults.standardUserDefaults setBool:YES forKey:UDKey.isXXHB];
     self.presenter.awakeable = YES;
+    
+    UIViewController *vc = [[SearchPeopleViewController alloc] init];
+    
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
@@ -179,6 +234,21 @@
     if (!textField.text || ![textField.text isEqualToString:@""]) {
         return;
     }
+}
+
+#pragma mark - <ScheduleWebHppleViewController>
+
+- (void)viewController:(ScheduleWebHppleViewController *)viewController didHppleItem:(ScheduleCombineItem *)item {
+    
+    if ([item.identifier.sno isEqualToString:self.snoField.text]) {
+        [ScheduleWidgetCache.shareCache setKey:item.identifier withKeyName:ScheduleWidgetCacheKeyMain usingSupport:YES];
+    }
+    if ([item.identifier.sno isEqualToString:self.otherField.text]) {
+        [ScheduleWidgetCache.shareCache setKey:item.identifier withKeyName:ScheduleWidgetCacheKeyOther usingSupport:YES];
+    }
+    [ScheduleShareCache.shareCache cacheItem:item];
+    [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
+    [viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

@@ -64,7 +64,7 @@
     prepare(context);
     
     CGRect rect = { CGPointZero, _lab1.bounds.size };
-    if (context.spacing + _lab1.bounds.size.width < self.bounds.size.width) {
+    if (context.spacing + _lab1.bounds.size.width <= self.bounds.size.width) {
         _lab1.frame = _lab2.frame = rect;
         return;
     }

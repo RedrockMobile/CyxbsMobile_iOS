@@ -7,6 +7,7 @@
 //
 
 #import "SearchPeopleViewController.h"
+#import "SearchPersonTableViewCell.h"
 
 #import "SearchPersonModel.h"
 
@@ -23,7 +24,7 @@
 @property (nonatomic, strong) UIButton *cancelBtn;
 
 /// table view
-@property (nonatomic, strong) UITableView *tableview;
+@property (nonatomic, strong) UITableView *tableView;
 
 /// search person
 @property (nonatomic, strong) SearchPersonModel *searchModel;
@@ -33,6 +34,12 @@
 #pragma mark - SearchPeopleViewController
 
 @implementation SearchPeopleViewController
+
+- (void)loadView {
+    [super loadView];
+    self.navigationController.navigationBarHidden = YES;
+//    [self.tabBarController performSelector:NSSelectorFromString(@"setScheduleBarHiddenNumber:") withObject:@(YES)];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,7 +52,7 @@
     
     [self.view addSubview:self.textField];
     [self.view addSubview:self.cancelBtn];
-    [self.view addSubview:self.tableview];
+    [self.view addSubview:self.tableView];
 }
 
 #pragma mark - Method
@@ -58,15 +65,16 @@
     [self.searchModel
      reqestWithInfo:str
      success:^{
-        
+        [self.tableView reloadData];
     }
-     failure:^(NSError * _Nonnull) {
+     failure:^(NSError * _Nonnull error) {
         
     }];
 }
 
 - (void)_cancel:(UIButton *)btn {
     [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - <UITableViewDataSource>
@@ -76,8 +84,20 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    SearchPersonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SearchPersonTableViewCellReuseIdentifier forIndexPath:indexPath];
     
-    return nil;
+    SearchPerson *person = self.searchModel.personAry[indexPath.row];
+    cell.name = [NSString stringWithFormat:@"%@(%@)", person.name, person.gender];
+    cell.sno = person.stunum;
+    cell.inClass = person.classnum;
+    
+    return cell;
+}
+
+#pragma mark - <UITableViewDelegate>
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 64;
 }
 
 #pragma mark - <UITextFieldDelegate>
@@ -143,12 +163,21 @@
     return _cancelBtn;
 }
 
-- (UITableView *)tableview {
-    if (_tableview == nil) {
-        _tableview = [[UITableView alloc] initWithFrame:CGRectMake(16, self.textField.bottom + 10, self.view.width - 2 * 16, self.view.height - self.textField.bottom - 10) style:UITableViewStylePlain];
-        
+- (UITableView *)_tableView {
+    if (_tableView == nil) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(16, self.textField.bottom + 10, self.view.width - 2 * 16, self.view.height - self.textField.bottom - 10) style:UITableViewStylePlain];
+        _tableView.dataSource = self;
+        _tableView.delegate = self;
+        _tableView.estimatedRowHeight = 0;
+        _tableView.estimatedSectionHeaderHeight = 0;
+        _tableView.estimatedSectionFooterHeight = 0;
+        _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.showsHorizontalScrollIndicator = NO;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [_tableView registerClass:SearchPersonTableViewCell.class forCellReuseIdentifier:SearchPersonTableViewCellReuseIdentifier];
     }
-    return _tableview;
+    return _tableView;
 }
 
 @end

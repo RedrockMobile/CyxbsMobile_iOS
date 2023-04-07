@@ -45,12 +45,28 @@
     if (self.nowWeek <= 0 || self.nowWeek > self.lastSection || _sectionCourseAry.count == 0) {
         return nil;
     }
+    NSInteger weekday = [NSCalendar.republicOfChina componentsInTimeZone:CQTimeZone() fromDate:NSDate.date].scheduleWeekday;
+    ScheduleTimeline *timeline = [[ScheduleTimeline alloc] init];
+    for (ScheduleCourse *course in _sectionCourseAry) {
+        if (course.inWeek != weekday) {
+            continue;
+        }
+        if (NSLocationInRange(timeline.percent, course.period)) {
+            return course;
+        }
+    }
     
-    ScheduleCourse *next = nil;
+    ScheduleCourse *fin = nil;
+    for (ScheduleCourse *course in _sectionCourseAry) {
+        if (course.inWeek != weekday) {
+            continue;
+        }
+        if (course.period.location >= timeline.percent) {
+            fin = fin ? (course.period.location < fin.period.location ? course : fin) : course;
+        }
+    }
     
-    
-    
-    return next;
+    return fin;
 }
 
 - (NSString *)description {

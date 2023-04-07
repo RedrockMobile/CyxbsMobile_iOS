@@ -399,7 +399,7 @@
         str = [NSString stringWithFormat:@"到第%ld节", self.period.location + row];
     }
     return [[NSAttributedString alloc] initWithString:str attributes:@{
-        NSFontAttributeName: [UIFont fontWithName:FontName.PingFangSC.Medium size:18],
+        NSFontAttributeName: [UIFont fontWithName:FontName.PingFangSC.Medium size:17],
         NSForegroundColorAttributeName: [UIColor Light:UIColorHex(#15315B) Dark:UIColorHex(#F0F0F2)]
     }];
 }

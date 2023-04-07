@@ -20,6 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)presentScheduleControllerWithPan:(UIPanGestureRecognizer * _Nullable)pan completion:(void (^ __nullable)(UIViewController *vc))completion;
 
+- (void)presentControllerWhatIfNeeded;
+
+- (void)reloadScheduleBar;
+
 @end
 
 NS_ASSUME_NONNULL_END

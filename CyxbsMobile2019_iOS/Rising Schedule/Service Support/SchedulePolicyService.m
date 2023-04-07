@@ -18,6 +18,7 @@ static SchedulePolicyService * _currentPolicy;
     if (_currentPolicy == nil) {
         _currentPolicy = [[SchedulePolicyService alloc] init];
         _currentPolicy.outRequestTime = 45 * 60 * 60;
+        _currentPolicy.awakeable = YES;
     }
     return _currentPolicy;
 }
@@ -41,30 +42,37 @@ static SchedulePolicyService * _currentPolicy;
 - (void)requestKeys:(NSArray <ScheduleIdentifier *> *)keys
              policy:(void (^)(ScheduleCombineItem *item))policy
            unPolicy:(void (^)(ScheduleIdentifier *unpolicyKEY))unpolicy {
-    NSMutableArray <ScheduleIdentifier *> *unInMemIds = NSMutableArray.array;
+    
+    NSMutableArray <ScheduleIdentifier *> *unknowKey = NSMutableArray.array;
+    NSMutableDictionary <NSString *, ScheduleCombineItem *> *hadOutTime = NSMutableDictionary.dictionary;
     for (ScheduleIdentifier *key in keys) {
-        if (key.iat - NSDate.date.timeIntervalSince1970 >= self.outRequestTime) {
-            [unInMemIds addObject:key];
-        } else {
-            ScheduleCombineItem *cacheItem = [ScheduleShareCache.shareCache getItemForKey:key.key];
-            if (cacheItem && cacheItem.identifier.type != ScheduleModelRequestCustom) {
-                policy(cacheItem);
+        // 先从磁盘取，取不出来从缓存取
+        ScheduleCombineItem *item = [ScheduleShareCache.shareCache getItemForKey:key.key];
+        if (!item) {
+            item = [ScheduleShareCache.shareCache awakeForIdentifier:key];
+        }
+        // 有则判时间，无则直接unknow
+        if (item) {
+            if (item.identifier.iat - NSDate.date.timeIntervalSince1970 >= self.outRequestTime) {
+                hadOutTime[item.identifier.key] = item;
+                [unknowKey addObject:item.identifier];
             } else {
-                if (self.awakeable) {
-                    ScheduleCombineItem *item = [ScheduleShareCache.shareCache awakeForIdentifier:key];
+                if (policy) {
                     policy(item);
-                } else {
-                    [unInMemIds addObject:key];
                 }
+                continue;
             }
+        } else {
+            [unknowKey addObject:key];
         }
     }
+    
     // if all in MEM, do nont request
-    if (unInMemIds.count == 0) {
+    if (unknowKey.count == 0) {
         return;
     }
     
-    ScheduleRequestDictionary *dic = ScheduleRequestDictionaryFromScheduleIdentifiers(unInMemIds);
+    ScheduleRequestDictionary *dic = ScheduleRequestDictionaryFromScheduleIdentifiers(unknowKey);
     [ScheduleNETRequest
      request:dic
      success:^(ScheduleCombineItem * _Nonnull item) {
@@ -77,6 +85,13 @@ static SchedulePolicyService * _currentPolicy;
         }
     }
      failure:^(NSError * _Nonnull error, ScheduleIdentifier *errorID) {
+        if (hadOutTime[errorID.key]) {
+            if (policy) {
+                policy(hadOutTime[errorID.key]);
+            }
+            return;
+        }
+        
         if (errorID.type == ScheduleModelRequestCustom) {
             ScheduleCombineItem *nilc = [ScheduleShareCache.shareCache awakeForIdentifier:errorID];
             if (nilc == nil || nilc.value.count == 0) {
@@ -89,7 +104,10 @@ static SchedulePolicyService * _currentPolicy;
             if (policy) {
                 policy(nilc);
             }
-        } else if (unpolicy) {
+            return;
+        }
+        
+        if (unpolicy) {
             unpolicy(errorID);
         }
     }];

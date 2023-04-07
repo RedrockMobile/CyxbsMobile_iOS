@@ -21,7 +21,7 @@
 @property (nonatomic, strong) UIImageView *doubleImgView;
 
 /// widget image
-@property (nonatomic, strong) UIImageView *widgetImgView;
+@property (nonatomic, strong) UIImageView *calenderImgView;
 
 /// return btn
 @property (nonatomic, strong) UIButton *reBackBtn;
@@ -36,8 +36,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.sectionLab];
-        [self addSubview:self.doubleImgView];
         [self addSubview:self.reBackBtn];
+        [self addSubview:self.doubleImgView];
+        [self addSubview:self.calenderImgView];
     }
     return self;
 }
@@ -56,10 +57,10 @@
     }
 }
 
-- (void)_widget {
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(scheduleHeaderViewDidTapWidget:)]) {
-//        [self.delegate scheduleHeaderViewDidTapWidget:self];
-//    }
+- (void)_calender:(UITapGestureRecognizer *)tap {
+    if (tap.state == UIGestureRecognizerStateEnded && self.delegate &&[self.delegate respondsToSelector:@selector(scheduleHeaderViewDidTapCalender:)]) {
+        [self.delegate scheduleHeaderViewDidTapCalender:self];
+    }
 }
 
 #pragma mark - Getter
@@ -95,7 +96,7 @@
     if (_doubleImgView == nil) {
         _doubleImgView = [[UIImageView alloc] initWithFrame:CGRectMake(-1, -1, 22.5, 18)];
         _doubleImgView.hidden = YES;
-        _doubleImgView.right = self.reBackBtn.left - 30;
+        _doubleImgView.right = self.reBackBtn.left - 23;
         _doubleImgView.centerY = self.reBackBtn.centerY;
         _doubleImgView.image = [UIImage imageNamed:@"per.single"];
         _doubleImgView.userInteractionEnabled = YES;
@@ -106,22 +107,27 @@
     return _doubleImgView;
 }
 
-- (UIImageView *)widgetImgView {
-    if (_widgetImgView == nil) {
-        _widgetImgView = [[UIImageView alloc] initWithFrame:CGRectMake(-1, -1, 22.5, 18)];
-        _widgetImgView.hidden = YES;
-        _widgetImgView.right = self.doubleImgView.left - 30;
-        _widgetImgView.centerY = self.reBackBtn.centerY;
-        _widgetImgView.image = [UIImage imageNamed:@"widget"];
+- (UIImageView *)calenderImgView {
+    if (_calenderImgView == nil) {
+        _calenderImgView = [[UIImageView alloc] initWithFrame:CGRectMake(-1, -1, 18, 18)];
+        _calenderImgView.hidden = YES;
+        _calenderImgView.right = self.doubleImgView.left - 23;
+        _calenderImgView.centerY = self.reBackBtn.centerY;
+        _calenderImgView.image = [UIImage imageNamed:@"schedule.calender"];
+        _calenderImgView.userInteractionEnabled = YES;
         
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_widget)];
-        [_widgetImgView addGestureRecognizer:tap];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_calender:)];
+        [_calenderImgView addGestureRecognizer:tap];
     }
-    return _widgetImgView;
+    return _calenderImgView;
 }
 
 - (NSString *)title {
     return self.sectionLab.text.copy;
+}
+
+- (BOOL)calenderEdit {
+    return !self.calenderImgView.hidden;
 }
 
 #pragma mark - Setter
@@ -147,13 +153,8 @@
     }
 }
 
-- (void)setWidget:(BOOL)widget {
-    if (@available(iOS 14.0, *)) {
-        _widget = widget;
-        if (_widget) {
-            self.widgetImgView.hidden = !widget;
-        }
-    }
+- (void)setCalenderEdit:(BOOL)calenderEdit {
+    self.calenderImgView.hidden = !calenderEdit;
 }
 
 @end

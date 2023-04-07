@@ -11,6 +11,7 @@
 #import "CyxbsWidgetSupport.h"
 
 ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyMain = @"ScheduleWidgetCacheKeyMain";
+ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyCustom = @"ScheduleWidgetCacheKeyCustom";
 ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyOther = @"ScheduleWidgetCacheKeyOther";
 
 @implementation ScheduleWidgetCache {
@@ -90,6 +91,18 @@ ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyOther = @"ScheduleWidgetC
 - (BOOL)allowedLocalCache {
     NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
     return [userDefaults boolForKey:@"ScheduleIdentifier_AllowedLocalCache"];
+}
+
+// isFromWebView
+
+- (void)setIsFromWebView:(BOOL)isFromWebView {
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
+    [userDefaults setBool:isFromWebView forKey:@"ScheduleIdentifier_isFromWebView"];
+}
+
+- (BOOL)isFromWebView {
+    NSUserDefaults *userDefaults = [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
+    return [userDefaults boolForKey:@"ScheduleIdentifier_isFromWebView"];
 }
 
 @end

@@ -30,6 +30,7 @@ struct ScheduleSystemLarge: View {
         data.sno = entry.mainKey?.sno
         for item in entry.combineItems {
             data.combineItem(item)
+            entry.errorMsg = "cout :\(entry.combineItems)"
         }
     }
     
@@ -60,7 +61,7 @@ struct ScheduleSystemLarge: View {
                                         }
                                     }
                                 } else {
-                                    Text("这个时间段暂时没有课")
+                                    Text("test: \(entry.errorMsg!)")
                                         .font(.system(size: 13))
                                         .padding()
                                 }
@@ -68,8 +69,8 @@ struct ScheduleSystemLarge: View {
                                 VStack (alignment: .leading) {
                                     Text("小组件请求错误，打开App并检查网络或设置学号")
                                     Text("\(entry.date)")
-                                    if entry.errorKeys.count >= 1 {
-                                        Text("信息: \(entry.errorKeys[0])")
+                                    if let msg = entry.errorMsg {
+                                        Text("信息: \(msg)")
                                     } else {
                                         Text("信息: 未确定主学号")
                                     }

@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef NSString * ScheduleWidgetCacheKeyName;
 FOUNDATION_EXTERN ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyMain;
+FOUNDATION_EXPORT ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyCustom;
 FOUNDATION_EXTERN ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyOther;
 
 @interface ScheduleWidgetCache : ScheduleShareCache
@@ -28,6 +29,8 @@ FOUNDATION_EXTERN ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyOther;
 @property BOOL beDouble;
 
 @property BOOL allowedLocalCache;
+
+@property BOOL isFromWebView;
 
 @end
 

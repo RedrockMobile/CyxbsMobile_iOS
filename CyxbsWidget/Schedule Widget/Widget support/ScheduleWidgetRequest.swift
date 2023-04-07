@@ -40,7 +40,12 @@ final class ScheduleWidgetRequest {
             let item = ScheduleCombineItem(identifier: key, value: finalAry)
             return item
         } else {
-            return nil
+            let key = ScheduleIdentifier(sno: sno, type: .student)
+            return ScheduleShareCache().awake(for: key)
         }
+    }
+    
+    func request(custom sno: String) -> ScheduleCombineItem? {
+        ScheduleShareCache().awake(for: ScheduleIdentifier(sno: sno, type: .custom))
     }
 }

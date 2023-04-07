@@ -41,8 +41,8 @@ class ScheduleFetchData: ScheduleMapModel {
                 return section
             }
         } else {
-            if let begin = beginTime {
-                return Int(ceil(Date().timeIntervalSince(Date(timeIntervalSince1970: begin)) / (7.0 * 24 * 60 * 60)))
+            if let begin = exp {
+                return  Int(ceil(Date().timeIntervalSince(Date(timeIntervalSince1970: begin)) / (7.0 * 24 * 60 * 60)))
             } else {
                 return 0
             }
@@ -50,17 +50,17 @@ class ScheduleFetchData: ScheduleMapModel {
     }
     private var trueSection: Int?
     
-    /* beginTime
+    /* exp
      * 为了计算具体日期而使用，与start配对使用
      */
-    private var beginTime: TimeInterval?
+    private var exp: TimeInterval?
     
     /* start
      * 计算属性，根据beginTime而计算出真正的开始时间
      * nil则为不存在开始时间
      */
     var start: Date? {
-        if let begin = beginTime {
+        if let begin = exp {
             return Date(timeIntervalSince1970: begin)
         } else {
             return nil
@@ -80,7 +80,9 @@ class ScheduleFetchData: ScheduleMapModel {
     
     override func combineItem(_ model: ScheduleCombineItem) {
         super.combineItem(model)
-        beginTime = model.identifier.exp
+        if model.identifier.type != .custom {
+            exp = model.identifier.exp
+        }
         
         for key in self.mapTable.keyEnumerator().allObjects as! [NSIndexPath] {
             if (key.section == section) {
