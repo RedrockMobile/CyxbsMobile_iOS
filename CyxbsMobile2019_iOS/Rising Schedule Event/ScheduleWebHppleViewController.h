@@ -7,12 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ScheduleWidgetCache.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class ScheduleWebHppleViewController, ScheduleCombineItem;
+@class ScheduleWebHppleViewController, ScheduleCombineItem, ScheduleIdentifier;
 
-#pragma mark - <ScheduleWebHppleViewControllerDelegate>
+/* MARK: - <ScheduleWebHppleViewControllerDelegate>
+ * 代理将不会主动dismiss，对于hpple，会主动进行磁盘存储
+ * 如果设置了name，那么对应ScheduleWidgetCache也将存储
+ */
 
 @protocol ScheduleWebHppleViewControllerDelegate <NSObject>
 
@@ -28,11 +32,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ScheduleWebHppleViewController : UIViewController
 
-@property (nonatomic, copy) NSString *sno;
-
 @property (nonatomic, weak) id <ScheduleWebHppleViewControllerDelegate> delegate;
 
-- (instancetype)initWithSno:(NSString *)sno;
+- (instancetype)initWithKey:(nonnull ScheduleIdentifier *)key forName:(nullable ScheduleWidgetCacheKeyName)name;
+
+@property (nonatomic, readonly) ScheduleIdentifier *key;
+@property (nonatomic, readonly, nullable) ScheduleWidgetCacheKeyName name;
 
 @end
 

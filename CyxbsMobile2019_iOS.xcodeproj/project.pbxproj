@@ -47,6 +47,9 @@
 		14371D9529AE1AFF00DFD1F1 /* ScheduleCustomEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14371D9429AE1AFF00DFD1F1 /* ScheduleCustomEditView.m */; };
 		14371D9829AE3BB200DFD1F1 /* ScheduleCustomEditCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14371D9729AE3BB200DFD1F1 /* ScheduleCustomEditCollectionViewCell.m */; };
 		1441BF7C291FF29200591A0E /* UserAgreementConsentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1441BF7B291FF29200591A0E /* UserAgreementConsentView.m */; };
+		1448589D29E1208D002C12E6 /* ScheduleEventCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448589C29E1208D002C12E6 /* ScheduleEventCache.m */; };
+		144858A029E164C5002C12E6 /* ScheduleEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448589F29E164C5002C12E6 /* ScheduleEventTableViewCell.m */; };
+		144858A129E27AA6002C12E6 /* ScheduleEventCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448589C29E1208D002C12E6 /* ScheduleEventCache.m */; };
 		1448BFF52961CC830015768E /* WidgetKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AF72961516B0046E7BE /* WidgetKitHelper.swift */; };
 		1448BFF829627E350015768E /* ScheduleWidgetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448BFF729627E350015768E /* ScheduleWidgetCache.m */; };
 		1448BFF9296280FD0015768E /* ScheduleWidgetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448BFF729627E350015768E /* ScheduleWidgetCache.m */; };
@@ -211,6 +214,10 @@
 		14371D9729AE3BB200DFD1F1 /* ScheduleCustomEditCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCustomEditCollectionViewCell.m; sourceTree = "<group>"; };
 		1441BF7A291FF29200591A0E /* UserAgreementConsentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAgreementConsentView.h; sourceTree = "<group>"; };
 		1441BF7B291FF29200591A0E /* UserAgreementConsentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAgreementConsentView.m; sourceTree = "<group>"; };
+		1448589B29E1208D002C12E6 /* ScheduleEventCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleEventCache.h; sourceTree = "<group>"; };
+		1448589C29E1208D002C12E6 /* ScheduleEventCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleEventCache.m; sourceTree = "<group>"; };
+		1448589E29E164C5002C12E6 /* ScheduleEventTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleEventTableViewCell.h; sourceTree = "<group>"; };
+		1448589F29E164C5002C12E6 /* ScheduleEventTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleEventTableViewCell.m; sourceTree = "<group>"; };
 		1448BFF629627E350015768E /* ScheduleWidgetCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleWidgetCache.h; sourceTree = "<group>"; };
 		1448BFF729627E350015768E /* ScheduleWidgetCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleWidgetCache.m; sourceTree = "<group>"; };
 		14545CD929CA9B8D001C0908 /* RyTrottingHorseLampLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RyTrottingHorseLampLabel.m; sourceTree = "<group>"; };
@@ -229,6 +236,7 @@
 		14592A5F29516246006EB674 /* ScheduleAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleAPI.m; sourceTree = "<group>"; };
 		14592A6A2954659F006EB674 /* ScheduleShareCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleShareCache.h; sourceTree = "<group>"; };
 		14592A6B2954659F006EB674 /* ScheduleShareCache.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ScheduleShareCache.mm; sourceTree = "<group>"; };
+		14624AFF29E06D3700562E9D /* CyxbsWidgetExtensionRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CyxbsWidgetExtensionRelease.entitlements; sourceTree = "<group>"; };
 		1463DC50298E32F5002758B2 /* student2022214857.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = student2022214857.plist; sourceTree = "<group>"; };
 		1463DC51298E32F5002758B2 /* student2021215154.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = student2021215154.plist; sourceTree = "<group>"; };
 		1463DC7929926BBF002758B2 /* ScheduleWidgetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleWidgetRequest.swift; sourceTree = "<group>"; };
@@ -639,12 +647,16 @@
 		14545D2B29DAEDA8001C0908 /* Rising Schedule Event */ = {
 			isa = PBXGroup;
 			children = (
-				14545D2429DA5ABD001C0908 /* ScheduleEventViewController.h */,
-				14545D2529DA5ABD001C0908 /* ScheduleEventViewController.m */,
 				14647A7229DD158100DED34A /* ScheduleWebHppleViewController.h */,
 				14647A7329DD158100DED34A /* ScheduleWebHppleViewController.m */,
+				14545D2429DA5ABD001C0908 /* ScheduleEventViewController.h */,
+				14545D2529DA5ABD001C0908 /* ScheduleEventViewController.m */,
 				14545D2C29DBFA16001C0908 /* ScheduleEventTableViewHeaderView.h */,
 				14545D2D29DBFA16001C0908 /* ScheduleEventTableViewHeaderView.m */,
+				1448589E29E164C5002C12E6 /* ScheduleEventTableViewCell.h */,
+				1448589F29E164C5002C12E6 /* ScheduleEventTableViewCell.m */,
+				1448589B29E1208D002C12E6 /* ScheduleEventCache.h */,
+				1448589C29E1208D002C12E6 /* ScheduleEventCache.m */,
 			);
 			path = "Rising Schedule Event";
 			sourceTree = "<group>";
@@ -797,6 +809,7 @@
 		1A9B765E235F50A600725937 = {
 			isa = PBXGroup;
 			children = (
+				14624AFF29E06D3700562E9D /* CyxbsWidgetExtensionRelease.entitlements */,
 				14100AE5295F021C0046E7BE /* CyxbsWidgetExtensionDebug.entitlements */,
 				1A9B7669235F50A600725937 /* CyxbsMobile2019_iOS */,
 				1A9B7682235F50A900725937 /* CyxbsMobile2019_iOSTests */,
@@ -1247,6 +1260,7 @@
 				14100AFB29615DB80046E7BE /* ScheduleShareCache.mm in Sources */,
 				1448BFF9296280FD0015768E /* ScheduleWidgetCache.m in Sources */,
 				141008E7295E88E20046E7BE /* ScheduleProvider.swift in Sources */,
+				144858A129E27AA6002C12E6 /* ScheduleEventCache.m in Sources */,
 				14D6459529616280001315B1 /* ScheduleMapModel.m in Sources */,
 				14880A4E296EB55A00BC5368 /* ScheduleWidgetPriview.swift in Sources */,
 				141008F7295E8B7A0046E7BE /* ScheduleSystemLarge.swift in Sources */,
@@ -1325,6 +1339,8 @@
 				14E844F628FC40090037309F /* ScheduleDetailController.m in Sources */,
 				14D1C52429BF54C000B5BF51 /* SchedulePlaceholderCollectionViewCell.m in Sources */,
 				14E66AA7295C8AC90043CBE7 /* ScheduleTimelineSupport.m in Sources */,
+				1448589D29E1208D002C12E6 /* ScheduleEventCache.m in Sources */,
+				144858A029E164C5002C12E6 /* ScheduleEventTableViewCell.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
 				14B7E420295C4A150033653D /* AnimatedTransitioningSupport.m in Sources */,
 				140F666729779C750075C50A /* ScheduleCustomViewController.m in Sources */,
@@ -1400,7 +1416,7 @@
 				CODE_SIGN_ENTITLEMENTS = CyxbsWidgetExtensionDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CyxbsWidget/Info.plist;
@@ -1433,8 +1449,9 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_ENTITLEMENTS = CyxbsWidgetExtensionRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CyxbsWidget/Info.plist;
@@ -1586,7 +1603,7 @@
 				CODE_SIGN_ENTITLEMENTS = CyxbsMobile2019_iOS/CyxbsMobile2019_iOSDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
@@ -1649,7 +1666,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";

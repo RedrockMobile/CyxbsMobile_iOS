@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NSString * ScheduleWidgetCacheKeyName;
+typedef NSString * ScheduleWidgetCacheKeyName NS_STRING_ENUM;
 FOUNDATION_EXTERN ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyMain;
 FOUNDATION_EXPORT ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyCustom;
 FOUNDATION_EXTERN ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyOther;

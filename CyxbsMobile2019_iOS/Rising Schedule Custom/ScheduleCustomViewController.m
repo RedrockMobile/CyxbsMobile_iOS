@@ -139,9 +139,10 @@
     self.courseIfNeeded.teacher = @"自定义";
     self.courseIfNeeded.type = @"事务";
     NSString *string = view.sections.description;
-    NSRange range = [string rangeOfString:@"("];
-    NSRange endRange = [string rangeOfString:@")"];
-    NSRange extractRange = NSMakeRange(range.location, endRange.location - range.location);
+    NSLog(@"descrip %@", string);
+    NSRange range = [string rangeOfString:@"indexes: ("];
+    NSRange endRange = [string rangeOfString:@")]"];
+    NSRange extractRange = NSMakeRange(NSMaxRange(range), endRange.location - NSMaxRange(range));
     self.courseIfNeeded.rawWeek = [NSString stringWithFormat:@"%@周", [string substringWithRange:extractRange]];
     
     if (self.delegate) {

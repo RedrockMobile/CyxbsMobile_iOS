@@ -41,21 +41,26 @@ struct ScheduleProvider: IntentTimelineProvider {
         Task {
             do {
                 var entries: [ScheduleTimelineEntry] = []
-                let mainKey = ScheduleWidgetCache().getKeyWithKeyName(ScheduleWidgetCacheKeyMain, usingSupport: true)
-                let otherKey = ScheduleWidgetCache().getKeyWithKeyName(ScheduleWidgetCacheKeyOther, usingSupport: true)
+                
+                let mainKey = ScheduleWidgetCache().getKeyWithKeyName(.main, usingSupport: true)
+                let customKey = ScheduleWidgetCache().getKeyWithKeyName(.custom, usingSupport: true)
+                let otherKey = ScheduleWidgetCache().getKeyWithKeyName(.other, usingSupport: true)
                 
                 var mainItem: ScheduleCombineItem?
                 var otherItem: ScheduleCombineItem?
                 var customItem: ScheduleCombineItem?
                 
                 if let mainKey = mainKey {
-                    mainItem = try await ScheduleWidgetRequest.shared.request(sno: mainKey.sno)
-                    customItem = ScheduleWidgetRequest.shared.request(custom: mainKey.sno)
-                    if ScheduleWidgetCache().beDouble, let otherKey = otherKey {
+                    if ScheduleWidgetCache().status(forKey: mainKey.key, withName: .widget) {
+                        mainItem = try await ScheduleWidgetRequest.shared.request(sno: mainKey.sno)
+                    }
+                    if let customKey = customKey, ScheduleWidgetCache().status(forKey: customKey.key, withName: .widget) {
+                        customItem = ScheduleWidgetRequest.shared.request(custom: mainKey.sno)
+                    }
+                    if let otherKey = otherKey, ScheduleWidgetCache().status(forKey: otherKey.key, withName: .widget) {
                         otherItem = try await ScheduleWidgetRequest.shared.request(sno: otherKey.sno)
                     }
                 }
-                
                 
                 let currentDate = Date()
                 for hourOffset in 0 ..< 12 {

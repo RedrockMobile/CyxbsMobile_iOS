@@ -7,7 +7,6 @@
 //
 
 #import "ScheduleWidgetCache.h"
-
 #import "CyxbsWidgetSupport.h"
 
 ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyMain = @"ScheduleWidgetCacheKeyMain";

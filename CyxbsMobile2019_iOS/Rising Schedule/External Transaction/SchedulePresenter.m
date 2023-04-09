@@ -7,13 +7,10 @@
 //
 
 #import "SchedulePresenter.h"
-
 #import "ScheduleController.h"
 
-#import "ScheduleWidgetCache.h"
-
+#import "ScheduleEventCache.h"
 #import "ScheduleServiceSolve.h"
-
 #import "掌上重邮-Swift.h"
 
 #pragma mark - SchedulePresenter ()
@@ -103,6 +100,7 @@
     }
     
     [ScheduleWidgetCache.shareCache setKey:main withKeyName:ScheduleWidgetCacheKeyMain usingSupport:YES];
+    [ScheduleWidgetCache.shareCache setKey:[ScheduleIdentifier identifierWithSno:main.sno type:ScheduleModelRequestCustom] withKeyName:ScheduleWidgetCacheKeyCustom usingSupport:YES];
     ScheduleWidgetCache.shareCache.beDouble = NO;
     
     _service.model.sno = main.sno;
@@ -111,7 +109,6 @@
         ScheduleModelRequestCustom : @[main.sno]
     };
     _service.onShow = ScheduleModelShowSingle;
-    
     [self _widgetReload];
 }
 
@@ -135,11 +132,7 @@
     };
     _service.onShow = ScheduleModelShowDouble;
     
-    [self _widgetReload];
-}
-
-- (void)setWidgetSection:(NSInteger)section {
-    ScheduleWidgetCache.shareCache.widgetSection = section;
+    [ScheduleWidgetCache.shareCache setFirstCache];
     [self _widgetReload];
 }
 

@@ -10,6 +10,7 @@
 
 #import "ScheduleCombineItemSupport.h"
 #import "ScheduleCourse.h"
+#import "ScheduleWidgetCache.h"
 
 #import <WebKit/WebKit.h>
 #import <hpple/TFHpple.h>
@@ -28,10 +29,11 @@
 
 @implementation ScheduleWebHppleViewController
 
-- (instancetype)initWithSno:(NSString *)sno {
+- (instancetype)initWithKey:(ScheduleIdentifier *)key forName:(ScheduleWidgetCacheKeyName)name {
     self = [super init];
     if (self) {
-        _sno = sno;
+        _key = key;
+        _name = name;
     }
     return self;
 }
@@ -46,7 +48,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.view addSubview:self.reloadBtn];
+    [self.view addSubview:self.backBtn];
     [self.view addSubview:self.reloadBtn];
     [self.view addSubview:self.webView];
     [self _reloadRequest];
@@ -93,7 +95,7 @@
 }
 
 - (void)_reloadRequest {
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://jwzx.cqupt.edu.cn/kebiao/kb_stu.php?xh=%@", self.sno]]]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://jwzx.cqupt.edu.cn/kebiao/kb_stu.php?xh=%@", self.key.sno]]]];
 }
 
 - (void)_callDelegateWithMsg:(NSString *)msg {
@@ -103,6 +105,26 @@
 }
 
 #pragma mark - <WKNavigationDelegate>
+
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    NSURL *url = navigationAction.request.URL;
+    if ([url.path isEqualToString:@"/rump_frontend/login"]) {
+        decisionHandler(WKNavigationActionPolicyCancel);
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"未连接内网" message:@"请连接内网后再次尝试" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"重试" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self _reloadRequest];
+        }];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [self _cancel:self.backBtn];
+        }];
+        [alertController addAction:okAction];
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
+    } else {
+        decisionHandler(WKNavigationActionPolicyAllow);
+    }
+}
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     // !!!: regexSearch(正则, 原文)
@@ -142,7 +164,7 @@
             return;
         }
         
-        ScheduleIdentifier *key = [ScheduleIdentifier identifierWithSno:self.sno type:ScheduleModelRequestStudent];
+        ScheduleIdentifier *key = self.key.copy;
         NSMutableArray <ScheduleCourse *> *valueAry = NSMutableArray.array;
         
         NSString *http = (NSString *)result;
@@ -218,6 +240,10 @@
         ScheduleCombineItem *finItem = [ScheduleCombineItem combineItemWithIdentifier:key value:valueAry.copy];
         if (self.delegate && [self.delegate respondsToSelector:@selector(viewController:didHppleItem:)]) {
             [self.delegate viewController:self didHppleItem:finItem];
+        }
+        [ScheduleShareCache.shareCache cacheItem:finItem];
+        if (self.name) {
+            [ScheduleWidgetCache.shareCache setKey:finItem.identifier withKeyName:self.name usingSupport:YES];
         }
     }];
 }

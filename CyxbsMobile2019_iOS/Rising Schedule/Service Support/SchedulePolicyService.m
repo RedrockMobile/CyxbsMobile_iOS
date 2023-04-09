@@ -53,6 +53,9 @@ static SchedulePolicyService * _currentPolicy;
         }
         // 有则判时间，无则直接unknow
         if (item) {
+            if (item.identifier.type == ScheduleModelRequestCustom) {
+                ScheduleNETRequest.current.customItem = item;
+            }
             if (item.identifier.iat - NSDate.date.timeIntervalSince1970 >= self.outRequestTime) {
                 hadOutTime[item.identifier.key] = item;
                 [unknowKey addObject:item.identifier];

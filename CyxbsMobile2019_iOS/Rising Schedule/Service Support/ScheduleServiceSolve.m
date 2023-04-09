@@ -17,7 +17,6 @@
 #import "ScheduleDetailController.h"
 #import "ScheduleCustomViewController.h"
 #import "ScheduleEventViewController.h"
-#import "ScheduleWebHppleViewController.h"
 
 #pragma mark - ScheduleServiceSolve ()
 
@@ -94,21 +93,18 @@
         switch (self.onShow) {
             case ScheduleModelShowGroup:
                 [self.headerView setShowMuti:NO isSingle:YES];
-//                self.headerView.calenderEdit = NO;
                 break;
             case ScheduleModelShowSingle:
                 [self.headerView setShowMuti:YES isSingle:YES];
-//                self.headerView.calenderEdit = YES;
                 break;
             case ScheduleModelShowDouble:
                 [self.headerView setShowMuti:YES isSingle:NO];
-//                self.headerView.calenderEdit = YES;
                 break;
             case ScheduleModelShowWidget:
                 [self.headerView setShowMuti:YES isSingle:self.headerView.isSingle];
-//                self.headerView.calenderEdit = YES;
                 break;
         }
+        self.headerView.calenderEdit = (self.onShow != self.headerView.calenderEdit);
     }
 }
 
@@ -271,10 +267,11 @@
 }
 
 - (void)scheduleHeaderViewDidTapCalender:(ScheduleHeaderView *)view {
-    ScheduleWebHppleViewController *root = [[ScheduleWebHppleViewController alloc] init];
+    ScheduleEventViewController *vc = [[ScheduleEventViewController alloc] init];
+    UIViewController *root = [[UINavigationController alloc] initWithRootViewController:vc];
     TransitioningDelegate *transitionDelegate = [[TransitioningDelegate alloc] init];
     transitionDelegate.transitionDurationIfNeeded = 0.3;
-    transitionDelegate.supportedTapOutsideBackWhenPresent = YES;
+    transitionDelegate.supportedTapOutsideBackWhenPresent = NO;
     root.transitioningDelegate = transitionDelegate;
     root.modalPresentationStyle = UIModalPresentationCustom;
     [self.viewController presentViewController:root animated:YES completion:nil];

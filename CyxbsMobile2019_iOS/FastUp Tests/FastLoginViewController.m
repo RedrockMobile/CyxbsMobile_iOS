@@ -170,7 +170,7 @@
 
 - (void)_toWebView:(UITapGestureRecognizer *)tap {
     UITextField *view = (UITextField *)tap.view.superview.superview;
-    ScheduleWebHppleViewController *vc = [[ScheduleWebHppleViewController alloc] initWithSno:view.text];
+    ScheduleWebHppleViewController *vc = [[ScheduleWebHppleViewController alloc] initWithKey:[ScheduleIdentifier identifierWithSno:view.text type:ScheduleModelRequestStudent] forName:(view == self.snoField ? ScheduleWidgetCacheKeyMain : ScheduleWidgetCacheKeyOther)];
     vc.delegate = self;
     vc.modalPresentationStyle = UIModalPresentationCustom;
     TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
@@ -239,14 +239,6 @@
 #pragma mark - <ScheduleWebHppleViewController>
 
 - (void)viewController:(ScheduleWebHppleViewController *)viewController didHppleItem:(ScheduleCombineItem *)item {
-    
-    if ([item.identifier.sno isEqualToString:self.snoField.text]) {
-        [ScheduleWidgetCache.shareCache setKey:item.identifier withKeyName:ScheduleWidgetCacheKeyMain usingSupport:YES];
-    }
-    if ([item.identifier.sno isEqualToString:self.otherField.text]) {
-        [ScheduleWidgetCache.shareCache setKey:item.identifier withKeyName:ScheduleWidgetCacheKeyOther usingSupport:YES];
-    }
-    [ScheduleShareCache.shareCache cacheItem:item];
     [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
     [viewController dismissViewControllerAnimated:YES completion:nil];
 }

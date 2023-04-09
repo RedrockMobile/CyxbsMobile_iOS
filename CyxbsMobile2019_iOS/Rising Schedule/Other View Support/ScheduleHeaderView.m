@@ -7,7 +7,6 @@
 //
 
 #import "ScheduleHeaderView.h"
-
 #import "ScheduleNeedsSupport.h"
 
 #pragma mark - ScheduleHeaderView ()
@@ -109,7 +108,8 @@
 
 - (UIImageView *)calenderImgView {
     if (_calenderImgView == nil) {
-        _calenderImgView = [[UIImageView alloc] initWithFrame:CGRectMake(-1, -1, 18, 18)];
+        _calenderImgView = [[UIImageView alloc] initWithFrame:CGRectMake(-1, -1, 22, 18)];
+        _calenderImgView.contentMode = UIViewContentModeScaleAspectFit;
         _calenderImgView.hidden = YES;
         _calenderImgView.right = self.doubleImgView.left - 23;
         _calenderImgView.centerY = self.reBackBtn.centerY;
