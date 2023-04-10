@@ -11,16 +11,16 @@
 NS_ASSUME_NONNULL_BEGIN
 @protocol IdsBindingViewDelegate <NSObject>
 
--(void)touchBindingButton;
+- (void)touchBindingButton;
 
 @end
 
 @interface IdsBindingView : UIView
-@property (nonatomic, weak)UITextField*accountfield;
-@property (nonatomic, weak)UITextField *passTextfield;
-@property(nonatomic, weak)UIButton *bindingButton;
+@property (nonatomic, weak) UITextField *accountfield;
+@property (nonatomic, weak) UITextField *passTextfield;
+@property (nonatomic, weak) UIButton *bindingButton;
 
-@property (nonatomic, weak)id<IdsBindingViewDelegate> delegate;
+@property (nonatomic, weak) id <IdsBindingViewDelegate> delegate;
 
 @end
 

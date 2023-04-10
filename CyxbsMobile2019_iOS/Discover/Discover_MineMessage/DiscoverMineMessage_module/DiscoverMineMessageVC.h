@@ -6,6 +6,7 @@
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
+// 发现首页顶部中消息按钮的小VC
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN

@@ -9,9 +9,8 @@
 #import "CalendarViewController.h"
 
 @interface CalendarViewController ()
+
 @property (strong, nonatomic) UIScrollView *scrollView;
-@property (strong, nonatomic) UIImageView *calendarView1;
-@property (strong, nonatomic) UIImageView *calendarView2;
 
 @end
 
@@ -19,17 +18,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.view.backgroundColor = [UIColor whiteColor];
-    
-    UIScrollView *scrollView = [[UIScrollView alloc] init];
-    scrollView.frame = self.view.bounds;
-    [self.view addSubview:scrollView];
+    self.view.backgroundColor = UIColor.whiteColor;
+    [self.view addSubview:self.scrollView];
     
     UIImageView *imageView = [[UIImageView alloc] init];
     NSURL *url = [NSURL URLWithString:Discover_schoolCalendar_API];
-    [imageView sd_setImageWithURL:url completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-        if (image==nil) {
+    [imageView
+     sd_setImageWithURL:url
+     completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+        if (image == nil) {
             [NewQAHud showHudWith:@"加载失败～" AddView:self.view];
             return;
         }
@@ -38,19 +35,19 @@
         
         imageView.frame = CGRectMake(0, 0, MAIN_SCREEN_W, (image.size.height / image.size.width) * MAIN_SCREEN_W);
         
-        scrollView.contentSize = CGSizeMake(0, imageView.height);
-        
+        self.scrollView.contentSize = CGSizeMake(0, imageView.height);
     }];
-    [scrollView addSubview:imageView];
+    [self.scrollView addSubview:imageView];
     
     [self setBackButton];
 }
 
-#pragma mark - 返回按钮
+#pragma mark - Method
+
 - (void)setBackButton {
     // 返回按钮
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    [backButton setImage:[UIImage imageNamed:@"我的返回"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"calendar_back"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backButton];
     
@@ -67,5 +64,13 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - Getter
+
+- (UIScrollView *)scrollView {
+    if (_scrollView == nil) {
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, STATUSBARHEIGHT, self.view.bounds.size.width, self.view.bounds.size.height - STATUSBARHEIGHT)];
+    }
+    return _scrollView;
+}
 
 @end

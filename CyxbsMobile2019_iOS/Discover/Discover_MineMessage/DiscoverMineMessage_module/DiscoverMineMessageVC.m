@@ -58,21 +58,6 @@
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
-    
-//    [HttpClient.defaultClient.httpSessionManager
-//     GET:Discover_GET_userHadRead_API
-//     parameters:nil
-//     headers:@{
-//        @"authorization" : [NSString stringWithFormat:@"Bearer %@", UserItemTool.defaultItem.token]
-//    }
-//     progress:nil
-//     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        BOOL hadread = [responseObject[@"data"][@"has"] boolValue];
-//        self.hadRead = hadread;
-//    }
-//     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//        
-//    }];
 }
 
 // MARK: SEL

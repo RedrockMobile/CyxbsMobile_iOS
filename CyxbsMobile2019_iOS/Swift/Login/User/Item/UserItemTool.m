@@ -10,7 +10,6 @@
 #import "LoginVC.h"
 //#import "LoginViewController.h"
 #import <UMPush/UMessage.h>
-#import "ArchiveTool.h"
 
 #import "PostArchiveTool.h"
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
@@ -83,7 +82,7 @@
     
 //    [UserItem defaultItem].token = nil;
     
-    [ArchiveTool deleteFile];
+//    [ArchiveTool deleteFile];
     [PostArchiveTool removePostModel];
     [PostArchiveTool removeGroupModel];
     [PostArchiveTool removeHotWordModel];

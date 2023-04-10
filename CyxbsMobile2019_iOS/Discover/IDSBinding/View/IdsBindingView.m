@@ -9,11 +9,12 @@
 #import "IdsBindingView.h"
 
 @interface IdsBindingView()
-@property (nonatomic, strong)UILabel *hintLabel;
-@property (nonatomic, weak)UIImageView *accountIcon;
-@property (nonatomic, weak)UIImageView *passwdIcon;
+@property (nonatomic, strong) UILabel *hintLabel;
+@property (nonatomic, weak) UIImageView *accountIcon;
+@property (nonatomic, weak) UIImageView *passwdIcon;
 
 @end
+
 @implementation IdsBindingView
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -107,18 +108,12 @@
         make.right.equalTo(self).offset(-48);
     }];
 }
-//MARK: delegate
+
+// MARK: delegate
 -(void)touchIDSBindingButton {
     if([self.delegate respondsToSelector:@selector(touchBindingButton)]) {
         [self.delegate touchBindingButton];
     }
 }
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 @end
