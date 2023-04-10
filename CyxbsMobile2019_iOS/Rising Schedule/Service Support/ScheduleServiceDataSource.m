@@ -13,6 +13,7 @@
 #import "ScheduleCollectionViewCell.h"
 #import "ScheduleSupplementaryCollectionViewCell.h"
 #import "SchedulePlaceholderCollectionViewCell.h"
+#import "ScheduleLeadingHolderCollectionViewCell.h"
 
 #pragma mark - ScheduleServiceDataSource ()
 
@@ -67,6 +68,7 @@
     [*view registerClass:ScheduleSupplementaryCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier]; // section header
     [*view registerClass:ScheduleSupplementaryCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier]; // section leading
     [*view registerClass:SchedulePlaceholderCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionPlaceholder withReuseIdentifier:SchedulePlaceholderCollectionViewCellReuseIdentifier]; // section placeholder
+    [*view registerClass:ScheduleLeadingHolderCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionHolder withReuseIdentifier:ScheduleLeadingHolderCollectionViewCellReuseIdentifier]; // section holder
     
     (*view).dataSource = self;
     (*view).delegate = self;
@@ -125,8 +127,8 @@
     // muti
     cell.isMuti = viewModel.hadMuti;
     
-    cell.oneLenth = (viewModel.lenth == 1) ;
-    
+    cell.oneLenth = (viewModel.lenth == 1);
+        
     return cell;
 }
 
@@ -201,6 +203,14 @@
         return cell;
     }
     
+    if (kind == UICollectionElementKindSectionHolder) {
+        ScheduleLeadingHolderCollectionViewCell *cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:ScheduleLeadingHolderCollectionViewCellReuseIdentifier forIndexPath:indexPath];
+        
+        cell.markingHolder = (ScheduleLeadingHolderMarking)indexPath.item;
+        
+        return cell;
+    }
+    
     return nil;
 }
 
@@ -215,6 +225,9 @@
     }
     if (kind == UICollectionElementKindSectionPlaceholder) {
         return section >= _model.courseIdxPaths.count ? 1 : (_model.courseIdxPaths[section].count == 0 ? 1 : 0);
+    }
+    if (kind == UICollectionElementKindSectionHolder) {
+        return 1;
     }
     return 0;
 }
@@ -232,6 +245,15 @@
   lenthForLocationIndexPath:(NSIndexPath *)indexPath {
     ScheduleCollectionViewModel *vm = [_model.mapTable objectForKey:indexPath];
     return vm.lenth;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(ScheduleCollectionViewLayout *)layout
+    persentAtSupIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) {
+        return _model.timeline.percent;
+    }
+    return 0;
 }
 
 #pragma mark - <UIScrollViewDelegate>

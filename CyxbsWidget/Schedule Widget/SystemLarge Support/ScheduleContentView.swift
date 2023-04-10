@@ -18,8 +18,12 @@ struct ScheduleContentView: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 8, style: .continuous)
-                .foregroundColor(draw.color(.background, scheme))
+            if (draw == .custem) {
+                Image("lineline")
+                    .resizable(resizingMode: .tile)
+            } else {
+                draw.color(.background, scheme)
+            }
             VStack {
                 TypeText(title)
                     .padding(.top, 8)
@@ -40,6 +44,7 @@ struct ScheduleContentView: View {
                 }
             }
         }
+        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
     
     enum DrawType {
@@ -194,7 +199,7 @@ struct ScheduleContentView_Previews: PreviewProvider {
                 .frame(width: 46, height: 100)
             ScheduleContentView(title: "体育俱乐部俱乐部俱乐部", content: "灯光篮球场3号羽毛球场", draw: .afternoon, muti: false)
                 .frame(width: 46, height: 100)
-            ScheduleContentView(title: "空格", content: "空格", draw: .empty, muti: true)
+            ScheduleContentView(title: "空格", content: "空格", draw: .custem, muti: true)
                 .frame(width: 46, height: 100)
             ScheduleContentView(title: "晚上了", content: "2107", draw: .night, muti: true)
                 .frame(width: 46, height: 100)

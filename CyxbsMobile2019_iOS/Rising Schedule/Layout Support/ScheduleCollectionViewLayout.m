@@ -34,7 +34,8 @@
         _supplementaryAttributes = @{
             UICollectionElementKindSectionHeader : NSMutableDictionary.dictionary,
             UICollectionElementKindSectionLeading : NSMutableDictionary.dictionary,
-            UICollectionElementKindSectionPlaceholder : NSMutableDictionary.dictionary
+            UICollectionElementKindSectionPlaceholder : NSMutableDictionary.dictionary,
+            UICollectionElementKindSectionHolder : NSMutableDictionary.dictionary
         }.mutableCopy;
     }
     return self;
@@ -135,14 +136,14 @@
     NSString *elementKind = attributes.representedElementKind;
     
     // Header Element
-    if ([elementKind isEqualToString:UICollectionElementKindSectionHeader]) {
+    if (elementKind == UICollectionElementKindSectionHeader) {
         if (indexPath.item == 0) {
             CGFloat x = indexPath.section * self.collectionView.width;
             CGFloat y = self.collectionView.contentOffset.y;
             CGRect frame = CGRectMake(x, y, self.widthForLeadingSupplementaryView, self.heightForHeaderSupplementaryView);
             
             attributes.frame = frame;
-            attributes.zIndex = 100;
+            attributes.zIndex = 10;
             
             return;
         }
@@ -152,13 +153,13 @@
         CGRect frame = CGRectMake(x, y, _itemSize.width, self.heightForHeaderSupplementaryView);
         
         attributes.frame = frame;
-        attributes.zIndex = 100;
+        attributes.zIndex = 10;
         
         return;
     }
     
     // Leading Element
-    if ([elementKind isEqualToString:UICollectionElementKindSectionLeading]) {
+    if (elementKind == UICollectionElementKindSectionLeading) {
         CGFloat x = indexPath.section * self.collectionView.width;
         CGFloat y = self.heightForHeaderSupplementaryView + indexPath.item * (self.lineSpacing + _itemSize.height);
         
@@ -170,7 +171,7 @@
     }
     
     // Placeholder Element
-    if ([elementKind isEqualToString:UICollectionElementKindSectionPlaceholder]) {
+    if (elementKind == UICollectionElementKindSectionPlaceholder) {
         CGFloat x = indexPath.section * self.collectionView.width + self.widthForLeadingSupplementaryView;
         CGFloat y = self.collectionView.contentOffset.y;// + self.heightForHeaderSupplementaryView;
         CGFloat width = self.collectionView.width - self.widthForLeadingSupplementaryView;
@@ -180,7 +181,27 @@
         
         attributes.frame = frame;
         
-        return ;
+        return;
+    }
+    
+    // Holder Element
+    if (elementKind == UICollectionElementKindSectionHolder) {
+        CGFloat x = indexPath.section * self.collectionView.width;
+        CGFloat persent = [self.dataSource collectionView:self.collectionView layout:self persentAtSupIndexPath:indexPath];
+        CGFloat y = (persent - 1) * (self.itemSize.height + self.lineSpacing) + self.heightForHeaderSupplementaryView;
+        
+        CGSize size = CGSizeZero;
+        if (indexPath.item == 0) {
+            CGFloat width = self.widthForLeadingSupplementaryView;
+            size = CGSizeMake(width, width / 28 * 6);
+        }
+        
+        CGRect frame = {{x, y}, size};
+        
+        attributes.frame = frame;
+        attributes.zIndex = 5;
+        
+        return;
     }
 }
 
@@ -240,6 +261,25 @@
 }
 
 - (void)invalidateLayoutWithContext:(ScheduleCollectionViewLayoutInvalidationContext *)context {
+    
+    // invalidate Holder Supplementary
+    [_supplementaryAttributes[UICollectionElementKindSectionHolder] enumerateKeysAndObjectsUsingBlock:^(NSIndexPath * _Nonnull indexPath, UICollectionViewLayoutAttributes * _Nonnull attributes, BOOL * __unused stop) {
+        
+        CGFloat x = indexPath.section * self.collectionView.width;
+        CGFloat persent = [self.dataSource collectionView:self.collectionView layout:self persentAtSupIndexPath:indexPath];
+        CGFloat y = (persent - 1) * (self.itemSize.height + self.lineSpacing) + self.heightForHeaderSupplementaryView;
+        
+        CGSize size = CGSizeZero;
+        if (indexPath.item == 0) {
+            CGFloat width = self.widthForLeadingSupplementaryView;
+            size = CGSizeMake(width, width / 28 * 6);
+        }
+        
+        CGRect frame = {{x, y}, size};
+        
+        attributes.frame = frame;
+        attributes.zIndex = 5;
+    }];
     
     // invalidate Header Supplementary
     if (context.invalidateHeaderSupplementaryAttributes) {

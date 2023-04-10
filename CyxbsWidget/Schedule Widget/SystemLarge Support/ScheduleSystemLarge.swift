@@ -48,10 +48,9 @@ struct ScheduleSystemLarge: View {
                     ScheduleTopView(anyDate: topDate(), width: 23)
                         .frame(height: allEntry.size.width / 7)
                     
-                    HStack(spacing: 5) {
-                        ScheduleLeadingView(range: data.range)
-                            .padding(.leading, 5)
-                            .frame(width: 20)
+                    HStack(spacing: 0) {
+                        ScheduleLeadingView(range: data.range, persent: data.timeline.percent)
+                            .frame(width: 25)
                         GeometryReader { entryB in
                             if entry.combineItems.count != 0 {
                                 if data.data.count != 0 {
@@ -61,7 +60,7 @@ struct ScheduleSystemLarge: View {
                                         }
                                     }
                                 } else {
-                                    Text("test: \(entry.errorMsg!)")
+                                    Text("本周的这个时间段暂时无课，可以更换个性化以显示")
                                         .font(.system(size: 13))
                                         .padding()
                                 }
@@ -100,7 +99,7 @@ extension ScheduleSystemLarge {
         let idx = item.indexPath as NSIndexPath
         
         return ScheduleContentView(title: vm.title,
-                                   content: vm.content,
+                                   content: "\(vm.content)",
                                    draw: draw(vm.kind, locate: idx.location),
                                    muti: vm.hadMuti)
         .frame(width: itemWidth, height: itemHeight * CGFloat(vm.lenth) + 2.0 * CGFloat(vm.lenth - 1))

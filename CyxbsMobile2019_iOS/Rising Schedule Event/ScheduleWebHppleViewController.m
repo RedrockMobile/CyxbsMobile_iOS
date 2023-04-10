@@ -242,6 +242,7 @@
             [self.delegate viewController:self didHppleItem:finItem];
         }
         [ScheduleShareCache.shareCache cacheItem:finItem];
+        [ScheduleShareCache.shareCache replaceForKey:finItem.identifier.key];
         if (self.name) {
             [ScheduleWidgetCache.shareCache setKey:finItem.identifier withKeyName:self.name usingSupport:YES];
         }

@@ -14,9 +14,7 @@
 #import <UIKit/UIKit.h>
 
 #import "ScheduleCollectionViewLayoutSupport.h"
-
 #import "ScheduleCollectionViewDataSource.h"
-
 #import "NSIndexPath+Schedule.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -44,6 +42,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSInteger)collectionView:(UICollectionView *)collectionView
                      layout:(ScheduleCollectionViewLayout *)layout
   lenthForLocationIndexPath:(NSIndexPath *)indexPath;
+
+
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(ScheduleCollectionViewLayout *)layout
+    persentAtSupIndexPath:(NSIndexPath *)indexPath;
+
 
 @optional
 

@@ -17,14 +17,6 @@
 
 #import <YYKit/UIImage+YYAdd.h>
 
-// UICollectionElementKind
-
-FOUNDATION_EXPORT NSString *const UICollectionElementKindSectionLeading API_AVAILABLE(ios(6.0));
-
-FOUNDATION_EXPORT NSString *const UICollectionElementKindSectionTrailing API_AVAILABLE(ios(6.0));
-
-FOUNDATION_EXPORT NSString *const UICollectionElementKindSectionPlaceholder API_AVAILABLE(ios(6.0));
-
 FOUNDATION_EXPORT CGFloat StatusBarHeight(void);
 
 #endif /* RisingUIKitExtention_h */

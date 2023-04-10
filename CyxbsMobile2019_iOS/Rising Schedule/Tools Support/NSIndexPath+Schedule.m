@@ -8,6 +8,11 @@
 
 #import "NSIndexPath+Schedule.h"
 
+NSString *const UICollectionElementKindSectionLeading = @"UICollectionElementKindSectionLeading";
+NSString *const UICollectionElementKindSectionTrailing = @"UICollectionElementKindSectionTrailing";
+NSString *const UICollectionElementKindSectionPlaceholder = @"UICollectionElementKindSectionPlaceholder";
+NSString *const UICollectionElementKindSectionHolder = @"UICollectionElementKindSectionHolder";
+
 @implementation NSIndexPath (Schedule)
 
 + (instancetype)indexPathForLocation:(NSInteger)location inWeek:(NSInteger)week inSection:(NSInteger)section {

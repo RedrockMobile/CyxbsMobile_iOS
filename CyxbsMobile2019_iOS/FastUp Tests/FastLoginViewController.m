@@ -14,6 +14,7 @@
 
 #import "SearchPeopleViewController.h"
 #import "ScheduleWebHppleViewController.h"
+#import "CyxbsTabBarController.h"
 
 #import "TransitioningDelegate.h"
 
@@ -239,7 +240,10 @@
 #pragma mark - <ScheduleWebHppleViewController>
 
 - (void)viewController:(ScheduleWebHppleViewController *)viewController didHppleItem:(ScheduleCombineItem *)item {
-    [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
+    if ([self.snoField.text isEqualToString:item.identifier.sno]) {
+        CyxbsTabBarController *vc = (CyxbsTabBarController *)self.tabBarController;
+        [vc reloadScheduleBar];
+    }
     [viewController dismissViewControllerAnimated:YES completion:nil];
 }
 

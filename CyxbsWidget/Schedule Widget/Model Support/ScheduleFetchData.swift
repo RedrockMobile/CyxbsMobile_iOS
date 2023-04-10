@@ -42,7 +42,7 @@ class ScheduleFetchData: ScheduleMapModel {
             }
         } else {
             if let begin = exp {
-                return  Int(ceil(Date().timeIntervalSince(Date(timeIntervalSince1970: begin)) / (7.0 * 24 * 60 * 60)))
+                return Int(Date().timeIntervalSince(Date(timeIntervalSince1970: begin)) / (7.0 * 24 * 60 * 60) + 0.5) + 1
             } else {
                 return 0
             }

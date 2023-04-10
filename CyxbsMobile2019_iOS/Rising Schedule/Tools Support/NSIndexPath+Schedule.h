@@ -39,4 +39,11 @@ typedef NS_ENUM(NSUInteger, ScheduleCollectionViewLayoutTime) {
     ScheduleCollectionViewLayoutTimeNight
 };
 
+// UICollectionElementKind
+
+FOUNDATION_EXPORT NSString *const UICollectionElementKindSectionLeading API_AVAILABLE(ios(6.0));
+FOUNDATION_EXPORT NSString *const UICollectionElementKindSectionTrailing API_AVAILABLE(ios(6.0));
+FOUNDATION_EXPORT NSString *const UICollectionElementKindSectionPlaceholder API_AVAILABLE(ios(6.0));
+FOUNDATION_EXPORT NSString *const UICollectionElementKindSectionHolder API_AVAILABLE(ios(6.0));
+
 NS_HEADER_AUDIT_END(nullability, sendability)

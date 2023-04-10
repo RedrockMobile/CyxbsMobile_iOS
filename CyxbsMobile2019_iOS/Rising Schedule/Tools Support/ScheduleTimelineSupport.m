@@ -122,13 +122,13 @@
     switch (self.type) {
         case ScheduleTimelineSimple: {
             if (getSec(components) < getSec([self partTimelineAtPosition:0].fromComponents)) {
-                return 0;
+                return 1;
             }
             for (NSInteger i = 1; i <= self.count; i++) {
                 NSInteger from = getSec([self partTimelineAtPosition:i].fromComponents);
                 NSInteger to = getSec([self partTimelineAtPosition:i].toComponents);
                 if (nowsec >= from && nowsec < to) {
-                    return i + (nowsec - to) / (from - to);
+                    return i + ((CGFloat)(nowsec - from)) / (to - from);
                 }
             }
             for (NSInteger i = 1; i <= self.count - 1; i++) {

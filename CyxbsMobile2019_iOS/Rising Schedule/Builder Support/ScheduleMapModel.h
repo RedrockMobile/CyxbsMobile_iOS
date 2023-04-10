@@ -9,11 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #import "ScheduleCollectionViewModel.h"
-
 #import "ScheduleCombineItemSupport.h"
-
 #import "ScheduleTimelineSupport.h"
-
 #import "NSIndexPath+Schedule.h"
 
 NS_ASSUME_NONNULL_BEGIN

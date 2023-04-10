@@ -50,6 +50,7 @@
 		1448589D29E1208D002C12E6 /* ScheduleEventCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448589C29E1208D002C12E6 /* ScheduleEventCache.m */; };
 		144858A029E164C5002C12E6 /* ScheduleEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448589F29E164C5002C12E6 /* ScheduleEventTableViewCell.m */; };
 		144858A129E27AA6002C12E6 /* ScheduleEventCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448589C29E1208D002C12E6 /* ScheduleEventCache.m */; };
+		144858A429E2F6C2002C12E6 /* ScheduleLeadingHolderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 144858A329E2F6C2002C12E6 /* ScheduleLeadingHolderCollectionViewCell.m */; };
 		1448BFF52961CC830015768E /* WidgetKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AF72961516B0046E7BE /* WidgetKitHelper.swift */; };
 		1448BFF829627E350015768E /* ScheduleWidgetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448BFF729627E350015768E /* ScheduleWidgetCache.m */; };
 		1448BFF9296280FD0015768E /* ScheduleWidgetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448BFF729627E350015768E /* ScheduleWidgetCache.m */; };
@@ -218,6 +219,8 @@
 		1448589C29E1208D002C12E6 /* ScheduleEventCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleEventCache.m; sourceTree = "<group>"; };
 		1448589E29E164C5002C12E6 /* ScheduleEventTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleEventTableViewCell.h; sourceTree = "<group>"; };
 		1448589F29E164C5002C12E6 /* ScheduleEventTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleEventTableViewCell.m; sourceTree = "<group>"; };
+		144858A229E2F6C2002C12E6 /* ScheduleLeadingHolderCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleLeadingHolderCollectionViewCell.h; sourceTree = "<group>"; };
+		144858A329E2F6C2002C12E6 /* ScheduleLeadingHolderCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleLeadingHolderCollectionViewCell.m; sourceTree = "<group>"; };
 		1448BFF629627E350015768E /* ScheduleWidgetCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleWidgetCache.h; sourceTree = "<group>"; };
 		1448BFF729627E350015768E /* ScheduleWidgetCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleWidgetCache.m; sourceTree = "<group>"; };
 		14545CD929CA9B8D001C0908 /* RyTrottingHorseLampLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RyTrottingHorseLampLabel.m; sourceTree = "<group>"; };
@@ -458,6 +461,8 @@
 				1466283328C5CA4600AF584F /* ScheduleCollectionViewCell.m */,
 				14D1C52229BF54C000B5BF51 /* SchedulePlaceholderCollectionViewCell.h */,
 				14D1C52329BF54C000B5BF51 /* SchedulePlaceholderCollectionViewCell.m */,
+				144858A229E2F6C2002C12E6 /* ScheduleLeadingHolderCollectionViewCell.h */,
+				144858A329E2F6C2002C12E6 /* ScheduleLeadingHolderCollectionViewCell.m */,
 			);
 			path = "View Support";
 			sourceTree = "<group>";
@@ -1319,6 +1324,7 @@
 				14545D2629DA5ABD001C0908 /* ScheduleEventViewController.m in Sources */,
 				1435613028CCA93500EF6987 /* ScheduleServiceSolve.m in Sources */,
 				1422242628D9B31B009A4A54 /* RisingUIKitExtension.m in Sources */,
+				144858A429E2F6C2002C12E6 /* ScheduleLeadingHolderCollectionViewCell.m in Sources */,
 				14647A7729DFB20400DED34A /* PrintBeautifulLog.m in Sources */,
 				1441BF7C291FF29200591A0E /* UserAgreementConsentView.m in Sources */,
 				14B7E41D295C46D40033653D /* TransitioningDelegate.m in Sources */,
@@ -1416,7 +1422,7 @@
 				CODE_SIGN_ENTITLEMENTS = CyxbsWidgetExtensionDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CyxbsWidget/Info.plist;
@@ -1451,7 +1457,7 @@
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_ENTITLEMENTS = CyxbsWidgetExtensionRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CyxbsWidget/Info.plist;
@@ -1603,7 +1609,7 @@
 				CODE_SIGN_ENTITLEMENTS = CyxbsMobile2019_iOS/CyxbsMobile2019_iOSDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
@@ -1666,7 +1672,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
