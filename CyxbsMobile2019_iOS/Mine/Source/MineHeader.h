@@ -18,7 +18,7 @@
 #define Mine_POST_logIn_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke/token"]
 
 /// 登录时上传用户手机id，ip地址，生产厂商
-#define Mine_POST_loginInformation_API @"https://be-prod.redrock.cqupt.edu.cn/magipoke/token/record"
+#define Mine_POST_loginInformation_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke/token/record"]
 
 #pragma mark - Login
 /// 刷新token

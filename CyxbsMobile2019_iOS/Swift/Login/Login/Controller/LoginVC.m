@@ -145,7 +145,6 @@
 /// 获取设备的Vendor标识符
 - (NSString *)identifierForVendor {
     NSString *vendorID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    NSLog(@"Vendor ID: %@", vendorID);
     return vendorID;
 }
 
@@ -182,7 +181,6 @@
     struct utsname systemInfo;
     uname(&systemInfo);
     NSString *platform = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
-    NSLog(@"deviceManufacturer: %@", platform);
     return platform;
 }
 
@@ -209,8 +207,6 @@
     NSString *stuIDStr = self.mainView.tfViewArray[0].text;
     NSString *pwdStr = self.mainView.tfViewArray[1].text;
     
-    NSLog(@"🍋stuID：%@", stuIDStr);
-    NSLog(@"🍉stuCode：%@", pwdStr);
     // 4.1 展示hud
     self.loginingHud = [NewQAHud showNotHideHudWith:@"登录中..." AddView:self.mainView];
     
@@ -231,8 +227,8 @@
         [[UserItem defaultItem] getUserInfo];
         // 4.2.5 上传用户手机信息
         NSDictionary *param = @{@"phone": [self identifierForVendor],
-                                @"ip": [self getLocalWifiIPAddress],
-                                @"manufacturer": [self deviceManufacturer]
+                                @"manufacturer": [self deviceManufacturer],
+                                @"ip": [self getLocalWifiIPAddress]
         };
         [HttpTool.shareTool
          request:Mine_POST_loginInformation_API
@@ -241,8 +237,7 @@
          bodyParameters:param
          progress:nil
          success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-            // TODO: success
-            NSLog(@"🫥登陆信息上传成功");
+            
         }
          failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             
