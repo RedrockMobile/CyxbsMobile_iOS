@@ -45,6 +45,11 @@
     [self requestData];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self removeNotifications];
+}
+
 - (void)addEleView {
     ElectricityView *eleView = [[ElectricityView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 152)];
     self.eleView = eleView;
@@ -97,8 +102,6 @@
 - (void)reloadElectricViewIfNeeded {
 //    NSLog(@"%@",[UserItem defaultItem].room);
 //    NSLog(@"%@",[UserItem defaultItem].building);
-    //刷新前取消注册通知中心
-    [self removeNotifications];
     [self reloadViewController:self];
 }
 
