@@ -82,7 +82,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         [UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
     
     self.navigationController.navigationBar.hidden = YES;
-    
+
     if (self.loginStatus != AlreadyLogin) {
         [self presentToLogin];
         CCLog(@"needLogIn, %lud", self.loginStatus);
@@ -90,10 +90,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         [self RequestCheckinInfo];
         CCLog(@"LogIned, %lud", self.loginStatus);
     }
+
     self.navigationController.navigationBar.translucent = NO;
     self.classTabbarHeight = 58;
     self.classTabbarCornerRadius = 16;
-    if(((ClassTabBar *)(self.tabBarController.tabBar))
+    if (((ClassTabBar *)(self.tabBarController.tabBar))
        .classScheduleTabBarView == nil) {
         ClassScheduleTabBarView *classTabBarView =
         [[ClassScheduleTabBarView alloc] initWithFrame:
@@ -108,11 +109,12 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         ((ClassTabBar *)(self.tabBarController.tabBar))
             .classScheduleTabBarView.userInteractionEnabled = YES;
             
-        if(![NSUserDefaults.standardUserDefaults objectForKey:@"Mine_LaunchingWithClassScheduleView"] && classTabBarView.mySchedul!=nil){
+        if (![NSUserDefaults.standardUserDefaults objectForKey:@"Mine_LaunchingWithClassScheduleView"] && classTabBarView.mySchedul!=nil){
             [classTabBarView.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
             classTabBarView.mySchedul.fakeBar.alpha = 0;
             [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
         }
+
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentMySchedul) name:@"DiscoverVCShouldPresentMySchedul" object:nil];
     }
 }

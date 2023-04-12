@@ -14,13 +14,12 @@
 
 @interface ElectricViewController () <
     ElectricityViewDelegate
->
+    >
 
 /// 电费View
 @property (nonatomic, weak) ElectricityView *eleView;
 /// 电费Model
 @property (nonatomic, weak) ElectricFeeModel *elecModel;
-
 
 @end
 
@@ -28,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor dm_colorWithLightColor: [UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor: [UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     //只切上面的圆角
     UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, SCREEN_WIDTH, 1000) byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:CGSizeMake(16, 16)];
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
@@ -37,9 +36,9 @@
     self.view.layer.mask = maskLayer;
     //设置阴影
     self.view.layer.shadowOpacity = 0.33f;
-    self.view.layer.shadowColor = [UIColor dm_colorWithLightColor: [UIColor colorWithHexString:@"#AEB6D3" alpha:0.16] darkColor: [UIColor colorWithHexString:@"#AEB6D3" alpha:0.16]].CGColor;
+    self.view.layer.shadowColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#AEB6D3" alpha:0.16] darkColor:[UIColor colorWithHexString:@"#AEB6D3" alpha:0.16]].CGColor;
     self.view.layer.shadowOffset = CGSizeMake(0, -5);
-    
+
     [self addEleView];
     [self addNotifications];
     [self requestData];
@@ -52,6 +51,7 @@
 
 - (void)addEleView {
     ElectricityView *eleView = [[ElectricityView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 152)];
+
     self.eleView = eleView;
     eleView.delegate = self;
     [self.view addSubview:eleView];
@@ -59,11 +59,13 @@
 
 - (void)requestData {
     ElectricFeeModel *elecModel = [[ElectricFeeModel alloc] init];
+
     self.elecModel = elecModel;
 }
 
 - (void)touchElectrictyView {
     PickerDormitoryViewController *vc = [[PickerDormitoryViewController alloc] init];
+
     vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     //填充全屏(原视图不会消失)
     vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
@@ -74,12 +76,14 @@
 
 - (void)bindingRoomFailed {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
     [hud setMode:(MBProgressHUDModeText)];
     hud.labelText = @"绑定的宿舍号可能有问题哦，请重新绑定";
     [UserItem defaultItem].building = nil;
     [UserItem defaultItem].room = nil;
     [hud hide:YES afterDelay:1.2];
 }
+
 - (void)requestElectricFeeFailed {
 //    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 //    [hud setMode:(MBProgressHUDModeText)];
@@ -88,13 +92,14 @@
 //    return;
 //    [NewQAHud showHudWith:@"电费查询服务器开小差了哦，请稍后重试" AddView:self.view];
 }
+
 - (void)updateElectricFeeUI {
     //先写入缓存
     [NSUserDefaults.standardUserDefaults setObject:self.elecModel.electricFeeItem.money forKey:@"ElectricFee_money"];
     [NSUserDefaults.standardUserDefaults setObject:self.elecModel.electricFeeItem.degree forKey:@"ElectricFee_degree"];
     [NSUserDefaults.standardUserDefaults setObject:self.elecModel.electricFeeItem.time forKey:@"ElectricFee_time"];
     [self.eleView refreshViewIfNeeded];
-    [self.eleView.electricFeeMoney setTitle: self.elecModel.electricFeeItem.money forState:UIControlStateNormal];
+    [self.eleView.electricFeeMoney setTitle:self.elecModel.electricFeeItem.money forState:UIControlStateNormal];
     //self.eleView.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
     //这里读缓存以后日期的样式就改回去了，所以先屏蔽
 }
@@ -107,12 +112,13 @@
 
 - (void)reloadViewController:(UIViewController *)viewController {
     NSArray *subviews = [viewController.view subviews];
+
     if (subviews.count > 0) {
         for (UIView *sub in subviews) {
             [sub removeFromSuperview];
         }
     }
-    
+
     [viewController viewWillDisappear:YES];
     [viewController viewDidDisappear:YES];
     [viewController viewDidLoad];

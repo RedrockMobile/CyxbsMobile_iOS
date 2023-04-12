@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ElectricityView : UIView
 
-@property (nonatomic, weak)id<ElectricityViewDelegate> delegate;
+@property (nonatomic, weak) id<ElectricityViewDelegate> delegate;
 //@property (nonatomic, weak)UIButton *electricFee;//电费二级页面按钮
 /// 电费查询部分
 @property (nonatomic, weak) UILabel *electricFeeTitle;//”电费查询“
@@ -33,11 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) UIButton *bindingButton;//点击之后跳转绑定宿舍
 
 /// 当有数据的时候调用这个方法更新为有预览的视图
-- (void) refreshViewIfNeeded;
+- (void)refreshViewIfNeeded;
 @end
 
 NS_ASSUME_NONNULL_END
-
-
-
-

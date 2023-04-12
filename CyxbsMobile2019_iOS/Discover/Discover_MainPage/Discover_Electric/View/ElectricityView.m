@@ -7,19 +7,11 @@
 //
 
 #import "ElectricityView.h"
-@interface ElectricityView()
+@interface ElectricityView ()
 
 @end
 
 @implementation ElectricityView
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -27,41 +19,48 @@
         [self addTitle];
         [self addSeperateLine];
         [self setUIDefaults];//对自身进行设置
-        if([UserItem defaultItem].building && [UserItem defaultItem].room) {
+
+        if ([UserItem defaultItem].building && [UserItem defaultItem].room) {
             [self addBindingView];
-        }else {
+        } else {
             [self addNoBindingView];
         }
         [self addClearButton];//添加透明按钮用来在被点击后设置宿舍
     }
     return self;
 }
+
 - (void)setUIDefaults {
-     if (@available(iOS 11.0, *)) {
-         self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
+    if (@available(iOS 11.0, *)) {
+        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
-//    self.layer.shadowOpacity = 0.16f;
-//    self.layer.shadowColor = [UIColor colorWithRed:174/255.0 green:182/255.0 blue:211/255.0 alpha:1].CGColor;
-//    self.layer.shadowOffset = CGSizeMake(0, 5);
-//    self.layer.cornerRadius = 25;
+
+    //    self.layer.shadowOpacity = 0.16f;
+    //    self.layer.shadowColor = [UIColor colorWithRed:174/255.0 green:182/255.0 blue:211/255.0 alpha:1].CGColor;
+    //    self.layer.shadowOffset = CGSizeMake(0, 5);
+    //    self.layer.cornerRadius = 25;
     self.clipsToBounds = YES;
 }
+
 - (void)addNoBindingView {
     [self addHintLabel];
 }
+
 - (void)removeUnbindingView {
-//    [self.electricFeeTitle removeFromSuperview];
+    //    [self.electricFeeTitle removeFromSuperview];
     [self.hintLabel removeFromSuperview];
 }
+
 - (void)addClearButton {
-    UIButton * button = [[UIButton alloc]init];
+    UIButton *button = [[UIButton alloc]init];
+
     [button addTarget:self action:@selector(touchSelf) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:button];
     self.clearButton = button;
-
 }
+
 //被点击时调用的方法
 - (void)touchSelf {
     if ([self.delegate respondsToSelector:@selector(touchElectrictyView)]) {
@@ -74,20 +73,20 @@
     [self addBindingView];
 }
 
-
 //MARK: 公共部分
 - (void)addTitle {
     UILabel *title = [[UILabel alloc] init];//左上角标题
+
     self.electricFeeTitle = title;
     title.text = @"电费查询";
-    title.font = [UIFont fontWithName:PingFangSCBold size: 18];
+    title.font = [UIFont fontWithName:PingFangSCBold size:18];
     title.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     [self addSubview:title];
-
 }
 
 - (void)addSeperateLine {
     UIView *line = [[UIView alloc]init];
+
     line.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:0.5]];
     [self addSubview:line];
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -99,16 +98,16 @@
 //MARK: 未绑定部分
 - (void)addHintLabel {
     UILabel *hintLabel = [[UILabel alloc]init];
+
     self.hintLabel = hintLabel;
     hintLabel.text = @"还未绑定账号哦～";
-    hintLabel.font = [UIFont fontWithName:PingFangSCLight size: 15];
+    hintLabel.font = [UIFont fontWithName:PingFangSCLight size:15];
     hintLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     [self addSubview:hintLabel];
-
 }
 
 //MARK: 绑定部分
-- (void) addBindingView {
+- (void)addBindingView {
 //    [self addSubview:self.electricFee];
     //其中涉及网络请求的有time,money,degree
     [self addTime];
@@ -120,124 +119,140 @@
     [self addHintRight];
     self.layer.shadowColor = [UIColor blackColor].CGColor;
     self.layer.shadowOpacity = 0.16f;
-    self.layer.shadowColor = [UIColor colorWithRed:174/255.0 green:182/255.0 blue:211/255.0 alpha:1].CGColor;
+    self.layer.shadowColor = [UIColor colorWithRed:174 / 255.0 green:182 / 255.0 blue:211 / 255.0 alpha:1].CGColor;
     self.layer.shadowOffset = CGSizeMake(0, 5);
 }
 
 - (void)addTime {
-    if(self.electricFeeTime) {
+    if (self.electricFeeTime) {
         [self.electricFeeTime removeFromSuperview];
     }
+
     UILabel *timeLab = [[UILabel alloc]init];//右上角抄表时间
     self.electricFeeTime = timeLab;
     NSString *timeStr = [NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_time"];
+
     if (timeLab != NULL) {
         NSString *elecTime =
         [[NSDate dateString:timeStr
               fromFormatter:NSDateFormatter.defaultFormatter
              withDateFormat:@"yyyy.M.dd"]
-         stringFromFormatter:NSDateFormatter.defaultFormatter
-         withDateFormat:@"M月d日抄表"];
+        stringFromFormatter:NSDateFormatter.defaultFormatter
+             withDateFormat:@"M月d日抄表"];
         timeLab.text = elecTime;
-    }else {
+    } else {
         timeLab.text = @"加载失败";
     }
+
     timeLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     timeLab.alpha = 0.54;
-    timeLab.font = [UIFont fontWithName:PingFangSCLight size: 10];
+    timeLab.font = [UIFont fontWithName:PingFangSCLight size:10];
     [self addSubview:timeLab];
 }
 
 - (void)addMoney {
-    if(self.electricFeeMoney) {
+    if (self.electricFeeMoney) {
         [self.electricFeeMoney removeFromSuperview];
     }
+
     UIButton *money = [[UIButton alloc]init];//左边数字
     self.electricFeeMoney = money;
+
     if ([NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_money"] != NULL) {
         [money setTitle:[NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_money"] forState:UIControlStateNormal];
-    }else {
+    } else {
         [money setTitle:@"0" forState:UIControlStateNormal];
     }
-//    money.text = @"0";
+
+    //    money.text = @"0";
     if (@available(iOS 11.0, *)) {
         [money setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]] forState:UIControlStateNormal];
     } else {
         // Fallback on earlier versions
     }
-    money.titleLabel.font = [UIFont fontWithName:ImpactMedium size: 36];
+
+    money.titleLabel.font = [UIFont fontWithName:ImpactMedium size:36];
     [self addSubview:money];
 }
 
 - (void)addDegree {
-    if(self.electricFeeDegree) {
+    if (self.electricFeeDegree) {
         [self.electricFeeDegree removeFromSuperview];
     }
+
     UILabel *degree = [[UILabel alloc]init];//右边数字
     self.electricFeeDegree = degree;
-    if ([NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_degree"]){
+
+    if ([NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_degree"]) {
         degree.text = [NSString stringWithFormat:@"%@", [NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_degree"]];
-    }else {
+    } else {
         degree.text = @"0";
     }
+
     if (@available(iOS 11.0, *)) {
         degree.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
     } else {
         // Fallback on earlier versions
     }
-    degree.font = [UIFont fontWithName: ImpactMedium size: 36];
+
+    degree.font = [UIFont fontWithName:ImpactMedium size:36];
     [self addSubview:degree];
 }
 
 - (void)addYuan {
-    if(self.electricFeeYuan) {
+    if (self.electricFeeYuan) {
         [self.electricFeeYuan removeFromSuperview];
     }
+
     UILabel *yuan = [[UILabel alloc]init];//汉字“元”
     self.electricFeeYuan = yuan;
     yuan.text = @"元";
     yuan.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-    yuan.font = [UIFont fontWithName:PingFangSCMedium size: 13];
+    yuan.font = [UIFont fontWithName:PingFangSCMedium size:13];
     [self addSubview:yuan];
 }
 
 - (void)addDu {
-    if(self.electricFeeDu) {
+    if (self.electricFeeDu) {
         [self.electricFeeDu removeFromSuperview];
     }
+
     UILabel *du = [[UILabel alloc]init];//汉字“度”
     self.electricFeeDu = du;
     du.text = @"度";
     du.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-    du.font = [UIFont fontWithName:PingFangSCMedium size: 13];
+    du.font = [UIFont fontWithName:PingFangSCMedium size:13];
     [self addSubview:du];
 }
 
 - (void)addHintLeft {
-    if(self.electricFeeHintLeft) {
+    if (self.electricFeeHintLeft) {
         [self.electricFeeHintLeft removeFromSuperview];
     }
+
     UILabel *hintLeft = [[UILabel alloc]init];//汉字“费用、本月”
     self.electricFeeHintLeft = hintLeft;
     hintLeft.text = @"费用/本月";
-    hintLeft.font = [UIFont fontWithName:PingFangSCLight size: 13];
+    hintLeft.font = [UIFont fontWithName:PingFangSCLight size:13];
     hintLeft.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     hintLeft.alpha = 0.6;
     [self addSubview:hintLeft];
 }
 
 - (void)addHintRight {
-    if(self.electricFeeHintRight) {
+    if (self.electricFeeHintRight) {
         [self.electricFeeHintRight removeFromSuperview];
     }
+
     UILabel *hintRight = [[UILabel alloc] init];//汉字“使用度数，本月”
     self.electricFeeHintRight = hintRight;
-        hintRight.text = @"使用度数/本月";
-    hintRight.font = [UIFont fontWithName:PingFangSCLight size: 13];
+    hintRight.text = @"使用度数/本月";
+    hintRight.font = [UIFont fontWithName:PingFangSCLight size:13];
     hintRight.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     hintRight.alpha = 0.6;
     [self addSubview:hintRight];
 }
+
 - (void)layoutSubviews {
     [self.clearButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(self);
