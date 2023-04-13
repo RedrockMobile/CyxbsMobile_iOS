@@ -19,7 +19,7 @@
 #import "CalendarViewController.h"         // 校历
 #import "DiscoverADModel.h"                // banner
 #import "SchoolBusVC.h"                    // 校车
-#import "ElectricViewController.h"         //电费
+#import "ElectricViewController.h"         // 电费
 
 // View
 #import "FinderView.h"
@@ -281,27 +281,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self addChildViewController:vc];
     [self.contentView addSubview:self.electricViewVC.view];
     
-    
     UIView *view = [[UIView alloc]init];//色块View
     self.colorView = view;
     self.colorView.backgroundColor = self.electricViewVC.view.backgroundColor;
     [self.contentView addSubview:self.colorView];
 
-}
-
-- (void)reloadViewController:(UIViewController *)viewController {
-    NSArray *subviews = [viewController.view subviews];
-    if (subviews.count > 0) {
-        for (UIView *sub in subviews) {
-            [sub removeFromSuperview];
-        }
-    }
-    [viewController viewWillDisappear:YES];
-    [viewController viewDidDisappear:YES];
-    [viewController viewDidLoad];
-    [viewController viewWillAppear:YES];
-    [viewController viewDidAppear:YES];
-    [viewController viewWillLayoutSubviews];
 }
 
 - (void)backToThisController{

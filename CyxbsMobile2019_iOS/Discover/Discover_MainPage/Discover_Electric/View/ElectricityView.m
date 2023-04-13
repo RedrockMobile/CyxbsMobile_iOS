@@ -19,7 +19,6 @@
         [self addTitle];
         [self addSeperateLine];
         [self setUIDefaults];//对自身进行设置
-
         if ([UserItem defaultItem].building && [UserItem defaultItem].room) {
             [self addBindingView];
         } else {
@@ -73,7 +72,7 @@
     [self addBindingView];
 }
 
-//MARK: 公共部分
+#pragma mark - 公共部分
 - (void)addTitle {
     UILabel *title = [[UILabel alloc] init];//左上角标题
 
@@ -95,7 +94,7 @@
     }];
 }
 
-//MARK: 未绑定部分
+#pragma mark - 未绑定部分
 - (void)addHintLabel {
     UILabel *hintLabel = [[UILabel alloc]init];
 
@@ -106,7 +105,7 @@
     [self addSubview:hintLabel];
 }
 
-//MARK: 绑定部分
+#pragma mark - 绑定部分
 - (void)addBindingView {
 //    [self addSubview:self.electricFee];
     //其中涉及网络请求的有time,money,degree

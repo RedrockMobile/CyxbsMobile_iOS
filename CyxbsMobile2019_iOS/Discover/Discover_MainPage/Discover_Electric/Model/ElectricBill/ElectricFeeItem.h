@@ -11,10 +11,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ElectricFeeItem : NSObject
+
 @property (nonatomic, copy) NSString *money;
 @property (nonatomic, copy) NSString *degree;
 @property (nonatomic, copy) NSString *time;
+
 - (instancetype)initWithDict:(NSDictionary *)dict;
+
 @end
 
 NS_ASSUME_NONNULL_END

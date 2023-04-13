@@ -11,7 +11,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol ElectricityViewDelegate <NSObject>
+
 - (void)touchElectrictyView;
+
 @end
 
 @interface ElectricityView : UIView
@@ -34,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 当有数据的时候调用这个方法更新为有预览的视图
 - (void)refreshViewIfNeeded;
+
 @end
 
 NS_ASSUME_NONNULL_END

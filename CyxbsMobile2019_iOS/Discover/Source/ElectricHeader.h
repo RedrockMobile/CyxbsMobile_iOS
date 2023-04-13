@@ -10,9 +10,8 @@
 #define ElectricHeader_h
 
 #pragma mark - API
-//在NewDetailViewController要单独改一下
+
 /// 电费
 #define Discover_POST_electricFee_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-elecquery/getElectric"]
-
 
 #endif /* ElectricHeader_h */

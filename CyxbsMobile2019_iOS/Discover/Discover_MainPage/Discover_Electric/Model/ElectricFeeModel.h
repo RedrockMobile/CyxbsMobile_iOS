@@ -11,7 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ElectricFeeModel : NSObject
-@property ElectricFeeItem *electricFeeItem;
+
+@property(nonatomic, strong) ElectricFeeItem *electricFeeItem;
 
 @end
 

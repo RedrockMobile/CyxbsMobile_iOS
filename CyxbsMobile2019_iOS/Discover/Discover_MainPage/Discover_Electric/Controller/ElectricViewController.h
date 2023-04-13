@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ElectricViewController : UIViewController
 
-- (void)reloadViewController:(UIViewController *)viewController;
-
 @end
 
 NS_ASSUME_NONNULL_END

@@ -6,9 +6,9 @@
 //  Copyright © 2023 Redrock. All rights reserved.
 //
 
-#import "ElectricViewController.h"
-#import "ElectricityView.h"
 #import "ElectricFeeModel.h"
+#import "ElectricityView.h"
+#import "ElectricViewController.h"
 #import "PickerDormitoryModel.h"
 #import "PickerDormitoryViewController.h"
 
@@ -54,12 +54,11 @@
 
     self.eleView = eleView;
     eleView.delegate = self;
-    [self.view addSubview:eleView];
+    [self.view addSubview:self.eleView];
 }
 
 - (void)requestData {
     ElectricFeeModel *elecModel = [[ElectricFeeModel alloc] init];
-
     self.elecModel = elecModel;
 }
 
@@ -107,24 +106,7 @@
 - (void)reloadElectricViewIfNeeded {
 //    NSLog(@"%@",[UserItem defaultItem].room);
 //    NSLog(@"%@",[UserItem defaultItem].building);
-    [self reloadViewController:self];
-}
-
-- (void)reloadViewController:(UIViewController *)viewController {
-    NSArray *subviews = [viewController.view subviews];
-
-    if (subviews.count > 0) {
-        for (UIView *sub in subviews) {
-            [sub removeFromSuperview];
-        }
-    }
-
-    [viewController viewWillDisappear:YES];
-    [viewController viewDidDisappear:YES];
-    [viewController viewDidLoad];
-    [viewController viewWillAppear:YES];
-    [viewController viewDidAppear:YES];
-    [viewController viewWillLayoutSubviews];
+    [self requestData];
 }
 
 /// 添加通知中心

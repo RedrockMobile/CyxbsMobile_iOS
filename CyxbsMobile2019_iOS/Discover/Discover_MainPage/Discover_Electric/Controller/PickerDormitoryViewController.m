@@ -6,8 +6,8 @@
 //  Copyright © 2023 Redrock. All rights reserved.
 //
 
-#import "PickerDormitoryViewController.h"
 #import "PickerDormitoryModel.h"
+#import "PickerDormitoryViewController.h"
 
 @interface PickerDormitoryViewController ()<
     UIPickerViewDelegate,
@@ -40,9 +40,9 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-//点击了绑定宿舍房间号
+//绑定宿舍房间号
 - (void)bindingBuildingAndRoom {
-    [self getPickerViewData];
+//    [self getPickerViewData];
     //添加灰色背景板
     UIButton *contentView = [[UIButton alloc] initWithFrame:self.view.frame];
     self.bindingDormitoryContentView = contentView;
@@ -209,10 +209,17 @@
     [self cancelLearnAbout];
 }
 
-- (void)getPickerViewData {
-    PickerDormitoryModel *pickerModel = [[PickerDormitoryModel alloc] init];
+//- (void)getPickerViewData {
+//    PickerDormitoryModel *pickerModel = [[PickerDormitoryModel alloc] init];
+//
+//    self.pickerDormitoryModel = pickerModel;
+//}
 
-    self.pickerDormitoryModel = pickerModel;
+- (PickerDormitoryModel *)pickerDormitoryModel {
+    if (!_pickerDormitoryModel) {
+        _pickerDormitoryModel = [[PickerDormitoryModel alloc] init];
+    }
+    return _pickerDormitoryModel;
 }
 
 - (void)reloadElectricViewIfNeeded {
@@ -283,23 +290,6 @@
     } else {
         return 45;
     }
-}
-
-- (void)reloadViewController:(UIViewController *)viewController {
-    NSArray *subviews = [viewController.view subviews];
-
-    if (subviews.count > 0) {
-        for (UIView *sub in subviews) {
-            [sub removeFromSuperview];
-        }
-    }
-
-    [viewController viewWillDisappear:YES];
-    [viewController viewDidDisappear:YES];
-    [viewController viewDidLoad];
-    [viewController viewWillAppear:YES];
-    [viewController viewDidAppear:YES];
-    [viewController viewWillLayoutSubviews];
 }
 
 @end
