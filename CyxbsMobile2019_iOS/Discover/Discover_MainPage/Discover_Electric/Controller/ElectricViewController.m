@@ -25,6 +25,8 @@
 
 @implementation ElectricViewController
 
+#pragma mark- life cicrle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
@@ -49,15 +51,17 @@
     [self removeNotifications];
 }
 
+#pragma mark - Method
 - (void)addEleView {
     ElectricityView *eleView = [[ElectricityView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 152)];
-
     self.eleView = eleView;
     eleView.delegate = self;
     [self.view addSubview:self.eleView];
 }
 
 - (void)requestData {
+//    NSLog(@"%@",[UserItem defaultItem].room);
+//    NSLog(@"%@",[UserItem defaultItem].building);
     ElectricFeeModel *elecModel = [[ElectricFeeModel alloc] init];
     self.elecModel = elecModel;
 }
@@ -71,11 +75,8 @@
     [self.navigationController presentViewController:vc animated:YES completion:nil];
 }
 
-#pragma mark - END
-
 - (void)bindingRoomFailed {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
     [hud setMode:(MBProgressHUDModeText)];
     hud.labelText = @"绑定的宿舍号可能有问题哦，请重新绑定";
     [UserItem defaultItem].building = nil;
@@ -103,16 +104,11 @@
     //这里读缓存以后日期的样式就改回去了，所以先屏蔽
 }
 
-- (void)reloadElectricViewIfNeeded {
-//    NSLog(@"%@",[UserItem defaultItem].room);
-//    NSLog(@"%@",[UserItem defaultItem].building);
-    [self requestData];
-}
-
+#pragma mark - 通知中心
 /// 添加通知中心
 - (void)addNotifications {
     //绑定成功后重新请求
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadElectricViewIfNeeded) name:@"electricFeeRoomChange" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestData) name:@"electricFeeRoomChange" object:nil];
     //绑定的宿舍号码有问题
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bindingRoomFailed) name:@"electricFeeRoomFailed" object:nil];
     //服务器可能有问题，电费信息请求失败
@@ -121,6 +117,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateElectricFeeUI) name:@"electricFeeDataSucceed" object:nil];
 }
 
+//移除通知中心
 - (void)removeNotifications {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"electricFeeRoomChange" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"electricFeeRoomFailed" object:nil];
