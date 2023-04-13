@@ -26,6 +26,10 @@
 @implementation ElectricViewController
 
 #pragma mark- life cicrle
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self addNotifications];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,7 +46,6 @@
     self.view.layer.shadowOffset = CGSizeMake(0, -5);
 
     [self addEleView];
-    [self addNotifications];
     [self requestData];
 }
 
@@ -99,7 +102,8 @@
     [NSUserDefaults.standardUserDefaults setObject:self.elecModel.electricFeeItem.degree forKey:@"ElectricFee_degree"];
     [NSUserDefaults.standardUserDefaults setObject:self.elecModel.electricFeeItem.time forKey:@"ElectricFee_time"];
     [self.eleView refreshViewIfNeeded];
-    [self.eleView.electricFeeMoney setTitle:self.elecModel.electricFeeItem.money forState:UIControlStateNormal];
+    [self.eleView.electricFeeMoney setText:self.elecModel.electricFeeItem.money];
+//    [self.eleView.electricFeeMoney setTitle:self.elecModel.electricFeeItem.money forState:UIControlStateNormal];
     //self.eleView.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
     //这里读缓存以后日期的样式就改回去了，所以先屏蔽
 }

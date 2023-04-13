@@ -154,23 +154,27 @@
         [self.electricFeeMoney removeFromSuperview];
     }
 
-    UIButton *money = [[UIButton alloc]init];//左边数字
+    UILabel *money = [[UILabel alloc]init];//左边数字
     self.electricFeeMoney = money;
 
     if ([NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_money"] != NULL) {
-        [money setTitle:[NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_money"] forState:UIControlStateNormal];
+        [money setText:[NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_money"]];
+//        [money setTitle:[NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_money"] forState:UIControlStateNormal];
     } else {
-        [money setTitle:@"0" forState:UIControlStateNormal];
+        [money setText:@"0"];
+//        [money setTitle:@"0" forState:UIControlStateNormal];
     }
 
     //    money.text = @"0";
     if (@available(iOS 11.0, *)) {
-        [money setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]] forState:UIControlStateNormal];
+        [money setTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]]];
+//        [money setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]] forState:UIControlStateNormal];
     } else {
         // Fallback on earlier versions
     }
 
-    money.titleLabel.font = [UIFont fontWithName:ImpactMedium size:36];
+    [money setFont:[UIFont fontWithName:ImpactMedium size:36]];
+//    money.titleLabel.font = [UIFont fontWithName:ImpactMedium size:36];
     [self addSubview:money];
 }
 
