@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 
 @interface ScheduleMapModel : NSObject {
+@protected
     NSMapTable <NSIndexPath *, NSPointerArray *> *_dayMap;
 }
 

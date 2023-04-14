@@ -11,9 +11,9 @@
 #import "FastLoginViewController.h"
 #import "UserAgreementViewController.h"
 
+#import "ScheduleNETRequest.h"
 #import "SchedulePresenter.h"
-#import "ScheduleWidgetCache.h"
-#import "SchedulePolicyService.h"
+#import "ScheduleShareCache.h"
 #import "ScheduleTouchItem.h"
 
 #import "ScheduleBar.h"
@@ -71,10 +71,10 @@
         [self presentViewController:vc animated:YES completion:nil];
         self.selectedIndex = 1;
     } else {
-        ScheduleIdentifier *main = [ScheduleWidgetCache.shareCache getKeyWithKeyName:ScheduleWidgetCacheKeyMain usingSupport:YES];
-        ScheduleIdentifier *other = [ScheduleWidgetCache.shareCache getKeyWithKeyName:ScheduleWidgetCacheKeyOther usingSupport:YES];
+        ScheduleIdentifier *main = [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyMain];
+        ScheduleIdentifier *other = [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyOther];
         if (!main) { return; }
-        if (ScheduleWidgetCache.shareCache.beDouble) {
+        if (other.useWidget == YES) {
             [self.schedulePresenter setWithMainKey:main otherKey:other];
         } else {
             [self.schedulePresenter setWithMainKey:main];
@@ -84,13 +84,11 @@
 }
 
 - (void)reloadScheduleBar {
-    ScheduleIdentifier *mainKey = [ScheduleWidgetCache.shareCache getKeyWithKeyName:ScheduleWidgetCacheKeyMain usingSupport:YES];
+    ScheduleIdentifier *mainKey = [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyMain];
     if (mainKey) {
-        SchedulePolicyService *policy = [[SchedulePolicyService alloc] init];
-        policy.outRequestTime = 45 * 60 * 60;
-        [policy requestDic:@{
+        [ScheduleNETRequest requestDic:@{
             ScheduleModelRequestStudent : @[mainKey.sno]
-        } policy:^(ScheduleCombineItem * _Nonnull item) {
+        } success:^(ScheduleCombineItem * _Nonnull item) {
             ScheduleTouchItem *touch = [[ScheduleTouchItem alloc] init];
             touch.combining = item;
             ScheduleCourse *now = touch.floorCourse;
@@ -103,7 +101,7 @@
                 self.scheduleBar.time = @"也许明天才有课";
                 self.scheduleBar.place = @"好好休息下吧";
             }
-        } unPolicy:^(ScheduleIdentifier * _Nonnull unpolicyKEY) {
+        } failure:^(NSError * _Nonnull error, ScheduleIdentifier * _Nonnull errorID) {
             self.scheduleBar.title = @"网络请求失败";
             self.scheduleBar.time = @"无法加载时间...";
             self.scheduleBar.place = @"无法加载地点...";

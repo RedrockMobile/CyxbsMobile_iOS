@@ -42,22 +42,22 @@ struct ScheduleProvider: IntentTimelineProvider {
             do {
                 var entries: [ScheduleTimelineEntry] = []
                 
-                let mainKey = ScheduleWidgetCache().getKeyWithKeyName(.main, usingSupport: true)
-                let customKey = ScheduleWidgetCache().getKeyWithKeyName(.custom, usingSupport: true)
-                let otherKey = ScheduleWidgetCache().getKeyWithKeyName(.other, usingSupport: true)
+                let mainKey = ScheduleShareCache.memoryKey(forKey: nil, forKeyName: .main)
+                let customKey = ScheduleShareCache.memoryKey(forKey: nil, forKeyName: .custom)
+                let otherKey = ScheduleShareCache.memoryKey(forKey: nil, forKeyName: .other)
                 
                 var mainItem: ScheduleCombineItem?
                 var otherItem: ScheduleCombineItem?
                 var customItem: ScheduleCombineItem?
                 
                 if let mainKey = mainKey {
-                    if ScheduleWidgetCache().status(forKey: mainKey.key, withName: .widget) {
+                    if mainKey.useWidget {
                         mainItem = try await ScheduleWidgetRequest.shared.request(sno: mainKey.sno)
                     }
-                    if let customKey = customKey, ScheduleWidgetCache().status(forKey: customKey.key, withName: .widget) {
+                    if let customKey = customKey, customKey.useWidget {
                         customItem = ScheduleWidgetRequest.shared.request(custom: mainKey.sno)
                     }
-                    if let otherKey = otherKey, ScheduleWidgetCache().status(forKey: otherKey.key, withName: .widget) {
+                    if let otherKey = otherKey, otherKey.useWidget {
                         otherItem = try await ScheduleWidgetRequest.shared.request(sno: otherKey.sno)
                     }
                 }

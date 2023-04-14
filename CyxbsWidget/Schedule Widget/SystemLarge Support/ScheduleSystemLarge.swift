@@ -99,7 +99,7 @@ extension ScheduleSystemLarge {
         let idx = item.indexPath as NSIndexPath
         
         return ScheduleContentView(title: vm.title,
-                                   content: "\(vm.content)",
+                                   content: vm.content,
                                    draw: draw(vm.kind, locate: idx.location),
                                    muti: vm.hadMuti)
         .frame(width: itemWidth, height: itemHeight * CGFloat(vm.lenth) + 2.0 * CGFloat(vm.lenth - 1))

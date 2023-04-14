@@ -7,7 +7,6 @@
 //
 
 #import "ScheduleNeedsSupport.h"
-
 #import "UIColor+Rising.h"
 
 NSTimeZone *CQTimeZone() {

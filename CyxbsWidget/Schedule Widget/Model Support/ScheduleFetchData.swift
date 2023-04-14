@@ -84,10 +84,12 @@ class ScheduleFetchData: ScheduleMapModel {
             exp = model.identifier.exp
         }
         
-        for key in self.mapTable.keyEnumerator().allObjects as! [NSIndexPath] {
+        for key in mapTable.keyEnumerator().allObjects as! [NSIndexPath] {
             if (key.section == section) {
-                let part = PartItem(indexPath: key, viewModel: self.mapTable.object(forKey: key)!)
-                data.append(part)
+                if let viewModel = mapTable.object(forKey: key) {
+                    let part = PartItem(indexPath: key, viewModel: viewModel)
+                    data.append(part)
+                }
             }
         }
     }

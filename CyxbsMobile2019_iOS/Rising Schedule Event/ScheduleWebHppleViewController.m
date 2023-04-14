@@ -10,7 +10,7 @@
 
 #import "ScheduleCombineItemSupport.h"
 #import "ScheduleCourse.h"
-#import "ScheduleWidgetCache.h"
+#import "ScheduleShareCache.h"
 
 #import <WebKit/WebKit.h>
 #import <hpple/TFHpple.h>
@@ -241,10 +241,9 @@
         if (self.delegate && [self.delegate respondsToSelector:@selector(viewController:didHppleItem:)]) {
             [self.delegate viewController:self didHppleItem:finItem];
         }
-        [ScheduleShareCache.shareCache cacheItem:finItem];
-        [ScheduleShareCache.shareCache replaceForKey:finItem.identifier.key];
+        [ScheduleShareCache.shareCache diskCacheItem:finItem forKeyName:nil];
         if (self.name) {
-            [ScheduleWidgetCache.shareCache setKey:finItem.identifier withKeyName:self.name usingSupport:YES];
+            [ScheduleShareCache memoryCacheItem:finItem forKeyName:self.name];
         }
     }];
 }

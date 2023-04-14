@@ -18,9 +18,10 @@
 }
 
 - (void)setCombining:(ScheduleCombineItem *)combining {
+    if (!combining) { return; }
     _combining = combining;
     
-    _startDate = _combining.identifier.exp < NSTimeIntervalSince1970 ? nil :
+    _startDate = _combining.identifier.exp <= 0 ? nil :
         [NSDate dateWithTimeIntervalSince1970:_combining.identifier.exp];
     for (ScheduleCourse *course in self.combining.value) {
         _lastSection = MAX(_lastSection, course.inSections.lastIndex);
@@ -28,7 +29,7 @@
 }
 
 - (NSInteger)nowWeek {
-    return (NSInteger)([NSDate.date timeIntervalSinceDate:self.startDate] / (7 * 24 * 60 * 60) + 0.5) + 1;
+    return (NSInteger)([NSDate.date timeIntervalSinceDate:self.startDate] / (7 * 24 * 60 * 60) + 0.5);
 }
 
 - (ScheduleCourse *)floorCourse {

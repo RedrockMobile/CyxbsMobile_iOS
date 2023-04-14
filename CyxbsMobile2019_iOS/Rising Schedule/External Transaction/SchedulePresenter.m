@@ -9,7 +9,7 @@
 #import "SchedulePresenter.h"
 #import "ScheduleController.h"
 
-#import "ScheduleEventCache.h"
+#import "ScheduleShareCache.h"
 #import "ScheduleServiceSolve.h"
 #import "掌上重邮-Swift.h"
 
@@ -61,15 +61,6 @@
 
 /* Next Request */
 
-- (void)setNextRequestDic:(ScheduleRequestDictionary *)nextRequestDic {
-    _service.parameterIfNeeded = nextRequestDic;
-}
-
-- (ScheduleRequestDictionary *)nextRequestDic {
-    return _service.parameterIfNeeded;
-}
-
-
 - (void)requestAndReloadDataWithRollback:(BOOL)rollBack {
     [self.service requestAndReloadData:^{
         if (rollBack) {
@@ -78,61 +69,41 @@
     }];
 }
 
-
-
-- (void)setAwakeable:(BOOL)awakeable {
-    self.service.awakeable = awakeable;
-    ScheduleShareCache.shareCache.awakeable = awakeable;
-}
-
-- (BOOL)awakeable {
-    return self.service.awakeable;
-}
-
 @end
 
 
 @implementation SchedulePresenter (ScheduleDouble)
 
 - (void)setWithMainKey:(ScheduleIdentifier *)main {
-    if (main == nil) {
-        return;
-    }
-    
-    [ScheduleWidgetCache.shareCache setKey:main withKeyName:ScheduleWidgetCacheKeyMain usingSupport:YES];
-    [ScheduleWidgetCache.shareCache setKey:[ScheduleIdentifier identifierWithSno:main.sno type:ScheduleModelRequestCustom] withKeyName:ScheduleWidgetCacheKeyCustom usingSupport:YES];
-    ScheduleWidgetCache.shareCache.beDouble = NO;
-    
+    // main check
+    if (main == nil) { return; }
+    [ScheduleShareCache.shareCache diskCacheKey:main forKeyName:ScheduleWidgetCacheKeyMain];
+    [ScheduleShareCache memoryCacheKey:main forKeyName:ScheduleWidgetCacheKeyMain];
+    // custom check
+    ScheduleIdentifier *custom = [ScheduleIdentifier identifierWithSno:main.sno type:ScheduleModelRequestCustom];
+    [ScheduleShareCache.shareCache diskCacheKey:custom forKeyName:ScheduleWidgetCacheKeyCustom];
+    [ScheduleShareCache memoryCacheKey:custom forKeyName:ScheduleWidgetCacheKeyCustom];
+    // service check
     _service.model.sno = main.sno;
-    _service.parameterIfNeeded = @{
-        ScheduleModelRequestStudent : @[main.sno],
-        ScheduleModelRequestCustom : @[main.sno]
-    };
+    _service.requestKeys = @[main, custom].mutableCopy;
+    _service.firstKey = main;
     _service.onShow = ScheduleModelShowSingle;
     [self _widgetReload];
 }
 
 - (void)setWithMainKey:(ScheduleIdentifier *)main otherKey:(ScheduleIdentifier *)other {
-    if (main == nil) {
-        return;
-    } else {
-        if (other == nil) {
-            return;
-        } else {
+    // check main & other
+    if (main == nil) { return; } else {
+        if (other == nil) { return; } else {
             [self setWithMainKey:main];
         }
     }
-    
-    [ScheduleWidgetCache.shareCache setKey:other withKeyName:ScheduleWidgetCacheKeyOther usingSupport:YES];
-    ScheduleWidgetCache.shareCache.beDouble = YES;
-    
-    _service.parameterIfNeeded = @{
-        ScheduleModelRequestStudent : @[main.sno, other.sno],
-        ScheduleModelRequestCustom : @[main.sno]
-    };
+    [ScheduleShareCache.shareCache diskCacheKey:other forKeyName:ScheduleWidgetCacheKeyOther];
+    [ScheduleShareCache memoryCacheKey:other forKeyName:ScheduleWidgetCacheKeyOther];
+    // service check
+    NSMutableArray *ary = (NSMutableArray *)_service.requestKeys;
+    [ary addObject:other];
     _service.onShow = ScheduleModelShowDouble;
-    
-    [ScheduleWidgetCache.shareCache setFirstCache];
     [self _widgetReload];
 }
 

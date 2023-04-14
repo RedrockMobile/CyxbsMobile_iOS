@@ -6,7 +6,7 @@
 //  Copyright © 2023 Redrock. All rights reserved.
 //
 
-#import "ScheduleEventCache.h"
+#import "ScheduleShareCache.h"
 #import "CyxbsWidgetSupport.h"
 
 #import "ScheduleMapModel.h"

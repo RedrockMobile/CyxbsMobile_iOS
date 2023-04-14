@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ScheduleWidgetCache.h"
+#import "ScheduleShareCache.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

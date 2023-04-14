@@ -10,7 +10,7 @@
 
 #import "ScheduleNeedsSupport.h"
 #import "SchedulePresenter.h"
-#import "ScheduleWidgetCache.h"
+#import "ScheduleShareCache.h"
 
 #import "SearchPeopleViewController.h"
 #import "ScheduleWebHppleViewController.h"
@@ -98,7 +98,7 @@
 - (UITextField *)snoField {
     if (_snoField == nil) {
         _snoField = [self _kindFieldWithPlaceholder:@"请输入您的学号" imgName:@"logo.sno"];
-        _snoField.text = [ScheduleWidgetCache.shareCache getKeyWithKeyName:ScheduleWidgetCacheKeyMain usingSupport:YES].sno;
+        _snoField.text = [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyMain].sno;
         _snoField.frame = CGRectMake(-1, StatusBarHeight() + 100, 281, 44);
         _snoField.centerX = self.view.width / 2;
     }
@@ -108,7 +108,7 @@
 - (UITextField *)otherField {
     if (_otherField == nil) {
         _otherField = [self _kindFieldWithPlaceholder:@"请输入对方的学号" imgName:@"logo.reset"];
-        _otherField.text = [ScheduleWidgetCache.shareCache getKeyWithKeyName:ScheduleWidgetCacheKeyOther usingSupport:YES].sno;
+        _otherField.text = [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyMain].sno;
         _otherField.frame = CGRectMake(-1, self.snoField.bottom + 22, 281, 44);
         _otherField.centerX = self.view.width / 2;
     }
@@ -203,7 +203,6 @@
 
 - (void)_outside:(UIButton *)btn {
     [NSUserDefaults.standardUserDefaults setBool:YES forKey:UDKey.isXXHB];
-    self.presenter.awakeable = YES;
     
     UIViewController *vc = [[SearchPeopleViewController alloc] init];
     

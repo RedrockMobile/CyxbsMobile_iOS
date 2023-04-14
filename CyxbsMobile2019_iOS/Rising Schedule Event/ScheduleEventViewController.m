@@ -10,7 +10,7 @@
 #import "ScheduleEventTableViewHeaderView.h"
 #import "ScheduleEventTableViewCell.h"
 
-#import "ScheduleEventCache.h"
+#import "ScheduleShareCache.h"
 #import "掌上重邮-Swift.h"
 
 @interface ScheduleEventViewController () <
@@ -32,9 +32,6 @@
 - (void)loadView {
     [super loadView];
     
-    _eventNameAry = @[
-        ScheduleEventCacheEventWidget, ScheduleEventCacheEventNotification, ScheduleEventCacheEventCalender
-    ];
     _cacheKeyAry = @[
         ScheduleWidgetCacheKeyMain, ScheduleWidgetCacheKeyCustom, ScheduleWidgetCacheKeyOther
     ];
@@ -45,7 +42,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [ScheduleWidgetCache.shareCache setFirstCache];
     
     self.view.backgroundColor =
     [UIColor Light:UIColorHex(#FFFFFF)
@@ -85,8 +81,8 @@
 }
 
 - (void)_setIndexPath:(NSIndexPath *)indexPath status:(BOOL)status withCell:(BOOL)cellChange {
-    ScheduleIdentifier *key = [ScheduleWidgetCache.shareCache getKeyWithKeyName:_cacheKeyAry[indexPath.row] usingSupport:YES];
-    [ScheduleWidgetCache.shareCache setKey:key.key forName:_eventNameAry[indexPath.section] onStatus:status];
+//    ScheduleIdentifier *key = [ScheduleShareCache.shareCache getKeyWithKeyName:_cacheKeyAry[indexPath.row] usingSupport:YES];
+//    [ScheduleShareCache.shareCache setKey:key.key forName:_eventNameAry[indexPath.section] onStatus:status];
     if (cellChange) {
         ScheduleEventTableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
         cell.switchOn = status;
@@ -114,11 +110,16 @@
     ScheduleEventTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ScheduleEventTableViewCellReuseIdentifier forIndexPath:indexPath];
     cell.delegate = self;
     
-    ScheduleIdentifier *key = [ScheduleWidgetCache.shareCache getKeyWithKeyName:_cacheKeyAry[indexPath.row] usingSupport:YES];
-    BOOL switchStatus = [ScheduleWidgetCache.shareCache statusForKey:key.key withName:_eventNameAry[indexPath.section]];
+//    ScheduleIdentifier *key = [ScheduleShareCache.shareCache getKeyWithKeyName:_cacheKeyAry[indexPath.row] usingSupport:YES];
+//    BOOL switchStatus = [ScheduleShareCache.shareCache statusForKey:key.key withName:_eventNameAry[indexPath.section]];
     
-    cell.title = key.key;
-    cell.switchOn = switchStatus;
+    NSString *type = @"无类型";
+//    if (key.type == ScheduleModelRequestStudent) { type = @"学生课表"; }
+//    if (key.type == ScheduleModelRequestCustom) { type = @"自定义事务"; }
+//    if (key.type == ScheduleModelRequestTeacher) { type = @"教师课表"; }
+    
+//    cell.title = [NSString stringWithFormat:@"学号:%@ - %@", key.sno, type];
+//    cell.switchOn = switchStatus;
     
     return cell;
 }

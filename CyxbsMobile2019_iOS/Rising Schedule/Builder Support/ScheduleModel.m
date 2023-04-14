@@ -37,7 +37,10 @@
     [super combineItem:model];
     _statusMap[model.identifier] = model.value;
     _courseIdxPaths = nil;
-    if ([model.identifier isEqual:[ScheduleIdentifier identifierWithSno:self.sno type:ScheduleModelRequestStudent]]) {
+    if (self.sno && [model.identifier isEqual:[ScheduleIdentifier identifierWithSno:self.sno type:ScheduleModelRequestStudent]]) {
+        self.touchItem.combining = model;
+    }
+    if (!self.sno && model.identifier.type != ScheduleModelRequestCustom) {
         self.touchItem.combining = model;
     }
 }

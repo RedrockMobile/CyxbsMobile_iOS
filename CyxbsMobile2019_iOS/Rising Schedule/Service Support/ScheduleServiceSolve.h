@@ -30,7 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /// request schedule
-@property (nonatomic, strong) ScheduleRequestDictionary *parameterIfNeeded;
+@property (nonatomic, strong, nonnull) NSArray <ScheduleIdentifier *> *requestKeys;
+@property (nonatomic, strong, nullable) ScheduleIdentifier *firstKey;
 
 @property (nonatomic) ScheduleModelShowType onShow;
 

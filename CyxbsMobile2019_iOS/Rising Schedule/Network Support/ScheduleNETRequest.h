@@ -13,25 +13,30 @@
  */
 
 #import <Foundation/Foundation.h>
-
 #import "ScheduleRequestType.h"
-
-#import "ScheduleCombineItemSupport.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class ScheduleWidgetCache;
+@class ScheduleCombineItem, ScheduleIdentifier, ScheduleCourse;
 
 @interface ScheduleNETRequest : NSObject
 
-+ (instancetype)current;
-@property (nonatomic, strong) ScheduleCombineItem *customItem;
+@property (nonatomic, strong, nonnull, class) ScheduleNETRequest *current;
+
+@property (nonatomic, strong, nonnull) ScheduleCombineItem *customItem;
+
+@property (nonatomic) NSTimeInterval outRequestTime;
 
 - (instancetype)init NS_UNAVAILABLE;
 
 + (instancetype)new NS_UNAVAILABLE;
 
-#pragma mark - Method
+@end
+
+
+#pragma mark - ScheduleNETRequest (Network)
+
+@interface ScheduleNETRequest (Network)
 
 /// 请求课表
 /// @param requestDictionary 一种字典，记录如下
@@ -41,39 +46,37 @@ NS_ASSUME_NONNULL_BEGIN
 /// 4) 混合课表 @{ScheduleModelRequestStudent : @[@"2021215154"], ScheduleModelRequestTeacher : @[@"040107"]}
 /// @param success 成功返回
 /// @param failure 失败返回
-+ (void)request:(ScheduleRequestDictionary *)requestDictionary
-        success:(void (^)(ScheduleCombineItem *item))success
-        failure:(void (^)(NSError *error, ScheduleIdentifier *errorID))failure;
-
-/// 新增事务
-/// @param course 一节自定义课，记录如下
-/// 1) 可使用属性: inWeek, inSections, period_location, period_lenth, course, classRoom
-/// 2) 自动权属性: type
-/// @param success 成功返回
-/// @param failure 失败返回
-- (void)appendCustom:(ScheduleCourse *)course
-             success:(void (^)(ScheduleCombineItem *item))success
-             failure:(void (^)(NSError *error))failure;
-
-/// 更改事务
-/// @param course 一节自定义课，记录如下
-/// 1) course必须为原来就拥有的一个模型
-/// 2) 若更改了**时间**，则视图应发生变化
-/// 3) 自定义检查标识符为courseID
-/// @param success 成功返回
-/// @param failure 失败返回
-- (void)editCustom:(ScheduleCourse *)course
++ (void)requestDic:(ScheduleRequestDictionary *)requestDictionary
            success:(void (^)(ScheduleCombineItem *item))success
-           failure:(void (^)(NSError *error))failure;
+           failure:(void (^)(NSError *error, ScheduleIdentifier *errorID))failure;
 
-/// 删除事务
-/// @param course course 一节自定义课，记录如下
-/// 1) 自定义检查标识符为customID
-/// @param success 成功返回
-/// @param failure 失败返回
++ (void)requestKeys:(NSArray <ScheduleIdentifier *> *)keys
+            success:(void (^)(ScheduleCombineItem *item))success
+            failure:(void (^)(NSError *error, ScheduleIdentifier *errorID))failure;
+
+@end
+
+
+
+#pragma mark - ScheduleNETRequest (Policy)
+
+@interface ScheduleNETRequest (Policy)
+
+- (void)policyKeys:(NSArray <ScheduleIdentifier *> *)keys
+           success:(void (^)(ScheduleCombineItem *item))success
+           failure:(void (^)(NSError *error, ScheduleIdentifier *errorID))failure;
+
+- (void)policyCustom:(ScheduleIdentifier *)cKey
+             success:(void (^)(ScheduleCombineItem *item))success;
+
+- (void)appendCustom:(ScheduleCourse *)course
+             success:(void (^)(ScheduleCombineItem *item))success;
+
+- (void)editCustom:(ScheduleCourse *)course
+           success:(void (^)(ScheduleCombineItem *item))success;
+
 - (void)deleteCustom:(ScheduleCourse *)course
-             success:(void (^)(ScheduleCombineItem *item))success
-             failure:(void (^)(NSError *error))failure;
+             success:(void (^)(ScheduleCombineItem *item))success;
 
 @end
 

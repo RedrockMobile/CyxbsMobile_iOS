@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		140F666729779C750075C50A /* ScheduleCustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 140F666629779C750075C50A /* ScheduleCustomViewController.m */; };
-		140F6699298218050075C50A /* SchedulePolicyService.m in Sources */ = {isa = PBXBuildFile; fileRef = 140F6698298218050075C50A /* SchedulePolicyService.m */; };
 		141008DF295E88E20046E7BE /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BC480F29164EB30063809E /* WidgetKit.framework */; };
 		141008E0295E88E20046E7BE /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14BC481129164EB30063809E /* SwiftUI.framework */; };
 		141008E3295E88E20046E7BE /* CyxbsWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141008E2295E88E20046E7BE /* CyxbsWidgetBundle.swift */; };
@@ -28,7 +27,6 @@
 		14100AEE296005F20046E7BE /* ScheduleLeadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AED296005F20046E7BE /* ScheduleLeadingView.swift */; };
 		14100AF029612DFE0046E7BE /* ScheduleTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AEF29612DFE0046E7BE /* ScheduleTopView.swift */; };
 		14100AF82961516B0046E7BE /* WidgetKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AF72961516B0046E7BE /* WidgetKitHelper.swift */; };
-		14100AFB29615DB80046E7BE /* ScheduleShareCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14592A6B2954659F006EB674 /* ScheduleShareCache.mm */; };
 		14100AFC29615DC10046E7BE /* ScheduleCourse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6028B4D283003D288B /* ScheduleCourse.mm */; };
 		14100AFD29615DCD0046E7BE /* ScheduleCombineItemSupport.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1459298A294A0083006EB674 /* ScheduleCombineItemSupport.mm */; };
 		14100AFE29615DF80046E7BE /* ScheduleTimelineSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E66AA6295C8AC90043CBE7 /* ScheduleTimelineSupport.m */; };
@@ -47,13 +45,9 @@
 		14371D9529AE1AFF00DFD1F1 /* ScheduleCustomEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14371D9429AE1AFF00DFD1F1 /* ScheduleCustomEditView.m */; };
 		14371D9829AE3BB200DFD1F1 /* ScheduleCustomEditCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14371D9729AE3BB200DFD1F1 /* ScheduleCustomEditCollectionViewCell.m */; };
 		1441BF7C291FF29200591A0E /* UserAgreementConsentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1441BF7B291FF29200591A0E /* UserAgreementConsentView.m */; };
-		1448589D29E1208D002C12E6 /* ScheduleEventCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448589C29E1208D002C12E6 /* ScheduleEventCache.m */; };
 		144858A029E164C5002C12E6 /* ScheduleEventTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448589F29E164C5002C12E6 /* ScheduleEventTableViewCell.m */; };
-		144858A129E27AA6002C12E6 /* ScheduleEventCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448589C29E1208D002C12E6 /* ScheduleEventCache.m */; };
 		144858A429E2F6C2002C12E6 /* ScheduleLeadingHolderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 144858A329E2F6C2002C12E6 /* ScheduleLeadingHolderCollectionViewCell.m */; };
 		1448BFF52961CC830015768E /* WidgetKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14100AF72961516B0046E7BE /* WidgetKitHelper.swift */; };
-		1448BFF829627E350015768E /* ScheduleWidgetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448BFF729627E350015768E /* ScheduleWidgetCache.m */; };
-		1448BFF9296280FD0015768E /* ScheduleWidgetCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1448BFF729627E350015768E /* ScheduleWidgetCache.m */; };
 		14545CDB29CA9B8D001C0908 /* RyTrottingHorseLampLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14545CD929CA9B8D001C0908 /* RyTrottingHorseLampLabel.m */; };
 		14545D2629DA5ABD001C0908 /* ScheduleEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14545D2529DA5ABD001C0908 /* ScheduleEventViewController.m */; };
 		14545D2E29DBFA16001C0908 /* ScheduleEventTableViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14545D2D29DBFA16001C0908 /* ScheduleEventTableViewHeaderView.m */; };
@@ -80,6 +74,7 @@
 		147C2E5F298221FB00F58266 /* ScheduleNeedsSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 147C2E5D298221F700F58266 /* ScheduleNeedsSupport.m */; };
 		14880A4E296EB55A00BC5368 /* ScheduleWidgetPriview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14880A4D296EB55A00BC5368 /* ScheduleWidgetPriview.swift */; };
 		14880A50296EBE9600BC5368 /* ScheduleTimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14880A4F296EBE9600BC5368 /* ScheduleTimelineEntry.swift */; };
+		14B2C84829E65F7300BEF2F8 /* ScheduleShareCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14592A6B2954659F006EB674 /* ScheduleShareCache.mm */; };
 		14B46E6128B4D283003D288B /* ScheduleCourse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6028B4D283003D288B /* ScheduleCourse.mm */; };
 		14B46E6528B4D5D7003D288B /* ScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6328B4D5D7003D288B /* ScheduleModel.m */; };
 		14B46E6A28B4E504003D288B /* ScheduleNETRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B46E6928B4E504003D288B /* ScheduleNETRequest.m */; };
@@ -165,8 +160,6 @@
 		140374D228DCB61A008EDFAD /* RisingSingleClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RisingSingleClass.h; sourceTree = "<group>"; };
 		140F666529779C750075C50A /* ScheduleCustomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCustomViewController.h; sourceTree = "<group>"; };
 		140F666629779C750075C50A /* ScheduleCustomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCustomViewController.m; sourceTree = "<group>"; };
-		140F6697298218050075C50A /* SchedulePolicyService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchedulePolicyService.h; sourceTree = "<group>"; };
-		140F6698298218050075C50A /* SchedulePolicyService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchedulePolicyService.m; sourceTree = "<group>"; };
 		141008DE295E88E20046E7BE /* CyxbsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CyxbsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		141008E2295E88E20046E7BE /* CyxbsWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyxbsWidgetBundle.swift; sourceTree = "<group>"; };
 		141008E4295E88E20046E7BE /* CyxbsWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyxbsWidgetLiveActivity.swift; sourceTree = "<group>"; };
@@ -215,14 +208,10 @@
 		14371D9729AE3BB200DFD1F1 /* ScheduleCustomEditCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCustomEditCollectionViewCell.m; sourceTree = "<group>"; };
 		1441BF7A291FF29200591A0E /* UserAgreementConsentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserAgreementConsentView.h; sourceTree = "<group>"; };
 		1441BF7B291FF29200591A0E /* UserAgreementConsentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserAgreementConsentView.m; sourceTree = "<group>"; };
-		1448589B29E1208D002C12E6 /* ScheduleEventCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleEventCache.h; sourceTree = "<group>"; };
-		1448589C29E1208D002C12E6 /* ScheduleEventCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleEventCache.m; sourceTree = "<group>"; };
 		1448589E29E164C5002C12E6 /* ScheduleEventTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleEventTableViewCell.h; sourceTree = "<group>"; };
 		1448589F29E164C5002C12E6 /* ScheduleEventTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleEventTableViewCell.m; sourceTree = "<group>"; };
 		144858A229E2F6C2002C12E6 /* ScheduleLeadingHolderCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleLeadingHolderCollectionViewCell.h; sourceTree = "<group>"; };
 		144858A329E2F6C2002C12E6 /* ScheduleLeadingHolderCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleLeadingHolderCollectionViewCell.m; sourceTree = "<group>"; };
-		1448BFF629627E350015768E /* ScheduleWidgetCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleWidgetCache.h; sourceTree = "<group>"; };
-		1448BFF729627E350015768E /* ScheduleWidgetCache.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleWidgetCache.m; sourceTree = "<group>"; };
 		14545CD929CA9B8D001C0908 /* RyTrottingHorseLampLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RyTrottingHorseLampLabel.m; sourceTree = "<group>"; };
 		14545CDA29CA9B8D001C0908 /* RyTrottingHorseLampLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RyTrottingHorseLampLabel.h; sourceTree = "<group>"; };
 		14545D2429DA5ABD001C0908 /* ScheduleEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleEventViewController.h; sourceTree = "<group>"; };
@@ -467,17 +456,6 @@
 			path = "View Support";
 			sourceTree = "<group>";
 		};
-		140F665C297671210075C50A /* Cache Support */ = {
-			isa = PBXGroup;
-			children = (
-				1448BFF629627E350015768E /* ScheduleWidgetCache.h */,
-				1448BFF729627E350015768E /* ScheduleWidgetCache.m */,
-				14592A6A2954659F006EB674 /* ScheduleShareCache.h */,
-				14592A6B2954659F006EB674 /* ScheduleShareCache.mm */,
-			);
-			path = "Cache Support";
-			sourceTree = "<group>";
-		};
 		140F665D297671300075C50A /* Service Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -485,8 +463,8 @@
 				1435612F28CCA93500EF6987 /* ScheduleServiceSolve.m */,
 				1466282428C4B1BD00AF584F /* ScheduleServiceDataSource.h */,
 				1466282528C4B1BD00AF584F /* ScheduleServiceDataSource.m */,
-				140F6697298218050075C50A /* SchedulePolicyService.h */,
-				140F6698298218050075C50A /* SchedulePolicyService.m */,
+				14592A6A2954659F006EB674 /* ScheduleShareCache.h */,
+				14592A6B2954659F006EB674 /* ScheduleShareCache.mm */,
 			);
 			path = "Service Support";
 			sourceTree = "<group>";
@@ -660,8 +638,6 @@
 				14545D2D29DBFA16001C0908 /* ScheduleEventTableViewHeaderView.m */,
 				1448589E29E164C5002C12E6 /* ScheduleEventTableViewCell.h */,
 				1448589F29E164C5002C12E6 /* ScheduleEventTableViewCell.m */,
-				1448589B29E1208D002C12E6 /* ScheduleEventCache.h */,
-				1448589C29E1208D002C12E6 /* ScheduleEventCache.m */,
 			);
 			path = "Rising Schedule Event";
 			sourceTree = "<group>";
@@ -726,7 +702,6 @@
 				140F665F2976714A0075C50A /* External Transaction */,
 				140F665E2976713C0075C50A /* Layout Support */,
 				140F665D297671300075C50A /* Service Support */,
-				140F665C297671210075C50A /* Cache Support */,
 				140F6660297671830075C50A /* Other View Support */,
 				140F665B297671150075C50A /* View Support */,
 				140F665A297670CD0075C50A /* Builder Support */,
@@ -1262,10 +1237,8 @@
 				14100AE7295F08920046E7BE /* ScheduleContentView.swift in Sources */,
 				1463DC7A29926BBF002758B2 /* ScheduleWidgetRequest.swift in Sources */,
 				1448BFF52961CC830015768E /* WidgetKitHelper.swift in Sources */,
-				14100AFB29615DB80046E7BE /* ScheduleShareCache.mm in Sources */,
-				1448BFF9296280FD0015768E /* ScheduleWidgetCache.m in Sources */,
+				14B2C84829E65F7300BEF2F8 /* ScheduleShareCache.mm in Sources */,
 				141008E7295E88E20046E7BE /* ScheduleProvider.swift in Sources */,
-				144858A129E27AA6002C12E6 /* ScheduleEventCache.m in Sources */,
 				14D6459529616280001315B1 /* ScheduleMapModel.m in Sources */,
 				14880A4E296EB55A00BC5368 /* ScheduleWidgetPriview.swift in Sources */,
 				141008F7295E8B7A0046E7BE /* ScheduleSystemLarge.swift in Sources */,
@@ -1341,17 +1314,14 @@
 				14100AF82961516B0046E7BE /* WidgetKitHelper.swift in Sources */,
 				147C2E5E298221F700F58266 /* ScheduleNeedsSupport.m in Sources */,
 				147681B7297156AF00E2D34D /* ScheduleBar.m in Sources */,
-				140F6699298218050075C50A /* SchedulePolicyService.m in Sources */,
 				14E844F628FC40090037309F /* ScheduleDetailController.m in Sources */,
 				14D1C52429BF54C000B5BF51 /* SchedulePlaceholderCollectionViewCell.m in Sources */,
 				14E66AA7295C8AC90043CBE7 /* ScheduleTimelineSupport.m in Sources */,
-				1448589D29E1208D002C12E6 /* ScheduleEventCache.m in Sources */,
 				144858A029E164C5002C12E6 /* ScheduleEventTableViewCell.m in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
 				14B7E420295C4A150033653D /* AnimatedTransitioningSupport.m in Sources */,
 				140F666729779C750075C50A /* ScheduleCustomViewController.m in Sources */,
 				1466282628C4B1BD00AF584F /* ScheduleServiceDataSource.m in Sources */,
-				1448BFF829627E350015768E /* ScheduleWidgetCache.m in Sources */,
 				14371D9529AE1AFF00DFD1F1 /* ScheduleCustomEditView.m in Sources */,
 				14371D9829AE3BB200DFD1F1 /* ScheduleCustomEditCollectionViewCell.m in Sources */,
 				1466282C28C4EFE400AF584F /* ScheduleRequestType.m in Sources */,
