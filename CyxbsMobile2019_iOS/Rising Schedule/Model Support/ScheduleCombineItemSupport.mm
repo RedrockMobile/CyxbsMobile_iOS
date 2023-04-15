@@ -35,7 +35,7 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
 #endif
 
 - (instancetype)initWithSno:(NSString *)name type:(ScheduleModelRequestType)type {
-    if (!name && !type) { return nil; }
+    if (!name || !type) { return nil; }
     self = [super init];
     if (self) {
         _sno = name.copy;
@@ -90,10 +90,10 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
     if (other == self || !other) { return self; }
     ScheduleIdentifier *fin = self.copy;
     if ([fin.key isEqualToString:other.key]) {
-        fin.useWebView &= other.useWebView;
-        fin.useWidget &= other.useWidget;
-        fin.useNotification &= other.useNotification;
-        fin.useCanlender &= other.useCanlender;
+        fin.useWebView |= other.useWebView;
+        fin.useWidget |= other.useWidget;
+        fin.useNotification |= other.useNotification;
+        fin.useCanlender |= other.useCanlender;
     }
     fin.exp = MAX(fin.exp, other.exp);
     fin.iat = MAX(fin.iat, other.iat);

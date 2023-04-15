@@ -10,12 +10,13 @@ import SwiftUI
 import WidgetKit
 
 struct ScheduleSystemLarge: View {
+    @Environment(\.colorScheme) var scheme
     var entry: ScheduleProvider.Entry
     var data: ScheduleFetchData
     
     init(entry: ScheduleProvider.Entry) {
         self.entry = entry
-        let hour = Calendar(identifier: .republicOfChina).dateComponents(in: TimeZone(identifier: "Asia/Chongqing")!, from: entry.date).hour!
+        let hour = ScheduleSystemLarge.dateComponents.hour!
         let range: Range<Int>!
         if hour < 10 {
             range = 1..<7
@@ -44,6 +45,9 @@ struct ScheduleSystemLarge: View {
                 .padding(.bottom, 2)
             
             GeometryReader { allEntry in
+                BackLineView()
+                    .frame(width: (allEntry.size.width - 23) / 7 - 2)
+                    .padding(.leading, lineWidth(width: allEntry.size.width))
                 VStack(spacing: 2) {
                     ScheduleTopView(anyDate: topDate(), width: 23)
                         .frame(height: allEntry.size.width / 7)
@@ -86,6 +90,20 @@ struct ScheduleSystemLarge: View {
 }
 
 extension ScheduleSystemLarge {
+    
+    static var dateComponents: DateComponents {
+        return Calendar(identifier: .republicOfChina).dateComponents(in: TimeZone(identifier: "Asia/Chongqing")!, from: Date())
+    }
+    
+    static var scheduleWeek: Int {
+        var week = ScheduleSystemLarge.dateComponents.weekday!
+        week = (week + 6) / 8 + (week + 6) % 8
+        return week
+    }
+    
+    func lineWidth(width: CGFloat) -> CGFloat {
+        23 + CGFloat(ScheduleSystemLarge.scheduleWeek - 1) * (width - 23) / 7 + 2
+    }
     
     func url(in indexPath: NSIndexPath) -> URL {
         URL(string: "https://redrock.team/schedule/detail?section=\(indexPath.section)&week=\(indexPath.week)&location=\(indexPath.location)")!

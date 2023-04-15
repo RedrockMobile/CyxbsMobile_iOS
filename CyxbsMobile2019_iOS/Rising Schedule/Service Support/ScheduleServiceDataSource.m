@@ -63,7 +63,7 @@
     layout.dataSource = self;
     
     *view = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, width, 0) collectionViewLayout:layout];
-
+    
     [*view registerClass:ScheduleCollectionViewCell.class forCellWithReuseIdentifier:ScheduleCollectionViewCellReuseIdentifier]; // cell
     [*view registerClass:ScheduleSupplementaryCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier]; // section header
     [*view registerClass:ScheduleSupplementaryCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier]; // section leading
@@ -257,6 +257,11 @@
 }
 
 #pragma mark - <UIScrollViewDelegate>
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    ScheduleCollectionViewLayout *layout = (ScheduleCollectionViewLayout *)(((UICollectionView *)scrollView).collectionViewLayout);
+    layout.pageCalculation = scrollView.contentOffset.x / scrollView.bounds.size.width;
+}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     self.backgroundView.top = scrollView.contentOffset.y + 10;

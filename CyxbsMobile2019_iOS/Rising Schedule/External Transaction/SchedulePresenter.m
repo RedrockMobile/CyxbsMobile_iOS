@@ -77,6 +77,7 @@
 - (void)setWithMainKey:(ScheduleIdentifier *)main {
     // main check
     if (main == nil) { return; }
+    main.useWebView = YES;
     [ScheduleShareCache.shareCache diskCacheKey:main forKeyName:ScheduleWidgetCacheKeyMain];
     [ScheduleShareCache memoryCacheKey:main forKeyName:ScheduleWidgetCacheKeyMain];
     // custom check
@@ -98,6 +99,7 @@
             [self setWithMainKey:main];
         }
     }
+    other.useWebView = YES;
     [ScheduleShareCache.shareCache diskCacheKey:other forKeyName:ScheduleWidgetCacheKeyOther];
     [ScheduleShareCache memoryCacheKey:other forKeyName:ScheduleWidgetCacheKeyOther];
     // service check

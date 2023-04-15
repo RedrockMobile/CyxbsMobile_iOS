@@ -89,22 +89,10 @@
 
 - (void)reloadHeaderView {
     if (_headerView) {
-        NSInteger page = self.collectionView.contentOffset.x / self.collectionView.width;
+        NSInteger page = self.collectionView.contentOffset.x / self.collectionView.width + 0.5;
         self.headerView.title = [self _titleForNum:page];
-        
         self.headerView.reBack = (page == self.model.showWeek);
-        switch (self.onShow) {
-            case ScheduleModelShowGroup:
-                [self.headerView setShowMuti:NO isSingle:YES];
-                break;
-            case ScheduleModelShowSingle:
-                [self.headerView setShowMuti:YES isSingle:YES];
-                break;
-            case ScheduleModelShowDouble:
-                [self.headerView setShowMuti:YES isSingle:NO];
-                break;
-        }
-        self.headerView.calenderEdit = (self.onShow != ScheduleModelShowGroup);
+        self.onShow = _onShow;
     }
 }
 
@@ -156,7 +144,20 @@
 
 - (void)setOnShow:(ScheduleModelShowType)onShow {
     _onShow = onShow;
-    [self reloadHeaderView];
+    if (_headerView) {
+        switch (onShow) {
+            case ScheduleModelShowGroup:
+                [self.headerView setShowMuti:NO isSingle:YES];
+                break;
+            case ScheduleModelShowSingle:
+                [self.headerView setShowMuti:YES isSingle:YES];
+                break;
+            case ScheduleModelShowDouble:
+                [self.headerView setShowMuti:YES isSingle:NO];
+                break;
+        }
+        self.headerView.calenderEdit = (self.onShow != ScheduleModelShowGroup);
+    }
 }
 
 - (void)setRequestKeys:(NSArray<ScheduleIdentifier *> *)requestKeys {
@@ -236,11 +237,8 @@
 
 #pragma mark - <UIScrollViewDelegate>
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    [self reloadHeaderView];
-}
-
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [super scrollViewDidScroll:scrollView];
     [self reloadHeaderView];
 }
 

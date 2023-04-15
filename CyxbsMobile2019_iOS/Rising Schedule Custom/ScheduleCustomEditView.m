@@ -72,17 +72,18 @@
         
         [self addSubview:self.finBtn];
         
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_endEdit:)];
-        tap.delegate = self;
-        [self addGestureRecognizer:tap];
-        
         _period = NSMakeRange(1, 1);
         _mutiIdxSet = NSMutableIndexSet.indexSet;
     }
     return self;
 }
 
-#pragma mark - Method
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self endEditing:YES];
+    [self _checkBtn];
+}
+
+#pragma mark - Getter & Setter
 
 // title
 
@@ -94,7 +95,7 @@
 }
 
 - (NSString *)title {
-    return self.titleTextField.text.copy;
+    return self.titleTextField.text;
 }
 
 // content
@@ -107,7 +108,7 @@
 }
 
 - (NSString *)content {
-    return self.contentTextField.text.copy;
+    return self.contentTextField.text;
 }
 
 // sections
@@ -191,7 +192,7 @@
         _contentLab.text = @"具体内容";
         [_contentLab sizeToFit];
         _contentLab.left = self.titleTextField.left;
-        _contentLab.top = self.titleTextField.bottom + 20;
+        _contentLab.top = self.titleTextField.bottom + 10;
     }
     return _contentLab;
 }
@@ -211,7 +212,7 @@
         _sectionLab.text = @"选择周数";
         [_sectionLab sizeToFit];
         _sectionLab.left = self.contentTextField.left;
-        _sectionLab.top = self.contentTextField.bottom + 20;
+        _sectionLab.top = self.contentTextField.bottom + 10;
     }
     return _sectionLab;
 }
@@ -242,7 +243,7 @@
         _periodLab = self._lab;
         _periodLab.text = @"确定时间";
         [_periodLab sizeToFit];
-        _periodLab.top = self.collectionView.bottom + 15;
+        _periodLab.top = self.collectionView.bottom + 10;
         _periodLab.left = self.collectionView.left;
     }
     return _periodLab;
@@ -251,7 +252,7 @@
 - (UIPickerView *)periodPicker {
     if (_periodPicker == nil) {
         CGFloat left = self.periodLab.left;
-        _periodPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(left, self.periodLab.bottom - 20, self.width - 2 * left, 216)];
+        _periodPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(left, self.periodLab.bottom - 30, self.width - 2 * left, 216)];
         _periodPicker.delegate = self;
         _periodPicker.dataSource = self;
     }
@@ -277,13 +278,6 @@
 
 #pragma mark - Private
 
-- (void)_endEdit:(UITapGestureRecognizer *)tap {
-    if (tap.state == UIGestureRecognizerStateEnded) {
-        [self endEditing:YES];
-        [self _checkBtn];
-    }
-}
-
 - (void)_tapBtn:(UIButton *)btn {
     if (self.delegate && [self.delegate respondsToSelector:@selector(scheduleCustomEditViewDidFinishEditing:)]) {
         [self.delegate scheduleCustomEditViewDidFinishEditing:self];
@@ -291,7 +285,7 @@
 }
 
 - (void)_checkBtn {
-    if (self.title && self.content && _mutiIdxSet.count != 0) {
+    if (![self.title isEqualToString:@""] && ![self.content isEqualToString:@""] && _mutiIdxSet.count != 0) {
         self.finBtn.enabled = YES;
         self.finBtn.backgroundColor = UIColorHex(#4841E2);
     } else {

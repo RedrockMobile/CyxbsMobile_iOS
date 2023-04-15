@@ -39,12 +39,15 @@ final class ScheduleWidgetRequest {
             let item = ScheduleCombineItem(identifier: key, value: finalAry)
             return item
         } else {
-            let key = ScheduleIdentifier(sno: sno, type: .student)
-            return ScheduleShareCache.memoryItem(forKey: "\(ScheduleModelRequestType.student)\(sno)", forKeyName: nil)
+            let mkey = ScheduleShareCache.memoryKey(forKey: ScheduleIdentifier(sno: sno, type: .student)!.key, forKeyName: nil)
+            if let mkey = mkey, mkey.useWebView {
+                return ScheduleShareCache.memoryItem(forKey: mkey.key, forKeyName: nil)
+            }
+            return nil
         }
     }
     
-    func request(custom sno: String) -> ScheduleCombineItem? {
-        ScheduleShareCache.memoryItem(forKey: "\(ScheduleModelRequestType.custom)\(sno)", forKeyName: nil)
+    var custom: ScheduleCombineItem? {
+        ScheduleShareCache.memoryItem(forKey: nil, forKeyName: .custom)
     }
 }

@@ -135,7 +135,7 @@
     self.courseIfNeeded.classRoom = view.content;
     self.courseIfNeeded.period = view.period;
     self.courseIfNeeded.inSections = view.sections;
-    self.editView.inWeek = view.inWeek;
+    self.courseIfNeeded.inWeek = view.inWeek;
     self.courseIfNeeded.teacher = @"自定义";
     self.courseIfNeeded.type = @"事务";
     NSString *string = view.sections.description;

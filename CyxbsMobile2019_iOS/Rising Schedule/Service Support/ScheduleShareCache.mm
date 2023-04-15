@@ -135,6 +135,20 @@ RisingSingleClass_IMPLEMENTATION(Cache)
     }
 }
 
++ (void)_userDefaultsCacheKey:(ScheduleIdentifier *)key forKeyName:(ScheduleWidgetCacheKeyName)keyName {
+    if ([self _userDefaultsKeyForKeyName:keyName] == nil) {
+        key.useWidget = YES;
+    }
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:key requiringSecureCoding:YES error:nil];
+    [NSUserDefaults.schedule setObject:data forKey:keyName];
+}
+
++ (nullable ScheduleIdentifier *)_userDefaultsKeyForKeyName:(ScheduleWidgetCacheKeyName)keyName {
+    NSData *data = [NSUserDefaults.schedule objectForKey:keyName];
+    if (!data) { return nil; }
+    return [NSKeyedUnarchiver unarchivedObjectOfClass:ScheduleIdentifier.class fromData:data error:nil];
+}
+
 #ifdef WCDB_h // MARK: WCDB
 
 + (WCTDatabase *)dataBase {
@@ -154,8 +168,7 @@ RisingSingleClass_IMPLEMENTATION(Cache)
 
 + (void)memoryCacheKey:(ScheduleIdentifier *)key forKeyName:(ScheduleWidgetCacheKeyName)keyName {
     if (keyName) {
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:key requiringSecureCoding:YES error:nil];
-        [NSUserDefaults.schedule setObject:data forKey:keyName];
+        [self _userDefaultsCacheKey:key forKeyName:keyName];
     } else {
         [self.dataBase insertOrReplaceObject:key into:@"Cyxbs_key"];
     }
@@ -163,9 +176,7 @@ RisingSingleClass_IMPLEMENTATION(Cache)
 
 + (nullable ScheduleIdentifier *)memoryKeyForKey:(NSString *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName {
     if (keyName) {
-        NSData *data = [NSUserDefaults.schedule objectForKey:keyName];
-        if (!data) { return nil; }
-        return [NSKeyedUnarchiver unarchivedObjectOfClass:ScheduleIdentifier.class fromData:data error:nil];
+        return  [self _userDefaultsKeyForKeyName:keyName];
     } else {
         return [self.dataBase getObjectsOfClass:ScheduleIdentifier.class fromTable:@"Cyxbs_key" where:(ScheduleIdentifier.type + ScheduleIdentifier.sno) == key].firstObject;
     }
@@ -180,7 +191,7 @@ RisingSingleClass_IMPLEMENTATION(Cache)
     
     NSString *tableName = anObject.identifier.key;
     if (![self.dataBase isTableExists:anObject.identifier.key]) {
-        [self.dataBase createVirtualTableOfName:tableName withClass:ScheduleCourse.class];
+        [self.dataBase createTableAndIndexesOfName:tableName withClass:ScheduleCourse.class];
     }
     [self.dataBase deleteAllObjectsFromTable:tableName];
     [self.dataBase insertObjects:anObject.value into:tableName];
@@ -188,7 +199,11 @@ RisingSingleClass_IMPLEMENTATION(Cache)
 
 + (nullable ScheduleCombineItem *)memoryItemForKey:(NSString *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName {
     ScheduleIdentifier *iden = [self memoryKeyForKey:key forKeyName:keyName];
-    NSArray <ScheduleCourse *> *ary = [self.dataBase getAllObjectsOfClass:ScheduleCourse.class fromTable:iden.key];
+    if (!iden) { return nil; }
+    NSArray <ScheduleCourse *> *ary;
+    if ([self.dataBase isTableExists:iden.key]) {
+        ary = [self.dataBase getAllObjectsOfClass:ScheduleCourse.class fromTable:iden.key];
+    }
     return [ScheduleCombineItem combineItemWithIdentifier:iden value:ary];
 }
 
@@ -204,7 +219,7 @@ RisingSingleClass_IMPLEMENTATION(Cache)
 
 + (void)memoryCacheKey:(nullable ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName {
     if (keyName) {
-        [NSUserDefaults.schedule setObject:key forKey:keyName];
+        [self _userDefaultsCacheKey:key forKeyName:keyName];
     } else {
         NSMutableSet *set = [NSMutableSet setWithArray:[NSArray arrayWithContentsOfFile:[self fileForName:@"Cyxbs_key"]]];
         [set addObject:key];
@@ -214,7 +229,7 @@ RisingSingleClass_IMPLEMENTATION(Cache)
 
 + (nullable ScheduleIdentifier *)memoryKeyForKey:(NSString *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName {
     if (keyName) {
-        return [NSUserDefaults.schedule objectForKey:keyName];
+        return  [self _userDefaultsKeyForKeyName:keyName];
     } else {
         NSArray *ary = [NSArray arrayWithContentsOfFile:[self fileForName:@"Cyxbs_key"]];
         for (ScheduleIdentifier *iden in ary) {

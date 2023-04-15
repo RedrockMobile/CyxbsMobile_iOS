@@ -55,7 +55,7 @@ struct ScheduleProvider: IntentTimelineProvider {
                         mainItem = try await ScheduleWidgetRequest.shared.request(sno: mainKey.sno)
                     }
                     if let customKey = customKey, customKey.useWidget {
-                        customItem = ScheduleWidgetRequest.shared.request(custom: mainKey.sno)
+                        customItem = ScheduleWidgetRequest.shared.custom
                     }
                     if let otherKey = otherKey, otherKey.useWidget {
                         otherItem = try await ScheduleWidgetRequest.shared.request(sno: otherKey.sno)

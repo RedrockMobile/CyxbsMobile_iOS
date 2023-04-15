@@ -26,7 +26,6 @@
 
 @implementation ScheduleEventViewController {
     NSArray *_eventNameAry, *_cacheKeyAry;
-    NSArray <NSArray *> *_switchStatusAry;
 }
 
 - (void)loadView {

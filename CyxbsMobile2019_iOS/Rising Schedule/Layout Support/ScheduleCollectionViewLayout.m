@@ -234,11 +234,22 @@
     return contentSize;
 }
 
-//- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity {
-//    CGPoint point = [super targetContentOffsetForProposedContentOffset:proposedContentOffset withScrollingVelocity:velocity];
-//    NSLog(@"from point:%@ with velocity:%@ to:%@", NSStringFromCGPoint(proposedContentOffset), NSStringFromCGPoint(velocity), NSStringFromCGPoint(point));
-//    return point;
-//}
+- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset withScrollingVelocity:(CGPoint)velocity {
+    NSInteger toTime = self.collectionView.contentOffset.y / (_itemSize.height + self.lineSpacing) + 0.5;
+    CGFloat toY = (_itemSize.height + self.lineSpacing) * toTime;
+        
+    NSInteger index = proposedContentOffset.x / self.collectionView.bounds.size.width + 0.5;
+    CGFloat remainder = proposedContentOffset.x - index * self.collectionView.bounds.size.width;
+    
+    if (velocity.x > 1 || (velocity.x > 0.3 && remainder > self.collectionView.bounds.size.width / 3)) { index += 1; }
+    if (velocity.x < -1 || (velocity.x < -0.3 && remainder < self.collectionView.bounds.size.width / 3 * 2)) { index -= 1; }
+    index = MAX(index, self.pageCalculation - 1);
+    index = MIN(index, self.pageCalculation + 1);
+    
+    CGFloat toX = self.collectionView.bounds.size.width * index;
+    
+    return CGPointMake(toX, toY);
+}
 
 #pragma mark - (UISubclassingHooks)
 

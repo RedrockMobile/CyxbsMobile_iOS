@@ -137,8 +137,19 @@
 }
 
 - (void)setReBack:(BOOL)reBack {
+    if (self.reBackBtn.alpha == reBack) {
+        [UIView animateWithDuration:0.3 animations:^{
+            if (reBack) {
+                self.reBackBtn.left = self.width;
+            } else {
+                self.reBackBtn.right = self.width - 16;
+            }
+            self.doubleImgView.right = self.reBackBtn.left - 23;
+            self.calenderImgView.right = self.doubleImgView.left - 23;
+            self.reBackBtn.alpha = !reBack;
+        }];
+    }
     _reBack = reBack;
-    self.reBackBtn.hidden = (reBack ? 1 : 0);
 }
 
 - (void)setShowMuti:(BOOL)show isSingle:(BOOL)isSingle {

@@ -138,7 +138,7 @@
                     return i + 1;
                 }
             }
-            return self.count;
+            return self.count + 1;
             break;
         }
             

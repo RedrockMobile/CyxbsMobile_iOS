@@ -86,9 +86,9 @@
 - (void)reloadScheduleBar {
     ScheduleIdentifier *mainKey = [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyMain];
     if (mainKey) {
-        [ScheduleNETRequest requestDic:@{
-            ScheduleModelRequestStudent : @[mainKey.sno]
-        } success:^(ScheduleCombineItem * _Nonnull item) {
+        [ScheduleNETRequest.current
+         policyKeys:@[mainKey]
+         success:^(ScheduleCombineItem * _Nonnull item) {
             ScheduleTouchItem *touch = [[ScheduleTouchItem alloc] init];
             touch.combining = item;
             ScheduleCourse *now = touch.floorCourse;
@@ -101,7 +101,8 @@
                 self.scheduleBar.time = @"也许明天才有课";
                 self.scheduleBar.place = @"好好休息下吧";
             }
-        } failure:^(NSError * _Nonnull error, ScheduleIdentifier * _Nonnull errorID) {
+        }
+         failure:^(NSError * _Nonnull error, ScheduleIdentifier * _Nonnull errorID) {
             self.scheduleBar.title = @"网络请求失败";
             self.scheduleBar.time = @"无法加载时间...";
             self.scheduleBar.place = @"无法加载地点...";
@@ -111,9 +112,7 @@
 
 - (void)presentScheduleControllerWithPan:(UIPanGestureRecognizer * _Nullable)pan completion:(void (^ __nullable)(UIViewController *vc))completion {
     if (self.presentedViewController) {
-        if (completion) {
-            completion(self.presentedViewController);
-        }
+        if (completion) { completion(self.presentedViewController); }
         return;
     }
     UIViewController *vc = [[ScheduleController alloc] initWithPresenter:self.schedulePresenter];
@@ -128,9 +127,9 @@
     vc.transitioningDelegate = delegate;
     vc.modalPresentationStyle = UIModalPresentationCustom;
     [self presentViewController:vc animated:YES completion:^{
-        if (completion) {
-            completion(vc);
-        }
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            if (completion) { completion(vc); }
+        });
     }];
 }
 
@@ -236,6 +235,7 @@
 }
 
 - (void)viewControllerTapBegin:(FastLoginViewController *)vc {
+    [self reloadScheduleBar];
     [self presentScheduleControllerWithPan:nil completion:nil];
 }
 

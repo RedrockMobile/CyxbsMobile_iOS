@@ -181,24 +181,21 @@
 }
 
 - (void)_cletap:(UIButton *)btn {
-    NSString *sno = self.snoField.text.copy;
+    NSString *sno = self.snoField.text; if ([sno isEqualToString:@""]) { sno = nil; }
+    NSString *osno = self.otherField.text; if ([osno isEqualToString:@""]) { osno = nil; }
     ScheduleIdentifier *mainID = [ScheduleIdentifier identifierWithSno:sno type:ScheduleModelRequestStudent];
-    if (self.otherField.text && ![self.otherField.text isEqualToString:@""]) {
-        NSString *otherSno = self.otherField.text.copy;
-        ScheduleIdentifier *otherID = [ScheduleIdentifier identifierWithSno:otherSno type:ScheduleModelRequestStudent];
-        
-        [self.presenter setWithMainKey:mainID otherKey:otherID];
-    } else {
-        [self.presenter setWithMainKey:mainID];
-    }
+    ScheduleIdentifier *otherID = [ScheduleIdentifier identifierWithSno:osno type:ScheduleModelRequestStudent];
     
-    if (self.delegate && [self.delegate respondsToSelector:@selector(viewControllerTapBegin:)]) {
-        [self.delegate viewControllerTapBegin:self];
+    if (mainID) {
+        if (otherID) {
+            [self.presenter setWithMainKey:mainID otherKey:otherID];
+        } else {
+            [self.presenter setWithMainKey:mainID];
+        }
+        if (self.delegate && [self.delegate respondsToSelector:@selector(viewControllerTapBegin:)]) {
+            [self.delegate viewControllerTapBegin:self];
+        }
     }
-    
-//    if (self.widgetField.text && ![self.widgetField.text isEqualToString:@""]) {
-//        [self.presenter setWidgetSection:self.widgetField.text.integerValue];
-//    }
 }
 
 - (void)_outside:(UIButton *)btn {

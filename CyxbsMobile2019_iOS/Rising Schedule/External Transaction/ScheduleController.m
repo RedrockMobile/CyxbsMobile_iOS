@@ -98,9 +98,9 @@ static CGFloat (^statusHeight)(void) = ^{
         _collectionView.height = self.view.height - _collectionView.top;
         _collectionView.contentInset = UIEdgeInsetsMake(0, 0, self.tabBarController.tabBar.height, 0);
         _collectionView.directionalLockEnabled = YES;
-        _collectionView.pagingEnabled = YES;
         _collectionView.showsHorizontalScrollIndicator = NO;
         _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.decelerationRate = UIScrollViewDecelerationRateFast;
         _collectionView.backgroundColor =
         [UIColor Light:UIColorHex(#FFFFFF)
                   Dark:UIColorHex(#1D1D1D)];
