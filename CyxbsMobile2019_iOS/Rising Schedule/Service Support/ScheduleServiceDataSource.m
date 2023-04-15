@@ -13,10 +13,13 @@
 #import "ScheduleCollectionViewCell.h"
 #import "ScheduleSupplementaryCollectionViewCell.h"
 #import "SchedulePlaceholderCollectionViewCell.h"
+#import "ScheduleLeadingHolderCollectionViewCell.h"
 
 #pragma mark - ScheduleServiceDataSource ()
 
-@interface ScheduleServiceDataSource ()
+@interface ScheduleServiceDataSource () <
+    UICollectionViewDelegate
+>
 
 /// 背景图
 @property (nonatomic, strong) UIView *backgroundView;
@@ -43,14 +46,14 @@
         _backgroundView.backgroundColor =
         [UIColor Light:UIColorHexARGB(#80E8F0FC)
                   Dark:UIColorHexARGB(#40000000)];
-        _backgroundView.hidden = YES;
+        _backgroundView.userInteractionEnabled = NO;
     }
     return _backgroundView;
 }
 
 #pragma mark - Setter
 
-- (void)setingCollectionView:(UICollectionView *__strong  _Nonnull *)view withPrepareWidth:(CGFloat)width {
+- (void)setingCollectionView:(UICollectionView *__strong _Nonnull *)view withPrepareWidth:(CGFloat)width {
     
     ScheduleCollectionViewLayout *layout = [[ScheduleCollectionViewLayout alloc] init];
     layout.widthForLeadingSupplementaryView = 30;
@@ -60,14 +63,15 @@
     layout.dataSource = self;
     
     *view = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, width, 0) collectionViewLayout:layout];
-
+    
     [*view registerClass:ScheduleCollectionViewCell.class forCellWithReuseIdentifier:ScheduleCollectionViewCellReuseIdentifier]; // cell
     [*view registerClass:ScheduleSupplementaryCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier]; // section header
     [*view registerClass:ScheduleSupplementaryCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionLeading withReuseIdentifier:ScheduleSupplementaryCollectionViewCellReuseIdentifier]; // section leading
     [*view registerClass:SchedulePlaceholderCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionPlaceholder withReuseIdentifier:SchedulePlaceholderCollectionViewCellReuseIdentifier]; // section placeholder
-    [*view addSubview:self.backgroundView];
+    [*view registerClass:ScheduleLeadingHolderCollectionViewCell.class forSupplementaryViewOfKind:UICollectionElementKindSectionHolder withReuseIdentifier:ScheduleLeadingHolderCollectionViewCellReuseIdentifier]; // section holder
     
     (*view).dataSource = self;
+    (*view).delegate = self;
 }
 
 #pragma mark - <UICollectionViewDataSource>
@@ -123,8 +127,8 @@
     // muti
     cell.isMuti = viewModel.hadMuti;
     
-    cell.oneLenth = (viewModel.lenth == 1) ;
-    
+    cell.oneLenth = (viewModel.lenth == 1);
+        
     return cell;
 }
 
@@ -166,6 +170,13 @@
                           (indexPath.section != _model.touchItem.nowWeek ? NO :
                            indexPath.item == todayWeek));
         
+        if (cell.isCurrent && indexPath.section != 0) {
+            ScheduleCollectionViewLayout *layout = (ScheduleCollectionViewLayout *)collectionView.collectionViewLayout;
+            UICollectionViewLayoutAttributes *attributes = [layout layoutAttributesForSupplementaryViewOfKind:kind atIndexPath:indexPath];
+            self.backgroundView.frame = CGRectMake(attributes.frame.origin.x, 10, attributes.size.width, collectionView.height + 10);
+            [collectionView insertSubview:self.backgroundView atIndex:0];
+        }
+        
         return cell;
     }
     
@@ -192,6 +203,14 @@
         return cell;
     }
     
+    if (kind == UICollectionElementKindSectionHolder) {
+        ScheduleLeadingHolderCollectionViewCell *cell = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:ScheduleLeadingHolderCollectionViewCellReuseIdentifier forIndexPath:indexPath];
+        
+        cell.markingHolder = (ScheduleLeadingHolderMarking)indexPath.item;
+        
+        return cell;
+    }
+    
     return nil;
 }
 
@@ -206,6 +225,9 @@
     }
     if (kind == UICollectionElementKindSectionPlaceholder) {
         return section >= _model.courseIdxPaths.count ? 1 : (_model.courseIdxPaths[section].count == 0 ? 1 : 0);
+    }
+    if (kind == UICollectionElementKindSectionHolder) {
+        return 1;
     }
     return 0;
 }
@@ -223,6 +245,26 @@
   lenthForLocationIndexPath:(NSIndexPath *)indexPath {
     ScheduleCollectionViewModel *vm = [_model.mapTable objectForKey:indexPath];
     return vm.lenth;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(ScheduleCollectionViewLayout *)layout
+    persentAtSupIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) {
+        return _model.timeline.percent;
+    }
+    return 0;
+}
+
+#pragma mark - <UIScrollViewDelegate>
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    ScheduleCollectionViewLayout *layout = (ScheduleCollectionViewLayout *)(((UICollectionView *)scrollView).collectionViewLayout);
+    layout.pageCalculation = scrollView.contentOffset.x / scrollView.bounds.size.width;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    self.backgroundView.top = scrollView.contentOffset.y + 10;
 }
 
 @end

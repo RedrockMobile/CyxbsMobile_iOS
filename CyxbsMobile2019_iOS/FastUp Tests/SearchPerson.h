@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface SearchPerson : NSObject
+@interface SearchPerson : NSObject <NSSecureCoding>
 
 /// 学号
 @property (nonatomic, copy) NSString *stunum;

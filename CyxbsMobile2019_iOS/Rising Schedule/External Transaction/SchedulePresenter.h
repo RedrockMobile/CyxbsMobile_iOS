@@ -40,8 +40,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)requestAndReloadDataWithRollback:(BOOL)rollBack;
 
-@property (nonatomic) BOOL awakeable;
-
 @end
 
 
@@ -54,8 +52,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setWithMainKey:(ScheduleIdentifier *)main;
 
 - (void)setWithMainKey:(ScheduleIdentifier *)main otherKey:(ScheduleIdentifier *)other;
-
-- (void)setWidgetSection:(NSInteger)section;
 
 @end
 

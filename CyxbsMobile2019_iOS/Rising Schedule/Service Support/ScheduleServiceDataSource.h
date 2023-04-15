@@ -16,9 +16,7 @@
 #import <UIKit/UIKit.h>
 
 #import "ScheduleModel.h"
-
 #import "ScheduleCollectionViewLayout.h"
-
 #import "ScheduleCollectionViewDataSource.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -27,7 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ScheduleServiceDataSource : NSObject <
     ScheduleCollectionViewDataSource,
-    ScheduleCollectionViewLayoutDataSource
+    ScheduleCollectionViewLayoutDataSource,
+    UIScrollViewDelegate
 >
 
 /// 模型

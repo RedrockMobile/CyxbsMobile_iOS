@@ -8,6 +8,8 @@
 
 #import "ScheduleTimelineSupport.h"
 
+#import "ScheduleNeedsSupport.h"
+
 @implementation SchedulePartTimeline
 
 - (instancetype)init {
@@ -35,7 +37,8 @@
 
 
 
-#import "RisingSingleClass.h"
+
+
 
 @implementation ScheduleTimeline
 
@@ -58,7 +61,7 @@
 }
 
 - (SchedulePartTimeline *)partTimelineAtPosition:(NSUInteger)position {
-    if (position == 0 || position > 14) { return nil; }
+    if (position <= 0 || position > 14) { return nil; }
     switch (self.type) {
         case ScheduleTimelineSimple: {
             if (position <= 4) { return ScheduleTimeline._simple[position - 1]; } // [1, 4] -> [0...3]
@@ -108,6 +111,51 @@
         default: break;
     }
     return NSMakeRange(0, 0);
+}
+
+- (CGFloat)percent {
+    NSInteger(^getSec)(NSDateComponents *) = ^NSInteger(NSDateComponents *com) {
+        return com.hour * 60 * 60 + com.minute * 60 + com.second;
+    };
+    NSDateComponents *components = [NSCalendar.republicOfChina components:NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond fromDate:NSDate.date];
+    NSInteger nowsec = getSec(components);
+    switch (self.type) {
+        case ScheduleTimelineSimple: {
+            if (getSec(components) < getSec([self partTimelineAtPosition:0].fromComponents)) {
+                return 1;
+            }
+            for (NSInteger i = 1; i <= self.count; i++) {
+                NSInteger from = getSec([self partTimelineAtPosition:i].fromComponents);
+                NSInteger to = getSec([self partTimelineAtPosition:i].toComponents);
+                if (nowsec >= from && nowsec < to) {
+                    return i + ((CGFloat)(nowsec - from)) / (to - from);
+                }
+            }
+            for (NSInteger i = 1; i <= self.count - 1; i++) {
+                NSInteger from = getSec([self partTimelineAtPosition:i].toComponents);
+                NSInteger to = getSec([self partTimelineAtPosition:i + 1].fromComponents);
+                if (nowsec >= from && nowsec <= to) {
+                    return i + 1;
+                }
+            }
+            return self.count + 1;
+            break;
+        }
+            
+        default: break;
+            /*
+        case ScheduleTimelineNoon:
+            <#code#>
+            break;
+        case ScheduleTimelineNight:
+            <#code#>
+            break;
+        case ScheduleTimelineNoonAndNight:
+            <#code#>
+            break;
+             */
+    }
+    return  0;
 }
 
 #pragma mark - pravate

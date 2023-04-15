@@ -53,8 +53,7 @@ FOUNDATION_EXPORT ScheduleModelRequestType const requestTypeForString(NSString *
 typedef NS_ENUM(NSUInteger, ScheduleModelShowType) {
     ScheduleModelShowGroup = 0,
     ScheduleModelShowSingle = 1,
-    ScheduleModelShowDouble = 2,
-    ScheduleModelShowWidget = 3
+    ScheduleModelShowDouble = 2
 };
 
 NS_ASSUME_NONNULL_END

@@ -8,14 +8,14 @@
 
 #import "ScheduleServiceSolve.h"
 
-#import "SchedulePolicyService.h"
 #import "ScheduleNETRequest.h"
-#import "ScheduleWidgetCache.h"
+#import "ScheduleShareCache.h"
 #import "ScheduleNeedsSupport.h"
 
 #import "TransitioningDelegate.h"
 #import "ScheduleDetailController.h"
 #import "ScheduleCustomViewController.h"
+#import "ScheduleEventViewController.h"
 
 #pragma mark - ScheduleServiceSolve ()
 
@@ -30,7 +30,10 @@
 
 #pragma mark - ScheduleServiceSolve
 
-@implementation ScheduleServiceSolve
+@implementation ScheduleServiceSolve {
+    NSMutableArray <ScheduleIdentifier *> *_requestKeys;
+    ScheduleIdentifier *_firstKey;
+}
 
 #pragma mark - Method
 
@@ -44,17 +47,18 @@
 }
 
 - (void)requestAndReloadData:(void (^)(void))complition {
+    if (!self.requestKeys) { return; }
     [self.model clear];
-    [SchedulePolicyService.current
-     requestDic:self.parameterIfNeeded
-     policy:^(ScheduleCombineItem * _Nonnull item) {
+    [ScheduleNETRequest.current
+     policyKeys:self.requestKeys
+     success:^(ScheduleCombineItem * _Nonnull item) {
         [self.model combineItem:item];
         [self.collectionView reloadData];
         if (complition) {
             complition();
         }
     }
-     unPolicy:^(ScheduleIdentifier * _Nonnull unpolicyKEY) {
+     failure:^(NSError * _Nonnull error, ScheduleIdentifier * _Nonnull errorID) {
         
     }];
 }
@@ -85,24 +89,10 @@
 
 - (void)reloadHeaderView {
     if (_headerView) {
-        NSInteger page = self.collectionView.contentOffset.x / self.collectionView.width;
+        NSInteger page = self.collectionView.contentOffset.x / self.collectionView.width + 0.5;
         self.headerView.title = [self _titleForNum:page];
-        
         self.headerView.reBack = (page == self.model.showWeek);
-        switch (self.onShow) {
-            case ScheduleModelShowGroup:
-                [self.headerView setShowMuti:NO isSingle:YES];
-                break;
-            case ScheduleModelShowSingle:
-                [self.headerView setShowMuti:YES isSingle:YES];
-                break;
-            case ScheduleModelShowDouble:
-                [self.headerView setShowMuti:YES isSingle:NO];
-                break;
-            case ScheduleModelShowWidget:
-                
-                break;
-        }
+        self.onShow = _onShow;
     }
 }
 
@@ -154,15 +144,47 @@
 
 - (void)setOnShow:(ScheduleModelShowType)onShow {
     _onShow = onShow;
-    [self reloadHeaderView];
+    if (_headerView) {
+        switch (onShow) {
+            case ScheduleModelShowGroup:
+                [self.headerView setShowMuti:NO isSingle:YES];
+                break;
+            case ScheduleModelShowSingle:
+                [self.headerView setShowMuti:YES isSingle:YES];
+                break;
+            case ScheduleModelShowDouble:
+                [self.headerView setShowMuti:YES isSingle:NO];
+                break;
+        }
+        self.headerView.calenderEdit = (self.onShow != ScheduleModelShowGroup);
+    }
 }
 
-- (void)setAwakeable:(BOOL)awakeable {
-    SchedulePolicyService.current.awakeable = awakeable;
+- (void)setRequestKeys:(NSArray<ScheduleIdentifier *> *)requestKeys {
+    if (!requestKeys) { requestKeys = NSMutableArray.array; }
+    if (![requestKeys isKindOfClass:NSMutableArray.class]) {
+        requestKeys = requestKeys.mutableCopy;
+    }
+    _requestKeys = (NSMutableArray *)requestKeys;
 }
 
-- (BOOL)awakeable {
-    return SchedulePolicyService.current.awakeable;
+- (NSArray<ScheduleIdentifier *> *)requestKeys {
+    if (_requestKeys == nil) {
+        _requestKeys = NSMutableArray.array;
+    }
+    return _requestKeys;
+}
+
+- (void)setFirstKey:(ScheduleIdentifier *)firstKey {
+    if (_requestKeys.count > 0) {
+        _firstKey = firstKey;
+    } else {
+        [self setRequestKeys:@[firstKey]];
+    }
+}
+
+- (ScheduleIdentifier *)firstKey {
+    return self.requestKeys.firstObject;
 }
 
 #pragma mark - <ScheduleCustomViewControllerDelegate>
@@ -172,8 +194,6 @@
      appendCustom:viewController.courseIfNeeded
      success:^(ScheduleCombineItem * _Nonnull item) {
         [self _changeCustom:item];
-    }
-     failure:^(NSError * _Nonnull error) {
     }];
 }
 
@@ -182,9 +202,6 @@
      editCustom:viewController.courseIfNeeded
      success:^(ScheduleCombineItem * _Nonnull item) {
         [self _changeCustom:item];
-    }
-     failure:^(NSError * _Nonnull error) {
-        
     }];
 }
 
@@ -193,16 +210,11 @@
      deleteCustom:viewController.courseIfNeeded
      success:^(ScheduleCombineItem * _Nonnull item) {
         [self _changeCustom:item];
-    }
-     failure:^(NSError * _Nonnull error) {
-        
     }];
 }
 
 - (void)_changeCustom:(ScheduleCombineItem *)item {
     [self.model changeCustomTo:item];
-    [ScheduleShareCache.shareCache cacheItem:item];
-    [ScheduleShareCache.shareCache replaceForKey:item.identifier.key];
     [self.collectionView reloadData];
 }
 
@@ -225,11 +237,8 @@
 
 #pragma mark - <UIScrollViewDelegate>
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    [self reloadHeaderView];
-}
-
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [super scrollViewDidScroll:scrollView];
     [self reloadHeaderView];
 }
 
@@ -241,28 +250,30 @@
 
 - (void)scheduleHeaderViewDidTapDouble:(ScheduleHeaderView *)view {
     if (view.isSingle) {
-        ScheduleIdentifier *otherKey = [ScheduleWidgetCache.shareCache getKeyWithKeyName:ScheduleWidgetCacheKeyOther usingSupport:NO];
-        otherKey = otherKey ? otherKey : [ScheduleWidgetCache.shareCache getKeyWithKeyName:ScheduleWidgetCacheKeyOther usingSupport:YES];
-        if (otherKey == nil) {
-            return;
-        }
-        
-        self.parameterIfNeeded = @{
-            ScheduleModelRequestStudent : @[self.model.sno, otherKey.sno],
-            ScheduleModelRequestCustom : @[self.model.sno]
-        };
+        ScheduleIdentifier *otherKey = [ScheduleShareCache.shareCache diskKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyOther];
+        otherKey = otherKey ? otherKey : [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyOther];
+        if (otherKey == nil) { return; }
+        self.requestKeys = @[self.firstKey, otherKey].mutableCopy;
         self.onShow = ScheduleModelShowDouble;
-        
     } else {
-        self.parameterIfNeeded = @{
-            ScheduleModelRequestStudent : @[self.model.sno],
-            ScheduleModelRequestCustom : @[self.model.sno]
-        };
+        self.requestKeys = @[self.firstKey].mutableCopy;
         self.onShow = ScheduleModelShowSingle;
     }
     [self reloadHeaderView];
     [self requestAndReloadData:nil];
 }
+
+- (void)scheduleHeaderViewDidTapCalender:(ScheduleHeaderView *)view {
+    ScheduleEventViewController *vc = [[ScheduleEventViewController alloc] init];
+    UIViewController *root = [[UINavigationController alloc] initWithRootViewController:vc];
+    TransitioningDelegate *transitionDelegate = [[TransitioningDelegate alloc] init];
+    transitionDelegate.transitionDurationIfNeeded = 0.3;
+    transitionDelegate.supportedTapOutsideBackWhenPresent = NO;
+    root.transitioningDelegate = transitionDelegate;
+    root.modalPresentationStyle = UIModalPresentationCustom;
+    [self.viewController presentViewController:root animated:YES completion:nil];
+}
+
 
 #pragma mark - <UIGestureRecognizerDelegate>
 

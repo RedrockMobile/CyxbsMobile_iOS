@@ -10,12 +10,13 @@ import SwiftUI
 import WidgetKit
 
 struct ScheduleSystemLarge: View {
+    @Environment(\.colorScheme) var scheme
     var entry: ScheduleProvider.Entry
     var data: ScheduleFetchData
     
     init(entry: ScheduleProvider.Entry) {
         self.entry = entry
-        let hour = Calendar(identifier: .republicOfChina).dateComponents(in: TimeZone(identifier: "Asia/Chongqing")!, from: entry.date).hour!
+        let hour = ScheduleSystemLarge.dateComponents.hour!
         let range: Range<Int>!
         if hour < 10 {
             range = 1..<7
@@ -30,6 +31,7 @@ struct ScheduleSystemLarge: View {
         data.sno = entry.mainKey?.sno
         for item in entry.combineItems {
             data.combineItem(item)
+            entry.errorMsg = "cout :\(entry.combineItems)"
         }
     }
     
@@ -43,14 +45,16 @@ struct ScheduleSystemLarge: View {
                 .padding(.bottom, 2)
             
             GeometryReader { allEntry in
+                BackLineView()
+                    .frame(width: (allEntry.size.width - 23) / 7 - 2)
+                    .padding(.leading, lineWidth(width: allEntry.size.width))
                 VStack(spacing: 2) {
                     ScheduleTopView(anyDate: topDate(), width: 23)
                         .frame(height: allEntry.size.width / 7)
                     
-                    HStack(spacing: 5) {
-                        ScheduleLeadingView(range: data.range)
-                            .padding(.leading, 5)
-                            .frame(width: 20)
+                    HStack(spacing: 0) {
+                        ScheduleLeadingView(range: data.range, persent: data.timeline.percent)
+                            .frame(width: 25)
                         GeometryReader { entryB in
                             if entry.combineItems.count != 0 {
                                 if data.data.count != 0 {
@@ -60,7 +64,7 @@ struct ScheduleSystemLarge: View {
                                         }
                                     }
                                 } else {
-                                    Text("这个时间段暂时没有课")
+                                    Text("本周的这个时间段暂时无课，可以更换个性化以显示")
                                         .font(.system(size: 13))
                                         .padding()
                                 }
@@ -68,8 +72,8 @@ struct ScheduleSystemLarge: View {
                                 VStack (alignment: .leading) {
                                     Text("小组件请求错误，打开App并检查网络或设置学号")
                                     Text("\(entry.date)")
-                                    if entry.errorKeys.count >= 1 {
-                                        Text("信息: \(entry.errorKeys[0])")
+                                    if let msg = entry.errorMsg {
+                                        Text("信息: \(msg)")
                                     } else {
                                         Text("信息: 未确定主学号")
                                     }
@@ -86,6 +90,20 @@ struct ScheduleSystemLarge: View {
 }
 
 extension ScheduleSystemLarge {
+    
+    static var dateComponents: DateComponents {
+        return Calendar(identifier: .republicOfChina).dateComponents(in: TimeZone(identifier: "Asia/Chongqing")!, from: Date())
+    }
+    
+    static var scheduleWeek: Int {
+        var week = ScheduleSystemLarge.dateComponents.weekday!
+        week = (week + 6) / 8 + (week + 6) % 8
+        return week
+    }
+    
+    func lineWidth(width: CGFloat) -> CGFloat {
+        23 + CGFloat(ScheduleSystemLarge.scheduleWeek - 1) * (width - 23) / 7 + 2
+    }
     
     func url(in indexPath: NSIndexPath) -> URL {
         URL(string: "https://redrock.team/schedule/detail?section=\(indexPath.section)&week=\(indexPath.week)&location=\(indexPath.location)")!

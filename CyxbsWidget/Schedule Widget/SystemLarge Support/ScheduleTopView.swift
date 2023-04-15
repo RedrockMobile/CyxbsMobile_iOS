@@ -37,6 +37,20 @@ struct ScheduleSectionTopView: View {
     }
 }
 
+struct BackLineView: View {
+    @Environment(\.colorScheme) var scheme
+    var body: some View {
+        switch scheme {
+        case .light:
+            return Color(red: 0.910, green: 0.941, blue: 0.988, opacity:0.502)
+        case .dark:
+            return Color(red: 0, green: 0, blue: 0, opacity: 0.251)
+        @unknown default:
+            return Color.clear
+        }
+    }
+}
+
 extension ScheduleTopView {
     func data() -> Array<Date> {
         var components = Calendar.current.dateComponents(in: TimeZone(identifier: "Asia/Chongqing")!, from: anyDate ?? Date())

@@ -16,14 +16,19 @@
 
 @property (nonatomic, strong) RyTrottingHorseLampLabel *lampLab;
 
+
+
 @property (nonatomic, strong) UIImageView *timeImgView;
 
 @property (nonatomic, strong) UILabel *timeLab;
 
+
+
 @property (nonatomic, strong) UIImageView *placeImgView;
 
-@property (nonatomic, strong) UILabel *placeLab;
+@property (nonatomic, strong) RyTrottingHorseLampLabel *placeLab;
 
+// other view
 
 @property (nonatomic, strong) UIView *bar;
 
@@ -58,11 +63,14 @@
     self.timeImgView.centerY = self.timeLab.centerY =
     self.placeImgView.centerY = self.placeLab.centerY = self.height / 2;
     
-    self.timeImgView.left = self.width / 3 + 12;
+    self.lampLab.left = 18;
+    
+    self.timeImgView.left = 0.384 * self.width;
     self.timeLab.left = self.timeImgView.right + 5;
     
-    self.placeImgView.left = self.width / 3 * 2 + 9;
+    self.placeImgView.left = 0.7 * self.width;
     self.placeLab.left = self.placeImgView.right + 5;
+    
 }
 
 #pragma mark - Lazy
@@ -98,7 +106,9 @@
 
 - (UILabel *)timeLab {
     if (_timeLab == nil) {
-        _timeLab = [self _contentLab];
+        _timeLab = [[UILabel alloc] init];
+        _timeLab.font = [UIFont fontWithName:FontName.PingFangSC.Light size:12];
+        _timeLab.textColor = [UIColor Light:UIColorHex(#15315B) Dark:UIColorHex(#F0F0F2)];
         _timeLab.size = CGSizeMake(120, 20);
         _timeLab.left = self.timeImgView.right + 5;
         _timeLab.centerY = self.timeImgView.centerY;
@@ -116,21 +126,18 @@
     return _placeImgView;
 }
 
-- (UILabel *)placeLab {
+- (RyTrottingHorseLampLabel *)placeLab {
     if (_placeLab == nil) {
-        _placeLab = [self _contentLab];
+        _placeLab = [[RyTrottingHorseLampLabel alloc] init];
         _placeLab.size = CGSizeMake(120, 20);
+        [_placeLab trottingHorseLampWithLabel:^(UILabel * _Nonnull label) {
+            label.font = [UIFont fontWithName:FontName.PingFangSC.Light size:12];
+            label.textColor = [UIColor Light:UIColorHex(#15315B) Dark:UIColorHex(#F0F0F2)];
+        }];
         _placeLab.left = self.placeImgView.right + 5;
         _placeLab.centerY = self.placeImgView.centerY;
     }
     return _placeLab;
-}
-
-- (UILabel *)_contentLab {
-    UILabel *lab = [[UILabel alloc] init];
-    lab.font = [UIFont fontWithName:FontName.PingFangSC.Light size:12];
-    lab.textColor = [UIColor Light:UIColorHex(#15315B) Dark:UIColorHex(#F0F0F2)];
-    return lab;
 }
 
 - (UIView *)bar {
@@ -145,7 +152,7 @@
 
 - (UIView *)line {
     if (_line == nil) {
-        _line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 2)];
+        _line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 1)];
         _line.bottom = self.SuperBottom;
         _line.backgroundColor = [UIColor Light:UIColorHex(#EAEDF1) Dark:UIColorHex(#7C7C7C)];
     }
@@ -169,20 +176,27 @@
 
 - (void)setTime:(NSString *)time {
     self.timeLab.text = time.copy;
+    [self.timeLab sizeToFit];
 }
 
 - (void)setPlace:(NSString *)place {
-    self.placeLab.text = place.copy;
+    _place = place;
+    [self.placeLab trottingHorseLampWithLabel:^(UILabel * _Nonnull label) {
+        label.text = place;
+        [label sizeToFit];
+        self.placeLab.height = label.height;
+    }];
+    [self.placeLab animationPrepare:^(id<RyTrottingHorseLampLabelAnimationContext>  _Nonnull context) {
+        context.hoverDuration = 2;
+        context.animationDuration = 4;
+        context.spacing = 60;
+    }];
 }
 
 #pragma mark - getter
 
 - (NSString *)time {
     return self.timeLab.text.copy;
-}
-
-- (NSString *)place {
-    return self.placeLab.text.copy;
 }
 
 @end

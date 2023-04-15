@@ -44,8 +44,9 @@ target 'CyxbsMobile2019_iOS' do
     pod 'FluentDarkModeKit'
     pod 'IGListKit' # SSR引入，暂时无项目使用
     pod 'WCDB'
+    pod 'hpple'
     # pod 'CocoaMarkdown'
-  pod 'MarkDownEditor'
+    pod 'MarkDownEditor'
     pod 'JGProgressHUD'
     
     pod 'Alamofire'

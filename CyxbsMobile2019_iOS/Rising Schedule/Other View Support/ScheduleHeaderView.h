@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// - Parameter view: 视图
 - (void)scheduleHeaderViewDidTapDouble:(ScheduleHeaderView *)view;
 
-//- (void)scheduleHeaderViewDidTapWidget:(ScheduleHeaderView *)view;
+- (void)scheduleHeaderViewDidTapCalender:(ScheduleHeaderView *)view;
 
 @end
 
@@ -59,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是否单双
 @property (nonatomic, readonly) BOOL isSingle;
 
-@property (nonatomic) BOOL widget;
+@property (nonatomic) BOOL calenderEdit;
 
 - (instancetype)init NS_UNAVAILABLE;
 

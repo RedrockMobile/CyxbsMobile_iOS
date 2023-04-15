@@ -9,11 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #import "ScheduleCollectionViewModel.h"
-
 #import "ScheduleCombineItemSupport.h"
-
 #import "ScheduleTimelineSupport.h"
-
 #import "NSIndexPath+Schedule.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -23,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 
 @interface ScheduleMapModel : NSObject {
+@protected
     NSMapTable <NSIndexPath *, NSPointerArray *> *_dayMap;
 }
 

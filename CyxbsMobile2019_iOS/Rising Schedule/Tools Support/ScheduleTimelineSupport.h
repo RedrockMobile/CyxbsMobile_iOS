@@ -50,7 +50,7 @@ typedef NS_ENUM(NSUInteger, ScheduleTimelineType) {
 /// location: [1, 14];  lenth: [1, 14]
 - (NSRange)layoutRangeWithOriginRange:(NSRange)range;
 
-//- (CGFloat)percentWithComponents:(NSDateComponents *)componets;
+@property (nonatomic, readonly) CGFloat percent;
 
 @end
 

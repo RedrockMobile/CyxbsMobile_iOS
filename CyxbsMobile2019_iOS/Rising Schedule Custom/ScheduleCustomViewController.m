@@ -135,9 +135,15 @@
     self.courseIfNeeded.classRoom = view.content;
     self.courseIfNeeded.period = view.period;
     self.courseIfNeeded.inSections = view.sections;
-    self.editView.inWeek = view.inWeek;
+    self.courseIfNeeded.inWeek = view.inWeek;
     self.courseIfNeeded.teacher = @"自定义";
     self.courseIfNeeded.type = @"事务";
+    NSString *string = view.sections.description;
+    NSLog(@"descrip %@", string);
+    NSRange range = [string rangeOfString:@"indexes: ("];
+    NSRange endRange = [string rangeOfString:@")]"];
+    NSRange extractRange = NSMakeRange(NSMaxRange(range), endRange.location - NSMaxRange(range));
+    self.courseIfNeeded.rawWeek = [NSString stringWithFormat:@"%@周", [string substringWithRange:extractRange]];
     
     if (self.delegate) {
         if (_isAdding && [self.delegate respondsToSelector:@selector(viewController:appended:)]) {

@@ -41,14 +41,23 @@ struct ScheduleProvider: IntentTimelineProvider {
         Task {
             do {
                 var entries: [ScheduleTimelineEntry] = []
-                let mainKey = ScheduleWidgetCache().getKeyWithKeyName(ScheduleWidgetCacheKeyMain, usingSupport: true)
-                let otherKey = ScheduleWidgetCache().getKeyWithKeyName(ScheduleWidgetCacheKeyOther, usingSupport: true)
+                
+                let mainKey = ScheduleShareCache.memoryKey(forKey: nil, forKeyName: .main)
+                let customKey = ScheduleShareCache.memoryKey(forKey: nil, forKeyName: .custom)
+                let otherKey = ScheduleShareCache.memoryKey(forKey: nil, forKeyName: .other)
                 
                 var mainItem: ScheduleCombineItem?
                 var otherItem: ScheduleCombineItem?
+                var customItem: ScheduleCombineItem?
+                
                 if let mainKey = mainKey {
-                    mainItem = try await ScheduleWidgetRequest.shared.request(sno: mainKey.sno)
-                    if ScheduleWidgetCache().beDouble, let otherKey = otherKey {
+                    if mainKey.useWidget {
+                        mainItem = try await ScheduleWidgetRequest.shared.request(sno: mainKey.sno)
+                    }
+                    if let customKey = customKey, customKey.useWidget {
+                        customItem = ScheduleWidgetRequest.shared.custom
+                    }
+                    if let otherKey = otherKey, otherKey.useWidget {
                         otherItem = try await ScheduleWidgetRequest.shared.request(sno: otherKey.sno)
                     }
                 }
@@ -63,7 +72,7 @@ struct ScheduleProvider: IntentTimelineProvider {
                         entry.mainKey = main.identifier
                     } else {
                         if let mainKey = mainKey {
-                            entry.errorKeys.append(mainKey)
+                            entry.errorMsg = mainKey.description
                         }
                     }
                     
@@ -71,8 +80,12 @@ struct ScheduleProvider: IntentTimelineProvider {
                         entry.combineItems.append(other)
                     } else {
                         if let otherKey = otherKey {
-                            entry.errorKeys.append(otherKey)
+                            entry.errorMsg = entry.errorMsg ?? "" + otherKey.description
                         }
+                    }
+                    
+                    if let customItem = customItem {
+                        entry.combineItems.append(customItem)
                     }
                     
                     entries.append(entry)

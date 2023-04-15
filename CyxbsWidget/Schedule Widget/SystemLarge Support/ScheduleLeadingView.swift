@@ -11,15 +11,25 @@ import WidgetKit
 
 struct ScheduleLeadingView: View {
     var range: Range<Int>
+    var persent: CGFloat?
     @Environment(\.colorScheme) var scheme
     
     var body: some View {
-        GeometryReader { entry in
-            VStack(spacing: 0) {
-                ForEach(range, id:\.self) { index in
-                    TypeText("\(index)")
-                        .frame(height: (entry.size.height) / CGFloat(range.upperBound - range.lowerBound))
-                }
+        ZStack {
+            GeometryReader { entry in
+                VStack(spacing: 0) {
+                    ForEach(range, id:\.self) { index in
+                        TypeText("\(index)")
+                            .frame(height: (entry.size.height) / CGFloat(range.upperBound - range.lowerBound))
+                    }
+                }.padding(.leading, entry.size.width * 0.35)
+                
+            }
+            GeometryReader { entry in
+                Image("schedule.zhizhen")
+                    .resizable()
+                    .scaledToFit()
+                    .padding(.top, top(for: entry.size.height))
             }
         }
     }
@@ -41,6 +51,11 @@ extension ScheduleLeadingView {
         return Text(str)
             .font(.system(size: 12))
             .foregroundColor(color)
+    }
+    
+    func top(for height: CGFloat) -> CGFloat {
+        guard let persent = persent, persent >= CGFloat(range.lowerBound) else { return 0 }
+        return (persent - CGFloat(range.lowerBound)) * (height / CGFloat(range.upperBound - range.lowerBound))
     }
 }
 

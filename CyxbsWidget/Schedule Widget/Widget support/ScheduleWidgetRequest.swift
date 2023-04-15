@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 import SwiftyJSON
 
 final class ScheduleWidgetRequest {
@@ -28,7 +27,7 @@ final class ScheduleWidgetRequest {
             let sno = dic["stuNum"]?.string!
             let nowWeek = dic["nowWeek"]?.int!
             
-            let key = ScheduleIdentifier(sno: sno!, type: .student)
+            let key = ScheduleIdentifier(sno: sno!, type: .student)!
             key.setExpWithNowWeek(nowWeek!)
             
             let ary = dic["data"]?.arrayObject!
@@ -40,7 +39,15 @@ final class ScheduleWidgetRequest {
             let item = ScheduleCombineItem(identifier: key, value: finalAry)
             return item
         } else {
+            let mkey = ScheduleShareCache.memoryKey(forKey: ScheduleIdentifier(sno: sno, type: .student)!.key, forKeyName: nil)
+            if let mkey = mkey, mkey.useWebView {
+                return ScheduleShareCache.memoryItem(forKey: mkey.key, forKeyName: nil)
+            }
             return nil
         }
+    }
+    
+    var custom: ScheduleCombineItem? {
+        ScheduleShareCache.memoryItem(forKey: nil, forKeyName: .custom)
     }
 }

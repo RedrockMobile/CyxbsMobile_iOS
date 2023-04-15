@@ -8,6 +8,7 @@
 
 #import "ScheduleCombineItemSupport.h"
 
+#import "ScheduleNeedsSupport.h"
 #import "ScheduleCourse.h"
 
 #pragma mark - ScheduleIdentifier
@@ -22,12 +23,19 @@ WCDB_IMPLEMENTATION(ScheduleIdentifier)
 
 WCDB_SYNTHESIZE(ScheduleIdentifier, sno)
 WCDB_SYNTHESIZE(ScheduleIdentifier, type)
+
+WCDB_SYNTHESIZE(ScheduleIdentifier, useWebView)
+WCDB_SYNTHESIZE(ScheduleIdentifier, useWidget)
+WCDB_SYNTHESIZE(ScheduleIdentifier, useNotification)
+WCDB_SYNTHESIZE(ScheduleIdentifier, useCanlender)
+
 WCDB_SYNTHESIZE(ScheduleIdentifier, iat)
 WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
 
 #endif
 
 - (instancetype)initWithSno:(NSString *)name type:(ScheduleModelRequestType)type {
+    if (!name || !type) { return nil; }
     self = [super init];
     if (self) {
         _sno = name.copy;
@@ -56,7 +64,7 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%@, %p>; [%@, %@] : (exp: %.0lf, iat: %.0lf)", NSStringFromClass(self.class), self, self.sno, self.type, self.exp, self.iat];
+    return [NSString stringWithFormat:@"<%@, %p>; [%@, %@] : (exp: %.0lf, iat: %.0lf) (web%d, wgt%d, not%d, cal%d)", NSStringFromClass(self.class), self, self.sno, self.type, self.exp, self.iat, self.useWebView, self.useWidget, self.useNotification, self.useCanlender];
 }
 
 #pragma mark - Method
@@ -66,18 +74,30 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
 }
 
 - (void)setExpWithNowWeek:(NSInteger)nowWeek {
-    NSUInteger weekday = [NSCalendar.currentCalendar components:NSCalendarUnitWeekday fromDate:NSDate.date].weekday;
-    NSUInteger aboveWeek = weekday + 6;
-    NSUInteger todayWeek = aboveWeek % 8 + aboveWeek / 8;
+    NSUInteger weekday = [NSCalendar.currentCalendar components:NSCalendarUnitWeekday fromDate:NSDate.date].scheduleWeekday;
     NSTimeInterval beforNow = 0;
     if (nowWeek > 0) {
-        beforNow = (nowWeek - 1) * 7 * 24 * 60 * 60 + (todayWeek - 1) * 24 * 60 * 60;
+        beforNow = (nowWeek - 1) * 7 * 24 * 60 * 60 + (weekday - 1) * 24 * 60 * 60;
     } else if (nowWeek == 0) {
-        beforNow = -(fabs(8 - todayWeek) * 24 * 60 * 60);
+        beforNow = -(fabs(8 - weekday) * 24 * 60 * 60);
     } else {
-        beforNow = -((nowWeek + 1) * 7 * 24 * 60 * 60 + fabs(8 - todayWeek) * 24 * 60 * 60);
+        beforNow = -((nowWeek + 1) * 7 * 24 * 60 * 60 + fabs(8 - weekday) * 24 * 60 * 60);
     }
     _exp = [NSDate dateWithTimeIntervalSinceNow:-beforNow].timeIntervalSince1970;
+}
+
+- (ScheduleIdentifier *)moveFrom:(ScheduleIdentifier *)other {
+    if (other == self || !other) { return self; }
+    ScheduleIdentifier *fin = self.copy;
+    if ([fin.key isEqualToString:other.key]) {
+        fin.useWebView |= other.useWebView;
+        fin.useWidget |= other.useWidget;
+        fin.useNotification |= other.useNotification;
+        fin.useCanlender |= other.useCanlender;
+    }
+    fin.exp = MAX(fin.exp, other.exp);
+    fin.iat = MAX(fin.iat, other.iat);
+    return fin;
 }
 
 #pragma mark - WCDB
@@ -99,17 +119,37 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder {
     NSString *sno = [decoder decodeObjectOfClass:NSString.class forKey:@"sno"];
     NSString *type = [decoder decodeObjectOfClass:NSString.class forKey:@"type"];
+    
+    BOOL useWebView = [decoder decodeBoolForKey:@"useWebView"];
+    BOOL useWidget = [decoder decodeBoolForKey:@"useWidget"];
+    BOOL useNotification = [decoder decodeBoolForKey:@"useNotification"];
+    BOOL useCanlender = [decoder decodeBoolForKey:@"useCanlender"];
+    
     NSTimeInterval iat = [decoder decodeDoubleForKey:@"iat"];
     NSTimeInterval exp = [decoder decodeDoubleForKey:@"exp"];
+    
     self = [self initWithSno:sno type:requestTypeForString(type)];
+    
+    self.useWebView = useWebView;
+    self.useWidget = useWidget;
+    self.useNotification = useNotification;
+    self.useCanlender = useCanlender;
+    
     self.iat = iat;
     self.exp = exp;
+    
     return self;
 }
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
     [coder encodeObject:self.sno forKey:@"sno"];
     [coder encodeObject:self.type forKey:@"type"];
+    
+    [coder encodeBool:self.useWebView forKey:@"useWebView"];
+    [coder encodeBool:self.useWidget forKey:@"useWidget"];
+    [coder encodeBool:self.useNotification forKey:@"useNotification"];
+    [coder encodeBool:self.useCanlender forKey:@"useCanlender"];
+    
     [coder encodeDouble:self.iat forKey:@"iat"];
     [coder encodeDouble:self.exp forKey:@"exp"];
 }
@@ -117,17 +157,14 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
 #pragma mark - <NSCopying>
 
 - (nonnull id)copyWithZone:(nullable NSZone *)zone {
-    ScheduleIdentifier *obj = [[ScheduleIdentifier alloc] initWithSno:self.sno.copy type:self.type];
-    obj.iat = self.iat;
-    obj.exp = self.exp;
-    return obj;
+    return self;
 }
 
 @end
 
 NSArray <ScheduleIdentifier *> *ScheduleIdentifiersFromScheduleRequestDictionary(ScheduleRequestDictionary *dictionary) {
     NSMutableArray *ary = NSMutableArray.array;
-    for (NSString *key in dictionary.allKeys) {
+    for (NSString *key in dictionary) {
         for (NSString *sno in dictionary[key]) {
             ScheduleIdentifier *identifier = [ScheduleIdentifier identifierWithSno:sno type:key];
             [ary addObject:identifier];
@@ -135,18 +172,6 @@ NSArray <ScheduleIdentifier *> *ScheduleIdentifiersFromScheduleRequestDictionary
     }
     return ary;
 }
-
-ScheduleRequestDictionary *ScheduleRequestDictionaryFromScheduleIdentifiers(NSArray <ScheduleIdentifier *> *ary) {
-    NSMutableDictionary *finDic = NSMutableDictionary.dictionary;
-    for (ScheduleIdentifier *identifier in ary) {
-        if ([finDic objectForKey:identifier.type] == nil) {
-            [finDic setObject:NSMutableArray.array forKey:identifier.type];
-        }
-        [finDic[identifier.type] addObject:identifier.sno];
-    }
-    return finDic.copy;
-}
-
 
 
 
@@ -159,9 +184,8 @@ ScheduleRequestDictionary *ScheduleRequestDictionaryFromScheduleIdentifiers(NSAr
 }
 
 - (instancetype)initWithIdentifier:(ScheduleIdentifier *)name value:(NSArray<ScheduleCourse *> *)value {
-    if (name == nil && value == nil) {
-        return nil;
-    }
+    if (name == nil) { return nil; }
+    value = value ? value : NSArray.array;
     self = [super init];
     if (self) {
         _identifier = name;
@@ -175,7 +199,7 @@ ScheduleRequestDictionary *ScheduleRequestDictionaryFromScheduleIdentifiers(NSAr
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%@, %p> [%@ : count: %ld]", NSStringFromClass(self.class), self, self.identifier, self.value.count];
+    return [NSString stringWithFormat:@"<%@, %p> [%@ : count: %ld]", NSStringFromClass(self.class), self, self.identifier.key, self.value.count];
 }
 
 #pragma mark - <NSSecureCoding>
@@ -186,25 +210,20 @@ ScheduleRequestDictionary *ScheduleRequestDictionaryFromScheduleIdentifiers(NSAr
 
 - (nullable instancetype)initWithCoder:(nonnull NSCoder *)decoder {
     ScheduleIdentifier *identifier = [decoder decodeObjectOfClass:ScheduleIdentifier. class forKey:@"name"];
-    BOOL awaked = [decoder decodeBoolForKey:@"awaked"];
     NSArray <ScheduleCourse *> *courses = [decoder decodeObjectForKey:@"value"];
     self = [self initWithIdentifier:identifier value:courses];
-    self.awaked = awaked;
     return self;
 }
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
     [coder encodeObject:_identifier forKey:@"name"];
     [coder encodeObject:_value forKey:@"value"];
-    [coder encodeBool:_awaked forKey:@"book"];
 }
 
 #pragma mark - <NSCopying>
 
 - (nonnull id)copyWithZone:(nullable NSZone *)zone {
-    ScheduleCombineItem *item = [[ScheduleCombineItem allocWithZone:zone] initWithIdentifier:self.identifier.copy value:self.value.copy];
-    item.awaked = self.awaked;
-    return item;
+    return self;
 }
 
 @end
