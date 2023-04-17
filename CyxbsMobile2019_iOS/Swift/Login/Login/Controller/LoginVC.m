@@ -13,6 +13,9 @@
 
 // Tool
 #import "TodoSyncTool.h"
+#import "sys/utsname.h"
+#include <ifaddrs.h>
+#include <arpa/inet.h>
 
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
 
@@ -139,6 +142,48 @@
     }
 }
 
+/// 获取设备的Vendor标识符
+- (NSString *)identifierForVendor {
+    NSString *vendorID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    return vendorID;
+}
+
+/// 获取设备的IP地址
+- (NSString *)getLocalWifiIPAddress {
+    NSString *address = nil;
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+    // 通过调用 getifaddrs 函数获取所有接口的列表信息
+    success = getifaddrs(&interfaces);
+    if (success == 0) {
+        // 如果成功，循环遍历所有接口
+        temp_addr = interfaces;
+        while(temp_addr != NULL) {
+            // 判断当前接口是否为 Wi-Fi
+            if(temp_addr->ifa_addr->sa_family == AF_INET && [[NSString stringWithUTF8String:temp_addr->ifa_name] isEqualToString:@"en0"]) {
+                // 如果是 Wi-Fi 接口，获取 IPv4 地址
+                struct sockaddr_in *addr = (struct sockaddr_in *)temp_addr->ifa_addr;
+                char *ip = inet_ntoa(addr->sin_addr);
+                address = [NSString stringWithUTF8String:ip];
+                break;
+            }
+            temp_addr = temp_addr->ifa_next;
+        }
+    }
+    // 释放 getifaddrs 函数返回的内存空间
+    freeifaddrs(interfaces);
+    return address;
+}
+
+/// 获取生产厂商
+- (NSString *)deviceManufacturer {
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    NSString *platform = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+    return platform;
+}
+
 // MARK: SEL
 
 /// 在验证了两个输入框都有数据后，重写请求方法
@@ -162,10 +207,6 @@
     NSString *stuIDStr = self.mainView.tfViewArray[0].text;
     NSString *pwdStr = self.mainView.tfViewArray[1].text;
     
-    NSLog(@"🍋stuID：%@", stuIDStr);
-    NSLog(@"🍉stuCode：%@", pwdStr);
-    // TODO: 请求验证
-    // TODO: 成功:
     // 4.1 展示hud
     self.loginingHud = [NewQAHud showNotHideHudWith:@"登录中..." AddView:self.mainView];
     
@@ -184,6 +225,23 @@
         [todoTool logInSuccess];
         // 4.2.5 得到用户信息
         [[UserItem defaultItem] getUserInfo];
+        // 4.2.5 上传用户手机信息
+        NSDictionary *param = @{@"phone": [self identifierForVendor],
+                                @"manufacturer": [self deviceManufacturer],
+                                @"ip": [self getLocalWifiIPAddress]
+        };
+        [HttpTool.shareTool
+         request:Mine_POST_loginInformation_API
+         type:HttpToolRequestTypePost
+         serializer:HttpToolRequestSerializerJSON
+         bodyParameters:param
+         progress:nil
+         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+            
+        }
+         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            
+        }];
     }
     failed:^(BOOL isNet) {
         // 隐藏hud
@@ -192,8 +250,7 @@
         if (isNet) {
             // 网络弹窗
             self.networkWrongHud = [NewQAHud showhudWithCustomView:self.networkWrongView AddView:self.mainView];
-            
-        }else {  // 网络没问题则是账号密码有问题
+        } else {  // 网络没问题则是账号密码有问题
             // 1 设置弹窗内容
             [self setFailureHudData];
             // 2 展示弹窗并且保存该弹窗
