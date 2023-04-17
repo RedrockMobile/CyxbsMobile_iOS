@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *money;
 @property (nonatomic, copy) NSString *degree;
 @property (nonatomic, copy) NSString *time;
+@property(nonatomic, copy) NSString *buildAndRoom;
 
 - (instancetype)initWithDict:(NSDictionary *)dict;
 

@@ -16,7 +16,7 @@
         } else {
             self.money = [NSString stringWithFormat:@"%@.%@", dict[@"elec_inf"][@"elec_cost"][0], dict[@"elec_inf"][@"elec_cost"][1]];
         }
-        
+        self.buildAndRoom = [dict[@"elec_inf"][@"room"] stringValue];
         self.degree = [dict[@"elec_inf"][@"elec_spend"] stringValue];
         NSString *returnTime = (NSString *)dict[@"elec_inf"][@"record_time"];
         

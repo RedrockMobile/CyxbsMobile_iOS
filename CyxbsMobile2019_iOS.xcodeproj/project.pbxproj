@@ -2650,9 +2650,9 @@
 		18CDF4D5257F91BC006E8E5C /* Discover_MainPage */ = {
 			isa = PBXGroup;
 			children = (
+				18CDF4F6257F91BC006E8E5C /* View */,
 				B0B1BA0029E6A2E300A1BB02 /* Controller */,
 				B0B1B9DB29E69E7B00A1BB02 /* Discover_Electric */,
-				18CDF4F6257F91BC006E8E5C /* View */,
 				1404747F27F47F2A00307209 /* Discover_AD */,
 				14B73F29281BED7B00D08ADD /* Discover_MineMessage */,
 			);

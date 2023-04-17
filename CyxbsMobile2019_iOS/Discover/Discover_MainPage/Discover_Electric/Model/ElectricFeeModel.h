@@ -12,7 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ElectricFeeModel : NSObject
 
-@property(nonatomic, strong) ElectricFeeItem *electricFeeItem;
+@property (nonatomic, assign) NSInteger status;
+@property (nonatomic, strong) ElectricFeeItem *electricFeeItem;
+
+/// 网络请求
+- (void)requestSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 
 @end
 

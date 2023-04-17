@@ -13,6 +13,7 @@
 
 @implementation ElectricityView
 
+#pragma mark - Init
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -24,11 +25,12 @@
         } else {
             [self addNoBindingView];
         }
-        [self addClearButton];//添加透明按钮用来在被点击后设置宿舍
+//        [self addClearButton];//添加透明按钮用来在被点击后设置宿舍
     }
     return self;
 }
 
+#pragma mark - Method
 - (void)setUIDefaults {
     if (@available(iOS 11.0, *)) {
         self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
@@ -52,16 +54,8 @@
     [self.hintLabel removeFromSuperview];
 }
 
-- (void)addClearButton {
-    UIButton *button = [[UIButton alloc]init];
-
-    [button addTarget:self action:@selector(touchSelf) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:button];
-    self.clearButton = button;
-}
-
-//被点击时调用的方法
-- (void)touchSelf {
+//点击之后跳转绑定宿舍
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     if ([self.delegate respondsToSelector:@selector(touchElectrictyView)]) {
         [self.delegate touchElectrictyView];
     }
@@ -74,13 +68,13 @@
 
 #pragma mark - 公共部分
 - (void)addTitle {
-    UILabel *title = [[UILabel alloc] init];//左上角标题
-
-    self.electricFeeTitle = title;
-    title.text = @"电费查询";
-    title.font = [UIFont fontWithName:PingFangSCBold size:18];
-    title.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-    [self addSubview:title];
+    //左上角标题
+    [self addSubview:self.electricFeeTitle];
+    
+//    [self.electricFeeTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self).offset(14);
+//        make.top.equalTo(self).offset(23);
+//    }];
 }
 
 - (void)addSeperateLine {
@@ -89,20 +83,18 @@
     line.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:0.5]];
     [self addSubview:line];
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.right.equalTo(self);
+        make.bottom.left.right.equalTo(self);
         make.height.equalTo(@1);
     }];
 }
 
 #pragma mark - 未绑定部分
 - (void)addHintLabel {
-    UILabel *hintLabel = [[UILabel alloc]init];
-
-    self.hintLabel = hintLabel;
-    hintLabel.text = @"还未绑定账号哦～";
-    hintLabel.font = [UIFont fontWithName:PingFangSCLight size:15];
-    hintLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-    [self addSubview:hintLabel];
+    [self addSubview:self.hintLabel];
+    [self.hintLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self);
+        make.centerY.equalTo(self).offset(20);
+    }];
 }
 
 #pragma mark - 绑定部分
@@ -116,6 +108,7 @@
     [self addDu];
     [self addHintLeft];
     [self addHintRight];
+    [self configUI];
     self.layer.shadowColor = [UIColor blackColor].CGColor;
     self.layer.shadowOpacity = 0.16f;
     self.layer.shadowColor = [UIColor colorWithRed:174 / 255.0 green:182 / 255.0 blue:211 / 255.0 alpha:1].CGColor;
@@ -123,151 +116,58 @@
 }
 
 - (void)addTime {
-    if (self.electricFeeTime) {
-        [self.electricFeeTime removeFromSuperview];
-    }
-
-    UILabel *timeLab = [[UILabel alloc]init];//右上角抄表时间
-    self.electricFeeTime = timeLab;
+    //右上角抄表时间
     NSString *timeStr = [NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_time"];
 
-    if (timeLab != NULL) {
-        NSString *elecTime =
-        [[NSDate dateString:timeStr
-              fromFormatter:NSDateFormatter.defaultFormatter
-             withDateFormat:@"yyyy.M.dd"]
-        stringFromFormatter:NSDateFormatter.defaultFormatter
-             withDateFormat:@"M月d日抄表"];
-        timeLab.text = elecTime;
-    } else {
-        timeLab.text = @"加载失败";
-    }
+    NSString *elecTime = [[NSDate dateString:timeStr
+                               fromFormatter:NSDateFormatter.defaultFormatter
+                              withDateFormat:@"yyyy.M.dd"]
+                          stringFromFormatter:NSDateFormatter.defaultFormatter
+                               withDateFormat:@"M月d日抄表"];
+    self.electricFeeTime.text = elecTime;
 
-    timeLab.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-    timeLab.alpha = 0.54;
-    timeLab.font = [UIFont fontWithName:PingFangSCLight size:10];
-    [self addSubview:timeLab];
+    [self addSubview:self.electricFeeTime];
 }
 
 - (void)addMoney {
-    if (self.electricFeeMoney) {
-        [self.electricFeeMoney removeFromSuperview];
-    }
-
-    UILabel *money = [[UILabel alloc]init];//左边数字
-    self.electricFeeMoney = money;
-
     if ([NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_money"] != NULL) {
-        [money setText:[NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_money"]];
-//        [money setTitle:[NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_money"] forState:UIControlStateNormal];
+        [self.electricFeeMoney setText:[NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_money"]];
     } else {
-        [money setText:@"0"];
-//        [money setTitle:@"0" forState:UIControlStateNormal];
+        [self.electricFeeMoney setText:@"0"];
     }
-
-    //    money.text = @"0";
-    if (@available(iOS 11.0, *)) {
-        [money setTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]]];
-//        [money setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]] forState:UIControlStateNormal];
-    } else {
-        // Fallback on earlier versions
-    }
-
-    [money setFont:[UIFont fontWithName:ImpactMedium size:36]];
-//    money.titleLabel.font = [UIFont fontWithName:ImpactMedium size:36];
-    [self addSubview:money];
+    [self addSubview:self.electricFeeMoney];
 }
 
 - (void)addDegree {
-    if (self.electricFeeDegree) {
-        [self.electricFeeDegree removeFromSuperview];
-    }
-
-    UILabel *degree = [[UILabel alloc]init];//右边数字
-    self.electricFeeDegree = degree;
-
     if ([NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_degree"]) {
-        degree.text = [NSString stringWithFormat:@"%@", [NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_degree"]];
+        self.electricFeeDegree.text = [NSString stringWithFormat:@"%@", [NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_degree"]];
     } else {
-        degree.text = @"0";
+        self.electricFeeDegree.text = @"0";
     }
-
-    if (@available(iOS 11.0, *)) {
-        degree.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
-    } else {
-        // Fallback on earlier versions
-    }
-
-    degree.font = [UIFont fontWithName:ImpactMedium size:36];
-    [self addSubview:degree];
+    [self addSubview:self.electricFeeDegree];
 }
 
 - (void)addYuan {
-    if (self.electricFeeYuan) {
-        [self.electricFeeYuan removeFromSuperview];
-    }
-
-    UILabel *yuan = [[UILabel alloc]init];//汉字“元”
-    self.electricFeeYuan = yuan;
-    yuan.text = @"元";
-    yuan.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-    yuan.font = [UIFont fontWithName:PingFangSCMedium size:13];
-    [self addSubview:yuan];
+    //汉字“元”
+    [self addSubview:self.electricFeeYuan];
 }
 
 - (void)addDu {
-    if (self.electricFeeDu) {
-        [self.electricFeeDu removeFromSuperview];
-    }
-
-    UILabel *du = [[UILabel alloc]init];//汉字“度”
-    self.electricFeeDu = du;
-    du.text = @"度";
-    du.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-    du.font = [UIFont fontWithName:PingFangSCMedium size:13];
-    [self addSubview:du];
+    //汉字“度”
+    [self addSubview:self.electricFeeDu];
 }
 
 - (void)addHintLeft {
-    if (self.electricFeeHintLeft) {
-        [self.electricFeeHintLeft removeFromSuperview];
-    }
-
-    UILabel *hintLeft = [[UILabel alloc]init];//汉字“费用、本月”
-    self.electricFeeHintLeft = hintLeft;
-    hintLeft.text = @"费用/本月";
-    hintLeft.font = [UIFont fontWithName:PingFangSCLight size:13];
-    hintLeft.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-    hintLeft.alpha = 0.6;
-    [self addSubview:hintLeft];
+    //汉字“费用、本月”
+    [self addSubview:self.electricFeeHintLeft];
 }
 
 - (void)addHintRight {
-    if (self.electricFeeHintRight) {
-        [self.electricFeeHintRight removeFromSuperview];
-    }
-
-    UILabel *hintRight = [[UILabel alloc] init];//汉字“使用度数，本月”
-    self.electricFeeHintRight = hintRight;
-    hintRight.text = @"使用度数/本月";
-    hintRight.font = [UIFont fontWithName:PingFangSCLight size:13];
-    hintRight.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-    hintRight.alpha = 0.6;
-    [self addSubview:hintRight];
+    //汉字“使用度数，本月”
+    [self addSubview:self.electricFeeHintRight];
 }
 
-- (void)layoutSubviews {
-    [self.clearButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.bottom.equalTo(self);
-    }];
-    [self.electricFeeTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).offset(14);
-        make.top.equalTo(self).offset(23);
-    }];
-    [self.hintLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self);
-        make.centerY.equalTo(self).offset(20);
-    }];
+- (void)configUI {
     [self.electricFeeTime mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.electricFeeTitle);
         make.right.equalTo(self).offset(-15);
@@ -298,6 +198,96 @@
         make.top.equalTo(self.electricFeeDegree.mas_bottom);
         make.centerX.equalTo(self.electricFeeDegree);
     }];
+}
+
+#pragma mark - Lazy
+
+- (UILabel *)electricFeeTime {
+    if(!_electricFeeTime) {
+        _electricFeeTime = [[UILabel alloc]init];
+        _electricFeeTime.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
+        _electricFeeTime.alpha = 0.54;
+        _electricFeeTime.font = [UIFont fontWithName:PingFangSCLight size:10];
+    }
+    return _electricFeeTime;
+}
+
+- (UILabel *)electricFeeMoney {
+    if (!_electricFeeMoney) {
+        _electricFeeMoney = [[UILabel alloc]init];
+        [_electricFeeMoney setTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]]];
+        [_electricFeeMoney setFont:[UIFont fontWithName:ImpactMedium size:36]];
+    }
+    return _electricFeeMoney;
+}
+
+- (UILabel *)electricFeeDegree {
+    if (!_electricFeeDegree) {
+        _electricFeeDegree = [[UILabel alloc]init];
+        _electricFeeDegree.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
+        _electricFeeDegree.font = [UIFont fontWithName:ImpactMedium size:36];
+    }
+    return _electricFeeDegree;
+}
+
+- (UILabel *)electricFeeYuan {
+    if (!_electricFeeYuan) {
+        _electricFeeYuan = [[UILabel alloc]init];
+        _electricFeeYuan.text = @"元";
+        _electricFeeYuan.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
+        _electricFeeYuan.font = [UIFont fontWithName:PingFangSCMedium size:13];
+    }
+    return _electricFeeYuan;
+}
+
+- (UILabel *)electricFeeDu {
+    if (!_electricFeeDu) {
+        _electricFeeDu = [[UILabel alloc]init];
+        _electricFeeDu.text = @"度";
+        _electricFeeDu.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
+        _electricFeeDu.font = [UIFont fontWithName:PingFangSCMedium size:13];
+    }
+    return _electricFeeDu;
+}
+
+- (UILabel *)electricFeeTitle {
+    if (!_electricFeeTitle) {
+        _electricFeeTitle = [[UILabel alloc] initWithFrame:CGRectMake(14, 23, 80, 20)];
+        _electricFeeTitle.text = @"电费查询";
+        _electricFeeTitle.font = [UIFont fontWithName:PingFangSCBold size:18];
+        _electricFeeTitle.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
+    }
+    return _electricFeeTitle;
+}
+
+- (UILabel *)electricFeeHintLeft {
+    if (!_electricFeeHintLeft) {
+        _electricFeeHintLeft = [[UILabel alloc]init];
+        _electricFeeHintLeft.text = @"费用/本月";
+        _electricFeeHintLeft.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.6] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.6]];
+        _electricFeeHintLeft.font = [UIFont fontWithName:PingFangSCMedium size:13];
+    }
+    return _electricFeeHintLeft;
+}
+
+- (UILabel *)hintLabel {
+    if(!_hintLabel){
+        _hintLabel = [[UILabel alloc] init];
+        _hintLabel.text = @"还未绑定账号哦～";
+        _hintLabel.font = [UIFont fontWithName:PingFangSCLight size:15];
+        _hintLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
+    }
+    return _hintLabel;
+}
+
+- (UILabel *)electricFeeHintRight {
+    if (!_electricFeeHintRight) {
+        _electricFeeHintRight = [[UILabel alloc]init];
+        _electricFeeHintRight.text = @"使用度数/本月";
+        _electricFeeHintRight.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.6] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.6]];
+        _electricFeeHintRight.font = [UIFont fontWithName:PingFangSCMedium size:13];
+    }
+    return _electricFeeHintRight;
 }
 
 @end
