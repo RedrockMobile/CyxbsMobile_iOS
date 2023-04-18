@@ -26,11 +26,6 @@
 @implementation ElectricViewController
 
 #pragma mark- life cicrle
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self addNotifications];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
@@ -47,11 +42,6 @@
 
     [self addEleView];
     [self requestData];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    [self removeNotifications];
 }
 
 #pragma mark - Lazy
@@ -98,7 +88,9 @@
 
 - (void)touchElectrictyView {
     PickerDormitoryViewController *vc = [[PickerDormitoryViewController alloc] init];
-
+    vc.block = ^{
+        [self requestData];
+    };
     vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     //填充全屏(原视图不会消失)
     vc.modalPresentationStyle = UIModalPresentationOverFullScreen;
@@ -133,18 +125,6 @@
 //    [self.eleView.electricFeeMoney setTitle:self.elecModel.electricFeeItem.money forState:UIControlStateNormal];
     //self.eleView.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
     //这里读缓存以后日期的样式就改回去了，所以先屏蔽
-}
-
-#pragma mark - 通知中心
-/// 添加通知中心
-- (void)addNotifications {
-    //绑定成功后重新请求
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestData) name:@"electricFeeRoomChange" object:nil];
-}
-
-//移除通知中心
-- (void)removeNotifications {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"electricFeeRoomChange" object:nil];
 }
 
 @end

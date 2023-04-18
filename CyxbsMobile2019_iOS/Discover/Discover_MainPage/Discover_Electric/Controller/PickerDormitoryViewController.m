@@ -14,16 +14,16 @@
     UIPickerViewDataSource
     >
 
-/// 绑定宿舍页面的contentView，他是一个button，用来保证点击空白处可以取消设置宿舍
-@property (nonatomic, weak) UIButton *bindingDormitoryContentView;
+@property (nonatomic, strong) UIPickerView *pickerView;
 /// 用来绑定宿舍的View
-@property (nonatomic, weak) UIView *bindingView;
+@property (nonatomic, strong) UIView *bindingView;
 /// 选择宿舍时候的宿舍号label
-@property (nonatomic, weak) UILabel *buildingNumberLabel;
+@property (nonatomic, strong) UILabel *buildingNumberLabel;
 /// 填写房间号的框框
-@property (nonatomic, weak) UITextField *roomTextField;
+@property (nonatomic, strong) UITextField *roomTextField;
 /// PickerDormitory
 @property (nonatomic, strong) PickerDormitoryModel *pickerDormitoryModel;
+@property (nonatomic, strong) UIButton *checkBtn;
 @property (nonatomic) NSInteger selectedArrays;
 @end
 
@@ -35,17 +35,15 @@
     [self bindingBuildingAndRoom];
 }
 
-#pragma mark - end
-- (void)cancelLearnAbout {
+#pragma mark - Method
+- (void)cancel {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 //绑定宿舍房间号
 - (void)bindingBuildingAndRoom {
-//    [self getPickerViewData];
     //添加灰色背景板
     UIButton *contentView = [[UIButton alloc] initWithFrame:self.view.frame];
-    self.bindingDormitoryContentView = contentView;
     [self.view addSubview:contentView];
     contentView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
     contentView.alpha = 0;
@@ -54,116 +52,126 @@
         contentView.alpha = 1;
         self.tabBarController.tabBar.userInteractionEnabled = NO;
     }];
-    [contentView addTarget:self action:@selector(cancelLearnAbout) forControlEvents:UIControlEventTouchUpInside];
+    [contentView addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
 
-    UIView *bindingView = [[UIView alloc]init];
-    bindingView.layer.cornerRadius = 8;
-
-    if (@available(iOS 11.0, *)) {
-        bindingView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
-    } else {
-        bindingView.backgroundColor = UIColor.whiteColor;
-    }
-
-    [contentView addSubview:bindingView];
-    self.bindingView = bindingView;
-    [bindingView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self.view);
-        make.left.equalTo(self.view).offset(15);
-        make.right.equalTo(self.view).offset(-15);
-        make.height.equalTo(@339);
-    }];
-    UIPickerView *pickerView = [[UIPickerView alloc] init];
-    [bindingView addSubview:pickerView];
-    [pickerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(bindingView).offset(97);
-        make.left.right.equalTo(bindingView);
-        make.height.equalTo(@152);
-    }];
-    pickerView.delegate = self;
-    pickerView.dataSource = self;
-
+    [contentView addSubview:self.bindingView];
+    
+    
+    [self.bindingView addSubview:self.pickerView];
+    
     UILabel *roomNumberLabel = [[UILabel alloc] init];
     roomNumberLabel.font = [UIFont fontWithName:PingFangSCBold size:24];
     roomNumberLabel.text = @"宿舍号：";
 
-    if (@available(iOS 11.0, *)) {
-        roomNumberLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#5E5F64" alpha:1]];
-    } else {
-    }
+    roomNumberLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#5E5F64" alpha:1]];
 
-    [bindingView addSubview:roomNumberLabel];
-    [roomNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(bindingView).offset(14);
-        make.top.equalTo(bindingView).offset(23);
-    }];
-    UITextField *textField = [[UITextField alloc] init];
-    [bindingView addSubview:textField];
-    textField.keyboardType = UIKeyboardTypeNumberPad;
-    textField.returnKeyType = UIReturnKeyDone;
-    [textField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(roomNumberLabel).offset(85);
-        make.centerY.equalTo(roomNumberLabel);
-        make.width.equalTo(@170);
-    }];
-    textField.placeholder = @"例如\"403\"";
-
-    if ([UserItem defaultItem].room) {
-        textField.text = [UserItem defaultItem].room;
-    }
-
-    textField.inputAccessoryView = [self addToolbar];
-    textField.font = roomNumberLabel.font;
-    self.roomTextField = textField;
-
-    if (@available(iOS 11.0, *)) {
-        textField.textColor = roomNumberLabel.textColor;
-    } else {
-        // Fallback on earlier versions
-    }
-
-    UILabel *buildingNumberLabel = [[UILabel alloc] init];
-    buildingNumberLabel.text = @"01栋";
-
-    if (@available(iOS 11.0, *)) {
-        buildingNumberLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.59] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:0.59]];
-    } else {
-        // Fallback on earlier versions
-    }
-
-    buildingNumberLabel.font = [UIFont fontWithName:PingFangSCRegular size:15];
-    self.buildingNumberLabel = buildingNumberLabel;
+    [self.bindingView addSubview:roomNumberLabel];
+        
+    [self.bindingView addSubview:self.roomTextField];
+    
     NSString *building = [UserItem defaultItem].building;
 
     if (building) {//如果用户曾经选择过，那么就显示曾见选择的那个
         self.buildingNumberLabel.text = [NSString stringWithFormat:@"%@栋", building];
         NSArray<NSNumber *> *chooseIndex = [self.pickerDormitoryModel getBuildingNameIndexAndBuildingNumberIndexByNumberOfDormitory:building];
-        [pickerView selectRow:chooseIndex.lastObject.intValue inComponent:1 animated:NO];
-        [pickerView selectRow:chooseIndex.firstObject.intValue inComponent:0 animated:NO];
+        [self.pickerView selectRow:chooseIndex.lastObject.intValue inComponent:1 animated:NO];
+        [self.pickerView selectRow:chooseIndex.firstObject.intValue inComponent:0 animated:NO];
     }
 
-    [bindingView addSubview:buildingNumberLabel];
-    [buildingNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.bindingView addSubview:self.buildingNumberLabel];
+
+    [self.bindingView addSubview:self.checkBtn];
+            
+    [self.bindingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self.view);
+        make.left.equalTo(self.view).offset(15);
+        make.right.equalTo(self.view).offset(-15);
+        make.height.equalTo(@339);
+    }];
+    
+    [self.pickerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.bindingView).offset(97);
+        make.left.right.equalTo(self.bindingView);
+        make.height.equalTo(@152);
+    }];
+    [roomNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.bindingView).offset(14);
+        make.top.equalTo(self.bindingView).offset(23);
+    }];
+    [self.roomTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(roomNumberLabel).offset(85);
+        make.centerY.equalTo(roomNumberLabel);
+        make.width.equalTo(@170);
+    }];
+    [self.buildingNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(roomNumberLabel);
         make.top.equalTo(roomNumberLabel.mas_bottom).offset(3);
     }];
-
-    UIButton *button = [[UIButton alloc] init];
-    [bindingView addSubview:button];
-    button.backgroundColor = [UIColor colorWithHexString:@"#4841E2"];
-    [button setTitle:@"确定" forState:normal];
-    button.layer.cornerRadius = 20;
-    [button mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(bindingView);
-        make.bottom.equalTo(bindingView).offset(-29);
+    [self.checkBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.bindingView);
+        make.bottom.equalTo(self.bindingView).offset(-29);
         make.width.equalTo(@120);
         make.height.equalTo(@40);
     }];
-    [button addTarget:self action:@selector(bindingDormitory) forControlEvents:UIControlEventTouchUpInside];
+   
 }
 
-- (void)cancelSettingDormitory {
-    [self.bindingDormitoryContentView removeFromSuperview];
+#pragma mark - Lazy
+
+- (UITextField *)roomTextField {
+    if (!_roomTextField) {
+        _roomTextField = [[UITextField alloc] init];
+        _roomTextField.keyboardType = UIKeyboardTypeNumberPad;
+        _roomTextField.returnKeyType = UIReturnKeyDone;
+        _roomTextField.placeholder = @"例如\"403\"";
+        if ([UserItem defaultItem].room) {
+            _roomTextField.text = [UserItem defaultItem].room;
+        }
+        _roomTextField.inputAccessoryView = [self addToolbar];
+        _roomTextField.font = [UIFont fontWithName:PingFangSCBold size:24];
+        _roomTextField.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#5E5F64" alpha:1]];
+    }
+    return _roomTextField;
+}
+
+- (UILabel *)buildingNumberLabel {
+    if (!_buildingNumberLabel) {
+        _buildingNumberLabel = [[UILabel alloc] init];
+        _buildingNumberLabel.text = @"01栋";
+        _buildingNumberLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.59] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:0.59]];
+        _buildingNumberLabel.font = [UIFont fontWithName:PingFangSCRegular size:15];
+    }
+    return _buildingNumberLabel;
+}
+
+- (UIView *)bindingView {
+    if (!_bindingView) {
+        _bindingView = [[UIView alloc]init];
+        _bindingView.layer.cornerRadius = 8;
+        _bindingView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
+    }
+    return _bindingView;
+}
+
+- (UIPickerView *)pickerView {
+    if (!_pickerView) {
+        _pickerView = [[UIPickerView alloc] init];
+        _pickerView.delegate = self;
+        _pickerView.dataSource = self;
+    }
+    return _pickerView;
+}
+
+- (UIButton *)checkBtn {
+    if (!_checkBtn) {
+        _checkBtn = [[UIButton alloc] init];
+        _checkBtn.backgroundColor = [UIColor colorWithHexString:@"#4841E2"];
+        [_checkBtn setTitle:@"确定" forState:normal];
+        _checkBtn.layer.cornerRadius = 20;
+        [_checkBtn addTarget:self action:@selector(bindingDormitory) forControlEvents:UIControlEventTouchUpInside];
+
+    }
+    return _checkBtn;
 }
 
 - (UIToolbar *)addToolbar {
@@ -202,18 +210,9 @@
         return;
     }
 
-//    self.tabBarController.tabBar.hidden=NO;
-//    [self.bindingDormitoryContentView removeAllSubviews];
-//    [self.bindingDormitoryContentView removeFromSuperview];
     [self reloadElectricViewIfNeeded];
-    [self cancelLearnAbout];
+    [self cancel];
 }
-
-//- (void)getPickerViewData {
-//    PickerDormitoryModel *pickerModel = [[PickerDormitoryModel alloc] init];
-//
-//    self.pickerDormitoryModel = pickerModel;
-//}
 
 - (PickerDormitoryModel *)pickerDormitoryModel {
     if (!_pickerDormitoryModel) {
@@ -223,10 +222,10 @@
 }
 
 - (void)reloadElectricViewIfNeeded {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"electricFeeRoomChange" object:nil];
+    self.block();
 }
 
-//MARK: - pickerView代理
+#pragma mark - pickerView代理
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 2; // 返回2表明该控件只包含2列
 }
@@ -243,7 +242,6 @@
     if (component == 0) {
         return self.pickerDormitoryModel.placeArray[row];
     } else {
-//        self.placeArray = @[@"宁静苑",@"明理苑",@"知行苑",@"兴业苑",@"四海苑"];
         NSInteger selectedRow = [pickerView selectedRowInComponent:0];
         NSArray *arr = [self.pickerDormitoryModel.allArray objectAtIndex:selectedRow];
 

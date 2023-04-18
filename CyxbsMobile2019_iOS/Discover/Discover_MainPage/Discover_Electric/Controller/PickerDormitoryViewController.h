@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
+typedef void(^reloadDataBlock)(void);
 
 @interface PickerDormitoryViewController : UIViewController
-
+///当绑定成功后回调重新获取数据
+@property (nonatomic, copy) reloadDataBlock block;
 @end
 
 NS_ASSUME_NONNULL_END

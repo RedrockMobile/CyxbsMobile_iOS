@@ -82,7 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)BOOL isCheckedToday;
 
 
-//MARK: - 电费相关（可能）
+//MARK: - 电费相关
 /// 楼栋：例如26
 @property (nonatomic, copy, nullable) NSString *building;
 
