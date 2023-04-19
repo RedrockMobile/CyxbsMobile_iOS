@@ -441,8 +441,8 @@
 		AAE3309925E4E5CD00324750 /* DeleteArticleTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3309825E4E5CD00324750 /* DeleteArticleTipView.m */; };
 		AAE87797286B304F0091656B /* PrivacyTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE87796286B304E0091656B /* PrivacyTipView.swift */; };
 		AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */; };
+		B01AFD6A29EFE531004F82D7 /* ElectricityView.m in Sources */ = {isa = PBXBuildFile; fileRef = B01AFD6929EFE531004F82D7 /* ElectricityView.m */; };
 		B033366E294C971D004D141D /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B033366D294C971D004D141D /* HttpTool.m */; };
-		B0B1B9EA29E69EA700A1BB02 /* ElectricityView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B1B9DD29E69EA700A1BB02 /* ElectricityView.m */; };
 		B0B1B9F529E69EAD00A1BB02 /* ElectricFeeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B1B9F129E69EAD00A1BB02 /* ElectricFeeItem.m */; };
 		B0B1B9F629E69EAD00A1BB02 /* ElectricFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B1B9F229E69EAD00A1BB02 /* ElectricFeeModel.m */; };
 		B0B1B9FE29E69EB400A1BB02 /* PickerDormitoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B1B9F929E69EB400A1BB02 /* PickerDormitoryModel.m */; };
@@ -1469,10 +1469,10 @@
 		AAE87796286B304E0091656B /* PrivacyTipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyTipView.swift; sourceTree = "<group>"; };
 		AAFD87CE24F50DB800CBBD11 /* FakeTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FakeTabBarView.h; sourceTree = "<group>"; };
 		AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FakeTabBarView.m; sourceTree = "<group>"; };
+		B01AFD6829EFE531004F82D7 /* ElectricityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricityView.h; sourceTree = "<group>"; };
+		B01AFD6929EFE531004F82D7 /* ElectricityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElectricityView.m; sourceTree = "<group>"; };
 		B033366D294C971D004D141D /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
 		B0B1B9DA29E69E3C00A1BB02 /* ElectricHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricHeader.h; sourceTree = "<group>"; };
-		B0B1B9DD29E69EA700A1BB02 /* ElectricityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricityView.m; sourceTree = "<group>"; };
-		B0B1B9E629E69EA700A1BB02 /* ElectricityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricityView.h; sourceTree = "<group>"; };
 		B0B1B9F129E69EAD00A1BB02 /* ElectricFeeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeItem.m; sourceTree = "<group>"; };
 		B0B1B9F229E69EAD00A1BB02 /* ElectricFeeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElectricFeeModel.m; sourceTree = "<group>"; };
 		B0B1B9F329E69EAD00A1BB02 /* ElectricFeeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeItem.h; sourceTree = "<group>"; };
@@ -4909,8 +4909,8 @@
 		B0B1B9DC29E69EA700A1BB02 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B0B1B9E629E69EA700A1BB02 /* ElectricityView.h */,
-				B0B1B9DD29E69EA700A1BB02 /* ElectricityView.m */,
+				B01AFD6829EFE531004F82D7 /* ElectricityView.h */,
+				B01AFD6929EFE531004F82D7 /* ElectricityView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6274,7 +6274,6 @@
 				493162DF26CD7B6300140412 /* StampGoodsData.m in Sources */,
 				DB34EB37239BD4550052B65E /* LZWeekScrollView.m in Sources */,
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
-				B0B1B9EA29E69EA700A1BB02 /* ElectricityView.m in Sources */,
 				735BC54D26D3C05900F22678 /* FeedBackReplyTableViewCell.m in Sources */,
 				FE2C136327AEF629001CF7AF /* YearBtnsView.m in Sources */,
 				1A79956C252B5BC300603253 /* LoginModel.swift in Sources */,
@@ -6359,6 +6358,7 @@
 				AA0DDB72286C8B1A00802324 /* PMPPickerView.m in Sources */,
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
 				AA7ABA992873EA5400BA6790 /* GroupItem.m in Sources */,
+				B01AFD6A29EFE531004F82D7 /* ElectricityView.m in Sources */,
 				AA0DDB60286C8B1A00802324 /* SegmentedPageView.m in Sources */,
 				FE2C136627AEF629001CF7AF /* TodoDataModel.m in Sources */,
 				AA7ABAFF2873EA6D00BA6790 /* DynamicSpecificCell.m in Sources */,

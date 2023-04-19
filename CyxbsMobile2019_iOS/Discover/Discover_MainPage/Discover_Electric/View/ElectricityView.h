@@ -2,29 +2,21 @@
 //  ElectricityView.h
 //  CyxbsMobile2019_iOS
 //
-//  Created by 千千 on 2020/6/8.
-//  Copyright © 2020 Redrock. All rights reserved.
+//  Created by 潘申冰 on 2023/4/19.
+//  Copyright © 2023 Redrock. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol ElectricityViewDelegate <NSObject>
-
-- (void)touchElectrictyView;
-
-@end
-
 @interface ElectricityView : UIView
 
-@property (nonatomic, weak) id<ElectricityViewDelegate> delegate;
-//@property (nonatomic, weak)UIButton *electricFee;//电费二级页面按钮
 /// 电费查询部分
 @property (nonatomic, strong) UILabel *electricFeeTitle;//”电费查询“
-@property (nonatomic, strong) UILabel *electricFeeTime;//右上角时间
-@property (nonatomic, strong) UILabel *electricFeeMoney;//钱的数字(可点击修改寝室)
-@property (nonatomic, strong) UILabel *electricFeeDegree;//度的数字
+@property (nonatomic, strong) UILabel *electricFeeTime;//抄表时间
+@property (nonatomic, strong) UILabel *electricFeeMoney;//电费
+@property (nonatomic, strong) UILabel *electricConsumption;//用电量
 @property (nonatomic, strong) UILabel *electricFeeYuan;//“元”
 @property (nonatomic, strong) UILabel *electricFeeDu;//“度”
 @property (nonatomic, strong) UILabel *electricFeeHintLeft;//“费用/本月”

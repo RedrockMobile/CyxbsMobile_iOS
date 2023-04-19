@@ -11,13 +11,10 @@
 @implementation ElectricFeeModel
 
 - (void)requestSuccess:(void (^)(void))success failure:(void (^)(NSError * _Nonnull))failure  {
-    
-    UserItem *item = [UserItem defaultItem];
-
     //缓存中有寝室号和寝室楼号就直接查询,否则传空试图从后端获取
-    NSDictionary *parameters = (item.building && item.room) ?
+    NSDictionary *parameters = ([UserItemTool defaultItem].building && [UserItemTool defaultItem].room) ?
         @{
-            @"building": item.building, @"room": item.room
+            @"building": [UserItemTool defaultItem].building, @"room": [UserItemTool defaultItem].room
         } : @{
             @"building": @"", @"room": @""
     };
@@ -33,7 +30,6 @@
         self.status = [object[@"status"] intValue];
         if(self.status == 200 ){
             self.electricFeeItem = [[ElectricFeeItem alloc] initWithDict:object];
-            NSLog(@"%@",self.electricFeeItem);
         }else{
             NSLog(@"🔴%@:\n%@", self.class, object[@"info"]);
         }

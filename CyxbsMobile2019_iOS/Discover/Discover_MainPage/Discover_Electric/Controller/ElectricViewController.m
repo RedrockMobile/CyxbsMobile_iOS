@@ -12,9 +12,7 @@
 #import "PickerDormitoryModel.h"
 #import "PickerDormitoryViewController.h"
 
-@interface ElectricViewController () <
-    ElectricityViewDelegate
-    >
+@interface ElectricViewController ()
 
 /// 电费View
 @property (nonatomic, strong) ElectricityView *eleView;
@@ -26,6 +24,13 @@
 @implementation ElectricViewController
 
 #pragma mark- life cicrle
+
+- (void)viewWillAppear:(BOOL)animated {
+    if ([UserItemTool defaultItem].room == nil &&[UserItemTool defaultItem].building == nil) {
+        [self.eleView refreshViewIfNeeded];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
@@ -48,7 +53,6 @@
 - (ElectricityView *)eleView {
     if (!_eleView) {
         _eleView = [[ElectricityView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 152)];
-        _eleView.delegate = self;
     }
     return _eleView;
 }
@@ -70,9 +74,9 @@
         if (self.elecModel.electricFeeItem) {
             if (self.elecModel.electricFeeItem.buildAndRoom) {
                 NSString *buildAndRoom = self.elecModel.electricFeeItem.buildAndRoom;
-                [UserItem defaultItem].building = [buildAndRoom substringToIndex:2];
-                [UserItem defaultItem].room = [buildAndRoom substringFromIndex:3];
-                NSLog(@"%@,%@", [UserItem defaultItem].building, [UserItem defaultItem].room);
+                [UserItemTool defaultItem].building = [buildAndRoom substringToIndex:2];
+                [UserItemTool defaultItem].room = [buildAndRoom substringFromIndex:3];
+                NSLog(@"%@,%@", [UserItemTool defaultItem].building, [UserItemTool defaultItem].room);
                 [self updateElectricFeeUI];
             } else {
                 NSLog(@"可能是房间号输入错误");
@@ -86,7 +90,8 @@
     }];
 }
 
-- (void)touchElectrictyView {
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     PickerDormitoryViewController *vc = [[PickerDormitoryViewController alloc] init];
     vc.block = ^{
         [self requestData];
@@ -101,8 +106,8 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [hud setMode:(MBProgressHUDModeText)];
     hud.labelText = @"绑定的宿舍号可能有问题哦，请重新绑定";
-    [UserItem defaultItem].building = nil;
-    [UserItem defaultItem].room = nil;
+    [UserItemTool defaultItem].building = nil;
+    [UserItemTool defaultItem].room = nil;
     [hud hide:YES afterDelay:1.2];
 }
 
@@ -123,7 +128,7 @@
     [self.eleView refreshViewIfNeeded];
     [self.eleView.electricFeeMoney setText:self.elecModel.electricFeeItem.money];
 //    [self.eleView.electricFeeMoney setTitle:self.elecModel.electricFeeItem.money forState:UIControlStateNormal];
-    //self.eleView.electricFeeDegree.text = self.elecModel.electricFeeItem.degree;
+    //self.eleView.electricConsumption.text = self.elecModel.electricFeeItem.degree;
     //这里读缓存以后日期的样式就改回去了，所以先屏蔽
 }
 

@@ -2,8 +2,8 @@
 //  ElectricityView.m
 //  CyxbsMobile2019_iOS
 //
-//  Created by 千千 on 2020/6/8.
-//  Copyright © 2020 Redrock. All rights reserved.
+//  Created by 潘申冰 on 2023/4/19.
+//  Copyright © 2023 Redrock. All rights reserved.
 //
 
 #import "ElectricityView.h"
@@ -17,69 +17,42 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self addTitle];
-        [self addSeperateLine];
         [self setUIDefaults];//对自身进行设置
-        if ([UserItem defaultItem].building && [UserItem defaultItem].room) {
+        if ([UserItemTool defaultItem].building && [UserItemTool defaultItem].room) {
             [self addBindingView];
         } else {
             [self addNoBindingView];
         }
-//        [self addClearButton];//添加透明按钮用来在被点击后设置宿舍
     }
     return self;
 }
 
 #pragma mark - Method
 - (void)setUIDefaults {
-    if (@available(iOS 11.0, *)) {
-        self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
-    } else {
-        // Fallback on earlier versions
-    }
-
-    //    self.layer.shadowOpacity = 0.16f;
-    //    self.layer.shadowColor = [UIColor colorWithRed:174/255.0 green:182/255.0 blue:211/255.0 alpha:1].CGColor;
-    //    self.layer.shadowOffset = CGSizeMake(0, 5);
-    //    self.layer.cornerRadius = 25;
+    self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
+    self.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.layer.shadowOpacity = 0.16f;
+    self.layer.shadowColor = [UIColor colorWithRed:174 / 255.0 green:182 / 255.0 blue:211 / 255.0 alpha:1].CGColor;
+    self.layer.shadowOffset = CGSizeMake(0, 5);
     self.clipsToBounds = YES;
 }
 
-- (void)addNoBindingView {
-    [self addHintLabel];
-}
-
-- (void)removeUnbindingView {
-    //    [self.electricFeeTitle removeFromSuperview];
-    [self.hintLabel removeFromSuperview];
-}
-
-//点击之后跳转绑定宿舍
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    if ([self.delegate respondsToSelector:@selector(touchElectrictyView)]) {
-        [self.delegate touchElectrictyView];
-    }
-}
-
 - (void)refreshViewIfNeeded {
-    [self removeUnbindingView];
-    [self addBindingView];
+    if ([UserItemTool defaultItem].building && [UserItemTool defaultItem].room) {
+        [self addBindingView];
+    } else {
+        [self addNoBindingView];
+    }
 }
 
 #pragma mark - 公共部分
 - (void)addTitle {
     //左上角标题
     [self addSubview:self.electricFeeTitle];
-    
-//    [self.electricFeeTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self).offset(14);
-//        make.top.equalTo(self).offset(23);
-//    }];
 }
 
 - (void)addSeperateLine {
     UIView *line = [[UIView alloc]init];
-
     line.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:0.5]];
     [self addSubview:line];
     [line mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -89,6 +62,13 @@
 }
 
 #pragma mark - 未绑定部分
+- (void)addNoBindingView {
+    [self removeAllSubviews];
+    [self addTitle];
+    [self addSeperateLine];
+    [self addHintLabel];
+}
+
 - (void)addHintLabel {
     [self addSubview:self.hintLabel];
     [self.hintLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -99,37 +79,30 @@
 
 #pragma mark - 绑定部分
 - (void)addBindingView {
-//    [self addSubview:self.electricFee];
+    [self removeAllSubviews];
+    [self addTitle];
+    [self addSeperateLine];
     //其中涉及网络请求的有time,money,degree
-    [self addTime];
-    [self addMoney];
-    [self addDegree];
-    [self addYuan];
-    [self addDu];
-    [self addHintLeft];
-    [self addHintRight];
-    [self configUI];
-    self.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.layer.shadowOpacity = 0.16f;
-    self.layer.shadowColor = [UIColor colorWithRed:174 / 255.0 green:182 / 255.0 blue:211 / 255.0 alpha:1].CGColor;
-    self.layer.shadowOffset = CGSizeMake(0, 5);
+    [self addElectricFeeTime];
+    [self addElectricFeeMoney];
+    [self addElectricConsumption];
+    [self addElectricFeeYuan];
+    [self addElectricFeeDu];
+    [self addElectricFeeHintLeft];
+    [self addElectricFeeHintRight];
+    [self configBindingUI];
 }
 
-- (void)addTime {
+- (void)addElectricFeeTime {
     //右上角抄表时间
     NSString *timeStr = [NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_time"];
-
-    NSString *elecTime = [[NSDate dateString:timeStr
-                               fromFormatter:NSDateFormatter.defaultFormatter
-                              withDateFormat:@"yyyy.M.dd"]
-                          stringFromFormatter:NSDateFormatter.defaultFormatter
-                               withDateFormat:@"M月d日抄表"];
+    NSString *elecTime = [[NSDate dateString:timeStr fromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"yyyy.M.dd"] stringFromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"M月d日抄表"];
     self.electricFeeTime.text = elecTime;
 
     [self addSubview:self.electricFeeTime];
 }
 
-- (void)addMoney {
+- (void)addElectricFeeMoney {
     if ([NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_money"] != NULL) {
         [self.electricFeeMoney setText:[NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_money"]];
     } else {
@@ -138,36 +111,36 @@
     [self addSubview:self.electricFeeMoney];
 }
 
-- (void)addDegree {
+- (void)addElectricConsumption {
     if ([NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_degree"]) {
-        self.electricFeeDegree.text = [NSString stringWithFormat:@"%@", [NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_degree"]];
+        self.electricConsumption.text = [NSString stringWithFormat:@"%@", [NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_degree"]];
     } else {
-        self.electricFeeDegree.text = @"0";
+        self.electricConsumption.text = @"0";
     }
-    [self addSubview:self.electricFeeDegree];
+    [self addSubview:self.electricConsumption];
 }
 
-- (void)addYuan {
+- (void)addElectricFeeYuan {
     //汉字“元”
     [self addSubview:self.electricFeeYuan];
 }
 
-- (void)addDu {
+- (void)addElectricFeeDu {
     //汉字“度”
     [self addSubview:self.electricFeeDu];
 }
 
-- (void)addHintLeft {
+- (void)addElectricFeeHintLeft {
     //汉字“费用、本月”
     [self addSubview:self.electricFeeHintLeft];
 }
 
-- (void)addHintRight {
+- (void)addElectricFeeHintRight {
     //汉字“使用度数，本月”
     [self addSubview:self.electricFeeHintRight];
 }
 
-- (void)configUI {
+- (void)configBindingUI {
     [self.electricFeeTime mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.electricFeeTitle);
         make.right.equalTo(self).offset(-15);
@@ -177,7 +150,7 @@
         make.centerX.equalTo(self).offset(-self.width / 4.0);
         make.height.equalTo(@44);
     }];
-    [self.electricFeeDegree mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.electricConsumption mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.electricFeeMoney);
         make.centerX.equalTo(self).offset(self.width / 4.0);
         make.height.equalTo(@44);
@@ -187,21 +160,20 @@
         make.bottom.equalTo(self.electricFeeMoney).offset(-6);
     }];
     [self.electricFeeDu mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.electricFeeDegree.mas_right).offset(9);
-        make.bottom.equalTo(self.electricFeeDegree).offset(-6);
+        make.left.equalTo(self.electricConsumption.mas_right).offset(9);
+        make.bottom.equalTo(self.electricConsumption).offset(-6);
     }];
     [self.electricFeeHintLeft mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.electricFeeMoney.mas_bottom);
         make.centerX.equalTo(self.electricFeeMoney);
     }];
     [self.electricFeeHintRight mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.electricFeeDegree.mas_bottom);
-        make.centerX.equalTo(self.electricFeeDegree);
+        make.top.equalTo(self.electricConsumption.mas_bottom);
+        make.centerX.equalTo(self.electricConsumption);
     }];
 }
 
 #pragma mark - Lazy
-
 - (UILabel *)electricFeeTime {
     if(!_electricFeeTime) {
         _electricFeeTime = [[UILabel alloc]init];
@@ -221,13 +193,13 @@
     return _electricFeeMoney;
 }
 
-- (UILabel *)electricFeeDegree {
-    if (!_electricFeeDegree) {
-        _electricFeeDegree = [[UILabel alloc]init];
-        _electricFeeDegree.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
-        _electricFeeDegree.font = [UIFont fontWithName:ImpactMedium size:36];
+- (UILabel *)electricConsumption {
+    if (!_electricConsumption) {
+        _electricConsumption = [[UILabel alloc]init];
+        _electricConsumption.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#DFDFE3" alpha:1]];
+        _electricConsumption.font = [UIFont fontWithName:ImpactMedium size:36];
     }
-    return _electricFeeDegree;
+    return _electricConsumption;
 }
 
 - (UILabel *)electricFeeYuan {

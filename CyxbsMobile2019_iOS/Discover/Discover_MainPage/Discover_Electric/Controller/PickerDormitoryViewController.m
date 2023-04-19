@@ -69,7 +69,7 @@
         
     [self.bindingView addSubview:self.roomTextField];
     
-    NSString *building = [UserItem defaultItem].building;
+    NSString *building = [UserItemTool defaultItem].building;
 
     if (building) {//如果用户曾经选择过，那么就显示曾见选择的那个
         self.buildingNumberLabel.text = [NSString stringWithFormat:@"%@栋", building];
@@ -116,6 +116,37 @@
    
 }
 
+- (void)textFieldDone {
+    [self.view endEditing:YES];
+}
+
+- (void)bindingDormitory {
+    if (self.buildingNumberLabel.text != nil) {
+//        NSString *building = [NSString stringWithFormat:@"%d",self.buildingNumberLabel.text.intValue];//这里隐式的去掉了“栋”字
+        NSString *building = [self.buildingNumberLabel.text stringByReplacingOccurrencesOfString:@"栋" withString:@""];
+        [UserItemTool defaultItem].building = building;
+    }
+
+    NSLog(@"*%@*", self.roomTextField.text);
+
+    if (self.roomTextField.text != nil && ![self.roomTextField.text isEqual:@""]) {
+        [UserItemTool defaultItem].room = self.roomTextField.text;
+    } else {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.bindingView animated:YES];
+        [hud setMode:(MBProgressHUDModeText)];
+        hud.labelText = @"请输入宿舍号～";
+        [hud hide:YES afterDelay:1];
+        return;
+    }
+
+    [self reloadElectricViewIfNeeded];
+    [self cancel];
+}
+
+- (void)reloadElectricViewIfNeeded {
+    self.block();
+}
+
 #pragma mark - Lazy
 
 - (UITextField *)roomTextField {
@@ -124,8 +155,8 @@
         _roomTextField.keyboardType = UIKeyboardTypeNumberPad;
         _roomTextField.returnKeyType = UIReturnKeyDone;
         _roomTextField.placeholder = @"例如\"403\"";
-        if ([UserItem defaultItem].room) {
-            _roomTextField.text = [UserItem defaultItem].room;
+        if ([UserItemTool defaultItem].room) {
+            _roomTextField.text = [UserItemTool defaultItem].room;
         }
         _roomTextField.inputAccessoryView = [self addToolbar];
         _roomTextField.font = [UIFont fontWithName:PingFangSCBold size:24];
@@ -185,44 +216,11 @@
     return toolbar;
 }
 
-- (void)textFieldDone {
-    [self.view endEditing:YES];
-}
-
-- (void)bindingDormitory {
-    UserItem *item = [UserItem defaultItem];
-
-    if (self.buildingNumberLabel.text != nil) {
-//        NSString *building = [NSString stringWithFormat:@"%d",self.buildingNumberLabel.text.intValue];//这里隐式的去掉了“栋”字
-        NSString *building = [self.buildingNumberLabel.text stringByReplacingOccurrencesOfString:@"栋" withString:@""];
-        item.building = building;
-    }
-
-    NSLog(@"*%@*", self.roomTextField.text);
-
-    if (self.roomTextField.text != nil && ![self.roomTextField.text isEqual:@""]) {
-        item.room = self.roomTextField.text;
-    } else {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.bindingView animated:YES];
-        [hud setMode:(MBProgressHUDModeText)];
-        hud.labelText = @"请输入宿舍号～";
-        [hud hide:YES afterDelay:1];
-        return;
-    }
-
-    [self reloadElectricViewIfNeeded];
-    [self cancel];
-}
-
 - (PickerDormitoryModel *)pickerDormitoryModel {
     if (!_pickerDormitoryModel) {
         _pickerDormitoryModel = [[PickerDormitoryModel alloc] init];
     }
     return _pickerDormitoryModel;
-}
-
-- (void)reloadElectricViewIfNeeded {
-    self.block();
 }
 
 #pragma mark - pickerView代理

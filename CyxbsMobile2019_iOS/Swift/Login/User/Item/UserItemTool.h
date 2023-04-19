@@ -23,7 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 归档对象
 + (void)archive:(UserItem *)item;
 
-
 /// 退出登录
 + (void)logout;
 
