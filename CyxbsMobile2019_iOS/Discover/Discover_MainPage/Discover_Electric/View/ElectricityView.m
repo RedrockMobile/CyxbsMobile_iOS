@@ -82,7 +82,7 @@
     [self removeAllSubviews];
     [self addTitle];
     [self addSeperateLine];
-    //其中涉及网络请求的有time,money,degree
+    //其中涉及网络请求的有time,money,consume
     [self addElectricFeeTime];
     [self addElectricFeeMoney];
     [self addElectricConsumption];
@@ -96,7 +96,7 @@
 - (void)addElectricFeeTime {
     //右上角抄表时间
     NSString *timeStr = [NSUserDefaults.standardUserDefaults objectForKey:@"ElectricFee_time"];
-    NSString *elecTime = [[NSDate dateString:timeStr fromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"yyyy.M.dd"] stringFromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"M月d日抄表"];
+    NSString *elecTime = [[NSDate dateString:timeStr fromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"M.dd"] stringFromFormatter:NSDateFormatter.defaultFormatter withDateFormat:@"M月dd日抄表"];
     self.electricFeeTime.text = elecTime;
 
     [self addSubview:self.electricFeeTime];

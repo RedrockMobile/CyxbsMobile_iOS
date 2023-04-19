@@ -17,13 +17,13 @@
             self.money = [NSString stringWithFormat:@"%@.%@", dict[@"elec_inf"][@"elec_cost"][0], dict[@"elec_inf"][@"elec_cost"][1]];
         }
         self.buildAndRoom = [dict[@"elec_inf"][@"room"] stringValue];
-        self.degree = [dict[@"elec_inf"][@"elec_spend"] stringValue];
+        self.consume = [dict[@"elec_inf"][@"elec_spend"] stringValue];
         NSString *returnTime = (NSString *)dict[@"elec_inf"][@"record_time"];
         
         if (![returnTime isEqual:@""]) {
             int month = [returnTime substringToIndex:2].intValue;
             int day = [returnTime substringWithRange:NSMakeRange(3, 2)].intValue;
-            self.time = [NSString stringWithFormat:@"2019.%d.%d", month, day];
+            self.time = [NSString stringWithFormat:@"%d.%d", month, day];
         }
     }
     return self;

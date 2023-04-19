@@ -24,7 +24,6 @@
 @implementation ElectricViewController
 
 #pragma mark- life cicrle
-
 - (void)viewWillAppear:(BOOL)animated {
     if ([UserItemTool defaultItem].room == nil &&[UserItemTool defaultItem].building == nil) {
         [self.eleView refreshViewIfNeeded];
@@ -90,7 +89,6 @@
     }];
 }
 
-
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     PickerDormitoryViewController *vc = [[PickerDormitoryViewController alloc] init];
     vc.block = ^{
@@ -123,12 +121,12 @@
 - (void)updateElectricFeeUI {
     //先写入缓存
     [NSUserDefaults.standardUserDefaults setObject:self.elecModel.electricFeeItem.money forKey:@"ElectricFee_money"];
-    [NSUserDefaults.standardUserDefaults setObject:self.elecModel.electricFeeItem.degree forKey:@"ElectricFee_degree"];
+    [NSUserDefaults.standardUserDefaults setObject:self.elecModel.electricFeeItem.consume forKey:@"ElectricFee_degree"];
     [NSUserDefaults.standardUserDefaults setObject:self.elecModel.electricFeeItem.time forKey:@"ElectricFee_time"];
     [self.eleView refreshViewIfNeeded];
     [self.eleView.electricFeeMoney setText:self.elecModel.electricFeeItem.money];
 //    [self.eleView.electricFeeMoney setTitle:self.elecModel.electricFeeItem.money forState:UIControlStateNormal];
-    //self.eleView.electricConsumption.text = self.elecModel.electricFeeItem.degree;
+    //self.eleView.electricConsumption.text = self.elecModel.electricFeeItem.consume;
     //这里读缓存以后日期的样式就改回去了，所以先屏蔽
 }
 

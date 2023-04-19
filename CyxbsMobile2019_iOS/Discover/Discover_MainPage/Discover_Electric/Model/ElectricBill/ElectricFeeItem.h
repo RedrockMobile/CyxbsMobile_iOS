@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ElectricFeeItem : NSObject
 
 @property (nonatomic, copy) NSString *money;
-@property (nonatomic, copy) NSString *degree;
+@property (nonatomic, copy) NSString *consume;
 @property (nonatomic, copy) NSString *time;
 @property (nonatomic, copy) NSString *buildAndRoom;
 
