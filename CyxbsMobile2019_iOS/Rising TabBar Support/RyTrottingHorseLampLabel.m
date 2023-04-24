@@ -51,7 +51,7 @@
     return self;
 }
 
-- (void)trottingHorseLampWithLabel:(void (NS_NOESCAPE ^)(UILabel * _Nonnull))makeLabel {
+- (void)initLabelWithBlock:(void (NS_NOESCAPE ^)(UILabel * _Nonnull))makeLabel {
     makeLabel(_lab1);
     makeLabel(_lab2);
 }

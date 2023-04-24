@@ -135,7 +135,10 @@ RisingSingleClass_IMPLEMENTATION(Cache)
     }
 }
 
+// Key support
+
 + (void)_userDefaultsCacheKey:(ScheduleIdentifier *)key forKeyName:(ScheduleWidgetCacheKeyName)keyName {
+    if (!key) { return; }
     if ([self _userDefaultsKeyForKeyName:keyName] == nil) {
         key.useWidget = YES;
     }
@@ -267,8 +270,26 @@ RisingSingleClass_IMPLEMENTATION(Cache)
 
 @implementation NSUserDefaults (schedule)
 
+static NSUserDefaults *_scheduleDefaults;
 + (NSUserDefaults *)schedule {
-    return [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _scheduleDefaults = [[NSUserDefaults alloc] initWithSuiteName:CyxbsWidgetAppGroups];
+        if (![NSBundle.mainBundle.bundleIdentifier isEqualToString:@"com.mredrock.cyxbs"]) {
+            return;
+        }
+        NSDictionary *info = NSBundle.mainBundle.infoDictionary;
+        NSString *currentAppVersion = [info objectForKey:@"CFBundleShortVersionString"];
+        NSString *defaultsAppVersion = [_scheduleDefaults objectForKey:@"Ry_CFBundleShortVersionString"];
+        if (![currentAppVersion isEqualToString:defaultsAppVersion]) {
+            NSDictionary *dic = [_scheduleDefaults dictionaryRepresentation];
+            for (id key in dic) {
+                [_scheduleDefaults removeObjectForKey:key];
+            }
+            [_scheduleDefaults setObject:currentAppVersion forKey:@"Ry_CFBundleShortVersionString"];
+        }
+    });
+    return _scheduleDefaults;
 }
 
 @end

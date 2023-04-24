@@ -35,12 +35,6 @@
 
 @implementation SearchPeopleViewController
 
-- (void)loadView {
-    [super loadView];
-    self.navigationController.navigationBarHidden = YES;
-//    [self.tabBarController performSelector:NSSelectorFromString(@"setScheduleBarHiddenNumber:") withObject:@(YES)];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     

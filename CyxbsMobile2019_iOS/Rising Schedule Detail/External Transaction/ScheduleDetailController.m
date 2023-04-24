@@ -48,7 +48,7 @@
 
 - (void)loadView {
     [super loadView];
-    self.view.height = 252;
+    self.view.height = 260;
     self.view.backgroundColor = UIColor.clearColor;
     self.view.layer.shadowRadius = 16;
     self.view.layer.shadowColor = [UIColor Light:UIColor.lightGrayColor Dark:UIColor.darkGrayColor].CGColor;

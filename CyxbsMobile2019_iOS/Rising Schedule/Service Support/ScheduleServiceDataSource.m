@@ -98,7 +98,8 @@
     
     ScheduleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ScheduleCollectionViewCellReuseIdentifier forIndexPath:indexPath];
     
-    cell.courseTitle = viewModel.title;
+    cell.courseTitle = viewModel.title; // [NSString stringWithFormat:@"%ld - %ld", locationIdxPath.week, locationIdxPath.location];
+    
     cell.courseContent = viewModel.content;
     
     switch (viewModel.kind) {

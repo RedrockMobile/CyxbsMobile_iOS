@@ -10,7 +10,6 @@
 
 #import "ScheduleNeedsSupport.h"
 #import "SchedulePresenter.h"
-#import "ScheduleShareCache.h"
 
 #import "SearchPeopleViewController.h"
 #import "ScheduleWebHppleViewController.h"
@@ -42,32 +41,30 @@
 
 @end
 
-@implementation FastLoginViewController
+@implementation FastLoginViewController {
+    ScheduleIdentifier *_mainID;
+    ScheduleIdentifier *_otherID;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationController.navigationBarHidden = YES;
     
     [self _drawTabbar];
     self.view.backgroundColor =
     [UIColor Light:UIColorHex(#FFFFFF)
               Dark:UIColorHex(#1D1D1D)];
     
-//    [self.view addSubview:self.imgView];
     [self.view addSubview:self.snoField];
     [self.view addSubview:self.otherField];
     [self.view addSubview:self.cleBtn];
     [self.view addSubview:self.doingLab];
-//    [self.view addSubview:self.widgetField];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    self.tabBarController.tabBar.hidden = NO;
 }
 
 #pragma mark - TT
 
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.view endEditing:YES];
 }
 
@@ -108,7 +105,7 @@
 - (UITextField *)otherField {
     if (_otherField == nil) {
         _otherField = [self _kindFieldWithPlaceholder:@"请输入对方的学号" imgName:@"logo.reset"];
-        _otherField.text = [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyMain].sno;
+        _otherField.text = [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyOther].sno;
         _otherField.frame = CGRectMake(-1, self.snoField.bottom + 22, 281, 44);
         _otherField.centerX = self.view.width / 2;
     }
@@ -167,6 +164,40 @@
     return _cleBtn;
 }
 
+#pragma mark - Setter
+
+- (void)setMainID:(ScheduleIdentifier *)mainID {
+    _mainID = mainID;
+    if (_snoField) {
+        self.snoField.text = mainID.sno;
+    }
+}
+
+- (void)setOtherID:(ScheduleIdentifier *)otherID {
+    _otherID = otherID;
+    if (_otherField) {
+        self.otherField.text = otherID.sno;
+    }
+}
+
+- (ScheduleIdentifier *)mainID {
+    NSString *sno = self.snoField.text;
+    if ([sno isEqualToString:@""] || [sno isEqualToString:_mainID.sno]) { return _mainID; }
+    ScheduleIdentifier *mainID = [ScheduleIdentifier identifierWithSno:sno type:ScheduleModelRequestStudent];
+    mainID.useWebView = YES;
+    mainID.useWidget = YES;
+    return mainID;
+}
+
+- (ScheduleIdentifier *)otherID {
+    NSString *osno = self.otherField.text;
+    if ([osno isEqualToString:@""] || [osno isEqualToString:_otherID.sno]) { return _otherID; }
+    ScheduleIdentifier *otherID = [ScheduleIdentifier identifierWithSno:osno type:ScheduleModelRequestStudent];
+    otherID.useWebView = YES;
+    otherID.useWidget = YES;
+    return otherID;
+}
+
 #pragma mark - private
 
 - (void)_toWebView:(UITapGestureRecognizer *)tap {
@@ -181,10 +212,8 @@
 }
 
 - (void)_cletap:(UIButton *)btn {
-    NSString *sno = self.snoField.text; if ([sno isEqualToString:@""]) { sno = nil; }
-    NSString *osno = self.otherField.text; if ([osno isEqualToString:@""]) { osno = nil; }
-    ScheduleIdentifier *mainID = [ScheduleIdentifier identifierWithSno:sno type:ScheduleModelRequestStudent];
-    ScheduleIdentifier *otherID = [ScheduleIdentifier identifierWithSno:osno type:ScheduleModelRequestStudent];
+    ScheduleIdentifier *mainID = self.mainID;
+    ScheduleIdentifier *otherID = self.otherID;
     
     if (mainID) {
         if (otherID) {
@@ -199,11 +228,9 @@
 }
 
 - (void)_outside:(UIButton *)btn {
-    [NSUserDefaults.standardUserDefaults setBool:YES forKey:UDKey.isXXHB];
     
     UIViewController *vc = [[SearchPeopleViewController alloc] init];
-    
-    self.hidesBottomBarWhenPushed = YES;
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

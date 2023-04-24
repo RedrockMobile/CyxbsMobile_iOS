@@ -1,5 +1,5 @@
 //
-//  ScheduleBar.h
+//  ScheduleBottomBar.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by SSR on 2023/1/13.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ScheduleBar : UIView
+@interface ScheduleBottomBar : UIView
 
 @property (nonatomic, copy) NSString *title;
 

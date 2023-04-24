@@ -31,7 +31,6 @@ struct ScheduleSystemLarge: View {
         data.sno = entry.mainKey?.sno
         for item in entry.combineItems {
             data.combineItem(item)
-            entry.errorMsg = "cout :\(entry.combineItems)"
         }
     }
     

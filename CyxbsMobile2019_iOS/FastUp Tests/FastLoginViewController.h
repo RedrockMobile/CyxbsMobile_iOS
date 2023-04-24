@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class SchedulePresenter, FastLoginViewController;
+@class SchedulePresenter, FastLoginViewController, ScheduleIdentifier;
 
 @protocol FastLoginViewControllerDelegate <NSObject>
 
@@ -26,6 +26,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// <#description#>
 @property (nonatomic) SchedulePresenter *presenter;
+
+@property (nonatomic, strong, nullable) ScheduleIdentifier *mainID;
+@property (nonatomic, strong, nullable) ScheduleIdentifier *otherID;
 
 @end
 

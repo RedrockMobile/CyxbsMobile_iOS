@@ -13,9 +13,7 @@
 
 #import "ScheduleCourse.h"
 
-@implementation ScheduleTouchItem {
-    
-}
+@implementation ScheduleTouchItem
 
 - (void)setCombining:(ScheduleCombineItem *)combining {
     if (!combining) { return; }
@@ -29,7 +27,8 @@
 }
 
 - (NSInteger)nowWeek {
-    return (NSInteger)([NSDate.date timeIntervalSinceDate:self.startDate] / (7 * 24 * 60 * 60) + 0.5);
+    NSTimeInterval since = [NSDate.date timeIntervalSinceDate:self.startDate];
+    return since / (7 * 24 * 60 * 60) + 1;
 }
 
 - (ScheduleCourse *)floorCourse {

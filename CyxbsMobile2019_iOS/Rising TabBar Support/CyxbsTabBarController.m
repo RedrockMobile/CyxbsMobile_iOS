@@ -16,53 +16,55 @@
 #import "ScheduleShareCache.h"
 #import "ScheduleTouchItem.h"
 
-#import "ScheduleBar.h"
+#import "ScheduleBottomBar.h"
 #import "ScheduleController.h"
 #import "TransitioningDelegate.h"
 
-@interface CyxbsTabBarController () <FastLoginViewControllerDelegate>
+#import "ScheduleTabBar.h"
 
-@property (nonatomic, strong) ScheduleBar *scheduleBar;
+@interface CyxbsTabBarController () <FastLoginViewControllerDelegate, UITabBarControllerDelegate>
+
+@property (nonatomic, strong) ScheduleBottomBar *scheduleBar;
 
 @property (nonatomic, strong) SchedulePresenter *schedulePresenter;
 
 @end
 
-@implementation CyxbsTabBarController
+@implementation CyxbsTabBarController {
+    ScheduleTabBar *_scheduleTabBar;
+}
 
 #pragma mark - Life cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.delegate = self;
+    
+    _scheduleTabBar = [[ScheduleTabBar alloc] init];
+    [self setValue:_scheduleTabBar forKey:@"tabBar"];
+    [_scheduleTabBar reload];
+    
     self.schedulePresenter = [[SchedulePresenter alloc] init];
     
     self.viewControllers = @[
         self._test1
     ];
-    [self addObserver:self forKeyPath:@"tabBar.hidden" options:NSKeyValueObservingOptionNew context:nil];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
     
-    [self _once];
-    [self reloadScheduleBar];
-    [self presentControllerWhatIfNeeded];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"tabBar.hidden"]) {
-        self.scheduleBarHidden = [change[@"new"] boolValue];
-    }
-}
+//- (void)viewDidAppear:(BOOL)animated {
+//    [super viewDidAppear:animated];
+//
+//    [self _once];
+//    [self reloadScheduleBar];
+//    [self presentControllerWhatIfNeeded];
+//}
 
 #pragma mark - Method
 
 - (void)presentControllerWhatIfNeeded {
-    if (self.presentedViewController) {
-        return;
-    }
+    if (self.presentedViewController) { return; }
     BOOL hadReadAgreement = [NSUserDefaults.standardUserDefaults boolForKey:@"UDKey_hadReadAgreement"];
     if (!hadReadAgreement) {
         // 用户协议以及登录请在这里进行改变
@@ -99,13 +101,13 @@
             } else {
                 self.scheduleBar.title = @"今天已经没课了";
                 self.scheduleBar.time = @"也许明天才有课";
-                self.scheduleBar.place = @"好好休息下吧";
+                self.scheduleBar.place = @"好好休息下";
             }
         }
          failure:^(NSError * _Nonnull error, ScheduleIdentifier * _Nonnull errorID) {
             self.scheduleBar.title = @"网络请求失败";
-            self.scheduleBar.time = @"无法加载时间...";
-            self.scheduleBar.place = @"无法加载地点...";
+            self.scheduleBar.time = @"无法加载时间";
+            self.scheduleBar.place = @"无法加载地点";
         }];
     }
 }
@@ -135,11 +137,11 @@
 
 #pragma mark - Getter
 
-- (ScheduleBar *)scheduleBar {
+- (ScheduleBottomBar *)scheduleBar {
     if (_scheduleBar == nil) {
         CGFloat height = 58;
         CGRect frame = CGRectMake(0, self.view.height - self.tabBar.height - height, self.view.width, height);
-        _scheduleBar = [[ScheduleBar alloc] initWithFrame:frame];
+        _scheduleBar = [[ScheduleBottomBar alloc] initWithFrame:frame];
         _scheduleBar.title = @"正在请求课程";
         _scheduleBar.time = @"课程的时间";
         _scheduleBar.place = @"课程的地点";
@@ -182,12 +184,6 @@
         [self.scheduleBar insertSubview:view atIndex:0];
     }
 }
-
-
-
-
-
-
 
 - (void)_tap:(UITapGestureRecognizer *)tap {
     if (tap.state == UIGestureRecognizerStateEnded) {
@@ -235,6 +231,9 @@
 }
 
 - (void)viewControllerTapBegin:(FastLoginViewController *)vc {
+    [ScheduleShareCache memoryCacheKey:vc.mainID forKeyName:ScheduleWidgetCacheKeyMain];
+    [ScheduleShareCache memoryCacheKey:vc.otherID forKeyName:ScheduleWidgetCacheKeyOther];
+    
     [self reloadScheduleBar];
     [self presentScheduleControllerWithPan:nil completion:nil];
 }

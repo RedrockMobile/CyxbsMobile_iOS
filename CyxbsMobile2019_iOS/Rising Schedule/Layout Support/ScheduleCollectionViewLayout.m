@@ -84,26 +84,28 @@
     
     ScheduleCollectionViewLayoutAttributes *attributes = _itemAttributes[indexPath];
     if (attributes) {
-        NSAssert(attributes.pointIndexPath.week, @"week为0");
         return attributes;
     }
 
     attributes = [self.class.layoutAttributesClass layoutAttributesForCellWithIndexPath:indexPath];
     _itemAttributes[indexPath] = attributes;
     
-    if (self.dataSource) {
-        NSIndexPath *locationIndexPath = [self.dataSource collectionView:self.collectionView layout:self locationAtIndexPath:indexPath];
-        NSInteger lenth = [self.dataSource collectionView:self.collectionView layout:self lenthForLocationIndexPath:locationIndexPath];
-        attributes.pointIndexPath = locationIndexPath;
-        attributes.lenth = lenth;
-        
-        [self _transformItemWithAttributes:attributes];
-    }
+    [self _transformItemWithAttributes:attributes];
     
     return attributes;
 }
 
 - (void)_transformItemWithAttributes:(ScheduleCollectionViewLayoutAttributes *)attributes {
+    if (attributes.representedElementKind != UICollectionElementCategoryCell) {
+        return;
+    }
+    
+    if (self.dataSource) {
+        NSIndexPath *locationIndexPath = [self.dataSource collectionView:self.collectionView layout:self locationAtIndexPath:attributes.indexPath];
+        NSInteger lenth = [self.dataSource collectionView:self.collectionView layout:self lenthForLocationIndexPath:locationIndexPath];
+        attributes.pointIndexPath = locationIndexPath;
+        attributes.lenth = lenth;
+    }
     
     CGFloat x = attributes.pointIndexPath.section * self.collectionView.width + self.widthForLeadingSupplementaryView + (attributes.pointIndexPath.week - 1) * (_itemSize.width + self.columnSpacing);
     CGFloat y = self.heightForHeaderSupplementaryView + (attributes.pointIndexPath.location - 1) * (_itemSize.height + self.lineSpacing) + self.lineSpacing;
@@ -196,7 +198,7 @@
             size = CGSizeMake(width, width / 28 * 6);
         }
         
-        CGRect frame = {{x, y}, size};
+        CGRect frame = {{x, y - size.height / 2}, size};
         
         attributes.frame = frame;
         attributes.zIndex = 5;
@@ -241,8 +243,8 @@
     NSInteger index = proposedContentOffset.x / self.collectionView.bounds.size.width + 0.5;
     CGFloat remainder = proposedContentOffset.x - index * self.collectionView.bounds.size.width;
     
-    if (velocity.x > 1 || (velocity.x > 0.3 && remainder > self.collectionView.bounds.size.width / 3)) { index += 1; }
-    if (velocity.x < -1 || (velocity.x < -0.3 && remainder < self.collectionView.bounds.size.width / 3 * 2)) { index -= 1; }
+    if (velocity.x > 0.6 || (velocity.x > 0.3 && remainder > self.collectionView.bounds.size.width / 3)) { index += 1; }
+    if (velocity.x < -0.6 || (velocity.x < -0.3 && remainder < self.collectionView.bounds.size.width / 3 * 2)) { index -= 1; }
     index = MAX(index, self.pageCalculation - 1);
     index = MIN(index, self.pageCalculation + 1);
     
@@ -274,70 +276,32 @@
 - (void)invalidateLayoutWithContext:(ScheduleCollectionViewLayoutInvalidationContext *)context {
     
     // invalidate Holder Supplementary
-    [_supplementaryAttributes[UICollectionElementKindSectionHolder] enumerateKeysAndObjectsUsingBlock:^(NSIndexPath * _Nonnull indexPath, UICollectionViewLayoutAttributes * _Nonnull attributes, BOOL * __unused stop) {
-        
-        CGFloat x = indexPath.section * self.collectionView.width;
-        CGFloat persent = [self.dataSource collectionView:self.collectionView layout:self persentAtSupIndexPath:indexPath];
-        CGFloat y = (persent - 1) * (self.itemSize.height + self.lineSpacing) + self.heightForHeaderSupplementaryView;
-        
-        CGSize size = CGSizeZero;
-        if (indexPath.item == 0) {
-            CGFloat width = self.widthForLeadingSupplementaryView;
-            size = CGSizeMake(width, width / 28 * 6);
-        }
-        
-        CGRect frame = {{x, y}, size};
-        
-        attributes.frame = frame;
-        attributes.zIndex = 5;
+    [_supplementaryAttributes[UICollectionElementKindSectionHolder] enumerateKeysAndObjectsUsingBlock:^(NSIndexPath * __unused indexPath, UICollectionViewLayoutAttributes * _Nonnull attributes, BOOL * __unused stop) {
+        [self _transformSupplementaryAttributes:attributes];
     }];
     
     // invalidate Header Supplementary
     if (context.invalidateHeaderSupplementaryAttributes) {
         
-        [_supplementaryAttributes[UICollectionElementKindSectionHeader] enumerateKeysAndObjectsUsingBlock:^(NSIndexPath * _Nonnull indexPath, UICollectionViewLayoutAttributes * _Nonnull attributes, BOOL * __unused stop) {
-            
-            CGFloat x = indexPath.section * self.collectionView.width;
-            CGFloat y = self.collectionView.contentOffset.y;
-            
-            CGRect frame = CGRectMake(x, y, attributes.size.width, attributes.size.height);
-            
-            attributes.frame = frame;
-        }];
-        
-        [_supplementaryAttributes[UICollectionElementKindSectionPlaceholder] enumerateKeysAndObjectsUsingBlock:^(NSIndexPath * _Nonnull indexPath, UICollectionViewLayoutAttributes * _Nonnull attributes, BOOL * __unused stop) {
-            
-            CGFloat x = indexPath.section * self.collectionView.width + self.widthForLeadingSupplementaryView;
-            CGFloat y = self.collectionView.contentOffset.y + self.heightForHeaderSupplementaryView;
-            
-            CGRect frame = CGRectMake(x, y, attributes.size.width, attributes.size.height);
-            
-            attributes.frame = frame;
+        [_supplementaryAttributes[UICollectionElementKindSectionHeader] enumerateKeysAndObjectsUsingBlock:^(NSIndexPath * __unused indexPath, UICollectionViewLayoutAttributes * _Nonnull attributes, BOOL * __unused stop) {
+            [self _transformSupplementaryAttributes:attributes];
         }];
     }
     
     // invalidate Leading Supplementary
     if (context.invalidateLeadingSupplementaryAttributes) {
         
-        [_supplementaryAttributes[UICollectionElementKindSectionLeading] enumerateKeysAndObjectsUsingBlock:^(NSIndexPath * _Nonnull indexPath, UICollectionViewLayoutAttributes * _Nonnull attributes, BOOL * __unused stop) {
-            
-            CGFloat x = indexPath.section * self.collectionView.width;
-            CGFloat height = (_itemSize.height + self.lineSpacing) * 12;
-            
-            CGRect frame = CGRectMake(x, self.heightForHeaderSupplementaryView, self.widthForLeadingSupplementaryView, height);
-            
-            attributes.frame = frame;
+        [_supplementaryAttributes[UICollectionElementKindSectionLeading] enumerateKeysAndObjectsUsingBlock:^(NSIndexPath * __unused indexPath, UICollectionViewLayoutAttributes * _Nonnull attributes, BOOL * __unused stop) {
+            [self _transformSupplementaryAttributes:attributes];
         }];
     }
     
     // invalidate All Attributes
     if (context.invalidateDataSourceCounts) {
-        
+        for (NSString *key in _supplementaryAttributes) {
+            [_supplementaryAttributes[key] removeAllObjects];
+        }
         [_itemAttributes removeAllObjects];
-        
-        [_supplementaryAttributes enumerateKeysAndObjectsUsingBlock:^(NSString * __unused key, NSMutableDictionary<NSIndexPath *,UICollectionViewLayoutAttributes *> * _Nonnull obj, BOOL * __unused stop) {
-            [obj removeAllObjects];
-        }];
     }
     
     [super invalidateLayoutWithContext:context];
