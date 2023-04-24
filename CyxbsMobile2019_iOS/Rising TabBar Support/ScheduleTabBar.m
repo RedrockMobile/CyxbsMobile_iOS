@@ -127,6 +127,7 @@
         
         _shapeLayer = [[CAShapeLayer alloc] init];
         _shapeLayer.path = [self _makeBezierPath].CGPath;
+        
         _effectView.layer.mask = _shapeLayer;
     }
     return _effectView;

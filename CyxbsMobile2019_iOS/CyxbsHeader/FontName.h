@@ -14,12 +14,12 @@
 extern const struct FontName {
     // PingFangSC
     const struct PingFangSC {
-        __unsafe_unretained NSString *Regular;
-        __unsafe_unretained NSString *Ultralight;
-        __unsafe_unretained NSString *Thin;
-        __unsafe_unretained NSString *Light;
-        __unsafe_unretained NSString *Medium;
-        __unsafe_unretained NSString *Semibold;
+        NSString *Regular;
+        NSString *Ultralight;
+        NSString *Thin;
+        NSString *Light;
+        NSString *Medium;
+        NSString *Semibold;
     } PingFangSC;
 } FontName;
 

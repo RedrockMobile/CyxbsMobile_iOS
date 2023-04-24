@@ -10,29 +10,27 @@
 
 #import "FastLoginViewController.h"
 #import "UserAgreementViewController.h"
-
-#import "ScheduleNETRequest.h"
-#import "SchedulePresenter.h"
 #import "ScheduleShareCache.h"
-#import "ScheduleTouchItem.h"
 
-#import "ScheduleBottomBar.h"
+#import "SchedulePresenter.h"
 #import "ScheduleController.h"
 #import "TransitioningDelegate.h"
 
 #import "ScheduleTabBar.h"
+#import "ScheduleBottomBar.h"
 
-@interface CyxbsTabBarController () <FastLoginViewControllerDelegate, UITabBarControllerDelegate>
-
-@property (nonatomic, strong) ScheduleBottomBar *scheduleBar;
-
+@interface CyxbsTabBarController () <
+    UITabBarControllerDelegate,
+    FastLoginViewControllerDelegate
+>
+@property (nonatomic, strong) ScheduleTabBar *scheduleTabBar;
 @property (nonatomic, strong) SchedulePresenter *schedulePresenter;
+
+// 你可以在这里枚举所有的controller，并在代理中确定哪些需要显示。
 
 @end
 
-@implementation CyxbsTabBarController {
-    ScheduleTabBar *_scheduleTabBar;
-}
+@implementation CyxbsTabBarController
 
 #pragma mark - Life cycle
 
@@ -41,9 +39,8 @@
     
     self.delegate = self;
     
-    _scheduleTabBar = [[ScheduleTabBar alloc] init];
-    [self setValue:_scheduleTabBar forKey:@"tabBar"];
-    [_scheduleTabBar reload];
+    [self setValue:self.scheduleTabBar forKey:@"tabBar"];
+    [self.scheduleTabBar reload];
     
     self.schedulePresenter = [[SchedulePresenter alloc] init];
     
@@ -52,14 +49,6 @@
     ];
     
 }
-
-//- (void)viewDidAppear:(BOOL)animated {
-//    [super viewDidAppear:animated];
-//
-//    [self _once];
-//    [self reloadScheduleBar];
-//    [self presentControllerWhatIfNeeded];
-//}
 
 #pragma mark - Method
 
@@ -86,30 +75,7 @@
 }
 
 - (void)reloadScheduleBar {
-    ScheduleIdentifier *mainKey = [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyMain];
-    if (mainKey) {
-        [ScheduleNETRequest.current
-         policyKeys:@[mainKey]
-         success:^(ScheduleCombineItem * _Nonnull item) {
-            ScheduleTouchItem *touch = [[ScheduleTouchItem alloc] init];
-            touch.combining = item;
-            ScheduleCourse *now = touch.floorCourse;
-            if (now) {
-                self.scheduleBar.title = now.course;
-                self.scheduleBar.time = now.timeStr;
-                self.scheduleBar.place = now.classRoom;
-            } else {
-                self.scheduleBar.title = @"今天已经没课了";
-                self.scheduleBar.time = @"也许明天才有课";
-                self.scheduleBar.place = @"好好休息下";
-            }
-        }
-         failure:^(NSError * _Nonnull error, ScheduleIdentifier * _Nonnull errorID) {
-            self.scheduleBar.title = @"网络请求失败";
-            self.scheduleBar.time = @"无法加载时间";
-            self.scheduleBar.place = @"无法加载地点";
-        }];
-    }
+    [_scheduleTabBar reload];
 }
 
 - (void)presentScheduleControllerWithPan:(UIPanGestureRecognizer * _Nullable)pan completion:(void (^ __nullable)(UIViewController *vc))completion {
@@ -135,55 +101,7 @@
     }];
 }
 
-#pragma mark - Getter
-
-- (ScheduleBottomBar *)scheduleBar {
-    if (_scheduleBar == nil) {
-        CGFloat height = 58;
-        CGRect frame = CGRectMake(0, self.view.height - self.tabBar.height - height, self.view.width, height);
-        _scheduleBar = [[ScheduleBottomBar alloc] initWithFrame:frame];
-        _scheduleBar.title = @"正在请求课程";
-        _scheduleBar.time = @"课程的时间";
-        _scheduleBar.place = @"课程的地点";
-        
-        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(_pan:)];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_tap:)];
-        [_scheduleBar addGestureRecognizer:pan];
-        [_scheduleBar addGestureRecognizer:tap];
-    }
-    return _scheduleBar;
-}
-
 #pragma mark - Private
-
-- (void)_once {
-    static BOOL _draw = NO;
-    if (!_draw) {
-        _draw = YES;
-        [self.view addSubview:self.scheduleBar];
-        [self _drawEffects];
-    }
-}
-
-- (void)_drawEffects {
-    { // !!!: tabBar
-        UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleProminent];
-        UIVisualEffectView *view = [[UIVisualEffectView alloc] initWithEffect:effect];
-        view.frame = self.tabBar.bounds;
-        [self.tabBar insertSubview:view atIndex:0];
-    }
-    { // !!!: scheduleBar
-        UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleProminent];
-        UIVisualEffectView *view = [[UIVisualEffectView alloc] initWithEffect:effect];
-        view.frame = self.scheduleBar.bounds;
-        UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight) cornerRadii:CGSizeMake(16, 16)];
-        CAShapeLayer *shapeLayer = [[CAShapeLayer alloc] init];
-        shapeLayer.frame = view.bounds;
-        shapeLayer.path = bezierPath.CGPath;
-        view.layer.mask = shapeLayer;
-        [self.scheduleBar insertSubview:view atIndex:0];
-    }
-}
 
 - (void)_tap:(UITapGestureRecognizer *)tap {
     if (tap.state == UIGestureRecognizerStateEnded) {
@@ -197,16 +115,36 @@
     }
 }
 
+#pragma mark - Lazy
+
+- (ScheduleTabBar *)scheduleTabBar {
+    if (_scheduleTabBar == nil) {
+        _scheduleTabBar = [[ScheduleTabBar alloc] init];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_tap:)];
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(_pan:)];
+        [_scheduleTabBar.bottomBar addGestureRecognizer:tap];
+        [_scheduleTabBar.bottomBar addGestureRecognizer:pan];
+    }
+    return _scheduleTabBar;
+}
+
 #pragma mark - Setter
 
 - (void)setScheduleBarHidden:(BOOL)scheduleBarHidden {
-    _scheduleBarHidden = scheduleBarHidden;
-    self.scheduleBar.hidden = scheduleBarHidden;
+    self.scheduleTabBar.scheduleBarHidden = scheduleBarHidden;
 }
 
+#pragma mark - Getter
 
+- (BOOL)isScheduleBarHidden {
+    return self.scheduleTabBar.scheduleBarHidden;
+}
 
+#pragma mark - <UITabBarControllerDelegate>
 
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    self.scheduleTabBar.scheduleBarHidden = YES;
+}
 
 
 

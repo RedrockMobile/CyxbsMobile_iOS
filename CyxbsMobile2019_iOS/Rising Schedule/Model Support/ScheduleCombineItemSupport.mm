@@ -89,7 +89,7 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
 
 - (ScheduleIdentifier *)moveFrom:(ScheduleIdentifier *)other {
     if (other == self || !other) { return self; }
-    ScheduleIdentifier *fin = self.copy;
+    ScheduleIdentifier *fin = self;
     if ([fin.key isEqualToString:other.key]) {
         fin.useWebView |= other.useWebView;
         fin.useWidget |= other.useWidget;
@@ -158,7 +158,12 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
 #pragma mark - <NSCopying>
 
 - (nonnull id)copyWithZone:(nullable NSZone *)zone {
-    return self;
+    ScheduleIdentifier *key = [[ScheduleIdentifier alloc] initWithSno:self.sno type:self.type];
+    key.useWebView = self.useWebView;
+    key.useWidget = self.useWidget;
+    key.useNotification = self.useNotification;
+    key.useCanlender = self.useCanlender;
+    return key;
 }
 
 @end
