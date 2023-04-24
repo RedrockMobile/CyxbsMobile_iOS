@@ -33,7 +33,7 @@
 @implementation ScheduleDetailTableHeaderView
 
 - (instancetype)initWithFrame:(CGRect)frame {
-    frame.size.height = 80;
+    frame.size.height = 98;
     self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.titleLab];
@@ -51,8 +51,8 @@
     self.detailLab.frame = CGRectMake(self.titleLab.left, self.titleLab.bottom + 8, self.titleLab.width, 18);
     
     [self.snoLab sizeToFit];
-    self.snoLab.centerY = self.detailLab.centerY;
-    self.snoLab.right = self.width - 16;
+    self.snoLab.left = self.detailLab.left;
+    self.snoLab.top = self.detailLab.bottom + 8;
 }
 
 #pragma mark - Getter

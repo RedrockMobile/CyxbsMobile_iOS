@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RyTrottingHorseLampLabel : UIView
 
-- (void)trottingHorseLampWithLabel:(void (NS_NOESCAPE ^)(UILabel *label))makeLabel;
+- (void)initLabelWithBlock:(void (NS_NOESCAPE ^)(UILabel *label))makeLabel;
 
 - (void)animationPrepare:(void (NS_NOESCAPE ^)(id <RyTrottingHorseLampLabelAnimationContext> context))prepare;
 

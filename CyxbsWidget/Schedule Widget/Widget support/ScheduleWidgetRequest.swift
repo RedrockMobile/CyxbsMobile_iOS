@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyJSON
+import Alamofire
 
 final class ScheduleWidgetRequest {
     
@@ -39,9 +40,8 @@ final class ScheduleWidgetRequest {
             let item = ScheduleCombineItem(identifier: key, value: finalAry)
             return item
         } else {
-            let mkey = ScheduleShareCache.memoryKey(forKey: ScheduleIdentifier(sno: sno, type: .student)!.key, forKeyName: nil)
-            if let mkey = mkey, mkey.useWebView {
-                return ScheduleShareCache.memoryItem(forKey: mkey.key, forKeyName: nil)
+            if let key = ScheduleIdentifier(sno: sno, type: .student), key.useWebView {
+                return ScheduleShareCache.memoryItem(forKey: key.key, forKeyName: nil)
             }
             return nil
         }

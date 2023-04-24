@@ -1,18 +1,18 @@
 //
-//  ScheduleBar.m
+//  ScheduleBottomBar.m
 //  CyxbsMobile2019_iOS
 //
 //  Created by SSR on 2023/1/13.
 //  Copyright © 2023 Redrock. All rights reserved.
 //
 
-#import "ScheduleBar.h"
+#import "ScheduleBottomBar.h"
 
 #import "RyTrottingHorseLampLabel.h"
 
 #pragma mark - ScheduleBar ()
 
-@interface ScheduleBar ()
+@interface ScheduleBottomBar ()
 
 @property (nonatomic, strong) RyTrottingHorseLampLabel *lampLab;
 
@@ -38,7 +38,7 @@
 
 #pragma mark - ScheduleBar
 
-@implementation ScheduleBar
+@implementation ScheduleBottomBar
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -58,19 +58,24 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
+    // centerY
     self.lampLab.centerY =
     self.timeImgView.centerY = self.timeLab.centerY =
     self.placeImgView.centerY = self.placeLab.centerY = self.height / 2;
-    
+    // left
     self.lampLab.left = 18;
-    
     self.timeImgView.left = 0.384 * self.width;
     self.timeLab.left = self.timeImgView.right + 5;
-    
     self.placeImgView.left = 0.7 * self.width;
     self.placeLab.left = self.placeImgView.right + 5;
-    
+    // width
+    self.lampLab.width = self.timeImgView.left - self.lampLab.left - 18;
+    self.timeLab.width = self.placeImgView.left - self.timeLab.left - 18;
+    self.placeLab.width = self.width - self.placeLab.left - 18;
+    // supplementry
+    self.bar.centerX = self.width / 2;
+    self.line.width = self.width;
+    self.line.bottom = self.height;
 }
 
 #pragma mark - Lazy
@@ -78,7 +83,7 @@
 - (RyTrottingHorseLampLabel *)lampLab {
     if (_lampLab == nil) {
         _lampLab = [[RyTrottingHorseLampLabel alloc] initWithFrame:CGRectMake(16, 0, 120, 30)];
-        [_lampLab trottingHorseLampWithLabel:^(UILabel * _Nonnull label) {
+        [_lampLab initLabelWithBlock:^(UILabel * _Nonnull label) {
             label.font = [UIFont fontWithName:FontName.PingFangSC.Semibold size:22];
             label.textColor = [UIColor Light:UIColorHex(#15315B) Dark:UIColorHex(#F0F0F2)];
         }];
@@ -130,7 +135,7 @@
     if (_placeLab == nil) {
         _placeLab = [[RyTrottingHorseLampLabel alloc] init];
         _placeLab.size = CGSizeMake(120, 20);
-        [_placeLab trottingHorseLampWithLabel:^(UILabel * _Nonnull label) {
+        [_placeLab initLabelWithBlock:^(UILabel * _Nonnull label) {
             label.font = [UIFont fontWithName:FontName.PingFangSC.Light size:12];
             label.textColor = [UIColor Light:UIColorHex(#15315B) Dark:UIColorHex(#F0F0F2)];
         }];
@@ -143,7 +148,6 @@
 - (UIView *)bar {
     if (_bar == nil) {
         _bar = [[UIView alloc] initWithFrame:CGRectMake(0, 5, 27, 5)];
-        _bar.centerX = self.width / 2;
         _bar.layer.cornerRadius = _bar.height / 2;
         _bar.backgroundColor = [UIColor Light:UIColorHex(#E2EDFB) Dark:UIColorHex(#5A5A5A)];
     }
@@ -152,8 +156,7 @@
 
 - (UIView *)line {
     if (_line == nil) {
-        _line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 1)];
-        _line.bottom = self.SuperBottom;
+        _line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 1)];
         _line.backgroundColor = [UIColor Light:UIColorHex(#EAEDF1) Dark:UIColorHex(#7C7C7C)];
     }
     return _line;
@@ -163,7 +166,7 @@
 
 - (void)setTitle:(NSString *)title {
     _title = title;
-    [self.lampLab trottingHorseLampWithLabel:^(UILabel * _Nonnull label) {
+    [self.lampLab initLabelWithBlock:^(UILabel * _Nonnull label) {
         label.text = title;
         [label sizeToFit];
     }];
@@ -181,7 +184,7 @@
 
 - (void)setPlace:(NSString *)place {
     _place = place;
-    [self.placeLab trottingHorseLampWithLabel:^(UILabel * _Nonnull label) {
+    [self.placeLab initLabelWithBlock:^(UILabel * _Nonnull label) {
         label.text = place;
         [label sizeToFit];
         self.placeLab.height = label.height;

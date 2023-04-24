@@ -424,7 +424,7 @@
     _tf.font = [UIFont fontWithName:FontName.PingFangSC.Semibold size:18];
     _tf.textColor = [UIColor Light:UIColorHex(#15315B) Dark:UIColorHex(#F0F0F2)];
     _tf.backgroundColor = [UIColor Light:UIColorHex(#F2F3F7) Dark:UIColorHex(#2D2D2D)];
-    _tf.layer.cornerRadius = 17;
+    _tf.layer.cornerRadius = 15;
     return _tf;
 }
 
