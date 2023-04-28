@@ -91,6 +91,7 @@
 
 - (UIButton *)backBtn {
     if (_backBtn == nil) {
+        NSLog(@"height %f", StatusBarHeight());
         _backBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, StatusBarHeight() + 10, 60, 40)];
         _backBtn.right = self.view.width - 17;
         [_backBtn setTitle:@"取消" forState:UIControlStateNormal];

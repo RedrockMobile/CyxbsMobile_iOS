@@ -36,18 +36,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.delegate = self;
-    
-    [self setValue:self.scheduleTabBar forKey:@"tabBar"];
-    [self.scheduleTabBar reload];
-    
+    // Data
     self.schedulePresenter = [[SchedulePresenter alloc] init];
-    
+    ScheduleIdentifier *main = [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyMain];
+    ScheduleIdentifier *other = [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyOther];
+    if (!main) { return; }
+    if (other.useWidget == YES) {
+        [self.schedulePresenter setWithMainKey:main otherKey:other];
+    } else {
+        [self.schedulePresenter setWithMainKey:main];
+    }
+    // UI & Delegate
+    self.delegate = self;
+    [self setValue:self.scheduleTabBar forKey:@"tabBar"];
     self.viewControllers = @[
         self._test1
     ];
-    
+    // Method
+    [self.scheduleTabBar reload];
+    [self presentControllerWhatIfNeeded];
 }
 
 #pragma mark - Method
@@ -62,14 +69,7 @@
         [self presentViewController:vc animated:YES completion:nil];
         self.selectedIndex = 1;
     } else {
-        ScheduleIdentifier *main = [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyMain];
-        ScheduleIdentifier *other = [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyOther];
-        if (!main) { return; }
-        if (other.useWidget == YES) {
-            [self.schedulePresenter setWithMainKey:main otherKey:other];
-        } else {
-            [self.schedulePresenter setWithMainKey:main];
-        }
+        
         [self presentScheduleControllerWithPan:nil completion:nil];
     }
 }

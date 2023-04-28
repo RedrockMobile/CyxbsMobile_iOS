@@ -36,6 +36,7 @@
         _heightForScheduleBar = 58;
         [self insertSubview:self.effectView atIndex:0];
         [self addSubview:[self bottomBar]];
+        UILabel *a;
     }
     return self;
 }

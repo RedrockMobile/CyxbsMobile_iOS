@@ -38,7 +38,7 @@ RisingSingleClass_PROPERTY(Cache)
 @interface ScheduleShareCache (Disk)
 
 - (void)diskCacheKey:(nonnull ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
-- (nullable ScheduleIdentifier *)diskKeyForKey:(nullable NSString *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
+- (nullable ScheduleIdentifier *)diskKeyForKey:(nullable ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
 
 - (void)diskCacheItem:(nonnull ScheduleCombineItem *)anObject forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
 - (nullable ScheduleCombineItem *)diskItemForKey:(nullable ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;

@@ -237,13 +237,12 @@
             }
         }
         
+        key.useWebView = YES;
         ScheduleCombineItem *finItem = [ScheduleCombineItem combineItemWithIdentifier:key value:valueAry.copy];
+        [ScheduleShareCache.shareCache diskCacheItem:finItem forKeyName:self.name];
+        [ScheduleShareCache memoryCacheItem:finItem forKeyName:self.name];
         if (self.delegate && [self.delegate respondsToSelector:@selector(viewController:didHppleItem:)]) {
             [self.delegate viewController:self didHppleItem:finItem];
-        }
-        [ScheduleShareCache.shareCache diskCacheItem:finItem forKeyName:nil];
-        if (self.name) {
-            [ScheduleShareCache memoryCacheItem:finItem forKeyName:self.name];
         }
     }];
 }

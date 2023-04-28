@@ -249,14 +249,16 @@
 }
 
 - (void)scheduleHeaderViewDidTapDouble:(ScheduleHeaderView *)view {
+    NSString *custom = [NSString stringWithFormat:@"%@%@", ScheduleModelRequestCustom, self.firstKey.sno];
+    ScheduleIdentifier *customKey = [ScheduleShareCache memoryKeyForKey:custom forKeyName:ScheduleWidgetCacheKeyCustom];
     if (view.isSingle) {
         ScheduleIdentifier *otherKey = [ScheduleShareCache.shareCache diskKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyOther];
         otherKey = otherKey ? otherKey : [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyOther];
         if (otherKey == nil) { return; }
-        self.requestKeys = @[self.firstKey, otherKey].mutableCopy;
+        self.requestKeys = @[self.firstKey, customKey, otherKey].mutableCopy;
         self.onShow = ScheduleModelShowDouble;
     } else {
-        self.requestKeys = @[self.firstKey].mutableCopy;
+        self.requestKeys = @[self.firstKey, customKey].mutableCopy;
         self.onShow = ScheduleModelShowSingle;
     }
     [self reloadHeaderView];

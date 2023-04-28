@@ -17,6 +17,7 @@
 #pragma mark - static C method
 
 static NSString *urlForRequest(ScheduleModelRequestType type) {
+//    return @"https://be-prod.redrock.cqupt.edu.cn"; // !!!: failed
     if (type == ScheduleModelRequestStudent) {
         return @"https://be-prod.redrock.cqupt.edu.cn/magipoke-jwzx/kebiao";
     }
@@ -153,7 +154,7 @@ static ScheduleNETRequest *_current;
            success:(void (^)(ScheduleCombineItem * _Nonnull))success
            failure:(void (^)(NSError * _Nonnull, ScheduleIdentifier * _Nonnull))failure {
     for (ScheduleIdentifier *key in keys) {
-        __block ScheduleIdentifier *dickKey = [key moveFrom:[ScheduleShareCache.shareCache diskKeyForKey:key.key forKeyName:nil]];
+        __block ScheduleIdentifier *dickKey = [key moveFrom:[ScheduleShareCache.shareCache diskKeyForKey:key forKeyName:nil]];
         __block ScheduleCombineItem *diskItem = [ScheduleShareCache.shareCache diskItemForKey:dickKey forKeyName:nil];
         if (!diskItem && dickKey.useWebView) {
             diskItem = [ScheduleShareCache memoryItemForKey:dickKey.key forKeyName:nil];
@@ -168,7 +169,14 @@ static ScheduleNETRequest *_current;
                 item = [ScheduleCombineItem combineItemWithIdentifier:dickKey value:item.value];
                 if (success) { success(item); }
             } failure:^(NSError * _Nonnull error, ScheduleIdentifier * _Nonnull errorID) {
-                if (diskItem && success) { success(diskItem); }
+                if (diskItem && success) {
+                    success(diskItem);
+                    return;
+                }
+                if (dickKey && failure) {
+                    failure(error, dickKey);
+                    return;
+                }
             }];
         } else {
             if (success) { success(diskItem); }
@@ -187,7 +195,7 @@ static ScheduleNETRequest *_current;
 - (void)policyCustom:(ScheduleIdentifier *)cKey
              success:(void (^)(ScheduleCombineItem * _Nonnull))success {
     ScheduleIdentifier *newKey = [cKey moveFrom:self.customItem.identifier];
-    newKey = [cKey moveFrom:[ScheduleShareCache.shareCache diskKeyForKey:cKey.sno forKeyName:cKey.type]];
+    newKey = [cKey moveFrom:[ScheduleShareCache.shareCache diskKeyForKey:cKey forKeyName:cKey.type]];
     newKey.useWebView = YES;
     [ScheduleShareCache.shareCache diskCacheKey:newKey forKeyName:ScheduleWidgetCacheKeyCustom];
     NSMutableArray *ary = [self.customItem.value isKindOfClass:NSMutableArray.class] ? self.customItem.value : self.customItem.value.mutableCopy;
