@@ -33,7 +33,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) ScheduleModel *model;
 
 + (instancetype)new NS_UNAVAILABLE;
-
 - (instancetype)init NS_UNAVAILABLE;
 
 /// 创建数据服务

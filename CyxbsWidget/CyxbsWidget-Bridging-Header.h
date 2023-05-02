@@ -14,4 +14,4 @@
 
 #import "NSIndexPath+Schedule.h"
 
-#import "ScheduleRequestType.h"
+#import "ScheduleType.h"

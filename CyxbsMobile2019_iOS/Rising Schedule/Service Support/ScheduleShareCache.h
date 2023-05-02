@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ScheduleCombineItemSupport.h"
 #import "RisingSingleClass.h"
+#import "ScheduleType.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,10 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
  * 或直接存取`ScheduleWidgetCacheKeyName`，取出时用`唯一标识符`
  */
 
-typedef NSString * ScheduleWidgetCacheKeyName NS_STRING_ENUM;
-FOUNDATION_EXTERN ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyMain;
-FOUNDATION_EXPORT ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyCustom;
-FOUNDATION_EXTERN ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyOther;
 
 #pragma mark - ScheduleShareCache
 

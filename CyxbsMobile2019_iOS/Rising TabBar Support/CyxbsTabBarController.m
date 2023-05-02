@@ -43,8 +43,10 @@
     if (!main) { return; }
     if (other.useWidget == YES) {
         [self.schedulePresenter setWithMainKey:main otherKey:other];
+        [self.schedulePresenter setAtFirstUseMem:YES beDouble:YES supportEditCustom:YES];
     } else {
         [self.schedulePresenter setWithMainKey:main];
+        [self.schedulePresenter setAtFirstUseMem:YES beDouble:NO supportEditCustom:YES];
     }
     // UI & Delegate
     self.delegate = self;

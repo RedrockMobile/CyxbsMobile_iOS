@@ -12,9 +12,6 @@
 #import "ScheduleCourse+WCTTableCoding.h"
 #import "ScheduleIdentifier+WCTTableCoding.h"
 
-ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyMain = @"ScheduleWidgetCacheKeyMain";
-ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyCustom = @"ScheduleWidgetCacheKeyCustom";
-ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyOther = @"ScheduleWidgetCacheKeyOther";
 
 #pragma mark - ScheduleShareCache ()
 

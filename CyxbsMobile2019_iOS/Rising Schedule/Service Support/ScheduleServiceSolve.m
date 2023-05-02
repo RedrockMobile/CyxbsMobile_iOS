@@ -8,8 +8,8 @@
 
 #import "ScheduleServiceSolve.h"
 
+#import "ScheduleHeaderView.h"
 #import "ScheduleNETRequest.h"
-#import "ScheduleShareCache.h"
 #import "ScheduleNeedsSupport.h"
 
 #import "TransitioningDelegate.h"
@@ -30,12 +30,9 @@
 
 #pragma mark - ScheduleServiceSolve
 
-@implementation ScheduleServiceSolve {
-    NSMutableArray <ScheduleIdentifier *> *_requestKeys;
-    ScheduleIdentifier *_firstKey;
-}
+@implementation ScheduleServiceSolve
 
-#pragma mark - Method
+#pragma mark - Over Method
 
 - (void)setingCollectionView:(UICollectionView *__strong  _Nonnull *)view withPrepareWidth:(CGFloat)width {
     [super setingCollectionView:view withPrepareWidth:width];
@@ -46,55 +43,7 @@
     [*view addGestureRecognizer:tap];
 }
 
-- (void)requestAndReloadData:(void (^)(void))complition {
-    if (!self.requestKeys) { return; }
-    [self.model clear];
-    [ScheduleNETRequest.current
-     policyKeys:self.requestKeys
-     success:^(ScheduleCombineItem * _Nonnull item) {
-        [self.model combineItem:item];
-        [self.collectionView reloadData];
-        if (complition) {
-            complition();
-        }
-    }
-     failure:^(NSError * _Nonnull error, ScheduleIdentifier * _Nonnull errorID) {
-        
-    }];
-}
-
-#pragma mark - Method
-
-- (void)scrollToSection:(NSInteger)page {
-    if (page > self.model.courseIdxPaths.count || page < 0) {
-        page = 0;
-    }
-    [self.collectionView setContentOffset:CGPointMake(page * self.collectionView.width, 0) animated:YES];
-}
-
-- (void)scrollToSectionNumber:(NSNumber *)page {
-    [self scrollToSection:page.longValue];
-}
-
-- (NSString *)_titleForNum:(NSInteger)num {
-    if (num <= 0) {
-        return @"整学期";
-    }
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    formatter.locale = CNLocale();
-    formatter.numberStyle = NSNumberFormatterSpellOutStyle;
-    
-    return [NSString stringWithFormat:@"第%@周", [formatter stringFromNumber:@(num)]];
-}
-
-- (void)reloadHeaderView {
-    if (_headerView) {
-        NSInteger page = self.collectionView.contentOffset.x / self.collectionView.width + 0.5;
-        self.headerView.title = [self _titleForNum:page];
-        self.headerView.reBack = (page == self.model.showWeek);
-        self.onShow = _onShow;
-    }
-}
+#pragma mark - Use Able
 
 - (void)setHeaderView:(ScheduleHeaderView *)headerView {
     _headerView = headerView;
@@ -113,6 +62,80 @@
     [self reloadHeaderView];
 }
 
+#pragma mark - Method
+
+- (void)setShowingType:(ScheduleModelShowType)onShow {
+    _showingType = onShow;
+    if (_headerView) {
+        switch (onShow) {
+            case ScheduleModelShowGroup:
+                [self.headerView setShowMuti:NO isSingle:YES];
+                break;
+            case ScheduleModelShowSingle:
+                [self.headerView setShowMuti:YES isSingle:YES];
+                break;
+            case ScheduleModelShowDouble:
+                [self.headerView setShowMuti:YES isSingle:NO];
+                break;
+        }
+        self.headerView.calenderEdit = (self.showingType != ScheduleModelShowGroup);
+    }
+}
+
+- (NSArray<ScheduleIdentifier *> *)requestKeys {
+    return nil;
+}
+
+- (void)requestAndReloadData:(void (^)(void))complition {
+    NSArray *requestAry = self.requestKeys;
+    if (!requestAry || requestAry.count == 0) { return; }
+    [self.model clear];
+    [ScheduleNETRequest.current
+     policyKeys:requestAry
+     success:^(ScheduleCombineItem * _Nonnull item) {
+        [self.model combineItem:item];
+        [self.collectionView reloadData];
+        [self reloadHeaderView];
+        if (complition) { complition(); }
+    }
+     failure:^(NSError * _Nonnull error, ScheduleIdentifier * _Nonnull errorID) {
+        
+    }];
+}
+
+- (void)reloadHeaderView {
+    if (_headerView) {
+        NSInteger page = self.collectionView.contentOffset.x / self.collectionView.width + 0.5;
+        self.headerView.title = [self _titleForNum:page];
+        self.headerView.reBack = (page == self.model.showWeek);
+        [self setShowingType:_showingType];
+    }
+}
+
+- (void)scrollToSection:(NSInteger)page {
+    if (page > self.model.courseIdxPaths.count || page < 0) {
+        page = 0;
+    }
+    [self.collectionView setContentOffset:CGPointMake(page * self.collectionView.width, 0) animated:YES];
+}
+
+- (void)scrollToSectionNumber:(NSNumber *)page {
+    [self scrollToSection:page.longValue];
+}
+
+// MARK: private
+
+- (NSString *)_titleForNum:(NSInteger)num {
+    if (num <= 0) {
+        return @"整学期";
+    }
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    formatter.locale = CNLocale();
+    formatter.numberStyle = NSNumberFormatterSpellOutStyle;
+    
+    return [NSString stringWithFormat:@"第%@周", [formatter stringFromNumber:@(num)]];
+}
+
 - (void)_panDismiss:(UIPanGestureRecognizer *)pan {
     if (pan.state == UIGestureRecognizerStateBegan) {
         TransitioningDelegate *delegate = [[TransitioningDelegate alloc] init];
@@ -126,7 +149,7 @@
 }
 
 - (void)_emptyTap:(UITapGestureRecognizer *)tap {
-    if (tap.state == UIGestureRecognizerStateEnded && self.onShow != ScheduleModelShowGroup) {
+    if (tap.state == UIGestureRecognizerStateEnded && self.showingType != ScheduleModelShowGroup) {
         ScheduleCollectionViewLayout *layout = (ScheduleCollectionViewLayout *)self.collectionView.collectionViewLayout;
         NSIndexPath *idx = [layout indexPathAtPoint:[tap locationInView:self.collectionView]];
         
@@ -138,53 +161,6 @@
         vc.transitioningDelegate = delegate;
         [self.viewController presentViewController:vc animated:YES completion:nil];
     }
-}
-
-#pragma mark - Setter
-
-- (void)setOnShow:(ScheduleModelShowType)onShow {
-    _onShow = onShow;
-    if (_headerView) {
-        switch (onShow) {
-            case ScheduleModelShowGroup:
-                [self.headerView setShowMuti:NO isSingle:YES];
-                break;
-            case ScheduleModelShowSingle:
-                [self.headerView setShowMuti:YES isSingle:YES];
-                break;
-            case ScheduleModelShowDouble:
-                [self.headerView setShowMuti:YES isSingle:NO];
-                break;
-        }
-        self.headerView.calenderEdit = (self.onShow != ScheduleModelShowGroup);
-    }
-}
-
-- (void)setRequestKeys:(NSArray<ScheduleIdentifier *> *)requestKeys {
-    if (!requestKeys) { requestKeys = NSMutableArray.array; }
-    if (![requestKeys isKindOfClass:NSMutableArray.class]) {
-        requestKeys = requestKeys.mutableCopy;
-    }
-    _requestKeys = (NSMutableArray *)requestKeys;
-}
-
-- (NSArray<ScheduleIdentifier *> *)requestKeys {
-    if (_requestKeys == nil) {
-        _requestKeys = NSMutableArray.array;
-    }
-    return _requestKeys;
-}
-
-- (void)setFirstKey:(ScheduleIdentifier *)firstKey {
-    if (_requestKeys.count > 0) {
-        _firstKey = firstKey;
-    } else {
-        [self setRequestKeys:@[firstKey]];
-    }
-}
-
-- (ScheduleIdentifier *)firstKey {
-    return self.requestKeys.firstObject;
 }
 
 #pragma mark - <ScheduleCustomViewControllerDelegate>
@@ -246,23 +222,6 @@
 
 - (void)scheduleHeaderView:(ScheduleHeaderView *)view didSelectedBtn:(UIButton *)btn {
     [self scrollToSection:self.model.showWeek];
-}
-
-- (void)scheduleHeaderViewDidTapDouble:(ScheduleHeaderView *)view {
-    NSString *custom = [NSString stringWithFormat:@"%@%@", ScheduleModelRequestCustom, self.firstKey.sno];
-    ScheduleIdentifier *customKey = [ScheduleShareCache memoryKeyForKey:custom forKeyName:ScheduleWidgetCacheKeyCustom];
-    if (view.isSingle) {
-        ScheduleIdentifier *otherKey = [ScheduleShareCache.shareCache diskKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyOther];
-        otherKey = otherKey ? otherKey : [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyOther];
-        if (otherKey == nil) { return; }
-        self.requestKeys = @[self.firstKey, customKey, otherKey].mutableCopy;
-        self.onShow = ScheduleModelShowDouble;
-    } else {
-        self.requestKeys = @[self.firstKey, customKey].mutableCopy;
-        self.onShow = ScheduleModelShowSingle;
-    }
-    [self reloadHeaderView];
-    [self requestAndReloadData:nil];
 }
 
 - (void)scheduleHeaderViewDidTapCalender:(ScheduleHeaderView *)view {

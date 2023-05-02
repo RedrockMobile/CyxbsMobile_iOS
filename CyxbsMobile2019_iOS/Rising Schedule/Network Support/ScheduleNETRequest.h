@@ -13,7 +13,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "ScheduleRequestType.h"
+#import "ScheduleType.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

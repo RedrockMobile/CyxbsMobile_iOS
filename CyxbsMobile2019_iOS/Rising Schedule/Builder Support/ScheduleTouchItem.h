@@ -7,9 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "ScheduleCombineItemSupport.h"
-
 #import "ScheduleCourse.h"
 
 NS_ASSUME_NONNULL_BEGIN

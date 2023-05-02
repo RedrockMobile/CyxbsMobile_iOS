@@ -11,7 +11,7 @@
 
 #import "ScheduleServiceDataSource.h"
 
-#import "ScheduleHeaderView.h"
+@class ScheduleHeaderView;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,36 +19,38 @@ NS_ASSUME_NONNULL_BEGIN
   
 @interface ScheduleServiceSolve : ScheduleServiceDataSource
 
-/// header view
+// PUBLIC USE
+
 @property (nonatomic, strong, null_resettable) ScheduleHeaderView *headerView;
 
-/// view controller
 @property (nonatomic, weak) UIViewController *viewController;
 
 @property (nonatomic, readonly) UICollectionView *collectionView;
 
+// PRIVITE USE
 
+/// 默认ScheduleModelShowGroup，对headerView图标的改变
+/// 重写用来返回正确的状态
+@property (nonatomic) ScheduleModelShowType showingType;
 
-/// request schedule
-@property (nonatomic, strong, nonnull) NSArray <ScheduleIdentifier *> *requestKeys;
-@property (nonatomic, strong, nullable) ScheduleIdentifier *firstKey;
+/// 单击空白地方时，是否弹起自定义事务
+@property (nonatomic) BOOL presentCustomEditWhenTouchEmpty;
 
-@property (nonatomic) ScheduleModelShowType onShow;
+// OVERWRITE
 
+/// 重写该方法用来返回下一次调用`requestAndReloadData:`
+/// 返回nil或count为0则不会改变当前视图
+@property (nonatomic, readonly, nullable) NSArray <ScheduleIdentifier *> *requestKeys;
 
+// Method
 
+/// 请求数据并刷新页面（同时会调用reloadHeaderView）
+/// - Parameter complition: 刷新完成
+- (void)requestAndReloadData:(void (^ _Nullable)(void))complition NS_REQUIRES_SUPER;
+- (void)reloadHeaderView NS_REQUIRES_SUPER;
 
-/// XXHB, default is NO
-@property (nonatomic) BOOL awakeable;
-
-
-
-- (void)requestAndReloadData:(void (^ _Nullable)(void))complition;
-
-- (void)scrollToSection:(NSInteger)page;
-- (void)scrollToSectionNumber:(NSNumber *)page;
-
-- (void)reloadHeaderView;
+- (void)scrollToSection:(NSInteger)page NS_REQUIRES_SUPER;
+- (void)scrollToSectionNumber:(NSNumber *)page NS_REQUIRES_SUPER;
 
 @end
 
