@@ -28,7 +28,10 @@
 
 #pragma mark - ScheduleServiceDataSource
 
-@implementation ScheduleServiceDataSource
+@implementation ScheduleServiceDataSource {
+    CGPoint _scrollViewStartPosPoint;
+    NSInteger _scrollDirection;
+}
 
 - (instancetype)initWithModel:(ScheduleModel *)model {
     self = [super init];
@@ -262,10 +265,37 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     ScheduleCollectionViewLayout *layout = (ScheduleCollectionViewLayout *)(((UICollectionView *)scrollView).collectionViewLayout);
     layout.pageCalculation = scrollView.contentOffset.x / scrollView.bounds.size.width;
+    
+    _scrollViewStartPosPoint = scrollView.contentOffset;
+    _scrollDirection = 0;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     self.backgroundView.top = scrollView.contentOffset.y + 10;
+    
+    if (_scrollDirection == 0) {
+        if (fabs(_scrollViewStartPosPoint.x - scrollView.contentOffset.x) <
+            fabs(_scrollViewStartPosPoint.y - scrollView.contentOffset.y)) {
+            
+            _scrollDirection = 1; //Vertical Scrolling
+        } else {
+            _scrollDirection = 2; //Horitonzal Scrolling
+        }
+    }
+    //Update scroll position of the scrollview according to detected direction.
+    if (_scrollDirection == 1) {
+        scrollView.contentOffset = CGPointMake(_scrollViewStartPosPoint.x, scrollView.contentOffset.y);
+    } else if (_scrollDirection == 2){
+        scrollView.contentOffset = CGPointMake(scrollView.contentOffset.x, _scrollViewStartPosPoint.y);
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (decelerate) { _scrollDirection = 0; }
+}
+ 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    _scrollDirection = 0;
 }
 
 @end

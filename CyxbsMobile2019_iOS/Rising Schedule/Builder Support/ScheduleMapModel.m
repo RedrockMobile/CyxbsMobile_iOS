@@ -16,25 +16,12 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _mapTable = [NSMapTable
-                     mapTableWithKeyOptions:
-                         NSPointerFunctionsStrongMemory |
-                         NSPointerFunctionsObjectPersonality
-                     valueOptions:
-                         NSPointerFunctionsStrongMemory |
-                         NSPointerFunctionsObjectPersonality];
+        _mapTable = [NSMapTable mapTableWithKeyOptions: NSPointerFunctionsStrongMemory | NSPointerFunctionsObjectPersonality valueOptions: NSPointerFunctionsStrongMemory | NSPointerFunctionsObjectPersonality];
         
-        NSPointerFunctions *dayPointerFunctions =
-        [NSPointerFunctions pointerFunctionsWithOptions:
-         NSPointerFunctionsStrongMemory |
-         NSPointerFunctionsObjectPersonality];
+        NSPointerFunctions *dayPointerFunctions = [NSPointerFunctions pointerFunctionsWithOptions: NSPointerFunctionsStrongMemory | NSPointerFunctionsObjectPersonality];
         dayPointerFunctions.hashFunction = schedule_section_week_hash;
         dayPointerFunctions.isEqualFunction = schedule_section_week_equal;
-        _dayMap = [[NSMapTable alloc]
-                   initWithKeyPointerFunctions:dayPointerFunctions
-                   valuePointerFunctions:[NSPointerFunctions pointerFunctionsWithOptions:
-                                          NSPointerFunctionsStrongMemory |
-                                          NSPointerFunctionsObjectPersonality]
+        _dayMap = [[NSMapTable alloc]  initWithKeyPointerFunctions:dayPointerFunctions valuePointerFunctions:[NSPointerFunctions pointerFunctionsWithOptions: NSPointerFunctionsStrongMemory | NSPointerFunctionsObjectPersonality]
                    capacity:7];
         _timeline = [[ScheduleTimeline alloc] init];
     }
@@ -87,6 +74,10 @@
         [self finishCombine];
     }
     return _mapTable;
+}
+
+- (ScheduleTimeline *)timelineWithSection:(NSUInteger)section {
+    return self.timeline;
 }
 
 #pragma mark - private

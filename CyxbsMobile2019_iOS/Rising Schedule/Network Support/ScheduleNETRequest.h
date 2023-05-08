@@ -13,17 +13,22 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "ScheduleRequestType.h"
+#import "ScheduleType.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class ScheduleCombineItem, ScheduleIdentifier, ScheduleCourse;
+@protocol ScheduleRequestDelegate;
+
+#pragma mark - ScheduleNETRequest
 
 @interface ScheduleNETRequest : NSObject
 
 @property (nonatomic, strong, nonnull, class) ScheduleNETRequest *current;
 
 @property (nonatomic, strong, nonnull) ScheduleCombineItem *customItem;
+
+@property (nonatomic, weak) id <ScheduleRequestDelegate> delegate;
 
 @property (nonatomic) NSTimeInterval outRequestTime;
 
@@ -32,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)new NS_UNAVAILABLE;
 
 @end
+
 
 
 #pragma mark - ScheduleNETRequest (Network)
@@ -53,6 +59,18 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)requestKeys:(NSArray <ScheduleIdentifier *> *)keys
             success:(void (^)(ScheduleCombineItem *item))success
             failure:(void (^)(NSError *error, ScheduleIdentifier *errorID))failure;
+
+@end
+
+
+
+#pragma mark - ScheduleRequestDelegate
+
+@protocol ScheduleRequestDelegate <NSObject>
+
+@optional
+
+- (BOOL)request:(ScheduleNETRequest *)request useMemEmptyItemWithDiskKey:(ScheduleIdentifier *)key;
 
 @end
 

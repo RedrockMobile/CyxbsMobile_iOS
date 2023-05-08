@@ -1,5 +1,5 @@
 //
-//  ScheduleRequestType.h
+//  ScheduleType.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by SSR on 2022/9/4.
@@ -37,18 +37,18 @@ typedef NSDictionary
     <ScheduleModelRequestType, NSArray
     <NSString *> *> ScheduleRequestDictionary;
 
-// MARK: KEY
+FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestStudent; // 请求学生
+FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestTeacher; // 请求老师
+FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestCustom; // 请求事务
 
-/// 学生
-FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestStudent;
+FOUNDATION_EXPORT ScheduleModelRequestType const ScheduelModelRequestTypeForString(NSString *str);
 
-/// 老师
-FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestTeacher;
 
-/// 自定义 mutable
-FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestCustom;
 
-FOUNDATION_EXPORT ScheduleModelRequestType const requestTypeForString(NSString *str);
+typedef NSString * ScheduleWidgetCacheKeyName NS_STRING_ENUM;
+FOUNDATION_EXTERN ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyMain;
+FOUNDATION_EXPORT ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyCustom;
+FOUNDATION_EXTERN ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyOther;
 
 typedef NS_ENUM(NSUInteger, ScheduleModelShowType) {
     ScheduleModelShowGroup = 0,

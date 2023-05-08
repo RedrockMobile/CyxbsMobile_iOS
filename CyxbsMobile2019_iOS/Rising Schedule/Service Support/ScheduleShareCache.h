@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ScheduleCombineItemSupport.h"
 #import "RisingSingleClass.h"
+#import "ScheduleType.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,10 +18,6 @@ NS_ASSUME_NONNULL_BEGIN
  * 或直接存取`ScheduleWidgetCacheKeyName`，取出时用`唯一标识符`
  */
 
-typedef NSString * ScheduleWidgetCacheKeyName NS_STRING_ENUM;
-FOUNDATION_EXTERN ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyMain;
-FOUNDATION_EXPORT ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyCustom;
-FOUNDATION_EXTERN ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyOther;
 
 #pragma mark - ScheduleShareCache
 
@@ -38,7 +35,7 @@ RisingSingleClass_PROPERTY(Cache)
 @interface ScheduleShareCache (Disk)
 
 - (void)diskCacheKey:(nonnull ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
-- (nullable ScheduleIdentifier *)diskKeyForKey:(nullable NSString *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
+- (nullable ScheduleIdentifier *)diskKeyForKey:(nullable ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
 
 - (void)diskCacheItem:(nonnull ScheduleCombineItem *)anObject forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
 - (nullable ScheduleCombineItem *)diskItemForKey:(nullable ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
@@ -55,10 +52,10 @@ RisingSingleClass_PROPERTY(Cache)
 - (void)toMemory;
 
 + (void)memoryCacheKey:(nonnull ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
-+ (nullable ScheduleIdentifier *)memoryKeyForKey:(nullable NSString *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
++ (nullable ScheduleIdentifier *)memoryKeyForKey:(nullable ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
 
 + (void)memoryCacheItem:(nonnull ScheduleCombineItem *)anObject forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
-+ (nullable ScheduleCombineItem *)memoryItemForKey:(nullable NSString *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
++ (nullable ScheduleCombineItem *)memoryItemForKey:(nullable ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
 
 @end
 

@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import <objc/message.h>
 #import "CyxbsTabBarController.h"
 
 @interface AppDelegate ()

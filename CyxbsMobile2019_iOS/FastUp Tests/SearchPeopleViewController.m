@@ -38,6 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.view.backgroundColor =
     [UIColor Light:UIColorHex(#FFFFFF)
               Dark:UIColorHex(#1D1D1D)];

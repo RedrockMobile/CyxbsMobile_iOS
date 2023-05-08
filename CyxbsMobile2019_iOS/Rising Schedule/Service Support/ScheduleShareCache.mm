@@ -12,9 +12,6 @@
 #import "ScheduleCourse+WCTTableCoding.h"
 #import "ScheduleIdentifier+WCTTableCoding.h"
 
-ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyMain = @"ScheduleWidgetCacheKeyMain";
-ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyCustom = @"ScheduleWidgetCacheKeyCustom";
-ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyOther = @"ScheduleWidgetCacheKeyOther";
 
 #pragma mark - ScheduleShareCache ()
 
@@ -43,6 +40,7 @@ RisingSingleClass_IMPLEMENTATION(Cache)
     self = [super init];
     if (self) {
         self.keyMapTable = NSMapTable.strongToStrongObjectsMapTable;
+        self.keyCache = NSMutableSet.set;
         
         self.itemCache = [[NSCache alloc] init];
         self.itemCache.countLimit = 10;
@@ -56,17 +54,12 @@ RisingSingleClass_IMPLEMENTATION(Cache)
 - (void)cache:(NSCache *)cache willEvictObject:(id)obj {
     ScheduleCombineItem *item = (ScheduleCombineItem *)obj;
     ScheduleIdentifier *key = [item.identifier moveFrom:[self.keyCache member:item.identifier]];
-    
+    NSLog(@"Evict: %@", obj);
     // 原先就有这个key
     if ([self.keyCache containsObject:key]) {
         // 如果当前存储的个数超过，则说明这个item要消失了
         if (self.keyCache.count >= self.itemCache.countLimit) {
             [self.keyCache removeObject:key];
-            // - 根据key的信息判断其他业务
-            if (key.useWebView) {
-                // 是否使用缓存
-                [self.class memoryCacheItem:item forKeyName:nil];
-            }
         } else { // 没有超过的话，则说明重置掉这个item了
             [self.keyCache addObject:key];
         }
@@ -89,17 +82,22 @@ RisingSingleClass_IMPLEMENTATION(Cache)
 - (void)diskCacheKey:(ScheduleIdentifier *)key forKeyName:(ScheduleWidgetCacheKeyName)keyName {
     if (keyName) {
         [self.keyMapTable setObject:key forKey:keyName];
-    } else {
-        [self.keyCache addObject:key];
     }
+    [self.keyCache addObject:key];
 }
 
-- (nullable ScheduleIdentifier *)diskKeyForKey:(NSString *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName {
+- (nullable ScheduleIdentifier *)diskKeyForKey:(nullable ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName {
+    ScheduleIdentifier *iden;
     if (keyName) {
-        return [self.keyMapTable objectForKey:keyName];
-    } else {
-        return [self.keyCache member:(ScheduleIdentifier *)key];
+        iden = [self.keyMapTable objectForKey:keyName];
+        if (key) {
+            iden = [iden moveFrom:[self.keyCache member:key]];
+        }
     }
+    if (!iden && key) {
+        iden = [self.keyCache member:key];
+    }
+    return iden;
 }
 
 // Item disk
@@ -110,7 +108,7 @@ RisingSingleClass_IMPLEMENTATION(Cache)
 }
 
 - (nullable ScheduleCombineItem *)diskItemForKey:(nullable ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName {
-    ScheduleIdentifier *iden = [self diskKeyForKey:key.key forKeyName:keyName];
+    ScheduleIdentifier *iden = [self diskKeyForKey:key forKeyName:keyName];
     ScheduleCombineItem *item = [self.itemCache objectForKey:iden];
     return [ScheduleCombineItem combineItemWithIdentifier:[item.identifier moveFrom:key] value:item.value];
 }
@@ -156,51 +154,52 @@ RisingSingleClass_IMPLEMENTATION(Cache)
 
 + (WCTDatabase *)dataBase {
     static WCTDatabase *db;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    if (!db) {
         NSString *path = [fileUrlForSchedule() URLByAppendingPathComponent:@"schedule_WCDB"].path;
         db = [[WCTDatabase alloc] initWithPath:path];
         if (![db isTableExists:@"Cyxbs_key"]) {
             [db createTableAndIndexesOfName:@"Cyxbs_key" withClass:ScheduleIdentifier.class];
         }
-    });
+    }
     return db;
 }
 
 // Key cache
 
++ (ScheduleIdentifier *)_memKeyForKey:(ScheduleIdentifier *)key {
+    return [self.dataBase getOneObjectOfClass:ScheduleIdentifier.class fromTable:@"Cyxbs_key" where:ScheduleIdentifier.type == key.type && ScheduleIdentifier.sno == key.sno];
+}
+
 + (void)memoryCacheKey:(ScheduleIdentifier *)key forKeyName:(ScheduleWidgetCacheKeyName)keyName {
     if (keyName) {
         [self _userDefaultsCacheKey:key forKeyName:keyName];
-    } else {
-        [self.dataBase insertOrReplaceObject:key into:@"Cyxbs_key"];
     }
+    [self.dataBase deleteObjectsFromTable:@"Cyxbs_key" where:ScheduleIdentifier.type == key.type && ScheduleIdentifier.sno == key.sno];
+    [self.dataBase insertOrReplaceObject:key into:@"Cyxbs_key"];
 }
 
-+ (nullable ScheduleIdentifier *)memoryKeyForKey:(NSString *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName {
++ (nullable ScheduleIdentifier *)memoryKeyForKey:(nullable ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName {
     if (keyName) {
-        return  [self _userDefaultsKeyForKeyName:keyName];
-    } else {
-        return [self.dataBase getObjectsOfClass:ScheduleIdentifier.class fromTable:@"Cyxbs_key" where:(ScheduleIdentifier.type + ScheduleIdentifier.sno) == key].firstObject;
+        ScheduleIdentifier *iden = [self _userDefaultsKeyForKeyName:keyName];
+        if (iden) { return iden; }
     }
+    return [self _memKeyForKey:key];
 }
 
 // Item cache
 
 + (void)memoryCacheItem:(ScheduleCombineItem *)anObject forKeyName:(ScheduleWidgetCacheKeyName)keyName {
-    if (keyName) {
-        [self memoryCacheKey:anObject.identifier forKeyName:keyName];
-    }
-    
+    [self memoryCacheKey:anObject.identifier forKeyName:keyName];
     NSString *tableName = anObject.identifier.key;
     if (![self.dataBase isTableExists:anObject.identifier.key]) {
         [self.dataBase createTableAndIndexesOfName:tableName withClass:ScheduleCourse.class];
     }
+    if (anObject.value.count == 0) { return; }
     [self.dataBase deleteAllObjectsFromTable:tableName];
     [self.dataBase insertObjects:anObject.value into:tableName];
 }
 
-+ (nullable ScheduleCombineItem *)memoryItemForKey:(NSString *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName {
++ (nullable ScheduleCombineItem *)memoryItemForKey:(nullable ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName {
     ScheduleIdentifier *iden = [self memoryKeyForKey:key forKeyName:keyName];
     if (!iden) { return nil; }
     NSArray <ScheduleCourse *> *ary;

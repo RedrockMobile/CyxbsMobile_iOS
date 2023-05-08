@@ -44,6 +44,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (ScheduleCollectionViewModel *)viewModelWithKey:(ScheduleIdentifier *)identifier forCourse:(ScheduleCourse *)course;
 
+//- (ScheduleTimeline *)timelineWithSection:(NSUInteger)section;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -14,31 +14,35 @@
  */
 
 #import <Foundation/Foundation.h>
-
 #import "ScheduleCombineItemSupport.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class ScheduleHeaderView;
 
 #pragma mark - SchedulePresenter
 
 @interface SchedulePresenter : NSObject
 
-// *property useable
-
-/// 控制器（不用赋值，会自动生成）
-@property (nonatomic, weak) UIViewController *controller;
-
-/// 绘制collecitonView
-/// - Parameters:
-///   - collectionView: 传一个local的collecitonView，调用结束后会生成一个collecitonView
-///   - width: 准备工作所需要的宽度
-- (void)setingCollectionView:(UICollectionView *__strong  _Nonnull *_Nonnull)collectionView withPrepareWidth:(CGFloat)width;
-
-// *useable
+// PUBLIC USE
 
 @property (nonatomic, readonly) UICollectionView *collectionView;
 
+// PRIVITE USE
+
+@property (nonatomic, readwrite) ScheduleHeaderView *headerView;
+
+@property (nonatomic, weak) UIViewController *controller;
+
+- (void)setingCollectionView:(UICollectionView *__strong  _Nonnull *_Nonnull)collectionView withPrepareWidth:(CGFloat)width;
+
+// Method
+
 - (void)requestAndReloadDataWithRollback:(BOOL)rollBack;
+
+- (instancetype)initWithDouble NS_DESIGNATED_INITIALIZER;
+
+- (instancetype)initWithGroup NS_DESIGNATED_INITIALIZER;
 
 @end
 
@@ -49,8 +53,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @interface SchedulePresenter (ScheduleDouble)
 
-- (void)setWithMainKey:(ScheduleIdentifier *)main;
+- (void)setAtFirstUseMem:(BOOL)mem beDouble:(BOOL)beD supportEditCustom:(BOOL)editC;
+// @{ @"useMem" : @(YES), @"beDouble" : @(YES), @"editCustom" : @(YES) }
+- (void)setAtFirst:(NSDictionary *)dic;
 
+- (void)setWithMainKey:(ScheduleIdentifier *)main;
 - (void)setWithMainKey:(ScheduleIdentifier *)main otherKey:(ScheduleIdentifier *)other;
 
 @end
@@ -69,23 +76,3 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-
-
-
-
-#if __has_include("ScheduleHeaderView.h")
-#import "ScheduleHeaderView.h"
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface SchedulePresenter (ScheduleHeaderView)
-
-@property (nonatomic, readwrite) ScheduleHeaderView *headerView;
-
-@end
-
-NS_ASSUME_NONNULL_END
-
-#endif
-
-
