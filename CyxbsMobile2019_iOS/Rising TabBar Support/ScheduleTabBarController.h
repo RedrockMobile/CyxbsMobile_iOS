@@ -1,5 +1,5 @@
 //
-//  CyxbsTabBarController.h
+//  ScheduleTabBarController.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by SSR on 2022/10/12.
@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class ScheduleTabBar;
 
-@interface CyxbsTabBarController : UITabBarController
+@interface ScheduleTabBarController : UITabBarController
 
 @property (nonatomic, getter=isScheduleBarHidden) BOOL scheduleBarHidden;
 

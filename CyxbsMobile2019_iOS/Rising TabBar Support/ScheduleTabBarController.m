@@ -1,15 +1,15 @@
 //
-//  CyxbsTabBarController.m
+//  ScheduleTabBarController.m
 //  CyxbsMobile2019_iOS
 //
 //  Created by SSR on 2022/10/12.
 //  Copyright © 2022 Redrock. All rights reserved.
 //
 
-#import "CyxbsTabBarController.h"
+#import "ScheduleTabBarController.h"
 
-#import "FastLoginViewController.h"
-#import "UserAgreementViewController.h"
+//#import "FastLoginViewController.h"
+//#import "UserAgreementViewController.h"
 #import "ScheduleShareCache.h"
 
 #import "SchedulePresenter.h"
@@ -19,9 +19,9 @@
 #import "ScheduleTabBar.h"
 #import "ScheduleBottomBar.h"
 
-@interface CyxbsTabBarController () <
-    UITabBarControllerDelegate,
-    FastLoginViewControllerDelegate
+@interface ScheduleTabBarController () <
+    UITabBarControllerDelegate
+//    FastLoginViewControllerDelegate
 >
 @property (nonatomic, strong) ScheduleTabBar *scheduleTabBar;
 @property (nonatomic, strong) SchedulePresenter *schedulePresenter;
@@ -30,7 +30,7 @@
 
 @end
 
-@implementation CyxbsTabBarController
+@implementation ScheduleTabBarController
 
 #pragma mark - Life cycle
 
@@ -42,7 +42,7 @@
     self.delegate = self;
     [self setValue:self.scheduleTabBar forKey:@"tabBar"];
     self.viewControllers = @[
-        self._test1
+        UIViewController.alloc.init // !!!: una;
     ];
     // Method
     [self.scheduleTabBar reload];
@@ -68,8 +68,8 @@
     if (self.presentedViewController) { return; }
     BOOL hadReadAgreement = [NSUserDefaults.standardUserDefaults boolForKey:@"UDKey_hadReadAgreement"];
     if (!hadReadAgreement) {
-        // 用户协议以及登录请在这里进行改变
-        UIViewController *vc = [[UserAgreementViewController alloc] init];
+        // !!!: 用户协议以及登录请在这里进行改变
+        UIViewController *vc = [[UIViewController alloc] init];
         vc.modalPresentationStyle = UIModalPresentationOverCurrentContext;
         [self presentViewController:vc animated:YES completion:nil];
         self.selectedIndex = 1;
@@ -165,19 +165,19 @@
 
 #pragma mark - Method
 
-- (UIViewController *)_test1 {
-    FastLoginViewController *vc = [[FastLoginViewController alloc] init];
-    vc.presenter = self.schedulePresenter;
-    vc.delegate = self;
-    return [[UINavigationController alloc] initWithRootViewController:vc];
-}
-
-- (void)viewControllerTapBegin:(FastLoginViewController *)vc {
-    [ScheduleShareCache memoryCacheKey:vc.mainID forKeyName:ScheduleWidgetCacheKeyMain];
-    [ScheduleShareCache memoryCacheKey:vc.otherID forKeyName:ScheduleWidgetCacheKeyOther];
-    
-    [self reloadScheduleBar];
-    [self presentScheduleControllerWithPan:nil completion:nil];
-}
+//- (UIViewController *)_test1 {
+//    FastLoginViewController *vc = [[FastLoginViewController alloc] init];
+//    vc.presenter = self.schedulePresenter;
+//    vc.delegate = self;
+//    return [[UINavigationController alloc] initWithRootViewController:vc];
+//}
+//
+//- (void)viewControllerTapBegin:(FastLoginViewController *)vc {
+//    [ScheduleShareCache memoryCacheKey:vc.mainID forKeyName:ScheduleWidgetCacheKeyMain];
+//    [ScheduleShareCache memoryCacheKey:vc.otherID forKeyName:ScheduleWidgetCacheKeyOther];
+//
+//    [self reloadScheduleBar];
+//    [self presentScheduleControllerWithPan:nil completion:nil];
+//}
 
 @end

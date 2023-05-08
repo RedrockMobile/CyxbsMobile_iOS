@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import <objc/message.h>
-#import "CyxbsTabBarController.h"
+#import "ScheduleTabBarController.h"
+#import <Bugly/Bugly.h>
 
 @interface AppDelegate ()
 
@@ -29,9 +29,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-//    [Bugly startWithAppId:@"41e7a3c1b3"];
+    [Bugly startWithAppId:@"41e7a3c1b3"];
 
-    UIViewController *vc = [[CyxbsTabBarController alloc] init];
+    UIViewController *vc = [[ScheduleTabBarController alloc] init];
     
     self.window = [[UIWindow alloc] init];
     self.window.rootViewController = vc;
@@ -136,7 +136,7 @@
         NSURLComponents *componets = [NSURLComponents componentsWithURL:url resolvingAgainstBaseURL:YES];
         
         if ([componets.path isEqualToString:@"/schedule/detail"]) {
-            CyxbsTabBarController *tabController = (CyxbsTabBarController *)self.window.rootViewController;
+            ScheduleTabBarController *tabController = (ScheduleTabBarController *)self.window.rootViewController;
             [tabController presentScheduleControllerWithPan:nil completion:^(UIViewController * _Nonnull vc) {
                 id service = [[vc performSelector:NSSelectorFromString(@"presenter")] performSelector:NSSelectorFromString(@"service")];
                 
