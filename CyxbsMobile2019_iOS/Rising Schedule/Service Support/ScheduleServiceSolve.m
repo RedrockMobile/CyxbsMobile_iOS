@@ -23,7 +23,8 @@
     UICollectionViewDelegate,
     ScheduleHeaderViewDelegate,
     UIGestureRecognizerDelegate,
-    ScheduleCustomViewControllerDelegate
+    ScheduleCustomViewControllerDelegate,
+    ScheduleRequestDelegate
 >
 
 @end
@@ -89,6 +90,7 @@
 - (void)requestAndReloadData:(void (^)(void))complition {
     NSArray *requestAry = self.requestKeys;
     if (!requestAry || requestAry.count == 0) { return; }
+    
     [self.model clear];
     [ScheduleNETRequest.current
      policyKeys:requestAry
@@ -121,6 +123,10 @@
 
 - (void)scrollToSectionNumber:(NSNumber *)page {
     [self scrollToSection:page.longValue];
+}
+
+- (BOOL)useMemBeforeRequestWithKey:(ScheduleIdentifier *)key {
+    return YES;
 }
 
 // MARK: private
@@ -224,7 +230,9 @@
     [self scrollToSection:self.model.showWeek];
 }
 
-- (void)scheduleHeaderViewDidTapCalender:(ScheduleHeaderView *)view {
+- (void)scheduleHeaderViewDidTapInfo:(ScheduleHeaderView *)view {
+    return;
+    // 暂时没想好怎么写
     ScheduleEventViewController *vc = [[ScheduleEventViewController alloc] init];
     UIViewController *root = [[UINavigationController alloc] initWithRootViewController:vc];
     TransitioningDelegate *transitionDelegate = [[TransitioningDelegate alloc] init];
@@ -235,6 +243,11 @@
     [self.viewController presentViewController:root animated:YES completion:nil];
 }
 
+#pragma mark - <ScheduleRequestDelegate>
+
+- (BOOL)request:(ScheduleNETRequest *)request useMemEmptyItemWithDiskKey:(ScheduleIdentifier *)key {
+    return [self useMemBeforeRequestWithKey:key];
+}
 
 #pragma mark - <UIGestureRecognizerDelegate>
 

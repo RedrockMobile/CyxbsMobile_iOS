@@ -42,6 +42,7 @@ typedef NS_ENUM(NSUInteger, ScheduleTimelineType) {
 /// default is ScheduleTimelineSimple
 @property (nonatomic) ScheduleTimelineType type;
 
+/// [12, 14]
 - (NSUInteger)count;
 
 /// position: [1, 14] or null
@@ -51,6 +52,9 @@ typedef NS_ENUM(NSUInteger, ScheduleTimelineType) {
 - (NSRange)layoutRangeWithOriginRange:(NSRange)range;
 
 @property (nonatomic, readonly) CGFloat percent;
+
+- (void)setSectionMdFrom:(NSDate *)date section:(NSUInteger)section;
+@property (nonatomic, copy) NSDate *sectionMd;
 
 @end
 

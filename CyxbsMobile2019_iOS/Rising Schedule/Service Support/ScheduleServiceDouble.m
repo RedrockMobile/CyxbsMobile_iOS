@@ -50,6 +50,15 @@
 #pragma mark - Method
 
 - (void)setBeDouble:(BOOL)beDouble {
+    // NOTE: 如果 Main 没有，则没必要执行
+    if (![self.keyToIden objectForKey:ScheduleWidgetCacheKeyMain]) {
+        self.showingType = ScheduleModelShowGroup;
+        return;
+    }
+    // NOTE: 如果 Other 没有，则永远为单人
+    if (![self.keyToIden objectForKey:ScheduleWidgetCacheKeyOther]) {
+        beDouble = NO;
+    }
     _beDouble = beDouble;
     if (beDouble) {
         self.showingType = ScheduleModelShowDouble;
@@ -62,6 +71,10 @@
     [self.keyToIden setObject:identifier forKey:key];
     if (key == ScheduleWidgetCacheKeyMain) {
         self.model.sno = identifier.sno;
+    }
+    if (self.useMemCheck) {
+        [ScheduleShareCache.shareCache diskCacheKey:identifier forKeyName:key];
+        [ScheduleShareCache memoryCacheKey:identifier forKeyName:key];
     }
 }
 
@@ -100,27 +113,7 @@
 }
 
 - (void)scheduleHeaderViewDidTapDouble:(ScheduleHeaderView *)view {
-    ScheduleIdentifier *main = [self.keyToIden objectForKey:ScheduleWidgetCacheKeyMain];
-    ScheduleIdentifier *custom = [self.keyToIden objectForKey:ScheduleWidgetCacheKeyCustom];
-    if (!main) { return; }
-    if (view.isSingle) {
-        ScheduleIdentifier *other = [self.keyToIden objectForKey:ScheduleWidgetCacheKeyOther];
-        if (!other) { return; }
-    }
-    
-//    NSString *custom = [NSString stringWithFormat:@"%@%@", ScheduleModelRequestCustom, self.firstKey.sno];
-//    ScheduleIdentifier *customKey = [ScheduleShareCache memoryKeyForKey:custom forKeyName:ScheduleWidgetCacheKeyCustom];
-//    if (view.isSingle) {
-//        ScheduleIdentifier *otherKey = [ScheduleShareCache.shareCache diskKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyOther];
-//        otherKey = otherKey ? otherKey : [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyOther];
-//        if (otherKey == nil) { return; }
-//        _requestKeys = @[self.firstKey, customKey, otherKey].mutableCopy;
-//        self.showingType = ScheduleModelShowDouble;
-//    } else {
-//        _requestKeys = @[self.firstKey, customKey].mutableCopy;
-//        self.showingType = ScheduleModelShowSingle;
-//    }
-    [self reloadHeaderView];
+    [self setBeDouble:view.isSingle];
     [self requestAndReloadData:nil];
 }
 

@@ -14,6 +14,7 @@
 #import "掌上重邮-Swift.h"
 
 #import "ScheduleServiceDouble.h"
+#import "ScheduleServiceGroup.h"
 
 #pragma mark - SchedulePresenter ()
 
@@ -42,7 +43,7 @@
 - (instancetype)initWithGroup {
     self = [super init];
     if (self) {
-        // TODO: groupStyle
+        self.service = [[ScheduleServiceGroup alloc] initWithModel:[[ScheduleModel alloc] init]];
     }
     return self;
 }
@@ -77,7 +78,18 @@
     }];
 }
 
+/* Header View */
+
+- (void)setHeaderView:(ScheduleHeaderView *)headerView {
+    self.service.headerView = headerView;
+}
+
+- (ScheduleHeaderView *)headerView {
+    return self.service.headerView;
+}
+
 @end
+
 
 
 // MARK: ScheduleServiceDouble
@@ -104,6 +116,13 @@
     service.presentCustomEditWhenTouchEmpty = editC;
 }
 
+- (void)setAtFirst:(NSDictionary *)dic {
+    BOOL mem = [[dic objectForKey:@"useMem"] boolValue];
+    BOOL beD = [[dic objectForKey:@"beDouble"] boolValue];
+    BOOL editC = [[dic objectForKey:@"editCustom"] boolValue];
+    [self setAtFirstUseMem:mem beDouble:beD supportEditCustom:editC];
+}
+
 - (void)_widgetReload {
     if (@available(iOS 14.0, *)) {
         [WidgetKitHelper reloadAllTimelines];
@@ -114,15 +133,20 @@
 
 
 
+// MARK: ScheduleServiceGroup
 
-@implementation SchedulePresenter (ScheduleHeaderView)
+@implementation SchedulePresenter (ScheduleGroup)
 
-- (void)setHeaderView:(ScheduleHeaderView *)headerView {
-    self.service.headerView = headerView;
+- (void)setWithGroup:(ScheduleRequestDictionary *)group {
+    if (![self.service isKindOfClass:ScheduleServiceGroup.class]) { return; }
+    ScheduleServiceGroup *service = (ScheduleServiceGroup *)self.service;
+    [service setWithFastGroup:group];
 }
 
-- (ScheduleHeaderView *)headerView {
-    return self.service.headerView;
+- (void)setWithGroupKeys:(NSArray<ScheduleIdentifier *> *)gKeys {
+    if (![self.service isKindOfClass:ScheduleServiceGroup.class]) { return; }
+    ScheduleServiceGroup *service = (ScheduleServiceGroup *)self.service;
+    [service setWithIdentifiers:gKeys];
 }
 
 @end

@@ -14,10 +14,11 @@
  */
 
 #import <Foundation/Foundation.h>
-
 #import "ScheduleCombineItemSupport.h"
 
 NS_ASSUME_NONNULL_BEGIN
+
+@class ScheduleHeaderView;
 
 #pragma mark - SchedulePresenter
 
@@ -28,6 +29,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, readonly) UICollectionView *collectionView;
 
 // PRIVITE USE
+
+@property (nonatomic, readwrite) ScheduleHeaderView *headerView;
 
 @property (nonatomic, weak) UIViewController *controller;
 
@@ -73,23 +76,3 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
-
-
-
-
-#if __has_include("ScheduleHeaderView.h")
-#import "ScheduleHeaderView.h"
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface SchedulePresenter (ScheduleHeaderView)
-
-@property (nonatomic, readwrite) ScheduleHeaderView *headerView;
-
-@end
-
-NS_ASSUME_NONNULL_END
-
-#endif
-
-

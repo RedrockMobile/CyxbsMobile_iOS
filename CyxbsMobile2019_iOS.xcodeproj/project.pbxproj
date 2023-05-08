@@ -105,6 +105,7 @@
 		14E844F628FC40090037309F /* ScheduleDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E844F528FC40090037309F /* ScheduleDetailController.m */; };
 		14E8451128FEE9720037309F /* ScheduleDetailCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E8451028FEE9720037309F /* ScheduleDetailCollectionViewCell.m */; };
 		14E8451428FEE9A30037309F /* ScheduleDetailMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E8451328FEE9A30037309F /* ScheduleDetailMessageTableViewCell.m */; };
+		14ED4D8D2A00FC2E00A2B538 /* ScheduleServiceGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 14ED4D8C2A00FC2E00A2B538 /* ScheduleServiceGroup.m */; };
 		14F80C0929288AC500481F4B /* ScheduleCollectionViewLayoutSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F80C0829288AC500481F4B /* ScheduleCollectionViewLayoutSupport.m */; };
 		14F8763A28B5B5FA0067642F /* ScheduleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14F8763928B5B5FA0067642F /* ScheduleController.m */; };
 		1A9B766C235F50A600725937 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B766B235F50A600725937 /* AppDelegate.m */; };
@@ -318,6 +319,8 @@
 		14E8451028FEE9720037309F /* ScheduleDetailCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleDetailCollectionViewCell.m; sourceTree = "<group>"; };
 		14E8451228FEE9A30037309F /* ScheduleDetailMessageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleDetailMessageTableViewCell.h; sourceTree = "<group>"; };
 		14E8451328FEE9A30037309F /* ScheduleDetailMessageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleDetailMessageTableViewCell.m; sourceTree = "<group>"; };
+		14ED4D8B2A00FC2E00A2B538 /* ScheduleServiceGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleServiceGroup.h; sourceTree = "<group>"; };
+		14ED4D8C2A00FC2E00A2B538 /* ScheduleServiceGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleServiceGroup.m; sourceTree = "<group>"; };
 		14F80C0729288AC500481F4B /* ScheduleCollectionViewLayoutSupport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleCollectionViewLayoutSupport.h; sourceTree = "<group>"; };
 		14F80C0829288AC500481F4B /* ScheduleCollectionViewLayoutSupport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleCollectionViewLayoutSupport.m; sourceTree = "<group>"; };
 		14F8763828B5B5FA0067642F /* ScheduleController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleController.h; sourceTree = "<group>"; };
@@ -439,10 +442,10 @@
 			children = (
 				14B46E6428B4D5D7003D288B /* ScheduleModel.h */,
 				14B46E6328B4D5D7003D288B /* ScheduleModel.m */,
-				147C2E5929821C1500F58266 /* ScheduleTouchItem.h */,
-				147C2E5A29821C1500F58266 /* ScheduleTouchItem.m */,
 				141DB244293AE9C90051A395 /* ScheduleMapModel.h */,
 				141DB245293AE9C90051A395 /* ScheduleMapModel.m */,
+				147C2E5929821C1500F58266 /* ScheduleTouchItem.h */,
+				147C2E5A29821C1500F58266 /* ScheduleTouchItem.m */,
 				14D03BB5292DFECE001CA682 /* ScheduleCollectionViewModel.h */,
 				14D03BB6292DFECE001CA682 /* ScheduleCollectionViewModel.m */,
 			);
@@ -467,6 +470,8 @@
 		140F665D297671300075C50A /* Service Support */ = {
 			isa = PBXGroup;
 			children = (
+				14ED4D8B2A00FC2E00A2B538 /* ScheduleServiceGroup.h */,
+				14ED4D8C2A00FC2E00A2B538 /* ScheduleServiceGroup.m */,
 				14014F4629FBC8D1006FAD1C /* ScheduleServiceDouble.h */,
 				14014F4729FBC8D1006FAD1C /* ScheduleServiceDouble.m */,
 				1435612E28CCA93500EF6987 /* ScheduleServiceSolve.h */,
@@ -1299,6 +1304,7 @@
 				14320606291C9657003B0E11 /* UserAgreementViewController.m in Sources */,
 				14B9647B28F6701500C984AB /* FontName.m in Sources */,
 				146D144F2908BB2800327AB8 /* UDKey.m in Sources */,
+				14ED4D8D2A00FC2E00A2B538 /* ScheduleServiceGroup.m in Sources */,
 				14B9648F28F6883800C984AB /* HttpTool.m in Sources */,
 				14B46E6128B4D283003D288B /* ScheduleCourse.mm in Sources */,
 				141DB246293AE9C90051A395 /* ScheduleMapModel.m in Sources */,

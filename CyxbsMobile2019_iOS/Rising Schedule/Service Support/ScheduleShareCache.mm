@@ -40,6 +40,7 @@ RisingSingleClass_IMPLEMENTATION(Cache)
     self = [super init];
     if (self) {
         self.keyMapTable = NSMapTable.strongToStrongObjectsMapTable;
+        self.keyCache = NSMutableSet.set;
         
         self.itemCache = [[NSCache alloc] init];
         self.itemCache.countLimit = 10;
@@ -86,12 +87,17 @@ RisingSingleClass_IMPLEMENTATION(Cache)
 }
 
 - (nullable ScheduleIdentifier *)diskKeyForKey:(nullable ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName {
+    ScheduleIdentifier *iden;
     if (keyName) {
-        return [self.keyMapTable objectForKey:keyName];
-    } else {
-        if (key) { return [self.keyCache member:key]; }
-        return nil;
+        iden = [self.keyMapTable objectForKey:keyName];
+        if (key) {
+            iden = [iden moveFrom:[self.keyCache member:key]];
+        }
     }
+    if (!iden && key) {
+        iden = [self.keyCache member:key];
+    }
+    return iden;
 }
 
 // Item disk
@@ -160,28 +166,30 @@ RisingSingleClass_IMPLEMENTATION(Cache)
 
 // Key cache
 
++ (ScheduleIdentifier *)_memKeyForKey:(ScheduleIdentifier *)key {
+    return [self.dataBase getOneObjectOfClass:ScheduleIdentifier.class fromTable:@"Cyxbs_key" where:ScheduleIdentifier.type == key.type && ScheduleIdentifier.sno == key.sno];
+}
+
 + (void)memoryCacheKey:(ScheduleIdentifier *)key forKeyName:(ScheduleWidgetCacheKeyName)keyName {
     if (keyName) {
         [self _userDefaultsCacheKey:key forKeyName:keyName];
     }
+    [self.dataBase deleteObjectsFromTable:@"Cyxbs_key" where:ScheduleIdentifier.type == key.type && ScheduleIdentifier.sno == key.sno];
     [self.dataBase insertOrReplaceObject:key into:@"Cyxbs_key"];
 }
 
-+ (nullable ScheduleIdentifier *)memoryKeyForKey:(NSString *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName {
++ (nullable ScheduleIdentifier *)memoryKeyForKey:(nullable ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName {
     if (keyName) {
         ScheduleIdentifier *iden = [self _userDefaultsKeyForKeyName:keyName];
         if (iden) { return iden; }
     }
-    return [self.dataBase getObjectsOfClass:ScheduleIdentifier.class fromTable:@"Cyxbs_key" where:(ScheduleIdentifier.type + ScheduleIdentifier.sno) == key].firstObject;
+    return [self _memKeyForKey:key];
 }
 
 // Item cache
 
 + (void)memoryCacheItem:(ScheduleCombineItem *)anObject forKeyName:(ScheduleWidgetCacheKeyName)keyName {
-    if (keyName) {
-        [self memoryCacheKey:anObject.identifier forKeyName:keyName];
-    }
-    
+    [self memoryCacheKey:anObject.identifier forKeyName:keyName];
     NSString *tableName = anObject.identifier.key;
     if (![self.dataBase isTableExists:anObject.identifier.key]) {
         [self.dataBase createTableAndIndexesOfName:tableName withClass:ScheduleCourse.class];
@@ -191,7 +199,7 @@ RisingSingleClass_IMPLEMENTATION(Cache)
     [self.dataBase insertObjects:anObject.value into:tableName];
 }
 
-+ (nullable ScheduleCombineItem *)memoryItemForKey:(NSString *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName {
++ (nullable ScheduleCombineItem *)memoryItemForKey:(nullable ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName {
     ScheduleIdentifier *iden = [self memoryKeyForKey:key forKeyName:keyName];
     if (!iden) { return nil; }
     NSArray <ScheduleCourse *> *ary;

@@ -52,10 +52,10 @@ RisingSingleClass_PROPERTY(Cache)
 - (void)toMemory;
 
 + (void)memoryCacheKey:(nonnull ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
-+ (nullable ScheduleIdentifier *)memoryKeyForKey:(nullable NSString *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
++ (nullable ScheduleIdentifier *)memoryKeyForKey:(nullable ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
 
 + (void)memoryCacheItem:(nonnull ScheduleCombineItem *)anObject forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
-+ (nullable ScheduleCombineItem *)memoryItemForKey:(nullable NSString *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
++ (nullable ScheduleCombineItem *)memoryItemForKey:(nullable ScheduleIdentifier *)key forKeyName:(nullable ScheduleWidgetCacheKeyName)keyName;
 
 @end
 

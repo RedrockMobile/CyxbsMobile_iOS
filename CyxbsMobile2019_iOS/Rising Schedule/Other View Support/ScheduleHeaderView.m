@@ -57,8 +57,8 @@
 }
 
 - (void)_calender:(UITapGestureRecognizer *)tap {
-    if (tap.state == UIGestureRecognizerStateEnded && self.delegate &&[self.delegate respondsToSelector:@selector(scheduleHeaderViewDidTapCalender:)]) {
-        [self.delegate scheduleHeaderViewDidTapCalender:self];
+    if (tap.state == UIGestureRecognizerStateEnded && self.delegate &&[self.delegate respondsToSelector:@selector(scheduleHeaderViewDidTapInfo:)]) {
+        [self.delegate scheduleHeaderViewDidTapInfo:self];
     }
 }
 
@@ -108,12 +108,12 @@
 
 - (UIImageView *)calenderImgView {
     if (_calenderImgView == nil) {
-        _calenderImgView = [[UIImageView alloc] initWithFrame:CGRectMake(-1, -1, 22, 18)];
-        _calenderImgView.contentMode = UIViewContentModeScaleAspectFit;
+        _calenderImgView = [[UIImageView alloc] initWithFrame:CGRectMake(-1, -1, 26, 26)];
+        _calenderImgView.contentMode = UIViewContentModeScaleAspectFill;
         _calenderImgView.hidden = YES;
         _calenderImgView.right = self.doubleImgView.left - 23;
         _calenderImgView.centerY = self.reBackBtn.centerY;
-        _calenderImgView.image = [UIImage imageNamed:@"schedule.calender"];
+        _calenderImgView.image = [UIImage imageNamed:@"info"];
         _calenderImgView.userInteractionEnabled = YES;
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_calender:)];
@@ -140,7 +140,7 @@
     if (self.reBackBtn.alpha == reBack) {
         [UIView animateWithDuration:0.3 animations:^{
             if (reBack) {
-                self.reBackBtn.left = self.width;
+                self.reBackBtn.left = self.width - 3;
             } else {
                 self.reBackBtn.right = self.width - 16;
             }

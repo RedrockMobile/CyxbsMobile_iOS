@@ -41,7 +41,7 @@ final class ScheduleWidgetRequest {
             return item
         } else {
             if let key = ScheduleIdentifier(sno: sno, type: .student), key.useWebView {
-                return ScheduleShareCache.memoryItem(forKey: key.key, forKeyName: nil)
+                return ScheduleShareCache.memoryItem(forKey: key, forKeyName: nil)
             }
             return nil
         }

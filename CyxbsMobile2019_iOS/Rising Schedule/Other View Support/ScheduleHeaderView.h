@@ -28,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// - Parameter view: 视图
 - (void)scheduleHeaderViewDidTapDouble:(ScheduleHeaderView *)view;
 
-- (void)scheduleHeaderViewDidTapCalender:(ScheduleHeaderView *)view;
+- (void)scheduleHeaderViewDidTapInfo:(ScheduleHeaderView *)view;
 
 @end
 

@@ -37,17 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Data
-    self.schedulePresenter = [[SchedulePresenter alloc] init];
-    ScheduleIdentifier *main = [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyMain];
-    ScheduleIdentifier *other = [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyOther];
-    if (!main) { return; }
-    if (other.useWidget == YES) {
-        [self.schedulePresenter setWithMainKey:main otherKey:other];
-        [self.schedulePresenter setAtFirstUseMem:YES beDouble:YES supportEditCustom:YES];
-    } else {
-        [self.schedulePresenter setWithMainKey:main];
-        [self.schedulePresenter setAtFirstUseMem:YES beDouble:NO supportEditCustom:YES];
-    }
+    [self _fetchData];
     // UI & Delegate
     self.delegate = self;
     [self setValue:self.scheduleTabBar forKey:@"tabBar"];
@@ -61,6 +51,19 @@
 
 #pragma mark - Method
 
+- (void)_fetchData {
+    self.schedulePresenter = [[SchedulePresenter alloc] initWithDouble];
+    ScheduleIdentifier *main = [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyMain];
+    ScheduleIdentifier *other = [ScheduleShareCache memoryKeyForKey:nil forKeyName:ScheduleWidgetCacheKeyOther];
+    if (other && other.useWidget == YES) {
+        [self.schedulePresenter setWithMainKey:main otherKey:other];
+        [self.schedulePresenter setAtFirstUseMem:YES beDouble:YES supportEditCustom:YES];
+    } else {
+        [self.schedulePresenter setWithMainKey:main];
+        [self.schedulePresenter setAtFirstUseMem:YES beDouble:NO supportEditCustom:YES];
+    }
+}
+
 - (void)presentControllerWhatIfNeeded {
     if (self.presentedViewController) { return; }
     BOOL hadReadAgreement = [NSUserDefaults.standardUserDefaults boolForKey:@"UDKey_hadReadAgreement"];
@@ -71,7 +74,6 @@
         [self presentViewController:vc animated:YES completion:nil];
         self.selectedIndex = 1;
     } else {
-        
         [self presentScheduleControllerWithPan:nil completion:nil];
     }
 }

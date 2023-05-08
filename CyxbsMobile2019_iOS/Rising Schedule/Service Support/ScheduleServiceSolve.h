@@ -48,6 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// - Parameter complition: 刷新完成
 - (void)requestAndReloadData:(void (^ _Nullable)(void))complition NS_REQUIRES_SUPER;
 - (void)reloadHeaderView NS_REQUIRES_SUPER;
+//- (BOOL)useMemBeforeRequestWithKey:(ScheduleIdentifier *)key; // defualt return YES, and do nothing.
 
 - (void)scrollToSection:(NSInteger)page NS_REQUIRES_SUPER;
 - (void)scrollToSectionNumber:(NSNumber *)page NS_REQUIRES_SUPER;

@@ -41,7 +41,7 @@ FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestStudent; //
 FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestTeacher; // 请求老师
 FOUNDATION_EXPORT ScheduleModelRequestType const ScheduleModelRequestCustom; // 请求事务
 
-FOUNDATION_EXPORT ScheduleModelRequestType const requestTypeForString(NSString *str);
+FOUNDATION_EXPORT ScheduleModelRequestType const ScheduelModelRequestTypeForString(NSString *str);
 
 
 

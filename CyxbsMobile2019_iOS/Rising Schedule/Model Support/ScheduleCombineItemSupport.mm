@@ -39,7 +39,7 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
     self = [super init];
     if (self) {
         _sno = name.copy;
-        _type = requestTypeForString(type);
+        _type = ScheduelModelRequestTypeForString(type);
         _iat = NSDate.date.timeIntervalSince1970;
     }
     return self;
@@ -108,7 +108,7 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
 }
 
 - (void)setType:(ScheduleModelRequestType)type {
-    _type = requestTypeForString(type);
+    _type = ScheduelModelRequestTypeForString(type);
 }
 
 #pragma mark - <NSSecureCoding>
@@ -129,7 +129,7 @@ WCDB_SYNTHESIZE(ScheduleIdentifier, exp)
     NSTimeInterval iat = [decoder decodeDoubleForKey:@"iat"];
     NSTimeInterval exp = [decoder decodeDoubleForKey:@"exp"];
     
-    self = [self initWithSno:sno type:requestTypeForString(type)];
+    self = [self initWithSno:sno type:ScheduelModelRequestTypeForString(type)];
     
     self.useWebView = useWebView;
     self.useWidget = useWidget;

@@ -14,20 +14,21 @@ ScheduleModelRequestType const ScheduleModelRequestStudent = @"student";
 ScheduleModelRequestType const ScheduleModelRequestCustom = @"custom";
 ScheduleModelRequestType const ScheduleModelRequestTeacher = @"teacher";
 
-
-ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyMain = @"ScheduleWidgetCacheKeyMain";
-ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyCustom = @"ScheduleWidgetCacheKeyCustom";
-ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyOther = @"ScheduleWidgetCacheKeyOther";
-
-ScheduleModelRequestType const requestTypeForString(NSString *str) {
-    if ([str isEqualToString:ScheduleModelRequestStudent]) {
+ScheduleModelRequestType const ScheduelModelRequestTypeForString(NSString *str) {
+    if (str == ScheduleModelRequestStudent || [str isEqualToString:ScheduleModelRequestStudent]) {
         return ScheduleModelRequestStudent;
     }
-    if ([str isEqualToString:ScheduleModelRequestCustom]) {
+    if (str == ScheduleModelRequestCustom || [str isEqualToString:ScheduleModelRequestCustom]) {
         return ScheduleModelRequestCustom;
     }
-    if ([str isEqualToString:ScheduleModelRequestTeacher]) {
+    if (str == ScheduleModelRequestTeacher || [str isEqualToString:ScheduleModelRequestTeacher]) {
         return ScheduleModelRequestTeacher;
     }
     return ScheduleModelRequestStudent;
 }
+
+
+
+ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyMain = @"ScheduleWidgetCacheKeyMain";
+ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyCustom = @"ScheduleWidgetCacheKeyCustom";
+ScheduleWidgetCacheKeyName const ScheduleWidgetCacheKeyOther = @"ScheduleWidgetCacheKeyOther";
