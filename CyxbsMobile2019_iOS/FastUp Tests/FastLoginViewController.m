@@ -13,7 +13,7 @@
 
 #import "SearchPeopleViewController.h"
 #import "ScheduleWebHppleViewController.h"
-#import "CyxbsTabBarController.h"
+#import "ScheduleTabBarController.h"
 
 #import "TransitioningDelegate.h"
 
@@ -264,7 +264,7 @@
 
 - (void)viewController:(ScheduleWebHppleViewController *)viewController didHppleItem:(ScheduleCombineItem *)item {
     if ([self.snoField.text isEqualToString:item.identifier.sno]) {
-        CyxbsTabBarController *vc = (CyxbsTabBarController *)self.tabBarController;
+        ScheduleTabBarController *vc = (ScheduleTabBarController *)self.tabBarController;
         [vc reloadScheduleBar];
     }
     [viewController dismissViewControllerAnimated:YES completion:nil];

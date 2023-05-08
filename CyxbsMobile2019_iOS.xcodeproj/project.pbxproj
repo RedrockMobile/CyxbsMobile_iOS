@@ -68,7 +68,6 @@
 		1468F18729248C110080DA08 /* SearchPersonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1468F18629248C110080DA08 /* SearchPersonTableViewCell.m */; };
 		146AA0C528B65FA800391FD0 /* SchedulePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 146AA0C428B65FA800391FD0 /* SchedulePresenter.m */; };
 		146D144C2907F21700327AB8 /* FastLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D144B2907F21700327AB8 /* FastLoginViewController.m */; };
-		146D144F2908BB2800327AB8 /* UDKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 146D144E2908BB2800327AB8 /* UDKey.m */; };
 		147681B7297156AF00E2D34D /* ScheduleBottomBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 147681B6297156AF00E2D34D /* ScheduleBottomBar.m */; };
 		147C2E5B29821C1500F58266 /* ScheduleTouchItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 147C2E5A29821C1500F58266 /* ScheduleTouchItem.m */; };
 		147C2E5E298221F700F58266 /* ScheduleNeedsSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 147C2E5D298221F700F58266 /* ScheduleNeedsSupport.m */; };
@@ -85,7 +84,7 @@
 		14B7E420295C4A150033653D /* AnimatedTransitioningSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B7E41F295C4A150033653D /* AnimatedTransitioningSupport.m */; };
 		14B7E426295C4B770033653D /* DrivenInteractiveTransitionSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B7E425295C4B770033653D /* DrivenInteractiveTransitionSupport.m */; };
 		14B9647B28F6701500C984AB /* FontName.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9647A28F6701500C984AB /* FontName.m */; };
-		14B9648028F67EEF00C984AB /* CyxbsTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9647F28F67EEF00C984AB /* CyxbsTabBarController.m */; };
+		14B9648028F67EEF00C984AB /* ScheduleTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9647F28F67EEF00C984AB /* ScheduleTabBarController.m */; };
 		14B9648328F67F8600C984AB /* CyxbsApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9648228F67F8600C984AB /* CyxbsApplication.m */; };
 		14B9648F28F6883800C984AB /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B9648D28F6883800C984AB /* HttpTool.m */; };
 		14BC47F82914D76E0063809E /* SearchPeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14BC47F72914D76E0063809E /* SearchPeopleViewController.m */; };
@@ -255,8 +254,6 @@
 		146AA0C428B65FA800391FD0 /* SchedulePresenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchedulePresenter.m; sourceTree = "<group>"; };
 		146D144A2907F21700327AB8 /* FastLoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FastLoginViewController.h; sourceTree = "<group>"; };
 		146D144B2907F21700327AB8 /* FastLoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FastLoginViewController.m; sourceTree = "<group>"; };
-		146D144D2908BB1C00327AB8 /* UDKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UDKey.h; sourceTree = "<group>"; };
-		146D144E2908BB2800327AB8 /* UDKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UDKey.m; sourceTree = "<group>"; };
 		147681B5297156AF00E2D34D /* ScheduleBottomBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleBottomBar.h; sourceTree = "<group>"; };
 		147681B6297156AF00E2D34D /* ScheduleBottomBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleBottomBar.m; sourceTree = "<group>"; };
 		147C2E5929821C1500F58266 /* ScheduleTouchItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleTouchItem.h; sourceTree = "<group>"; };
@@ -284,8 +281,8 @@
 		14B9647928F6700B00C984AB /* FontName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontName.h; sourceTree = "<group>"; };
 		14B9647A28F6701500C984AB /* FontName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FontName.m; sourceTree = "<group>"; };
 		14B9647C28F6712700C984AB /* CyxbsHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CyxbsHeader.h; sourceTree = "<group>"; };
-		14B9647E28F67EEF00C984AB /* CyxbsTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CyxbsTabBarController.h; sourceTree = "<group>"; };
-		14B9647F28F67EEF00C984AB /* CyxbsTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CyxbsTabBarController.m; sourceTree = "<group>"; };
+		14B9647E28F67EEF00C984AB /* ScheduleTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScheduleTabBarController.h; sourceTree = "<group>"; };
+		14B9647F28F67EEF00C984AB /* ScheduleTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScheduleTabBarController.m; sourceTree = "<group>"; };
 		14B9648128F67F8600C984AB /* CyxbsApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CyxbsApplication.h; sourceTree = "<group>"; };
 		14B9648228F67F8600C984AB /* CyxbsApplication.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CyxbsApplication.m; sourceTree = "<group>"; };
 		14B9648D28F6883800C984AB /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
@@ -399,8 +396,8 @@
 		140F6657297507FE0075C50A /* Rising TabBar Support */ = {
 			isa = PBXGroup;
 			children = (
-				14B9647E28F67EEF00C984AB /* CyxbsTabBarController.h */,
-				14B9647F28F67EEF00C984AB /* CyxbsTabBarController.m */,
+				14B9647E28F67EEF00C984AB /* ScheduleTabBarController.h */,
+				14B9647F28F67EEF00C984AB /* ScheduleTabBarController.m */,
 				14889DB629F4FE76004182D6 /* ScheduleTabBar.h */,
 				14889DB729F4FE76004182D6 /* ScheduleTabBar.m */,
 				147681B5297156AF00E2D34D /* ScheduleBottomBar.h */,
@@ -746,8 +743,6 @@
 				14B9647C28F6712700C984AB /* CyxbsHeader.h */,
 				14B9647928F6700B00C984AB /* FontName.h */,
 				14B9647A28F6701500C984AB /* FontName.m */,
-				146D144D2908BB1C00327AB8 /* UDKey.h */,
-				146D144E2908BB2800327AB8 /* UDKey.m */,
 			);
 			path = CyxbsHeader;
 			sourceTree = "<group>";
@@ -955,6 +950,7 @@
 				5069A10D9BED088AE88BB0DB /* [CP] Embed Pods Frameworks */,
 				FE32057327EC902D003D4479 /* ShellScript */,
 				14BC481F29164EB40063809E /* Embed Foundation Extensions */,
+				F98E887042A61FFE5074F117 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -994,6 +990,7 @@
 				1A9B7687235F50A900725937 /* Frameworks */,
 				1A9B7688235F50A900725937 /* Resources */,
 				4EA42E7A2533C5D239A06918 /* [CP] Embed Pods Frameworks */,
+				47EA45F0DCC3416876F8214F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1129,6 +1126,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		47EA45F0DCC3416876F8214F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests/Pods-CyxbsMobile2019_iOS-CyxbsMobile2019_iOSUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4EA42E7A2533C5D239A06918 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1225,6 +1237,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F98E887042A61FFE5074F117 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FE32057327EC902D003D4479 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1303,7 +1330,6 @@
 				14647A7429DD158100DED34A /* ScheduleWebHppleViewController.m in Sources */,
 				14320606291C9657003B0E11 /* UserAgreementViewController.m in Sources */,
 				14B9647B28F6701500C984AB /* FontName.m in Sources */,
-				146D144F2908BB2800327AB8 /* UDKey.m in Sources */,
 				14ED4D8D2A00FC2E00A2B538 /* ScheduleServiceGroup.m in Sources */,
 				14B9648F28F6883800C984AB /* HttpTool.m in Sources */,
 				14B46E6128B4D283003D288B /* ScheduleCourse.mm in Sources */,
@@ -1323,7 +1349,7 @@
 				1468F18729248C110080DA08 /* SearchPersonTableViewCell.m in Sources */,
 				14B46E6528B4D5D7003D288B /* ScheduleModel.m in Sources */,
 				141008ED295E88E20046E7BE /* CyxbsWidget.intentdefinition in Sources */,
-				14B9648028F67EEF00C984AB /* CyxbsTabBarController.m in Sources */,
+				14B9648028F67EEF00C984AB /* ScheduleTabBarController.m in Sources */,
 				14E319A0290CC52D00B951CE /* UserAgreementView.m in Sources */,
 				14BC47FB2914D80F0063809E /* SearchPerson.m in Sources */,
 				1459298B294A0083006EB674 /* ScheduleCombineItemSupport.mm in Sources */,

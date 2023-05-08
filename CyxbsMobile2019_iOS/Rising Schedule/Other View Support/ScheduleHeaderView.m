@@ -165,7 +165,8 @@
 }
 
 - (void)setCalenderEdit:(BOOL)calenderEdit {
-    self.calenderImgView.hidden = !calenderEdit;
+//    self.calenderImgView.hidden = !calenderEdit;
+    self.calenderImgView.hidden = YES;
 }
 
 @end

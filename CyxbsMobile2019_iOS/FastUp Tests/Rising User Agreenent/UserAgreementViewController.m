@@ -54,7 +54,7 @@
 #pragma mark - Method
 
 - (void)_cancel:(UIButton *)btn {
-    [NSUserDefaults.standardUserDefaults setBool:YES forKey:UDKey.hadReadAgreement];
+    [NSUserDefaults.standardUserDefaults setBool:YES forKey:@"UDKey_hadReadAgreement"];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
