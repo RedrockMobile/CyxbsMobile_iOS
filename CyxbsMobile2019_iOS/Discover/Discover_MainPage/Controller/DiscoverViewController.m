@@ -12,13 +12,14 @@
 #import "CheckInViewController.h"
 #import "WeDateViewController.h"           // 没课约
 #import "CQUPTMapViewController.h"         // 地图
-#import "FinderToolViewController.h"       //工具
+#import "FinderToolViewController.h"       // 工具
 #import "TODOMainViewController.h"         // 邮子清单
 #import "TODOMainViewController.h"         // 邮子清单
 #import "ScheduleInquiryViewController.h"  // 查课表
 #import "CalendarViewController.h"         // 校历
 #import "DiscoverADModel.h"                // banner
 #import "SchoolBusVC.h"                    // 校车
+#import "ElectricViewController.h"         // 电费
 
 // View
 #import "FinderView.h"
@@ -48,7 +49,13 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 @property (nonatomic, weak) UIScrollView *contentView;
 
 /// 上方发现页面
-@property(nonatomic, weak) FinderView *finderView;
+@property (nonatomic, weak) FinderView *finderView;
+
+/// 电费页面
+@property (nonatomic, strong) ElectricViewController *electricViewVC;
+
+///底部色块
+@property (nonatomic, strong) UIView *colorView;
 
 /// 用来遮挡tabbar的View
 @property (nonatomic, weak) UIView *hideTabbarView;
@@ -75,7 +82,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         [UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
     
     self.navigationController.navigationBar.hidden = YES;
-    
+
     if (self.loginStatus != AlreadyLogin) {
         [self presentToLogin];
         CCLog(@"needLogIn, %lud", self.loginStatus);
@@ -83,10 +90,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         [self RequestCheckinInfo];
         CCLog(@"LogIned, %lud", self.loginStatus);
     }
+
     self.navigationController.navigationBar.translucent = NO;
     self.classTabbarHeight = 58;
     self.classTabbarCornerRadius = 16;
-    if(((ClassTabBar *)(self.tabBarController.tabBar))
+    if (((ClassTabBar *)(self.tabBarController.tabBar))
        .classScheduleTabBarView == nil) {
         ClassScheduleTabBarView *classTabBarView =
         [[ClassScheduleTabBarView alloc] initWithFrame:
@@ -101,11 +109,12 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         ((ClassTabBar *)(self.tabBarController.tabBar))
             .classScheduleTabBarView.userInteractionEnabled = YES;
             
-        if(![NSUserDefaults.standardUserDefaults objectForKey:@"Mine_LaunchingWithClassScheduleView"] && classTabBarView.mySchedul!=nil){
+        if (![NSUserDefaults.standardUserDefaults objectForKey:@"Mine_LaunchingWithClassScheduleView"] && classTabBarView.mySchedul!=nil){
             [classTabBarView.mySchedul setModalPresentationStyle:(UIModalPresentationCustom)];
             classTabBarView.mySchedul.fakeBar.alpha = 0;
             [classTabBarView.viewController presentViewController:classTabBarView.mySchedul animated:YES completion:nil];
         }
+
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentMySchedul) name:@"DiscoverVCShouldPresentMySchedul" object:nil];
     }
 }
@@ -115,6 +124,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self addContentView];
     [self addFinderView];
     [self addButtonTargetInFinderview];
+    [self addelectricViewVC];
     [self layoutSubviews];
     [self addNotifications];
     self.view.backgroundColor = self.finderView.backgroundColor;
@@ -180,6 +190,19 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
         make.top.equalTo(self.contentView);
         make.left.right.equalTo(self.view);
         make.bottom.equalTo(self.finderView.enterButtonArray.firstObject.mas_bottom).offset(20);
+    }];
+    
+    [self.electricViewVC.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.finderView.mas_bottom);
+        make.width.equalTo(self.contentView);
+        make.height.equalTo(@152);
+        make.bottom.equalTo(self.contentView).offset(-20);
+    }];
+    
+    [self.colorView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.electricViewVC.view.mas_bottom);
+        make.left.right.equalTo(self.view);
+        make.height.equalTo(@600);
     }];
 }
 
@@ -251,19 +274,18 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
     [self layoutSubviews];
 }
 
-- (void)reloadViewController:(UIViewController *)viewController {
-    NSArray *subviews = [viewController.view subviews];
-    if (subviews.count > 0) {
-        for (UIView *sub in subviews) {
-            [sub removeFromSuperview];
-        }
-    }
-    [viewController viewWillDisappear:YES];
-    [viewController viewDidDisappear:YES];
-    [viewController viewDidLoad];
-    [viewController viewWillAppear:YES];
-    [viewController viewDidAppear:YES];
-    [viewController viewWillLayoutSubviews];
+- (void)addelectricViewVC {
+    ElectricViewController *vc = [[ElectricViewController alloc] init];
+    vc.view.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    self.electricViewVC = vc;
+    [self addChildViewController:vc];
+    [self.contentView addSubview:self.electricViewVC.view];
+    
+    UIView *view = [[UIView alloc]init];//色块View
+    self.colorView = view;
+    self.colorView.backgroundColor = self.electricViewVC.view.backgroundColor;
+    [self.contentView addSubview:self.colorView];
+
 }
 
 - (void)backToThisController{

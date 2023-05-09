@@ -82,4 +82,6 @@
 
 #import "RisingScheduleHeader.h"
 
+#import "ElectricHeader.h"
+
 #endif /* CyxbsMobilePathAndKey_h */
