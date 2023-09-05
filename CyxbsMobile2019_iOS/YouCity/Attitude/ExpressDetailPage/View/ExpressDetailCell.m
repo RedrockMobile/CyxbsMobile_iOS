@@ -13,6 +13,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.backgroundColor = UIColor.whiteColor;  // 无黑夜模式
         self.contentView.backgroundColor = [UIColor colorWithHexString:@"#0028FC" alpha:0.05];
         [self.contentView addSubview:self.title];
         [self setTitlePosition];
