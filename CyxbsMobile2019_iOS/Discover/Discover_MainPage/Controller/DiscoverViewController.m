@@ -246,7 +246,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)addFinderView {
     FinderView *finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 0)];
     // Remake by SSR
-    [self addChildViewController:finderView.msgViewController];
+//    [self addChildViewController:finderView.msgViewController];
     
     self.finderView = finderView;
     self.finderView.bannerView.delegate = self;  // 无限滚动

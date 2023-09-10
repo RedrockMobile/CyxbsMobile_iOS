@@ -431,10 +431,14 @@
 
 /// 点击进入个人主页的按钮后调用
 - (void)homePageBtnClicked {
-    CCLog(@"%s",__func__);
-    PMPHomePageViewController * vc = [[PMPHomePageViewController alloc] initWithRedid:[UserItem defaultItem].redid];
+    NSLog(@"editing");
+    EditMyInfoViewController *vc = [[EditMyInfoViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
+    //    CCLog(@"%s",__func__);
+    //    PMPHomePageViewController * vc = [[PMPHomePageViewController alloc] initWithRedid:[UserItem defaultItem].redid];
+    //    vc.hidesBottomBarWhenPushed = YES;
+    //    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /// 关于我们点击后调用
