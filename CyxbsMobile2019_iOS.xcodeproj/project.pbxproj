@@ -466,6 +466,9 @@
 		B51C501728A5FFCE0011465E /* LoginBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501428A5FFCE0011465E /* LoginBaseView.m */; };
 		B51C501D28A625330011465E /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501C28A625330011465E /* LoginView.m */; };
 		B51C502D28A6493D0011465E /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500828A5FFBF0011465E /* LoginVC.m */; };
+		B5B454FF29C0C0D900875DF7 /* CenterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B454FE29C0C0D900875DF7 /* CenterVC.m */; };
+		B5B4551729C19B0600875DF7 /* CenterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B4551629C19B0600875DF7 /* CenterView.m */; };
+		B5B4551A29C19DE200875DF7 /* CenterPromptBoxView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B4551929C19DE200875DF7 /* CenterPromptBoxView.m */; };
 		D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */; };
 		D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D422433C885004337ED /* UIResponder+SDMask.m */; };
 		D0101D592433C885004337ED /* SDMaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D452433C885004337ED /* SDMaskController.m */; };
@@ -1520,6 +1523,13 @@
 		B51C501528A5FFCE0011465E /* LoginTextFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTextFieldView.h; sourceTree = "<group>"; };
 		B51C501B28A625330011465E /* LoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		B51C501C28A625330011465E /* LoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
+		B5A4532B2AA4C3A500356128 /* CenterHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CenterHeader.h; sourceTree = "<group>"; };
+		B5B454FD29C0C0D900875DF7 /* CenterVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CenterVC.h; sourceTree = "<group>"; };
+		B5B454FE29C0C0D900875DF7 /* CenterVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CenterVC.m; sourceTree = "<group>"; };
+		B5B4551529C19B0600875DF7 /* CenterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CenterView.h; sourceTree = "<group>"; };
+		B5B4551629C19B0600875DF7 /* CenterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CenterView.m; sourceTree = "<group>"; };
+		B5B4551829C19DE200875DF7 /* CenterPromptBoxView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CenterPromptBoxView.h; sourceTree = "<group>"; };
+		B5B4551929C19DE200875DF7 /* CenterPromptBoxView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CenterPromptBoxView.m; sourceTree = "<group>"; };
 		D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+SDMask.m"; sourceTree = "<group>"; };
 		D0101D402433C885004337ED /* NSLayoutConstraint+SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLayoutConstraint+SDMask.h"; sourceTree = "<group>"; };
 		D0101D412433C885004337ED /* SDMask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMask.h; sourceTree = "<group>"; };
@@ -3105,6 +3115,7 @@
 			isa = PBXGroup;
 			children = (
 				18CDF4D4257F91BC006E8E5C /* Discover */,
+				B5B454FC29C0C09F00875DF7 /* Center */,
 				1817F00C2594D5C500FE1304 /* NewQA */,
 				DB34EA28239BD4540052B65E /* ClassSchedule */,
 				1A14132A235F523B0001417E /* Mine */,
@@ -5156,6 +5167,44 @@
 			path = EnterButton;
 			sourceTree = "<group>";
 		};
+		B5A4532A2AA4C39900356128 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				B5A4532B2AA4C3A500356128 /* CenterHeader.h */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		B5B454FC29C0C09F00875DF7 /* Center */ = {
+			isa = PBXGroup;
+			children = (
+				B5A4532A2AA4C39900356128 /* Source */,
+				B5B4550029C0C4FF00875DF7 /* VC */,
+				B5B4551429C19ADB00875DF7 /* View */,
+			);
+			path = Center;
+			sourceTree = "<group>";
+		};
+		B5B4550029C0C4FF00875DF7 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				B5B454FD29C0C0D900875DF7 /* CenterVC.h */,
+				B5B454FE29C0C0D900875DF7 /* CenterVC.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		B5B4551429C19ADB00875DF7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5B4551529C19B0600875DF7 /* CenterView.h */,
+				B5B4551629C19B0600875DF7 /* CenterView.m */,
+				B5B4551829C19DE200875DF7 /* CenterPromptBoxView.h */,
+				B5B4551929C19DE200875DF7 /* CenterPromptBoxView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		B5D558E928D7509E00DC22D8 /* Find Password */ = {
 			isa = PBXGroup;
 			children = (
@@ -6057,6 +6106,7 @@
 				AA7ABAFB2873EA6D00BA6790 /* zhPopupController.m in Sources */,
 				AA0DDB82286C8B1A00802324 /* IDCardTableViewCell.m in Sources */,
 				AA7AB9662873E5EA00BA6790 /* QASearchResultVC.m in Sources */,
+				B5B454FF29C0C0D900875DF7 /* CenterVC.m in Sources */,
 				DB4064F82466D889006CE5BC /* DLWeekButton.m in Sources */,
 				14B73F84281CCC3000D08ADD /* MessageDetailVC.m in Sources */,
 				18CDF6A0257F91BD006E8E5C /* CQUPTMapMoreImageViewController.m in Sources */,
@@ -6417,6 +6467,7 @@
 				646B19A02833983E0015DF28 /* NextStationBtn.m in Sources */,
 				AA0DDB55286C8B1900802324 /* MineTableViewCell.m in Sources */,
 				AA7AB9682873E5EA00BA6790 /* QAVerticalScrollView.m in Sources */,
+				B5B4551729C19B0600875DF7 /* CenterView.m in Sources */,
 				AAE3305925E2A42B00324750 /* RemarkTableViewCell.m in Sources */,
 				B51C501D28A625330011465E /* LoginView.m in Sources */,
 				DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */,
@@ -6441,6 +6492,7 @@
 				AA7ABA2C2873EA4100BA6790 /* SZHReleaseTopBarView.m in Sources */,
 				18CDF66A257F91BD006E8E5C /* DiscoverAD.m in Sources */,
 				AA0DDB67286C8B1A00802324 /* FollowersTableViewCell.m in Sources */,
+				B5B4551A29C19DE200875DF7 /* CenterPromptBoxView.m in Sources */,
 				FE2C134F27AEF629001CF7AF /* ToDoDetaileViewController.m in Sources */,
 				646B1990283001A60015DF28 /* StationMAPointAnnotation.m in Sources */,
 				187DF4C5260310FA000BCDE9 /* UITextView+WZB.m in Sources */,
