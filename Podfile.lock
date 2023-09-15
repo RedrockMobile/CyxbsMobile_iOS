@@ -15,12 +15,25 @@ PODS:
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
   - Alamofire (5.5.0)
+  - AlicloudHTTPDNS (2.1.0):
+    - AlicloudSender
+    - AlicloudUT
+    - AlicloudUtils
+  - AlicloudSender (1.0.0.3):
+    - AlicloudUTDID
+    - EMASRest
+  - AlicloudUT (5.2.0.16):
+    - AlicloudUTDID
+  - AlicloudUTDID (1.5.0.94)
+  - AlicloudUtils (1.4.1):
+    - AlicloudUTDID
   - AMap3DMap-NO-IDFA (9.0.0):
     - AMapFoundation-NO-IDFA (~> 1.6.9)
   - AMapFoundation-NO-IDFA (1.6.9)
   - AMapLocation-NO-IDFA (2.8.0):
     - AMapFoundation-NO-IDFA (~> 1.6.9)
   - Bugly (2.5.91)
+  - EMASRest (11.1.1.2)
   - FluentDarkModeKit (1.0.4)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
@@ -90,6 +103,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking
   - Alamofire (~> 5.2)
+  - AlicloudHTTPDNS
   - AMap3DMap-NO-IDFA
   - AMapLocation-NO-IDFA
   - Bugly
@@ -125,6 +139,13 @@ DEPENDENCIES:
   - YYKit
 
 SPEC REPOS:
+  https://github.com/aliyun/aliyun-specs.git:
+    - AlicloudHTTPDNS
+    - AlicloudSender
+    - AlicloudUT
+    - AlicloudUTDID
+    - AlicloudUtils
+    - EMASRest
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
     - AFNetworking
     - Alamofire
@@ -168,10 +189,16 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  AlicloudHTTPDNS: fc256d8741c8163a8f3171d63fec30e5b5cf410d
+  AlicloudSender: 1f468b6bd962a099ffc19d45e3608b0fe98f259d
+  AlicloudUT: 6d1cf30d57d096b7e9bb4b069dd0ba6ad59a3338
+  AlicloudUTDID: 7323c443dcdf9a73e2224dc6ce51703671d7a765
+  AlicloudUtils: 873a76615bebcee8b1996f20820d366e433c3eab
   AMap3DMap-NO-IDFA: cd412831292adbfb27a9e1fe9c46a6762e838aac
   AMapFoundation-NO-IDFA: cc2ec7a2828ef292358ad594b7ee0ae21a7f097b
   AMapLocation-NO-IDFA: 9d7ec9b052405356600b59fe0a9a65261bacc54e
   Bugly: afe841bba2ea6de6d432a3c125240a5e75949c55
+  EMASRest: 8df6f87836767a9415ad5cc4af739bc9d215b475
   FluentDarkModeKit: b6317653a00329564582884772ec57c4eaad1a1f
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   IGListDiffKit: 665d6cf43ce726e676013db9c7d6c4294259b6b2
@@ -205,6 +232,6 @@ SPEC CHECKSUMS:
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 8d140718e505e69e914c3699fc1d03f420f3087d
+PODFILE CHECKSUM: e4954d5b3842f8618190a52d405df205bfb9b29f
 
 COCOAPODS: 1.12.1

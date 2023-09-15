@@ -1,5 +1,5 @@
 source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
-
+source 'https://github.com/aliyun/aliyun-specs.git'
 platform :ios,'11.0'
 use_frameworks!
 
@@ -42,6 +42,7 @@ target 'CyxbsMobile2019_iOS' do
 
 	pod 'IGListKit' # SSR引入，暂时无项目使用
 	pod 'WCDB'
+	pod 'AlicloudHTTPDNS'
       
   # For Swift:
   

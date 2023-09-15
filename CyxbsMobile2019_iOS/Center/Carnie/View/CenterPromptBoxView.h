@@ -19,14 +19,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// 天数文本
 @property (nonatomic, strong) UILabel *daysLab;
 
-/// 具体天数文本
-@property (nonatomic, strong) UILabel *daysNumLab;
-
 /// 头像
 @property (nonatomic, strong) UIImageView *avatarImgView;
 
 /// 背景图片
 @property (nonatomic, strong) UIImageView *backgroundImgView;
+
+///天数
+-(void)setNum:(NSInteger)num;
 
 @end
 

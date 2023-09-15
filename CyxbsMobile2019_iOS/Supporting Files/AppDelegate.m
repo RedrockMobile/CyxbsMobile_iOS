@@ -17,6 +17,7 @@
 #import <sqlite3.h>
 #import <Bugly/Bugly.h>
 #import "UserDefaultTool.h"
+#import "AliyunConfig.h"
 
 #define BUGLY_APP_ID @"41e7a3c1b3"
 #define SQLITE_THREADSAFE 1
@@ -78,6 +79,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [AliyunConfig setup];//启用阿里云HTTPDNS
     
     [Bugly startWithAppId:BUGLY_APP_ID];
     // Override point for customization after application launch.

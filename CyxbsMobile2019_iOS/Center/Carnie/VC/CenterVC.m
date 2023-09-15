@@ -70,6 +70,8 @@
     NSDictionary *params = @{
         @"token": [UserItemTool defaultItem].token
     };
+    
+    
     [HttpTool.shareTool
      request:Discover_GET_playground_center_API
      type:HttpToolRequestTypeGet
@@ -77,24 +79,19 @@
      bodyParameters:params
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-        NSLog(@"👁️%@", object);
-        NSLog(@"🦞%@", object[@"data"][@"days"]);
-        int dayNums = object[@"data"][@"days"];
-        NSLog(@"🌮%d", dayNums);
-        if (dayNums >= 10 && dayNums < 100) {
-            self.centerView.centerPromptBoxView.daysLab.text = @"这是你来到游乐场的第     天";
-        } else if (dayNums >= 100 && dayNums < 1000) {
-            self.centerView.centerPromptBoxView.daysLab.text = @"这是你来到游乐场的第       天";
-        } else if (dayNums >= 1000) {
-            self.centerView.centerPromptBoxView.daysLab.text = @"这是你来到游乐场的第         天";
-        }
+//        NSLog(@"👁️%@", object);
+//        NSLog(@"🦞%@", object[@"data"][@"days"]);
+        NSInteger dayNums = [object[@"data"][@"days"] longValue];
+        dayNums = MAX(0, dayNums);
+        
         if (object[@"data"][@"days"] == nil) {
-            self.centerView.centerPromptBoxView.daysNumLab.text = [NSString stringWithFormat:@"%ld", (long)[NSUserDefaults.standardUserDefaults integerForKey:@"lastTimeIntoYouCity"]];
+            NSInteger num = [NSUserDefaults.standardUserDefaults integerForKey:@"lastTimeIntoYouCity"];
+            [self.centerView.centerPromptBoxView setNum:num];
         } else {
-            self.centerView.centerPromptBoxView.daysNumLab.text = [NSString stringWithFormat:@"%@", object[@"data"][@"days"]];
+            [self.centerView.centerPromptBoxView setNum:dayNums];
         }
         
-        [NSUserDefaults.standardUserDefaults setInteger:object[@"data"][@"days"] forKey:@"lastTimeIntoYouCity"];
+        [NSUserDefaults.standardUserDefaults setInteger:dayNums forKey:@"lastTimeIntoYouCity"];
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         self.centerView.centerPromptBoxView.daysLab.text = [NSString stringWithFormat:@"这是你来到属于你的邮乐园的第%ld天",  (long)[NSUserDefaults.standardUserDefaults integerForKey:@"lastTimeIntoYouCity"]];

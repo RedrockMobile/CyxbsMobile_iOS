@@ -441,8 +441,12 @@
 		AAE3309925E4E5CD00324750 /* DeleteArticleTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3309825E4E5CD00324750 /* DeleteArticleTipView.m */; };
 		AAE87797286B304F0091656B /* PrivacyTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE87796286B304E0091656B /* PrivacyTipView.swift */; };
 		AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */; };
+		B01A9E322AB4590C0083C476 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B01A9E312AB4590C0083C476 /* NetworkManager.m */; };
 		B01AFD6A29EFE531004F82D7 /* ElectricityView.m in Sources */ = {isa = PBXBuildFile; fileRef = B01AFD6929EFE531004F82D7 /* ElectricityView.m */; };
 		B033366E294C971D004D141D /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B033366D294C971D004D141D /* HttpTool.m */; };
+		B047BF892AB3240F00616A5B /* AliyunConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B047BF862AB3240F00616A5B /* AliyunConfig.m */; };
+		B047BF8A2AB3240F00616A5B /* AliyunEmasServices-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B047BF872AB3240F00616A5B /* AliyunEmasServices-Info.plist */; };
+		B047BF8D2AB34EF700616A5B /* ReduceAFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = B047BF8C2AB34EF700616A5B /* ReduceAFSecurityPolicy.m */; };
 		B09BB82F2AADA35400FF88F7 /* popFoodResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B09BB8182AADA35400FF88F7 /* popFoodResultVC.m */; };
 		B09BB8302AADA35400FF88F7 /* popUpInformationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B09BB8192AADA35400FF88F7 /* popUpInformationVC.m */; };
 		B09BB8312AADA35400FF88F7 /* FoodVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B09BB81B2AADA35400FF88F7 /* FoodVC.m */; };
@@ -1483,9 +1487,16 @@
 		AAE87796286B304E0091656B /* PrivacyTipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyTipView.swift; sourceTree = "<group>"; };
 		AAFD87CE24F50DB800CBBD11 /* FakeTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FakeTabBarView.h; sourceTree = "<group>"; };
 		AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FakeTabBarView.m; sourceTree = "<group>"; };
+		B01A9E302AB4590C0083C476 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		B01A9E312AB4590C0083C476 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		B01AFD6829EFE531004F82D7 /* ElectricityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricityView.h; sourceTree = "<group>"; };
 		B01AFD6929EFE531004F82D7 /* ElectricityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElectricityView.m; sourceTree = "<group>"; };
 		B033366D294C971D004D141D /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
+		B047BF862AB3240F00616A5B /* AliyunConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AliyunConfig.m; sourceTree = "<group>"; };
+		B047BF872AB3240F00616A5B /* AliyunEmasServices-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AliyunEmasServices-Info.plist"; sourceTree = "<group>"; };
+		B047BF882AB3240F00616A5B /* AliyunConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliyunConfig.h; sourceTree = "<group>"; };
+		B047BF8B2AB34EF700616A5B /* ReduceAFSecurityPolicy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReduceAFSecurityPolicy.h; sourceTree = "<group>"; };
+		B047BF8C2AB34EF700616A5B /* ReduceAFSecurityPolicy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReduceAFSecurityPolicy.m; sourceTree = "<group>"; };
 		B09BB8172AADA35400FF88F7 /* FoodVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodVC.h; sourceTree = "<group>"; };
 		B09BB8182AADA35400FF88F7 /* popFoodResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = popFoodResultVC.m; sourceTree = "<group>"; };
 		B09BB8192AADA35400FF88F7 /* popUpInformationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = popUpInformationVC.m; sourceTree = "<group>"; };
@@ -4941,6 +4952,20 @@
 			path = ArticleRemarkPraise;
 			sourceTree = "<group>";
 		};
+		B047BF852AB323DD00616A5B /* HTTPDNS */ = {
+			isa = PBXGroup;
+			children = (
+				B047BF872AB3240F00616A5B /* AliyunEmasServices-Info.plist */,
+				B047BF882AB3240F00616A5B /* AliyunConfig.h */,
+				B047BF862AB3240F00616A5B /* AliyunConfig.m */,
+				B047BF8B2AB34EF700616A5B /* ReduceAFSecurityPolicy.h */,
+				B047BF8C2AB34EF700616A5B /* ReduceAFSecurityPolicy.m */,
+				B01A9E302AB4590C0083C476 /* NetworkManager.h */,
+				B01A9E312AB4590C0083C476 /* NetworkManager.m */,
+			);
+			path = HTTPDNS;
+			sourceTree = "<group>";
+		};
 		B09BB8132AADA2C200FF88F7 /* Carnie */ = {
 			isa = PBXGroup;
 			children = (
@@ -5819,6 +5844,7 @@
 		FE87CE1B27E98F82008D7148 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B047BF852AB323DD00616A5B /* HTTPDNS */,
 				1A9B7675235F50A800725937 /* LaunchScreen.storyboard */,
 				DB34EB3E239BD4850052B65E /* Main.storyboard */,
 				1A9B766A235F50A600725937 /* AppDelegate.h */,
@@ -5973,6 +5999,7 @@
 				7F101AC6260613E800F2034C /* YYZTopicCell.xib in Resources */,
 				DB34EB2B239BD4550052B65E /* RemindTableViewCell.xib in Resources */,
 				492C19AE26CE458000C485D9 /* Bauhaus-93.ttf in Resources */,
+				B047BF8A2AB3240F00616A5B /* AliyunEmasServices-Info.plist in Resources */,
 				AA0DEF6A2668C88D00284112 /* 掌邮工具类.md in Resources */,
 				49343A2426D4EAB2001A2892 /* CommonQuestionCell.xib in Resources */,
 				14B73F27281BE6C200D08ADD /* CyxbsMobileImage.xcassets in Resources */,
@@ -6076,6 +6103,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B01A9E322AB4590C0083C476 /* NetworkManager.m in Sources */,
 				AA0DDB66286C8B1A00802324 /* BaseTableViewCell.m in Sources */,
 				145AF3E5281BDA0000AABC53 /* NSString+UILabel.m in Sources */,
 				AA0DDB83286C8B1A00802324 /* PMPHomePageViewController.m in Sources */,
@@ -6245,6 +6273,7 @@
 				1451EA53282A09B800A5BB55 /* UserPublishModel.m in Sources */,
 				D0101F6A243587A1004337ED /* GKPanGestureRecognizer.m in Sources */,
 				18CDF4B7257F8DBD006E8E5C /* SetQuestionViewController.m in Sources */,
+				B047BF892AB3240F00616A5B /* AliyunConfig.m in Sources */,
 				B51C501728A5FFCE0011465E /* LoginBaseView.m in Sources */,
 				FE2C135127AEF629001CF7AF /* ToDoEmptyCell.m in Sources */,
 				4931630B26CD7B6800140412 /* GoodsCollectionViewCell.m in Sources */,
@@ -6629,6 +6658,7 @@
 				18CDF68E257F91BD006E8E5C /* CQUPTMapModel.m in Sources */,
 				7311328726CCEC2400EF88C1 /* Balance.m in Sources */,
 				18CDF4C3257F8DBD006E8E5C /* questionAndEmail.m in Sources */,
+				B047BF8D2AB34EF700616A5B /* ReduceAFSecurityPolicy.m in Sources */,
 				738C15CA26E2176700E24F8C /* ImgViewCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

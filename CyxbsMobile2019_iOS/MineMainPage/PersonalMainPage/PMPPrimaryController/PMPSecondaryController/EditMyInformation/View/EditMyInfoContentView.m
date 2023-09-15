@@ -74,7 +74,7 @@ PMPDatePickerDelegate
     self.contentScrollView = scrollView;
     self.contentScrollView.transform = CGAffineTransformMakeScale(0.9, 0.95);
     
-    [self addGestureView];
+//    [self addGestureView];
     [self addHeaderImageView];
     [self addIntroductionButton];
     [self addNicknameLabel];

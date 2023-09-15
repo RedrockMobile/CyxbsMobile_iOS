@@ -167,7 +167,7 @@ UICollectionViewDelegateFlowLayout
         //加载主页数据
         [self addHomePage];
     } failure:^(NSError * _Nonnull error) {
-        NSLog(@"美食主页数据获取失败");
+        NSLog(@"美食主页数据获取失败:%@",error);
     }];
 }
 - (void)addHomePage {

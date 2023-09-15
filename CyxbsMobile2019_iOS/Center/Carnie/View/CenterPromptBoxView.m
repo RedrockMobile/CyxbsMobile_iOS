@@ -20,9 +20,9 @@
         [self addSubview:self.backgroundImgView];
         [self addSubview:self.nameLab];
         [self addSubview:self.daysLab];
-        [self addSubview:self.daysNumLab];
         [self addSubview:self.avatarImgView];
         [self setPosition];
+        [self setNum:0];
     }
     return self;
 }
@@ -46,18 +46,39 @@
     // daysLab
     [self.daysLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.nameLab.mas_bottom).offset(2);
-        make.left.right.height.equalTo(self.nameLab);
-    }];
-    // daysNumLab
-    [self.daysNumLab mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self).offset(39);
-        make.bottom.equalTo(self).offset(-20);
-        make.left.equalTo(self.daysLab).offset(123);
-        make.size.mas_equalTo(CGSizeMake(38, 19));
+        make.left.height.equalTo(self.nameLab);
     }];
 }
 
-
+-(void)setNum:(NSInteger)num {
+    NSString *dayNumsString = [NSString stringWithFormat:@"%ld", num];
+    NSString *prefixString = @"这是你来到属于你的邮乐园的第 ";
+    NSString *suffixString = @" 天";
+    
+    // 创建前缀部分的富文本
+    NSAttributedString *prefixAttributedString = [[NSAttributedString alloc] initWithString:prefixString attributes:@{
+        NSForegroundColorAttributeName: [UIColor colorWithHexString:@"#15315B" alpha:0.5],
+        NSFontAttributeName: [UIFont fontWithName:PingFangSC size:12]
+    }];
+    
+    // 创建数字部分的富文本
+    NSAttributedString *dayNumsAttributedString = [[NSAttributedString alloc] initWithString:dayNumsString attributes:@{
+        NSForegroundColorAttributeName: [UIColor colorWithHexString:@"#4A44E4" alpha:1.0],
+        NSFontAttributeName: [UIFont systemFontOfSize:16]
+    }];
+    
+    // 创建后缀部分的富文本
+    NSAttributedString *suffixAttributedString = [[NSAttributedString alloc] initWithString:suffixString attributes:@{
+        NSForegroundColorAttributeName: [UIColor colorWithHexString:@"#15315B" alpha:0.5],
+        NSFontAttributeName: [UIFont fontWithName:PingFangSC size:12]
+    }];
+    
+    // 拼接三个富文本
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithAttributedString:prefixAttributedString];
+    [attributedString appendAttributedString:dayNumsAttributedString];
+    [attributedString appendAttributedString:suffixAttributedString];
+    self.daysLab.attributedText = attributedString;
+}
 
 #pragma mark - Getter
 
@@ -87,22 +108,10 @@
     if (_daysLab == nil) {
         _daysLab = [[UILabel alloc] init];
         _daysLab.textAlignment = NSTextAlignmentLeft;
-        _daysLab.text = @"这是你来到游乐场的第    天";
         _daysLab.font = [UIFont fontWithName:PingFangSC size:12];
         _daysLab.textColor = [UIColor colorWithHexString:@"#15315B" alpha:0.5];
     }
     return _daysLab;
-}
-
-- (UILabel *)daysNumLab {
-    if (_daysNumLab == nil) {
-        _daysNumLab = [[UILabel alloc] init];
-        _daysNumLab.textAlignment = NSTextAlignmentLeft;
-        _daysNumLab.text = @" ";
-        _daysNumLab.font = [UIFont fontWithName:PingFangSCBold size:16];
-        _daysNumLab.textColor = [UIColor colorWithHexString:@"#4A44E4" alpha:1.0];
-    }
-    return _daysNumLab;
 }
 
 - (UIImageView *)avatarImgView {
