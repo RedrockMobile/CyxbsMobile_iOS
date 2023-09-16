@@ -176,8 +176,14 @@
         _grandLayer = [CAGradientLayer layer];
         _grandLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         _grandLayer.startPoint = CGPointMake(0, 0);
-        _grandLayer.endPoint = CGPointMake(0, 1);
-        _grandLayer.colors = @[(__bridge id)[UIColor colorWithHexString:@"#CFE2FF" alpha:1.0].CGColor, (__bridge id)[UIColor colorWithHexString:@"#FCFDFF" alpha:1.0].CGColor, (__bridge id)[UIColor colorWithHexString:@"#FBFCFF" alpha:1.0].CGColor];
+        _grandLayer.endPoint = CGPointMake(0, 0.2);
+        _grandLayer.colors = @[
+            (__bridge id)[UIColor colorWithHexString:@"#CDE1FF" alpha:0.5].CGColor,
+            (__bridge id)[UIColor colorWithHexString:@"#FCFCFF" alpha:1.0].CGColor,
+            (__bridge id)[UIColor colorWithHexString:@"#FBFCFF" alpha:1.0].CGColor
+        ];
+        _grandLayer.locations = @[@(0), @(1.0f)];
+
     }
     return _grandLayer;
 }
