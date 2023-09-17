@@ -16,8 +16,8 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.backgroundColor = UIColor.clearColor;
-        [self addSubview:self.backgroundImgView];
+        self.backgroundColor = UIColor.whiteColor;
+//        [self addSubview:self.backgroundImgView];
         [self addSubview:self.nameLab];
         [self addSubview:self.daysLab];
         [self addSubview:self.avatarImgView];

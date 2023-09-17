@@ -23,6 +23,16 @@
     if (self) {
         [self.layer addSublayer:self.grandLayer];
         [self addSubview:self.centerPromptBoxView];
+        
+        //设置圆角
+        self.centerPromptBoxView.layer.cornerRadius = 13;
+        self.centerPromptBoxView.layer.masksToBounds = YES;
+        
+        //设置阴影
+        self.centerPromptBoxView.layer.shadowRadius = 8;
+        self.centerPromptBoxView.layer.shadowColor = UIColor.lightGrayColor.CGColor;
+        self.centerPromptBoxView.layer.shadowOpacity = 0.3;
+        
         [self addSubview:self.foodImg];
         [self addSubview:self.biaoTaiImg];
         [self addSubview:self.activityNotifyImg];
@@ -45,9 +55,9 @@
         make.height.mas_equalTo(77);
     }];
     
-    [self.centerPromptBoxView.backgroundImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.height.width.mas_equalTo(self.centerPromptBoxView);
-    }];
+//    [self.centerPromptBoxView.backgroundImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.center.height.width.mas_equalTo(self.centerPromptBoxView);
+//    }];
     // foodImg
     [self.foodImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(17);
