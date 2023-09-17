@@ -173,6 +173,12 @@
     }
     // 释放 getifaddrs 函数返回的内存空间
     freeifaddrs(interfaces);
+    
+    // 如果获取地址失败，返回默认值
+    if (address == nil) {
+        address = @"Unknown";
+    }
+    
     return address;
 }
 
