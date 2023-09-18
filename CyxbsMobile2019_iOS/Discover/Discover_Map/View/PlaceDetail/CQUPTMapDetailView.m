@@ -267,30 +267,29 @@
     self.detailItem = detailItem;
     
     if(![detailItem.placeAttributesArray isEqual:[NSNull null]]){
-        
-        for (int i = 0; i < detailItem.placeAttributesArray.count; i++) {
-
-            NSString *placeAttribute = detailItem.placeAttributesArray[i];
-            
-            UILabel *attributeLabel = [[UILabel alloc] init];
-            attributeLabel.text = placeAttribute;
-            attributeLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
-            attributeLabel.layer.cornerRadius = 9;
-            attributeLabel.layer.borderWidth = 1;
-            attributeLabel.textAlignment = NSTextAlignmentCenter;
-            attributeLabel.alpha = 0;
-            if (@available(iOS 11.0, *)) {
-                attributeLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#778AA9" alpha:1] darkColor:[UIColor colorWithHexString:@"#A1A1A1" alpha:1]];
-            } else {
-                attributeLabel.textColor = [UIColor colorWithHexString:@"778AA9"];
+        if (detailItem.placeAttributesArray.count > 0) {
+            for (NSString *placeAttribute in detailItem.placeAttributesArray) {
+                UILabel *attributeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+                attributeLabel.text = placeAttribute;
+                attributeLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
+                attributeLabel.layer.cornerRadius = 9;
+                attributeLabel.layer.borderWidth = 1;
+                attributeLabel.textAlignment = NSTextAlignmentCenter;
+                attributeLabel.alpha = 0;
+                if (@available(iOS 11.0, *)) {
+                    attributeLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#778AA9" alpha:1]
+                                                                     darkColor:[UIColor colorWithHexString:@"#A1A1A1" alpha:1]];
+                } else {
+                    attributeLabel.textColor = [UIColor colorWithHexString:@"778AA9"];
+                }
+                attributeLabel.layer.borderColor = attributeLabel.textColor.CGColor;
+                [self addSubview:attributeLabel];
+                [self.attributesLabelArray addObject:attributeLabel];
+                
             }
-            attributeLabel.layer.borderColor = attributeLabel.textColor.CGColor;
-            [self addSubview:attributeLabel];
-            [self.attributesLabelArray addObject:attributeLabel];
-            
         }
-        
     }
+    
     if([detailItem.imagesArray isEqual:[NSNull null]] || detailItem.imagesArray.count == 0){
         UIImageView *placeImageView = [[UIImageView alloc] init];
         placeImageView.layer.cornerRadius = 9;
