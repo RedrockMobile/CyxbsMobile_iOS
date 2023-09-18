@@ -54,6 +54,7 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [tableView registerClass:[PeopleListCellTableViewCell class] forCellReuseIdentifier:@"PeopleListCell"];
     [self.view addSubview:tableView];
 }
 
