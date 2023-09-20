@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -444,9 +444,21 @@
 		B01A9E322AB4590C0083C476 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B01A9E312AB4590C0083C476 /* NetworkManager.m */; };
 		B01AFD6A29EFE531004F82D7 /* ElectricityView.m in Sources */ = {isa = PBXBuildFile; fileRef = B01AFD6929EFE531004F82D7 /* ElectricityView.m */; };
 		B033366E294C971D004D141D /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B033366D294C971D004D141D /* HttpTool.m */; };
+		B03FAB882AB9DD2500609124 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FAB872AB9DD2500609124 /* libsqlite3.0.tbd */; };
+		B03FAB8A2AB9DD2C00609124 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FAB892AB9DD2C00609124 /* libresolv.tbd */; };
+		B03FAB8C2AB9DD3200609124 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FAB8B2AB9DD3200609124 /* CoreTelephony.framework */; };
+		B03FAB8E2AB9DD3700609124 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FAB8D2AB9DD3700609124 /* SystemConfiguration.framework */; };
+		B03FAB972AB9DDEB00609124 /* EMASRest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FAB902AB9DDEB00609124 /* EMASRest.framework */; };
+		B03FAB982AB9DDEB00609124 /* AlicloudSender.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FAB912AB9DDEB00609124 /* AlicloudSender.framework */; };
+		B03FAB992AB9DDEB00609124 /* UTDID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FAB922AB9DDEB00609124 /* UTDID.framework */; };
+		B03FAB9A2AB9DDEB00609124 /* AlicloudBeacon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FAB932AB9DDEB00609124 /* AlicloudBeacon.framework */; };
+		B03FAB9B2AB9DDEB00609124 /* AlicloudUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FAB942AB9DDEB00609124 /* AlicloudUtils.framework */; };
+		B03FAB9C2AB9DDEB00609124 /* UTMini.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FAB952AB9DDEB00609124 /* UTMini.framework */; };
+		B03FAB9D2AB9DDEB00609124 /* AlicloudHttpDNS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FAB962AB9DDEB00609124 /* AlicloudHttpDNS.framework */; };
 		B047BF892AB3240F00616A5B /* AliyunConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = B047BF862AB3240F00616A5B /* AliyunConfig.m */; };
 		B047BF8A2AB3240F00616A5B /* AliyunEmasServices-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B047BF872AB3240F00616A5B /* AliyunEmasServices-Info.plist */; };
 		B047BF8D2AB34EF700616A5B /* ReduceAFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = B047BF8C2AB34EF700616A5B /* ReduceAFSecurityPolicy.m */; };
+		B05DE7862ABB226700A6A6F6 /* CustomSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B05DE7852ABB226700A6A6F6 /* CustomSessionManager.m */; };
 		B09BB82F2AADA35400FF88F7 /* popFoodResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B09BB8182AADA35400FF88F7 /* popFoodResultVC.m */; };
 		B09BB8302AADA35400FF88F7 /* popUpInformationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B09BB8192AADA35400FF88F7 /* popUpInformationVC.m */; };
 		B09BB8312AADA35400FF88F7 /* FoodVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B09BB81B2AADA35400FF88F7 /* FoodVC.m */; };
@@ -1492,11 +1504,24 @@
 		B01AFD6829EFE531004F82D7 /* ElectricityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricityView.h; sourceTree = "<group>"; };
 		B01AFD6929EFE531004F82D7 /* ElectricityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElectricityView.m; sourceTree = "<group>"; };
 		B033366D294C971D004D141D /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
+		B03FAB872AB9DD2500609124 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		B03FAB892AB9DD2C00609124 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
+		B03FAB8B2AB9DD3200609124 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		B03FAB8D2AB9DD3700609124 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B03FAB902AB9DDEB00609124 /* EMASRest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EMASRest.framework; sourceTree = "<group>"; };
+		B03FAB912AB9DDEB00609124 /* AlicloudSender.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlicloudSender.framework; sourceTree = "<group>"; };
+		B03FAB922AB9DDEB00609124 /* UTDID.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UTDID.framework; sourceTree = "<group>"; };
+		B03FAB932AB9DDEB00609124 /* AlicloudBeacon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlicloudBeacon.framework; sourceTree = "<group>"; };
+		B03FAB942AB9DDEB00609124 /* AlicloudUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlicloudUtils.framework; sourceTree = "<group>"; };
+		B03FAB952AB9DDEB00609124 /* UTMini.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UTMini.framework; sourceTree = "<group>"; };
+		B03FAB962AB9DDEB00609124 /* AlicloudHttpDNS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlicloudHttpDNS.framework; sourceTree = "<group>"; };
 		B047BF862AB3240F00616A5B /* AliyunConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AliyunConfig.m; sourceTree = "<group>"; };
 		B047BF872AB3240F00616A5B /* AliyunEmasServices-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AliyunEmasServices-Info.plist"; sourceTree = "<group>"; };
 		B047BF882AB3240F00616A5B /* AliyunConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliyunConfig.h; sourceTree = "<group>"; };
 		B047BF8B2AB34EF700616A5B /* ReduceAFSecurityPolicy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReduceAFSecurityPolicy.h; sourceTree = "<group>"; };
 		B047BF8C2AB34EF700616A5B /* ReduceAFSecurityPolicy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReduceAFSecurityPolicy.m; sourceTree = "<group>"; };
+		B05DE7842ABB226700A6A6F6 /* CustomSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSessionManager.h; sourceTree = "<group>"; };
+		B05DE7852ABB226700A6A6F6 /* CustomSessionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSessionManager.m; sourceTree = "<group>"; };
 		B09BB8172AADA35400FF88F7 /* FoodVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FoodVC.h; sourceTree = "<group>"; };
 		B09BB8182AADA35400FF88F7 /* popFoodResultVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = popFoodResultVC.m; sourceTree = "<group>"; };
 		B09BB8192AADA35400FF88F7 /* popUpInformationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = popUpInformationVC.m; sourceTree = "<group>"; };
@@ -1792,8 +1817,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B03FAB8E2AB9DD3700609124 /* SystemConfiguration.framework in Frameworks */,
+				B03FAB8C2AB9DD3200609124 /* CoreTelephony.framework in Frameworks */,
+				B03FAB9C2AB9DDEB00609124 /* UTMini.framework in Frameworks */,
+				B03FAB982AB9DDEB00609124 /* AlicloudSender.framework in Frameworks */,
+				B03FAB8A2AB9DD2C00609124 /* libresolv.tbd in Frameworks */,
+				B03FAB882AB9DD2500609124 /* libsqlite3.0.tbd in Frameworks */,
 				D09081DA23F4571B00D5342D /* UserNotifications.framework in Frameworks */,
 				422CF3805443B1407127C4C6 /* Pods_CyxbsMobile2019_iOS.framework in Frameworks */,
+				B03FAB9A2AB9DDEB00609124 /* AlicloudBeacon.framework in Frameworks */,
+				B03FAB9B2AB9DDEB00609124 /* AlicloudUtils.framework in Frameworks */,
+				B03FAB972AB9DDEB00609124 /* EMASRest.framework in Frameworks */,
+				B03FAB9D2AB9DDEB00609124 /* AlicloudHttpDNS.framework in Frameworks */,
+				B03FAB992AB9DDEB00609124 /* UTDID.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3039,6 +3075,8 @@
 				AA0DDB86286C8E8100802324 /* AFHTTPSessionManager+compatibility.m */,
 				147E2CE928240C3A00DCC312 /* HttpTool.h */,
 				B033366D294C971D004D141D /* HttpTool.m */,
+				B05DE7842ABB226700A6A6F6 /* CustomSessionManager.h */,
+				B05DE7852ABB226700A6A6F6 /* CustomSessionManager.m */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -3253,6 +3291,10 @@
 		2CDC888D97D2E7657DB18FB6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B03FAB8D2AB9DD3700609124 /* SystemConfiguration.framework */,
+				B03FAB8B2AB9DD3200609124 /* CoreTelephony.framework */,
+				B03FAB892AB9DD2C00609124 /* libresolv.tbd */,
+				B03FAB872AB9DD2500609124 /* libsqlite3.0.tbd */,
 				D09081D923F4571B00D5342D /* UserNotifications.framework */,
 				378D8784FAA6107B09468EAA /* Pods_CyxbsMobile2019_iOS.framework */,
 			);
@@ -4952,6 +4994,20 @@
 			path = ArticleRemarkPraise;
 			sourceTree = "<group>";
 		};
+		B03FAB8F2AB9DDEB00609124 /* OneSDK */ = {
+			isa = PBXGroup;
+			children = (
+				B03FAB902AB9DDEB00609124 /* EMASRest.framework */,
+				B03FAB912AB9DDEB00609124 /* AlicloudSender.framework */,
+				B03FAB922AB9DDEB00609124 /* UTDID.framework */,
+				B03FAB932AB9DDEB00609124 /* AlicloudBeacon.framework */,
+				B03FAB942AB9DDEB00609124 /* AlicloudUtils.framework */,
+				B03FAB952AB9DDEB00609124 /* UTMini.framework */,
+				B03FAB962AB9DDEB00609124 /* AlicloudHttpDNS.framework */,
+			);
+			path = OneSDK;
+			sourceTree = "<group>";
+		};
 		B047BF852AB323DD00616A5B /* HTTPDNS */ = {
 			isa = PBXGroup;
 			children = (
@@ -5844,6 +5900,7 @@
 		FE87CE1B27E98F82008D7148 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B03FAB8F2AB9DDEB00609124 /* OneSDK */,
 				B047BF852AB323DD00616A5B /* HTTPDNS */,
 				1A9B7675235F50A800725937 /* LaunchScreen.storyboard */,
 				DB34EB3E239BD4850052B65E /* Main.storyboard */,
@@ -6446,6 +6503,7 @@
 				DB34EB35239BD4550052B65E /* NoLoginView.m in Sources */,
 				FE2C135D27AEF629001CF7AF /* DiscoverTodoTableViewAnimationView.m in Sources */,
 				AA7ABA262873EA4100BA6790 /* CYRleaseDynamicAlertView.m in Sources */,
+				B05DE7862ABB226700A6A6F6 /* CustomSessionManager.m in Sources */,
 				AA0DDB59286C8B1A00802324 /* PMPGestureScrollView.m in Sources */,
 				14B73F75281BED7B00D08ADD /* SystemMessage.m in Sources */,
 				18CDF692257F91BD006E8E5C /* CQUPTMapPlaceDetailItem.m in Sources */,
@@ -6837,6 +6895,23 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -6896,6 +6971,23 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CyxbsMobile2019_iOS/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (

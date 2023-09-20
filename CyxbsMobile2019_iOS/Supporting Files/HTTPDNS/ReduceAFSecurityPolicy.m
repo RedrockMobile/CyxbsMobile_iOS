@@ -10,23 +10,31 @@
 
 @implementation ReduceAFSecurityPolicy
 
-- (BOOL)evaluateServerTrust:(SecTrustRef)serverTrust forDomain:(NSString *)domain {
-    // 将 IP 地址替换为域名
-    NSURLComponents *components = [[NSURLComponents alloc] initWithString:domain];
-    NSString *newHost = components.host;
-    
-    // 创建新的 NSURL 对象
-    NSURL *newURL = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@", components.scheme, newHost]];
-    
-    // 调用父类的 evaluateServerTrust:forDomain: 方法进行证书校验
-    BOOL originalResult = [super evaluateServerTrust:serverTrust forDomain:newURL.host];
-    
-    // 在原有结果的基础上，针对 "domain 不匹配" 进行额外处理
-    if (!originalResult) {
-        NSLog(@"domain 不匹配");
+- (BOOL)evaluateServerTrust:(SecTrustRef)serverTrust
+                  forDomain:(NSString *)domain
+{
+    /*
+     * 创建证书校验策略
+     */
+    NSMutableArray *policies = [NSMutableArray array];
+    if (domain) {
+        [policies addObject:(__bridge_transfer id)SecPolicyCreateSSL(true, (__bridge CFStringRef)domain)];
+    } else {
+        [policies addObject:(__bridge_transfer id)SecPolicyCreateBasicX509()];
     }
-    
-    return originalResult;
+    /*
+     * 绑定校验策略到服务端的证书上
+     */
+    SecTrustSetPolicies(serverTrust, (__bridge CFArrayRef)policies);
+    /*
+     * 评估当前serverTrust是否可信任，
+     * 官方建议在result = kSecTrustResultUnspecified 或 kSecTrustResultProceed
+     * 的情况下serverTrust可以被验证通过，https://developer.apple.com/library/ios/technotes/tn2232/_index.html
+     * 关于SecTrustResultType的详细信息请参考SecTrust.h
+     */
+    SecTrustResultType result;
+    SecTrustEvaluate(serverTrust, &result);
+    return (result == kSecTrustResultUnspecified || result == kSecTrustResultProceed);
 }
 
 

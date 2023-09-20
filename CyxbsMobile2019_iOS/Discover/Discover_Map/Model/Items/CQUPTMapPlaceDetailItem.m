@@ -11,7 +11,7 @@
 @implementation CQUPTMapPlaceDetailItem
 
 - (instancetype)initWithDict:(NSDictionary *)dict {
-    if (self = [super init]) {
+    if (self = [super init]) { 
         self.placeName = dict[@"place_name"];
         self.placeAttributesArray = dict[@"place_attribute"];
         self.tagsArray = dict[@"tags"];

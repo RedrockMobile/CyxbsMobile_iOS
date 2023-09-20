@@ -11,13 +11,14 @@
 #import "HttpTool.h"
 #import "AliyunConfig.h"
 #import "ReduceAFSecurityPolicy.h"
+#import "CustomSessionManager.h"
 
 #pragma mark - HttpTool ()
 
 @interface HttpTool ()
 
 /// 唯一请求sessionManager
-@property (nonatomic, strong) AFHTTPSessionManager *sessionManager;
+@property (nonatomic, strong) CustomSessionManager *sessionManager;
 
 /// 默认JSON格式上传
 @property (nonatomic, strong) AFJSONRequestSerializer *defaultJSONRequest;
@@ -39,8 +40,7 @@ RisingSingleClass_IMPLEMENTATION(Tool)
 - (AFHTTPSessionManager *)sessionManager {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sessionManager = [[AFHTTPSessionManager alloc] init];
-        
+        _sessionManager = [[CustomSessionManager alloc] init];
         ReduceAFSecurityPolicy *securityPolicy = [ReduceAFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
         _sessionManager.securityPolicy = securityPolicy;
         
@@ -75,7 +75,7 @@ RisingSingleClass_IMPLEMENTATION(Tool)
     
     NSString *originalUrl = URLString;
     NSURL* url = [NSURL URLWithString:originalUrl];
-    // 同步接口获取IP
+    // 异步接口获取IP
     NSString* ip = [AliyunConfig ipByHost:url.host];
     if (ip) {
         // 通过HTTPDNS获取IP成功，进行URL替换和HOST头设置
@@ -84,10 +84,12 @@ RisingSingleClass_IMPLEMENTATION(Tool)
             NSString *newUrl = [originalUrl stringByReplacingCharactersInRange:hostFirstRange withString:ip];
             //URL替换
             URLString = newUrl;
-            //HOST头设置
-            [self.sessionManager.requestSerializer setValue:url.host forHTTPHeaderField:@"host"];
+            
         }
     }
+    
+    //HOST头设置
+    [self.sessionManager.requestSerializer setValue:url.host forHTTPHeaderField:@"host"];
     
     switch (requestSerializer) {
         case HttpToolRequestSerializerPropertyList:

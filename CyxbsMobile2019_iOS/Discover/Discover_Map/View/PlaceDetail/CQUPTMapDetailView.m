@@ -264,6 +264,7 @@
 }
 
 - (void)loadDataWithPlaceDetailItem:(CQUPTMapPlaceDetailItem *)detailItem {
+    if (detailItem == nil || [detailItem isEqual:NSNull.null]) { return; }
     self.detailItem = detailItem;
     
     if(![detailItem.placeAttributesArray isEqual:[NSNull null]]){
