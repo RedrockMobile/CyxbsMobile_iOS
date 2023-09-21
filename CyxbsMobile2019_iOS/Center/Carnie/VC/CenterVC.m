@@ -12,6 +12,7 @@
 #import "CenterHeader.h"
 #import <Accelerate/Accelerate.h>
 #import "FoodVC.h"
+#import "AttitudeMainPageVC.h"
 
 @interface CenterVC ()
 
@@ -121,7 +122,11 @@
         }
         case 1:{  // 表态
             
-            //            [self.navigationController pushViewController:<#(nonnull UIViewController *)#> animated:YES];
+            AttitudeMainPageVC* AttitudeVC = [[AttitudeMainPageVC alloc] init];
+            AttitudeVC.hidesBottomBarWhenPushed = YES;
+            //隐藏navBar,之后自定义返回键
+            self.navigationController.navigationBar.hidden = YES;
+            [self.navigationController pushViewController:AttitudeVC animated:YES];
             break;
         }
         case 2:{  // 活动布告
