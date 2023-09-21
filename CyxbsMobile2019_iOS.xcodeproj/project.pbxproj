@@ -5665,8 +5665,8 @@
 		B5B454FC29C0C09F00875DF7 /* Center */ = {
 			isa = PBXGroup;
 			children = (
-				B0F71C342ABC71B200F8B1AC /* Attitude */,
 				B5A4532A2AA4C39900356128 /* Source */,
+				B0F71C342ABC71B200F8B1AC /* Attitude */,
 				B09BB8152AADA35400FF88F7 /* Food */,
 				B09BB8132AADA2C200FF88F7 /* Carnie */,
 			);
