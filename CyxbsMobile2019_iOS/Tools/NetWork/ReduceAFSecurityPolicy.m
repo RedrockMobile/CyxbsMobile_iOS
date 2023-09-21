@@ -10,9 +10,7 @@
 
 @implementation ReduceAFSecurityPolicy
 
-- (BOOL)evaluateServerTrust:(SecTrustRef)serverTrust
-                  forDomain:(NSString *)domain
-{
+- (BOOL)evaluateServerTrust:(SecTrustRef)serverTrust forDomain:(NSString *)domain {
     /*
      * 创建证书校验策略
      */

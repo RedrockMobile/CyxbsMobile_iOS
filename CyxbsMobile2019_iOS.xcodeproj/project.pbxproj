@@ -3077,6 +3077,8 @@
 				B033366D294C971D004D141D /* HttpTool.m */,
 				B05DE7842ABB226700A6A6F6 /* CustomSessionManager.h */,
 				B05DE7852ABB226700A6A6F6 /* CustomSessionManager.m */,
+				B047BF8B2AB34EF700616A5B /* ReduceAFSecurityPolicy.h */,
+				B047BF8C2AB34EF700616A5B /* ReduceAFSecurityPolicy.m */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -5014,8 +5016,6 @@
 				B047BF872AB3240F00616A5B /* AliyunEmasServices-Info.plist */,
 				B047BF882AB3240F00616A5B /* AliyunConfig.h */,
 				B047BF862AB3240F00616A5B /* AliyunConfig.m */,
-				B047BF8B2AB34EF700616A5B /* ReduceAFSecurityPolicy.h */,
-				B047BF8C2AB34EF700616A5B /* ReduceAFSecurityPolicy.m */,
 				B01A9E302AB4590C0083C476 /* NetworkManager.h */,
 				B01A9E312AB4590C0083C476 /* NetworkManager.m */,
 			);
@@ -6947,7 +6947,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.4.4;
+				MARKETING_VERSION = 6.4.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -7023,7 +7023,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.4.4;
+				MARKETING_VERSION = 6.4.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";

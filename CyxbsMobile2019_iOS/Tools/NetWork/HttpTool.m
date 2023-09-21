@@ -41,9 +41,6 @@ RisingSingleClass_IMPLEMENTATION(Tool)
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _sessionManager = [[CustomSessionManager alloc] init];
-        ReduceAFSecurityPolicy *securityPolicy = [ReduceAFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
-        _sessionManager.securityPolicy = securityPolicy;
-        
         _sessionManager.requestSerializer = self.defaultJSONRequest;
         
         AFJSONResponseSerializer *response = AFJSONResponseSerializer.serializer;
@@ -84,7 +81,6 @@ RisingSingleClass_IMPLEMENTATION(Tool)
             NSString *newUrl = [originalUrl stringByReplacingCharactersInRange:hostFirstRange withString:ip];
             //URL替换
             URLString = newUrl;
-            
         }
     }
     

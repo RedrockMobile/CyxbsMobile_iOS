@@ -7,8 +7,18 @@
 //
 
 #import "CustomSessionManager.h"
+#import "ReduceAFSecurityPolicy.h"
 
 @implementation CustomSessionManager
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        self.securityPolicy = [ReduceAFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+    }
+    return self;
+}
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *_Nullable))completionHandler {
     if (!challenge) {
