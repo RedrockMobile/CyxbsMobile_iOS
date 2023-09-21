@@ -121,12 +121,11 @@
             break;
         }
         case 1:{  // 表态
-            
-            AttitudeMainPageVC* AttitudeVC = [[AttitudeMainPageVC alloc] init];
-            AttitudeVC.hidesBottomBarWhenPushed = YES;
+            AttitudeMainPageVC* attitudeVC = [[AttitudeMainPageVC alloc] init];
+            attitudeVC.hidesBottomBarWhenPushed = YES;
             //隐藏navBar,之后自定义返回键
             self.navigationController.navigationBar.hidden = YES;
-            [self.navigationController pushViewController:AttitudeVC animated:YES];
+            [self.navigationController pushViewController:attitudeVC animated:YES];
             break;
         }
         case 2:{  // 活动布告

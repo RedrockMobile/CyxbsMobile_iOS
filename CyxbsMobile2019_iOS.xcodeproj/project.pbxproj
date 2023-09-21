@@ -5277,21 +5277,12 @@
 		B0F71C342ABC71B200F8B1AC /* Attitude */ = {
 			isa = PBXGroup;
 			children = (
-				B0F71C352ABC71B200F8B1AC /* Source */,
 				B0F71C372ABC71B200F8B1AC /* AttitudeSelfPage */,
 				B0F71C442ABC71B200F8B1AC /* AttitudeMainPage */,
 				B0F71C592ABC71B200F8B1AC /* ExpressDetailPage */,
 				B0F71C6E2ABC71B200F8B1AC /* PublishPage */,
 			);
 			path = Attitude;
-			sourceTree = "<group>";
-		};
-		B0F71C352ABC71B200F8B1AC /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				B0F71C362ABC71B200F8B1AC /* AttitudeHeader.h */,
-			);
-			path = Source;
 			sourceTree = "<group>";
 		};
 		B0F71C372ABC71B200F8B1AC /* AttitudeSelfPage */ = {
@@ -5664,6 +5655,7 @@
 		B5A4532A2AA4C39900356128 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B0F71C362ABC71B200F8B1AC /* AttitudeHeader.h */,
 				B5A4532B2AA4C3A500356128 /* CenterHeader.h */,
 				B09BB83A2AADA39E00FF88F7 /* FoodHeader.h */,
 			);
