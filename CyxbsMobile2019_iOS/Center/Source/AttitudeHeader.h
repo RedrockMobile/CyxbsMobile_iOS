@@ -12,13 +12,10 @@
 #pragma mark - API
 
 // 获取表态主页数据
-//#define Attitude_GET_homePageData_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare/homepage"]
-// 测试环境
-#define Attitude_GET_homePageData_API @"https://be-dev.redrock.cqupt.edu.cn/magipoke-attitude/declare/homepage"
+#define Attitude_GET_homePageData_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare/homepage"]
 
 // 获取表态页详细信息
-//#define Attitude_GET_expressDetailData_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare"]
-#define Attitude_GET_expressDetailData_API @"https://be-prod.redrock.cqupt.edu.cn/magipoke-attitude/declare"
+#define Attitude_GET_expressDetailData_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare"]
 
 // 表态投票
 #define Attitude_PUT_expressPickData_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare"]

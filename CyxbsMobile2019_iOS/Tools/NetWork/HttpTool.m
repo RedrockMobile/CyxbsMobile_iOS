@@ -44,6 +44,7 @@ RisingSingleClass_IMPLEMENTATION(Tool)
         _sessionManager.requestSerializer = self.defaultJSONRequest;
         
         AFJSONResponseSerializer *response = AFJSONResponseSerializer.serializer;
+        response.removesKeysWithNullValues = YES;
         response.acceptableContentTypes =
         [NSSet setWithArray:
          @[@"application/json",
