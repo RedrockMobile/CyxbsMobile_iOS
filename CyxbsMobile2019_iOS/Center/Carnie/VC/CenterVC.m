@@ -67,34 +67,29 @@
 
 /// 网络请求天数
 - (void)requestDays {
-    NSDictionary *params = @{
-        @"token": [UserItemTool defaultItem].token
-    };
-    
-    
     [HttpTool.shareTool
      request:Discover_GET_playground_center_API
      type:HttpToolRequestTypeGet
      serializer:HttpToolRequestSerializerHTTP
-     bodyParameters:params
+     bodyParameters:nil
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
 //        NSLog(@"👁️%@", object);
 //        NSLog(@"🦞%@", object[@"data"][@"days"]);
-        NSInteger dayNums = [object[@"data"][@"days"] longValue];
-        dayNums = MAX(0, dayNums);
-        
         if (object[@"data"][@"days"] == nil) {
             NSInteger num = [NSUserDefaults.standardUserDefaults integerForKey:@"lastTimeIntoYouCity"];
             [self.centerView.centerPromptBoxView setNum:num];
         } else {
+            NSInteger dayNums = [object[@"data"][@"days"] longValue];
+            dayNums = MAX(0, dayNums);
             [self.centerView.centerPromptBoxView setNum:dayNums];
+            [NSUserDefaults.standardUserDefaults setInteger:dayNums forKey:@"lastTimeIntoYouCity"];
         }
         
-        [NSUserDefaults.standardUserDefaults setInteger:dayNums forKey:@"lastTimeIntoYouCity"];
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        self.centerView.centerPromptBoxView.daysLab.text = [NSString stringWithFormat:@"这是你来到属于你的邮乐园的第%ld天",  (long)[NSUserDefaults.standardUserDefaults integerForKey:@"lastTimeIntoYouCity"]];
+        NSInteger num = [NSUserDefaults.standardUserDefaults integerForKey:@"lastTimeIntoYouCity"];
+        [self.centerView.centerPromptBoxView setNum:num];
     }];
 }
 

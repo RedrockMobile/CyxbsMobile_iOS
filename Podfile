@@ -42,7 +42,7 @@ target 'CyxbsMobile2019_iOS' do
 
 	pod 'IGListKit' # SSR引入，暂时无项目使用
 	pod 'WCDB'
-	#pod 'AlicloudHTTPDNS'
+	#pod 'AlicloudHTTPDNS' # 避免冲突改用手动集成
       
   # For Swift:
   
