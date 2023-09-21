@@ -84,4 +84,6 @@
 
 #import "ElectricHeader.h"
 
+#import "AttitudeHeader.h"
+
 #endif /* CyxbsMobilePathAndKey_h */
