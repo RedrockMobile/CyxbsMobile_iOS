@@ -25,7 +25,6 @@
 // 表态撤销投票(POST版)
 #define Center_POST_AttitudeCancelPick_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare/delete"]
 
-
 // 是否有权发布投票
 #define Center_GET_AttitudePickPermission_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare/perm"]
 

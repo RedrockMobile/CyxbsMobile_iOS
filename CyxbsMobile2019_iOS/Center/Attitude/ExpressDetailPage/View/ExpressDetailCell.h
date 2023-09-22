@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ExpressDetailCell : UITableViewCell
 
-@property (nonatomic, strong) UILabel *title;
+@property (nonatomic, strong) UILabel *titleLab;
 @property (nonatomic, strong) UIImageView *checkImage;
 @property (nonatomic, strong) UILabel *percent;
 /// 渐变层

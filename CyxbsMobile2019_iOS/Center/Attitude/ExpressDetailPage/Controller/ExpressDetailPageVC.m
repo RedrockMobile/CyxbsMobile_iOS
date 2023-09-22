@@ -206,12 +206,12 @@
     // 展示已投票数据
     if (self.detailItem != NULL) {
         // MARK: TODO:cell的标题
-        cell.title = self.detailItem.choices[indexPath.row];
+        cell.titleLab.text = self.detailItem.choices[indexPath.row];
         // 如果已经投票
         if (self.detailItem.getVoted != NULL) {
             cell.percent.text = self.detailItem.percentStrArray[indexPath.row];
             // 动画
-            if ([cell.title.text isEqual:self.detailItem.getVoted]) {
+            if ([cell.titleLab.text isEqual:self.detailItem.getVoted]) {
                 // 记录投票的选项
                 self.votedRow = indexPath.row;
                 [self putAnimation:indexPath];
@@ -251,7 +251,7 @@
     // 更新投票选项
     self.votedRow = indexPath.row;
     // PUT 投票
-    [self.pickModel requestPickDataWithId:self.theId Choice:cell.title.text Success:^(ExpressPickPutItem * _Nonnull model) {
+    [self.pickModel requestPickDataWithId:self.theId Choice:cell.titleLab.text Success:^(ExpressPickPutItem * _Nonnull model) {
         NSLog(@"发布成功");
         // 更新百分比数组
         self.putPercentArray = model.percentStrArray;

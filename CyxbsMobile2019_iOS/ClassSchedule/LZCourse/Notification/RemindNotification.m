@@ -111,8 +111,7 @@ static RemindNotification *_instance;
         dateDic = dateArray[i];
         weekArray = dateDic[@"week"];
         for (NSInteger j = 0; j < weekArray.count; j++) {
-            identifier = newIdentifier
-            ;
+            identifier = newIdentifier;
             identifier = [identifier stringByAppendingString:[NSString stringWithFormat:@"%@",weekArray[j]]];
             identifier = [identifier stringByAppendingString:[NSString stringWithFormat:@"%@",dateDic[@"day"]]];
             identifier = [identifier stringByAppendingString:[NSString stringWithFormat:@"%@",dateDic[@"class"]]];

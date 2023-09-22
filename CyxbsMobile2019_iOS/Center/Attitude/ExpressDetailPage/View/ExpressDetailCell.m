@@ -15,7 +15,7 @@
     if (self) {
         self.backgroundColor = UIColor.whiteColor;  // 无黑夜模式
         self.contentView.backgroundColor = [UIColor colorWithHexString:@"#0028FC" alpha:0.05];
-        [self.contentView addSubview:self.title];
+        [self.contentView addSubview:self.titleLab];
         [self setTitlePosition];
     }
     return self;
@@ -36,7 +36,7 @@
 - (void)selectCell {
     self.gradientView.backgroundColor = [UIColor colorWithHexString:@"#534EF3" alpha:1.0];
     [self setCheckImagePosition];  // 加入对勾
-    self.title.textColor = [UIColor colorWithHexString:@"#FFFFFF" alpha:1.0];
+    self.titleLab.textColor = [UIColor colorWithHexString:@"#FFFFFF" alpha:1.0];
     self.percent.textColor = [UIColor colorWithHexString:@"#FFFFFF" alpha:1.0];
     self.contentView.backgroundColor = [UIColor colorWithHexString:@"#6C68EE" alpha:1.0];
     [self.contentView addSubview:self.gradientView];
@@ -47,7 +47,7 @@
 - (void)otherCell {
     self.gradientView.backgroundColor = [UIColor colorWithHexString:@"#4A44E4" alpha:0.1];
     // 颜色改变
-    self.title.textColor = [UIColor colorWithHexString:@"#15315B" alpha:0.7];
+    self.titleLab.textColor = [UIColor colorWithHexString:@"#15315B" alpha:0.7];
     self.percent.textColor = [UIColor colorWithHexString:@"#15315B" alpha:0.5];
     [self.contentView addSubview:self.gradientView];
     [self addViewsAndPosition];
@@ -55,9 +55,9 @@
 
 /// title与百分比
 - (void)addViewsAndPosition {
-    [self.contentView addSubview:self.title];
+    [self.contentView addSubview:self.titleLab];
     [self.contentView addSubview:self.percent];
-    [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView);
         make.left.equalTo(self.contentView).mas_offset(36);
         make.height.mas_equalTo(20);
@@ -82,8 +82,8 @@
 }
 
 - (void)setTitlePosition {
-    [self.contentView addSubview:self.title];
-    [self.title mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.contentView addSubview:self.titleLab];
+    [self.titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView);
         make.left.equalTo(self.contentView).mas_offset(36);
         make.height.mas_equalTo(20);
@@ -106,15 +106,15 @@
 
 #pragma mark - Getter
 
-- (UILabel *)title {
-    if (_title == nil) {
-        _title = [[UILabel alloc] initWithFrame:CGRectMake(36, 16, self.contentView.bounds.size.width - 36 - 78, 20)];
-        _title.textColor = [UIColor colorWithHexString:@"#15315B"];
-        _title.font = [UIFont fontWithName:PingFangSCRegular size:14];
+- (UILabel *)titleLab {
+    if (_titleLab == nil) {
+        _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(36, 16, self.contentView.bounds.size.width - 36 - 78, 20)];
+        _titleLab.textColor = [UIColor colorWithHexString:@"#15315B"];
+        _titleLab.font = [UIFont fontWithName:PingFangSCRegular size:14];
         // test
-        _title.text = @"你是否支持iPhone的接口将要统—接口";
+        _titleLab.text = @"你是否支持iPhone的接口将要统—接口";
     }
-    return _title;
+    return _titleLab;
 }
 - (UIImageView *)checkImage {
     if (_checkImage == nil) {
