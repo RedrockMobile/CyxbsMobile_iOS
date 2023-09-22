@@ -323,7 +323,6 @@
 		AA5D39B824F74A9800AB2DF5 /* LocalNotiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5D39B724F74A9800AB2DF5 /* LocalNotiManager.m */; };
 		AA7AB95A2873E5EA00BA6790 /* SZHSearchDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7AB92B2873E5E900BA6790 /* SZHSearchDataModel.m */; };
 		AA7AB95B2873E5EA00BA6790 /* SearchEndNoResultCV.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7AB92F2873E5E900BA6790 /* SearchEndNoResultCV.m */; };
-		AA7AB95C2873E5EA00BA6790 /* SearchBeginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7AB9302873E5E900BA6790 /* SearchBeginVC.m */; };
 		AA7AB95D2873E5EA00BA6790 /* SZHHotSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7AB9342873E5E900BA6790 /* SZHHotSearchView.m */; };
 		AA7AB95E2873E5EA00BA6790 /* SZHSearchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7AB9352873E5E900BA6790 /* SZHSearchTableViewCell.m */; };
 		AA7AB95F2873E5EA00BA6790 /* SearchTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7AB9382873E5E900BA6790 /* SearchTopView.m */; };
@@ -355,7 +354,6 @@
 		AA7ABA992873EA5400BA6790 /* GroupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA362873EA5300BA6790 /* GroupItem.m */; };
 		AA7ABA9A2873EA5400BA6790 /* DeletePostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA372873EA5300BA6790 /* DeletePostModel.m */; };
 		AA7ABA9B2873EA5400BA6790 /* PostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA382873EA5300BA6790 /* PostModel.m */; };
-		AA7ABA9D2873EA5400BA6790 /* PostFocusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA3B2873EA5300BA6790 /* PostFocusModel.m */; };
 		AA7ABA9E2873EA5400BA6790 /* ShieldModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA3C2873EA5300BA6790 /* ShieldModel.m */; };
 		AA7ABA9F2873EA5400BA6790 /* HotSearchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA3D2873EA5300BA6790 /* HotSearchModel.m */; };
 		AA7ABAA02873EA5400BA6790 /* ReportModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA482873EA5300BA6790 /* ReportModel.m */; };
@@ -365,30 +363,21 @@
 		AA7ABAA52873EA5400BA6790 /* PostTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA512873EA5300BA6790 /* PostTableViewCell.m */; };
 		AA7ABAA62873EA5500BA6790 /* FuncView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA522873EA5300BA6790 /* FuncView.m */; };
 		AA7ABAA72873EA5500BA6790 /* NewQACellCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA562873EA5300BA6790 /* NewQACellCollectionView.m */; };
-		AA7ABAA82873EA5500BA6790 /* NewQASelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA572873EA5300BA6790 /* NewQASelectorView.m */; };
 		AA7ABAA92873EA5500BA6790 /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA592873EA5300BA6790 /* ShareView.m */; };
 		AA7ABAAA2873EA5500BA6790 /* MGDClickCoreLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA5C2873EA5300BA6790 /* MGDClickCoreLayer.m */; };
 		AA7ABAAB2873EA5500BA6790 /* MGDClickParams.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA5D2873EA5300BA6790 /* MGDClickParams.m */; };
 		AA7ABAAC2873EA5500BA6790 /* MGDClickLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA5E2873EA5300BA6790 /* MGDClickLayer.m */; };
 		AA7ABAAD2873EA5500BA6790 /* FunctionBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA602873EA5300BA6790 /* FunctionBtn.m */; };
 		AA7ABAAE2873EA5500BA6790 /* MGDCircleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA642873EA5300BA6790 /* MGDCircleLayer.m */; };
-		AA7ABAAF2873EA5500BA6790 /* NewQARecommenTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA672873EA5300BA6790 /* NewQARecommenTableView.m */; };
-		AA7ABAB02873EA5500BA6790 /* NewQAFollowTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA682873EA5300BA6790 /* NewQAFollowTableView.m */; };
-		AA7ABAB12873EA5500BA6790 /* NewQAContentScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA6A2873EA5300BA6790 /* NewQAContentScrollView.m */; };
-		AA7ABAB22873EA5500BA6790 /* TopFollowView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA6D2873EA5300BA6790 /* TopFollowView.m */; };
-		AA7ABAB32873EA5500BA6790 /* NewQAHeadrView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA6E2873EA5300BA6790 /* NewQAHeadrView.m */; };
 		AA7ABAB42873EA5500BA6790 /* GroupBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA6F2873EA5300BA6790 /* GroupBtn.m */; };
 		AA7ABAB52873EA5500BA6790 /* MGDImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA702873EA5300BA6790 /* MGDImageCollectionViewCell.m */; };
 		AA7ABAB62873EA5500BA6790 /* NewQAPostDetailLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA712873EA5300BA6790 /* NewQAPostDetailLabel.m */; };
 		AA7ABAB72873EA5500BA6790 /* ReportView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA722873EA5300BA6790 /* ReportView.m */; };
-		AA7ABAB82873EA5500BA6790 /* SearchBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA732873EA5300BA6790 /* SearchBtn.m */; };
 		AA7ABAB92873EA5500BA6790 /* PostTableViewCellFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA762873EA5300BA6790 /* PostTableViewCellFrame.m */; };
 		AA7ABABA2873EA5500BA6790 /* SelfFuncView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA772873EA5300BA6790 /* SelfFuncView.m */; };
 		AA7ABABB2873EA5500BA6790 /* GroupFollowBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA792873EA5300BA6790 /* GroupFollowBtn.m */; };
 		AA7ABABC2873EA5500BA6790 /* ShareBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA7B2873EA5300BA6790 /* ShareBtn.m */; };
 		AA7ABABD2873EA5500BA6790 /* RecommendedTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA7E2873EA5400BA6790 /* RecommendedTableView.m */; };
-		AA7ABABE2873EA5500BA6790 /* NewQAMainTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA812873EA5400BA6790 /* NewQAMainTableView.m */; };
-		AA7ABABF2873EA5500BA6790 /* NewQANoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA872873EA5400BA6790 /* NewQANoDataView.m */; };
 		AA7ABAC12873EA5500BA6790 /* MGDStatusBarHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA8A2873EA5400BA6790 /* MGDStatusBarHeight.m */; };
 		AA7ABAC22873EA5500BA6790 /* PostArchiveTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA8E2873EA5400BA6790 /* PostArchiveTool.m */; };
 		AA7ABAC32873EA5500BA6790 /* MGDCurrentTimeStr.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA912873EA5400BA6790 /* MGDCurrentTimeStr.m */; };
@@ -1275,10 +1264,8 @@
 		AA5D39B724F74A9800AB2DF5 /* LocalNotiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalNotiManager.m; sourceTree = "<group>"; };
 		AA7AB92A2873E5E900BA6790 /* SZHSearchDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZHSearchDataModel.h; sourceTree = "<group>"; };
 		AA7AB92B2873E5E900BA6790 /* SZHSearchDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZHSearchDataModel.m; sourceTree = "<group>"; };
-		AA7AB92D2873E5E900BA6790 /* SearchBeginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBeginVC.h; sourceTree = "<group>"; };
 		AA7AB92E2873E5E900BA6790 /* SearchEndNoResultCV.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchEndNoResultCV.h; sourceTree = "<group>"; };
 		AA7AB92F2873E5E900BA6790 /* SearchEndNoResultCV.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchEndNoResultCV.m; sourceTree = "<group>"; };
-		AA7AB9302873E5E900BA6790 /* SearchBeginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBeginVC.m; sourceTree = "<group>"; };
 		AA7AB9322873E5E900BA6790 /* SZHHotSearchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZHHotSearchButton.h; sourceTree = "<group>"; };
 		AA7AB9332873E5E900BA6790 /* SearchTopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTopView.h; sourceTree = "<group>"; };
 		AA7AB9342873E5E900BA6790 /* SZHHotSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZHHotSearchView.m; sourceTree = "<group>"; };
@@ -1338,7 +1325,6 @@
 		AA7ABA372873EA5300BA6790 /* DeletePostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeletePostModel.m; sourceTree = "<group>"; };
 		AA7ABA382873EA5300BA6790 /* PostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostModel.m; sourceTree = "<group>"; };
 		AA7ABA3A2873EA5300BA6790 /* ReportModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportModel.h; sourceTree = "<group>"; };
-		AA7ABA3B2873EA5300BA6790 /* PostFocusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostFocusModel.m; sourceTree = "<group>"; };
 		AA7ABA3C2873EA5300BA6790 /* ShieldModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShieldModel.m; sourceTree = "<group>"; };
 		AA7ABA3D2873EA5300BA6790 /* HotSearchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotSearchModel.m; sourceTree = "<group>"; };
 		AA7ABA3E2873EA5300BA6790 /* StarPostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarPostModel.h; sourceTree = "<group>"; };
@@ -1348,7 +1334,6 @@
 		AA7ABA442873EA5300BA6790 /* DeletePostModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeletePostModel.h; sourceTree = "<group>"; };
 		AA7ABA452873EA5300BA6790 /* PostItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostItem.h; sourceTree = "<group>"; };
 		AA7ABA462873EA5300BA6790 /* GroupItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupItem.h; sourceTree = "<group>"; };
-		AA7ABA472873EA5300BA6790 /* PostFocusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostFocusModel.h; sourceTree = "<group>"; };
 		AA7ABA482873EA5300BA6790 /* ReportModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportModel.m; sourceTree = "<group>"; };
 		AA7ABA492873EA5300BA6790 /* HotSearchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotSearchModel.h; sourceTree = "<group>"; };
 		AA7ABA4A2873EA5300BA6790 /* ShieldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShieldModel.h; sourceTree = "<group>"; };
@@ -1358,11 +1343,9 @@
 		AA7ABA502873EA5300BA6790 /* PostTableViewCellFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTableViewCellFrame.h; sourceTree = "<group>"; };
 		AA7ABA512873EA5300BA6790 /* PostTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTableViewCell.m; sourceTree = "<group>"; };
 		AA7ABA522873EA5300BA6790 /* FuncView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FuncView.m; sourceTree = "<group>"; };
-		AA7ABA532873EA5300BA6790 /* SearchBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchBtn.h; sourceTree = "<group>"; };
 		AA7ABA542873EA5300BA6790 /* ReportView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportView.h; sourceTree = "<group>"; };
 		AA7ABA552873EA5300BA6790 /* ShareBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBtn.h; sourceTree = "<group>"; };
 		AA7ABA562873EA5300BA6790 /* NewQACellCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQACellCollectionView.m; sourceTree = "<group>"; };
-		AA7ABA572873EA5300BA6790 /* NewQASelectorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQASelectorView.m; sourceTree = "<group>"; };
 		AA7ABA582873EA5300BA6790 /* GroupFollowBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupFollowBtn.h; sourceTree = "<group>"; };
 		AA7ABA592873EA5300BA6790 /* ShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
 		AA7ABA5B2873EA5300BA6790 /* FunctionBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionBtn.h; sourceTree = "<group>"; };
@@ -1376,39 +1359,23 @@
 		AA7ABA632873EA5300BA6790 /* MGDClickParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDClickParams.h; sourceTree = "<group>"; };
 		AA7ABA642873EA5300BA6790 /* MGDCircleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDCircleLayer.m; sourceTree = "<group>"; };
 		AA7ABA652873EA5300BA6790 /* SelfFuncView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfFuncView.h; sourceTree = "<group>"; };
-		AA7ABA662873EA5300BA6790 /* NewQAMainTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAMainTableView.h; sourceTree = "<group>"; };
-		AA7ABA672873EA5300BA6790 /* NewQARecommenTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQARecommenTableView.m; sourceTree = "<group>"; };
-		AA7ABA682873EA5300BA6790 /* NewQAFollowTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAFollowTableView.m; sourceTree = "<group>"; };
 		AA7ABA692873EA5300BA6790 /* RecommendedTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecommendedTableView.h; sourceTree = "<group>"; };
-		AA7ABA6A2873EA5300BA6790 /* NewQAContentScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAContentScrollView.m; sourceTree = "<group>"; };
-		AA7ABA6C2873EA5300BA6790 /* NewQANoDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQANoDataView.h; sourceTree = "<group>"; };
-		AA7ABA6D2873EA5300BA6790 /* TopFollowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopFollowView.m; sourceTree = "<group>"; };
-		AA7ABA6E2873EA5300BA6790 /* NewQAHeadrView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAHeadrView.m; sourceTree = "<group>"; };
 		AA7ABA6F2873EA5300BA6790 /* GroupBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupBtn.m; sourceTree = "<group>"; };
 		AA7ABA702873EA5300BA6790 /* MGDImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDImageCollectionViewCell.m; sourceTree = "<group>"; };
 		AA7ABA712873EA5300BA6790 /* NewQAPostDetailLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAPostDetailLabel.m; sourceTree = "<group>"; };
 		AA7ABA722873EA5300BA6790 /* ReportView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportView.m; sourceTree = "<group>"; };
-		AA7ABA732873EA5300BA6790 /* SearchBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchBtn.m; sourceTree = "<group>"; };
 		AA7ABA742873EA5300BA6790 /* PostTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostTableViewCell.h; sourceTree = "<group>"; };
 		AA7ABA752873EA5300BA6790 /* FuncView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuncView.h; sourceTree = "<group>"; };
 		AA7ABA762873EA5300BA6790 /* PostTableViewCellFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostTableViewCellFrame.m; sourceTree = "<group>"; };
 		AA7ABA772873EA5300BA6790 /* SelfFuncView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfFuncView.m; sourceTree = "<group>"; };
 		AA7ABA782873EA5300BA6790 /* ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
 		AA7ABA792873EA5300BA6790 /* GroupFollowBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupFollowBtn.m; sourceTree = "<group>"; };
-		AA7ABA7A2873EA5300BA6790 /* NewQASelectorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQASelectorView.h; sourceTree = "<group>"; };
 		AA7ABA7B2873EA5300BA6790 /* ShareBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBtn.m; sourceTree = "<group>"; };
 		AA7ABA7C2873EA5400BA6790 /* NewQACellCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQACellCollectionView.h; sourceTree = "<group>"; };
-		AA7ABA7D2873EA5400BA6790 /* NewQAContentScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAContentScrollView.h; sourceTree = "<group>"; };
 		AA7ABA7E2873EA5400BA6790 /* RecommendedTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecommendedTableView.m; sourceTree = "<group>"; };
-		AA7ABA7F2873EA5400BA6790 /* NewQAFollowTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAFollowTableView.h; sourceTree = "<group>"; };
-		AA7ABA802873EA5400BA6790 /* NewQARecommenTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQARecommenTableView.h; sourceTree = "<group>"; };
-		AA7ABA812873EA5400BA6790 /* NewQAMainTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAMainTableView.m; sourceTree = "<group>"; };
 		AA7ABA822873EA5400BA6790 /* NewQAPostDetailLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAPostDetailLabel.h; sourceTree = "<group>"; };
 		AA7ABA832873EA5400BA6790 /* MGDImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDImageCollectionViewCell.h; sourceTree = "<group>"; };
 		AA7ABA842873EA5400BA6790 /* GroupBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupBtn.h; sourceTree = "<group>"; };
-		AA7ABA852873EA5400BA6790 /* NewQAHeadrView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAHeadrView.h; sourceTree = "<group>"; };
-		AA7ABA862873EA5400BA6790 /* TopFollowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopFollowView.h; sourceTree = "<group>"; };
-		AA7ABA872873EA5400BA6790 /* NewQANoDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQANoDataView.m; sourceTree = "<group>"; };
 		AA7ABA8A2873EA5400BA6790 /* MGDStatusBarHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDStatusBarHeight.m; sourceTree = "<group>"; };
 		AA7ABA8C2873EA5400BA6790 /* MGDCurrentTimeStr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDCurrentTimeStr.h; sourceTree = "<group>"; };
 		AA7ABA8D2873EA5400BA6790 /* NewQAHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAHud.h; sourceTree = "<group>"; };
@@ -4389,10 +4356,8 @@
 		AA7AB92C2873E5E900BA6790 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				AA7AB92D2873E5E900BA6790 /* SearchBeginVC.h */,
 				AA7AB92E2873E5E900BA6790 /* SearchEndNoResultCV.h */,
 				AA7AB92F2873E5E900BA6790 /* SearchEndNoResultCV.m */,
-				AA7AB9302873E5E900BA6790 /* SearchBeginVC.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -4569,7 +4534,6 @@
 				AA7ABA372873EA5300BA6790 /* DeletePostModel.m */,
 				AA7ABA382873EA5300BA6790 /* PostModel.m */,
 				AA7ABA3A2873EA5300BA6790 /* ReportModel.h */,
-				AA7ABA3B2873EA5300BA6790 /* PostFocusModel.m */,
 				AA7ABA3C2873EA5300BA6790 /* ShieldModel.m */,
 				AA7ABA3D2873EA5300BA6790 /* HotSearchModel.m */,
 				AA7ABA3E2873EA5300BA6790 /* StarPostModel.h */,
@@ -4579,7 +4543,6 @@
 				AA7ABA442873EA5300BA6790 /* DeletePostModel.h */,
 				AA7ABA452873EA5300BA6790 /* PostItem.h */,
 				AA7ABA462873EA5300BA6790 /* GroupItem.h */,
-				AA7ABA472873EA5300BA6790 /* PostFocusModel.h */,
 				AA7ABA482873EA5300BA6790 /* ReportModel.m */,
 				AA7ABA492873EA5300BA6790 /* HotSearchModel.h */,
 				AA7ABA4A2873EA5300BA6790 /* ShieldModel.h */,
@@ -4596,48 +4559,30 @@
 				AA7ABA502873EA5300BA6790 /* PostTableViewCellFrame.h */,
 				AA7ABA512873EA5300BA6790 /* PostTableViewCell.m */,
 				AA7ABA522873EA5300BA6790 /* FuncView.m */,
-				AA7ABA532873EA5300BA6790 /* SearchBtn.h */,
 				AA7ABA542873EA5300BA6790 /* ReportView.h */,
 				AA7ABA552873EA5300BA6790 /* ShareBtn.h */,
 				AA7ABA562873EA5300BA6790 /* NewQACellCollectionView.m */,
-				AA7ABA572873EA5300BA6790 /* NewQASelectorView.m */,
 				AA7ABA582873EA5300BA6790 /* GroupFollowBtn.h */,
 				AA7ABA592873EA5300BA6790 /* ShareView.m */,
 				AA7ABA5A2873EA5300BA6790 /* StarBuuton */,
 				AA7ABA652873EA5300BA6790 /* SelfFuncView.h */,
-				AA7ABA662873EA5300BA6790 /* NewQAMainTableView.h */,
-				AA7ABA672873EA5300BA6790 /* NewQARecommenTableView.m */,
-				AA7ABA682873EA5300BA6790 /* NewQAFollowTableView.m */,
 				AA7ABA692873EA5300BA6790 /* RecommendedTableView.h */,
-				AA7ABA6A2873EA5300BA6790 /* NewQAContentScrollView.m */,
-				AA7ABA6C2873EA5300BA6790 /* NewQANoDataView.h */,
-				AA7ABA6D2873EA5300BA6790 /* TopFollowView.m */,
-				AA7ABA6E2873EA5300BA6790 /* NewQAHeadrView.m */,
 				AA7ABA6F2873EA5300BA6790 /* GroupBtn.m */,
 				AA7ABA702873EA5300BA6790 /* MGDImageCollectionViewCell.m */,
 				AA7ABA712873EA5300BA6790 /* NewQAPostDetailLabel.m */,
 				AA7ABA722873EA5300BA6790 /* ReportView.m */,
-				AA7ABA732873EA5300BA6790 /* SearchBtn.m */,
 				AA7ABA742873EA5300BA6790 /* PostTableViewCell.h */,
 				AA7ABA752873EA5300BA6790 /* FuncView.h */,
 				AA7ABA762873EA5300BA6790 /* PostTableViewCellFrame.m */,
 				AA7ABA772873EA5300BA6790 /* SelfFuncView.m */,
 				AA7ABA782873EA5300BA6790 /* ShareView.h */,
 				AA7ABA792873EA5300BA6790 /* GroupFollowBtn.m */,
-				AA7ABA7A2873EA5300BA6790 /* NewQASelectorView.h */,
 				AA7ABA7B2873EA5300BA6790 /* ShareBtn.m */,
 				AA7ABA7C2873EA5400BA6790 /* NewQACellCollectionView.h */,
-				AA7ABA7D2873EA5400BA6790 /* NewQAContentScrollView.h */,
 				AA7ABA7E2873EA5400BA6790 /* RecommendedTableView.m */,
-				AA7ABA7F2873EA5400BA6790 /* NewQAFollowTableView.h */,
-				AA7ABA802873EA5400BA6790 /* NewQARecommenTableView.h */,
-				AA7ABA812873EA5400BA6790 /* NewQAMainTableView.m */,
 				AA7ABA822873EA5400BA6790 /* NewQAPostDetailLabel.h */,
 				AA7ABA832873EA5400BA6790 /* MGDImageCollectionViewCell.h */,
 				AA7ABA842873EA5400BA6790 /* GroupBtn.h */,
-				AA7ABA852873EA5400BA6790 /* NewQAHeadrView.h */,
-				AA7ABA862873EA5400BA6790 /* TopFollowView.h */,
-				AA7ABA872873EA5400BA6790 /* NewQANoDataView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6421,7 +6366,6 @@
 				AA0DDB69286C8B1A00802324 /* FansAndFollowingSegmentView.m in Sources */,
 				D0101D592433C885004337ED /* SDMaskController.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
-				AA7ABABF2873EA5500BA6790 /* NewQANoDataView.m in Sources */,
 				14B73F8B2823577600D08ADD /* SSRButton.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				FE2C136027AEF629001CF7AF /* DiscoverTodoSelectTimeView.m in Sources */,
@@ -6623,7 +6567,6 @@
 				7FBF39F4257B79F30077494E /* ByPasswordViewController.m in Sources */,
 				DB4065022466D889006CE5BC /* DLReminderView+Reset.m in Sources */,
 				14E7E4B227F57FC800B67469 /* FeedBackQuestionButton.m in Sources */,
-				AA7ABAB02873EA5500BA6790 /* NewQAFollowTableView.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
 				AA7ABA252873EA4100BA6790 /* SZHPhotoImageView.m in Sources */,
@@ -6655,12 +6598,10 @@
 				B0F71C852ABC71B200F8B1AC /* AttitudeSelfPageDataItem.m in Sources */,
 				AA4FA1F425C2E1E3005139BA /* PraiseViewController.m in Sources */,
 				AA7ABAF92873EA6D00BA6790 /* UIColor+SYColor.m in Sources */,
-				AA7ABAB32873EA5500BA6790 /* NewQAHeadrView.m in Sources */,
 				AA7AB9612873E5EA00BA6790 /* SearchBeiginView.m in Sources */,
 				14E7E4A927F5762500B67469 /* QuestionButton.m in Sources */,
 				B0F71C892ABC71B200F8B1AC /* AttitudeMainPageItem.m in Sources */,
 				AA7ABAF52873EA6D00BA6790 /* SHPopMenu.m in Sources */,
-				AA7ABAAF2873EA5500BA6790 /* NewQARecommenTableView.m in Sources */,
 				FE2C135227AEF629001CF7AF /* ToDoMainBarView.m in Sources */,
 				18CDF721257F91BE006E8E5C /* FinderToolViewController.m in Sources */,
 				1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */,
@@ -6677,7 +6618,6 @@
 				AAC7CA0125F5130900E6B5D5 /* PraiseParseModel.m in Sources */,
 				18CDF69F257F91BD006E8E5C /* CQUPTMapSearchView.m in Sources */,
 				4931630C26CD7B6800140412 /* GotoButton.m in Sources */,
-				AA7AB95C2873E5EA00BA6790 /* SearchBeginVC.m in Sources */,
 				AA0DDB76286C8B1A00802324 /* JHMenuItem.m in Sources */,
 				18CDF693257F91BD006E8E5C /* CQUPTMapHotPlaceItem.m in Sources */,
 				DB34EB21239BD4550052B65E /* DetailRemindViewController.m in Sources */,
@@ -6693,7 +6633,6 @@
 				AA0DDB5C286C8B1A00802324 /* PMPBasicTableViewCell.m in Sources */,
 				4999FA8326D44EA8005D0ADE /* HintView.m in Sources */,
 				AA7ABAA22873EA5400BA6790 /* FollowGroupModel.m in Sources */,
-				AA7ABA9D2873EA5400BA6790 /* PostFocusModel.m in Sources */,
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,
 				D0101D5F2433C885004337ED /* SDMaskBindingEvent.m in Sources */,
 				493162DF26CD7B6300140412 /* StampGoodsData.m in Sources */,
@@ -6716,7 +6655,6 @@
 				AA0DDB61286C8B1A00802324 /* IDCardAnimationView.m in Sources */,
 				18CDF4C8257F8DBD006E8E5C /* ResetPwdView.m in Sources */,
 				B0F71C8B2ABC71B200F8B1AC /* AttitudeSelfPageModel.m in Sources */,
-				AA7ABAB82873EA5500BA6790 /* SearchBtn.m in Sources */,
 				18CDF4C6257F8DBD006E8E5C /* setEmail.m in Sources */,
 				1A141376235F524B0001417E /* UIImage+Color.m in Sources */,
 				AA7ABAA42873EA5400BA6790 /* StarPostModel.m in Sources */,
@@ -6734,7 +6672,6 @@
 				AA9ABE9324EB8ADB00D16BE0 /* LessonViewForAWeek.m in Sources */,
 				FE2C135A27AEF629001CF7AF /* TodoTitleInputTextField.m in Sources */,
 				1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */,
-				AA7ABABE2873EA5500BA6790 /* NewQAMainTableView.m in Sources */,
 				FE2C135927AEF629001CF7AF /* ToDoDetailReminderTimeView.m in Sources */,
 				D0101F63243587A1004337ED /* GKScrollView.m in Sources */,
 				18CDF4C7257F8DBD006E8E5C /* sendCodeView.m in Sources */,
@@ -6765,7 +6702,6 @@
 				73AAA1D126C918250084E44D /* DetailsTasksTableView.m in Sources */,
 				14CED37D288A594600BADA8B /* RisingRouter.m in Sources */,
 				AAC7CA1125F7753E00E6B5D5 /* PraiseModel.m in Sources */,
-				AA7ABAB22873EA5500BA6790 /* TopFollowView.m in Sources */,
 				AAE3304D25E2A1C600324750 /* RemarkViewController.m in Sources */,
 				B0B1BA0A29E6E98000A1BB02 /* PickerDormitoryViewController.m in Sources */,
 				D0101D5C2433C885004337ED /* SDMaskGuidController.m in Sources */,
@@ -6862,10 +6798,8 @@
 				49628E3C26D52E6C00805A08 /* TypeButton.m in Sources */,
 				18CDF6A4257F91BD006E8E5C /* CollectionViewSpaceLayout.m in Sources */,
 				14E7E4B327F57FC800B67469 /* FeedBackSelectView.m in Sources */,
-				AA7ABAB12873EA5500BA6790 /* NewQAContentScrollView.m in Sources */,
 				18CDF4B8257F8DBD006E8E5C /* setEmailViewController.m in Sources */,
 				AA0DDB52286C8B1900802324 /* MineUserInfoModel.m in Sources */,
-				AA7ABAA82873EA5500BA6790 /* NewQASelectorView.m in Sources */,
 				AA536DFC258C544800F69E73 /* IgnoreTableViewCell.m in Sources */,
 				AA0DDB6A286C8B1A00802324 /* PMPFansAndFollowingViewController.m in Sources */,
 				18CDF4C5257F8DBD006E8E5C /* QuestionView.m in Sources */,

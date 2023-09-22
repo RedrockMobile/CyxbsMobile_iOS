@@ -48,8 +48,11 @@
     learnView.layer.contents = (__bridge id _Nullable)([UIImage imageNamed:@"美食背景"].CGImage);
 
     UIImageView *foodImgView = [[UIImageView alloc] init];
-//    foodImgView.image = [UIImage imageNamed:@"美食"];
-    [foodImgView sd_setImageWithURL:[NSURL URLWithString:self.ImgURL]];
+    if (!self.ImgURL) {
+        foodImgView.image = [UIImage imageNamed:@"美食"];
+    }else {
+        [foodImgView sd_setImageWithURL:[NSURL URLWithString:self.ImgURL]];
+    }
     foodImgView.layer.cornerRadius = 8;
     foodImgView.layer.masksToBounds = YES;
 

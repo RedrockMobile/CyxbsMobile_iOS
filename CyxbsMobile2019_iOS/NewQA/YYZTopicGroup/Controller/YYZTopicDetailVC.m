@@ -216,9 +216,9 @@ UIGestureRecognizerDelegate>
     }else{
         UIViewController *frontVC = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
         if ([frontVC isKindOfClass:[NewQAMainVC class]]) {
-            NewQAMainVC * QAMainVC = (NewQAMainVC *)frontVC;
-            QAMainVC.isNeedFresh = _isChanged;
-            [self.navigationController popToViewController:QAMainVC animated:YES];
+//            NewQAMainVC * QAMainVC = (NewQAMainVC *)frontVC;
+//            QAMainVC.isNeedFresh = _isChanged;
+//            [self.navigationController popToViewController:QAMainVC animated:YES];
         }else{
             [self.navigationController popViewControllerAnimated:YES];
         }
