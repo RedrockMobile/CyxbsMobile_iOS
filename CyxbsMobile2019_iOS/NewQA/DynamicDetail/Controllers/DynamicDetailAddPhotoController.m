@@ -16,7 +16,6 @@
 #import "DynamicDetailAddPhotoController.h"
 
 //Views
-#import "SZHReleaseTopBarView.h"    //顶部的导航栏view
 #import "SZHReleasView.h"
 #import "originPhotoView.h"
 #import "SZHPhotoImageView.h"
@@ -26,8 +25,8 @@
 #import "ReleaseDynamicModel.h"
 
 #define MAX_LIMT_NUM 500  //textview限制输入的最大字数
-@interface DynamicDetailAddPhotoController ()<SZHReleaseTopBarViewDelegate,UITextViewDelegate,UINavigationBarDelegate,PHPickerViewControllerDelegate,SZHPhotoImageViewDelegate,OriginPhotoViewDelegate,SZHReleaseDelegate,UICollectionViewDelegate,UICollectionViewDataSource,GYYImageChooseCollectionViewCellDelegate>
-@property (nonatomic, strong) SZHReleaseTopBarView *topBarView;
+@interface DynamicDetailAddPhotoController ()<UITextViewDelegate,UINavigationBarDelegate,PHPickerViewControllerDelegate,SZHPhotoImageViewDelegate,OriginPhotoViewDelegate,SZHReleaseDelegate,UICollectionViewDelegate,UICollectionViewDataSource,GYYImageChooseCollectionViewCellDelegate>
+//@property (nonatomic, strong) SZHReleaseTopBarView *topBarView;
 @property (nonatomic, strong) SZHReleasView *releaseView;
 /// 放置图片的collectionView
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -62,15 +61,15 @@
     self.isSumitOriginPhoto = NO;
     
     
-    self.topBarView = [[SZHReleaseTopBarView alloc] init];
-    self.topBarView.titleLbl.text = @"评论";
-    self.topBarView.delegate = self;
-    [self.view addSubview:self.topBarView];
-    [self.topBarView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view);
-        make.top.equalTo(self.view).offset(STATUSBARHEIGHT * 0.5);
-        make.bottom.equalTo(self.view.mas_top).offset(STATUSBARHEIGHT + NVGBARHEIGHT);
-    }];
+//    self.topBarView = [[SZHReleaseTopBarView alloc] init];
+//    self.topBarView.titleLbl.text = @"评论";
+//    self.topBarView.delegate = self;
+//    [self.view addSubview:self.topBarView];
+//    [self.topBarView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.equalTo(self.view);
+//        make.top.equalTo(self.view).offset(STATUSBARHEIGHT * 0.5);
+//        make.bottom.equalTo(self.view.mas_top).offset(STATUSBARHEIGHT + NVGBARHEIGHT);
+//    }];
     [self addReleaseView];
     
     //如果是一级评论就添加图片
@@ -84,8 +83,8 @@
     self.releaseView.releaseTextView.text = self.tampComment;
     if (![self.tampComment isEqual:@""]) {
         [self.releaseView.placeHolderLabel setHidden:YES];
-        self.topBarView.releaseBtn.userInteractionEnabled = YES;
-        self.topBarView.releaseBtn.backgroundColor = [UIColor colorWithHexString:@"#5B63EE" alpha:1];
+//        self.topBarView.releaseBtn.userInteractionEnabled = YES;
+//        self.topBarView.releaseBtn.backgroundColor = [UIColor colorWithHexString:@"#5B63EE" alpha:1];
     }
    
 }
@@ -138,7 +137,7 @@
     hud.cornerRadius = hud.frame.size.height * 1/2;
     
     //设置发布按钮禁用
-    self.topBarView.releaseBtn.enabled = NO;
+//    self.topBarView.releaseBtn.enabled = NO;
     
     //设置参数
     NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
@@ -207,13 +206,13 @@
         }else{
             [hud hide:YES];
             //设置发布按钮恢复正常
-            self.topBarView.releaseBtn.enabled = YES;
+//            self.topBarView.releaseBtn.enabled = YES;
             [NewQAHud showHudWith:@"评论失败，请检查网络" AddView:self.view];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [hud hide:YES];
         //设置发布按钮恢复正常
-        self.topBarView.releaseBtn.enabled = YES;
+//        self.topBarView.releaseBtn.enabled = YES;
         [NewQAHud showHudWith:@"评论失败，请检查网络" AddView:self.view];
     }];
 }
@@ -310,9 +309,9 @@
         //不显示提示文字
         [self.releaseView.placeHolderLabel setHidden:YES];
         //设置按钮为可用状态并设置颜色
-        self.topBarView.releaseBtn.userInteractionEnabled = YES;
+//        self.topBarView.releaseBtn.userInteractionEnabled = YES;
         if (@available(iOS 11.0, *)) {
-            self.topBarView.releaseBtn.backgroundColor = [UIColor colorWithHexString:@"#5B63EE" alpha:1];
+//            self.topBarView.releaseBtn.backgroundColor = [UIColor colorWithHexString:@"#5B63EE" alpha:1];
         } else {
             // Fallback on earlier versions
         }
@@ -320,9 +319,9 @@
         //显示提示文字
         [self.releaseView.placeHolderLabel setHidden:NO];
         //设置按钮为禁用状态并且设置颜色
-        self.topBarView.releaseBtn.userInteractionEnabled = NO;
+//        self.topBarView.releaseBtn.userInteractionEnabled = NO;
         if (@available(iOS 11.0, *)) {
-            self.topBarView.releaseBtn.backgroundColor =  [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#AEBCD5" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
+//            self.topBarView.releaseBtn.backgroundColor =  [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#AEBCD5" alpha:1] darkColor:[UIColor colorWithHexString:@"#5A5A5A" alpha:1]];
         } else {
             // Fallback on earlier versions
         }
