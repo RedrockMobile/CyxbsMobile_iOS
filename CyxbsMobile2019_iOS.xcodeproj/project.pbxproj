@@ -5307,9 +5307,9 @@
 		B0F71C3B2ABC71B200F8B1AC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B0F71C402ABC71B200F8B1AC /* AttitudeSelfPageDataModel.h */,
 				B0F71C3C2ABC71B200F8B1AC /* AttitudeSelfPageDataModel.m */,
 				B0F71C3D2ABC71B200F8B1AC /* Item */,
-				B0F71C402ABC71B200F8B1AC /* AttitudeSelfPageDataModel.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5326,8 +5326,8 @@
 		B0F71C412ABC71B200F8B1AC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B0F71C422ABC71B200F8B1AC /* AttitudeSelfPageDefaultView.m */,
 				B0F71C432ABC71B200F8B1AC /* AttitudeSelfPageDefaultView.h */,
+				B0F71C422ABC71B200F8B1AC /* AttitudeSelfPageDefaultView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5355,10 +5355,10 @@
 			isa = PBXGroup;
 			children = (
 				B0F71C492ABC71B200F8B1AC /* AttitudeMainModel.h */,
-				B0F71C4A2ABC71B200F8B1AC /* AttitudeSelfPageModel.h */,
 				B0F71C4B2ABC71B200F8B1AC /* AttitudeMainModel.m */,
-				B0F71C4C2ABC71B200F8B1AC /* Items */,
+				B0F71C4A2ABC71B200F8B1AC /* AttitudeSelfPageModel.h */,
 				B0F71C512ABC71B200F8B1AC /* AttitudeSelfPageModel.m */,
+				B0F71C4C2ABC71B200F8B1AC /* Items */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5366,10 +5366,10 @@
 		B0F71C4C2ABC71B200F8B1AC /* Items */ = {
 			isa = PBXGroup;
 			children = (
-				B0F71C4D2ABC71B200F8B1AC /* AttitudeMainPageItem.m */,
-				B0F71C4E2ABC71B200F8B1AC /* AttitudeSelfPageItem.m */,
 				B0F71C4F2ABC71B200F8B1AC /* AttitudeMainPageItem.h */,
+				B0F71C4D2ABC71B200F8B1AC /* AttitudeMainPageItem.m */,
 				B0F71C502ABC71B200F8B1AC /* AttitudeSelfPageItem.h */,
+				B0F71C4E2ABC71B200F8B1AC /* AttitudeSelfPageItem.m */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -5377,12 +5377,12 @@
 		B0F71C522ABC71B200F8B1AC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B0F71C532ABC71B200F8B1AC /* AttitudeHomeCell.m */,
-				B0F71C542ABC71B200F8B1AC /* AttitudeMainDefaultView.m */,
-				B0F71C552ABC71B200F8B1AC /* AttitudeNetWrong.m */,
 				B0F71C562ABC71B200F8B1AC /* AttitudeHomeCell.h */,
+				B0F71C532ABC71B200F8B1AC /* AttitudeHomeCell.m */,
 				B0F71C572ABC71B200F8B1AC /* AttitudeNetWrong.h */,
+				B0F71C552ABC71B200F8B1AC /* AttitudeNetWrong.m */,
 				B0F71C582ABC71B200F8B1AC /* AttitudeMainDefaultView.h */,
+				B0F71C542ABC71B200F8B1AC /* AttitudeMainDefaultView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5409,13 +5409,13 @@
 		B0F71C5D2ABC71B200F8B1AC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B0F71C5E2ABC71B200F8B1AC /* ExpressDeclareModel.h */,
-				B0F71C5F2ABC71B200F8B1AC /* ExpressPickPutModel.m */,
-				B0F71C602ABC71B200F8B1AC /* ExpressPickGetModel.m */,
 				B0F71C612ABC71B200F8B1AC /* ExpressPickPutModel.h */,
+				B0F71C5F2ABC71B200F8B1AC /* ExpressPickPutModel.m */,
+				B0F71C6A2ABC71B200F8B1AC /* ExpressPickGetModel.h */,
+				B0F71C602ABC71B200F8B1AC /* ExpressPickGetModel.m */,
+				B0F71C5E2ABC71B200F8B1AC /* ExpressDeclareModel.h */,
 				B0F71C622ABC71B200F8B1AC /* ExpressDeclareModel.m */,
 				B0F71C632ABC71B200F8B1AC /* items */,
-				B0F71C6A2ABC71B200F8B1AC /* ExpressPickGetModel.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -5424,11 +5424,11 @@
 			isa = PBXGroup;
 			children = (
 				B0F71C642ABC71B200F8B1AC /* ExpressDeclareItem.h */,
-				B0F71C652ABC71B200F8B1AC /* ExpressPickGetItem.m */,
-				B0F71C662ABC71B200F8B1AC /* ExpressPickPutItem.m */,
 				B0F71C672ABC71B200F8B1AC /* ExpressDeclareItem.m */,
-				B0F71C682ABC71B200F8B1AC /* ExpressPickPutItem.h */,
 				B0F71C692ABC71B200F8B1AC /* ExpressPickGetItem.h */,
+				B0F71C652ABC71B200F8B1AC /* ExpressPickGetItem.m */,
+				B0F71C682ABC71B200F8B1AC /* ExpressPickPutItem.h */,
+				B0F71C662ABC71B200F8B1AC /* ExpressPickPutItem.m */,
 			);
 			path = items;
 			sourceTree = "<group>";
@@ -5455,8 +5455,8 @@
 		B0F71C6F2ABC71B200F8B1AC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B0F71C702ABC71B200F8B1AC /* PublishViewController.m */,
 				B0F71C712ABC71B200F8B1AC /* PublishViewController.h */,
+				B0F71C702ABC71B200F8B1AC /* PublishViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5473,15 +5473,15 @@
 		B0F71C752ABC71B200F8B1AC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B0F71C762ABC71B200F8B1AC /* PublishTableHeadView.h */,
-				B0F71C772ABC71B200F8B1AC /* PublishTableAddTagView.m */,
 				B0F71C782ABC71B200F8B1AC /* PublishPageCell.h */,
-				B0F71C792ABC71B200F8B1AC /* PublishTopView.h */,
-				B0F71C7A2ABC71B200F8B1AC /* PublishTableAddTagView.h */,
-				B0F71C7B2ABC71B200F8B1AC /* PublishTableHeadView.m */,
-				B0F71C7C2ABC71B200F8B1AC /* PublishTopView.m */,
-				B0F71C7D2ABC71B200F8B1AC /* PublishPopUpsView */,
 				B0F71C822ABC71B200F8B1AC /* PublishPageCell.m */,
+				B0F71C792ABC71B200F8B1AC /* PublishTopView.h */,
+				B0F71C7C2ABC71B200F8B1AC /* PublishTopView.m */,
+				B0F71C7A2ABC71B200F8B1AC /* PublishTableAddTagView.h */,
+				B0F71C772ABC71B200F8B1AC /* PublishTableAddTagView.m */,
+				B0F71C762ABC71B200F8B1AC /* PublishTableHeadView.h */,
+				B0F71C7B2ABC71B200F8B1AC /* PublishTableHeadView.m */,
+				B0F71C7D2ABC71B200F8B1AC /* PublishPopUpsView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5489,10 +5489,10 @@
 		B0F71C7D2ABC71B200F8B1AC /* PublishPopUpsView */ = {
 			isa = PBXGroup;
 			children = (
-				B0F71C7E2ABC71B200F8B1AC /* PublishMakeSureView.m */,
 				B0F71C7F2ABC71B200F8B1AC /* PublishTextView.h */,
 				B0F71C802ABC71B200F8B1AC /* PublishTextView.m */,
 				B0F71C812ABC71B200F8B1AC /* PublishMakeSureView.h */,
+				B0F71C7E2ABC71B200F8B1AC /* PublishMakeSureView.m */,
 			);
 			path = PublishPopUpsView;
 			sourceTree = "<group>";

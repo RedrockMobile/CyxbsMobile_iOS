@@ -8,7 +8,8 @@
 
 #ifndef CenterHeader_h
 #define CenterHeader_h
-
+#pragma mark - “中心首页”API
+//获取中心登天数
 #define Discover_GET_playground_center_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-playground/center/days"]
 
 #endif /* CenterHeader_h */
