@@ -136,7 +136,6 @@
         // 分别得到gradientWidth
 //        gradientWidth = cellWidth * [self.pickItem.percentNumArray[indexPath.row] floatValue];
         gradientWidth = 160;  // test
-        cell.percent.text = @"50%";
         if (indexPath == selectIndexPath) {
             // 是选中的cell
             [cell selectCell];
@@ -210,6 +209,10 @@
         // 如果已经投票
         if (self.detailItem.getVoted != NULL) {
             cell.percent.text = self.detailItem.percentStrArray[indexPath.row];
+            // 没有数据情况.空值或不为字符串
+            if (cell.percent.text == NULL || ![cell.percent.text isKindOfClass:[NSString class]]) {
+                cell.percent.text = @"nil";
+            }
             // 动画
             if ([cell.titleLab.text isEqual:self.detailItem.getVoted]) {
                 // 记录投票的选项
