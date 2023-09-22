@@ -12,27 +12,30 @@
 #pragma mark - API
 
 // 获取表态主页数据
-#define Attitude_GET_homePageData_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare/homepage"]
+#define Center_GET_AttitudehomePage_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare/homepage"]
 
 // 获取表态页详细信息
-#define Attitude_GET_expressDetailData_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare"]
+#define Center_GET_AttitudeExpressDetail_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare"]
 
 // 表态投票
-#define Attitude_PUT_expressPickData_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare"]
+#define Center_PUT_AttitudeExpressPick_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare"]
 
 // 表态撤销投票
-#define Attitude_DELETE_expressDeletePick_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare"]
+#define Center_DELETE_AttitudeCancelPick_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare"]
+// 表态撤销投票(POST版)
+#define Center_POST_AttitudeCancelPick_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare/delete"]
+
 
 // 是否有权发布投票
-#define Attitude_GET_permissionOfPick_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare/perm"]
+#define Center_GET_AttitudePickPermission_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare/perm"]
 
 // 获取自己发布的投票
-#define Attitude_GET_selfPageData_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare/posts"]
+#define Center_GET_AttitudeVotesData_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare/posts"]
 
 // 发布投票
-#define Attitude_POST_publishTag_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare"]
+#define Center_POST_AttitudePublishTag_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare"]
 
 // 鉴权
-#define Attitude_GET_selfPermission_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare/perm"]
+#define Center_GET_AttitudePermission_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-attitude/declare/perm"]
 
 #endif /* AttitudeHeader_h */

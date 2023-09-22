@@ -20,7 +20,7 @@
         @"offset": [NSNumber numberWithLong:offset]
     };
     [HttpTool.shareTool
-     request:Attitude_GET_selfPageData_API
+     request:Center_GET_AttitudeVotesData_API
      type:HttpToolRequestTypeGet
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:param // offset参数未选默认为0，limit默认20
@@ -46,7 +46,7 @@
 - (void)requestAttitudeDataWithSuccess:(void (^)(NSArray *array))success
                                Failure:(void (^)(NSError * _Nonnull))failure {
     [HttpTool.shareTool
-     request:Attitude_GET_selfPageData_API
+     request:Center_GET_AttitudeVotesData_API
      type:HttpToolRequestTypeGet
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:nil

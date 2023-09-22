@@ -14,7 +14,7 @@
                                      Failure:(void(^)(NSError * _Nonnull))failure {
     
     [HttpTool.shareTool
-     request:Attitude_GET_selfPermission_API
+     request:Center_GET_AttitudePermission_API
      type:HttpToolRequestTypeGet
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:nil

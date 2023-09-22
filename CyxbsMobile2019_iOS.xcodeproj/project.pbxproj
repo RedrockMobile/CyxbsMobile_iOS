@@ -5142,16 +5142,16 @@
 		B09BB81D2AADA35400FF88F7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B09BB81E2AADA35400FF88F7 /* FoodResultModel.h */,
-				B09BB81F2AADA35400FF88F7 /* FoodPraiseModel.h */,
-				B09BB8202AADA35400FF88F7 /* FoodDetailsModel.h */,
+				B09BB8272AADA35400FF88F7 /* FoodHomeModel.h */,
 				B09BB8212AADA35400FF88F7 /* FoodHomeModel.m */,
-				B09BB8222AADA35400FF88F7 /* FoodRefreshModel.m */,
+				B09BB81F2AADA35400FF88F7 /* FoodPraiseModel.h */,
 				B09BB8232AADA35400FF88F7 /* FoodPraiseModel.m */,
+				B09BB81E2AADA35400FF88F7 /* FoodResultModel.h */,
 				B09BB8242AADA35400FF88F7 /* FoodResultModel.m */,
+				B09BB8202AADA35400FF88F7 /* FoodDetailsModel.h */,
 				B09BB8252AADA35400FF88F7 /* FoodDetailsModel.m */,
 				B09BB8262AADA35400FF88F7 /* FoodRefreshModel.h */,
-				B09BB8272AADA35400FF88F7 /* FoodHomeModel.h */,
+				B09BB8222AADA35400FF88F7 /* FoodRefreshModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";

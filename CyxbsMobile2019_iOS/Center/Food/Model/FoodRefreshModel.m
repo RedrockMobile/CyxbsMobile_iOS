@@ -18,7 +18,7 @@
     };
 
     [HttpTool.shareTool
-     request:NewQA_POST_FoodRefresh_API
+     request:Center_POST_FoodRefresh_API
      type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerJSON
      bodyParameters:paramters

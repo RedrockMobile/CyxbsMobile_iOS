@@ -13,15 +13,15 @@
 #pragma mark - API
 
 /// 美食主页数据
-#define NewQA_GET_FoodHomePage_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-delicacy/HomePage"]
+#define Center_GET_FoodHomePage_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-delicacy/HomePage"]
 
 /// 刷新美食特征
-#define NewQA_POST_FoodRefresh_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-delicacy/food/refresh"]
+#define Center_POST_FoodRefresh_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-delicacy/food/refresh"]
 
 /// 随机美食数据
-#define NewQA_POST_FoodResult_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-delicacy/food/result"]
+#define Center_POST_FoodResult_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-delicacy/food/result"]
 
 /// 美食点赞
-#define NewQA_POST_FoodPraise_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-delicacy/food/praise"]
+#define Center_POST_FoodPraise_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-delicacy/food/praise"]
 
 #endif /* FoodHeader_h */

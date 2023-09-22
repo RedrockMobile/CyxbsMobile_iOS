@@ -22,7 +22,7 @@
     };
     
     [HttpTool.shareTool
-     request:NewQA_POST_FoodResult_API
+     request:Center_POST_FoodResult_API
      type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerJSON
      bodyParameters:paramters

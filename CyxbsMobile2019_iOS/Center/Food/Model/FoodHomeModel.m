@@ -18,7 +18,7 @@
 
 - (void)requestSuccess:(void (^)(void))success failure:(void (^)(NSError *_Nonnull))failure {
     [HttpTool.shareTool
-     request:NewQA_GET_FoodHomePage_API
+     request:Center_GET_FoodHomePage_API
      type:HttpToolRequestTypeGet
      serializer:HttpToolRequestSerializerJSON
      bodyParameters:nil

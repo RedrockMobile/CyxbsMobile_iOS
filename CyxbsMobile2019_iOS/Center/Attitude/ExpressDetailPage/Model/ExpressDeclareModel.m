@@ -19,7 +19,7 @@
 //        @"id": theId
 //    };
     [HttpTool.shareTool
-    request:Attitude_DELETE_expressDeletePick_API
+    request:Center_DELETE_AttitudeCancelPick_API
      type:HttpToolRequestTypeDelete
      serializer:HttpToolRequestSerializerJSON
      bodyParameters:theId

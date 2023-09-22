@@ -16,7 +16,7 @@
                            Failure:(void(^)(NSError * _Nonnull))failure {
     NSDictionary *param = @{ @"id": theId };
     [HttpTool.shareTool
-    request:Attitude_GET_expressDetailData_API
+    request:Center_GET_AttitudeExpressDetail_API
      type:HttpToolRequestTypeGet
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:param

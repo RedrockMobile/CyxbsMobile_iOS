@@ -19,7 +19,7 @@
         @"choices" : array
     };
     [HttpTool.shareTool
-     request:Attitude_POST_publishTag_API
+     request:Center_POST_AttitudePublishTag_API
      type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerJSON
      bodyParameters:param

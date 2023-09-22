@@ -20,7 +20,7 @@
         @"choice": choice
     };
     [HttpTool.shareTool
-     request:Attitude_PUT_expressPickData_API
+     request:Center_PUT_AttitudeExpressPick_API
      type:HttpToolRequestTypePut
      serializer:HttpToolRequestSerializerJSON
      bodyParameters:params

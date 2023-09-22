@@ -69,7 +69,7 @@
 /// 网络请求天数
 - (void)requestDays {
     [HttpTool.shareTool
-     request:Discover_GET_playground_center_API
+     request:Center_GET_playground_API
      type:HttpToolRequestTypeGet
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:nil

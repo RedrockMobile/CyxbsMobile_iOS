@@ -21,7 +21,7 @@
         @"offset": [NSNumber numberWithLong:offset]
     };
     [HttpTool.shareTool
-     request:Attitude_GET_homePageData_API
+     request:Center_GET_AttitudehomePage_API
      type:HttpToolRequestTypeGet
      serializer:HttpToolRequestSerializerHTTP
      bodyParameters:param // offset参数未选默认为0，limit默认20
