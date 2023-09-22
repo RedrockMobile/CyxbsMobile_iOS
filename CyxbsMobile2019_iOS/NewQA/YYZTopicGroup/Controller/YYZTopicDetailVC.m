@@ -10,7 +10,7 @@
 #import "YYZTopicCell.h"
 #import "PostTableViewCell.h"
 #import "PostArchiveTool.h"
-#import "DynamicDetailMainVC.h"
+//#import "DynamicDetailMainVC.h"
 #import "ClassTabBar.h"
 #import "StarPostModel.h"
 #import "YYZTopicModel.h"
@@ -215,13 +215,13 @@ UIGestureRecognizerDelegate>
         [self.navigationController popToRootViewControllerAnimated:YES];
     }else{
         UIViewController *frontVC = self.navigationController.viewControllers[self.navigationController.viewControllers.count - 2];
-        if ([frontVC isKindOfClass:[NewQAMainVC class]]) {
+//        if ([frontVC isKindOfClass:[NewQAMainVC class]]) {
 //            NewQAMainVC * QAMainVC = (NewQAMainVC *)frontVC;
 //            QAMainVC.isNeedFresh = _isChanged;
 //            [self.navigationController popToViewController:QAMainVC animated:YES];
-        }else{
+//        }else{
             [self.navigationController popViewControllerAnimated:YES];
-        }
+//        }
     }
 }
 
@@ -598,20 +598,20 @@ UIGestureRecognizerDelegate>
     CGFloat pageWidth = self.topicScrollView.frame.size.width;
     int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     if(currentPage == 0){
-        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
-        _item = [[PostItem alloc] initWithDic:self.leftTableArray[indexPath.row]];
-        dynamicDetailVC.post_id = _item.post_id;
-        dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-        ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
-        [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+//        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
+//        _item = [[PostItem alloc] initWithDic:self.leftTableArray[indexPath.row]];
+//        dynamicDetailVC.post_id = _item.post_id;
+//        dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+//        ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
+//        [self.navigationController pushViewController:dynamicDetailVC animated:YES];
     }
     else{
-        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
-        _item = [[PostItem alloc] initWithDic:self.rightTableArray[indexPath.row]];
-        dynamicDetailVC.post_id = _item.post_id;
-        dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-        ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
-        [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+//        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
+//        _item = [[PostItem alloc] initWithDic:self.rightTableArray[indexPath.row]];
+//        dynamicDetailVC.post_id = _item.post_id;
+//        dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+//        ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
+//        [self.navigationController pushViewController:dynamicDetailVC animated:YES];
     }
 }
 #pragma mark- 配置相关弹出View和其蒙版的操作
@@ -718,18 +718,18 @@ UIGestureRecognizerDelegate>
     CGFloat pageWidth = self.topicScrollView.frame.size.width;
     int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     if(currentPage == 0){
-        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
-    _item = [[PostItem alloc] initWithDic:self.leftTableArray[cell.commendBtn.tag]];
-    dynamicDetailVC.post_id = _item.post_id;
-    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+//        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
+//    _item = [[PostItem alloc] initWithDic:self.leftTableArray[cell.commendBtn.tag]];
+//    dynamicDetailVC.post_id = _item.post_id;
+//    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
     }
     else{
-        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
-    _item = [[PostItem alloc] initWithDic:self.rightTableArray[cell.commendBtn.tag]];
-    dynamicDetailVC.post_id = _item.post_id;
-    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+//        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
+//    _item = [[PostItem alloc] initWithDic:self.rightTableArray[cell.commendBtn.tag]];
+//    dynamicDetailVC.post_id = _item.post_id;
+//    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
     }
 }
 ///分享帖子

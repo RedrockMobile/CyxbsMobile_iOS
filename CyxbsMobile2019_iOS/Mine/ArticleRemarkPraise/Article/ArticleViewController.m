@@ -16,7 +16,7 @@
 #import "PostTableViewCellFrame.h"
 
 //动态详情页控制器
-#import "DynamicDetailMainVC.h"
+//#import "DynamicDetailMainVC.h"
 @interface ArticleViewController ()<UITableViewDelegate, UITableViewDataSource,PostTableViewCellDelegate,ShareViewPlusDelegate,ArticleModelDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)ShareViewPlus *shareView;
@@ -82,10 +82,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
-    dynamicDetailVC.post_id = self.postItemArr[indexPath.row].post_id;
-    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+//    DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
+//    dynamicDetailVC.post_id = self.postItemArr[indexPath.row].post_id;
+//    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
 }
 
 //MARK:-ArticleModel的代理方法：
@@ -145,10 +145,10 @@
 //MARK: - cell的代理方法:
 //评论
 - (void)ClickedCommentBtn:(PostTableViewCell *)cell {
-    DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
-    dynamicDetailVC.post_id = cell.item.post_id;
-    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+//    DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
+//    dynamicDetailVC.post_id = cell.item.post_id;
+//    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
 }
 
 //话题标签

@@ -13,7 +13,6 @@
 #import "GoodsCollectionViewCell.h"
 #import "StampCenterSecondHeaderView.h"
 #import "TaskTableViewCellWithProgress.h"
-#import "SZHReleaseDynamic.h"
 #import "EditMyInfoViewController.h"
 #import "TableHeaderView.h"
 
@@ -657,8 +656,8 @@
 
 //跳转至发动态界面
 - (void)jumpToReleaseDynamic{
-    SZHReleaseDynamic *SVC = [[SZHReleaseDynamic alloc]init];
-    [self.navigationController pushViewController:SVC animated:YES];
+//    SZHReleaseDynamic *SVC = [[SZHReleaseDynamic alloc]init];
+//    [self.navigationController pushViewController:SVC animated:YES];
 }
 
 //刷新界面

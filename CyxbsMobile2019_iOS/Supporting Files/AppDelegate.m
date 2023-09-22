@@ -12,7 +12,7 @@
 #import <UMShare/UMShare.h>
 #import <UMAnalytics/MobClick.h>
 #import <UMCommonLog/UMCommonLogHeaders.h>
-#import "DynamicDetailMainVC.h"
+//#import "DynamicDetailMainVC.h"
 #import <AFNetworkReachabilityManager.h>
 #import <sqlite3.h>
 #import <Bugly/Bugly.h>
@@ -455,13 +455,13 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     if ([urlStr hasPrefix:@"redrock.zscy.youwen.share://"]) {
         NSCharacterSet *nonDigitCharacterSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
         NSString *str = [[urlStr componentsSeparatedByCharactersInSet:nonDigitCharacterSet] componentsJoinedByString:@""];
-        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
+//        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
 //        _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
-        dynamicDetailVC.post_id = str;
-        dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+//        dynamicDetailVC.post_id = str;
+//        dynamicDetailVC.hidesBottomBarWhenPushed = YES;
 //        ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
 //        [self.navigationController pushViewController:dynamicDetailVC animated:YES];
-        [navigationController pushViewController:dynamicDetailVC animated:YES];
+//        [navigationController pushViewController:dynamicDetailVC animated:YES];
     }
     return YES;
 }
