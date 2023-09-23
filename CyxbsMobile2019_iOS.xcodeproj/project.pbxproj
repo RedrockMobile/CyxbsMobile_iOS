@@ -321,10 +321,6 @@
 		AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57588824EE739F002F6F6D /* TimeBtnSelectedBackView.m */; };
 		AA57588C24EF5841002F6F6D /* NoticeWaySelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57588B24EF5841002F6F6D /* NoticeWaySelectView.m */; };
 		AA5D39B824F74A9800AB2DF5 /* LocalNotiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5D39B724F74A9800AB2DF5 /* LocalNotiManager.m */; };
-		AA7ABA232873EA4100BA6790 /* ReleaseDynamicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA0E2873EA4100BA6790 /* ReleaseDynamicModel.m */; };
-		AA7ABA252873EA4100BA6790 /* SZHPhotoImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA132873EA4100BA6790 /* SZHPhotoImageView.m */; };
-		AA7ABA2A2873EA4100BA6790 /* SZHReleasView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA1F2873EA4100BA6790 /* SZHReleasView.m */; };
-		AA7ABA2B2873EA4100BA6790 /* originPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA202873EA4100BA6790 /* originPhotoView.m */; };
 		AA7ABA982873EA5400BA6790 /* PostItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA352873EA5300BA6790 /* PostItem.m */; };
 		AA7ABA992873EA5400BA6790 /* GroupItem.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA362873EA5300BA6790 /* GroupItem.m */; };
 		AA7ABA9A2873EA5400BA6790 /* DeletePostModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA372873EA5300BA6790 /* DeletePostModel.m */; };
@@ -355,13 +351,7 @@
 		AA7ABAC32873EA5500BA6790 /* MGDCurrentTimeStr.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA912873EA5400BA6790 /* MGDCurrentTimeStr.m */; };
 		AA7ABAC52873EA5500BA6790 /* MGDRefreshTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA932873EA5400BA6790 /* MGDRefreshTool.m */; };
 		AA7ABAC62873EA5500BA6790 /* NewQAHud.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA952873EA5400BA6790 /* NewQAHud.m */; };
-		AA7ABAF02873EA6D00BA6790 /* DynamicDetailRequestDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABACA2873EA6D00BA6790 /* DynamicDetailRequestDataModel.m */; };
-		AA7ABAF12873EA6D00BA6790 /* DynamicDetailCommentTableCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABACE2873EA6D00BA6790 /* DynamicDetailCommentTableCellModel.m */; };
-		AA7ABAF22873EA6D00BA6790 /* DynamicDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABACF2873EA6D00BA6790 /* DynamicDetailViewModel.m */; };
-		AA7ABAF42873EA6D00BA6790 /* DynamicDetailAddPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABAD32873EA6D00BA6790 /* DynamicDetailAddPhotoController.m */; };
 		AA7ABAF72873EA6D00BA6790 /* UIView+FrameTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABADB2873EA6D00BA6790 /* UIView+FrameTool.m */; };
-		AA7ABAF92873EA6D00BA6790 /* UIColor+SYColor.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABAE22873EA6D00BA6790 /* UIColor+SYColor.m */; };
-		AA7ABAFC2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABAEA2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.m */; };
 		AA86E38B2635B04A00756F05 /* ColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA86E38A2635B04A00756F05 /* ColorManager.m */; };
 		AA9ABE9024EB63BF00D16BE0 /* ClassDetailViewShower.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE8F24EB63BF00D16BE0 /* ClassDetailViewShower.m */; };
 		AA9ABE9324EB8ADB00D16BE0 /* LessonViewForAWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE9224EB8ADB00D16BE0 /* LessonViewForAWeek.m */; };
@@ -1227,14 +1217,6 @@
 		AA57588B24EF5841002F6F6D /* NoticeWaySelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeWaySelectView.m; sourceTree = "<group>"; };
 		AA5D39B624F74A9800AB2DF5 /* LocalNotiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalNotiManager.h; sourceTree = "<group>"; };
 		AA5D39B724F74A9800AB2DF5 /* LocalNotiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalNotiManager.m; sourceTree = "<group>"; };
-		AA7ABA0D2873EA4100BA6790 /* ReleaseDynamicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReleaseDynamicModel.h; sourceTree = "<group>"; };
-		AA7ABA0E2873EA4100BA6790 /* ReleaseDynamicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReleaseDynamicModel.m; sourceTree = "<group>"; };
-		AA7ABA132873EA4100BA6790 /* SZHPhotoImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZHPhotoImageView.m; sourceTree = "<group>"; };
-		AA7ABA182873EA4100BA6790 /* originPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = originPhotoView.h; sourceTree = "<group>"; };
-		AA7ABA192873EA4100BA6790 /* SZHReleasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZHReleasView.h; sourceTree = "<group>"; };
-		AA7ABA1B2873EA4100BA6790 /* SZHPhotoImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZHPhotoImageView.h; sourceTree = "<group>"; };
-		AA7ABA1F2873EA4100BA6790 /* SZHReleasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZHReleasView.m; sourceTree = "<group>"; };
-		AA7ABA202873EA4100BA6790 /* originPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = originPhotoView.m; sourceTree = "<group>"; };
 		AA7ABA352873EA5300BA6790 /* PostItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostItem.m; sourceTree = "<group>"; };
 		AA7ABA362873EA5300BA6790 /* GroupItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupItem.m; sourceTree = "<group>"; };
 		AA7ABA372873EA5300BA6790 /* DeletePostModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeletePostModel.m; sourceTree = "<group>"; };
@@ -1295,20 +1277,8 @@
 		AA7ABA932873EA5400BA6790 /* MGDRefreshTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDRefreshTool.m; sourceTree = "<group>"; };
 		AA7ABA942873EA5400BA6790 /* PostArchiveTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostArchiveTool.h; sourceTree = "<group>"; };
 		AA7ABA952873EA5400BA6790 /* NewQAHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAHud.m; sourceTree = "<group>"; };
-		AA7ABACA2873EA6D00BA6790 /* DynamicDetailRequestDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicDetailRequestDataModel.m; sourceTree = "<group>"; };
-		AA7ABACB2873EA6D00BA6790 /* DynamicDetailViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicDetailViewModel.h; sourceTree = "<group>"; };
-		AA7ABACC2873EA6D00BA6790 /* DynamicDetailCommentTableCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicDetailCommentTableCellModel.h; sourceTree = "<group>"; };
-		AA7ABACD2873EA6D00BA6790 /* DynamicDetailRequestDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicDetailRequestDataModel.h; sourceTree = "<group>"; };
-		AA7ABACE2873EA6D00BA6790 /* DynamicDetailCommentTableCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicDetailCommentTableCellModel.m; sourceTree = "<group>"; };
-		AA7ABACF2873EA6D00BA6790 /* DynamicDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicDetailViewModel.m; sourceTree = "<group>"; };
-		AA7ABAD12873EA6D00BA6790 /* DynamicDetailAddPhotoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicDetailAddPhotoController.h; sourceTree = "<group>"; };
-		AA7ABAD32873EA6D00BA6790 /* DynamicDetailAddPhotoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicDetailAddPhotoController.m; sourceTree = "<group>"; };
 		AA7ABADB2873EA6D00BA6790 /* UIView+FrameTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FrameTool.m"; sourceTree = "<group>"; };
 		AA7ABADD2873EA6D00BA6790 /* UIView+FrameTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FrameTool.h"; sourceTree = "<group>"; };
-		AA7ABADF2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GYYImageChooseCollectionViewCell.h; sourceTree = "<group>"; };
-		AA7ABAE12873EA6D00BA6790 /* UIColor+SYColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SYColor.h"; sourceTree = "<group>"; };
-		AA7ABAE22873EA6D00BA6790 /* UIColor+SYColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SYColor.m"; sourceTree = "<group>"; };
-		AA7ABAEA2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYYImageChooseCollectionViewCell.m; sourceTree = "<group>"; };
 		AA86E3892635B04A00756F05 /* ColorManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorManager.h; sourceTree = "<group>"; };
 		AA86E38A2635B04A00756F05 /* ColorManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorManager.m; sourceTree = "<group>"; };
 		AA9ABE8E24EB63BF00D16BE0 /* ClassDetailViewShower.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassDetailViewShower.h; sourceTree = "<group>"; };
@@ -4222,7 +4192,6 @@
 			isa = PBXGroup;
 			children = (
 				AA7ABA0C2873EA4100BA6790 /* Models */,
-				AA7ABA122873EA4100BA6790 /* Views */,
 			);
 			path = ReleaseDynamic;
 			sourceTree = "<group>";
@@ -4230,23 +4199,8 @@
 		AA7ABA0C2873EA4100BA6790 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AA7ABA0D2873EA4100BA6790 /* ReleaseDynamicModel.h */,
-				AA7ABA0E2873EA4100BA6790 /* ReleaseDynamicModel.m */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		AA7ABA122873EA4100BA6790 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				AA7ABA132873EA4100BA6790 /* SZHPhotoImageView.m */,
-				AA7ABA182873EA4100BA6790 /* originPhotoView.h */,
-				AA7ABA192873EA4100BA6790 /* SZHReleasView.h */,
-				AA7ABA1B2873EA4100BA6790 /* SZHPhotoImageView.h */,
-				AA7ABA1F2873EA4100BA6790 /* SZHReleasView.m */,
-				AA7ABA202873EA4100BA6790 /* originPhotoView.m */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		AA7ABA2D2873EA5300BA6790 /* NewQAMainView */ = {
@@ -4359,42 +4313,15 @@
 		AA7ABAC72873EA6D00BA6790 /* DynamicDetail */ = {
 			isa = PBXGroup;
 			children = (
-				AA7ABAD02873EA6D00BA6790 /* Controllers */,
-				AA7ABAC92873EA6D00BA6790 /* Models */,
 				AA7ABAD52873EA6D00BA6790 /* Views */,
 			);
 			path = DynamicDetail;
-			sourceTree = "<group>";
-		};
-		AA7ABAC92873EA6D00BA6790 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				AA7ABACC2873EA6D00BA6790 /* DynamicDetailCommentTableCellModel.h */,
-				AA7ABACE2873EA6D00BA6790 /* DynamicDetailCommentTableCellModel.m */,
-				AA7ABACD2873EA6D00BA6790 /* DynamicDetailRequestDataModel.h */,
-				AA7ABACA2873EA6D00BA6790 /* DynamicDetailRequestDataModel.m */,
-				AA7ABACB2873EA6D00BA6790 /* DynamicDetailViewModel.h */,
-				AA7ABACF2873EA6D00BA6790 /* DynamicDetailViewModel.m */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		AA7ABAD02873EA6D00BA6790 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				AA7ABAD12873EA6D00BA6790 /* DynamicDetailAddPhotoController.h */,
-				AA7ABAD32873EA6D00BA6790 /* DynamicDetailAddPhotoController.m */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		AA7ABAD52873EA6D00BA6790 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				AA7ABADA2873EA6D00BA6790 /* DKSKeyBoard */,
-				AA7ABADF2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.h */,
-				AA7ABAEA2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.m */,
-				AA7ABAE02873EA6D00BA6790 /* UIColor */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4406,15 +4333,6 @@
 				AA7ABADD2873EA6D00BA6790 /* UIView+FrameTool.h */,
 			);
 			path = DKSKeyBoard;
-			sourceTree = "<group>";
-		};
-		AA7ABAE02873EA6D00BA6790 /* UIColor */ = {
-			isa = PBXGroup;
-			children = (
-				AA7ABAE12873EA6D00BA6790 /* UIColor+SYColor.h */,
-				AA7ABAE22873EA6D00BA6790 /* UIColor+SYColor.m */,
-			);
-			path = UIColor;
 			sourceTree = "<group>";
 		};
 		AA86E38F2635B33F00756F05 /* Category */ = {
@@ -6103,7 +6021,6 @@
 				B0F71C922ABC71B200F8B1AC /* ExpressDeclareModel.m in Sources */,
 				646B1984282E8F000015DF28 /* StationGuideView.m in Sources */,
 				14B73F7C281BED7B00D08ADD /* MineMessageModel.m in Sources */,
-				AA7ABAF42873EA6D00BA6790 /* DynamicDetailAddPhotoController.m in Sources */,
 				AA0DDB7E286C8B1A00802324 /* PMPHomePageHeaderView.m in Sources */,
 				AA0DDB5E286C8B1A00802324 /* AuthenticViewController.m in Sources */,
 				B0F71C832ABC71B200F8B1AC /* AttitudeSelfPageViewController.m in Sources */,
@@ -6187,7 +6104,6 @@
 				FE2C135F27AEF629001CF7AF /* DiscoverTodoSheetView.m in Sources */,
 				FE2C136727AEF629001CF7AF /* TodoSyncTool.m in Sources */,
 				AAC7CA1725F778AF00E6B5D5 /* RemarkModel.m in Sources */,
-				AA7ABAFC2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.m in Sources */,
 				EE131C212471362E00B6ED97 /* URLController.m in Sources */,
 				AA0DDB6F286C8B1A00802324 /* MineEditTextField.m in Sources */,
 				14E7E4A827F5762500B67469 /* QuestionSelectView.m in Sources */,
@@ -6221,7 +6137,6 @@
 				AA0DDB7B286C8B1A00802324 /* PMPInfoModel.m in Sources */,
 				AA0DDB64286C8B1A00802324 /* SQLCodeCreater.m in Sources */,
 				1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */,
-				AA7ABAF12873EA6D00BA6790 /* DynamicDetailCommentTableCellModel.m in Sources */,
 				1A4A466C24C97E2A0033734E /* UserProtocolViewController.m in Sources */,
 				B0F71C902ABC71B200F8B1AC /* ExpressPickPutModel.m in Sources */,
 				1893DC9126EA3375007E871E /* MGDGroup.m in Sources */,
@@ -6255,9 +6170,7 @@
 				14E7E4B227F57FC800B67469 /* FeedBackQuestionButton.m in Sources */,
 				1A141378235F524B0001417E /* SYCSegmentView.m in Sources */,
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
-				AA7ABA252873EA4100BA6790 /* SZHPhotoImageView.m in Sources */,
 				1A5A5EE52360100B00543BAE /* UserItem.m in Sources */,
-				AA7ABAF22873EA6D00BA6790 /* DynamicDetailViewModel.m in Sources */,
 				73AAA1D026C918250084E44D /* DetailsTaskTableViewCell.m in Sources */,
 				B0F71C962ABC71B200F8B1AC /* ExpressDetailCell.m in Sources */,
 				B0B1BA0229E6A2E300A1BB02 /* DiscoverViewController.m in Sources */,
@@ -6281,7 +6194,6 @@
 				18CDF699257F91BD006E8E5C /* CQUPTMapContentView.m in Sources */,
 				B0F71C852ABC71B200F8B1AC /* AttitudeSelfPageDataItem.m in Sources */,
 				AA4FA1F425C2E1E3005139BA /* PraiseViewController.m in Sources */,
-				AA7ABAF92873EA6D00BA6790 /* UIColor+SYColor.m in Sources */,
 				14E7E4A927F5762500B67469 /* QuestionButton.m in Sources */,
 				B0F71C892ABC71B200F8B1AC /* AttitudeMainPageItem.m in Sources */,
 				FE2C135227AEF629001CF7AF /* ToDoMainBarView.m in Sources */,
@@ -6362,7 +6274,6 @@
 				18CDF6A2257F91BD006E8E5C /* CQUPTMapImageLayout.m in Sources */,
 				B0F71C8E2ABC71B200F8B1AC /* AttitudeNetWrong.m in Sources */,
 				1490FC8B28031BC200958892 /* FinderTopView.m in Sources */,
-				AA7ABAF02873EA6D00BA6790 /* DynamicDetailRequestDataModel.m in Sources */,
 				DB34EB38239BD4550052B65E /* MainView.m in Sources */,
 				1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */,
 				DB34EB3A239BD4550052B65E /* CoverView.m in Sources */,
@@ -6387,7 +6298,6 @@
 				6464F93426E4F6EE008562C5 /* BuyModel.m in Sources */,
 				AA5D39B824F74A9800AB2DF5 /* LocalNotiManager.m in Sources */,
 				14B73F78281BED7B00D08ADD /* SystemMessageVC.m in Sources */,
-				AA7ABA232873EA4100BA6790 /* ReleaseDynamicModel.m in Sources */,
 				B0F71C8D2ABC71B200F8B1AC /* AttitudeMainDefaultView.m in Sources */,
 				735BC53526D392D400F22678 /* FeedBackTableViewCell.m in Sources */,
 				D0101F64243587A1004337ED /* GKPhotoBrowser.m in Sources */,
@@ -6453,7 +6363,6 @@
 				1A14136C235F524B0001417E /* UIViewController+BackButtonHandler.m in Sources */,
 				14B73F7A281BED7B00D08ADD /* MessageMoreCell.m in Sources */,
 				18CDF69D257F91BD006E8E5C /* CQUPTMapSearchResultCell.m in Sources */,
-				AA7ABA2A2873EA4100BA6790 /* SZHReleasView.m in Sources */,
 				DB34EB2E239BD4550052B65E /* RemindTableViewCell.m in Sources */,
 				7311328626CCEC2400EF88C1 /* Goods.m in Sources */,
 				AAE3308725E3AD5E00324750 /* MainPageNumBtn.m in Sources */,
@@ -6490,7 +6399,6 @@
 				187DF4C5260310FA000BCDE9 /* UITextView+WZB.m in Sources */,
 				4931631E26CD7B7900140412 /* StampCenterVC.m in Sources */,
 				18CDF695257F91BD006E8E5C /* CQUPTMapPlaceItem.m in Sources */,
-				AA7ABA2B2873EA4100BA6790 /* originPhotoView.m in Sources */,
 				18CDF69A257F91BD006E8E5C /* CQUPTMapProgressView.m in Sources */,
 				18CDF679257F91BD006E8E5C /* ScheduleViewController.m in Sources */,
 				49343A2326D4EAB2001A2892 /* CommonQuestionCell.m in Sources */,
