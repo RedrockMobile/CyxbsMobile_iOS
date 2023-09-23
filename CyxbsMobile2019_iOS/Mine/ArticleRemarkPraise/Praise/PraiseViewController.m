@@ -10,7 +10,6 @@
 #import "PraiseTableViewCell.h"
 #import "PraiseModel.h"
 #import "PraiseParseModel.h"
-//#import "DynamicDetailMainVC.h"  //动态详情页
 @interface PraiseViewController ()<UITableViewDelegate, UITableViewDataSource, MainPage2RequestModelDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)PraiseModel *praiseModel;
@@ -97,13 +96,6 @@
     }
     [cell setModel:[[PraiseParseModel alloc]initWithDict:self.praiseModel.dataArr[indexPath.row]]];
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    PraiseParseModel *model = [[PraiseParseModel alloc] initWithDict:self.praiseModel.dataArr[indexPath.row]];
-//    DynamicDetailMainVC *vc = [[DynamicDetailMainVC alloc] init];
-//    vc.post_id = model.post_id;
-//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //MARK: - 懒加载

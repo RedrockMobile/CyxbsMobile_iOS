@@ -12,7 +12,6 @@
 #import <UMShare/UMShare.h>
 #import <UMAnalytics/MobClick.h>
 #import <UMCommonLog/UMCommonLogHeaders.h>
-//#import "DynamicDetailMainVC.h"
 #import <AFNetworkReachabilityManager.h>
 #import <sqlite3.h>
 #import <Bugly/Bugly.h>

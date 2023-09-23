@@ -358,17 +358,10 @@
 		AA7ABAF02873EA6D00BA6790 /* DynamicDetailRequestDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABACA2873EA6D00BA6790 /* DynamicDetailRequestDataModel.m */; };
 		AA7ABAF12873EA6D00BA6790 /* DynamicDetailCommentTableCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABACE2873EA6D00BA6790 /* DynamicDetailCommentTableCellModel.m */; };
 		AA7ABAF22873EA6D00BA6790 /* DynamicDetailViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABACF2873EA6D00BA6790 /* DynamicDetailViewModel.m */; };
-		AA7ABAF32873EA6D00BA6790 /* DynamicDetailMainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABAD22873EA6D00BA6790 /* DynamicDetailMainVC.m */; };
 		AA7ABAF42873EA6D00BA6790 /* DynamicDetailAddPhotoController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABAD32873EA6D00BA6790 /* DynamicDetailAddPhotoController.m */; };
-		AA7ABAF52873EA6D00BA6790 /* SHPopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABAD72873EA6D00BA6790 /* SHPopMenu.m */; };
 		AA7ABAF72873EA6D00BA6790 /* UIView+FrameTool.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABADB2873EA6D00BA6790 /* UIView+FrameTool.m */; };
-		AA7ABAF82873EA6D00BA6790 /* DKSKeyboardView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABADE2873EA6D00BA6790 /* DKSKeyboardView.m */; };
 		AA7ABAF92873EA6D00BA6790 /* UIColor+SYColor.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABAE22873EA6D00BA6790 /* UIColor+SYColor.m */; };
-		AA7ABAFA2873EA6D00BA6790 /* DynamicDetailComentTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABAE32873EA6D00BA6790 /* DynamicDetailComentTableCell.m */; };
-		AA7ABAFB2873EA6D00BA6790 /* zhPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABAE62873EA6D00BA6790 /* zhPopupController.m */; };
 		AA7ABAFC2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABAEA2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.m */; };
-		AA7ABAFE2873EA6D00BA6790 /* DynamicDetailTopBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABAED2873EA6D00BA6790 /* DynamicDetailTopBarView.m */; };
-		AA7ABAFF2873EA6D00BA6790 /* DynamicSpecificCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABAEE2873EA6D00BA6790 /* DynamicSpecificCell.m */; };
 		AA86E38B2635B04A00756F05 /* ColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA86E38A2635B04A00756F05 /* ColorManager.m */; };
 		AA9ABE9024EB63BF00D16BE0 /* ClassDetailViewShower.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE8F24EB63BF00D16BE0 /* ClassDetailViewShower.m */; };
 		AA9ABE9324EB8ADB00D16BE0 /* LessonViewForAWeek.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE9224EB8ADB00D16BE0 /* LessonViewForAWeek.m */; };
@@ -1309,27 +1302,13 @@
 		AA7ABACE2873EA6D00BA6790 /* DynamicDetailCommentTableCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicDetailCommentTableCellModel.m; sourceTree = "<group>"; };
 		AA7ABACF2873EA6D00BA6790 /* DynamicDetailViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicDetailViewModel.m; sourceTree = "<group>"; };
 		AA7ABAD12873EA6D00BA6790 /* DynamicDetailAddPhotoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicDetailAddPhotoController.h; sourceTree = "<group>"; };
-		AA7ABAD22873EA6D00BA6790 /* DynamicDetailMainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicDetailMainVC.m; sourceTree = "<group>"; };
 		AA7ABAD32873EA6D00BA6790 /* DynamicDetailAddPhotoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicDetailAddPhotoController.m; sourceTree = "<group>"; };
-		AA7ABAD42873EA6D00BA6790 /* DynamicDetailMainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicDetailMainVC.h; sourceTree = "<group>"; };
-		AA7ABAD72873EA6D00BA6790 /* SHPopMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHPopMenu.m; sourceTree = "<group>"; };
-		AA7ABAD82873EA6D00BA6790 /* SHPopMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHPopMenu.h; sourceTree = "<group>"; };
 		AA7ABADB2873EA6D00BA6790 /* UIView+FrameTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+FrameTool.m"; sourceTree = "<group>"; };
-		AA7ABADC2873EA6D00BA6790 /* DKSKeyboardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DKSKeyboardView.h; sourceTree = "<group>"; };
 		AA7ABADD2873EA6D00BA6790 /* UIView+FrameTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+FrameTool.h"; sourceTree = "<group>"; };
-		AA7ABADE2873EA6D00BA6790 /* DKSKeyboardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DKSKeyboardView.m; sourceTree = "<group>"; };
 		AA7ABADF2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GYYImageChooseCollectionViewCell.h; sourceTree = "<group>"; };
 		AA7ABAE12873EA6D00BA6790 /* UIColor+SYColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+SYColor.h"; sourceTree = "<group>"; };
 		AA7ABAE22873EA6D00BA6790 /* UIColor+SYColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+SYColor.m"; sourceTree = "<group>"; };
-		AA7ABAE32873EA6D00BA6790 /* DynamicDetailComentTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicDetailComentTableCell.m; sourceTree = "<group>"; };
-		AA7ABAE62873EA6D00BA6790 /* zhPopupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = zhPopupController.m; sourceTree = "<group>"; };
-		AA7ABAE72873EA6D00BA6790 /* zhPopupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zhPopupController.h; sourceTree = "<group>"; };
-		AA7ABAE82873EA6D00BA6790 /* DynamicSpecificCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicSpecificCell.h; sourceTree = "<group>"; };
-		AA7ABAE92873EA6D00BA6790 /* DynamicDetailTopBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicDetailTopBarView.h; sourceTree = "<group>"; };
 		AA7ABAEA2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GYYImageChooseCollectionViewCell.m; sourceTree = "<group>"; };
-		AA7ABAEC2873EA6D00BA6790 /* DynamicDetailComentTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicDetailComentTableCell.h; sourceTree = "<group>"; };
-		AA7ABAED2873EA6D00BA6790 /* DynamicDetailTopBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicDetailTopBarView.m; sourceTree = "<group>"; };
-		AA7ABAEE2873EA6D00BA6790 /* DynamicSpecificCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicSpecificCell.m; sourceTree = "<group>"; };
 		AA86E3892635B04A00756F05 /* ColorManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorManager.h; sourceTree = "<group>"; };
 		AA86E38A2635B04A00756F05 /* ColorManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorManager.m; sourceTree = "<group>"; };
 		AA9ABE8E24EB63BF00D16BE0 /* ClassDetailViewShower.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassDetailViewShower.h; sourceTree = "<group>"; };
@@ -4291,25 +4270,25 @@
 		AA7ABA342873EA5300BA6790 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AA7ABA352873EA5300BA6790 /* PostItem.m */,
-				AA7ABA362873EA5300BA6790 /* GroupItem.m */,
+				AA7ABA442873EA5300BA6790 /* DeletePostModel.h */,
 				AA7ABA372873EA5300BA6790 /* DeletePostModel.m */,
+				AA7ABA412873EA5300BA6790 /* FollowGroupModel.h */,
+				AA7ABA4C2873EA5300BA6790 /* FollowGroupModel.m */,
+				AA7ABA462873EA5300BA6790 /* GroupItem.h */,
+				AA7ABA362873EA5300BA6790 /* GroupItem.m */,
+				AA7ABA3F2873EA5300BA6790 /* GroupModel.h */,
+				AA7ABA4D2873EA5300BA6790 /* GroupModel.m */,
+				AA7ABA492873EA5300BA6790 /* HotSearchModel.h */,
+				AA7ABA3D2873EA5300BA6790 /* HotSearchModel.m */,
+				AA7ABA452873EA5300BA6790 /* PostItem.h */,
+				AA7ABA352873EA5300BA6790 /* PostItem.m */,
+				AA7ABA432873EA5300BA6790 /* PostModel.h */,
 				AA7ABA382873EA5300BA6790 /* PostModel.m */,
 				AA7ABA3A2873EA5300BA6790 /* ReportModel.h */,
-				AA7ABA3C2873EA5300BA6790 /* ShieldModel.m */,
-				AA7ABA3D2873EA5300BA6790 /* HotSearchModel.m */,
-				AA7ABA3E2873EA5300BA6790 /* StarPostModel.h */,
-				AA7ABA3F2873EA5300BA6790 /* GroupModel.h */,
-				AA7ABA412873EA5300BA6790 /* FollowGroupModel.h */,
-				AA7ABA432873EA5300BA6790 /* PostModel.h */,
-				AA7ABA442873EA5300BA6790 /* DeletePostModel.h */,
-				AA7ABA452873EA5300BA6790 /* PostItem.h */,
-				AA7ABA462873EA5300BA6790 /* GroupItem.h */,
 				AA7ABA482873EA5300BA6790 /* ReportModel.m */,
-				AA7ABA492873EA5300BA6790 /* HotSearchModel.h */,
 				AA7ABA4A2873EA5300BA6790 /* ShieldModel.h */,
-				AA7ABA4C2873EA5300BA6790 /* FollowGroupModel.m */,
-				AA7ABA4D2873EA5300BA6790 /* GroupModel.m */,
+				AA7ABA3C2873EA5300BA6790 /* ShieldModel.m */,
+				AA7ABA3E2873EA5300BA6790 /* StarPostModel.h */,
 				AA7ABA4E2873EA5300BA6790 /* StarPostModel.m */,
 			);
 			path = Model;
@@ -4318,27 +4297,27 @@
 		AA7ABA4F2873EA5300BA6790 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AA7ABA502873EA5300BA6790 /* PostTableViewCellFrame.h */,
-				AA7ABA512873EA5300BA6790 /* PostTableViewCell.m */,
+				AA7ABA752873EA5300BA6790 /* FuncView.h */,
 				AA7ABA522873EA5300BA6790 /* FuncView.m */,
-				AA7ABA542873EA5300BA6790 /* ReportView.h */,
-				AA7ABA552873EA5300BA6790 /* ShareBtn.h */,
+				AA7ABA832873EA5400BA6790 /* MGDImageCollectionViewCell.h */,
+				AA7ABA702873EA5300BA6790 /* MGDImageCollectionViewCell.m */,
+				AA7ABA7C2873EA5400BA6790 /* NewQACellCollectionView.h */,
 				AA7ABA562873EA5300BA6790 /* NewQACellCollectionView.m */,
+				AA7ABA822873EA5400BA6790 /* NewQAPostDetailLabel.h */,
+				AA7ABA712873EA5300BA6790 /* NewQAPostDetailLabel.m */,
+				AA7ABA742873EA5300BA6790 /* PostTableViewCell.h */,
+				AA7ABA512873EA5300BA6790 /* PostTableViewCell.m */,
+				AA7ABA502873EA5300BA6790 /* PostTableViewCellFrame.h */,
+				AA7ABA762873EA5300BA6790 /* PostTableViewCellFrame.m */,
+				AA7ABA542873EA5300BA6790 /* ReportView.h */,
+				AA7ABA722873EA5300BA6790 /* ReportView.m */,
+				AA7ABA652873EA5300BA6790 /* SelfFuncView.h */,
+				AA7ABA772873EA5300BA6790 /* SelfFuncView.m */,
+				AA7ABA552873EA5300BA6790 /* ShareBtn.h */,
+				AA7ABA7B2873EA5300BA6790 /* ShareBtn.m */,
+				AA7ABA782873EA5300BA6790 /* ShareView.h */,
 				AA7ABA592873EA5300BA6790 /* ShareView.m */,
 				AA7ABA5A2873EA5300BA6790 /* StarBuuton */,
-				AA7ABA652873EA5300BA6790 /* SelfFuncView.h */,
-				AA7ABA702873EA5300BA6790 /* MGDImageCollectionViewCell.m */,
-				AA7ABA712873EA5300BA6790 /* NewQAPostDetailLabel.m */,
-				AA7ABA722873EA5300BA6790 /* ReportView.m */,
-				AA7ABA742873EA5300BA6790 /* PostTableViewCell.h */,
-				AA7ABA752873EA5300BA6790 /* FuncView.h */,
-				AA7ABA762873EA5300BA6790 /* PostTableViewCellFrame.m */,
-				AA7ABA772873EA5300BA6790 /* SelfFuncView.m */,
-				AA7ABA782873EA5300BA6790 /* ShareView.h */,
-				AA7ABA7B2873EA5300BA6790 /* ShareBtn.m */,
-				AA7ABA7C2873EA5400BA6790 /* NewQACellCollectionView.h */,
-				AA7ABA822873EA5400BA6790 /* NewQAPostDetailLabel.h */,
-				AA7ABA832873EA5400BA6790 /* MGDImageCollectionViewCell.h */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4347,15 +4326,15 @@
 			isa = PBXGroup;
 			children = (
 				AA7ABA5B2873EA5300BA6790 /* FunctionBtn.h */,
-				AA7ABA5C2873EA5300BA6790 /* MGDClickCoreLayer.m */,
-				AA7ABA5D2873EA5300BA6790 /* MGDClickParams.m */,
-				AA7ABA5E2873EA5300BA6790 /* MGDClickLayer.m */,
-				AA7ABA5F2873EA5300BA6790 /* MGDCircleLayer.h */,
 				AA7ABA602873EA5300BA6790 /* FunctionBtn.m */,
-				AA7ABA612873EA5300BA6790 /* MGDClickCoreLayer.h */,
-				AA7ABA622873EA5300BA6790 /* MGDClickLayer.h */,
-				AA7ABA632873EA5300BA6790 /* MGDClickParams.h */,
+				AA7ABA5F2873EA5300BA6790 /* MGDCircleLayer.h */,
 				AA7ABA642873EA5300BA6790 /* MGDCircleLayer.m */,
+				AA7ABA612873EA5300BA6790 /* MGDClickCoreLayer.h */,
+				AA7ABA5C2873EA5300BA6790 /* MGDClickCoreLayer.m */,
+				AA7ABA622873EA5300BA6790 /* MGDClickLayer.h */,
+				AA7ABA5E2873EA5300BA6790 /* MGDClickLayer.m */,
+				AA7ABA632873EA5300BA6790 /* MGDClickParams.h */,
+				AA7ABA5D2873EA5300BA6790 /* MGDClickParams.m */,
 			);
 			path = StarBuuton;
 			sourceTree = "<group>";
@@ -4363,16 +4342,16 @@
 		AA7ABA892873EA5400BA6790 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				AA7ABA8A2873EA5400BA6790 /* MGDStatusBarHeight.m */,
 				AA7ABA8C2873EA5400BA6790 /* MGDCurrentTimeStr.h */,
-				AA7ABA8D2873EA5400BA6790 /* NewQAHud.h */,
-				AA7ABA8E2873EA5400BA6790 /* PostArchiveTool.m */,
-				AA7ABA8F2873EA5400BA6790 /* MGDRefreshTool.h */,
-				AA7ABA902873EA5400BA6790 /* MGDStatusBarHeight.h */,
 				AA7ABA912873EA5400BA6790 /* MGDCurrentTimeStr.m */,
+				AA7ABA8F2873EA5400BA6790 /* MGDRefreshTool.h */,
 				AA7ABA932873EA5400BA6790 /* MGDRefreshTool.m */,
-				AA7ABA942873EA5400BA6790 /* PostArchiveTool.h */,
+				AA7ABA902873EA5400BA6790 /* MGDStatusBarHeight.h */,
+				AA7ABA8A2873EA5400BA6790 /* MGDStatusBarHeight.m */,
+				AA7ABA8D2873EA5400BA6790 /* NewQAHud.h */,
 				AA7ABA952873EA5400BA6790 /* NewQAHud.m */,
+				AA7ABA942873EA5400BA6790 /* PostArchiveTool.h */,
+				AA7ABA8E2873EA5400BA6790 /* PostArchiveTool.m */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -4380,8 +4359,8 @@
 		AA7ABAC72873EA6D00BA6790 /* DynamicDetail */ = {
 			isa = PBXGroup;
 			children = (
-				AA7ABAC92873EA6D00BA6790 /* Models */,
 				AA7ABAD02873EA6D00BA6790 /* Controllers */,
+				AA7ABAC92873EA6D00BA6790 /* Models */,
 				AA7ABAD52873EA6D00BA6790 /* Views */,
 			);
 			path = DynamicDetail;
@@ -4390,11 +4369,11 @@
 		AA7ABAC92873EA6D00BA6790 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AA7ABACC2873EA6D00BA6790 /* DynamicDetailCommentTableCellModel.h */,
+				AA7ABACE2873EA6D00BA6790 /* DynamicDetailCommentTableCellModel.m */,
+				AA7ABACD2873EA6D00BA6790 /* DynamicDetailRequestDataModel.h */,
 				AA7ABACA2873EA6D00BA6790 /* DynamicDetailRequestDataModel.m */,
 				AA7ABACB2873EA6D00BA6790 /* DynamicDetailViewModel.h */,
-				AA7ABACC2873EA6D00BA6790 /* DynamicDetailCommentTableCellModel.h */,
-				AA7ABACD2873EA6D00BA6790 /* DynamicDetailRequestDataModel.h */,
-				AA7ABACE2873EA6D00BA6790 /* DynamicDetailCommentTableCellModel.m */,
 				AA7ABACF2873EA6D00BA6790 /* DynamicDetailViewModel.m */,
 			);
 			path = Models;
@@ -4404,9 +4383,7 @@
 			isa = PBXGroup;
 			children = (
 				AA7ABAD12873EA6D00BA6790 /* DynamicDetailAddPhotoController.h */,
-				AA7ABAD22873EA6D00BA6790 /* DynamicDetailMainVC.m */,
 				AA7ABAD32873EA6D00BA6790 /* DynamicDetailAddPhotoController.m */,
-				AA7ABAD42873EA6D00BA6790 /* DynamicDetailMainVC.h */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -4414,38 +4391,19 @@
 		AA7ABAD52873EA6D00BA6790 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AA7ABAD62873EA6D00BA6790 /* SHPopMenu */,
 				AA7ABADA2873EA6D00BA6790 /* DKSKeyBoard */,
 				AA7ABADF2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.h */,
-				AA7ABAE02873EA6D00BA6790 /* UIColor */,
-				AA7ABAE32873EA6D00BA6790 /* DynamicDetailComentTableCell.m */,
-				AA7ABAE52873EA6D00BA6790 /* popView */,
-				AA7ABAE82873EA6D00BA6790 /* DynamicSpecificCell.h */,
-				AA7ABAE92873EA6D00BA6790 /* DynamicDetailTopBarView.h */,
 				AA7ABAEA2873EA6D00BA6790 /* GYYImageChooseCollectionViewCell.m */,
-				AA7ABAEC2873EA6D00BA6790 /* DynamicDetailComentTableCell.h */,
-				AA7ABAED2873EA6D00BA6790 /* DynamicDetailTopBarView.m */,
-				AA7ABAEE2873EA6D00BA6790 /* DynamicSpecificCell.m */,
+				AA7ABAE02873EA6D00BA6790 /* UIColor */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		AA7ABAD62873EA6D00BA6790 /* SHPopMenu */ = {
-			isa = PBXGroup;
-			children = (
-				AA7ABAD72873EA6D00BA6790 /* SHPopMenu.m */,
-				AA7ABAD82873EA6D00BA6790 /* SHPopMenu.h */,
-			);
-			path = SHPopMenu;
 			sourceTree = "<group>";
 		};
 		AA7ABADA2873EA6D00BA6790 /* DKSKeyBoard */ = {
 			isa = PBXGroup;
 			children = (
 				AA7ABADB2873EA6D00BA6790 /* UIView+FrameTool.m */,
-				AA7ABADC2873EA6D00BA6790 /* DKSKeyboardView.h */,
 				AA7ABADD2873EA6D00BA6790 /* UIView+FrameTool.h */,
-				AA7ABADE2873EA6D00BA6790 /* DKSKeyboardView.m */,
 			);
 			path = DKSKeyBoard;
 			sourceTree = "<group>";
@@ -4457,15 +4415,6 @@
 				AA7ABAE22873EA6D00BA6790 /* UIColor+SYColor.m */,
 			);
 			path = UIColor;
-			sourceTree = "<group>";
-		};
-		AA7ABAE52873EA6D00BA6790 /* popView */ = {
-			isa = PBXGroup;
-			children = (
-				AA7ABAE62873EA6D00BA6790 /* zhPopupController.m */,
-				AA7ABAE72873EA6D00BA6790 /* zhPopupController.h */,
-			);
-			path = popView;
 			sourceTree = "<group>";
 		};
 		AA86E38F2635B33F00756F05 /* Category */ = {
@@ -6127,7 +6076,6 @@
 				AA0DDB80286C8B1A00802324 /* PMPEditingButton.m in Sources */,
 				FE2C135327AEF629001CF7AF /* ToDoTableView.m in Sources */,
 				735BC55026D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.m in Sources */,
-				AA7ABAFE2873EA6D00BA6790 /* DynamicDetailTopBarView.m in Sources */,
 				AA7ABA9F2873EA5400BA6790 /* HotSearchModel.m in Sources */,
 				FE2C136527AEF629001CF7AF /* TodoDateTool.m in Sources */,
 				AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */,
@@ -6141,7 +6089,6 @@
 				14B73F70281BED7B00D08ADD /* ActiveMessageModel.m in Sources */,
 				AAE3304725E2A0D800324750 /* ArticleViewController.m in Sources */,
 				D0101D6A24352092004337ED /* UITextView+Placeholder.m in Sources */,
-				AA7ABAF82873EA6D00BA6790 /* DKSKeyboardView.m in Sources */,
 				14B73F80281BED7B00D08ADD /* MessagePresentView.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
 				AA7ABAAB2873EA5500BA6790 /* MGDClickParams.m in Sources */,
@@ -6161,7 +6108,6 @@
 				AA0DDB5E286C8B1A00802324 /* AuthenticViewController.m in Sources */,
 				B0F71C832ABC71B200F8B1AC /* AttitudeSelfPageViewController.m in Sources */,
 				AA0DDB58286C8B1A00802324 /* UIScrollView+JHContentExtension.m in Sources */,
-				AA7ABAFB2873EA6D00BA6790 /* zhPopupController.m in Sources */,
 				AA0DDB82286C8B1A00802324 /* IDCardTableViewCell.m in Sources */,
 				B5B454FF29C0C0D900875DF7 /* CenterVC.m in Sources */,
 				DB4064F82466D889006CE5BC /* DLWeekButton.m in Sources */,
@@ -6217,7 +6163,6 @@
 				FE0D60462801702B00319A9E /* SchoolBusBottomView.m in Sources */,
 				AA7ABABC2873EA5500BA6790 /* ShareBtn.m in Sources */,
 				DB4064FC2466D889006CE5BC /* DLReminderModel.m in Sources */,
-				AA7ABAF32873EA6D00BA6790 /* DynamicDetailMainVC.m in Sources */,
 				AAC7CA0B25F7725200E6B5D5 /* MainPage2RequestModel.m in Sources */,
 				DB34EB30239BD4550052B65E /* LessonMatter.m in Sources */,
 				18CDF67D257F91BD006E8E5C /* PeopleListCellTableViewCell.m in Sources */,
@@ -6286,7 +6231,6 @@
 				AA7ABAA72873EA5500BA6790 /* NewQACellCollectionView.m in Sources */,
 				FE2C136227AEF629001CF7AF /* TodoConflictStateView.m in Sources */,
 				AA0DDB77286C8B1A00802324 /* JHMenuView.m in Sources */,
-				AA7ABAFA2873EA6D00BA6790 /* DynamicDetailComentTableCell.m in Sources */,
 				AA0DDB78286C8B1A00802324 /* PMPPostItem.m in Sources */,
 				1893DC9526EA3887007E871E /* MGDTimer.m in Sources */,
 				DB34EB2F239BD4550052B65E /* LessonBtnModel.m in Sources */,
@@ -6340,7 +6284,6 @@
 				AA7ABAF92873EA6D00BA6790 /* UIColor+SYColor.m in Sources */,
 				14E7E4A927F5762500B67469 /* QuestionButton.m in Sources */,
 				B0F71C892ABC71B200F8B1AC /* AttitudeMainPageItem.m in Sources */,
-				AA7ABAF52873EA6D00BA6790 /* SHPopMenu.m in Sources */,
 				FE2C135227AEF629001CF7AF /* ToDoMainBarView.m in Sources */,
 				18CDF721257F91BE006E8E5C /* FinderToolViewController.m in Sources */,
 				1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */,
@@ -6467,7 +6410,6 @@
 				B01AFD6A29EFE531004F82D7 /* ElectricityView.m in Sources */,
 				AA0DDB60286C8B1A00802324 /* SegmentedPageView.m in Sources */,
 				FE2C136627AEF629001CF7AF /* TodoDataModel.m in Sources */,
-				AA7ABAFF2873EA6D00BA6790 /* DynamicSpecificCell.m in Sources */,
 				AA0DDB68286C8B1A00802324 /* FansTableViewCell.m in Sources */,
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,
 				AA0DDB62286C8B1A00802324 /* IDDisplayView.m in Sources */,

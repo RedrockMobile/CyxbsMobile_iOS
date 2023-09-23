@@ -10,7 +10,6 @@
 #import "YYZTopicCell.h"
 #import "PostTableViewCell.h"
 #import "PostArchiveTool.h"
-//#import "DynamicDetailMainVC.h"
 #import "ClassTabBar.h"
 #import "StarPostModel.h"
 #import "YYZTopicModel.h"
@@ -593,27 +592,7 @@ UIGestureRecognizerDelegate>
     _reportView.delegate = self;
     
 }
-///点击跳转到具体的帖子（与下方commentBtn的事件相同）
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat pageWidth = self.topicScrollView.frame.size.width;
-    int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    if(currentPage == 0){
-//        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
-//        _item = [[PostItem alloc] initWithDic:self.leftTableArray[indexPath.row]];
-//        dynamicDetailVC.post_id = _item.post_id;
-//        dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-//        ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
-//        [self.navigationController pushViewController:dynamicDetailVC animated:YES];
-    }
-    else{
-//        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
-//        _item = [[PostItem alloc] initWithDic:self.rightTableArray[indexPath.row]];
-//        dynamicDetailVC.post_id = _item.post_id;
-//        dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-//        ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
-//        [self.navigationController pushViewController:dynamicDetailVC animated:YES];
-    }
-}
+
 #pragma mark- 配置相关弹出View和其蒙版的操作
 ///设置相关蒙版
 
@@ -713,25 +692,6 @@ UIGestureRecognizerDelegate>
     }
 }
 
-///点击评论按钮跳转到具体的帖子详情:(可以通过帖子id跳转到具体的帖子页面，获取帖子id的方式如下方注释的代码)
-- (void)ClickedCommentBtn:(PostTableViewCell *)cell{
-    CGFloat pageWidth = self.topicScrollView.frame.size.width;
-    int currentPage = floor((self.topicScrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    if(currentPage == 0){
-//        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
-//    _item = [[PostItem alloc] initWithDic:self.leftTableArray[cell.commendBtn.tag]];
-//    dynamicDetailVC.post_id = _item.post_id;
-//    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
-    }
-    else{
-//        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
-//    _item = [[PostItem alloc] initWithDic:self.rightTableArray[cell.commendBtn.tag]];
-//    dynamicDetailVC.post_id = _item.post_id;
-//    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
-    }
-}
 ///分享帖子
 - (void)ClickedShareBtn:(PostTableViewCell *)cell {
     [self showBackViewWithGesture];

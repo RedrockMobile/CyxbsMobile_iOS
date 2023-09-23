@@ -10,7 +10,6 @@
 // model
 #import "PMPPostItem.h"
 // controller
-//#import "DynamicDetailMainVC.h"
 #import "StarPostModel.h"
 #import "YYZTopicDetailVC.h"
 
@@ -267,14 +266,6 @@ ReportViewDelegate>
     [self.dynamicMAry replaceObjectAtIndex:indexPath.row withObject:item];
 }
 
-#pragma mark -点击评论按钮跳转到具体的帖子
-- (void)ClickedCommentBtn:(PostTableViewCell *)cell{
-//    DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
-//    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-//    dynamicDetailVC.post_id = self.dynamicMAry[indexPath.row].post_id;
-//    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-//    [self.parentViewController.navigationController pushViewController:dynamicDetailVC animated:YES];
-}
 
 #pragma mark -点击分享按钮
 - (void)ClickedShareBtn:(PostTableViewCell *)cell {

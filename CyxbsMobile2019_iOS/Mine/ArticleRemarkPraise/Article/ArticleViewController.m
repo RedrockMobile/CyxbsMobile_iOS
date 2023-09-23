@@ -15,8 +15,6 @@
 //与cell高度计算相关
 #import "PostTableViewCellFrame.h"
 
-//动态详情页控制器
-//#import "DynamicDetailMainVC.h"
 @interface ArticleViewController ()<UITableViewDelegate, UITableViewDataSource,PostTableViewCellDelegate,ShareViewPlusDelegate,ArticleModelDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)ShareViewPlus *shareView;
@@ -81,13 +79,6 @@
     return self.cellFrameArr[indexPath.row].cellHeight;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
-//    dynamicDetailVC.post_id = self.postItemArr[indexPath.row].post_id;
-//    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
-}
-
 //MARK:-ArticleModel的代理方法：
 - (void)mainPageModelLoadDataFinishWithState:(MainPageModelDataState)state {
     switch (state) {
@@ -143,13 +134,6 @@
 
 
 //MARK: - cell的代理方法:
-//评论
-- (void)ClickedCommentBtn:(PostTableViewCell *)cell {
-//    DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
-//    dynamicDetailVC.post_id = cell.item.post_id;
-//    dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:dynamicDetailVC animated:YES];
-}
 
 //话题标签
 - (void)ClickedGroupTopicBtn:(PostTableViewCell *)cell {
