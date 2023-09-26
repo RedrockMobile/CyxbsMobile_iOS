@@ -11,9 +11,6 @@
 #import "IntroductionController.h"
 #import <AFNetworking.h>
 
-
-#import "PMPFansAndFollowingViewController.h"
-
 @interface MineAboutController () <MineAboutContentViewDelegate>
 
 @end

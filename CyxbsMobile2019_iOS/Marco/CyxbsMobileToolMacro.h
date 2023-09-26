@@ -233,7 +233,7 @@ fprintf(stderr,"\n");\
 
 #define PingFangSC @"PingFang SC"
 //苹方-简 极细体
-#define PingFangSCUltralight    @"PingFangSC-Ultralight"
+#define PingFangSCUltralight @"PingFangSC-Ultralight"
 //苹方-简 纤细体
 #define PingFangSCThin @"PingFangSC-Thin"
 //苹方-简 细体

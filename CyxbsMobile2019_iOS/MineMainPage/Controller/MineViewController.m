@@ -20,7 +20,7 @@
 #import "RemarkViewController.h" //评论
 #import "MineAboutController.h" //关于我们
 #import "MineSettingViewController.h" //设置
-#import "PMPHomePageViewController.h" //个人主页
+#import "EditMyInfoViewController.h" //个人信息编辑
 #import "MineUserInfoModel.h" //点赞获赞评论新消息个数相关
 #import "StampCenterVC.h" //邮票中心
 #import "FeedBackMainPageViewController.h" //意见反馈
@@ -435,10 +435,6 @@
     EditMyInfoViewController *vc = [[EditMyInfoViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
-    //    CCLog(@"%s",__func__);
-    //    PMPHomePageViewController * vc = [[PMPHomePageViewController alloc] initWithRedid:[UserItem defaultItem].redid];
-    //    vc.hidesBottomBarWhenPushed = YES;
-    //    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /// 关于我们点击后调用

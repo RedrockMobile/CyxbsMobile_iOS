@@ -19,7 +19,6 @@
 #import "FollowGroupModel.h"
 #import "ShieldModel.h"
 #import "ReportModel.h"
-#import "DeletePostModel.h"
 #import "PostTableViewCellFrame.h"
 #import <objc/runtime.h>
 
@@ -621,42 +620,42 @@ UIGestureRecognizerDelegate>
 - (void)ClickedDeletePostBtn:(UIButton *)sender {
     [_selfPopView removeFromSuperview];
     [self.backViewWithGesture removeFromSuperview];
-    if([self checkPage] == 0){
-        _itemDic = self.leftTableArray[sender.tag];
-        DeletePostModel *model = [[DeletePostModel alloc] init];
-        [model deletePostWithID:_itemDic[@"post_id"] AndModel:[NSNumber numberWithInt:0]];
-        [model setBlock:^(id  _Nonnull info) {
-            for (int i = 0;i < [self.leftTableArray count]; i++) {
-                if ([self.leftTableArray[i][@"post_id"] isEqualToString:self->_itemDic[@"post_id"]]) {
-                    [self.leftTableArray removeObjectAtIndex:i];
-                    break;
-                }
-            }
-            [PostArchiveTool savePostListWith:self.leftTableArray];
-            [NewQAHud showHudWith:@"  已经删除该帖子 " AddView:self.view AndToDo:^{
-                [self.topicLeftTableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
-                [self.topicLeftTableView reloadData];
-            }];
-        }];
-    }
-    else{
-        _itemDic = self.rightTableArray[sender.tag];
-        DeletePostModel *model = [[DeletePostModel alloc] init];
-        [model deletePostWithID:_itemDic[@"post_id"] AndModel:[NSNumber numberWithInt:0]];
-        [model setBlock:^(id  _Nonnull info) {
-            for (int i = 0;i < [self.rightTableArray count]; i++) {
-                if ([self.rightTableArray[i][@"post_id"] isEqualToString:self->_itemDic[@"post_id"]]) {
-                    [self.rightTableArray removeObjectAtIndex:i];
-                    break;
-                }
-            }
-            [PostArchiveTool savePostListWith:self.rightTableArray];
-            [NewQAHud showHudWith:@"  已经删除该帖子 " AddView:self.view AndToDo:^{
-                [self.topicRightTableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
-                [self.topicRightTableView reloadData];
-            }];
-        }];
-    }
+//    if([self checkPage] == 0){
+//        _itemDic = self.leftTableArray[sender.tag];
+//        DeletePostModel *model = [[DeletePostModel alloc] init];
+//        [model deletePostWithID:_itemDic[@"post_id"] AndModel:[NSNumber numberWithInt:0]];
+//        [model setBlock:^(id  _Nonnull info) {
+//            for (int i = 0;i < [self.leftTableArray count]; i++) {
+//                if ([self.leftTableArray[i][@"post_id"] isEqualToString:self->_itemDic[@"post_id"]]) {
+//                    [self.leftTableArray removeObjectAtIndex:i];
+//                    break;
+//                }
+//            }
+//            [PostArchiveTool savePostListWith:self.leftTableArray];
+//            [NewQAHud showHudWith:@"  已经删除该帖子 " AddView:self.view AndToDo:^{
+//                [self.topicLeftTableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+//                [self.topicLeftTableView reloadData];
+//            }];
+//        }];
+//    }
+//    else{
+//        _itemDic = self.rightTableArray[sender.tag];
+//        DeletePostModel *model = [[DeletePostModel alloc] init];
+//        [model deletePostWithID:_itemDic[@"post_id"] AndModel:[NSNumber numberWithInt:0]];
+//        [model setBlock:^(id  _Nonnull info) {
+//            for (int i = 0;i < [self.rightTableArray count]; i++) {
+//                if ([self.rightTableArray[i][@"post_id"] isEqualToString:self->_itemDic[@"post_id"]]) {
+//                    [self.rightTableArray removeObjectAtIndex:i];
+//                    break;
+//                }
+//            }
+//            [PostArchiveTool savePostListWith:self.rightTableArray];
+//            [NewQAHud showHudWith:@"  已经删除该帖子 " AddView:self.view AndToDo:^{
+//                [self.topicRightTableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+//                [self.topicRightTableView reloadData];
+//            }];
+//        }];
+//    }
 }
 
 #pragma mark - Cell中的相关事件
