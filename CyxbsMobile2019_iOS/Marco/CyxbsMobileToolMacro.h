@@ -253,9 +253,17 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
         }
         NSLog(@"-------------");
 }
+ 
+ family:'PingFang SC'
+     font:'PingFangSC-Regular'
+     font:'PingFangSC-Ultralight'
+     font:'PingFangSC-Thin'
+     font:'PingFangSC-Light'
+     font:'PingFangSC-Medium'
+     font:'PingFangSC-Semibold'
 */
 
-#define PingFangSCBold @"PingFangSC-Bold"
+#define PingFangSCBold PingFangSCSemibold
 
 
 // Bahnschrift字体
