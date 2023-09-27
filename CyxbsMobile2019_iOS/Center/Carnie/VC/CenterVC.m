@@ -36,6 +36,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.centerView];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:1]];
     // 获取姓名
     [self getName];
     // 网络请求天数和封面
@@ -47,14 +48,14 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
-    // 恢复背景颜色
-    if (@available(iOS 15.0, *)) {
-        UITabBarAppearance *appearance = [[UITabBarAppearance alloc]init];
-        appearance.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:1]];
-        self.tabBarController.tabBar.scrollEdgeAppearance = appearance;
-        self.tabBarController.tabBar.standardAppearance = appearance;
-    }
-    
+//    // 恢复背景颜色
+//    if (@available(iOS 15.0, *)) {
+//        UITabBarAppearance *appearance = [[UITabBarAppearance alloc]init];
+//        appearance.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:1]];
+//        self.tabBarController.tabBar.scrollEdgeAppearance = appearance;
+//        self.tabBarController.tabBar.standardAppearance = appearance;
+//    }
+//    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowBottomClassScheduleTabBarView" object:nil userInfo:nil];
 }
 
