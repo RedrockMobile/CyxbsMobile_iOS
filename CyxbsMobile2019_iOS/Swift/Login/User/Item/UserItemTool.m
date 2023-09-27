@@ -8,10 +8,8 @@
 
 #import "UserItemTool.h"
 #import "LoginVC.h"
-//#import "LoginViewController.h"
 #import <UMPush/UMessage.h>
 #import "UserDefaultTool.h"
-#import "PostArchiveTool.h"
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
 @interface UserItemTool ()
 
@@ -83,10 +81,10 @@
 //    [UserItem defaultItem].token = nil;
     
 //    [ArchiveTool deleteFile];
-    [PostArchiveTool removePostModel];
-    [PostArchiveTool removeGroupModel];
-    [PostArchiveTool removeHotWordModel];
-    [PostArchiveTool removePostCellHeight];
+//    [PostArchiveTool removePostModel];
+//    [PostArchiveTool removeGroupModel];
+//    [PostArchiveTool removeHotWordModel];
+//    [PostArchiveTool removePostCellHeight];
     
     //清除课表数据和备忘数据
     [[NSFileManager defaultManager] removeItemAtPath:remAndLesDataDirectoryPath error:nil];

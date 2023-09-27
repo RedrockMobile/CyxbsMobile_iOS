@@ -15,7 +15,6 @@
 #import "MineMSSEnterBtn.h" //消息中心、邮票中心、消息中心的按钮
 #import "MineTableViewCell.h" //底部的cell(关于我们/设置)
 #import "EditMyInfoModel.h" //编辑个人信息
-#import "ArticleViewController.h" //动态
 #import "PraiseViewController.h" //获赞
 #import "RemarkViewController.h" //评论
 #import "MineAboutController.h" //关于我们
