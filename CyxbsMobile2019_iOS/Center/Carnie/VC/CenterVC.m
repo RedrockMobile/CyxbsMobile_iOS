@@ -36,7 +36,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.centerView];
-    self.view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#2C2C2C" alpha:1]];
     // 获取姓名
     [self getName];
     // 网络请求天数和封面
