@@ -269,7 +269,10 @@
 
     NSInteger row0 = [pickerView selectedRowInComponent:0];
     NSInteger row1 = [pickerView selectedRowInComponent:1];
-    self.buildingNumberLabel.text = [self.pickerDormitoryModel getNumberOfDormitoryWith:self.pickerDormitoryModel.placeArray[row0] andPlace:self.pickerDormitoryModel.allArray[row0][row1]];
+
+    if (row0 >= 0 && row0 < self.pickerDormitoryModel.placeArray.count && row1 >= 0 && row1 < self.pickerDormitoryModel.allArray[row0].count) {
+        self.buildingNumberLabel.text = [self.pickerDormitoryModel getNumberOfDormitoryWith:self.pickerDormitoryModel.placeArray[row0] andPlace:self.pickerDormitoryModel.allArray[row0][row1]];
+    }
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
