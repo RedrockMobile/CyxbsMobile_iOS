@@ -118,6 +118,7 @@
 }
 
 - (void)showSelectedLinesWithselectedlinesArray:(NSArray *)array {
+    if ((!array) && !(array.count > 0)) { return; }
     [self.schoolBusBottomView busButtonControllerWithBtnTag:[array[0] intValue]];
     _selectedIndex = 1;
     int index = [_selectedstationArray[0] intValue];
