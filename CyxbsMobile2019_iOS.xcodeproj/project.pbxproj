@@ -280,16 +280,6 @@
 		AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57588824EE739F002F6F6D /* TimeBtnSelectedBackView.m */; };
 		AA57588C24EF5841002F6F6D /* NoticeWaySelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57588B24EF5841002F6F6D /* NoticeWaySelectView.m */; };
 		AA5D39B824F74A9800AB2DF5 /* LocalNotiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5D39B724F74A9800AB2DF5 /* LocalNotiManager.m */; };
-		AA7ABAA62873EA5500BA6790 /* FuncView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA522873EA5300BA6790 /* FuncView.m */; };
-		AA7ABAA92873EA5500BA6790 /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA592873EA5300BA6790 /* ShareView.m */; };
-		AA7ABAAA2873EA5500BA6790 /* MGDClickCoreLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA5C2873EA5300BA6790 /* MGDClickCoreLayer.m */; };
-		AA7ABAAB2873EA5500BA6790 /* MGDClickParams.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA5D2873EA5300BA6790 /* MGDClickParams.m */; };
-		AA7ABAAC2873EA5500BA6790 /* MGDClickLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA5E2873EA5300BA6790 /* MGDClickLayer.m */; };
-		AA7ABAAD2873EA5500BA6790 /* FunctionBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA602873EA5300BA6790 /* FunctionBtn.m */; };
-		AA7ABAAE2873EA5500BA6790 /* MGDCircleLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA642873EA5300BA6790 /* MGDCircleLayer.m */; };
-		AA7ABAB52873EA5500BA6790 /* MGDImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA702873EA5300BA6790 /* MGDImageCollectionViewCell.m */; };
-		AA7ABAB62873EA5500BA6790 /* NewQAPostDetailLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA712873EA5300BA6790 /* NewQAPostDetailLabel.m */; };
-		AA7ABABC2873EA5500BA6790 /* ShareBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA7B2873EA5300BA6790 /* ShareBtn.m */; };
 		AA7ABAC12873EA5500BA6790 /* MGDStatusBarHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA8A2873EA5400BA6790 /* MGDStatusBarHeight.m */; };
 		AA7ABAC62873EA5500BA6790 /* NewQAHud.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA952873EA5400BA6790 /* NewQAHud.m */; };
 		AA86E38B2635B04A00756F05 /* ColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA86E38A2635B04A00756F05 /* ColorManager.m */; };
@@ -1060,26 +1050,6 @@
 		AA57588B24EF5841002F6F6D /* NoticeWaySelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeWaySelectView.m; sourceTree = "<group>"; };
 		AA5D39B624F74A9800AB2DF5 /* LocalNotiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalNotiManager.h; sourceTree = "<group>"; };
 		AA5D39B724F74A9800AB2DF5 /* LocalNotiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalNotiManager.m; sourceTree = "<group>"; };
-		AA7ABA522873EA5300BA6790 /* FuncView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FuncView.m; sourceTree = "<group>"; };
-		AA7ABA552873EA5300BA6790 /* ShareBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBtn.h; sourceTree = "<group>"; };
-		AA7ABA592873EA5300BA6790 /* ShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
-		AA7ABA5B2873EA5300BA6790 /* FunctionBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FunctionBtn.h; sourceTree = "<group>"; };
-		AA7ABA5C2873EA5300BA6790 /* MGDClickCoreLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDClickCoreLayer.m; sourceTree = "<group>"; };
-		AA7ABA5D2873EA5300BA6790 /* MGDClickParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDClickParams.m; sourceTree = "<group>"; };
-		AA7ABA5E2873EA5300BA6790 /* MGDClickLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDClickLayer.m; sourceTree = "<group>"; };
-		AA7ABA5F2873EA5300BA6790 /* MGDCircleLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDCircleLayer.h; sourceTree = "<group>"; };
-		AA7ABA602873EA5300BA6790 /* FunctionBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FunctionBtn.m; sourceTree = "<group>"; };
-		AA7ABA612873EA5300BA6790 /* MGDClickCoreLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDClickCoreLayer.h; sourceTree = "<group>"; };
-		AA7ABA622873EA5300BA6790 /* MGDClickLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDClickLayer.h; sourceTree = "<group>"; };
-		AA7ABA632873EA5300BA6790 /* MGDClickParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDClickParams.h; sourceTree = "<group>"; };
-		AA7ABA642873EA5300BA6790 /* MGDCircleLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDCircleLayer.m; sourceTree = "<group>"; };
-		AA7ABA702873EA5300BA6790 /* MGDImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDImageCollectionViewCell.m; sourceTree = "<group>"; };
-		AA7ABA712873EA5300BA6790 /* NewQAPostDetailLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAPostDetailLabel.m; sourceTree = "<group>"; };
-		AA7ABA752873EA5300BA6790 /* FuncView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FuncView.h; sourceTree = "<group>"; };
-		AA7ABA782873EA5300BA6790 /* ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
-		AA7ABA7B2873EA5300BA6790 /* ShareBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBtn.m; sourceTree = "<group>"; };
-		AA7ABA822873EA5400BA6790 /* NewQAPostDetailLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAPostDetailLabel.h; sourceTree = "<group>"; };
-		AA7ABA832873EA5400BA6790 /* MGDImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDImageCollectionViewCell.h; sourceTree = "<group>"; };
 		AA7ABA8A2873EA5400BA6790 /* MGDStatusBarHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDStatusBarHeight.m; sourceTree = "<group>"; };
 		AA7ABA8D2873EA5400BA6790 /* NewQAHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAHud.h; sourceTree = "<group>"; };
 		AA7ABA902873EA5400BA6790 /* MGDStatusBarHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDStatusBarHeight.h; sourceTree = "<group>"; };
@@ -3733,44 +3703,8 @@
 		AA7ABA2E2873EA5300BA6790 /* New */ = {
 			isa = PBXGroup;
 			children = (
-				AA7ABA4F2873EA5300BA6790 /* View */,
 			);
 			path = New;
-			sourceTree = "<group>";
-		};
-		AA7ABA4F2873EA5300BA6790 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				AA7ABA752873EA5300BA6790 /* FuncView.h */,
-				AA7ABA522873EA5300BA6790 /* FuncView.m */,
-				AA7ABA832873EA5400BA6790 /* MGDImageCollectionViewCell.h */,
-				AA7ABA702873EA5300BA6790 /* MGDImageCollectionViewCell.m */,
-				AA7ABA822873EA5400BA6790 /* NewQAPostDetailLabel.h */,
-				AA7ABA712873EA5300BA6790 /* NewQAPostDetailLabel.m */,
-				AA7ABA552873EA5300BA6790 /* ShareBtn.h */,
-				AA7ABA7B2873EA5300BA6790 /* ShareBtn.m */,
-				AA7ABA782873EA5300BA6790 /* ShareView.h */,
-				AA7ABA592873EA5300BA6790 /* ShareView.m */,
-				AA7ABA5A2873EA5300BA6790 /* StarBuuton */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		AA7ABA5A2873EA5300BA6790 /* StarBuuton */ = {
-			isa = PBXGroup;
-			children = (
-				AA7ABA5B2873EA5300BA6790 /* FunctionBtn.h */,
-				AA7ABA602873EA5300BA6790 /* FunctionBtn.m */,
-				AA7ABA5F2873EA5300BA6790 /* MGDCircleLayer.h */,
-				AA7ABA642873EA5300BA6790 /* MGDCircleLayer.m */,
-				AA7ABA612873EA5300BA6790 /* MGDClickCoreLayer.h */,
-				AA7ABA5C2873EA5300BA6790 /* MGDClickCoreLayer.m */,
-				AA7ABA622873EA5300BA6790 /* MGDClickLayer.h */,
-				AA7ABA5E2873EA5300BA6790 /* MGDClickLayer.m */,
-				AA7ABA632873EA5300BA6790 /* MGDClickParams.h */,
-				AA7ABA5D2873EA5300BA6790 /* MGDClickParams.m */,
-			);
-			path = StarBuuton;
 			sourceTree = "<group>";
 		};
 		AA7ABA892873EA5400BA6790 /* Tool */ = {
@@ -5316,7 +5250,6 @@
 				18CDF4C2257F8DBD006E8E5C /* changePassword.m in Sources */,
 				14B73F6F281BED7B00D08ADD /* MessageSettingVC.m in Sources */,
 				73AAA1D326C918250084E44D /* PurchaseinfoViewController.m in Sources */,
-				AA7ABAAC2873EA5500BA6790 /* MGDClickLayer.m in Sources */,
 				187DF4BA260310DD000BCDE9 /* LYEmptyBaseView.m in Sources */,
 				18CDF6C7257F91BE006E8E5C /* CalendarViewController.m in Sources */,
 				18CDF67A257F91BD006E8E5C /* ScheduleInquiryViewController.m in Sources */,
@@ -5365,7 +5298,6 @@
 				FE0D60442801702B00319A9E /* SchoolBusData.m in Sources */,
 				14B73F7F281BED7B00D08ADD /* DiscoverMineMessageVC.m in Sources */,
 				AA49098924F3BF5A007CB3BC /* TransitionManager.m in Sources */,
-				AA7ABAAD2873EA5500BA6790 /* FunctionBtn.m in Sources */,
 				AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */,
 				4931630D26CD7B6800140412 /* StampCenterCollectionHeaderView.m in Sources */,
 				B0FE5F29294C94540070E755 /* NSDate+Rising.m in Sources */,
@@ -5392,7 +5324,6 @@
 				D0101D6A24352092004337ED /* UITextView+Placeholder.m in Sources */,
 				14B73F80281BED7B00D08ADD /* MessagePresentView.m in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
-				AA7ABAAB2873EA5500BA6790 /* MGDClickParams.m in Sources */,
 				DB4064FE2466D889006CE5BC /* DLNextButton.m in Sources */,
 				735BC54726D3BF3000F22678 /* FeedBackDetailsModel.m in Sources */,
 				D0101D5A2433C885004337ED /* SDMaskNotificationName.m in Sources */,
@@ -5452,7 +5383,6 @@
 				FE2C136827AEF629001CF7AF /* TodoSyncMsg.m in Sources */,
 				B0F71C9D2ABC71B200F8B1AC /* PublishTextView.m in Sources */,
 				FE0D60462801702B00319A9E /* SchoolBusBottomView.m in Sources */,
-				AA7ABABC2873EA5500BA6790 /* ShareBtn.m in Sources */,
 				DB4064FC2466D889006CE5BC /* DLReminderModel.m in Sources */,
 				AAC7CA0B25F7725200E6B5D5 /* MainPage2RequestModel.m in Sources */,
 				18CDF67D257F91BD006E8E5C /* PeopleListCellTableViewCell.m in Sources */,
@@ -5487,19 +5417,16 @@
 				AA0DDB70286C8B1A00802324 /* EditMyInfoContentView.m in Sources */,
 				1A141322235F521C0001417E /* BaseNavigationController.m in Sources */,
 				B033366E294C971D004D141D /* HttpTool.m in Sources */,
-				AA7ABAA62873EA5500BA6790 /* FuncView.m in Sources */,
 				73AAA1D626C918250084E44D /* DetailsBaseTableViewCell.m in Sources */,
 				73AAA1D526C918250084E44D /* PurchaseInfoOrderIDView.m in Sources */,
 				14FBBD4E2805489A00D5B05D /* SSRTextCycleCell.m in Sources */,
 				B0F71C942ABC71B200F8B1AC /* ExpressPickPutItem.m in Sources */,
-				AA7ABAAA2873EA5500BA6790 /* MGDClickCoreLayer.m in Sources */,
 				14CED37F288A594600BADA8B /* RisingRouterRequest.m in Sources */,
 				D0101F69243587A1004337ED /* GKPhotoView.m in Sources */,
 				AA0DD8FB286C50E500802324 /* MineMsgCntView.m in Sources */,
 				AA536DF5258C4F7600F69E73 /* IgnoreViewController.m in Sources */,
 				AA289B0F24EF9CFA00FDF70C /* NoteDataModel.m in Sources */,
 				18CDF4BD257F8DBD006E8E5C /* questionModel.m in Sources */,
-				AA7ABAB62873EA5500BA6790 /* NewQAPostDetailLabel.m in Sources */,
 				14CED37E288A594600BADA8B /* RisingRouterResponse.m in Sources */,
 				7311328926CCEC2400EF88C1 /* PopupView.m in Sources */,
 				AA0DDB64286C8B1A00802324 /* SQLCodeCreater.m in Sources */,
@@ -5522,7 +5449,6 @@
 				646B199A28313CB20015DF28 /* StationScrollView.m in Sources */,
 				646B198D282FFC460015DF28 /* BusMAPointAnnotation.m in Sources */,
 				AAC7CA2025F7797000E6B5D5 /* RemarkParseModel.m in Sources */,
-				AA7ABAA92873EA5500BA6790 /* ShareView.m in Sources */,
 				493162DE26CD7B6300140412 /* StampTaskData.m in Sources */,
 				7FBF39F4257B79F30077494E /* ByPasswordViewController.m in Sources */,
 				DB4065022466D889006CE5BC /* DLReminderView+Reset.m in Sources */,
@@ -5612,7 +5538,6 @@
 				49628E3226D52C6000805A08 /* FeedBackVC.m in Sources */,
 				18CDF697257F91BD006E8E5C /* CQUPTVRMapController.m in Sources */,
 				FEBA676427E9BAC000C4D231 /* updatePopView.m in Sources */,
-				AA7ABAB52873EA5500BA6790 /* MGDImageCollectionViewCell.m in Sources */,
 				18CDF6A2257F91BD006E8E5C /* CQUPTMapImageLayout.m in Sources */,
 				B0F71C8E2ABC71B200F8B1AC /* AttitudeNetWrong.m in Sources */,
 				1490FC8B28031BC200958892 /* FinderTopView.m in Sources */,
@@ -5667,7 +5592,6 @@
 				D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */,
 				B0B1B9F629E69EAD00A1BB02 /* ElectricFeeModel.m in Sources */,
 				AA0DDB56286C8B1900802324 /* MineTopBlurView.m in Sources */,
-				AA7ABAAE2873EA5500BA6790 /* MGDCircleLayer.m in Sources */,
 				14B73F7E281BED7B00D08ADD /* MineMessageVC.m in Sources */,
 				B0B1BA0729E6B4FD00A1BB02 /* ElectricViewController.m in Sources */,
 				14B73F74281BED7B00D08ADD /* SystemMsgModel.m in Sources */,
