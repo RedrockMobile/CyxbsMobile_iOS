@@ -144,11 +144,11 @@ fprintf(stderr,"\n");\
 #define TABBARHEIGHT (IS_IPHONEX ? (49.f + SAFE_AREA_BOTTOM) : (49.f))
 
 /* 状态栏高度 */
-#define STATUSBARHEIGHT [MGDStatusBarHeight getStatusBarHight]
+#define STATUSBARHEIGHT getStatusBarHeight_Double
 
 //状态栏高度
 #define getStatusBarHeight_Double ^(void){\
-    double statusBarH;\
+    double statusBarH = 0;\
     if (@available(iOS 13.0, *)) {\
         statusBarH = [[UIApplication sharedApplication].windows objectAtIndex:0].windowScene.statusBarManager.statusBarFrame.size.height;\
     } else {\

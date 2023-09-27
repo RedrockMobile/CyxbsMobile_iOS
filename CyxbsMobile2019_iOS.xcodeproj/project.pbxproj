@@ -280,7 +280,6 @@
 		AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57588824EE739F002F6F6D /* TimeBtnSelectedBackView.m */; };
 		AA57588C24EF5841002F6F6D /* NoticeWaySelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA57588B24EF5841002F6F6D /* NoticeWaySelectView.m */; };
 		AA5D39B824F74A9800AB2DF5 /* LocalNotiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5D39B724F74A9800AB2DF5 /* LocalNotiManager.m */; };
-		AA7ABAC12873EA5500BA6790 /* MGDStatusBarHeight.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA8A2873EA5400BA6790 /* MGDStatusBarHeight.m */; };
 		AA7ABAC62873EA5500BA6790 /* NewQAHud.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7ABA952873EA5400BA6790 /* NewQAHud.m */; };
 		AA86E38B2635B04A00756F05 /* ColorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = AA86E38A2635B04A00756F05 /* ColorManager.m */; };
 		AA9ABE9024EB63BF00D16BE0 /* ClassDetailViewShower.m in Sources */ = {isa = PBXBuildFile; fileRef = AA9ABE8F24EB63BF00D16BE0 /* ClassDetailViewShower.m */; };
@@ -1050,9 +1049,7 @@
 		AA57588B24EF5841002F6F6D /* NoticeWaySelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoticeWaySelectView.m; sourceTree = "<group>"; };
 		AA5D39B624F74A9800AB2DF5 /* LocalNotiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalNotiManager.h; sourceTree = "<group>"; };
 		AA5D39B724F74A9800AB2DF5 /* LocalNotiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalNotiManager.m; sourceTree = "<group>"; };
-		AA7ABA8A2873EA5400BA6790 /* MGDStatusBarHeight.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGDStatusBarHeight.m; sourceTree = "<group>"; };
 		AA7ABA8D2873EA5400BA6790 /* NewQAHud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAHud.h; sourceTree = "<group>"; };
-		AA7ABA902873EA5400BA6790 /* MGDStatusBarHeight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGDStatusBarHeight.h; sourceTree = "<group>"; };
 		AA7ABA952873EA5400BA6790 /* NewQAHud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewQAHud.m; sourceTree = "<group>"; };
 		AA86E3892635B04A00756F05 /* ColorManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorManager.h; sourceTree = "<group>"; };
 		AA86E38A2635B04A00756F05 /* ColorManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorManager.m; sourceTree = "<group>"; };
@@ -3694,24 +3691,14 @@
 		AA7ABA2D2873EA5300BA6790 /* NewQAMainView */ = {
 			isa = PBXGroup;
 			children = (
-				AA7ABA2E2873EA5300BA6790 /* New */,
 				AA7ABA892873EA5400BA6790 /* Tool */,
 			);
 			path = NewQAMainView;
 			sourceTree = "<group>";
 		};
-		AA7ABA2E2873EA5300BA6790 /* New */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = New;
-			sourceTree = "<group>";
-		};
 		AA7ABA892873EA5400BA6790 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
-				AA7ABA902873EA5400BA6790 /* MGDStatusBarHeight.h */,
-				AA7ABA8A2873EA5400BA6790 /* MGDStatusBarHeight.m */,
 				AA7ABA8D2873EA5400BA6790 /* NewQAHud.h */,
 				AA7ABA952873EA5400BA6790 /* NewQAHud.m */,
 			);
@@ -5597,7 +5584,6 @@
 				14B73F74281BED7B00D08ADD /* SystemMsgModel.m in Sources */,
 				B0B1B9FE29E69EB400A1BB02 /* PickerDormitoryModel.m in Sources */,
 				147842EE27F07A5A002359BA /* UIColor+Color.m in Sources */,
-				AA7ABAC12873EA5500BA6790 /* MGDStatusBarHeight.m in Sources */,
 				735BC53226D38EA600F22678 /* HistoricalFeedBackTableView.m in Sources */,
 				B0FE5F2A294C94540070E755 /* RisingFoundationExtention.m in Sources */,
 				AA536DDA258C3F7C00F69E73 /* TopBarBasicViewController.m in Sources */,
