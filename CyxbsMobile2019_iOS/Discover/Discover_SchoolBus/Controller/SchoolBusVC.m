@@ -299,7 +299,11 @@
     self.stationGuideBar.lineBtn.alpha = 0;
     self.stationGuideBar.titleLabel.text = data.line_name;
     self.stationGuideBar.runtimeLabel.alpha = 1;
-    self.stationGuideBar.runtimeLabel.text = [@"运行时间：" stringByAppendingString: data.run_time];
+    if (data.run_time != nil) {
+        self.stationGuideBar.runtimeLabel.text = [@"运行时间:" stringByAppendingString:data.run_time];
+    } else {
+        self.stationGuideBar.runtimeLabel.text = @"运行时间:获取失败";
+    }
     self.stationGuideBar.runtypeBtn.alpha = 1;
     [self.stationGuideBar.runtypeBtn setTitle:data.run_type forState:UIControlStateNormal];
     self.stationGuideBar.sendtypeBtn.alpha = 1;
