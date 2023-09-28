@@ -3485,8 +3485,8 @@
 		AA0DDACC286C8B1900802324 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AA0DDACD286C8B1900802324 /* MineUserInfoModel.m */,
 				AA0DDACE286C8B1900802324 /* MineUserInfoModel.h */,
+				AA0DDACD286C8B1900802324 /* MineUserInfoModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3494,14 +3494,14 @@
 		AA0DDACF286C8B1900802324 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AA0DDAD0286C8B1900802324 /* MineMSSEnterBtn.m */,
-				AA0DDAD1286C8B1900802324 /* MineTopBlurView.h */,
-				AA0DDAD2286C8B1900802324 /* MineSignView.m */,
-				AA0DDAD3286C8B1900802324 /* MineTableViewCell.m */,
 				AA0DDAD4286C8B1900802324 /* MineMSSEnterBtn.h */,
-				AA0DDAD5286C8B1900802324 /* MineTopBlurView.m */,
+				AA0DDAD0286C8B1900802324 /* MineMSSEnterBtn.m */,
 				AA0DDAD6286C8B1900802324 /* MineSignView.h */,
+				AA0DDAD2286C8B1900802324 /* MineSignView.m */,
 				AA0DDAD7286C8B1900802324 /* MineTableViewCell.h */,
+				AA0DDAD3286C8B1900802324 /* MineTableViewCell.m */,
+				AA0DDAD1286C8B1900802324 /* MineTopBlurView.h */,
+				AA0DDAD5286C8B1900802324 /* MineTopBlurView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3529,9 +3529,9 @@
 			isa = PBXGroup;
 			children = (
 				AA0DDADB286C8B1900802324 /* UIScrollView+JHContentExtension.h */,
-				AA0DDADC286C8B1900802324 /* UIView+JHFrameExtension.m */,
 				AA0DDADD286C8B1900802324 /* UIScrollView+JHContentExtension.m */,
 				AA0DDADE286C8B1900802324 /* UIView+JHFrameExtension.h */,
+				AA0DDADC286C8B1900802324 /* UIView+JHFrameExtension.m */,
 			);
 			path = FrameExtension;
 			sourceTree = "<group>";
@@ -3548,8 +3548,8 @@
 		AA0DDAE5286C8B1900802324 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				AA0DDAE6286C8B1900802324 /* PMPBasicNavBarController.m */,
 				AA0DDAE7286C8B1900802324 /* PMPBasicNavBarController.h */,
+				AA0DDAE6286C8B1900802324 /* PMPBasicNavBarController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3637,17 +3637,17 @@
 			isa = PBXGroup;
 			children = (
 				AA0DDB1B286C8B1900802324 /* EditMyInfoContentView.h */,
-				AA0DDB1C286C8B1900802324 /* EditMyInfoViewController.m */,
-				AA0DDB1D286C8B1900802324 /* PMPDatePicker.m */,
-				AA0DDB1E286C8B1900802324 /* MineEditTextField.m */,
-				AA0DDB1F286C8B1900802324 /* PMPPickerView.h */,
-				AA0DDB20286C8B1900802324 /* UserInformationIntorductionView.h */,
 				AA0DDB21286C8B1900802324 /* EditMyInfoContentView.m */,
-				AA0DDB22286C8B1900802324 /* PMPDatePicker.h */,
 				AA0DDB23286C8B1900802324 /* EditMyInfoViewController.h */,
+				AA0DDB1C286C8B1900802324 /* EditMyInfoViewController.m */,
 				AA0DDB24286C8B1900802324 /* MineEditTextField.h */,
-				AA0DDB25286C8B1900802324 /* UserInformationIntorductionView.m */,
+				AA0DDB1E286C8B1900802324 /* MineEditTextField.m */,
+				AA0DDB22286C8B1900802324 /* PMPDatePicker.h */,
+				AA0DDB1D286C8B1900802324 /* PMPDatePicker.m */,
+				AA0DDB1F286C8B1900802324 /* PMPPickerView.h */,
 				AA0DDB26286C8B1900802324 /* PMPPickerView.m */,
+				AA0DDB20286C8B1900802324 /* UserInformationIntorductionView.h */,
+				AA0DDB25286C8B1900802324 /* UserInformationIntorductionView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";

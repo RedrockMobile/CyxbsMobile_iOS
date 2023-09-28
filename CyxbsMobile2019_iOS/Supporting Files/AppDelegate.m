@@ -175,7 +175,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     // 完成每天晚上推送课表的相关操作
     [self pushSchedulEveryday];
-    [self checkVersion];
     //设置存储、更换baseURL的操作
     [self settingBaseURL];
     [self addNotification];
@@ -209,11 +208,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         [NSUserDefaults.standardUserDefaults setObject:url forKey:@"baseURL"];
     }];
 #endif
-}
-
-///检查是否有最新的掌邮，并提示用户获取
--(void)checkVersion {
-    //这个模块已重构
 }
 
 /// 完成创建文件/文件夹的操作
