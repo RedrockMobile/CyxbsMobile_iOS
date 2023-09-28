@@ -214,7 +214,7 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 #define Discover_POST_schoolBus_API @"https://cyxbsmobile.redrock.team/wxapi/schoolbus/status"
 
 /// banner
-#define Discover_GET_bannerView_API @"http://api-234.redrock.team/magipoke-text/banner/get"
+//#define Discover_GET_bannerView_API @"http://api-234.redrock.team/magipoke-text/banner/get"
 
 /// 志愿查询
 #define Discover_POST_volunteerBind_API @"https://cyxbsmobile.redrock.team/wxapi/volunteer/binding"

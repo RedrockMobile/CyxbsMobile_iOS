@@ -13,7 +13,7 @@
 #define Gap 17               //控件距离两边的距离
 #define EnterButtonWidth 38  //首页的几个入口的按钮的宽度
 
-@interface FinderView()
+@interface FinderView() <SDCycleScrollViewDelegate>
 
 @end
 
@@ -25,7 +25,7 @@
     if (self) {
         self.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         self.bannerURLStrings = [NSMutableArray array];
-        
+        self.bannerGoToURL = [NSMutableArray array];
         // Remake by SSR
         [self addSubview:self.topView];
         [self addBannerView];
@@ -46,6 +46,7 @@
     cycleScrollView.currentPageDotColor = [UIColor whiteColor]; // 自定义分页控件小圆标颜色
     cycleScrollView.imageURLStringsGroup = imagesURLStrings;
     cycleScrollView.clipsToBounds = YES;
+    cycleScrollView.delegate = self;
     cycleScrollView.layer.cornerRadius = 15;
     cycleScrollView.layer.shadowColor = [UIColor blackColor].CGColor;
     cycleScrollView.layer.shadowOpacity = 0.33f;
@@ -59,6 +60,12 @@
 - (void)updateBannerViewIfNeeded {
     [self.bannerView removeFromSuperview];
     [self addBannerView];
+}
+
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+//    NSLog(@"%ld",(long)index);
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithSring:self.bannerGoToURL[index]]];
+    [[UIApplication sharedApplication] openURL: [NSURL URLWithString:self.bannerGoToURL[index]] options: @{} completionHandler: nil];
 }
 
 - (void)remoreAllEnters {
@@ -106,6 +113,29 @@
     for (NSInteger i = 1; i < 3; i++) {
         self.enterButtonArray[i].left = firstBtn.left + i * midleGap;
     }
+}
+
+
+- (void)getBannerData {
+    [HttpTool.shareTool request:Discover_GET_bannerView_API
+                           type:HttpToolRequestTypeGet
+                     serializer:HttpToolRequestSerializerJSON
+                 bodyParameters:nil
+                       progress:nil
+                        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        NSInteger status = [object[@"status"] intValue];
+        if (status == 10000) {
+            NSDictionary *data = object[@"data"];
+            for (NSDictionary *item in data) {
+                [self.bannerURLStrings addObject:item[@"picture_url"]];
+                [self.bannerGoToURL addObject:item[@"picture_goto_url"]];
+            }
+            [self updateBannerViewIfNeeded];
+        }
+    }
+                        failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"banner请求失败%@",error);
+    }];
 }
 
 #pragma mark - Getter // Remake by SSR
