@@ -28,6 +28,6 @@
 // 修改信息
 #define MineMainPage_Put_PersonInfo_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke/person/info"]
 // 修改头像
-#define MineMainPage_Put_UploadAvatar_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke/upload/avatar"]
+#define MineMainPage_Put_UploadAvatar_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke/person/upload/avatar"]
 
 #endif /* MineMainPageHeader_h */

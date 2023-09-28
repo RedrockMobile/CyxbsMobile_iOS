@@ -30,6 +30,7 @@
         [self addSubview:self.topView];
         [self addBannerView];
         [self addSomeEnters];
+        [self getBannerData];
     }
     return self;
 }
@@ -114,7 +115,6 @@
         self.enterButtonArray[i].left = firstBtn.left + i * midleGap;
     }
 }
-
 
 - (void)getBannerData {
     [HttpTool.shareTool request:Discover_GET_bannerView_API
