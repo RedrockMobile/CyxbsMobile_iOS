@@ -82,6 +82,7 @@ RisingSingleClass_IMPLEMENTATION(Tool)
             NSString *newUrl = [originalUrl stringByReplacingCharactersInRange:hostFirstRange withString:ip];
             //URL替换
             URLString = newUrl;
+            [self.sessionManager.requestSerializer setValue:url.host forHTTPHeaderField:@"host"];
         }
     }
     

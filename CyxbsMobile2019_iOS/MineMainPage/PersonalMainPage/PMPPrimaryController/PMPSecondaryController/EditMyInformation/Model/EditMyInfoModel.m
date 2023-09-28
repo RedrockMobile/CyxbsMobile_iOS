@@ -11,7 +11,6 @@
 
 @implementation EditMyInfoModel
 
-
 ///修改信息
 + (void)uploadUserInfo:(NSDictionary *)userInfo
                success:(void (^)(NSDictionary * _Nonnull))success

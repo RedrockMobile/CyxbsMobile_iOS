@@ -37,7 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 编辑个性签名的TextField
 @property (nonatomic, weak) MineEditTextField *introductionTextField;
 
-/// 编辑QQ的TextField
+/// 编辑性别的TextField
 @property (nonatomic, weak) MineEditTextField *genderTextField;
 
 /// 编辑手机号码的TextField

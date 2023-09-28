@@ -109,7 +109,7 @@
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
         [backButton setTitle:@"知道了" forState:UIControlStateNormal];
         backButton.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:17];
-        backButton.frame = CGRectMake(frame.size.width / 2.0 - 40, self.frame.size.height - 50, 80, 35);
+        backButton.frame = CGRectMake(frame.size.width / 2.0 - 40, self.frame.size.height - 50-30, 80, 35);
         if (@available(iOS 11.0, *)) {
             [backButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFEF" alpha:1]] forState:UIControlStateNormal];
         } else {

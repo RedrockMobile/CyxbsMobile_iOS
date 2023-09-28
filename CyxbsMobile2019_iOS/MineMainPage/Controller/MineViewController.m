@@ -153,13 +153,13 @@
 /// 在这里刷新数据
 - (void)viewWillAppear:(BOOL)animated {
     if (self.canRequestUserInfo) {
-        [self.userInfoModel updateUserInfoCompletion:^(MineUserInfoModelUpdateUserInfoState state) {
-            
-            if (state==MineUserInfoModelUpdateUserInfoStateError) {
-                [self requestUserInfoFailure];
-            }
-            [self updateUserInfoInUserInfoModel];
-        }];
+//        [self.userInfoModel updateUserInfoCompletion:^(MineUserInfoModelUpdateUserInfoState state) {
+//            
+//            if (state==MineUserInfoModelUpdateUserInfoStateError) {
+//                [self requestUserInfoFailure];
+//            }
+//            [self updateUserInfoInUserInfoModel];
+//        }];
         [[UserItem defaultItem] getUserInfo];
     }
 }

@@ -18,10 +18,10 @@ static dispatch_once_t onceToken;
 static UserItem *item = nil;
 + (UserItem *)defaultItem {
     if (!item) {
-        item = [NSKeyedUnarchiver unarchiveObjectWithFile:[UserItemTool userItemPath]];
         if (!item) {
             item = [[UserItem alloc] init];
         }
+        item = [NSKeyedUnarchiver unarchiveObjectWithFile:[UserItemTool userItemPath]];
     }
     return item;
 }

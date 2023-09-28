@@ -128,22 +128,29 @@
                        progress:nil
                         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         if ([object[@"status"] intValue] == 10000) {
+            //表示刷新 token 接口正常 statusBall 为绿色
             [NSUserDefaults.standardUserDefaults setInteger:-1 forKey:IS_TOKEN_URL_ERROR_INTEGER];
-            NSString *token = object[@"data"][@"token"];
-            NSString *payload_BASE64 = [token componentsSeparatedByString:@"."][0];
             
-            // json字符串转换字典
+            //取出 token 和 refreshToken
+            NSString *token = object[@"data"][@"token"];
+            NSString *refreshToken = object[@"data"][@"refreshToken"];
+            
+            // 解析数据
+            NSString *payload_BASE64 = [token componentsSeparatedByString:@"."][0];
             NSData *payloadData = [[NSData alloc] initWithBase64EncodedString:payload_BASE64 options:0];
             NSError *error;
             NSMutableDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:payloadData options:NSJSONReadingMutableContainers error:&error];
-            jsonObject[@"token"] = object[@"data"][@"token"];
-            jsonObject[@"refreshToken"] = object[@"data"][@"refreshToken"];
             
+            // json字符串转换字典
+            jsonObject[@"token"] = token;
+            jsonObject[@"refreshToken"] = refreshToken;
+            
+            // 归档
             item = [UserItem mj_objectWithKeyValues:jsonObject];
             [UserItemTool archive:item];
             // 保存token和refreshToken
-            [NSUserDefaults.standardUserDefaults setValue:object[@"data"][@"token"] forKey:@"token"];
-            [NSUserDefaults.standardUserDefaults setValue:object[@"data"][@"refreshToken"] forKey:@"refreshToken"];
+            [NSUserDefaults.standardUserDefaults setValue:token forKey:@"token"];
+            [NSUserDefaults.standardUserDefaults setValue:refreshToken forKey:@"refreshToken"];
             
             NSLog(@"token刷新成功, token 为:%@", [UserItemTool defaultItem].token);
         }else{
