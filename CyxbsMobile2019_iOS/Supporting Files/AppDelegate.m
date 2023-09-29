@@ -27,6 +27,7 @@ extern CFAbsoluteTime StartTime;
 @end
 
 @implementation AppDelegate
+
 - (void)addReaManager {
     AFNetworkReachabilityManager* man = [AFNetworkReachabilityManager sharedManager];
     self.reaManager = man;
@@ -116,10 +117,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     //打开应用时刷新token
     //开始监测网络状态
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if([self.reaManager isReachable]){
-            //如果网络可用,且token已经过期,刷新 token
-            if ([UserItem.defaultItem.exp longLongValue] - (long)[NSDate nowTimestamp] < 0) {
-                // 刷新token内部做了失败判断
+        if ([self.reaManager isReachable]) {
+            // 检查令牌是否已过期
+            if ([UserItemTool tokenExpired]) {
+                // 刷新令牌
                 [UserItemTool refresh];
             }
         }

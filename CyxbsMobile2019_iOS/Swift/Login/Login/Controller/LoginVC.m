@@ -288,7 +288,7 @@
 /// 弹出协议VC
 - (void)lookOverProtocol {
     UserProtocolViewController *userProtocolVC = [[UserProtocolViewController alloc] init];
-    [self.navigationController presentViewController:userProtocolVC animated:YES completion:nil];
+    [self presentViewController:userProtocolVC animated:YES completion:nil];
 }
 
 /// 跳转到忘记密码界面

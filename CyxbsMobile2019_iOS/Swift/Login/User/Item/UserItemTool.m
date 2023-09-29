@@ -206,4 +206,19 @@
     }];
 }
 
++ (BOOL)tokenExpired {
+    // 获取当前时间戳
+    NSTimeInterval currentTimestamp = [[NSDate date] timeIntervalSince1970];
+    
+    // 获取令牌过期时间戳
+    NSTimeInterval expTimestamp = [UserItem.defaultItem.exp doubleValue];
+    
+    // 检查令牌是否过期，这里使用了当前时间戳和过期时间戳进行比较
+    if (expTimestamp - currentTimestamp < 0) {
+        return YES; // 令牌已过期
+    } else {
+        return NO; // 令牌未过期
+    }
+}
+
 @end

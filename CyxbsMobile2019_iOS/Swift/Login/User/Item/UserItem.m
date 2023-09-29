@@ -16,12 +16,16 @@
 MJExtensionCodingImplementation
 static dispatch_once_t onceToken;
 static UserItem *item = nil;
+
 + (UserItem *)defaultItem {
     if (!item) {
+        NSString *filePath = [UserItemTool userItemPath];
+        item = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+
         if (!item) {
             item = [[UserItem alloc] init];
+            [NSKeyedArchiver archiveRootObject:item toFile:filePath];
         }
-        item = [NSKeyedUnarchiver unarchiveObjectWithFile:[UserItemTool userItemPath]];
     }
     return item;
 }
