@@ -50,18 +50,22 @@
 /// 查个人课表用这个方法,它会先加载本地数据，再调去用getPersonalClassBookArrayFromNet方法来网络请求数据
 /// @param stuNum 学号
 - (void)getPersonalClassBookArrayWithStuNum:(NSString*)stuNum{
-//    //先取出本地的课表数据
-//    self.orderlySchedulArray = [NSMutableArray arrayWithContentsOfFile:parsedDataArrPath];
-//
-//    //如果本地存储的课表数据非空，那么通知代理数据加载成功
-//    if(self.orderlySchedulArray!=nil){
-//        [self.delegate ModelDataLoadSuccess];
-//    }
-//
-//    //再通过网络请求获取课表数据，如果请求的数据和本地不一样且请求数据非空那么通知代理数据加载成功
+    //先取出本地的课表数据
+    if (AllowCaching) {
+        [self getLocalPersonalClassBookArray];
+    }
+    
+    //再通过网络请求获取课表数据，如果请求的数据和本地不一样且请求数据非空那么通知代理数据加载成功
     [self getPersonalClassBookArrayFromNet:stuNum];
 }
 
+- (void)getLocalPersonalClassBookArray{
+    self.orderlySchedulArray = [NSMutableArray arrayWithContentsOfFile:parsedDataArrPath];
+    //如果本地存储的课表数据非空，那么通知代理数据加载成功
+    if(self.orderlySchedulArray!=nil){
+        [self.delegate ModelDataLoadSuccess];
+    }
+}
 
 /// 通过网络请求获取个人课表数据用这个方法，如果请求的数据和本地不一样且请求数据非空那么刷新课表
 /// @param stuNum 学号
@@ -83,10 +87,12 @@
         //储存当前周数，计算开学日期
         [self storeDate:[NSString stringWithFormat:@"%@", object[@"nowWeek"]]];
         
-//        //如果没有数据，或者数据和本地数据一样，那么return
-//        if (rowLessonDataArr == nil || [rowLessonDataArr isEqualToArray:self.rowDataArray]) {
-//            return;
-//        }
+        if (AllowCaching) {
+            //如果没有数据，或者数据和本地数据一样，那么return
+            if (rowLessonDataArr == nil || [rowLessonDataArr isEqualToArray:self.rowDataArray]) {
+                return;
+            }
+        }
         
         //保存未解析的课表数据
         [rowLessonDataArr writeToFile:rowDataArrPath atomically:YES];

@@ -11,7 +11,7 @@
 
 // “课表”、“备忘”接口
 
-
+#define AllowCaching NO
 
 /// 空教室接口
 #define ClassSchedule_POST_emptyClass_API [CyxbsMobileBaseURL_1 stringByAppendingString:@"magipoke-jwzx/roomEmpty"]
