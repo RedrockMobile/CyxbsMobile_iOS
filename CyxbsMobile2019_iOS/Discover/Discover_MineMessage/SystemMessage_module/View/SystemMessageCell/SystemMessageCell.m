@@ -110,7 +110,7 @@
         _msgTitleLab = [[UILabel alloc] initWithFrame:CGRectMake(30, 28, 0, 22)];
         [_msgTitleLab stretchRight_toPointX:self.msgTimeLab.left offset:5];
         _msgTitleLab.backgroundColor = UIColor.clearColor;
-        _msgTitleLab.font = [UIFont fontWithName:PingFangSCBold size:16];
+        _msgTitleLab.font = [UIFont fontWithName:PingFangSCSemibold size:16];
         
         _msgTitleLab.textColor =
         [UIColor dm_colorWithLightColor:[UIColor xFF_R:17 G:44 B:84 Alpha:1]

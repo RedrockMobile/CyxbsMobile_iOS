@@ -91,7 +91,7 @@
     cancelBtn.layer.masksToBounds = YES;
     [cancelBtn setTitle:@"取消" forState:normal];
     [cancelBtn setTitleColor:[UIColor colorWithHexString:@"#5C5CF6"] forState:UIControlStateNormal];
-    [cancelBtn.titleLabel setFont:[UIFont fontWithName:PingFangSCBold size:14]];
+    [cancelBtn.titleLabel setFont:[UIFont fontWithName:PingFangSCSemibold size:14]];
     [cancelBtn addTarget:self action:@selector(cancelLearnAbout) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:learnView];
@@ -164,7 +164,7 @@
         _praiseBtn.layer.masksToBounds = YES;
 
         [_praiseBtn setTitle:@"点赞" forState:normal];
-        [_praiseBtn.titleLabel setFont:[UIFont fontWithName:PingFangSCBold size:14]];
+        [_praiseBtn.titleLabel setFont:[UIFont fontWithName:PingFangSCSemibold size:14]];
         [_praiseBtn addTarget:self action:@selector(praiseFood) forControlEvents:UIControlEventTouchUpInside];
     }
 

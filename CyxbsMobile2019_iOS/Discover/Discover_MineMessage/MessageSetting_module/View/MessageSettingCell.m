@@ -68,7 +68,7 @@
 - (UILabel *)msgTitleLab {
     if (_msgTitleLab == nil) {
         _msgTitleLab = [[UILabel alloc] initWithFrame:CGRectMake(10, 14, 162, 22)];
-        _msgTitleLab.font = [UIFont fontWithName:PingFangSCBold size:16];
+        _msgTitleLab.font = [UIFont fontWithName:PingFangSCSemibold size:16];
         
         _msgTitleLab.textColor =
         [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1]

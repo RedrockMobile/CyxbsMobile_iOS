@@ -41,7 +41,7 @@
     if (!_heading) {
         _heading = [[UITextField alloc]initWithFrame:CGRectMake(18, 20, self.width - 75, 25)];
         _heading.placeholder = @"添加标题";
-        _heading.font = [UIFont fontWithName:PingFangSCBold size:18];
+        _heading.font = [UIFont fontWithName:PingFangSCSemibold size:18];
         _heading.delegate = self;
         [_heading addTarget:self action:@selector(getlength:) forControlEvents:UIControlEventEditingChanged];
         [_heading setTextColor:[UIColor colorWithHexString:@"#15315B"]];

@@ -58,7 +58,7 @@
     //标题
     UILabel *titLab = [[UILabel alloc] init];
     titLab.text = @"温馨提示";
-    titLab.font = [UIFont fontWithName:PingFangSCBold size:18];
+    titLab.font = [UIFont fontWithName:PingFangSCSemibold size:18];
     titLab.textColor = [UIColor colorWithHexString:@"#15315B" alpha:1];
 
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 130, 37)];
@@ -77,7 +77,7 @@
 
     [button setTitle:@"知道了" forState:normal];
     button.titleLabel.textColor = [UIColor colorWithHexString:@"#FFFFFF"];
-    button.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:16];
+    button.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:16];
     button.layer.cornerRadius = 16;
     button.layer.masksToBounds = YES;
     [button addTarget:self action:@selector(cancelLearnAbout) forControlEvents:UIControlEventTouchUpInside];

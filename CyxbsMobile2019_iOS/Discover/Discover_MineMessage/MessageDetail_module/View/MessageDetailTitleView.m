@@ -61,7 +61,7 @@
     if (_titleLab == nil) {
         _titleLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.width, 0)];
         _titleLab.numberOfLines = 0;
-        _titleLab.font = [UIFont fontWithName:PingFangSCBold size:22];
+        _titleLab.font = [UIFont fontWithName:PingFangSCSemibold size:22];
         _titleLab.height = [self.userPublishModel.title heightForFont:_titleLab.font width:self.width];
         _titleLab.backgroundColor = UIColor.clearColor;
         _titleLab.text = self.userPublishModel.title;

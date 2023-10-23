@@ -69,7 +69,7 @@
         } else {
             placeNameLabel.cycleLabel.textColor = [UIColor colorWithHexString:@"#15305B"];
         }
-        placeNameLabel.cycleLabel.font = [UIFont fontWithName:PingFangSCBold size:23];
+        placeNameLabel.cycleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:23];
         placeNameLabel.labelText = placeItem.placeName;
         [self addSubview:placeNameLabel];
         self.placeNameLabel = placeNameLabel;
@@ -86,7 +86,7 @@
         
         UILabel *detailLabel = [[UILabel alloc] init];
         detailLabel.text = @"详情";
-        detailLabel.font = [UIFont fontWithName:PingFangSCBold size:17];
+        detailLabel.font = [UIFont fontWithName:PingFangSCSemibold size:17];
         if (@available(iOS 11.0, *)) {
             detailLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15305C" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
@@ -123,7 +123,7 @@
         
         UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeSystem];
         [shareButton setTitle:@"与大家分享你拍摄的此地点" forState:UIControlStateNormal];
-        shareButton.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:13];
+        shareButton.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:13];
         if (@available(iOS 11.0, *)) {
             [shareButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#234780" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]] forState:UIControlStateNormal];
         } else {
@@ -135,7 +135,7 @@
         
         UILabel *aboutHereLabel = [[UILabel alloc] init];
         aboutHereLabel.text = @"关于该地点";
-        aboutHereLabel.font = [UIFont fontWithName:PingFangSCBold size:17];
+        aboutHereLabel.font = [UIFont fontWithName:PingFangSCSemibold size:17];
         aboutHereLabel.textColor = self.detailLabel.textColor;
         [self addSubview:aboutHereLabel];
         self.aboutHereLabel = aboutHereLabel;
@@ -331,7 +331,7 @@
 }
 
 - (CGFloat)attributeLabelWidthText:(NSString *)text {
-    NSDictionary *dic = @{NSFontAttributeName: [UIFont fontWithName:PingFangSCBold size:15]};
+    NSDictionary *dic = @{NSFontAttributeName: [UIFont fontWithName:PingFangSCSemibold size:15]};
 
     CGRect rect = [text boundingRectWithSize:CGSizeMake(0, 10) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil];
 

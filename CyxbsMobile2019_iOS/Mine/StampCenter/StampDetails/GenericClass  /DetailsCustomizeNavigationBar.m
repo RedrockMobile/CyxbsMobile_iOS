@@ -144,7 +144,7 @@
         _titleLabel = [[UILabel alloc] initWithFrame:(CGRectZero)];
         _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [_titleLabel sizeToFit];
-        _titleLabel.font = [UIFont fontWithName:PingFangSCBold size:22];
+        _titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:22];
     }
     return _titleLabel;
 }

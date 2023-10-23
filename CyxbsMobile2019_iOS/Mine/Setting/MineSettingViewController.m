@@ -96,7 +96,7 @@
     
     btn.layer.cornerRadius = 20.006*HScaleRate_SE;
     
-    btn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:18*fontSizeScaleRate_SE];
+    btn.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:18*fontSizeScaleRate_SE];
     
     [btn.titleLabel setTextAlignment:NSTextAlignmentCenter];
     

@@ -4462,8 +4462,8 @@
 			children = (
 				B5A4532A2AA4C39900356128 /* Source */,
 				B0F71C342ABC71B200F8B1AC /* Attitude */,
-				B09BB8152AADA35400FF88F7 /* Food */,
 				B09BB8132AADA2C200FF88F7 /* Carnie */,
+				B09BB8152AADA35400FF88F7 /* Food */,
 			);
 			path = Center;
 			sourceTree = "<group>";
@@ -5833,7 +5833,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5887,7 +5887,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.4.6;
+				MARKETING_VERSION = 6.4.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -5909,7 +5909,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5963,7 +5963,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 6.4.6;
+				MARKETING_VERSION = 6.4.7;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mredrock.cyxbs;
 				PRODUCT_NAME = "掌上重邮";
 				PROVISIONING_PROFILE_SPECIFIER = "";

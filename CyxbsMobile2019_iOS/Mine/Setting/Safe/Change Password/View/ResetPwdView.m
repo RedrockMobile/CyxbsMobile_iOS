@@ -55,7 +55,7 @@
         _line = line;
         
         ///密码输入框
-        UITextField *passwordField1=[self createTextFieldWithFont:[UIFont fontWithName:PingFangSCBold size:18] placeholder:@"请输入6位以上新密码"];
+        UITextField *passwordField1=[self createTextFieldWithFont:[UIFont fontWithName:PingFangSCSemibold size:18] placeholder:@"请输入6位以上新密码"];
         passwordField1.secureTextEntry = YES;
         passwordField1.clearButtonMode = UITextFieldViewModeNever;
         passwordField1.secureTextEntry = YES;
@@ -63,7 +63,7 @@
         _passwordField1 = passwordField1;
         
         ///密码确认框
-        UITextField *passwordField2=[self createTextFieldWithFont:[UIFont fontWithName:PingFangSCBold size:18] placeholder:@"请再次输入6位以上新密码"];
+        UITextField *passwordField2=[self createTextFieldWithFont:[UIFont fontWithName:PingFangSCSemibold size:18] placeholder:@"请再次输入6位以上新密码"];
         passwordField2.clearButtonMode = UITextFieldViewModeNever;
         passwordField2.secureTextEntry = YES;
         [self addSubview:passwordField2];

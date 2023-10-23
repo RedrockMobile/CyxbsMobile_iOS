@@ -161,7 +161,7 @@
             [UIColor colorWithHexString:@"#242424" alpha:1.0]
                               darkColor:
             [UIColor colorWithHexString:@"#F1F1F1" alpha:1.0]];
-        _ForgetPwdLab.font = [UIFont fontWithName:PingFangSCBold size:18];
+        _ForgetPwdLab.font = [UIFont fontWithName:PingFangSCSemibold size:18];
         
     }
     return _ForgetPwdLab;
@@ -185,7 +185,7 @@
 - (UIButton *)btn {
     if (_btn == nil) {
         _btn = [[UIButton alloc] init];
-        _btn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
+        _btn.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:18];
         [_btn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         _btn.layer.masksToBounds = YES;
         _btn.layer.cornerRadius = 25.5;

@@ -130,7 +130,7 @@
         }
         case 2:{  // 活动布告
             
-            //            [self.navigationController pushViewController:<#(nonnull UIViewController *)#> animated:YES];
+//            [self.navigationController pushViewController:<#(nonnull UIViewController *)#> animated:YES];
             break;
         }
         default:

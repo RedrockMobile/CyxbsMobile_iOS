@@ -108,7 +108,7 @@
         _saveLbl = [[UILabel alloc] initWithFrame:CGRectZero];
         _saveLbl.text = @"保存";
         _saveLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-        _saveLbl.font = [UIFont fontWithName:PingFangSCBold size:20];
+        _saveLbl.font = [UIFont fontWithName:PingFangSCSemibold size:20];
         _saveLbl.alpha = 0.6;
     }
     return _saveLbl;

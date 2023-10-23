@@ -61,6 +61,9 @@
 /// 意见与反馈入口按钮
 @property(nonatomic, strong)MineMSSEnterBtn *suggesstionBtn;
 
+/// 活动中心按钮
+@property(nonatomic, strong)MineMSSEnterBtn *activityCenterBtn;
+
 /// 签到相关的一块 view
 @property(nonatomic, strong)MineSignView *signView;
 
@@ -98,6 +101,7 @@
     [self addMsgCenterBtn];
     [self addStampCenterBtn];
     [self addSuggesstionBtn];
+    [self addActivityCenterBtn];
     [self addTableView];
     [self addSignView];
     
@@ -289,6 +293,22 @@
     [btn addTarget:self action:@selector(suggesstionBtnClicked) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)addActivityCenterBtn {
+    MineMSSEnterBtn *btn = [[MineMSSEnterBtn alloc] init];
+    self.activityCenterBtn = btn;
+    [self.backBoardView addSubview:btn];
+    
+    [btn.iconImgView setImage:[UIImage imageNamed:@"活动中心"]];
+    [btn.nameLabel setText:@"活动中心"];
+    
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.backBoardView).offset(0.13333333*SCREEN_WIDTH);
+        make.top.equalTo(self.backBoardView).offset(0.39543186*SCREEN_WIDTH);
+    }];
+    
+    [btn addTarget:self action:@selector(activityCenterBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+}
+
 - (void)addSignView {
     MineSignView *view = [[MineSignView alloc] init];
     self.signView = view;
@@ -296,7 +316,7 @@
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backBoardView).offset(0.04266666667*SCREEN_WIDTH);
-        make.top.equalTo(self.backBoardView).offset(0.1773399015*SCREEN_HEIGHT);
+        make.top.equalTo(self.backBoardView).offset(0.33497537*SCREEN_HEIGHT);
     }];
     
     [view.signBtn addTarget:self action:@selector(signBtnClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -415,6 +435,13 @@
     FeedBackMainPageViewController *fvc = [[FeedBackMainPageViewController alloc]init];
       fvc.hidesBottomBarWhenPushed = YES;
       [self.navigationController pushViewController:fvc animated:YES];
+}
+
+/// 点击活动中心按钮后调用
+- (void)activityCenterBtnClicked {
+//    ActivityCenterVC *avc = [[ActivityCenterVC alloc]init];
+//    avc.hidesBottomBarWhenPushed = YES;
+//    [self.navigationController pushViewController:avc animated:YES];
 }
 
 /// 点击签到按钮后调用

@@ -263,7 +263,7 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
      font:'PingFangSC-Semibold'
 */
 
-#define PingFangSCBold PingFangSCSemibold
+//#define PingFangSCSemibold PingFangSCSemibold
 
 
 // Bahnschrift字体

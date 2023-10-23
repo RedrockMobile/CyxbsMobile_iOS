@@ -31,7 +31,7 @@
     } else {
         [backButton setTitleColor:[UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1] forState:UIControlStateNormal];
     }
-    backButton.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:19];
+    backButton.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:19];
     backButton.frame = CGRectMake(MAIN_SCREEN_W - 20 - 50, 10, 50, 30);
     [backButton addTarget:self action:@selector(backButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:backButton];
@@ -75,13 +75,13 @@
     
     NudeIn *userProtocolTextView = [NudeIn make:^(NUDTextMaker *make) {
         make.text(@"“掌上重邮”用户服务协议\n")
-        .fontName(PingFangSCBold, titleFontSize)
+        .fontName(PingFangSCSemibold, titleFontSize)
         .aligment(NUDAliCenter)
         .paraSpacing(0, titleRowSpace)
         .attach();
         
         make.text(@"1. 导言\n")
-        .fontName(PingFangSCBold, subTitleFontSize)
+        .fontName(PingFangSCSemibold, subTitleFontSize)
         .paraSpacing(0, rowSpace)
         .attach();
         
@@ -92,7 +92,7 @@
         .attach();
         
         make.text(@"2. 账号登录\n")
-        .fontName(PingFangSCBold, subTitleFontSize)
+        .fontName(PingFangSCSemibold, subTitleFontSize)
         .paraSpacing(0, rowSpace)
         .attach();
         
@@ -102,7 +102,7 @@
         .attach();
         
         make.text(@"3. 账号互通\n")
-        .fontName(PingFangSCBold, subTitleFontSize)
+        .fontName(PingFangSCSemibold, subTitleFontSize)
         .paraSpacing(0, rowSpace)
         .attach();
         
@@ -112,7 +112,7 @@
         .attach();
         
         make.text(@"4. 功能授权\n")
-        .fontName(PingFangSCBold, subTitleFontSize)
+        .fontName(PingFangSCSemibold, subTitleFontSize)
         .paraSpacing(0, rowSpace)
         .attach();
         
@@ -122,7 +122,7 @@
         .attach();
         
         make.text(@"5. 邮问社区\n")
-        .fontName(PingFangSCBold, subTitleFontSize)
+        .fontName(PingFangSCSemibold, subTitleFontSize)
         .paraSpacing(0, rowSpace)
         .attach();
         
@@ -132,7 +132,7 @@
         .attach();
         
         make.text(@"6. 积分与打赏\n")
-        .fontName(PingFangSCBold, subTitleFontSize)
+        .fontName(PingFangSCSemibold, subTitleFontSize)
         .paraSpacing(0, rowSpace)
         .attach();
         
@@ -142,7 +142,7 @@
         .attach();
         
         make.text(@"7. 信息安全\n")
-        .fontName(PingFangSCBold, subTitleFontSize)
+        .fontName(PingFangSCSemibold, subTitleFontSize)
         .paraSpacing(0, rowSpace)
         .attach();
         
@@ -152,7 +152,7 @@
         .attach();
         
         make.text(@"8. 隐私保护\n")
-        .fontName(PingFangSCBold, subTitleFontSize)
+        .fontName(PingFangSCSemibold, subTitleFontSize)
         .paraSpacing(0, rowSpace)
         .attach();
         
@@ -162,7 +162,7 @@
         .attach();
         
         make.text(@"9. 知识产权声明\n")
-        .fontName(PingFangSCBold, subTitleFontSize)
+        .fontName(PingFangSCSemibold, subTitleFontSize)
         .paraSpacing(0, rowSpace)
         .attach();
         
@@ -172,7 +172,7 @@
         .attach();
         
         make.text(@"10. 第三方SDK使用说明\n")
-            .fontName(PingFangSCBold, subTitleFontSize)
+            .fontName(PingFangSCSemibold, subTitleFontSize)
             .paraSpacing(0, rowSpace)
             .attach();
         

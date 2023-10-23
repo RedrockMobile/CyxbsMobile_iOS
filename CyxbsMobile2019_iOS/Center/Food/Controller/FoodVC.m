@@ -407,7 +407,7 @@ UICollectionViewDelegateFlowLayout
     //addTitleView
     UILabel *titleLabel = [[UILabel alloc]init];
     titleLabel.text = @"美食咨询处";
-    titleLabel.font = [UIFont fontWithName:PingFangSCBold size:20];
+    titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:20];
     titleLabel.textColor = [UIColor colorWithHexString:@"#112C53"];
     self.titleLabel = titleLabel;
     [self.goBackView addSubview:titleLabel];

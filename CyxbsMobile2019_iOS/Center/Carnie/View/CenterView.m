@@ -131,7 +131,7 @@
         _foodBtn = [[UIButton alloc] init];
         [_foodBtn setBackgroundImage:[UIImage imageNamed:@"center_btn_backImg"] forState:UIControlStateNormal];
         [_foodBtn setTitle:@"美食咨询处" forState:UIControlStateNormal];
-        _foodBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:16];
+        _foodBtn.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:16];
         _foodBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [_foodBtn setTitleColor:[UIColor colorWithHexString:@"#4A44E4" alpha:1.0] forState:UIControlStateNormal];
         [_foodBtn setAdjustsImageWhenHighlighted:NO];
@@ -152,7 +152,7 @@
         _biaoTaiBtn = [[UIButton alloc] init];
         [_biaoTaiBtn setBackgroundImage:[UIImage imageNamed:@"center_btn_backImg"] forState:UIControlStateNormal];
         [_biaoTaiBtn setTitle:@"表态广场" forState:UIControlStateNormal];
-        _biaoTaiBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:16];
+        _biaoTaiBtn.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:16];
         _biaoTaiBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [_biaoTaiBtn setTitleColor:[UIColor colorWithHexString:@"#4A44E4" alpha:1.0] forState:UIControlStateNormal];
         [_biaoTaiBtn setAdjustsImageWhenHighlighted:NO];
@@ -173,7 +173,7 @@
         _activityNotifyBtn = [[UIButton alloc] init];
         [_activityNotifyBtn setBackgroundImage:[UIImage imageNamed:@"center_btn_backImg"] forState:UIControlStateNormal];
         [_activityNotifyBtn setTitle:@"活动布告栏" forState:UIControlStateNormal];
-        _activityNotifyBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:16];
+        _activityNotifyBtn.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:16];
         _activityNotifyBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [_activityNotifyBtn setTitleColor:[UIColor colorWithHexString:@"#4A44E4" alpha:1.0] forState:UIControlStateNormal];
         [_activityNotifyBtn setAdjustsImageWhenHighlighted:NO];
