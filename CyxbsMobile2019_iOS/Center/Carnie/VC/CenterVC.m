@@ -13,6 +13,8 @@
 #import <Accelerate/Accelerate.h>
 #import "FoodVC.h"
 #import "AttitudeMainPageVC.h"
+// swift (将Swift中的类暴露给OC)
+#import "掌上重邮-Swift.h"
 
 @interface CenterVC ()
 
@@ -44,7 +46,7 @@
     [self setDetailBtns];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
+- (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
 //    // 恢复背景颜色
@@ -54,7 +56,7 @@
 //        self.tabBarController.tabBar.scrollEdgeAppearance = appearance;
 //        self.tabBarController.tabBar.standardAppearance = appearance;
 //    }
-//    
+//
     [[NSNotificationCenter defaultCenter] postNotificationName:@"ShowBottomClassScheduleTabBarView" object:nil userInfo:nil];
 }
 
@@ -94,44 +96,52 @@
     }];
 }
 
-// 按钮设置方法
+
+/// 按钮设置方法
 - (void)setDetailBtns {
-    // 设置按钮触发事件
-    [self.centerView.foodBtn addTarget:self action:@selector(pushFoodVC) forControlEvents:UIControlEventTouchUpInside];
-    [self.centerView.biaoTaiBtn addTarget:self action:@selector(pushAttitudeVC) forControlEvents:UIControlEventTouchUpInside];
-    [self.centerView.activityNotifyBtn addTarget:self action:@selector(pushActivityVC) forControlEvents:UIControlEventTouchUpInside];
-    
-    // 添加图片点击手势
-    [self addTapGestureToView:self.centerView.foodImg withSelector:@selector(pushFoodVC)];
-    [self addTapGestureToView:self.centerView.biaoTaiImg withSelector:@selector(pushAttitudeVC)];
-    [self addTapGestureToView:self.centerView.activityNotifyImg withSelector:@selector(pushActivityVC)];
+    // 目前是三个界面：美食，表态和活动布告
+    // 设置tag
+    self.centerView.foodBtn.tag = 0;
+    self.centerView.biaoTaiBtn.tag = 1;
+    self.centerView.activityNotifyBtn.tag = 2;
+    // 三个按钮均设置一样的跳转方法，再根据不同btn 的tag 来跳转到不同的VC
+    [self.centerView.foodBtn addTarget:self action:@selector(pushDetailVC:) forControlEvents:UIControlEventTouchUpInside];
+    [self.centerView.biaoTaiBtn addTarget:self action:@selector(pushDetailVC:) forControlEvents:UIControlEventTouchUpInside];
+    [self.centerView.activityNotifyBtn addTarget:self action:@selector(pushDetailVC:) forControlEvents:UIControlEventTouchUpInside];
 }
 
-// 添加点击手势
-- (void)addTapGestureToView:(UIView *)view withSelector:(SEL)selector {
-    view.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:selector];
-    [view addGestureRecognizer:tapGesture];
-}
+// MARK: SEL
 
-// 跳转到美食
-- (void)pushFoodVC {
-    FoodVC* foodVC = [[FoodVC alloc] init];
-    foodVC.hidesBottomBarWhenPushed = YES;
-    self.navigationController.navigationBarHidden = YES;
-    [self.navigationController pushViewController:foodVC animated:YES];
-}
-
-// 跳转到表态
-- (void)pushAttitudeVC {
-    AttitudeMainPageVC* attitudeVC = [[AttitudeMainPageVC alloc] init];
-    attitudeVC.hidesBottomBarWhenPushed = YES;
-    self.navigationController.navigationBarHidden = YES;
-    [self.navigationController pushViewController:attitudeVC animated:YES];
-}
-
-// 跳转到活动
-- (void)pushActivityVC {
+/// 按钮触碰事件
+- (void)pushDetailVC:(UIButton *)sender {
+    switch (sender.tag) {
+        case 0:{  // 美食
+            FoodVC* foodVC = [[FoodVC alloc] init];
+            foodVC.hidesBottomBarWhenPushed = YES;
+            //隐藏navBar,之后自定义返回键
+            self.navigationController.navigationBar.hidden = YES;
+            [self.navigationController pushViewController:foodVC animated:YES];
+            break;
+        }
+        case 1:{  // 表态
+            AttitudeMainPageVC* attitudeVC = [[AttitudeMainPageVC alloc] init];
+            attitudeVC.hidesBottomBarWhenPushed = YES;
+            //隐藏navBar,之后自定义返回键
+            self.navigationController.navigationBar.hidden = YES;
+            [self.navigationController pushViewController:attitudeVC animated:YES];
+            break;
+        }
+        case 2:{  // 活动布告
+            ActivityMainViewController* activityVC = [[ActivityMainViewController alloc] init];
+            activityVC.hidesBottomBarWhenPushed = YES;
+            //隐藏navBar,之后自定义返回键
+            self.navigationController.navigationBar.hidden = YES;
+            [self.navigationController pushViewController:activityVC animated:YES];
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 #pragma mark - Getter

@@ -37,6 +37,7 @@
 #import "NSObject+YYAdd.h"
 #import "NSString+UILabel.h"
 #import "SSRButton.h"
+#import "AliyunConfig.h"
 
 #pragma mark - Group共享
 

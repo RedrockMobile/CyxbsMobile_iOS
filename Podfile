@@ -51,6 +51,10 @@ target 'CyxbsMobile2019_iOS' do
   pod 'RxSwift', '~> 5.1.1'
   pod 'RxCocoa', '~> 5.1.1'
   pod 'SnapKit'
+  pod 'JXPagingView'
+  pod 'JXSegmentedView'
+  pod 'TOCropViewController'
+  pod 'ProgressHUD'
 
     post_install do |installer|
       installer.pods_project.build_configurations.each do |config|
