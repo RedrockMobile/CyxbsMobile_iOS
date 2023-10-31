@@ -317,5 +317,15 @@ extension HttpManager {
         ]
         return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-ufield/activity/action/watch/"), method: .put, parameters: parameters, encoding: URLEncoding.queryString)
     }
+    
+    ///活动-是否为管理员
+    func magipoke_ufield_isadmin() -> DataRequest {
+        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-ufield/isadmin/"), method: .get, parameters: nil)
+    }
+    
+    ///关于我的活动
+    func magipoke_ufield_activity_list_me() -> DataRequest {
+        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-ufield/activity/list/me/"), method: .get, parameters: nil)
+    }
 }
 

@@ -87,18 +87,17 @@ class ActivityMainViewController: UIViewController {
     }
     
     func isAdmin() {
-        ActivityClient.shared.request(url:"magipoke-ufield//isadmin/",
-                                      method: .get,
-                                      headers: nil,
-                                      parameters: nil) { responseData in
-            if let dataDict = responseData as? [String: Any],
-               let jsonData = try? JSONSerialization.data(withJSONObject: dataDict),
-               let adminResponseData = try? JSONDecoder().decode(AdminResponseData.self, from: jsonData) {
+        HttpManager.shared.magipoke_ufield_isadmin().ry_JSON { response in
+            switch response {
+            case .success(let jsonData):
+                let adminResponseData = AdminResponseData(from: jsonData)
                 if (adminResponseData.data.admin) {
                     self.topView.adAdminButton()
                 }
-            } else {
-                print("Invalid response data")
+                break
+            case .failure(let error):
+                print(error)
+                break
             }
         }
     }

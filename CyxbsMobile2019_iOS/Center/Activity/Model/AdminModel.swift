@@ -7,14 +7,29 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 struct AdminResponseData: Codable {
-    let data: AdminDataItem
-    let info: String
-    let status: Int
+    var data: AdminDataItem
+    var info: String
+    var status: Int
+}
+
+extension AdminResponseData {
+    init(from json: JSON) {
+        status = json["status"].intValue
+        info = json["info"].stringValue
+        data = AdminDataItem(from: json["data"])
+    }
 }
 
 struct AdminDataItem: Codable {
-    let admin: Bool
+    var admin: Bool
+}
+
+extension AdminDataItem {
+    init(from json: JSON) {
+        admin = json["admin"].bool!
+    }
 }
 

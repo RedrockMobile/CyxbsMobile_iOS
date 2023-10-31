@@ -111,7 +111,7 @@ class ActivityAddVC: UIViewController,
                         let mimeType = "image/png"
 
                         // 发起上传请求
-                        ActivityClient.shared.upload(url: "magipoke-ufield/activity/publish/",
+                        ActivityUploadClient.shared.upload(url: "magipoke-ufield/activity/publish/",
                                                      method: .post,
                                                      headers: nil,
                                                      parameters: parameters,
@@ -142,7 +142,7 @@ class ActivityAddVC: UIViewController,
                             ActivityHUD.shared.showNetworkError()
                         }
                     } else {
-                        ActivityClient.shared.upload(url: "magipoke-ufield/activity/publish/",
+                        ActivityUploadClient.shared.upload(url: "magipoke-ufield/activity/publish/",
                                                      method: .post,
                                                      headers: nil,
                                                      parameters: parameters,

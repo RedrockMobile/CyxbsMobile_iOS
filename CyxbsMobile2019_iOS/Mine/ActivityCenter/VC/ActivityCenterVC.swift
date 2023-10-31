@@ -63,44 +63,29 @@ class ActivityCenterVC: UIViewController {
     }
     
     func requestActivity() {
-        ActivityClient.shared.request(url:"magipoke-ufield/activity/list/me/",
-                                      method: .get,
-                                      headers: nil,
-                                      parameters: nil) { responseData in
-            if let dataDict = responseData as? [String: Any],
-               let jsonData = try? JSONSerialization.data(withJSONObject: dataDict),
-               let mineActivityResponseData = try? JSONDecoder().decode(MineActivityResponse.self, from: jsonData) {
-//                for activity in mineActivityResponseData.data.wantToWatch {
-//                    self.wantToWatchActivities.append(activity)
-//                }
+        HttpManager.shared.magipoke_ufield_activity_list_me().ry_JSON { response in
+            switch response {
+            case .success(let jsonData):
+                let mineActivityResponseData = MineActivityResponse(from: jsonData)
+                self.wantToWatchActivities = mineActivityResponseData.data.wantToWatch
                 self.wantToWatchActivities = mineActivityResponseData.data.wantToWatch
                 self.tableViewControllers[0].activities = self.wantToWatchActivities
-//                for activity in mineActivityResponseData.data.participated {
-//                    self.participatedActivities.append(activity)
-//                }
                 self.participatedActivities = mineActivityResponseData.data.participated
                 self.tableViewControllers[1].activities = self.participatedActivities
-//                for activity in mineActivityResponseData.data.published {
-//                    self.publishedActivities.append(activity)
-//                }
                 self.publishedActivities = mineActivityResponseData.data.published
                 self.tableViewControllers[2].activities = self.publishedActivities
-//                for activity in mineActivityResponseData.data.reviewing {
-//                    self.reviewingActivities.append(activity)
-//                }
-                
+                self.reviewingActivities = mineActivityResponseData.data.reviewing
                 self.tableViewControllers[3].activities = self.reviewingActivities
                 //所有子vc的tableView重新载入数据
                 for ActivityCenterTableViewVC in self.tableViewControllers {
                     ActivityCenterTableViewVC.tableView.reloadData()
                 }
-//                print(self.wantToWatchActivities.count)
-            } else {
-                print("Invalid response data")
-                print(responseData)
+                break
+            case .failure(let error):
+                print(error)
+                ActivityHUD.shared.showNetworkError()
+                break
             }
-        } failure: { error in
-            ActivityHUD.shared.showNetworkError()
         }
     }
     

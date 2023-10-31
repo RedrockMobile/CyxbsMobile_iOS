@@ -346,7 +346,7 @@ class ActivityDetailVC: UIViewController {
                                                                 delay: 2,
                                                                 backGroundColor: UIColor(hexString: "#2a4e84"),
                                                                 cornerRadius: 18,
-                                                                yOffset: -100)
+                                                                yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)
                     self.delegate?.updateModel(indexPathNum: self.numOfIndexPath, wantToWatch: true)
                 } else {
                     ActivityHUD.shared.addProgressHUDView(width: 138,
@@ -357,7 +357,7 @@ class ActivityDetailVC: UIViewController {
                                                                 delay: 2,
                                                                 backGroundColor: UIColor(hexString: "#2a4e84"),
                                                                 cornerRadius: 18,
-                                                                yOffset: -100)
+                                                                yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)
                 }
                 break
             case .failure(let error):

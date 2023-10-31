@@ -244,7 +244,7 @@
 		756C39332AE6BA6C0056A8D1 /* ActivityHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756C38FF2AE6BA6C0056A8D1 /* ActivityHUD.swift */; };
 		756C39342AE6BA6C0056A8D1 /* ActivityRankingListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756C39022AE6BA6C0056A8D1 /* ActivityRankingListVC.swift */; };
 		756C39352AE6BA6C0056A8D1 /* ActivityHitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756C39042AE6BA6C0056A8D1 /* ActivityHitTableViewCell.swift */; };
-		756C39362AE6BA6C0056A8D1 /* RequestTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756C39062AE6BA6C0056A8D1 /* RequestTool.swift */; };
+		756C39362AE6BA6C0056A8D1 /* UploadTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756C39062AE6BA6C0056A8D1 /* UploadTool.swift */; };
 		756C39372AE6BA6C0056A8D1 /* ActivityDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756C39092AE6BA6C0056A8D1 /* ActivityDetailVC.swift */; };
 		756C39382AE6BA6C0056A8D1 /* ActivityDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756C390B2AE6BA6C0056A8D1 /* ActivityDetailView.swift */; };
 		756C39392AE6BA6C0056A8D1 /* ActivityDatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756C390E2AE6BA6C0056A8D1 /* ActivityDatePickerVC.swift */; };
@@ -989,7 +989,7 @@
 		756C38FF2AE6BA6C0056A8D1 /* ActivityHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityHUD.swift; sourceTree = "<group>"; };
 		756C39022AE6BA6C0056A8D1 /* ActivityRankingListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityRankingListVC.swift; sourceTree = "<group>"; };
 		756C39042AE6BA6C0056A8D1 /* ActivityHitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityHitTableViewCell.swift; sourceTree = "<group>"; };
-		756C39062AE6BA6C0056A8D1 /* RequestTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTool.swift; sourceTree = "<group>"; };
+		756C39062AE6BA6C0056A8D1 /* UploadTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadTool.swift; sourceTree = "<group>"; };
 		756C39092AE6BA6C0056A8D1 /* ActivityDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityDetailVC.swift; sourceTree = "<group>"; };
 		756C390B2AE6BA6C0056A8D1 /* ActivityDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityDetailView.swift; sourceTree = "<group>"; };
 		756C390E2AE6BA6C0056A8D1 /* ActivityDatePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityDatePickerVC.swift; sourceTree = "<group>"; };
@@ -3524,7 +3524,6 @@
 			isa = PBXGroup;
 			children = (
 				756C38FE2AE6BA6C0056A8D1 /* Tools */,
-				756C39052AE6BA6C0056A8D1 /* NetWork */,
 				756C39002AE6BA6C0056A8D1 /* Activity_RankingListPage */,
 				756C39072AE6BA6C0056A8D1 /* Activity_DetailPage */,
 				756C390C2AE6BA6C0056A8D1 /* Activity_Pickers */,
@@ -3574,7 +3573,7 @@
 		756C39052AE6BA6C0056A8D1 /* NetWork */ = {
 			isa = PBXGroup;
 			children = (
-				756C39062AE6BA6C0056A8D1 /* RequestTool.swift */,
+				756C39062AE6BA6C0056A8D1 /* UploadTool.swift */,
 			);
 			path = NetWork;
 			sourceTree = "<group>";
@@ -3738,6 +3737,7 @@
 			children = (
 				756C392F2AE6BA6C0056A8D1 /* VC */,
 				756C39312AE6BA6C0056A8D1 /* View */,
+				756C39052AE6BA6C0056A8D1 /* NetWork */,
 			);
 			path = Activity_AddActivityPage;
 			sourceTree = "<group>";
@@ -5878,7 +5878,7 @@
 				147842EA27F0758F002359BA /* UIView+Frame.m in Sources */,
 				18CDF67E257F91BD006E8E5C /* HistoryView.m in Sources */,
 				14B73F77281BED7B00D08ADD /* SystemMessageView.m in Sources */,
-				756C39362AE6BA6C0056A8D1 /* RequestTool.swift in Sources */,
+				756C39362AE6BA6C0056A8D1 /* UploadTool.swift in Sources */,
 				AA7ABAC62873EA5500BA6790 /* NewQAHud.m in Sources */,
 				DB34EB36239BD4550052B65E /* ChooseButton.m in Sources */,
 				647AC3102828012F009A2E35 /* SchoolBusMapSideBar.m in Sources */,
