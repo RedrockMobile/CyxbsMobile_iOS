@@ -29,7 +29,8 @@
 
 //获取用户关注的人和粉丝的个人信息
 #define fansAndFollowsInfo @"/magipoke-loop/user/fansAndFollowsInfo"
-
+// swift (将Swift中的类暴露给OC)
+#import "掌上重邮-Swift.h"
 
 @interface MineViewController ()<
     UITableViewDelegate,
@@ -158,7 +159,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     if (self.canRequestUserInfo) {
 //        [self.userInfoModel updateUserInfoCompletion:^(MineUserInfoModelUpdateUserInfoState state) {
-//            
+//
 //            if (state==MineUserInfoModelUpdateUserInfoStateError) {
 //                [self requestUserInfoFailure];
 //            }
@@ -177,7 +178,8 @@
     scrollView.showsVerticalScrollIndicator = NO;
     
     [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.bottom.right.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-150);
         make.top.equalTo(self.view).offset(getStatusBarHeight_Double);
     }];
 }
@@ -295,7 +297,7 @@
 
 - (void)addActivityCenterBtn {
     MineMSSEnterBtn *btn = [[MineMSSEnterBtn alloc] init];
-    self.activityCenterBtn = btn;
+    self.suggesstionBtn = btn;
     [self.backBoardView addSubview:btn];
     
     [btn.iconImgView setImage:[UIImage imageNamed:@"活动中心"]];
@@ -316,7 +318,7 @@
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backBoardView).offset(0.04266666667*SCREEN_WIDTH);
-        make.top.equalTo(self.backBoardView).offset(0.33497537*SCREEN_HEIGHT);
+        make.top.equalTo(self.backBoardView).offset(0.37497537*SCREEN_HEIGHT);
     }];
     
     [view.signBtn addTarget:self action:@selector(signBtnClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -338,7 +340,7 @@
     
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.backBoardView);
-        make.top.equalTo(self.backBoardView).offset(0.3091133005*SCREEN_HEIGHT);
+        make.top.equalTo(self.backBoardView).offset(0.49674877*SCREEN_HEIGHT);
         
     }];
 }
@@ -389,9 +391,9 @@
 /// 点击动态按钮后调用
 - (void)blogBtnClicked {
 //    ArticleViewController *vc = [[ArticleViewController alloc] init];
-//    
+//
 //    vc.hidesBottomBarWhenPushed = YES;
-//    
+//
 //    [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -430,18 +432,18 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+/// 点击活动中心按钮后调用
+- (void)activityCenterBtnClicked {
+    ActivityCenterVC *avc = [[ActivityCenterVC alloc]init];
+    avc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:avc animated:YES];
+}
+
 /// 点击意见与反馈按钮后调用
 - (void)suggesstionBtnClicked {
     FeedBackMainPageViewController *fvc = [[FeedBackMainPageViewController alloc]init];
       fvc.hidesBottomBarWhenPushed = YES;
       [self.navigationController pushViewController:fvc animated:YES];
-}
-
-/// 点击活动中心按钮后调用
-- (void)activityCenterBtnClicked {
-//    ActivityCenterVC *avc = [[ActivityCenterVC alloc]init];
-//    avc.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:avc animated:YES];
 }
 
 /// 点击签到按钮后调用
