@@ -341,6 +341,7 @@
 		B01A9E322AB4590C0083C476 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B01A9E312AB4590C0083C476 /* NetworkManager.m */; };
 		B01AFD6A29EFE531004F82D7 /* ElectricityView.m in Sources */ = {isa = PBXBuildFile; fileRef = B01AFD6929EFE531004F82D7 /* ElectricityView.m */; };
 		B033366E294C971D004D141D /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B033366D294C971D004D141D /* HttpTool.m */; };
+		B03DB39B2AF123E600307DE0 /* DarkMatteView.m in Sources */ = {isa = PBXBuildFile; fileRef = B03DB39A2AF123E600307DE0 /* DarkMatteView.m */; };
 		B03FAB882AB9DD2500609124 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FAB872AB9DD2500609124 /* libsqlite3.0.tbd */; };
 		B03FAB8A2AB9DD2C00609124 /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FAB892AB9DD2C00609124 /* libresolv.tbd */; };
 		B03FAB8C2AB9DD3200609124 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FAB8B2AB9DD3200609124 /* CoreTelephony.framework */; };
@@ -1169,6 +1170,8 @@
 		B01AFD6829EFE531004F82D7 /* ElectricityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricityView.h; sourceTree = "<group>"; };
 		B01AFD6929EFE531004F82D7 /* ElectricityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElectricityView.m; sourceTree = "<group>"; };
 		B033366D294C971D004D141D /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
+		B03DB3992AF123E600307DE0 /* DarkMatteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DarkMatteView.h; sourceTree = "<group>"; };
+		B03DB39A2AF123E600307DE0 /* DarkMatteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DarkMatteView.m; sourceTree = "<group>"; };
 		B03FAB872AB9DD2500609124 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		B03FAB892AB9DD2C00609124 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		B03FAB8B2AB9DD3200609124 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -4246,6 +4249,15 @@
 			path = ArticleRemarkPraise;
 			sourceTree = "<group>";
 		};
+		B03DB3982AF123B800307DE0 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				B03DB3992AF123E600307DE0 /* DarkMatteView.h */,
+				B03DB39A2AF123E600307DE0 /* DarkMatteView.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
 		B03FAB8F2AB9DDEB00609124 /* OneSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -4830,8 +4842,9 @@
 		B5B454FC29C0C09F00875DF7 /* Center */ = {
 			isa = PBXGroup;
 			children = (
-				756C38FD2AE6BA6C0056A8D1 /* Activity */,
+				B03DB3982AF123B800307DE0 /* Tool */,
 				B5A4532A2AA4C39900356128 /* Source */,
+				756C38FD2AE6BA6C0056A8D1 /* Activity */,
 				B0F71C342ABC71B200F8B1AC /* Attitude */,
 				B09BB8132AADA2C200FF88F7 /* Carnie */,
 				B09BB8152AADA35400FF88F7 /* Food */,
@@ -5721,6 +5734,7 @@
 				14B73F79281BED7B00D08ADD /* MessageMoreModel.m in Sources */,
 				AA3F82DD24E9343A00B65042 /* DayBarView.m in Sources */,
 				18CDF4BA257F8DBD006E8E5C /* ChangePwdViewController.m in Sources */,
+				B03DB39B2AF123E600307DE0 /* DarkMatteView.m in Sources */,
 				DB4064F92466D889006CE5BC /* DLTimeSelectView.m in Sources */,
 				18CDF4CA257F8DBD006E8E5C /* SelfSafeView.m in Sources */,
 				735BC54A26D3BF6400F22678 /* FeedBackReplyModel.m in Sources */,
