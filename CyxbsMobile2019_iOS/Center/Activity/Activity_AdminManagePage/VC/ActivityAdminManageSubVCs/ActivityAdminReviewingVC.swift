@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import MJRefresh
 import JXSegmentedView
 
 class ActivityAdminReviewingVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     private var activities: [Activity] = []
     private var titleParagraphStyle = NSMutableParagraphStyle()
+    private var lower_id: Int? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,7 @@ class ActivityAdminReviewingVC: UIViewController, UITableViewDataSource, UITable
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+        addMJFooter()
     }
     
     //活动展示tableView
@@ -53,7 +56,7 @@ class ActivityAdminReviewingVC: UIViewController, UITableViewDataSource, UITable
         cell.creatorView.contentLabel.text = activities[indexPath.item].activityCreator
         cell.phoneView.contentLabel.text = activities[indexPath.item].phone
         cell.activityId = activities[indexPath.item].activityId
-        cell.agreeButton.addTarget(self, action: #selector(refreshReviewingActivities), for: .touchUpInside)
+        cell.agreeButton.addTarget(self, action: #selector(requestReviewingActivities), for: .touchUpInside)
         cell.agreeButtonTappedHandler = { [weak self] activityId in
             self?.agreeButtonTapped(activityId: activityId)
         }
@@ -90,42 +93,35 @@ class ActivityAdminReviewingVC: UIViewController, UITableViewDataSource, UITable
         }()
     }
     
-    func requestReviewingActivities() {
-        activities = []
-        HttpManager.shared.magipoke_ufield_activity_tobe_examine(lower_id: nil)
-//        ActivityClient.shared.request(url: "magipoke-ufield/activity/list/tobe-examine/",
-//                                      method: .get,
-//                                      headers: nil,
-//                                      parameters: nil) { responseData in
-//            print(responseData as Any)
-//            if let dataDict = responseData as? [String: Any],
-//            let jsonData = try? JSONSerialization.data(withJSONObject: dataDict),
-//            let reviewingActivityResponseData = try? JSONDecoder().decode(SearchActivityResponse.self, from: jsonData) {
-//                for activity in reviewingActivityResponseData.data {
-//                    self.activities.append(activity)
-//                }
-//                print("待审核活动数量\(self.activities.count)")
-//                self.tableView.reloadData()
-//                if self.activities.count == 0 {
-//                    ActivityHUD.shared.addProgressHUDView(width: 138,
-//                                                                height: 36,
-//                                                                text: "暂无更多内容",
-//                                                                font: UIFont(name: PingFangSCMedium, size: 13)!,
-//                                                                textColor: .white,
-//                                                                delay: 2,
-//                                                                backGroundColor: UIColor(hexString: "#2a4e84"),
-//                                                                cornerRadius: 18,
-//                                                          yOffset: Float(-UIScreen.main.bounds.width + UIApplication.shared.statusBarFrame.height) + 78)
-//                }
-//            } else {
-//                print("Invalid response data")
-//                print(responseData)
-//            }
-//        }
-    }
-    
-    @objc func refreshReviewingActivities() {
-        self.requestReviewingActivities()
+    @objc func requestReviewingActivities() {
+        HttpManager.shared.magipoke_ufield_activity_tobe_examine(lower_id: lower_id).ry_JSON { response in
+            self.tableView.mj_footer?.endRefreshing()
+            switch response {
+            case.success(let jsonData):
+                let reviewingActivityResponseData = SearchActivityResponse(from: jsonData)
+                self.activities += reviewingActivityResponseData.data
+                self.tableView.reloadData()
+                if(self.activities.count > 0){
+                    self.lower_id = self.activities[self.activities.count-1].activityId
+                }
+                if reviewingActivityResponseData.data.count == 0 {
+                    ActivityHUD.shared.addProgressHUDView(width: 138,
+                                                                height: 36,
+                                                                text: "暂无更多内容",
+                                                                font: UIFont(name: PingFangSCMedium, size: 13)!,
+                                                                textColor: .white,
+                                                                delay: 2,
+                                                                backGroundColor: UIColor(hexString: "#2a4e84"),
+                                                                cornerRadius: 18,
+                                                          yOffset: Float(-UIScreen.main.bounds.width + UIApplication.shared.statusBarFrame.height) + 78)
+                }
+                break
+            case.failure(let error):
+                print(error)
+                ActivityHUD.shared.showNetworkError()
+                break
+            }
+        }
     }
     
     func agreeButtonTapped(activityId: Int) {
@@ -153,15 +149,7 @@ class ActivityAdminReviewingVC: UIViewController, UITableViewDataSource, UITable
                 break
             case .failure(let error):
                 print(error)
-                ActivityHUD.shared.addProgressHUDView(width: 179,
-                                                            height: 36,
-                                                            text: "服务君似乎打盹了呢",
-                                                            font: UIFont(name: PingFangSCMedium, size: 13)!,
-                                                            textColor: .white,
-                                                            delay: 2,
-                                                            backGroundColor: UIColor(hexString: "#2a4e84"),
-                                                            cornerRadius: 18,
-                                                            yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)
+                ActivityHUD.shared.showNetworkError()
                 break
             }
         }
@@ -173,6 +161,15 @@ class ActivityAdminReviewingVC: UIViewController, UITableViewDataSource, UITable
         vc.modalPresentationStyle = .overFullScreen
         vc.activityId = activityId
         self.navigationController?.present(vc, animated: true, completion: nil)
+    }
+    
+    func addMJFooter() {
+        let footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(requestReviewingActivities))
+        footer.setTitle("", for: .idle)
+        footer.setTitle("正在加载...", for: .refreshing)
+        footer.setTitle("已经加载到最底部", for: .noMoreData)
+        footer.stateLabel?.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.3)
+        tableView.mj_footer = footer
     }
 }
 // MARK: - JXSegmentedListContainerViewListDelegate，返回containerView展示的视图

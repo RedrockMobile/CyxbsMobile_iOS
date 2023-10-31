@@ -60,15 +60,7 @@ class ActivityCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
             } else {
             }
         } failure: { error in
-                        ActivityHUD.shared.addProgressHUDView(width: 179,
-                                                                    height: 36,
-                                                                    text: "服务君似乎打盹了呢",
-                                                                    font: UIFont(name: PingFangSCMedium, size: 13)!,
-                                                                    textColor: .white,
-                                                                    delay: 2,
-                                                                    backGroundColor: UIColor(hexString: "#2a4e84"),
-                                                                    cornerRadius: 18,
-                                                                    yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)
+            ActivityHUD.shared.showNetworkError()
         }
         // 创建一个UICollectionViewFlowLayout实例作为集合视图的布局
         let layout = UICollectionViewFlowLayout()

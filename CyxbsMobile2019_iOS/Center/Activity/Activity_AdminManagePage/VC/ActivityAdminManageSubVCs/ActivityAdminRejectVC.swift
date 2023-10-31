@@ -106,15 +106,7 @@ class ActivityAdminRejectVC: UIViewController {
                     break
                 case .failure(let error):
                     print(error)
-                    ActivityHUD.shared.addProgressHUDView(width: 179,
-                                                                height: 36,
-                                                                text: "服务君似乎打盹了呢",
-                                                                font: UIFont(name: PingFangSCMedium, size: 13)!,
-                                                                textColor: .white,
-                                                                delay: 2,
-                                                                backGroundColor: UIColor(hexString: "#2a4e84"),
-                                                                cornerRadius: 18,
-                                                                yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)
+                    ActivityHUD.shared.showNetworkError()
                     break
                 }
             }

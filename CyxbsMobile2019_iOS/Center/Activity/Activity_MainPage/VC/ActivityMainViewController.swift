@@ -164,8 +164,8 @@ class ActivityMainViewController: UIViewController {
 
 extension ActivityMainViewController: JXSegmentedViewDelegate {
     func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) {
-        if (collectionViewControllers[index].activitiesModel.activities.count == 0){
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            if (self.collectionViewControllers[index].activitiesModel.activities.count == 0){
                 ActivityHUD.shared.addProgressHUDView(width: 138,
                                                             height: 36,
                                                             text: "暂无更多内容",

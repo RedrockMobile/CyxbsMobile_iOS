@@ -332,14 +332,10 @@ class ActivityDetailVC: UIViewController {
     
     //想看按钮被点击
     @objc func wantToWatchButtonTapped() {
-        ActivityClient.shared.request(url:"magipoke-ufield/activity/action/watch/?activity_id=\(activity.activityId)",
-                                      method: .put,
-                                      headers: nil,
-                                      parameters: nil) { responseData in
-            if let dataDict = responseData as? [String: Any],
-               let jsonData = try? JSONSerialization.data(withJSONObject: dataDict),
-               let wantToWatchResponseData = try? JSONDecoder().decode(StandardResponse.self, from: jsonData) {
-                print(wantToWatchResponseData)
+        HttpManager.shared.magipoke_ufield_activity_action_watch(activity_id: activity.activityId).ry_JSON { response in
+            switch response {
+            case.success(let jsonData):
+                let wantToWatchResponseData = StandardResponse(from: jsonData)
                 if (wantToWatchResponseData.status == 10000) {
                     self.wantToWatchButton.isEnabled = false
                     ActivityHUD.shared.addProgressHUDView(width: 138,
@@ -363,9 +359,12 @@ class ActivityDetailVC: UIViewController {
                                                                 cornerRadius: 18,
                                                                 yOffset: -100)
                 }
+                break
+            case .failure(let error):
+                print(error)
+                ActivityHUD.shared.showNetworkError()
+                break
             }
-        } failure: { responseData in
-            print(responseData)
         }
     }
     

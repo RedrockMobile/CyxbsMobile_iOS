@@ -3718,8 +3718,8 @@
 			isa = PBXGroup;
 			children = (
 				756C39272AE6BA6C0056A8D1 /* ActivityAdminReviewingVC.swift */,
-				756C39282AE6BA6C0056A8D1 /* ActivityAdminRejectVC.swift */,
 				756C39292AE6BA6C0056A8D1 /* ActivityAdminReviewedVC.swift */,
+				756C39282AE6BA6C0056A8D1 /* ActivityAdminRejectVC.swift */,
 			);
 			path = ActivityAdminManageSubVCs;
 			sourceTree = "<group>";

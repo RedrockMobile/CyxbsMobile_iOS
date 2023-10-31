@@ -287,12 +287,12 @@ extension HttpManager {
         let parameters: [String: Any?] = [
             "lower_id": lower_id
         ]
-        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-ufiled/activity/list/tobe-examine/"), method: .get, parameters: excludeOptionalParameter(parameters))
+        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-ufield/activity/list/tobe-examine/"), method: .get, parameters: excludeOptionalParameter(parameters))
     }
     
     /// 审核/驳回活动
     @discardableResult
-    func magipoke_ufield_activity_examine(activity_id: Int, decision: String, reject_reason: String? = nil) -> DataRequest{
+    func magipoke_ufield_activity_examine(activity_id: Int, decision: String, reject_reason: String? = nil) -> DataRequest {
         let parameters: [String: Any?] = [
             "activity_id": activity_id,
             "decision": decision,
@@ -302,6 +302,20 @@ extension HttpManager {
         //这个接口奇奇怪怪的，必须将参数拼接到URL里，手动更改编码方式
     }
     
+    ///查看已被自己审核的活动
+    func magipoke_ufield_activity_list_examined(upper_id: Int?) -> DataRequest {
+        let parameters: [String: Any?] = [
+            "upper_id": upper_id
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-ufield/activity/list/examined/"), method: .get, parameters: excludeOptionalParameter(parameters))
+    }
     
+    ///活动-想看
+    func magipoke_ufield_activity_action_watch(activity_id: Int) -> DataRequest {
+        let parameters: [String: Any] = [
+            "activity_id": activity_id
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-ufield/activity/action/watch/"), method: .put, parameters: parameters, encoding: URLEncoding.queryString)
+    }
 }
 
