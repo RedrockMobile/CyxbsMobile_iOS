@@ -58,7 +58,6 @@ class ActivityCenterTableViewVC: UIViewController, UITableViewDataSource, UITabl
     
     // UITableViewDelegate方法
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("点击了cell")
         let detailVC = ActivityDetailVC()
         detailVC.activity = activities[indexPath.row]
         detailVC.numOfIndexPath = indexPath.row

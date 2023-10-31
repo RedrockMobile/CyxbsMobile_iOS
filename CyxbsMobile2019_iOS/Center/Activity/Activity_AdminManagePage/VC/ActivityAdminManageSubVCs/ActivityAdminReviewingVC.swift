@@ -112,7 +112,6 @@ class ActivityAdminReviewingVC: UIViewController, UITableViewDataSource, UITable
                                                                 font: UIFont(name: PingFangSCMedium, size: 13)!,
                                                                 textColor: .white,
                                                                 delay: 2,
-                                                                view: self.view,
                                                                 backGroundColor: UIColor(hexString: "#2a4e84"),
                                                                 cornerRadius: 18,
                                                           yOffset: Float(-UIScreen.main.bounds.width + UIApplication.shared.statusBarFrame.height) + 78)
@@ -125,43 +124,45 @@ class ActivityAdminReviewingVC: UIViewController, UITableViewDataSource, UITable
     }
     
     @objc func refreshReviewingActivities() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.requestReviewingActivities()
-        }
+        self.requestReviewingActivities()
     }
     
     func agreeButtonTapped(activityId: Int) {
         var hudText: String = ""
         //审核活动“同意”网络请求
-        ActivityClient.shared.request(url:"magipoke-ufield/activity/action/examine/?activity_id=\(activityId)&decision=pass",
-                                      method: .put,
-                                      headers: nil,
-                                      parameters: nil) { responseData in
-            if let dataDict = responseData as? [String: Any],
-               let jsonData = try? JSONSerialization.data(withJSONObject: dataDict),
-               let examineResponseData = try? JSONDecoder().decode(StandardResponse.self, from: jsonData) {
-                print(examineResponseData)
+        HttpManager.shared.magipoke_ufield_activity_examine(activity_id: activityId, decision: "pass").ry_JSON { response in
+            switch response {
+            case .success(let jsonData):
+                let examineResponseData = StandardResponse(from: jsonData)
                 if (examineResponseData.status == 10000) {
                     hudText = "审核成功"
                 } else {
                     hudText = examineResponseData.info
                 }
-                if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
-                    ActivityHUD.shared.addProgressHUDView(width: TextManager.shared.calculateTextWidth(text: hudText, font: UIFont(name: PingFangSCMedium, size: 13)!)+40,
-                                                                height: 36,
-                                                                text: hudText,
-                                                                font: UIFont(name: PingFangSCMedium, size: 13)!,
-                                                                textColor: .white,
-                                                                delay: 2,
-                                                                view: window,
-                                                                backGroundColor: UIColor(hexString: "#2a4e84"),
-                                                                cornerRadius: 18,
-                                                                yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)
+                ActivityHUD.shared.addProgressHUDView(width: TextManager.shared.calculateTextWidth(text: hudText, font: UIFont(name: PingFangSCMedium, size: 13)!)+40,
+                                                      height: 36,
+                                                      text: hudText,
+                                                      font: UIFont(name: PingFangSCMedium, size: 13)!,
+                                                      textColor: .white,
+                                                      delay: 2,
+                                                      backGroundColor: UIColor(hexString: "#2a4e84"),
+                                                      cornerRadius: 18,
+                                                      yOffset: (Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)) {
                 }
-                self.requestReviewingActivities()
+                break
+            case .failure(let error):
+                print(error)
+                ActivityHUD.shared.addProgressHUDView(width: 179,
+                                                            height: 36,
+                                                            text: "服务君似乎打盹了呢",
+                                                            font: UIFont(name: PingFangSCMedium, size: 13)!,
+                                                            textColor: .white,
+                                                            delay: 2,
+                                                            backGroundColor: UIColor(hexString: "#2a4e84"),
+                                                            cornerRadius: 18,
+                                                            yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)
+                break
             }
-        } failure: { responseData in
-            print(responseData)
         }
     }
     

@@ -8,6 +8,7 @@
 
 import UIKit
 import JXSegmentedView
+import ProgressHUD
 
 class ActivityMainViewController: UIViewController {
     
@@ -163,7 +164,19 @@ class ActivityMainViewController: UIViewController {
 
 extension ActivityMainViewController: JXSegmentedViewDelegate {
     func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) {
-        
+        if (collectionViewControllers[index].activitiesModel.activities.count == 0){
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                ActivityHUD.shared.addProgressHUDView(width: 138,
+                                                            height: 36,
+                                                            text: "暂无更多内容",
+                                                            font: UIFont(name: PingFangSCMedium, size: 13)!,
+                                                            textColor: .white,
+                                                            delay: 2,
+                                                            backGroundColor: UIColor(hexString: "#2a4e84"),
+                                                            cornerRadius: 18,
+                                                            yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)
+            }
+        }
     }
 }
 

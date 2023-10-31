@@ -348,7 +348,6 @@ class ActivityDetailVC: UIViewController {
                                                                 font: UIFont(name: PingFangSCMedium, size: 13)!,
                                                                 textColor: .white,
                                                                 delay: 2,
-                                                                view: self.view,
                                                                 backGroundColor: UIColor(hexString: "#2a4e84"),
                                                                 cornerRadius: 18,
                                                                 yOffset: -100)
@@ -360,7 +359,6 @@ class ActivityDetailVC: UIViewController {
                                                                 font: UIFont(name: PingFangSCMedium, size: 13)!,
                                                                 textColor: .white,
                                                                 delay: 2,
-                                                                view: self.view,
                                                                 backGroundColor: UIColor(hexString: "#2a4e84"),
                                                                 cornerRadius: 18,
                                                                 yOffset: -100)
@@ -520,12 +518,13 @@ class ActivityDetailVC: UIViewController {
         statusLabel = UILabel()
         statusLabel?.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.8)
         statusLabel?.font = UIFont(name: PingFangSCMedium, size: 16)
+        statusLabel?.textAlignment = .center
         view.addSubview(statusLabel!)
         statusLabel?.text = statusText
         statusLabel?.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+179)
-            make.width.equalTo(100)
+            make.width.equalTo(120)
             make.height.equalTo(22)
         }
         if isEnded {
@@ -543,27 +542,6 @@ class ActivityDetailVC: UIViewController {
             detailView.detailView.textColor = UIColor(red: 0.067, green: 0.173, blue: 0.329, alpha: 0.6)
             wantToWatchButton.removeFromSuperview()
         }
-    }
-}
-
-extension ActivityDetailVC {
-    // MARK: - 获取time的天时分秒
-    func formatTime(_ time: Double) -> (Int, Int, Int, Int) {
-        let days = Int(time) / 86400
-        let hours = (Int(time) % 86400) / 3600
-        let minutes = (Int(time) % 3600) / 60
-        let seconds = Int(time) % 60
-        
-        return (days, hours, minutes, seconds)
-    }
-    
-    // MARK: - 时间戳转换为显示的字符串
-    func formatTimestamp(timestamp: Int) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy年M月d日HH点mm分"
-        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
-        let formattedDate = dateFormatter.string(from: date)
-        return formattedDate
     }
 }
 

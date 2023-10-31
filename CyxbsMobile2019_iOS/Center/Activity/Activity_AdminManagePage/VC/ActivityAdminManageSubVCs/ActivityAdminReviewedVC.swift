@@ -104,7 +104,6 @@ class ActivityAdminReviewedVC: UIViewController, UITableViewDataSource, UITableV
                                                                 font: UIFont(name: PingFangSCMedium, size: 13)!,
                                                                 textColor: .white,
                                                                 delay: 2,
-                                                                view: self.view,
                                                                 backGroundColor: UIColor(hexString: "#2a4e84"),
                                                                 cornerRadius: 18,
                                                                 yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)

@@ -15,7 +15,7 @@ class ActivityHUD: NSObject {
     private var tapGesture: UITapGestureRecognizer?
     private var swipeGesture: UISwipeGestureRecognizer?
     
-    func addProgressHUDView(width: CGFloat, height: CGFloat, text: String, font: UIFont, textColor: UIColor, delay: CGFloat?, view: UIView, backGroundColor: UIColor, cornerRadius: CGFloat, yOffset: Float, completion: ((Any?) -> Void)? = nil) {
+    func addProgressHUDView(width: CGFloat, height: CGFloat, text: String, font: UIFont, textColor: UIColor, delay: CGFloat?, backGroundColor: UIColor, cornerRadius: CGFloat, yOffset: Float, completion: (() -> Void)? = nil) {
         let customView = UIView(frame: CGRectMake(0, 0, width, height))
         customView.layer.backgroundColor = backGroundColor.cgColor
         customView.layer.cornerRadius = cornerRadius
@@ -29,43 +29,19 @@ class ActivityHUD: NSObject {
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
         }
-        hud = MBProgressHUD.showAdded(to: view, animated: true)
-        hud?.color = .clear
-        hud?.mode = .customView
-        hud?.customView = customView
-        hud?.yOffset = yOffset
-        tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        view.addGestureRecognizer(tapGesture!)
-        swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleTap))
-        view.addGestureRecognizer(swipeGesture!)
-        hud?.hide(true, afterDelay: delay ?? 2)
+        if let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) {
+            hud = MBProgressHUD.showAdded(to: window, animated: true)
+            hud?.color = .clear
+            hud?.mode = .customView
+            hud?.customView = customView
+            hud?.yOffset = yOffset
+            hud?.isUserInteractionEnabled = false
+            hud?.hide(true, afterDelay: delay ?? 2)
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + (delay ?? 2)) {
-            if let tapGesture = self.tapGesture {
-                tapGesture.view?.removeGestureRecognizer(tapGesture)
-                self.tapGesture = nil
-            }
-            if let swipeGesture = self.swipeGesture {
-                swipeGesture.view?.removeGestureRecognizer(swipeGesture)
-                self.swipeGesture = nil
-            }
-            completion?(nil)
+            completion?()
         }
     }
-    
-    @objc private func handleTap() {
-        if let hud = self.hud {
-            hud.hide(true)
-        }
-        if let tapGesture = self.tapGesture {
-            tapGesture.view?.removeGestureRecognizer(tapGesture)
-            self.tapGesture = nil
-        }
-        if let swipeGesture = self.swipeGesture {
-            swipeGesture.view?.removeGestureRecognizer(swipeGesture)
-            self.swipeGesture = nil
-        }
-    }
-
 }
 
 

@@ -230,6 +230,8 @@
 		73AAA1D526C918250084E44D /* PurchaseInfoOrderIDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1C226C918240084E44D /* PurchaseInfoOrderIDView.m */; };
 		73AAA1D626C918250084E44D /* DetailsBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1C726C918240084E44D /* DetailsBaseTableViewCell.m */; };
 		73AAA1D726C918250084E44D /* DetailsCustomizeNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1C826C918240084E44D /* DetailsCustomizeNavigationBar.m */; };
+		753792A62AF0CEB400B44270 /* ActivityDetailVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753792A52AF0CEB400B44270 /* ActivityDetailVCExtension.swift */; };
+		753792A82AF1153000B44270 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753792A72AF1153000B44270 /* GradientButton.swift */; };
 		75500E612AEE8FD200C2FC3A /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75500E5E2AEE8FD200C2FC3A /* UIColorExtension.swift */; };
 		75500E622AEE8FD200C2FC3A /* SwiftyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75500E5F2AEE8FD200C2FC3A /* SwiftyClient.swift */; };
 		75500E632AEE8FD200C2FC3A /* TextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75500E602AEE8FD200C2FC3A /* TextManager.swift */; };
@@ -237,7 +239,6 @@
 		756B397B2AE6CF1A00B4E369 /* APIConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756B39742AE6CF1A00B4E369 /* APIConfig.swift */; };
 		756B397D2AE6CF1A00B4E369 /* HttpManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756B39762AE6CF1A00B4E369 /* HttpManager.swift */; };
 		756B39822AE7F31E00B4E369 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756B39812AE7F31E00B4E369 /* SessionManager.swift */; };
-		756B39842AED2B4C00B4E369 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756B39832AED2B4C00B4E369 /* GradientButton.swift */; };
 		756B39862AED4B0200B4E369 /* CustomSegmentedTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756B39852AED4B0200B4E369 /* CustomSegmentedTitleCell.swift */; };
 		756B39882AEDF8D900B4E369 /* JXSegmentViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756B39872AEDF8D900B4E369 /* JXSegmentViewCustom.swift */; };
 		756C39332AE6BA6C0056A8D1 /* ActivityHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 756C38FF2AE6BA6C0056A8D1 /* ActivityHUD.swift */; };
@@ -973,6 +974,8 @@
 		73AAA1C726C918240084E44D /* DetailsBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsBaseTableViewCell.m; sourceTree = "<group>"; };
 		73AAA1C826C918240084E44D /* DetailsCustomizeNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsCustomizeNavigationBar.m; sourceTree = "<group>"; };
 		73AAA1C926C918240084E44D /* DetailsBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsBaseTableViewCell.h; sourceTree = "<group>"; };
+		753792A52AF0CEB400B44270 /* ActivityDetailVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActivityDetailVCExtension.swift; path = CyxbsMobile2019_iOS/Center/Activity/Activity_MainPage/VC/ActivityDetailVCExtension.swift; sourceTree = SOURCE_ROOT; };
+		753792A72AF1153000B44270 /* GradientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradientButton.swift; path = ../../../../../../../Desktop/GradientButton.swift; sourceTree = "<group>"; };
 		75500E5E2AEE8FD200C2FC3A /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		75500E5F2AEE8FD200C2FC3A /* SwiftyClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyClient.swift; sourceTree = "<group>"; };
 		75500E602AEE8FD200C2FC3A /* TextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextManager.swift; sourceTree = "<group>"; };
@@ -980,7 +983,6 @@
 		756B39742AE6CF1A00B4E369 /* APIConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConfig.swift; sourceTree = "<group>"; };
 		756B39762AE6CF1A00B4E369 /* HttpManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpManager.swift; sourceTree = "<group>"; };
 		756B39812AE7F31E00B4E369 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
-		756B39832AED2B4C00B4E369 /* GradientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradientButton.swift; path = "../../../../../../../Library/Mobile Documents/.Trash/GradientButton.swift"; sourceTree = "<group>"; };
 		756B39852AED4B0200B4E369 /* CustomSegmentedTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedTitleCell.swift; sourceTree = "<group>"; };
 		756B39872AEDF8D900B4E369 /* JXSegmentViewCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentViewCustom.swift; sourceTree = "<group>"; };
 		756C38FF2AE6BA6C0056A8D1 /* ActivityHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityHUD.swift; sourceTree = "<group>"; };
@@ -3486,6 +3488,14 @@
 			path = "GenericClass  ";
 			sourceTree = "<group>";
 		};
+		753792A42AF0CE8D00B44270 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				753792A52AF0CEB400B44270 /* ActivityDetailVCExtension.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		75500E5D2AEE8FD200C2FC3A /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -3519,8 +3529,8 @@
 				756C39182AE6BA6C0056A8D1 /* Model */,
 				756C391B2AE6BA6C0056A8D1 /* View */,
 				756C391F2AE6BA6C0056A8D1 /* Activity_SearchPage */,
-				756C39242AE6BA6C0056A8D1 /* Activity_AdminManagePage */,
 				756C392E2AE6BA6C0056A8D1 /* Activity_AddActivityPage */,
+				756C39242AE6BA6C0056A8D1 /* Activity_AdminManagePage */,
 			);
 			path = Activity;
 			sourceTree = "<group>";
@@ -3571,6 +3581,7 @@
 			children = (
 				756C39082AE6BA6C0056A8D1 /* VC */,
 				756C390A2AE6BA6C0056A8D1 /* View */,
+				753792A42AF0CE8D00B44270 /* Tools */,
 			);
 			path = Activity_DetailPage;
 			sourceTree = "<group>";
@@ -3650,7 +3661,7 @@
 		756C391B2AE6BA6C0056A8D1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				756B39832AED2B4C00B4E369 /* GradientButton.swift */,
+				753792A72AF1153000B44270 /* GradientButton.swift */,
 				756C391C2AE6BA6C0056A8D1 /* TitleContentView.swift */,
 				756C391D2AE6BA6C0056A8D1 /* JustifiedLabel.swift */,
 			);
@@ -5703,6 +5714,7 @@
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				AA4FA1DF25C2DE5F005139BA /* LearnMoreViewController.m in Sources */,
 				1893DC8926EA32A3007E871E /* MGDGCD.m in Sources */,
+				753792A82AF1153000B44270 /* GradientButton.swift in Sources */,
 				AA0DDB6C286C8B1A00802324 /* EditMyInfoModel.m in Sources */,
 				B09BB8362AADA35400FF88F7 /* FoodDetailsModel.m in Sources */,
 				FE2C135527AEF629001CF7AF /* ToDoDetailTitleView.m in Sources */,
@@ -6002,7 +6014,6 @@
 				646B19A02833983E0015DF28 /* NextStationBtn.m in Sources */,
 				AA0DDB55286C8B1900802324 /* MineTableViewCell.m in Sources */,
 				B5B4551729C19B0600875DF7 /* CenterView.m in Sources */,
-				756B39842AED2B4C00B4E369 /* GradientButton.swift in Sources */,
 				AAE3305925E2A42B00324750 /* RemarkTableViewCell.m in Sources */,
 				B51C501D28A625330011465E /* LoginView.m in Sources */,
 				DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */,
@@ -6040,6 +6051,7 @@
 				18CDF679257F91BD006E8E5C /* ScheduleViewController.m in Sources */,
 				49343A2326D4EAB2001A2892 /* CommonQuestionCell.m in Sources */,
 				14B73F71281BED7B00D08ADD /* ActiveMessage.m in Sources */,
+				753792A62AF0CEB400B44270 /* ActivityDetailVCExtension.swift in Sources */,
 				AA0DDB5B286C8B1A00802324 /* PMPBasicNavBarController.m in Sources */,
 				756C394C2AE6BA6C0056A8D1 /* ActivityReviewingTableViewCell.swift in Sources */,
 				73AAA1CB26C918250084E44D /* DetailsTaskModel.m in Sources */,

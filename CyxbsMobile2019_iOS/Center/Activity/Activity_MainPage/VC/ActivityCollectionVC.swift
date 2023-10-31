@@ -58,16 +58,6 @@ class ActivityCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
             if (self.collectionViewCount != 0) {
                 self.addMJFooter()
             } else {
-                ActivityHUD.shared.addProgressHUDView(width: 138,
-                                                            height: 36,
-                                                            text: "暂无更多内容",
-                                                            font: UIFont(name: PingFangSCMedium, size: 13)!,
-                                                            textColor: .white,
-                                                            delay: 2,
-                                                            view: self.view,
-                                                            backGroundColor: UIColor(hexString: "#2a4e84"),
-                                                            cornerRadius: 18,
-                                                            yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)
             }
         } failure: { error in
                         ActivityHUD.shared.addProgressHUDView(width: 179,
@@ -76,7 +66,6 @@ class ActivityCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
                                                                     font: UIFont(name: PingFangSCMedium, size: 13)!,
                                                                     textColor: .white,
                                                                     delay: 2,
-                                                                    view: self.view,
                                                                     backGroundColor: UIColor(hexString: "#2a4e84"),
                                                                     cornerRadius: 18,
                                                                     yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)

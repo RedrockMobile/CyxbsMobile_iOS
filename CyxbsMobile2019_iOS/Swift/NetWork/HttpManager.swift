@@ -281,5 +281,27 @@ extension HttpManager {
         ]
         return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-ufield/activity/search/"), method: .get, parameters: excludeOptionalParameter(parameters))
     }
+    
+    ///获取待审核活动
+    func magipoke_ufield_activity_tobe_examine(lower_id: Int?) -> DataRequest {
+        let parameters: [String: Any?] = [
+            "lower_id": lower_id
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-ufiled/activity/list/tobe-examine/"), method: .get, parameters: excludeOptionalParameter(parameters))
+    }
+    
+    /// 审核/驳回活动
+    @discardableResult
+    func magipoke_ufield_activity_examine(activity_id: Int, decision: String, reject_reason: String? = nil) -> DataRequest{
+        let parameters: [String: Any?] = [
+            "activity_id": activity_id,
+            "decision": decision,
+            "reject_reason": reject_reason
+        ]
+        return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-ufield/activity/action/examine/"), method: .put, parameters: excludeOptionalParameter(parameters), encoding: URLEncoding.queryString)
+        //这个接口奇奇怪怪的，必须将参数拼接到URL里，手动更改编码方式
+    }
+    
+    
 }
 
