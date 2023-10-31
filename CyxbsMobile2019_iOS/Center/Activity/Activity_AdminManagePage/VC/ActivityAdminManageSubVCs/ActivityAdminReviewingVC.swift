@@ -11,8 +11,8 @@ import JXSegmentedView
 
 class ActivityAdminReviewingVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var activities: [Activity] = []
-    var titleParagraphStyle = NSMutableParagraphStyle()
+    private var activities: [Activity] = []
+    private var titleParagraphStyle = NSMutableParagraphStyle()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,35 +92,36 @@ class ActivityAdminReviewingVC: UIViewController, UITableViewDataSource, UITable
     
     func requestReviewingActivities() {
         activities = []
-        ActivityClient.shared.request(url: "magipoke-ufield/activity/list/tobe-examine/",
-                                      method: .get,
-                                      headers: nil,
-                                      parameters: nil) { responseData in
-            print(responseData as Any)
-            if let dataDict = responseData as? [String: Any],
-            let jsonData = try? JSONSerialization.data(withJSONObject: dataDict),
-            let reviewingActivityResponseData = try? JSONDecoder().decode(SearchActivityResponse.self, from: jsonData) {
-                for activity in reviewingActivityResponseData.data {
-                    self.activities.append(activity)
-                }
-                print("待审核活动数量\(self.activities.count)")
-                self.tableView.reloadData()
-                if self.activities.count == 0 {
-                    ActivityHUD.shared.addProgressHUDView(width: 138,
-                                                                height: 36,
-                                                                text: "暂无更多内容",
-                                                                font: UIFont(name: PingFangSCMedium, size: 13)!,
-                                                                textColor: .white,
-                                                                delay: 2,
-                                                                backGroundColor: UIColor(hexString: "#2a4e84"),
-                                                                cornerRadius: 18,
-                                                          yOffset: Float(-UIScreen.main.bounds.width + UIApplication.shared.statusBarFrame.height) + 78)
-                }
-            } else {
-                print("Invalid response data")
-                print(responseData)
-            }
-        }
+        HttpManager.shared.magipoke_ufield_activity_tobe_examine(lower_id: nil)
+//        ActivityClient.shared.request(url: "magipoke-ufield/activity/list/tobe-examine/",
+//                                      method: .get,
+//                                      headers: nil,
+//                                      parameters: nil) { responseData in
+//            print(responseData as Any)
+//            if let dataDict = responseData as? [String: Any],
+//            let jsonData = try? JSONSerialization.data(withJSONObject: dataDict),
+//            let reviewingActivityResponseData = try? JSONDecoder().decode(SearchActivityResponse.self, from: jsonData) {
+//                for activity in reviewingActivityResponseData.data {
+//                    self.activities.append(activity)
+//                }
+//                print("待审核活动数量\(self.activities.count)")
+//                self.tableView.reloadData()
+//                if self.activities.count == 0 {
+//                    ActivityHUD.shared.addProgressHUDView(width: 138,
+//                                                                height: 36,
+//                                                                text: "暂无更多内容",
+//                                                                font: UIFont(name: PingFangSCMedium, size: 13)!,
+//                                                                textColor: .white,
+//                                                                delay: 2,
+//                                                                backGroundColor: UIColor(hexString: "#2a4e84"),
+//                                                                cornerRadius: 18,
+//                                                          yOffset: Float(-UIScreen.main.bounds.width + UIApplication.shared.statusBarFrame.height) + 78)
+//                }
+//            } else {
+//                print("Invalid response data")
+//                print(responseData)
+//            }
+//        }
     }
     
     @objc func refreshReviewingActivities() {

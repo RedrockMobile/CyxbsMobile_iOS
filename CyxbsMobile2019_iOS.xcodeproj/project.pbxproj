@@ -231,7 +231,7 @@
 		73AAA1D626C918250084E44D /* DetailsBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1C726C918240084E44D /* DetailsBaseTableViewCell.m */; };
 		73AAA1D726C918250084E44D /* DetailsCustomizeNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1C826C918240084E44D /* DetailsCustomizeNavigationBar.m */; };
 		753792A62AF0CEB400B44270 /* ActivityDetailVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753792A52AF0CEB400B44270 /* ActivityDetailVCExtension.swift */; };
-		753792A82AF1153000B44270 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753792A72AF1153000B44270 /* GradientButton.swift */; };
+		753792AA2AF1178E00B44270 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753792A92AF1178E00B44270 /* GradientButton.swift */; };
 		75500E612AEE8FD200C2FC3A /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75500E5E2AEE8FD200C2FC3A /* UIColorExtension.swift */; };
 		75500E622AEE8FD200C2FC3A /* SwiftyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75500E5F2AEE8FD200C2FC3A /* SwiftyClient.swift */; };
 		75500E632AEE8FD200C2FC3A /* TextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75500E602AEE8FD200C2FC3A /* TextManager.swift */; };
@@ -975,7 +975,7 @@
 		73AAA1C826C918240084E44D /* DetailsCustomizeNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsCustomizeNavigationBar.m; sourceTree = "<group>"; };
 		73AAA1C926C918240084E44D /* DetailsBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsBaseTableViewCell.h; sourceTree = "<group>"; };
 		753792A52AF0CEB400B44270 /* ActivityDetailVCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActivityDetailVCExtension.swift; path = CyxbsMobile2019_iOS/Center/Activity/Activity_MainPage/VC/ActivityDetailVCExtension.swift; sourceTree = SOURCE_ROOT; };
-		753792A72AF1153000B44270 /* GradientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GradientButton.swift; path = ../../../../../../../Desktop/GradientButton.swift; sourceTree = "<group>"; };
+		753792A92AF1178E00B44270 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		75500E5E2AEE8FD200C2FC3A /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		75500E5F2AEE8FD200C2FC3A /* SwiftyClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyClient.swift; sourceTree = "<group>"; };
 		75500E602AEE8FD200C2FC3A /* TextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextManager.swift; sourceTree = "<group>"; };
@@ -3661,9 +3661,9 @@
 		756C391B2AE6BA6C0056A8D1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				753792A72AF1153000B44270 /* GradientButton.swift */,
 				756C391C2AE6BA6C0056A8D1 /* TitleContentView.swift */,
 				756C391D2AE6BA6C0056A8D1 /* JustifiedLabel.swift */,
+				753792A92AF1178E00B44270 /* GradientButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5714,7 +5714,7 @@
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				AA4FA1DF25C2DE5F005139BA /* LearnMoreViewController.m in Sources */,
 				1893DC8926EA32A3007E871E /* MGDGCD.m in Sources */,
-				753792A82AF1153000B44270 /* GradientButton.swift in Sources */,
+				753792AA2AF1178E00B44270 /* GradientButton.swift in Sources */,
 				AA0DDB6C286C8B1A00802324 /* EditMyInfoModel.m in Sources */,
 				B09BB8362AADA35400FF88F7 /* FoodDetailsModel.m in Sources */,
 				FE2C135527AEF629001CF7AF /* ToDoDetailTitleView.m in Sources */,

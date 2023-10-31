@@ -67,29 +67,6 @@ class ActivitiesModel {
                 break
             }
         }
-//        let parameters: [String: Any] = [
-//            "activity_type": activityType,
-//            "order_by": "start_timestamp_but_ongoing_first",
-//            "activity_num": "50",
-//            "contain_keyword": keyword
-//        ]
-//        ActivityClient.shared.request(url: "magipoke-ufield/activity/search/",
-//                                      method: .get,
-//                                      headers: nil,
-//                                      parameters: parameters) { responseData in
-//            if let dataDict = responseData as? [String: Any],
-//               let jsonData = try? JSONSerialization.data(withJSONObject: dataDict),
-//               let hitActivityResponseData = try? JSONDecoder().decode(SearchActivityResponse.self, from: jsonData) {
-//                let activities = hitActivityResponseData.data
-//                self.activities = activities
-//                success(activities)
-//            } else {
-//                let error = NSError(domain: "NetworkErrorDomain", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid response data"])
-//                failure(error)
-//            }
-//        } failure: { error in
-//            failure(error)
-//        }
     }
 }
 
