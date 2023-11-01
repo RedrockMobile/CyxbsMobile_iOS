@@ -44,21 +44,21 @@ class ActivityReviewingTableViewCell: UITableViewCell {
     
     let typeView: TitleContentView = {
         let view = TitleContentView()
-        view.frame = CGRectMake(23, 55, 126, 20)
+        view.frame = CGRect(x: 23, y: 55, width: 126, height: 20)
         view.titleLabel.text = "活动类型:"
         return view
     }()
-    
+
     let creatorView: TitleContentView = {
         let view = TitleContentView()
-        view.frame = CGRectMake(23, 77, 120, 20)
+        view.frame = CGRect(x: 23, y: 77, width: 120, height: 20)
         view.titleLabel.text = "创建人:"
         return view
     }()
-    
+
     let phoneView: TitleContentView = {
         let view = TitleContentView()
-        view.frame = CGRectMake(23, 99, 126, 20)
+        view.frame = CGRect(x: 23, y: 99, width: 126, height: 20)
         view.titleLabel.text = "联系电话:"
         return view
     }()

@@ -47,14 +47,14 @@ class ActivitySearchTableViewCell: UITableViewCell {
     
     let clockImgView: UIImageView = {
         let imgView = UIImageView()
-        imgView.frame = CGRectMake(135, 97, 16, 16)
+        imgView.frame = CGRect(x: 135, y: 97, width: 16, height: 16)
         imgView.image = UIImage(named: "activityTime")
         return imgView
     }()
     
     let startTimeLabel: UILabel = {
         let label = UILabel()
-        label.frame = CGRectMake(155, 96, 94, 17)
+        label.frame = CGRect(x: 155, y: 96, width: 94, height: 17)
         label.textAlignment = .left
         label.font = UIFont(name: PingFangSCMedium, size: 12)
         label.textColor = UIColor(hexString: "#15315B", alpha: 0.6)

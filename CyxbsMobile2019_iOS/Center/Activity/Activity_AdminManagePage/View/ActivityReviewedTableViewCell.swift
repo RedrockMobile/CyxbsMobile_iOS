@@ -42,14 +42,14 @@ class ActivityReviewedTableViewCell: UITableViewCell {
     
     let typeView: TitleContentView = {
         let view = TitleContentView()
-        view.frame = CGRectMake(21, 55, 126, 20)
+        view.frame = CGRect(x: 21, y: 55, width: 126, height: 20)
         view.titleLabel.text = "活动类型:"
         return view
     }()
     
     let phoneView: TitleContentView = {
         let view = TitleContentView()
-        view.frame = CGRectMake(21, 77, 126, 20)
+        view.frame = CGRect(x: 21, y: 77, width: 126, height: 20)
         view.titleLabel.text = "联系电话:"
         return view
     }()

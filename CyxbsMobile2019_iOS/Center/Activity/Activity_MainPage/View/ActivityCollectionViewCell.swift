@@ -26,7 +26,7 @@ class ActivityCollectionViewCell: UICollectionViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.frame = CGRectMake(12, 158, 82, 22)
+        label.frame = CGRect(x: 12, y: 158, width: 82, height: 22)
         label.textAlignment = .left
         label.font = UIFont(name: PingFangSCSemibold, size: 16)
         label.textColor = UIColor(hexString: "#15315B")
@@ -36,7 +36,7 @@ class ActivityCollectionViewCell: UICollectionViewCell {
     
     let activityTypeLabel: UILabel = {
         let label = UILabel()
-        label.frame = CGRectMake(12, 182, 48, 17)
+        label.frame = CGRect(x: 12, y: 182, width: 48, height: 17)
         label.textAlignment = .left
         label.font = UIFont(name: PingFangSCMedium, size: 12)
         label.textColor = UIColor(hexString: "#15315B", alpha: 0.4)
@@ -46,7 +46,7 @@ class ActivityCollectionViewCell: UICollectionViewCell {
     
     let startTimeLabel: UILabel = {
         let label = UILabel()
-        label.frame = CGRectMake(33, 207, 94, 17)
+        label.frame = CGRect(x: 33, y: 207, width: 94, height: 17)
         label.textAlignment = .left
         label.font = UIFont(name: PingFangSCMedium, size: 12)
         label.textColor = UIColor(hexString: "#15315B", alpha: 0.6)
@@ -56,7 +56,7 @@ class ActivityCollectionViewCell: UICollectionViewCell {
     
     let clockImgView: UIImageView = {
         let imgView = UIImageView()
-        imgView.frame = CGRectMake(12, 208, 16, 16)
+        imgView.frame = CGRect(x: 12, y: 208, width: 16, height: 16)
         imgView.image = UIImage(named: "activityTime")
         imgView.translatesAutoresizingMaskIntoConstraints = false
         return imgView

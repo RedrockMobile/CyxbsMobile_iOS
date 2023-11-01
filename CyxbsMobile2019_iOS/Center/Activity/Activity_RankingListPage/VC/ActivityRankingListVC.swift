@@ -65,7 +65,7 @@ class ActivityRankingListVC: UIViewController, UITableViewDataSource, UITableVie
     
     func setContentView() {
         contentView = UIView()
-        contentView.frame = CGRectMake(0, 184, UIScreen.main.bounds.width, UIScreen.main.bounds.height)
+        contentView.frame = CGRect(x: 0, y: 184, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 18
         view.addSubview(contentView)

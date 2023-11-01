@@ -73,7 +73,7 @@ class ActivityAddVC: UIViewController,
     
     lazy var confirmButton: GradientButton = {
         let button = GradientButton()
-        button.frame = CGRectMake((UIScreen.main.bounds.width - 315)/2, UIScreen.main.bounds.height - 86, 315, 51)
+        button.frame = CGRect(x: (UIScreen.main.bounds.width - 315)/2, y: UIScreen.main.bounds.height - 86, width: 315, height: 51)
         button.setTitle("创建活动", for: .normal)
         button.titleLabel?.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         button.titleLabel?.font = UIFont(name: PingFangSCSemibold, size: 18)
