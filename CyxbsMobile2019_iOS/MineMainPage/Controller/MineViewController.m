@@ -314,7 +314,7 @@
     [btn.nameLabel setText:@"活动中心"];
     
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.backBoardView).offset(0.13333333*SCREEN_WIDTH);
+        make.left.equalTo(self.backBoardView).offset(0.136*SCREEN_WIDTH);
         make.top.equalTo(self.backBoardView).offset(0.39543186*SCREEN_WIDTH);
     }];
     
