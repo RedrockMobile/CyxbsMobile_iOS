@@ -15,12 +15,11 @@
 #import "MineMSSEnterBtn.h" //消息中心、邮票中心、消息中心的按钮
 #import "MineTableViewCell.h" //底部的cell(关于我们/设置)
 #import "EditMyInfoModel.h" //编辑个人信息
-#import "ArticleViewController.h" //动态
 #import "PraiseViewController.h" //获赞
 #import "RemarkViewController.h" //评论
 #import "MineAboutController.h" //关于我们
 #import "MineSettingViewController.h" //设置
-#import "PMPHomePageViewController.h" //个人主页
+#import "EditMyInfoViewController.h" //个人信息编辑
 #import "MineUserInfoModel.h" //点赞获赞评论新消息个数相关
 #import "StampCenterVC.h" //邮票中心
 #import "FeedBackMainPageViewController.h" //意见反馈
@@ -32,7 +31,8 @@
 
 //获取用户关注的人和粉丝的个人信息
 #define fansAndFollowsInfo @"/magipoke-loop/user/fansAndFollowsInfo"
-
+// swift (将Swift中的类暴露给OC)
+#import "掌上重邮-Swift.h"
 
 @interface MineViewController ()<
     UITableViewDelegate,
@@ -67,6 +67,9 @@
 
 /// 意见与反馈入口按钮
 @property(nonatomic, strong)MineMSSEnterBtn *suggesstionBtn;
+
+/// 活动中心按钮
+@property(nonatomic, strong)MineMSSEnterBtn *activityCenterBtn;
 
 /// 签到相关的一块 view
 @property(nonatomic, strong)MineSignView *signView;
@@ -105,6 +108,7 @@
     [self addMsgCenterBtn];
     [self addStampCenterBtn];
     [self addSuggesstionBtn];
+    [self addActivityCenterBtn];
     [self addTableView];
     [self addSignView];
     
@@ -160,13 +164,13 @@
 /// 在这里刷新数据
 - (void)viewWillAppear:(BOOL)animated {
     if (self.canRequestUserInfo) {
-        [self.userInfoModel updateUserInfoCompletion:^(MineUserInfoModelUpdateUserInfoState state) {
-            
-            if (state==MineUserInfoModelUpdateUserInfoStateError) {
-                [self requestUserInfoFailure];
-            }
-            [self updateUserInfoInUserInfoModel];
-        }];
+//        [self.userInfoModel updateUserInfoCompletion:^(MineUserInfoModelUpdateUserInfoState state) {
+//
+//            if (state==MineUserInfoModelUpdateUserInfoStateError) {
+//                [self requestUserInfoFailure];
+//            }
+//            [self updateUserInfoInUserInfoModel];
+//        }];
         [[UserItem defaultItem] getUserInfo];
     }
     
@@ -184,7 +188,8 @@
     scrollView.showsVerticalScrollIndicator = NO;
     
     [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.bottom.right.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-150);
         make.top.equalTo(self.view).offset(getStatusBarHeight_Double);
     }];
 }
@@ -300,6 +305,22 @@
     [btn addTarget:self action:@selector(suggesstionBtnClicked) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)addActivityCenterBtn {
+    MineMSSEnterBtn *btn = [[MineMSSEnterBtn alloc] init];
+    self.suggesstionBtn = btn;
+    [self.backBoardView addSubview:btn];
+    
+    [btn.iconImgView setImage:[UIImage imageNamed:@"活动中心"]];
+    [btn.nameLabel setText:@"活动中心"];
+    
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.backBoardView).offset(0.13333333*SCREEN_WIDTH);
+        make.top.equalTo(self.backBoardView).offset(0.39543186*SCREEN_WIDTH);
+    }];
+    
+    [btn addTarget:self action:@selector(activityCenterBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+}
+
 - (void)addSignView {
     MineSignView *view = [[MineSignView alloc] init];
     self.signView = view;
@@ -307,7 +328,7 @@
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backBoardView).offset(0.04266666667*SCREEN_WIDTH);
-        make.top.equalTo(self.backBoardView).offset(0.1773399015*SCREEN_HEIGHT);
+        make.top.equalTo(self.backBoardView).offset(0.37497537*SCREEN_HEIGHT);
     }];
     
     [view.signBtn addTarget:self action:@selector(signBtnClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -329,7 +350,7 @@
     
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.backBoardView);
-        make.top.equalTo(self.backBoardView).offset(0.3091133005*SCREEN_HEIGHT);
+        make.top.equalTo(self.backBoardView).offset(0.49674877*SCREEN_HEIGHT);
         
     }];
 }
@@ -424,9 +445,9 @@
 /// 点击动态按钮后调用
 - (void)blogBtnClicked {
 //    ArticleViewController *vc = [[ArticleViewController alloc] init];
-//    
+//
 //    vc.hidesBottomBarWhenPushed = YES;
-//    
+//
 //    [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -465,6 +486,13 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+/// 点击活动中心按钮后调用
+- (void)activityCenterBtnClicked {
+    ActivityCenterVC *avc = [[ActivityCenterVC alloc]init];
+    avc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:avc animated:YES];
+}
+
 /// 点击意见与反馈按钮后调用
 - (void)suggesstionBtnClicked {
     FeedBackMainPageViewController *fvc = [[FeedBackMainPageViewController alloc]init];
@@ -485,8 +513,8 @@
 
 /// 点击进入个人主页的按钮后调用
 - (void)homePageBtnClicked {
-    CCLog(@"%s",__func__);
-    PMPHomePageViewController * vc = [[PMPHomePageViewController alloc] initWithRedid:[UserItem defaultItem].redid];
+    NSLog(@"editing");
+    EditMyInfoViewController *vc = [[EditMyInfoViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

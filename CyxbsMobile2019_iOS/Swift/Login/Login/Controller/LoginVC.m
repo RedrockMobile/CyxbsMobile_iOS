@@ -173,6 +173,12 @@
     }
     // 释放 getifaddrs 函数返回的内存空间
     freeifaddrs(interfaces);
+    
+    // 如果获取地址失败，返回默认值
+    if (address == nil) {
+        address = @"Unknown";
+    }
+    
     return address;
 }
 
@@ -282,7 +288,7 @@
 /// 弹出协议VC
 - (void)lookOverProtocol {
     UserProtocolViewController *userProtocolVC = [[UserProtocolViewController alloc] init];
-    [self.navigationController presentViewController:userProtocolVC animated:YES completion:nil];
+    [self presentViewController:userProtocolVC animated:YES completion:nil];
 }
 
 /// 跳转到忘记密码界面

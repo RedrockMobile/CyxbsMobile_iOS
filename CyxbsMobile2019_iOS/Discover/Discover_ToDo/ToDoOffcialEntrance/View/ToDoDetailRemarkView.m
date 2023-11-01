@@ -112,7 +112,7 @@
             //设置text距离文本输入框的空白填充为0，默认是为5
         _textView.textContainer.lineFragmentPadding = 0;
         _textView.scrollEnabled = NO;
-        _textView.font = [UIFont fontWithName:PingFangSCBold size:15];
+        _textView.font = [UIFont fontWithName:PingFangSCSemibold size:15];
         _textView.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     }
     return _textView;

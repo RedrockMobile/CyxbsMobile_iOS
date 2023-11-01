@@ -12,11 +12,11 @@
 #import <UMShare/UMShare.h>
 #import <UMAnalytics/MobClick.h>
 #import <UMCommonLog/UMCommonLogHeaders.h>
-#import "DynamicDetailMainVC.h"
 #import <AFNetworkReachabilityManager.h>
 #import <sqlite3.h>
 #import <Bugly/Bugly.h>
 #import "UserDefaultTool.h"
+#import "AliyunConfig.h"
 
 #define BUGLY_APP_ID @"41e7a3c1b3"
 #define SQLITE_THREADSAFE 1
@@ -27,6 +27,7 @@ extern CFAbsoluteTime StartTime;
 @end
 
 @implementation AppDelegate
+
 - (void)addReaManager {
     AFNetworkReachabilityManager* man = [AFNetworkReachabilityManager sharedManager];
     self.reaManager = man;
@@ -60,8 +61,7 @@ extern CFAbsoluteTime StartTime;
 }
 */
 - (void)application:(UIApplication *)application
-didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
-{
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     if (![deviceToken isKindOfClass:[NSData class]]) return;
     const unsigned *tokenBytes = (const unsigned *)[deviceToken bytes];
     NSString *hexToken = [NSString stringWithFormat:@"%08x%08x%08x%08x%08x%08x%08x%08x",
@@ -78,6 +78,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [AliyunConfig setup];//启用阿里云HTTPDNS
     
     [Bugly startWithAppId:BUGLY_APP_ID];
     // Override point for customization after application launch.
@@ -96,69 +98,34 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     }
     
     // 如果打开应用时有学号密码，但是没有token，退出登录(添加时间判断30天后才退出)
-    if (([UserDefaultTool getStuNum] && ![UserItemTool defaultItem].token) || ![UserDefaultTool getStuNum]) {
-        
-        //获取上次登录的时间戳(和1970.1.1的秒间隔)
-        double lastLogInTime = [NSUserDefaults.standardUserDefaults doubleForKey:LastLogInTimeKey_double];
-        
-        //上次登录的时间是30天前(2592000秒)才退出
-        if (NSDate.nowTimestamp - lastLogInTime > 2592000) {
-            UIAlertController *loginAlertController = [UIAlertController alertControllerWithTitle:@"登录已过期" message:@"登录验证信息失效，请重新登录" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"重新登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                // 直接退出登录
-                [UserItemTool logout];
-            }];
-        }
-    }
+//    if (([UserDefaultTool getStuNum] && ![UserItemTool defaultItem].token) || ![UserDefaultTool getStuNum]) {
+//        
+//        //获取上次登录的时间戳(和1970.1.1的秒间隔)
+//        double lastLogInTime = [NSUserDefaults.standardUserDefaults doubleForKey:LastLogInTimeKey_double];
+//        
+//        //上次登录的时间是30天前(2592000秒)才退出
+//        if (NSDate.nowTimestamp - lastLogInTime > 2592000) {
+//            UIAlertController *loginAlertController = [UIAlertController alertControllerWithTitle:@"登录已过期" message:@"登录验证信息失效，请重新登录" preferredStyle:UIAlertControllerStyleAlert];
+//            UIAlertAction *loginAction = [UIAlertAction actionWithTitle:@"重新登录" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//                // 直接退出登录
+//                [UserItemTool logout];
+//            }];
+//        }
+//    }
+    
     [self addReaManager];
-    // 打开应用时刷新token
+    //打开应用时刷新token
     //开始监测网络状态
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if([self.reaManager isReachable]){
-            //如果网络可用，刷新token
-//            [UserItemTool refresh];
+        if ([self.reaManager isReachable]) {
+            // 检查令牌是否已过期
+            if ([UserItemTool tokenExpired]) {
+                // 刷新令牌
+                [UserItemTool refresh];
+            }
         }
     });
-    //刷新token内部作了错误码判断，只有NSURLErrorBadServerResponse情况下才会要求重新登录
-//    [UserItemTool refresh];
-//    if ([UserDefaultTool getStuNum] && [UserItemTool defaultItem].token && [ArchiveTool getPersonalInfo]) {
-////         刷新志愿信息
-//        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-//        AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
-//        [responseSerializer setRemovesKeysWithNullValues:YES];
-//        [responseSerializer.acceptableContentTypes setByAddingObjectsFromSet:[NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", @"text/plain",@"application/atom+xml",@"application/xml",@"text/xml",nil]];
-//
-//        manager.responseSerializer = responseSerializer;
-//
-//        [manager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@", [UserItemTool defaultItem].token]  forHTTPHeaderField:@"Authorization"];
-//
-        
-        
-        
-//        [manager POST:Discover_POST_volunteerRequest_API parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-//            NSMutableArray *temp = [NSMutableArray arrayWithCapacity:10];
-//            for (NSDictionary *dict in responseObject[@"record"]) {
-//                VolunteeringEventItem *volEvent = [[VolunteeringEventItem alloc] initWithDictinary:dict];
-//                [temp addObject:volEvent];
-//            }
-//            volunteer.eventsArray = temp;
-//            [volunteer sortEvents];
-//
-//            NSInteger hour = 0;
-//            int count = 0;
-//            for (VolunteeringEventItem *event in volunteer.eventsArray) {
-//                hour += [event.hour integerValue];
-//                count++;
-//            }
-//            volunteer.hour = [NSString stringWithFormat:@"%ld", hour];
-//            volunteer.count = [NSString stringWithFormat:@"%d", count];
-//            [ArchiveTool saveVolunteerInfomationWith:volunteer];
-//
-//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//
-//        }];
-//    }
-//
+    
     //开发者需要显式的调用此函数，日志系统才能工作
     [UMCommonLogManager setUpUMCommonLogManager];
     //初始化umenge功能
@@ -189,17 +156,13 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     [UMessage setWebViewClassString:@"UMWebViewController"];
     [UMessage addLaunchMessage];
     //请求获取通知权限
-    if (@available(iOS 10.0, *)) {
-        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-        [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
-            //获取用户是否同意开启通知
-            if (granted) {
-                NSLog(@"request authorization successed!");
-            }
-        }];
-    } else {
-        // Fallback on earlier versions
-    }
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+        //获取用户是否同意开启通知
+        if (granted) {
+            NSLog(@"request authorization successed!");
+        }
+    }];
 //    // Share's setting
 //    [self setupUSharePlatforms];   // required: setting platforms on demand
 //    [self setupUShareSettings];
@@ -213,7 +176,6 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     
     // 完成每天晚上推送课表的相关操作
     [self pushSchedulEveryday];
-    [self checkVersion];
     //设置存储、更换baseURL的操作
     [self settingBaseURL];
     [self addNotification];
@@ -230,7 +192,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 }
 
 ///设置存储、更换baseURL
-- (void)settingBaseURL{
+- (void)settingBaseURL {
     NSString *baseURL;
 #ifdef DEBUG
     // 测试环境
@@ -249,13 +211,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 #endif
 }
 
-///检查是否有最新的掌邮，并提示用户获取
--(void)checkVersion{
-    //这个模块已重构
-}
-
 /// 完成创建文件/文件夹的操作
-- (void)setFile{
+- (void)setFile {
     //如果存储备忘/课表 数据的目录不存在那么创建一个
     if(![[NSFileManager defaultManager] fileExistsAtPath:remAndLesDataDirectoryPath]){
         [[NSFileManager defaultManager] createDirectoryAtPath:remAndLesDataDirectoryPath withIntermediateDirectories:YES attributes:nil error:nil];
@@ -266,7 +223,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 }
 
 //设置每日推送课表的本地通知
-- (void)pushSchedulEveryday{
+- (void)pushSchedulEveryday {
     //移除旧的每日推送课表
     [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[@"deliverSchedulEverday"]];
     [[UNUserNotificationCenter currentNotificationCenter] removeDeliveredNotificationsWithIdentifiers:@[@"deliverSchedulEverday"]];
@@ -309,7 +266,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
         requestIDStr = [NSString stringWithFormat:@"每天晚上推送课表%d",i];
         //周几推送
         component.weekday = i++;
-//        i++;
+        //        i++;
         for (NSArray *course in day) {
             //如果count==0说明该节课是无课
             if(course.count==0)continue;
@@ -374,7 +331,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 
 /// 获取week周的需要推送的课表数据
 /// @param week 某一周
-- (NSArray*)getSchedulToPushAtWeek:(int)week{
+- (NSArray*)getSchedulToPushAtWeek:(int)week {
     //防止数组越界
     if (week>24) {
         return nil;
@@ -444,24 +401,24 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
     completionHandler(UNNotificationPresentationOptionSound|UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionAlert);
 }
 
-- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-    
-    NSString *urlStr = [url absoluteString];
-    NSLog(@"%@",urlStr);
-    UINavigationController *navigationController = ((UITabBarController *)(self.window.rootViewController)).selectedViewController;
-    if ([urlStr hasPrefix:@"redrock.zscy.youwen.share://"]) {
-        NSCharacterSet *nonDigitCharacterSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
-        NSString *str = [[urlStr componentsSeparatedByCharactersInSet:nonDigitCharacterSet] componentsJoinedByString:@""];
-        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
-//        _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
-        dynamicDetailVC.post_id = str;
-        dynamicDetailVC.hidesBottomBarWhenPushed = YES;
-//        ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
-//        [self.navigationController pushViewController:dynamicDetailVC animated:YES];
-        [navigationController pushViewController:dynamicDetailVC animated:YES];
-    }
-    return YES;
-}
+//- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+//    
+//    NSString *urlStr = [url absoluteString];
+//    NSLog(@"%@",urlStr);
+//    UINavigationController *navigationController = ((UITabBarController *)(self.window.rootViewController)).selectedViewController;
+//    if ([urlStr hasPrefix:@"redrock.zscy.youwen.share://"]) {
+//        NSCharacterSet *nonDigitCharacterSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+//        NSString *str = [[urlStr componentsSeparatedByCharactersInSet:nonDigitCharacterSet] componentsJoinedByString:@""];
+////        DynamicDetailMainVC *dynamicDetailVC = [[DynamicDetailMainVC alloc]init];
+////        _item = [[PostItem alloc] initWithDic:self.tableArray[indexPath.row]];
+////        dynamicDetailVC.post_id = str;
+////        dynamicDetailVC.hidesBottomBarWhenPushed = YES;
+////        ((ClassTabBar *)self.tabBarController.tabBar).hidden = NO;
+////        [self.navigationController pushViewController:dynamicDetailVC animated:YES];
+////        [navigationController pushViewController:dynamicDetailVC animated:YES];
+//    }
+//    return YES;
+//}
 
 //iOS10新增：处理后台点击通知的代理方法
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler{

@@ -72,7 +72,7 @@
                           darkColor:
         [UIColor colorWithHexString:@"#E9E9E9" alpha:1.0]];
     self.borderStyle = UITextBorderStyleNone;
-    self.font = [UIFont fontWithName:PingFangSCBold size:16];
+    self.font = [UIFont fontWithName:PingFangSCSemibold size:16];
     self.textAlignment = NSTextAlignmentLeft;
 
     // placeHolder

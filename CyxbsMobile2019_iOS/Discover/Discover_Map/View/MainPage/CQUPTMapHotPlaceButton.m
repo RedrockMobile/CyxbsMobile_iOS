@@ -36,7 +36,7 @@
 
         UIButton *hotButton = [UIButton buttonWithType:UIButtonTypeSystem];
         [hotButton setTitle:hotPlaceItem.title forState:UIControlStateNormal];
-        hotButton.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:15];
+        hotButton.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:15];
         if (@available(iOS 11.0, *)) {
             [hotButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#0E2A53" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]] forState:UIControlStateNormal];
         } else {
@@ -58,7 +58,7 @@
 
 - (CGFloat)calculateTextWidth:(NSString *)string {
     
-    NSDictionary *dic = @{NSFontAttributeName: [UIFont fontWithName:PingFangSCBold size:15]};
+    NSDictionary *dic = @{NSFontAttributeName: [UIFont fontWithName:PingFangSCSemibold size:15]};
 
     CGRect rect = [string boundingRectWithSize:CGSizeMake(0, 10) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil];
     

@@ -43,8 +43,6 @@
 //自定义hud
 #import "NewQAHud.h"
 
-#import "MGDStatusBarHeight.h"
-
 
 #pragma mark - Group共享
 #define kAPPGroupID @"group.com.redrock.mobile"

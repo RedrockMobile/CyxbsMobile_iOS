@@ -82,7 +82,7 @@
     self.noteTitleLabel = label;
     
     
-    label.font = [UIFont fontWithName:PingFangSCBold size:22];
+    label.font = [UIFont fontWithName:PingFangSCSemibold size:22];
     if (@available(iOS 11.0, *)) {
         label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {

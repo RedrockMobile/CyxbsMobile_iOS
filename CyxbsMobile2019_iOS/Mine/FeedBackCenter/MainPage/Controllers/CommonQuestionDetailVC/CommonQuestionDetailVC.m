@@ -47,7 +47,7 @@
     self.topBarView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     self.splitLineColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E4E4E9" alpha:1] darkColor:[UIColor colorWithHexString:@"#2C2B2E" alpha:1]];
     self.titlePosition = TopBarViewTitlePositionLeft;
-    self.titleFont = [UIFont fontWithName:PingFangSCBold size:21];
+    self.titleFont = [UIFont fontWithName:PingFangSCSemibold size:21];
 }
 
 - (instancetype)initWithIndexPathRow:(NSInteger)row{

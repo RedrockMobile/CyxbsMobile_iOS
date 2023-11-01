@@ -22,7 +22,7 @@
 - (UILabel *)lineLabel {
     if (!_lineLabel) {
         _lineLabel = [[UILabel alloc]initWithFrame:CGRectMake(12, 5, 38, 20)];
-        _lineLabel.font = [UIFont fontWithName:PingFangSCBold size:14];
+        _lineLabel.font = [UIFont fontWithName:PingFangSCSemibold size:14];
     }
     return _lineLabel;
 }

@@ -113,7 +113,7 @@
     UILabel *toolTitle = [[UILabel alloc]init];
     self.toolTitle = toolTitle;
     toolTitle.text = @"工具";
-    toolTitle.font = [UIFont fontWithName:PingFangSCBold size: 34];
+    toolTitle.font = [UIFont fontWithName:PingFangSCSemibold size: 34];
     if (@available(iOS 11.0, *)) {
         toolTitle.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {

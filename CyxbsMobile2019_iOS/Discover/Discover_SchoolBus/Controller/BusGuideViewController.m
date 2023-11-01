@@ -36,7 +36,7 @@
     self.VCTitleStr = @"校车指南";
     self.titlePosition = TopBarViewTitlePositionLeft;
     self.splitLineHidden = YES;
-    self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
+    self.titleFont = [UIFont fontWithName:PingFangSCSemibold size:22];
     self.titleColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:1]];
     self.topBarView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F8F9FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
 }

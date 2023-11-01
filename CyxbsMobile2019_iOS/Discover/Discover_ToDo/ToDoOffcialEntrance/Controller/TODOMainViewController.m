@@ -282,7 +282,7 @@
         UIView* firstview = [[UIView alloc] initWithFrame:CGRectMake(0,0,SCREEN_WIDTH, 60.0)];
         firstview.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         UILabel *toDoLbl = [[UILabel alloc] initWithFrame:CGRectMake(15,30,50,34)];
-        toDoLbl.font = [UIFont fontWithName:PingFangSCBold size:24];
+        toDoLbl.font = [UIFont fontWithName:PingFangSCSemibold size:24];
         toDoLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         toDoLbl.text = @"待办";
         [firstview addSubview:toDoLbl];
@@ -292,7 +292,7 @@
         secondview.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         //完成的label
         UILabel *doneLbl = [[UILabel alloc ]initWithFrame:CGRectMake(15,30,100,34) ];
-        doneLbl.font = [UIFont fontWithName:PingFangSCBold size:24];
+        doneLbl.font = [UIFont fontWithName:PingFangSCSemibold size:24];
         doneLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         doneLbl.text = @"已完成";
         [secondview addSubview:doneLbl];

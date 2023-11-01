@@ -74,7 +74,7 @@ PMPDatePickerDelegate
     self.contentScrollView = scrollView;
     self.contentScrollView.transform = CGAffineTransformMakeScale(0.9, 0.95);
     
-    [self addGestureView];
+//    [self addGestureView];
     [self addHeaderImageView];
     [self addIntroductionButton];
     [self addNicknameLabel];
@@ -269,16 +269,15 @@ PMPDatePickerDelegate
 - (void)addQQTextField{
     MineEditTextField *QQTextField = [[MineEditTextField alloc] init];
     NSString *oldQQ = [UserItemTool defaultItem].qq;
-    if (oldQQ==nil || [oldQQ isEqualToString:@""]) {
+    if (![oldQQ isNotBlank]) {
         
         NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
         QQTextField.attributedPlaceholder = string;
         
-        
     } else {
         
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldQQ attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
-        QQTextField.attributedPlaceholder = string;
+//        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldQQ attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
+        QQTextField.text = oldQQ;
         
     }
     [self.contentScrollView addSubview:QQTextField];
@@ -299,15 +298,15 @@ PMPDatePickerDelegate
 - (void)addPhoneNumberTextField{
     MineEditTextField *phoneNumberTextField = [[MineEditTextField alloc] init];
     NSString *oldPhoneNumber = [UserItemTool defaultItem].phone;
-    if (oldPhoneNumber==nil || [oldPhoneNumber isEqualToString:@""]) {
+    if (![oldPhoneNumber isNotBlank]) {
         
         NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
         phoneNumberTextField.attributedPlaceholder = string;
         
     } else {
         
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldPhoneNumber attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
-        phoneNumberTextField.attributedPlaceholder = string;
+//        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldPhoneNumber attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
+        phoneNumberTextField.text = oldPhoneNumber;
         
     }
     [self.contentScrollView addSubview:phoneNumberTextField];

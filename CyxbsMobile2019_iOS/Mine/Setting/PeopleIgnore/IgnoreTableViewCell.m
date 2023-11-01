@@ -125,7 +125,7 @@
     
     [btn setTitle:@"取消屏蔽" forState:UIControlStateNormal];
     
-    [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCBold size:13*fontSizeScaleRate_SE]];
+    [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCSemibold size:13*fontSizeScaleRate_SE]];
     
     [btn setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
    

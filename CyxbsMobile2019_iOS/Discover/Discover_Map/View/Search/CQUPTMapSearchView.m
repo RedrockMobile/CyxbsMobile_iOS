@@ -157,7 +157,7 @@
 }
 
 
-- (void)searchPlaceSuccess:(NSArray<NSString *> *)placeIDArray {
+- (void)searchPlaceSuccess:(NSArray<CQUPTMapSearchItem *> *)placeIDArray {
     CQUPTMapDataItem *mapData = [NSKeyedUnarchiver unarchiveObjectWithFile:[CQUPTMapDataItem archivePath]];
     
     NSMutableArray *tmpArray = [NSMutableArray array];

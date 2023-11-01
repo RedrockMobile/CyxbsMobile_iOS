@@ -17,6 +17,7 @@
 #import <UserNotifications/UserNotifications.h>
 #import "LocalNotiManager.h"
 #import "updatePopView.h"
+#import "RemindHUD.h"
 #define LEFTBARW (MAIN_SCREEN_W*0.088)
 //某节课详情弹窗的高度
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
@@ -296,7 +297,8 @@
 /// WYCClassAndRemindDataModel模型加载失败后调用
 - (void)ModelDataLoadFailure{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    [NewQAHud showHudWith:@"数据加载失败了～" AddView:self.view];
+//    [NewQAHud showHudWith:@"数据加载失败了～" AddView:self.view];
+    [RemindHUD.shared showDefaultHUDWithText:@"数据加载失败了～\n正在使用本地数据,不能保证正确性" completion:nil];
     [self ModelDataLoadSuccess];
 }
 

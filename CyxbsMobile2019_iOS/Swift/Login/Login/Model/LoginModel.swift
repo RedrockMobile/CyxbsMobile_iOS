@@ -38,6 +38,9 @@ import SwiftyJSON
                 item.token = token
                 item.refreshToken = refreshToken
                 item.firstLogin = true
+                //在UserDefaults里面也存一份
+                UserDefaults.standard.set(token, forKey: "token")
+                UserDefaults.standard.set(refreshToken, forKey: "refreshToken")
                 UserDefaults.standard.set(stuNum, forKey: "stuNum")
                 UserDefaults.standard.set(idNum, forKey: "idNum")
                 

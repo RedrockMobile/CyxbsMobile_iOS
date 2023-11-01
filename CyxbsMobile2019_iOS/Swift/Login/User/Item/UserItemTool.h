@@ -31,6 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)checkVisibleAPI:(void (^)(NSString *url))success;
 
++ (BOOL)tokenExpired;
+
 @end
 
 NS_ASSUME_NONNULL_END

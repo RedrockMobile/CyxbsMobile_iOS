@@ -16,7 +16,6 @@
 #import "TODOMainViewController.h"         // 邮子清单
 #import "ScheduleInquiryViewController.h"  // 查课表
 #import "CalendarViewController.h"         // 校历
-#import "DiscoverADModel.h"                // banner
 #import "SchoolBusVC.h"                    // 校车
 #import "ElectricViewController.h"         // 电费
 
@@ -59,7 +58,7 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 /// 用来遮挡tabbar的View
 @property (nonatomic, weak) UIView *hideTabbarView;
 
-@property (nonatomic, strong) DiscoverADModel *ADModel;
+//@property (nonatomic, strong) DiscoverADModel *ADModel;
 
 /// Data
 @property (nonatomic, assign) int classTabbarHeight;
@@ -247,24 +246,11 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 - (void)addFinderView {
     FinderView *finderView = [[FinderView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, 0)];
     // Remake by SSR
-    [self addChildViewController:finderView.msgViewController];
+//    [self addChildViewController:finderView.msgViewController];
     
     self.finderView = finderView;
     self.finderView.bannerView.delegate = self;  // 无限滚动
     [self.contentView addSubview:finderView];
-}
-
-/// 更新Banner UI
-- (void)UpdateBannerViewUI {
-    NSMutableArray *urlStrings = [NSMutableArray array];
-    NSMutableArray *bannerGoToURL = [NSMutableArray array];
-    for(DiscoverAD *item in self.ADModel.ADCollectionInformation.ADCollection) {
-        [urlStrings addObject:item.pictureUrl];
-        [bannerGoToURL addObject:item.pictureGoToUrl];
-    }
-    self.finderView.bannerGoToURL = bannerGoToURL;
-    self.finderView.bannerURLStrings = urlStrings;
-    [self.finderView updateBannerViewIfNeeded];
 }
 
 /// 更新FinderView UI
@@ -330,17 +316,6 @@ static int requestCheckinInfo = 0;
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
-    }];
-}
-
-/// 很奇怪的网络请求
-- (void)request {
-    [self.ADModel
-     requestBannerSuccess:^{
-        [self UpdateBannerViewUI];
-    }
-     failure:^(NSError * _Nonnull error) {
-        NSLog(@"error");
     }];
 }
 
@@ -438,13 +413,6 @@ static int requestCheckinInfo = 0;
             return AlreadyLogin;
         }
     }
-}
-
-- (DiscoverADModel *)ADModel {
-    if (_ADModel == nil) {
-        _ADModel = [[DiscoverADModel alloc] init];
-    }
-    return _ADModel;
 }
 
 @end

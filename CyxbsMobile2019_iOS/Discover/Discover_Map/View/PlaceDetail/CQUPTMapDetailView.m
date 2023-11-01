@@ -69,7 +69,7 @@
         } else {
             placeNameLabel.cycleLabel.textColor = [UIColor colorWithHexString:@"#15305B"];
         }
-        placeNameLabel.cycleLabel.font = [UIFont fontWithName:PingFangSCBold size:23];
+        placeNameLabel.cycleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:23];
         placeNameLabel.labelText = placeItem.placeName;
         [self addSubview:placeNameLabel];
         self.placeNameLabel = placeNameLabel;
@@ -86,7 +86,7 @@
         
         UILabel *detailLabel = [[UILabel alloc] init];
         detailLabel.text = @"详情";
-        detailLabel.font = [UIFont fontWithName:PingFangSCBold size:17];
+        detailLabel.font = [UIFont fontWithName:PingFangSCSemibold size:17];
         if (@available(iOS 11.0, *)) {
             detailLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15305C" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
@@ -123,7 +123,7 @@
         
         UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeSystem];
         [shareButton setTitle:@"与大家分享你拍摄的此地点" forState:UIControlStateNormal];
-        shareButton.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:13];
+        shareButton.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:13];
         if (@available(iOS 11.0, *)) {
             [shareButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#234780" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]] forState:UIControlStateNormal];
         } else {
@@ -135,7 +135,7 @@
         
         UILabel *aboutHereLabel = [[UILabel alloc] init];
         aboutHereLabel.text = @"关于该地点";
-        aboutHereLabel.font = [UIFont fontWithName:PingFangSCBold size:17];
+        aboutHereLabel.font = [UIFont fontWithName:PingFangSCSemibold size:17];
         aboutHereLabel.textColor = self.detailLabel.textColor;
         [self addSubview:aboutHereLabel];
         self.aboutHereLabel = aboutHereLabel;
@@ -264,31 +264,34 @@
 }
 
 - (void)loadDataWithPlaceDetailItem:(CQUPTMapPlaceDetailItem *)detailItem {
+    if (detailItem == nil || [detailItem isEqual:NSNull.null]) { return; }
     self.detailItem = detailItem;
     
-    for (int i = 0; i < detailItem.placeAttributesArray.count; i++) {
-        
-        NSString *placeAttribute = detailItem.placeAttributesArray[i];
+    if(![detailItem.placeAttributesArray isEqual:[NSNull null]]){
+        if (detailItem.placeAttributesArray.count > 0) {
+            for (NSString *placeAttribute in detailItem.placeAttributesArray) {
+                UILabel *attributeLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+                attributeLabel.text = placeAttribute;
+                attributeLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
+                attributeLabel.layer.cornerRadius = 9;
+                attributeLabel.layer.borderWidth = 1;
+                attributeLabel.textAlignment = NSTextAlignmentCenter;
+                attributeLabel.alpha = 0;
+                if (@available(iOS 11.0, *)) {
+                    attributeLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#778AA9" alpha:1]
+                                                                     darkColor:[UIColor colorWithHexString:@"#A1A1A1" alpha:1]];
+                } else {
+                    attributeLabel.textColor = [UIColor colorWithHexString:@"778AA9"];
+                }
+                attributeLabel.layer.borderColor = attributeLabel.textColor.CGColor;
+                [self addSubview:attributeLabel];
+                [self.attributesLabelArray addObject:attributeLabel];
                 
-        UILabel *attributeLabel = [[UILabel alloc] init];
-        attributeLabel.text = placeAttribute;
-        attributeLabel.font = [UIFont fontWithName:PingFangSCMedium size:12];
-        attributeLabel.layer.cornerRadius = 9;
-        attributeLabel.layer.borderWidth = 1;
-        attributeLabel.textAlignment = NSTextAlignmentCenter;
-        attributeLabel.alpha = 0;
-        if (@available(iOS 11.0, *)) {
-            attributeLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#778AA9" alpha:1] darkColor:[UIColor colorWithHexString:@"#A1A1A1" alpha:1]];
-        } else {
-            attributeLabel.textColor = [UIColor colorWithHexString:@"778AA9"];
+            }
         }
-        attributeLabel.layer.borderColor = attributeLabel.textColor.CGColor;
-        [self addSubview:attributeLabel];
-        [self.attributesLabelArray addObject:attributeLabel];
-        
     }
     
-    if (detailItem.imagesArray.count == 0) {
+    if([detailItem.imagesArray isEqual:[NSNull null]] || detailItem.imagesArray.count == 0){
         UIImageView *placeImageView = [[UIImageView alloc] init];
         placeImageView.layer.cornerRadius = 9;
         placeImageView.clipsToBounds = YES;
@@ -298,20 +301,22 @@
         [self.imagesArray addObject:placeImageView];
     }
     
-    for (int i = 0; i < detailItem.imagesArray.count; i++) {
-        UIImageView *placeImageView = [[UIImageView alloc] init];
-        
-        NSURL *placeUrl = [NSURL URLWithString:detailItem.imagesArray[i]];
-        
-        placeImageView.contentMode = UIViewContentModeScaleAspectFill;
-        [placeImageView sd_setImageWithURL:placeUrl placeholderImage:[UIImage imageNamed:@"PlaceHolderImage"] options:SDWebImageScaleDownLargeImages completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+    if(![detailItem.imagesArray isEqual:[NSNull null]]){
+        for (int i = 0; i < detailItem.imagesArray.count; i++) {
+            UIImageView *placeImageView = [[UIImageView alloc] init];
             
-        }];
-        
-        placeImageView.layer.cornerRadius = 9;
-        placeImageView.clipsToBounds = YES;
-        [self.imagesScrollView addSubview:placeImageView];
-        [self.imagesArray addObject:placeImageView];
+            NSURL *placeUrl = [NSURL URLWithString:detailItem.imagesArray[i]];
+            
+            placeImageView.contentMode = UIViewContentModeScaleAspectFill;
+            [placeImageView sd_setImageWithURL:placeUrl placeholderImage:[UIImage imageNamed:@"PlaceHolderImage"] options:SDWebImageScaleDownLargeImages completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+                
+            }];
+            
+            placeImageView.layer.cornerRadius = 9;
+            placeImageView.clipsToBounds = YES;
+            [self.imagesScrollView addSubview:placeImageView];
+            [self.imagesArray addObject:placeImageView];
+        }
     }
     
     [self.tagsCollectionView reloadData];
@@ -326,7 +331,7 @@
 }
 
 - (CGFloat)attributeLabelWidthText:(NSString *)text {
-    NSDictionary *dic = @{NSFontAttributeName: [UIFont fontWithName:PingFangSCBold size:15]};
+    NSDictionary *dic = @{NSFontAttributeName: [UIFont fontWithName:PingFangSCSemibold size:15]};
 
     CGRect rect = [text boundingRectWithSize:CGSizeMake(0, 10) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dic context:nil];
 
@@ -338,7 +343,7 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if (self.detailItem.tagsArray.count) {
+    if (![self.detailItem.tagsArray isEqual:[NSNull null]] && self.detailItem.tagsArray.count) {
         return self.detailItem.tagsArray.count;
     } else {
         return 1;
@@ -347,7 +352,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CQUPTMapDetailTagsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CQUPTMapDetailTagsCollectionViewCell" forIndexPath:indexPath];
-    if (self.detailItem.tagsArray.count == 0) {
+    if ([self.detailItem.tagsArray isEqual:[NSNull null]] || self.detailItem.tagsArray.count == 0) {
         cell.tagLabel.text = @"暂无信息";
     } else {
         cell.tagLabel.text = self.detailItem.tagsArray[indexPath.item];
@@ -356,7 +361,7 @@
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(nonnull UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    if (self.detailItem.tagsArray.count == 0) {
+    if ([self.detailItem.tagsArray isEqual:[NSNull null]] || self.detailItem.tagsArray.count == 0) {
         return CGSizeMake([self attributeLabelWidthText:@"暂无信息"] + 5, 22);
     }
     return CGSizeMake([self attributeLabelWidthText:self.detailItem.tagsArray[indexPath.item]] + 5, 22);
@@ -373,7 +378,7 @@
 }
 
 - (void)showMoreButtonTapped {
-    if (self.detailItem.imagesArray.count == 0) {
+    if ([self.detailItem.imagesArray isEqual:[NSNull null]] || self.detailItem.imagesArray.count == 0) {
         MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.viewController.view animated:YES];
         hud.mode = MBProgressHUDModeText;
         hud.labelText = @"暂时还没有图片哦";

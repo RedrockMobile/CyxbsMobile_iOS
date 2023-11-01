@@ -8,9 +8,6 @@
 
 #import "RemarkTableViewCell.h"
 
-//动态评论内容
-#import "DynamicDetailAddPhotoController.h"
-
 @interface RemarkTableViewCell()
 
 /// 别人对自己的评论的内容label
@@ -207,11 +204,11 @@
 
 /// 点击评论按钮后调用
 - (void)remarkBtnClicked {
-    DynamicDetailAddPhotoController *commentVC = [DynamicDetailAddPhotoController new];
-    commentVC.isFirstCommentLevel = NO;
-    commentVC.post_id = self.post_id.intValue;
-    commentVC.reply_id = self.comment_id.intValue;
-    [self.viewController.navigationController pushViewController:commentVC animated:YES];
+//    DynamicDetailAddPhotoController *commentVC = [DynamicDetailAddPhotoController new];
+//    commentVC.isFirstCommentLevel = NO;
+//    commentVC.post_id = self.post_id.intValue;
+//    commentVC.reply_id = self.comment_id.intValue;
+//    [self.viewController.navigationController pushViewController:commentVC animated:YES];
 }
 
 //MARK: - 重写set方法

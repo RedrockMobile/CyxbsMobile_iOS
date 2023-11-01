@@ -9,13 +9,16 @@
 //  All rights By SSR on 2022/5/6
 
 #import "HttpTool.h"
+#import "AliyunConfig.h"
+#import "ReduceAFSecurityPolicy.h"
+#import "CustomSessionManager.h"
 
 #pragma mark - HttpTool ()
 
 @interface HttpTool ()
 
 /// 唯一请求sessionManager
-@property (nonatomic, strong) AFHTTPSessionManager *sessionManager;
+@property (nonatomic, strong) CustomSessionManager *sessionManager;
 
 /// 默认JSON格式上传
 @property (nonatomic, strong) AFJSONRequestSerializer *defaultJSONRequest;
@@ -37,11 +40,11 @@ RisingSingleClass_IMPLEMENTATION(Tool)
 - (AFHTTPSessionManager *)sessionManager {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _sessionManager = [[AFHTTPSessionManager alloc] init];
-        
+        _sessionManager = [[CustomSessionManager alloc] init];
         _sessionManager.requestSerializer = self.defaultJSONRequest;
         
         AFJSONResponseSerializer *response = AFJSONResponseSerializer.serializer;
+        response.removesKeysWithNullValues = YES;
         response.acceptableContentTypes =
         [NSSet setWithArray:
          @[@"application/json",
@@ -67,6 +70,24 @@ RisingSingleClass_IMPLEMENTATION(Tool)
        progress:(nullable void (^)(NSProgress * _Nonnull))progress
         success:(nullable void (^)(NSURLSessionDataTask * _Nonnull, id _Nullable))success
         failure:(nullable void (^)(NSURLSessionDataTask * _Nullable, NSError * _Nonnull))failure {
+    
+    NSString *originalUrl = URLString;
+    NSURL* url = [NSURL URLWithString:originalUrl];
+    // 异步接口获取IP
+    NSString* ip = [AliyunConfig ipByHost:url.host];
+    if (ip) {
+        // 通过HTTPDNS获取IP成功，进行URL替换和HOST头设置
+        NSRange hostFirstRange = [originalUrl rangeOfString:url.host];
+        if (NSNotFound != hostFirstRange.location) {
+            NSString *newUrl = [originalUrl stringByReplacingCharactersInRange:hostFirstRange withString:ip];
+            //URL替换
+            URLString = newUrl;
+            [self.sessionManager.requestSerializer setValue:url.host forHTTPHeaderField:@"host"];
+        }
+    }
+    
+    //HOST头设置
+    [self.sessionManager.requestSerializer setValue:url.host forHTTPHeaderField:@"host"];
     
     switch (requestSerializer) {
         case HttpToolRequestSerializerPropertyList:

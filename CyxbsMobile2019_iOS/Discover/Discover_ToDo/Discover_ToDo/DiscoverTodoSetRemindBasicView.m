@@ -45,7 +45,7 @@
     btn.layer.cornerRadius = 20;
     [btn setBackgroundColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#EDF4FD" alpha:1] darkColor:[UIColor colorWithHexString:@"#484A4D" alpha:1]]];
     
-    [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCBold size:18]];
+    [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCSemibold size:18]];
     [btn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]] forState:UIControlStateNormal];
     
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -65,7 +65,7 @@
     btn.layer.cornerRadius = 20;
     [btn setBackgroundColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#4841E2" alpha:1] darkColor:[UIColor colorWithHexString:@"#4841E2" alpha:1]]];
     
-    [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCBold size:18]];
+    [btn.titleLabel setFont:[UIFont fontWithName:PingFangSCSemibold size:18]];
     [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     [btn mas_makeConstraints:^(MASConstraintMaker *make) {

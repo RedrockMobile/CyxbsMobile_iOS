@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
  * 在控制器的 viewDidLoad 方法中写:
  self.view.backgroundColor = [UIColor colorNamed:@"xxx"];
  self.VCTitleStr = @"";
- self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
+ self.titleFont = [UIFont fontWithName:PingFangSCSemibold size:22];
  */
 @interface PMPBasicNavBarController : UIViewController
 

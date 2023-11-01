@@ -70,7 +70,7 @@
     UIButton *weekChooseBtn = [[UIButton alloc] init];
     
     [weekChooseBtn setTitle:titleStr forState:UIControlStateNormal];
-    weekChooseBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:15];
+    weekChooseBtn.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:15];
     
     [weekChooseBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(MAIN_SCREEN_W*0.104);

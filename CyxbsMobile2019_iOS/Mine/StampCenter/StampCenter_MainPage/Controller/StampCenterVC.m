@@ -13,7 +13,6 @@
 #import "GoodsCollectionViewCell.h"
 #import "StampCenterSecondHeaderView.h"
 #import "TaskTableViewCellWithProgress.h"
-#import "SZHReleaseDynamic.h"
 #import "EditMyInfoViewController.h"
 #import "TableHeaderView.h"
 
@@ -276,7 +275,7 @@
         la.frame = CGRectMake(20, 20, SCREEN_WIDTH- 40 , 28);
         la.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         la.text = @"更多任务";
-        la.font = [UIFont fontWithName:PingFangSCBold size:20];
+        la.font = [UIFont fontWithName:PingFangSCSemibold size:20];
         [footerView addSubview:la];
         return footerView;
     }
@@ -564,7 +563,7 @@
     self.VCTitleStr = @"邮票中心";
     self.titlePosition = TopBarViewTitlePositionLeft;
     self.splitLineColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
-    self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
+    self.titleFont = [UIFont fontWithName:PingFangSCSemibold size:22];
     self.splitLineHidden = YES;
     self.CorrectHeaderY = Bar_H;
 }
@@ -657,8 +656,8 @@
 
 //跳转至发动态界面
 - (void)jumpToReleaseDynamic{
-    SZHReleaseDynamic *SVC = [[SZHReleaseDynamic alloc]init];
-    [self.navigationController pushViewController:SVC animated:YES];
+//    SZHReleaseDynamic *SVC = [[SZHReleaseDynamic alloc]init];
+//    [self.navigationController pushViewController:SVC animated:YES];
 }
 
 //刷新界面

@@ -98,7 +98,7 @@
         } else {
             [cancelButton setTitleColor:[UIColor colorWithHexString:@"788AAA"] forState:UIControlStateNormal];
         }
-        cancelButton.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:16];
+        cancelButton.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:16];
         [cancelButton addTarget:self action:@selector(cancelSearch) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:cancelButton];
         self.cancelButton = cancelButton;

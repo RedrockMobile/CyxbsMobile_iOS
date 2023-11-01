@@ -32,6 +32,16 @@
 #import "HttpTool.h"
 #import "NoteDataModel.h"
 
+#import "NewQAHud.h"
+#import "UserPublishModel.h"
+#import "UIColor+Color.h"
+#import "SSRTopBarBaseView.h"
+#import "HttpTool.h"
+#import "NSObject+YYAdd.h"
+#import "NSString+UILabel.h"
+#import "SSRButton.h"
+#import "AliyunConfig.h"
+
 #pragma mark - Group共享
 
 #define kAPPGroupID @"group.com.redrock.mobile"
@@ -92,8 +102,9 @@
 
 
 #pragma mark - 字体
+#define PingFangSC @"PingFang SC"
 //苹方-简 极细体
-#define PingFangSCUltralight    @"PingFangSC-Ultralight"
+#define PingFangSCUltralight @"PingFangSC-Ultralight"
 //苹方-简 纤细体
 #define PingFangSCThin @"PingFangSC-Thin"
 //苹方-简 细体
@@ -104,6 +115,7 @@
 #define PingFangSCMedium @"PingFangSC-Medium"
 //苹方-简 中粗体
 #define PingFangSCSemibold @"PingFangSC-Semibold"
+//#define PingFangSCSemibold @"PingFangSC-Semibold"
 /*
  下面这个for，可以打印出现有的所有字体
 for(NSString *fontFamilyName in [UIFont familyNames]){
@@ -115,7 +127,7 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 }
 */
 
-#define PingFangSCBold @"PingFangSC-Semibold"
+
 
 
 // Bahnschrift字体
@@ -217,7 +229,7 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 #define Discover_POST_schoolBus_API @"https://cyxbsmobile.redrock.team/wxapi/schoolbus/status"
 
 /// banner
-#define Discover_GET_bannerView_API @"http://api-234.redrock.team/magipoke-text/banner/get"
+//#define Discover_GET_bannerView_API @"http://api-234.redrock.team/magipoke-text/banner/get"
 
 /// 志愿查询
 #define Discover_POST_volunteerBind_API @"https://cyxbsmobile.redrock.team/wxapi/volunteer/binding"

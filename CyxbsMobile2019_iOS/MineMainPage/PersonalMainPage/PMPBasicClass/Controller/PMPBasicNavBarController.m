@@ -63,7 +63,7 @@
 /// 点击 返回按钮 后调用的方法
 - (void)backBtnClicked:(UIButton *)sender {
     [UIView animateWithDuration:0.1 animations:^{
-        sender.backgroundColor = [UIColor lightGrayColor];
+//        sender.backgroundColor = [UIColor lightGrayColor];
     } completion:^(BOOL finished) {
         if (self.navigationController != nil) {
             [self.navigationController popViewControllerAnimated:YES];

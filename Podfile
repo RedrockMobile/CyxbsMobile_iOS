@@ -1,5 +1,5 @@
 source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
-
+source 'https://github.com/aliyun/aliyun-specs.git'
 platform :ios,'11.0'
 use_frameworks!
 
@@ -42,6 +42,7 @@ target 'CyxbsMobile2019_iOS' do
 
 	pod 'IGListKit' # SSR引入，暂时无项目使用
 	pod 'WCDB'
+	#pod 'AlicloudHTTPDNS' # 避免冲突改用手动集成
       
   # For Swift:
   
@@ -50,15 +51,18 @@ target 'CyxbsMobile2019_iOS' do
   pod 'RxSwift', '~> 5.1.1'
   pod 'RxCocoa', '~> 5.1.1'
   pod 'SnapKit'
+  pod 'JXPagingView'
   pod 'JXSegmentedView'
+  pod 'TOCropViewController'
+  pod 'ProgressHUD'
 
     post_install do |installer|
-    installer.pods_project.build_configurations.each do |config|
-    config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
-    config.build_settings['VALID_ARCHS'] = 'arm64 arm64e armv7 armv7s x86_64 i386'
-    config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
-    config.build_settings['HEADER_SEARCH_PATHS'] = '$(PROJECT_DIR)/**'
-    end
+      installer.pods_project.build_configurations.each do |config|
+          config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
+          config.build_settings['VALID_ARCHS'] = 'arm64 arm64e armv7 armv7s x86_64 i386'
+          config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
+          config.build_settings['HEADER_SEARCH_PATHS'] = '$(PROJECT_DIR)/**'
+      end
     end
   
 end
