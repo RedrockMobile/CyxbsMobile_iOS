@@ -89,22 +89,16 @@ class WeekMaping {
                 array.append([])
             }
             mapWeekToAry(stuNumAry: stuNumAry, weekNum: weekNum) { weekAry in
-                for i in 0..<weekAry.count {
+                weekAry.enumerated().forEach { dayIndex, lessons in
                     var j = 0
-                    let lessonsCount = weekAry[i].count
                     
-                    while j < lessonsCount {
-                        let lesson = weekAry[i][j]
+                    while j < lessons.count {
+                        let lesson = lessons[j]
                         let beginLesson = j + 1
                         var count = 1
                         var endLesson: Int
                         
-                        var nextLessonIndex = j + 1
-                        while nextLessonIndex < lessonsCount && weekAry[i][nextLessonIndex].isEmpty {
-                            nextLessonIndex += 1
-                        }
-                        
-                        if nextLessonIndex < lessonsCount {
+                        if let nextLessonIndex = (j + 1..<lessons.count).first(where: { !lessons[$0].isEmpty }) {
                             endLesson = nextLessonIndex + 1
                             count = endLesson - beginLesson
                         } else {
@@ -118,7 +112,7 @@ class WeekMaping {
                             "beginLesson": beginLesson,
                             "student": lesson,
                             "length": count,
-                            "dayNum": i + 1,
+                            "dayNum": dayIndex + 1,
                             "timePeriod": "\(startTime)-\(endTime)"
                         ]
                         
