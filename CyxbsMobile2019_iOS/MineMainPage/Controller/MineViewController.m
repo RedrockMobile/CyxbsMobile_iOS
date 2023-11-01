@@ -28,6 +28,8 @@
 
 #import "MineMessageVC.h"//消息中心模块by ssr，将接入router技术
 
+#import "掌上重邮-Swift.h"
+
 //获取用户关注的人和粉丝的个人信息
 #define fansAndFollowsInfo @"/magipoke-loop/user/fansAndFollowsInfo"
 
@@ -55,6 +57,10 @@
 
 /// 消息中心入口按钮
 @property(nonatomic, strong)MineMSSEnterBtn *msgCenterBtn;
+
+@property(nonatomic, strong)UIView *redDotView;
+
+@property(nonatomic, strong)UILabel *messageCountLabel;
 
 /// 邮票中心入口按钮
 @property(nonatomic, strong)MineMSSEnterBtn *stampCenterBtn;
@@ -163,6 +169,10 @@
         }];
         [[UserItem defaultItem] getUserInfo];
     }
+    
+    [JudgeArrangeMessage needRedDotNumberWithCompletion:^(NSInteger num) {
+        [self addRedDot:num];
+    }];
 }
 
 //MARK: - UI
@@ -336,6 +346,50 @@
         make.left.right.bottom.equalTo(self.view);
         make.height.mas_equalTo(0.5*SCREEN_HEIGHT);
     }];
+}
+
+- (void)addRedDot:(NSInteger)messageCount {
+//    self.redDotView = [[UIView alloc] initWithFrame:CGRectMake(self.msgCenterBtn.right, self.msgCenterBtn.top - 6, 15, 15)];
+//    self.redDotView = redView;
+//    self.redDotView.layer.cornerRadius = 7.5;
+//    [self.redDotView setClipsToBounds:YES];
+//    self.redDotView.backgroundColor = [UIColor colorWithHexString:@"#FF6262" alpha:1];
+    
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(1, 1, 13, 13)];
+//    label.text = [NSString stringWithFormat:@"%ld", messageCount];
+//    label.textColor = [UIColor whiteColor];
+//    label.font = [UIFont systemFontOfSize:10];
+//    label.textAlignment = NSTextAlignmentCenter;
+    
+    self.messageCountLabel.text = [NSString stringWithFormat:@"%ld", messageCount];
+    [self.redDotView addSubview:self.messageCountLabel];
+    [self.backBoardView addSubview:self.redDotView];
+    if (messageCount > 0) {
+        self.redDotView.hidden = NO;
+    } else {
+        self.redDotView.hidden = YES;
+    }
+}
+
+- (UIView *)redDotView {
+    if (_redDotView == nil) {
+//        _redDotView = [[UIView alloc] initWithFrame:CGRectMake(self.msgCenterBtn.right, self.msgCenterBtn.top - 6, 15, 15)];
+        _redDotView = [[UIView alloc] initWithFrame:CGRectMake(self.msgCenterBtn.right - 2, self.msgCenterBtn.top - 4, 15, 15)];
+        _redDotView.layer.cornerRadius = 7.5;
+        [_redDotView setClipsToBounds:YES];
+        _redDotView.backgroundColor = [UIColor colorWithHexString:@"#FF6262" alpha:1];
+    }
+    return _redDotView;
+}
+
+- (UILabel *)messageCountLabel {
+    if (_messageCountLabel == nil) {
+        _messageCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(1, 1, 13, 13)];
+        _messageCountLabel.textColor = [UIColor whiteColor];
+        _messageCountLabel.font = [UIFont systemFontOfSize:10];
+        _messageCountLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _messageCountLabel;
 }
 
 //MARK: - tableView 的代理方法

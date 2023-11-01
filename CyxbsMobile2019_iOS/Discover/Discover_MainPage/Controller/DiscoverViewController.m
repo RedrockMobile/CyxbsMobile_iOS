@@ -10,7 +10,6 @@
 #import "DiscoverViewController.h"
 #import "LoginVC.h"
 #import "CheckInViewController.h"
-#import "WeDateViewController.h"           // 没课约
 #import "CQUPTMapViewController.h"         // 地图
 #import "FinderToolViewController.h"       // 工具
 #import "TODOMainViewController.h"         // 邮子清单
@@ -117,6 +116,8 @@ typedef NS_ENUM(NSUInteger, LoginStates) {
 
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentMySchedul) name:@"DiscoverVCShouldPresentMySchedul" object:nil];
     }
+    
+    [JudgeArrangeMessage judgetabBarRedDot];
 }
 
 - (void)viewDidLoad {
@@ -372,9 +373,7 @@ static int requestCheckinInfo = 0;
 
 - (void)touchNoClassAppointment {
     NSLog(@"点击了没课约");
-    UserItem *item = [[UserItem alloc] init];
-    WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:
-                                [@[@{@"name":item.realName, @"stuNum":item.stuNum}] mutableCopy]];
+    WeDateVC *vc = [[WeDateVC alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

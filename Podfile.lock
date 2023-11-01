@@ -29,6 +29,7 @@ PODS:
   - IGListKit (4.0.0):
     - IGListDiffKit (= 4.0.0)
   - IQKeyboardManager (6.5.9)
+  - JXSegmentedView (1.3.0)
   - LookinServer (1.0.4)
   - Masonry (1.1.0)
   - MBProgressHUD (0.9.2)
@@ -97,6 +98,7 @@ DEPENDENCIES:
   - FMDB
   - IGListKit
   - IQKeyboardManager
+  - JXSegmentedView
   - LookinServer
   - Masonry
   - MBProgressHUD (~> 0.9.2)
@@ -137,6 +139,7 @@ SPEC REPOS:
     - IGListDiffKit
     - IGListKit
     - IQKeyboardManager
+    - JXSegmentedView
     - LookinServer
     - Masonry
     - MBProgressHUD
@@ -166,7 +169,7 @@ SPEC REPOS:
     - YYKit
 
 SPEC CHECKSUMS:
-  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
   Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   AMap3DMap-NO-IDFA: cd412831292adbfb27a9e1fe9c46a6762e838aac
   AMapFoundation-NO-IDFA: cc2ec7a2828ef292358ad594b7ee0ae21a7f097b
@@ -177,6 +180,7 @@ SPEC CHECKSUMS:
   IGListDiffKit: 665d6cf43ce726e676013db9c7d6c4294259b6b2
   IGListKit: fd5a5d21935298f5849fa49d426843cff97b77c7
   IQKeyboardManager: 241cc94ccabc9deb8f8bd7d12f00d73288d13ecc
+  JXSegmentedView: fec0d335355b6e019c494fe2e030bde8a36d2df6
   LookinServer: 743c1681771d0a8dcc38825325a080c3186404a5
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
@@ -205,6 +209,6 @@ SPEC CHECKSUMS:
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 8d140718e505e69e914c3699fc1d03f420f3087d
+PODFILE CHECKSUM: 64b3b20a616877c2d60aefd96052fc6ecf43f016
 
 COCOAPODS: 1.11.3

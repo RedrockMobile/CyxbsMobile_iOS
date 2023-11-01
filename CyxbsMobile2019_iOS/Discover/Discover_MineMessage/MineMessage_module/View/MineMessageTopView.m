@@ -23,6 +23,9 @@
 /// 活动
 @property (nonatomic, strong) UIButton *activeBtn;
 
+/// 行程
+@property (nonatomic, strong) UIButton *arrangeBtn;
+
 // MARK: other
 
 /// ball for system
@@ -65,6 +68,7 @@
         [self.safeView addSubview:self.moreBtn];
         [self.safeView addSubview:self.systemBtn];
         [self.safeView addSubview:self.activeBtn];
+        [self.safeView addSubview:self.arrangeBtn];
         [self addSwithLineWithOrigin:CGPointMake(0, self.safeView.SuperBottom - 3)];
         self.swithLine.centerX = self.systemBtn.centerX;
         
@@ -87,8 +91,24 @@
 - (void)selectBtn:(UIButton *)btn {
     // 当前没被选中，说明line在另一个位置，需要滑动到这个位置
     if (btn.selected == NO) {
-        // 如果在第一个位置，多位移为正，反之
-        CGFloat more = (btn == self.systemBtn ? -10 : +10);
+        CGFloat more = 0;
+        UIButton *button = self.activeBtn;
+        // 如果在第一个位置，位移为正，反之
+        if (btn == self.systemBtn) {
+            more = -10;
+        }
+        if (btn == self.arrangeBtn) {
+            more = 10;
+        }
+        if (btn == self.activeBtn) {
+            if ([self.systemBtn isSelected]) {
+                more = 10;
+                button = self.systemBtn;
+            } else if ([self.arrangeBtn isSelected]) {
+                more = -10;
+                button = self.arrangeBtn;
+            }
+        }
         // 如果在滑动，那就等0.7秒
         (self.lineIsScroll ?
          dispatch_after(0.5, dispatch_get_main_queue(), ^{
@@ -98,24 +118,34 @@
         if (self.delegate) {
             [self.delegate
              mineMessageTopView:self
-             willScrollFrom:(btn == self.systemBtn ? self.activeBtn : self.systemBtn)
+             willScrollFrom:button
              toBtn:btn];
         }
     }
     // 设置一下选中状态
     btn.selected = YES;
-    UIButton *anotherBtn = (btn == self.systemBtn ? self.activeBtn : self.systemBtn);
-    anotherBtn.selected = NO;
+    UIColor *unselectedColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#142C52" alpha:0.4] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:55]];
+    if (btn == self.systemBtn) {
+        self.activeBtn.selected = NO;
+        self.arrangeBtn.selected = NO;
+        [self.activeBtn setTitleColor:unselectedColor forState:UIControlStateNormal];
+        [self.arrangeBtn setTitleColor:unselectedColor forState:UIControlStateNormal];
+    } else if (btn == self.activeBtn) {
+        self.systemBtn.selected = NO;
+        self.arrangeBtn.selected = NO;
+        [self.systemBtn setTitleColor:unselectedColor forState:UIControlStateNormal];
+        [self.arrangeBtn setTitleColor:unselectedColor forState:UIControlStateNormal];
+    } else {
+        self.systemBtn.selected = NO;
+        self.activeBtn.selected = NO;
+        [self.systemBtn setTitleColor:unselectedColor forState:UIControlStateNormal];
+        [self.activeBtn setTitleColor:unselectedColor forState:UIControlStateNormal];
+    }
     self.moreBtn.tag = (btn == self.activeBtn);
     
     [btn setTitleColor:
      [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1]
                            darkColor:[UIColor colorWithHexString:@"#DFDFE3"alpha:1]]
-              forState:UIControlStateNormal];
-    
-    [anotherBtn setTitleColor:
-     [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#142C52" alpha:0.4]
-                           darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:55]]
               forState:UIControlStateNormal];
 }
 
@@ -160,7 +190,7 @@
 
 - (UIButton *)systemBtn {
     if (_systemBtn == nil) {
-        _systemBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.width / 2, 30)];
+        _systemBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.width / 3, 30)];
         _systemBtn.bottom = self.safeView.SuperBottom - 10;
         [_systemBtn setTitle:@"系统通知" forState:UIControlStateNormal];
         _systemBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC" size:18];
@@ -177,7 +207,7 @@
 
 - (UIButton *)activeBtn {
     if (_activeBtn == nil) {
-        _activeBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.systemBtn.right, 0, self.width / 2, 30)];
+        _activeBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.systemBtn.right, 0, self.width / 3, 30)];
         _activeBtn.bottom = self.systemBtn.bottom;
         [_activeBtn setTitle:@"活动通知" forState:UIControlStateNormal];
         _activeBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC" size:18];
@@ -190,6 +220,18 @@
         [_activeBtn addTarget:self action:@selector(selectBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _activeBtn;
+}
+
+- (UIButton *)arrangeBtn {
+    if (_arrangeBtn == nil) {
+        _arrangeBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.activeBtn.right, 0, self.width / 3, 30)];
+        _arrangeBtn.bottom = self.activeBtn.bottom;
+        [_arrangeBtn setTitle:@"行程通知" forState:UIControlStateNormal];
+        _arrangeBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC" size:18];
+        [_arrangeBtn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#142C52" alpha:0.4] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:55]] forState:UIControlStateNormal];
+        [_arrangeBtn addTarget:self action:@selector(selectBtn:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _arrangeBtn;
 }
 
 - (UIView *)systemBall {

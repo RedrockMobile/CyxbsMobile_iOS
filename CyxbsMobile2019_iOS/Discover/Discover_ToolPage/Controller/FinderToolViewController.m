@@ -11,9 +11,10 @@
 #import "ScheduleInquiryViewController.h"
 #import "SchoolBusVC.h"
 #import "CalendarViewController.h"
-#import "WeDateViewController.h"
+//#import "WeDateViewController.h"
 #import "CQUPTMapViewController.h"
 #import "TODOMainViewController.h"
+#import "掌上重邮-Swift.h"
 
 @interface FinderToolViewController () <
     UIScrollViewDelegate
@@ -281,13 +282,14 @@
     if (sender.isChooingNow == YES) {
         [sender toggleFavoriteStates];
     } else {
-        UserItem *item = [UserItem defaultItem];
-        //点击了没课约
-        NSDictionary *dic = @{
-            @"name" : item.realName,
-            @"stuNum" : item.stuNum
-        };
-        WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:@[dic].modelCopy];
+//        UserItem *item = [UserItem defaultItem];
+//        //点击了没课约
+//        NSDictionary *dic = @{
+//            @"name" : item.realName,
+//            @"stuNum" : item.stuNum
+//        };
+//        WeDateViewController *vc = [[WeDateViewController alloc] initWithInfoDictArray:@[dic].modelCopy];
+        WeDateVC *vc = [[WeDateVC alloc] init];
         
         [self.navigationController pushViewController:vc animated:YES];
     }

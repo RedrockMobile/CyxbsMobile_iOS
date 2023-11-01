@@ -26,6 +26,8 @@
 // 模型
 #import "MineMessageModel.h"
 
+#import "掌上重邮-Swift.h"
+
 #pragma mark - MineMessageVC ()
 
 @interface MineMessageVC () <
@@ -45,11 +47,16 @@
 /// 活动通知
 @property (nonatomic, strong) ActiveMessageVC *activeMessageVC;
 
-/// 两个VC视图加载这上面，用于动画
+/// 行程通知
+@property (nonatomic, strong) ArrangeMessageVC *arrangeMessageVC;
+
+/// 三个VC视图加载这上面，用于动画
 @property (nonatomic, strong) UIView *contentView;
 
 /// 总的一个模型，用来请求，和其他骚操作
 @property (nonatomic, strong) MineMessageModel *mineMsgModel;
+
+@property (nonatomic, strong) UIView *arrangeBackView;
 
 @end
 
@@ -69,10 +76,15 @@
     [self.view addSubview:self.topView];
     [self addChildViewController:self.systemMessageVC];
     [self addChildViewController:self.activeMessageVC];
+    [self addChildViewController:self.arrangeMessageVC];
     
     [self.view addSubview:self.contentView];
     [self.contentView addSubview:self.systemMessageVC.view];
     [self.contentView addSubview:self.activeMessageVC.view];
+    [self.contentView addSubview:self.arrangeMessageVC.view];
+    
+    [self.view insertSubview:self.arrangeBackView belowSubview:self.topView];
+    self.arrangeBackView.hidden = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -88,21 +100,26 @@
         BOOL needActBall = [self.activeMessageVC hadReadAfterReloadData];
         self.topView.activeHadMsg = needActBall;
         
-        if (self.contentView.left < self.view.width / 2) {
+        if (self.contentView.left < self.view.width / 3) {
             if (!self.systemMessageVC.sysMsgModel || !self.systemMessageVC.sysMsgModel.msgAry.count) {
                 [NewQAHud showHudWith:@"没有系统消息了" AddView:self.systemMessageVC.view];
             }
-        } else {
+        } else if (self.contentView.left < (self.view.width * 2 / 3)) {
             if (!self.activeMessageVC.sysModel || !self.systemMessageVC.sysMsgModel.msgAry.count) {
                 [NewQAHud showHudWith:@"没有活动消息了" AddView:self.activeMessageVC.view];
             }
         }
     }
      failure:^(NSError * _Nonnull error) {
-        [NewQAHud showHudWith:@"网络异常"
-                      AddView:(self.contentView.left < self.view.width / 2 ?
-                               self.systemMessageVC.view :
-                               self.activeMessageVC.view)];
+        UIView *view = [[UIView alloc] init];
+        if (self.contentView.left < self.view.width / 3) {
+            view = self.systemMessageVC.view;
+        } else if (self.contentView.left < (self.view.width * 2 / 3)) {
+            view = self.activeMessageVC.view;
+        } else {
+            view = self.arrangeMessageVC.view;
+        }
+        [NewQAHud showHudWith:@"网络异常" AddView:view];
     }];
 }
 
@@ -168,19 +185,25 @@
 
 - (void)mineMessageTopView:(MineMessageTopView *)view
             willScrollFrom:(UIButton *)firstBtn
-                     toBtn:(UIButton *)secendbtn {
-    [self
-     contentViewScrollTo:(firstBtn.left < secendbtn.left ?
-                          self.activeMessageVC.view :
-                          self.systemMessageVC.view)
-     moreSpace:(firstBtn.left < secendbtn.left ? -7 : 7)];
-    if (firstBtn.left < secendbtn.left) {
-        [self.systemMessageVC viewWillDisappear:YES];
-        [self.activeMessageVC viewDidAppear:YES];
-    } else {
+                     toBtn:(UIButton *)secondbtn {
+    UIView *desView = [[UIView alloc] init];
+    if (secondbtn.left < self.view.width / 3) {
+        desView = self.systemMessageVC.view;
         [self.activeMessageVC viewWillDisappear:YES];
         [self.systemMessageVC viewDidAppear:YES];
+        self.arrangeBackView.hidden = YES;
+    } else if (secondbtn.left < self.view.width * 2 / 3) {
+        desView = self.activeMessageVC.view;
+        [self.systemMessageVC viewWillDisappear:YES];
+        [self.activeMessageVC viewDidAppear:YES];
+        self.arrangeBackView.hidden = YES;
+    } else {
+        desView = self.arrangeMessageVC.view;
+        [self.systemMessageVC viewWillDisappear:YES];
+        [self.activeMessageVC viewWillDisappear:YES];
+        self.arrangeBackView.hidden = NO;
     }
+    [self contentViewScrollTo:desView moreSpace:(firstBtn.left < secondbtn.left ? -7 : 7)];
 }
 
 #pragma mark - <MineMessageMoreVCDelegate>
@@ -237,10 +260,11 @@
 
 - (UIView *)contentView {
     if (_contentView == nil) {
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.topView.bottom, 2 * SCREEN_WIDTH, self.view.height - self.topView.bottom)];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.topView.bottom, 3 * SCREEN_WIDTH, self.view.height - self.topView.bottom)];
         _contentView.backgroundColor = UIColor.clearColor;
         [_contentView addSubview:self.systemMessageVC.view];
         [_contentView addSubview:self.activeMessageVC.view];
+        [_contentView addSubview:self.arrangeMessageVC.view];
     }
     return _contentView;
 }
@@ -265,6 +289,22 @@
         _activeMessageVC.delegate = self;
     }
     return _activeMessageVC;
+}
+
+- (ArrangeMessageVC *)arrangeMessageVC {
+    if (_arrangeMessageVC == nil) {
+        _arrangeMessageVC = [[ArrangeMessageVC alloc] init];
+        _arrangeMessageVC.view.frame = CGRectMake(self.activeMessageVC.view.right, 0, self.view.width, self.contentView.height);
+    }
+    return _arrangeMessageVC;
+}
+
+- (UIView *)arrangeBackView {
+    if (_arrangeBackView == nil) {
+        _arrangeBackView = [[UIView alloc] initWithFrame:CGRectMake(0, self.topView.bottom - 20, SCREEN_WIDTH, 30)];
+        _arrangeBackView.backgroundColor = [UIColor colorWithHexString:@"#FCFCFD" alpha:1];
+    }
+    return _arrangeBackView;
 }
 
 @end

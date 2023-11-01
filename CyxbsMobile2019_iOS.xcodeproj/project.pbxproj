@@ -539,6 +539,61 @@
 		DB4065032466D889006CE5BC /* DLReminderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064F42466D888006CE5BC /* DLReminderView.m */; };
 		EE131C212471362E00B6ED97 /* URLController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE131C202471362E00B6ED97 /* URLController.m */; };
 		EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */; };
+		FC05B1CA2ADA915B008B245B /* UITabBarItemExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC05B1C92ADA915A008B245B /* UITabBarItemExtension.swift */; };
+		FC05B1CC2ADAF054008B245B /* JudgeArrangeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC05B1CB2ADAF054008B245B /* JudgeArrangeMessage.swift */; };
+		FC06D0E62A9DC0EA00A974D8 /* CreateGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC06D0E52A9DC0EA00A974D8 /* CreateGroupModel.swift */; };
+		FC06D0EC2A9E637000A974D8 /* GroupItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC06D0EB2A9E636F00A974D8 /* GroupItem.swift */; };
+		FC06D0EE2A9E637D00A974D8 /* FixedGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC06D0ED2A9E637D00A974D8 /* FixedGroupModel.swift */; };
+		FC06D0F02A9E643A00A974D8 /* StudentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC06D0EF2A9E643A00A974D8 /* StudentItem.swift */; };
+		FC1484672AD1D38500657191 /* ReceiveMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1484662AD1D38500657191 /* ReceiveMessageVC.swift */; };
+		FC1484692AD1D3AB00657191 /* SendMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1484682AD1D3AB00657191 /* SendMessageVC.swift */; };
+		FC15428B2ABBEC8100BD806F /* ScheduleCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC15428A2ABBEC8100BD806F /* ScheduleCollectionViewLayout.swift */; };
+		FC15428D2ABBED5500BD806F /* CourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC15428C2ABBED5500BD806F /* CourseItem.swift */; };
+		FC15428F2ABC221600BD806F /* CourseScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC15428E2ABC221600BD806F /* CourseScheduleModel.swift */; };
+		FC1542912ABC75E900BD806F /* WeekMaping.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC1542902ABC75E900BD806F /* WeekMaping.swift */; };
+		FC20AA3A2AA3A11100A62BCB /* GroupManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC20AA392AA3A11100A62BCB /* GroupManageVC.swift */; };
+		FC42109B2AD5BBA80044EEAA /* ArrangeMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC42109A2AD5BBA80044EEAA /* ArrangeMessageModel.swift */; };
+		FC42109D2AD5BC700044EEAA /* ArrangeMessageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC42109C2AD5BC700044EEAA /* ArrangeMessageItem.swift */; };
+		FC42109F2AD5C2F20044EEAA /* ArrangeMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC42109E2AD5C2F20044EEAA /* ArrangeMessageTableViewCell.swift */; };
+		FC4B3BCE2A8764FA003336C8 /* WeDateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4B3BCD2A8764FA003336C8 /* WeDateVC.swift */; };
+		FC4B3BD02A8766F2003336C8 /* WeDateTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4B3BCF2A8766F2003336C8 /* WeDateTopView.swift */; };
+		FC4B3BD22A878457003336C8 /* TemporaryGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4B3BD12A878457003336C8 /* TemporaryGroupVC.swift */; };
+		FC4B3BD42A87B0EE003336C8 /* FixedGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4B3BD32A87B0EE003336C8 /* FixedGroupVC.swift */; };
+		FC51103F2AED06910049EE43 /* AddArrangeFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC51103E2AED06910049EE43 /* AddArrangeFlowLayout.swift */; };
+		FC5110412AED2D010049EE43 /* WeDateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5110402AED2D010049EE43 /* WeDateHeader.swift */; };
+		FC5110432AED3B6A0049EE43 /* ArrangeMessageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5110422AED3B6A0049EE43 /* ArrangeMessageHeader.swift */; };
+		FC5279002AAC46D500B09685 /* StudentResultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5278FF2AAC46D500B09685 /* StudentResultItem.swift */; };
+		FC5279022AAC471400B09685 /* ClassResultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5279012AAC471400B09685 /* ClassResultItem.swift */; };
+		FC5279042AAC473E00B09685 /* GroupResultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5279032AAC473E00B09685 /* GroupResultItem.swift */; };
+		FC5279062AAC482700B09685 /* StudentSearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5279052AAC482700B09685 /* StudentSearchResultTableViewCell.swift */; };
+		FC5279082AAC48D000B09685 /* ClassSearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5279072AAC48D000B09685 /* ClassSearchResultTableViewCell.swift */; };
+		FC52790A2AAC490F00B09685 /* GroupSearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5279092AAC490F00B09685 /* GroupSearchResultTableViewCell.swift */; };
+		FC52790C2AAC6C3A00B09685 /* NormalStudentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC52790B2AAC6C3A00B09685 /* NormalStudentItem.swift */; };
+		FC52790F2AACB8D200B09685 /* RepeatNameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC52790E2AACB8D200B09685 /* RepeatNameVC.swift */; };
+		FC5279112AACB92500B09685 /* RepeatNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5279102AACB92500B09685 /* RepeatNameTableViewCell.swift */; };
+		FC5388EB2AA4D1BF001ADD77 /* BatchAddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5388EA2AA4D1BF001ADD77 /* BatchAddVC.swift */; };
+		FC5849B62A9677BB00D9BBDF /* GroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5849B52A9677BB00D9BBDF /* GroupTableViewCell.swift */; };
+		FC5849B92A967F7F00D9BBDF /* CreateGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC5849B82A967F7F00D9BBDF /* CreateGroupVC.swift */; };
+		FC63434B2A891FD200DCD96C /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC63434A2A891FD200DCD96C /* SearchResultVC.swift */; };
+		FC6343532A89294E00DCD96C /* SearchResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6343522A89294E00DCD96C /* SearchResultModel.swift */; };
+		FC66D92B2A88B4C80024FB6A /* StudentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66D92A2A88B4C80024FB6A /* StudentTableViewCell.swift */; };
+		FC78F80F2AD036E500995C01 /* AddArrangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC78F80E2AD036E500995C01 /* AddArrangeModel.swift */; };
+		FC78F8122AD07FB100995C01 /* ArrangeMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC78F8112AD07FB100995C01 /* ArrangeMessageVC.swift */; };
+		FC7D381A2AAB867000DEAD50 /* BatchAddModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7D38192AAB867000DEAD50 /* BatchAddModel.swift */; };
+		FC7EC7C22AA9000E009FC098 /* ChooseGroupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7EC7C12AA9000D009FC098 /* ChooseGroupVC.swift */; };
+		FC9E3A8D2AB6CD4C00E3C65F /* ScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E3A8C2AB6CD4C00E3C65F /* ScheduleCollectionViewCell.swift */; };
+		FC9E3A922AB6CFF000E3C65F /* ScheduleFact.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E3A912AB6CFF000E3C65F /* ScheduleFact.swift */; };
+		FC9E3A992AB6D2F200E3C65F /* WeDateCourseScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9E3A982AB6D2F200E3C65F /* WeDateCourseScheduleVC.swift */; };
+		FCB39F2D2AB03B7400914462 /* AddArrangePlaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB39F2C2AB03B7400914462 /* AddArrangePlaceVC.swift */; };
+		FCB39F2F2AB03F0E00914462 /* AddArrangeMemberVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB39F2E2AB03F0E00914462 /* AddArrangeMemberVC.swift */; };
+		FCB39F312AB08C0200914462 /* CreateGroupAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB39F302AB08C0200914462 /* CreateGroupAlertVC.swift */; };
+		FCB9214E2AAF782B00F373A7 /* AddArrangeTitleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB9214D2AAF782B00F373A7 /* AddArrangeTitleVC.swift */; };
+		FCB921502AAF816A00F373A7 /* AddArrangeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCB9214F2AAF816900F373A7 /* AddArrangeCollectionViewCell.swift */; };
+		FCBAC1DA2AD7D9B60010D85A /* CancelReminderAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBAC1D92AD7D9B60010D85A /* CancelReminderAlertVC.swift */; };
+		FCD622E62AB53CE3007094A2 /* BusyDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD622E52AB53CE3007094A2 /* BusyDetailVC.swift */; };
+		FCEC87C22A8B69A2007EFBA4 /* SearchAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCEC87C12A8B69A2007EFBA4 /* SearchAlertVC.swift */; };
+		FCED76292AA9C51100A3D55C /* ChooseGroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCED76282AA9C51100A3D55C /* ChooseGroupCollectionViewCell.swift */; };
+		FCF2B95B2A9343BD00A007DD /* SearchResultTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF2B95A2A9343BD00A007DD /* SearchResultTableViewHeaderView.swift */; };
 		FE0D60442801702B00319A9E /* SchoolBusData.m in Sources */ = {isa = PBXBuildFile; fileRef = FE0D603A2801702B00319A9E /* SchoolBusData.m */; };
 		FE0D60452801702B00319A9E /* SchoolBusVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FE0D603C2801702B00319A9E /* SchoolBusVC.m */; };
 		FE0D60462801702B00319A9E /* SchoolBusBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE0D60402801702B00319A9E /* SchoolBusBottomView.m */; };
@@ -1666,6 +1721,61 @@
 		EE131C202471362E00B6ED97 /* URLController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = URLController.m; sourceTree = "<group>"; };
 		EE899DDE2367D89900DDB0D9 /* Bahnschrift.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bahnschrift.ttf; sourceTree = "<group>"; };
 		F1ED110FF9C783A1A3234FBE /* Pods-CyxbsMobile2019_iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.release.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.release.xcconfig"; sourceTree = "<group>"; };
+		FC05B1C92ADA915A008B245B /* UITabBarItemExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarItemExtension.swift; sourceTree = "<group>"; };
+		FC05B1CB2ADAF054008B245B /* JudgeArrangeMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JudgeArrangeMessage.swift; sourceTree = "<group>"; };
+		FC06D0E52A9DC0EA00A974D8 /* CreateGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupModel.swift; sourceTree = "<group>"; };
+		FC06D0EB2A9E636F00A974D8 /* GroupItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupItem.swift; sourceTree = "<group>"; };
+		FC06D0ED2A9E637D00A974D8 /* FixedGroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedGroupModel.swift; sourceTree = "<group>"; };
+		FC06D0EF2A9E643A00A974D8 /* StudentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentItem.swift; sourceTree = "<group>"; };
+		FC1484662AD1D38500657191 /* ReceiveMessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveMessageVC.swift; sourceTree = "<group>"; };
+		FC1484682AD1D3AB00657191 /* SendMessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageVC.swift; sourceTree = "<group>"; };
+		FC15428A2ABBEC8100BD806F /* ScheduleCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewLayout.swift; sourceTree = "<group>"; };
+		FC15428C2ABBED5500BD806F /* CourseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseItem.swift; sourceTree = "<group>"; };
+		FC15428E2ABC221600BD806F /* CourseScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseScheduleModel.swift; sourceTree = "<group>"; };
+		FC1542902ABC75E900BD806F /* WeekMaping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekMaping.swift; sourceTree = "<group>"; };
+		FC20AA392AA3A11100A62BCB /* GroupManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupManageVC.swift; sourceTree = "<group>"; };
+		FC42109A2AD5BBA80044EEAA /* ArrangeMessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrangeMessageModel.swift; sourceTree = "<group>"; };
+		FC42109C2AD5BC700044EEAA /* ArrangeMessageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrangeMessageItem.swift; sourceTree = "<group>"; };
+		FC42109E2AD5C2F20044EEAA /* ArrangeMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrangeMessageTableViewCell.swift; sourceTree = "<group>"; };
+		FC4B3BCD2A8764FA003336C8 /* WeDateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeDateVC.swift; sourceTree = "<group>"; };
+		FC4B3BCF2A8766F2003336C8 /* WeDateTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeDateTopView.swift; sourceTree = "<group>"; };
+		FC4B3BD12A878457003336C8 /* TemporaryGroupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryGroupVC.swift; sourceTree = "<group>"; };
+		FC4B3BD32A87B0EE003336C8 /* FixedGroupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixedGroupVC.swift; sourceTree = "<group>"; };
+		FC51103E2AED06910049EE43 /* AddArrangeFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArrangeFlowLayout.swift; sourceTree = "<group>"; };
+		FC5110402AED2D010049EE43 /* WeDateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeDateHeader.swift; sourceTree = "<group>"; };
+		FC5110422AED3B6A0049EE43 /* ArrangeMessageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrangeMessageHeader.swift; sourceTree = "<group>"; };
+		FC5278FF2AAC46D500B09685 /* StudentResultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentResultItem.swift; sourceTree = "<group>"; };
+		FC5279012AAC471400B09685 /* ClassResultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassResultItem.swift; sourceTree = "<group>"; };
+		FC5279032AAC473E00B09685 /* GroupResultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupResultItem.swift; sourceTree = "<group>"; };
+		FC5279052AAC482700B09685 /* StudentSearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		FC5279072AAC48D000B09685 /* ClassSearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassSearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		FC5279092AAC490F00B09685 /* GroupSearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		FC52790B2AAC6C3A00B09685 /* NormalStudentItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NormalStudentItem.swift; sourceTree = "<group>"; };
+		FC52790E2AACB8D200B09685 /* RepeatNameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatNameVC.swift; sourceTree = "<group>"; };
+		FC5279102AACB92500B09685 /* RepeatNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatNameTableViewCell.swift; sourceTree = "<group>"; };
+		FC5388EA2AA4D1BF001ADD77 /* BatchAddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchAddVC.swift; sourceTree = "<group>"; };
+		FC5849B52A9677BB00D9BBDF /* GroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupTableViewCell.swift; sourceTree = "<group>"; };
+		FC5849B82A967F7F00D9BBDF /* CreateGroupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupVC.swift; sourceTree = "<group>"; };
+		FC63434A2A891FD200DCD96C /* SearchResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
+		FC6343522A89294E00DCD96C /* SearchResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultModel.swift; sourceTree = "<group>"; };
+		FC66D92A2A88B4C80024FB6A /* StudentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTableViewCell.swift; sourceTree = "<group>"; };
+		FC78F80E2AD036E500995C01 /* AddArrangeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArrangeModel.swift; sourceTree = "<group>"; };
+		FC78F8112AD07FB100995C01 /* ArrangeMessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrangeMessageVC.swift; sourceTree = "<group>"; };
+		FC7D38192AAB867000DEAD50 /* BatchAddModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchAddModel.swift; sourceTree = "<group>"; };
+		FC7EC7C12AA9000D009FC098 /* ChooseGroupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGroupVC.swift; sourceTree = "<group>"; };
+		FC9E3A8C2AB6CD4C00E3C65F /* ScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
+		FC9E3A912AB6CFF000E3C65F /* ScheduleFact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleFact.swift; sourceTree = "<group>"; };
+		FC9E3A982AB6D2F200E3C65F /* WeDateCourseScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeDateCourseScheduleVC.swift; sourceTree = "<group>"; };
+		FCB39F2C2AB03B7400914462 /* AddArrangePlaceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArrangePlaceVC.swift; sourceTree = "<group>"; };
+		FCB39F2E2AB03F0E00914462 /* AddArrangeMemberVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArrangeMemberVC.swift; sourceTree = "<group>"; };
+		FCB39F302AB08C0200914462 /* CreateGroupAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupAlertVC.swift; sourceTree = "<group>"; };
+		FCB9214D2AAF782B00F373A7 /* AddArrangeTitleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArrangeTitleVC.swift; sourceTree = "<group>"; };
+		FCB9214F2AAF816900F373A7 /* AddArrangeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArrangeCollectionViewCell.swift; sourceTree = "<group>"; };
+		FCBAC1D92AD7D9B60010D85A /* CancelReminderAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelReminderAlertVC.swift; sourceTree = "<group>"; };
+		FCD622E52AB53CE3007094A2 /* BusyDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusyDetailVC.swift; sourceTree = "<group>"; };
+		FCEC87C12A8B69A2007EFBA4 /* SearchAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAlertVC.swift; sourceTree = "<group>"; };
+		FCED76282AA9C51100A3D55C /* ChooseGroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGroupCollectionViewCell.swift; sourceTree = "<group>"; };
+		FCF2B95A2A9343BD00A007DD /* SearchResultTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewHeaderView.swift; sourceTree = "<group>"; };
 		FE0D60392801702B00319A9E /* SchoolBusData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolBusData.h; sourceTree = "<group>"; };
 		FE0D603A2801702B00319A9E /* SchoolBusData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolBusData.m; sourceTree = "<group>"; };
 		FE0D603C2801702B00319A9E /* SchoolBusVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolBusVC.m; sourceTree = "<group>"; };
@@ -2143,6 +2253,7 @@
 				14B73F67281BED7B00D08ADD /* MessagePresent_module */,
 				14B73F2A281BED7B00D08ADD /* MessageSetting_module */,
 				14B73F852822BC5800D08ADD /* MessageDetail_module */,
+				FC78F8102AD07F5000995C01 /* ArrangeMessage */,
 			);
 			name = Discover_MineMessage;
 			path = CyxbsMobile2019_iOS/Discover/Discover_MineMessage;
@@ -2718,6 +2829,26 @@
 		18CDF53B257F91BC006E8E5C /* Discover_WeDate */ = {
 			isa = PBXGroup;
 			children = (
+				FC5110402AED2D010049EE43 /* WeDateHeader.swift */,
+				FC4B3BCD2A8764FA003336C8 /* WeDateVC.swift */,
+				FC4B3BCF2A8766F2003336C8 /* WeDateTopView.swift */,
+				FC4B3BD12A878457003336C8 /* TemporaryGroupVC.swift */,
+				FC4B3BD32A87B0EE003336C8 /* FixedGroupVC.swift */,
+				FC06D0ED2A9E637D00A974D8 /* FixedGroupModel.swift */,
+				FC06D0EB2A9E636F00A974D8 /* GroupItem.swift */,
+				FC06D0EF2A9E643A00A974D8 /* StudentItem.swift */,
+				FC66D92A2A88B4C80024FB6A /* StudentTableViewCell.swift */,
+				FC5849B52A9677BB00D9BBDF /* GroupTableViewCell.swift */,
+				FCD622E72AB53CE8007094A2 /* BusyDetail */,
+				FCB39F322AB08C1000914462 /* CreateGroupAlert */,
+				FCB9214C2AAF780F00F373A7 /* AddArrange */,
+				FCB921492AAF601E00F373A7 /* CourseSchedule */,
+				FC7EC7C32AA90023009FC098 /* ChooseGroup */,
+				FC5388E92AA4D197001ADD77 /* BatchAdd */,
+				FC52790D2AACB89B00B09685 /* RepeatName */,
+				FC20AA382AA3A0C400A62BCB /* GroupManage */,
+				FC5849B72A967EF400D9BBDF /* CreateGroup */,
+				FC1F872A2A9107E8001E2104 /* SearchResult */,
 				B5E4B3082962BADF00F80452 /* Controller */,
 				B5E4B3092962BAF200F80452 /* View */,
 			);
@@ -5501,6 +5632,128 @@
 			path = Reminder;
 			sourceTree = "<group>";
 		};
+		FC1F872A2A9107E8001E2104 /* SearchResult */ = {
+			isa = PBXGroup;
+			children = (
+				FC63434A2A891FD200DCD96C /* SearchResultVC.swift */,
+				FCF2B95A2A9343BD00A007DD /* SearchResultTableViewHeaderView.swift */,
+				FC5279052AAC482700B09685 /* StudentSearchResultTableViewCell.swift */,
+				FC5279072AAC48D000B09685 /* ClassSearchResultTableViewCell.swift */,
+				FC5279092AAC490F00B09685 /* GroupSearchResultTableViewCell.swift */,
+				FCEC87C12A8B69A2007EFBA4 /* SearchAlertVC.swift */,
+				FC6343522A89294E00DCD96C /* SearchResultModel.swift */,
+				FC5279032AAC473E00B09685 /* GroupResultItem.swift */,
+				FC5279012AAC471400B09685 /* ClassResultItem.swift */,
+				FC5278FF2AAC46D500B09685 /* StudentResultItem.swift */,
+			);
+			path = SearchResult;
+			sourceTree = "<group>";
+		};
+		FC20AA382AA3A0C400A62BCB /* GroupManage */ = {
+			isa = PBXGroup;
+			children = (
+				FC20AA392AA3A11100A62BCB /* GroupManageVC.swift */,
+			);
+			path = GroupManage;
+			sourceTree = "<group>";
+		};
+		FC52790D2AACB89B00B09685 /* RepeatName */ = {
+			isa = PBXGroup;
+			children = (
+				FC52790E2AACB8D200B09685 /* RepeatNameVC.swift */,
+				FC5279102AACB92500B09685 /* RepeatNameTableViewCell.swift */,
+			);
+			path = RepeatName;
+			sourceTree = "<group>";
+		};
+		FC5388E92AA4D197001ADD77 /* BatchAdd */ = {
+			isa = PBXGroup;
+			children = (
+				FC5388EA2AA4D1BF001ADD77 /* BatchAddVC.swift */,
+				FC7D38192AAB867000DEAD50 /* BatchAddModel.swift */,
+				FC52790B2AAC6C3A00B09685 /* NormalStudentItem.swift */,
+			);
+			path = BatchAdd;
+			sourceTree = "<group>";
+		};
+		FC5849B72A967EF400D9BBDF /* CreateGroup */ = {
+			isa = PBXGroup;
+			children = (
+				FC5849B82A967F7F00D9BBDF /* CreateGroupVC.swift */,
+				FC06D0E52A9DC0EA00A974D8 /* CreateGroupModel.swift */,
+			);
+			path = CreateGroup;
+			sourceTree = "<group>";
+		};
+		FC78F8102AD07F5000995C01 /* ArrangeMessage */ = {
+			isa = PBXGroup;
+			children = (
+				FC5110422AED3B6A0049EE43 /* ArrangeMessageHeader.swift */,
+				FC78F8112AD07FB100995C01 /* ArrangeMessageVC.swift */,
+				FC1484662AD1D38500657191 /* ReceiveMessageVC.swift */,
+				FC1484682AD1D3AB00657191 /* SendMessageVC.swift */,
+				FCBAC1D92AD7D9B60010D85A /* CancelReminderAlertVC.swift */,
+				FC42109E2AD5C2F20044EEAA /* ArrangeMessageTableViewCell.swift */,
+				FC42109A2AD5BBA80044EEAA /* ArrangeMessageModel.swift */,
+				FC42109C2AD5BC700044EEAA /* ArrangeMessageItem.swift */,
+				FC05B1C92ADA915A008B245B /* UITabBarItemExtension.swift */,
+				FC05B1CB2ADAF054008B245B /* JudgeArrangeMessage.swift */,
+			);
+			path = ArrangeMessage;
+			sourceTree = "<group>";
+		};
+		FC7EC7C32AA90023009FC098 /* ChooseGroup */ = {
+			isa = PBXGroup;
+			children = (
+				FC7EC7C12AA9000D009FC098 /* ChooseGroupVC.swift */,
+				FCED76282AA9C51100A3D55C /* ChooseGroupCollectionViewCell.swift */,
+			);
+			path = ChooseGroup;
+			sourceTree = "<group>";
+		};
+		FCB39F322AB08C1000914462 /* CreateGroupAlert */ = {
+			isa = PBXGroup;
+			children = (
+				FCB39F302AB08C0200914462 /* CreateGroupAlertVC.swift */,
+			);
+			path = CreateGroupAlert;
+			sourceTree = "<group>";
+		};
+		FCB921492AAF601E00F373A7 /* CourseSchedule */ = {
+			isa = PBXGroup;
+			children = (
+				FC9E3A982AB6D2F200E3C65F /* WeDateCourseScheduleVC.swift */,
+				FC9E3A912AB6CFF000E3C65F /* ScheduleFact.swift */,
+				FC15428A2ABBEC8100BD806F /* ScheduleCollectionViewLayout.swift */,
+				FC9E3A8C2AB6CD4C00E3C65F /* ScheduleCollectionViewCell.swift */,
+				FC1542902ABC75E900BD806F /* WeekMaping.swift */,
+				FC15428E2ABC221600BD806F /* CourseScheduleModel.swift */,
+				FC15428C2ABBED5500BD806F /* CourseItem.swift */,
+			);
+			path = CourseSchedule;
+			sourceTree = "<group>";
+		};
+		FCB9214C2AAF780F00F373A7 /* AddArrange */ = {
+			isa = PBXGroup;
+			children = (
+				FCB9214D2AAF782B00F373A7 /* AddArrangeTitleVC.swift */,
+				FCB39F2C2AB03B7400914462 /* AddArrangePlaceVC.swift */,
+				FCB39F2E2AB03F0E00914462 /* AddArrangeMemberVC.swift */,
+				FCB9214F2AAF816900F373A7 /* AddArrangeCollectionViewCell.swift */,
+				FC51103E2AED06910049EE43 /* AddArrangeFlowLayout.swift */,
+				FC78F80E2AD036E500995C01 /* AddArrangeModel.swift */,
+			);
+			path = AddArrange;
+			sourceTree = "<group>";
+		};
+		FCD622E72AB53CE8007094A2 /* BusyDetail */ = {
+			isa = PBXGroup;
+			children = (
+				FCD622E52AB53CE3007094A2 /* BusyDetailVC.swift */,
+			);
+			path = BusyDetail;
+			sourceTree = "<group>";
+		};
 		FE0D60362801702B00319A9E /* Discover_SchoolBus */ = {
 			isa = PBXGroup;
 			children = (
@@ -5930,9 +6183,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC5110412AED2D010049EE43 /* WeDateHeader.swift in Sources */,
 				AA0DDB66286C8B1A00802324 /* BaseTableViewCell.m in Sources */,
 				145AF3E5281BDA0000AABC53 /* NSString+UILabel.m in Sources */,
 				AA0DDB83286C8B1A00802324 /* PMPHomePageViewController.m in Sources */,
+				FC4B3BD42A87B0EE003336C8 /* FixedGroupVC.swift in Sources */,
 				B51C501128A5FFC00011465E /* LoginBaseVC.m in Sources */,
 				DB34EB3B239BD4550052B65E /* WeekChooseButton.m in Sources */,
 				18CDF6A1257F91BD006E8E5C /* CQUPTMapAllImageCollectionViewCell.m in Sources */,
@@ -5940,7 +6195,9 @@
 				14B73F6F281BED7B00D08ADD /* MessageSettingVC.m in Sources */,
 				73AAA1D326C918250084E44D /* PurchaseinfoViewController.m in Sources */,
 				AA7ABAAC2873EA5500BA6790 /* MGDClickLayer.m in Sources */,
+				FC5279002AAC46D500B09685 /* StudentResultItem.swift in Sources */,
 				187DF4BA260310DD000BCDE9 /* LYEmptyBaseView.m in Sources */,
+				FCB39F312AB08C0200914462 /* CreateGroupAlertVC.swift in Sources */,
 				18CDF6C7257F91BE006E8E5C /* CalendarViewController.m in Sources */,
 				18CDF67A257F91BD006E8E5C /* ScheduleInquiryViewController.m in Sources */,
 				14B73F6E281BED7B00D08ADD /* MessageSettingCell.m in Sources */,
@@ -5951,6 +6208,7 @@
 				FE2C135027AEF629001CF7AF /* TodoTableViewCell.m in Sources */,
 				14D03A0B27FE69A800D6AE93 /* SSRTopBarBaseView.m in Sources */,
 				18CDF66E257F91BD006E8E5C /* EnterButton.m in Sources */,
+				FC05B1CC2ADAF054008B245B /* JudgeArrangeMessage.swift in Sources */,
 				18CDF4C4257F8DBD006E8E5C /* SetQuestionView.m in Sources */,
 				AA0DDB7C286C8B1A00802324 /* PMPIDCardTableViewCell.m in Sources */,
 				D0101F62243587A1004337ED /* UIScrollView+GKGestureHandle.m in Sources */,
@@ -6002,16 +6260,20 @@
 				AA49098924F3BF5A007CB3BC /* TransitionManager.m in Sources */,
 				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
 				AA7ABAAD2873EA5500BA6790 /* FunctionBtn.m in Sources */,
+				FC5279042AAC473E00B09685 /* GroupResultItem.swift in Sources */,
 				AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */,
+				FC5849B92A967F7F00D9BBDF /* CreateGroupVC.swift in Sources */,
 				4931630D26CD7B6800140412 /* StampCenterCollectionHeaderView.m in Sources */,
 				B0FE5F29294C94540070E755 /* NSDate+Rising.m in Sources */,
 				AA0DDB69286C8B1A00802324 /* FansAndFollowingSegmentView.m in Sources */,
 				D0101D592433C885004337ED /* SDMaskController.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
+				FC4B3BD02A8766F2003336C8 /* WeDateTopView.swift in Sources */,
 				AA7ABABF2873EA5500BA6790 /* NewQANoDataView.m in Sources */,
 				14B73F8B2823577600D08ADD /* SSRButton.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				FE2C136027AEF629001CF7AF /* DiscoverTodoSelectTimeView.m in Sources */,
+				FC5110432AED3B6A0049EE43 /* ArrangeMessageHeader.swift in Sources */,
 				14B73F73281BED7B00D08ADD /* ActiveMessageVC.m in Sources */,
 				AA7ABAA12873EA5400BA6790 /* PostH5Item.m in Sources */,
 				1404747D27F46F0D00307209 /* DiscoverADController.m in Sources */,
@@ -6022,11 +6284,14 @@
 				FE2C135327AEF629001CF7AF /* ToDoTableView.m in Sources */,
 				735BC55026D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.m in Sources */,
 				AA7ABAFE2873EA6D00BA6790 /* DynamicDetailTopBarView.m in Sources */,
+				FC1484692AD1D3AB00657191 /* SendMessageVC.swift in Sources */,
+				FCED76292AA9C51100A3D55C /* ChooseGroupCollectionViewCell.swift in Sources */,
 				AA7ABA9F2873EA5400BA6790 /* HotSearchModel.m in Sources */,
 				FE2C136527AEF629001CF7AF /* TodoDateTool.m in Sources */,
 				AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */,
 				B51C501028A5FFC00011465E /* ForgetPwdVC.m in Sources */,
 				AA7AB9632873E5EA00BA6790 /* CYSearchEndKnowledgeDetailModel.m in Sources */,
+				FC06D0EE2A9E637D00A974D8 /* FixedGroupModel.swift in Sources */,
 				18CDF68D257F91BD006E8E5C /* CQUPTMapPresenter.m in Sources */,
 				646B1975282CDF840015DF28 /* StationsCollectionViewCell.m in Sources */,
 				AA0DDB6D286C8B1A00802324 /* EditMyInfoViewController.m in Sources */,
@@ -6042,19 +6307,23 @@
 				AA7ABAAB2873EA5500BA6790 /* MGDClickParams.m in Sources */,
 				DB4064FE2466D889006CE5BC /* DLNextButton.m in Sources */,
 				735BC54726D3BF3000F22678 /* FeedBackDetailsModel.m in Sources */,
+				FC4B3BCE2A8764FA003336C8 /* WeDateVC.swift in Sources */,
 				D0101D5A2433C885004337ED /* SDMaskNotificationName.m in Sources */,
+				FC05B1CA2ADA915B008B245B /* UITabBarItemExtension.swift in Sources */,
 				18CDF690257F91BD006E8E5C /* CQUPTMapDataItem.m in Sources */,
 				AA3F82DA24E8E03C00B65042 /* ClassDetailView.m in Sources */,
 				AA5368F02589E28800236CB5 /* QuitTipView.m in Sources */,
 				7311328A26CCEC2400EF88C1 /* TopView.m in Sources */,
 				646B1984282E8F000015DF28 /* StationGuideView.m in Sources */,
 				AA7AB96C2873E5EA00BA6790 /* QASearchResultTopView.m in Sources */,
+				FC7D381A2AAB867000DEAD50 /* BatchAddModel.swift in Sources */,
 				14B73F7C281BED7B00D08ADD /* MineMessageModel.m in Sources */,
 				AA7ABAF42873EA6D00BA6790 /* DynamicDetailAddPhotoController.m in Sources */,
 				AA0DDB7E286C8B1A00802324 /* PMPHomePageHeaderView.m in Sources */,
 				AA0DDB5E286C8B1A00802324 /* AuthenticViewController.m in Sources */,
 				AA0DDB58286C8B1A00802324 /* UIScrollView+JHContentExtension.m in Sources */,
 				AA7ABAFB2873EA6D00BA6790 /* zhPopupController.m in Sources */,
+				FC15428F2ABC221600BD806F /* CourseScheduleModel.swift in Sources */,
 				AA0DDB82286C8B1A00802324 /* IDCardTableViewCell.m in Sources */,
 				AA7AB9662873E5EA00BA6790 /* QASearchResultVC.m in Sources */,
 				DB4064F82466D889006CE5BC /* DLWeekButton.m in Sources */,
@@ -6065,6 +6334,7 @@
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				AA4FA1DF25C2DE5F005139BA /* LearnMoreViewController.m in Sources */,
 				AA7AB9652873E5EA00BA6790 /* CYSearchEndKnowledgeDetailView.m in Sources */,
+				FCB39F2D2AB03B7400914462 /* AddArrangePlaceVC.swift in Sources */,
 				1893DC8926EA32A3007E871E /* MGDGCD.m in Sources */,
 				AA0DDB6C286C8B1A00802324 /* EditMyInfoModel.m in Sources */,
 				AA7ABAF72873EA6D00BA6790 /* UIView+FrameTool.m in Sources */,
@@ -6073,6 +6343,7 @@
 				AA0DDB73286C8B1A00802324 /* PMPIdentityTableViewController.m in Sources */,
 				AA3F82DD24E9343A00B65042 /* DayBarView.m in Sources */,
 				18CDF4BA257F8DBD006E8E5C /* ChangePwdViewController.m in Sources */,
+				FCB39F2F2AB03F0E00914462 /* AddArrangeMemberVC.swift in Sources */,
 				AA7ABAFD2873EA6D00BA6790 /* NoComentView.m in Sources */,
 				DB4064F92466D889006CE5BC /* DLTimeSelectView.m in Sources */,
 				AAE3309925E4E5CD00324750 /* DeleteArticleTipView.m in Sources */,
@@ -6088,6 +6359,7 @@
 				18CDF67B257F91BD006E8E5C /* ClassmateItem.m in Sources */,
 				1A1E869723C8D1DE00321367 /* CheckInBar.m in Sources */,
 				646B19A5283885740015DF28 /* CircleMAPointAnnotation.m in Sources */,
+				FC78F80F2AD036E500995C01 /* AddArrangeModel.swift in Sources */,
 				18CDF69E257F91BD006E8E5C /* CQUPTMapBeforeSearchCell.m in Sources */,
 				1A1691F82430DEE70076EDC7 /* ClassScheduleTabBarView.m in Sources */,
 				18CDF6A5257F91BD006E8E5C /* CQUPTMapDetailView.m in Sources */,
@@ -6104,6 +6376,7 @@
 				AA9ABE9024EB63BF00D16BE0 /* ClassDetailViewShower.m in Sources */,
 				18CDF694257F91BD006E8E5C /* CQUPTMapSearchItem.m in Sources */,
 				AAC7CA3B25F89C9D00E6B5D5 /* MainPageModel.m in Sources */,
+				FC06D0F02A9E643A00A974D8 /* StudentItem.swift in Sources */,
 				4931630E26CD7B6800140412 /* StampCenterSecondHeaderView.m in Sources */,
 				18CDF722257F91BE006E8E5C /* FinderToolViewItem.m in Sources */,
 				FE2C136827AEF629001CF7AF /* TodoSyncMsg.m in Sources */,
@@ -6116,6 +6389,7 @@
 				DB34EB30239BD4550052B65E /* LessonMatter.m in Sources */,
 				18CDF67D257F91BD006E8E5C /* PeopleListCellTableViewCell.m in Sources */,
 				AA4CD60A25EF6747002D9394 /* IgnoreDataModel.m in Sources */,
+				FC15428D2ABBED5500BD806F /* CourseItem.swift in Sources */,
 				B0F08FFD28A2509900986EB6 /* RisingRouter+Extension.m in Sources */,
 				AAE87797286B304F0091656B /* PrivacyTipView.swift in Sources */,
 				DB34EB25239BD4550052B65E /* DetailViewController.m in Sources */,
@@ -6135,6 +6409,7 @@
 				EE131C212471362E00B6ED97 /* URLController.m in Sources */,
 				AA0DDB6F286C8B1A00802324 /* MineEditTextField.m in Sources */,
 				14E7E4A827F5762500B67469 /* QuestionSelectView.m in Sources */,
+				FCB9214E2AAF782B00F373A7 /* AddArrangeTitleVC.swift in Sources */,
 				18CDF689257F91BD006E8E5C /* WeDateViewController.m in Sources */,
 				DB34EACE239BD4550052B65E /* DateModle.m in Sources */,
 				AA49098624F3B6B4007CB3BC /* ClassSchedulInterController.m in Sources */,
@@ -6161,6 +6436,7 @@
 				AA289B0F24EF9CFA00FDF70C /* NoteDataModel.m in Sources */,
 				18CDF4BD257F8DBD006E8E5C /* questionModel.m in Sources */,
 				AA0DDB7F286C8B1A00802324 /* PMPTextButton.m in Sources */,
+				FCBAC1DA2AD7D9B60010D85A /* CancelReminderAlertVC.swift in Sources */,
 				AA7ABAB62873EA5500BA6790 /* NewQAPostDetailLabel.m in Sources */,
 				14CED37E288A594600BADA8B /* RisingRouterResponse.m in Sources */,
 				7311328926CCEC2400EF88C1 /* PopupView.m in Sources */,
@@ -6174,11 +6450,14 @@
 				4931631326CD7B6800140412 /* TableHeaderView.m in Sources */,
 				1451EA58282BAF0C00A5BB55 /* MessageDetailTitleView.m in Sources */,
 				DB34EB24239BD4550052B65E /* LessonController.m in Sources */,
+				FC4B3BD22A878457003336C8 /* TemporaryGroupVC.swift in Sources */,
 				AA7ABAA72873EA5500BA6790 /* NewQACellCollectionView.m in Sources */,
 				FE2C136227AEF629001CF7AF /* TodoConflictStateView.m in Sources */,
 				AA0DDB77286C8B1A00802324 /* JHMenuView.m in Sources */,
 				AA7ABAFA2873EA6D00BA6790 /* DynamicDetailComentTableCell.m in Sources */,
+				FC9E3A922AB6CFF000E3C65F /* ScheduleFact.swift in Sources */,
 				AA0DDB78286C8B1A00802324 /* PMPPostItem.m in Sources */,
+				FC5279022AAC471400B09685 /* ClassResultItem.swift in Sources */,
 				AA7ABABD2873EA5500BA6790 /* RecommendedTableView.m in Sources */,
 				1893DC9526EA3887007E871E /* MGDTimer.m in Sources */,
 				DB34EB2F239BD4550052B65E /* LessonBtnModel.m in Sources */,
@@ -6190,6 +6469,7 @@
 				18CDF6A3257F91BD006E8E5C /* CQUPTMapDetailTagsCollectionViewCell.m in Sources */,
 				AA0DDB71286C8B1A00802324 /* UserInformationIntorductionView.m in Sources */,
 				AA0DDB6E286C8B1A00802324 /* PMPDatePicker.m in Sources */,
+				FC51103F2AED06910049EE43 /* AddArrangeFlowLayout.swift in Sources */,
 				AA7ABAA52873EA5400BA6790 /* PostTableViewCell.m in Sources */,
 				18CDF68B257F91BD006E8E5C /* ChoosePeopleListView.m in Sources */,
 				AA7ABAC42873EA5500BA6790 /* NewQATool.m in Sources */,
@@ -6209,9 +6489,12 @@
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
 				AA7ABA252873EA4100BA6790 /* SZHPhotoImageView.m in Sources */,
 				1A5A5EE52360100B00543BAE /* UserItem.m in Sources */,
+				FC52790A2AAC490F00B09685 /* GroupSearchResultTableViewCell.swift in Sources */,
 				AA7ABAF22873EA6D00BA6790 /* DynamicDetailViewModel.m in Sources */,
+				FC9E3A992AB6D2F200E3C65F /* WeDateCourseScheduleVC.swift in Sources */,
 				73AAA1D026C918250084E44D /* DetailsTaskTableViewCell.m in Sources */,
 				B0B1BA0229E6A2E300A1BB02 /* DiscoverViewController.m in Sources */,
+				FC7EC7C22AA9000E009FC098 /* ChooseGroupVC.swift in Sources */,
 				AA7AB95A2873E5EA00BA6790 /* SZHSearchDataModel.m in Sources */,
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
 				18CDF4C0257F8DBD006E8E5C /* sendCodeModel.m in Sources */,
@@ -6226,6 +6509,7 @@
 				1AFE535124F7571300F42A74 /* IntroductionController.m in Sources */,
 				735BC53C26D3B33E00F22678 /* FeedBackDetailsViewController.m in Sources */,
 				AA7AB95E2873E5EA00BA6790 /* SZHSearchTableViewCell.m in Sources */,
+				FC1542912ABC75E900BD806F /* WeekMaping.swift in Sources */,
 				18CDF68A257F91BD006E8E5C /* PeopleListTableViewCell.m in Sources */,
 				DB4065012466D889006CE5BC /* DLTimeSelectedButton.m in Sources */,
 				AA0DDB81286C8B1A00802324 /* PMPDynamicTableViewCell.m in Sources */,
@@ -6237,6 +6521,8 @@
 				AA7AB9612873E5EA00BA6790 /* SearchBeiginView.m in Sources */,
 				14E7E4A927F5762500B67469 /* QuestionButton.m in Sources */,
 				AA7ABAF52873EA6D00BA6790 /* SHPopMenu.m in Sources */,
+				FC42109B2AD5BBA80044EEAA /* ArrangeMessageModel.swift in Sources */,
+				FC66D92B2A88B4C80024FB6A /* StudentTableViewCell.swift in Sources */,
 				AA7ABAAF2873EA5500BA6790 /* NewQARecommenTableView.m in Sources */,
 				FE2C135227AEF629001CF7AF /* ToDoMainBarView.m in Sources */,
 				18CDF721257F91BE006E8E5C /* FinderToolViewController.m in Sources */,
@@ -6271,6 +6557,8 @@
 				AA7ABA9D2873EA5400BA6790 /* PostFocusModel.m in Sources */,
 				1A141371235F524B0001417E /* CAShapeLayer+ViewMask.m in Sources */,
 				D0101D5F2433C885004337ED /* SDMaskBindingEvent.m in Sources */,
+				FC5388EB2AA4D1BF001ADD77 /* BatchAddVC.swift in Sources */,
+				FCF2B95B2A9343BD00A007DD /* SearchResultTableViewHeaderView.swift in Sources */,
 				493162DF26CD7B6300140412 /* StampGoodsData.m in Sources */,
 				DB34EB37239BD4550052B65E /* LZWeekScrollView.m in Sources */,
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
@@ -6305,6 +6593,7 @@
 				FE2C135A27AEF629001CF7AF /* TodoTitleInputTextField.m in Sources */,
 				1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */,
 				AA7ABABE2873EA5500BA6790 /* NewQAMainTableView.m in Sources */,
+				FC52790C2AAC6C3A00B09685 /* NormalStudentItem.swift in Sources */,
 				FE2C135927AEF629001CF7AF /* ToDoDetailReminderTimeView.m in Sources */,
 				D0101F63243587A1004337ED /* GKScrollView.m in Sources */,
 				18CDF4C7257F8DBD006E8E5C /* sendCodeView.m in Sources */,
@@ -6331,11 +6620,14 @@
 				DB4064FD2466D889006CE5BC /* DLReminderSetTimeVC.m in Sources */,
 				AA0DDB6B286C8B1A00802324 /* EditMyInfoPresenter.m in Sources */,
 				AA0DDB7D286C8B1A00802324 /* PMPAvatarImgView.m in Sources */,
+				FC5849B62A9677BB00D9BBDF /* GroupTableViewCell.swift in Sources */,
 				735BC52A26D387C200F22678 /* HistoricalFeedBackViewController.m in Sources */,
 				73AAA1D126C918250084E44D /* DetailsTasksTableView.m in Sources */,
 				14CED37D288A594600BADA8B /* RisingRouter.m in Sources */,
+				FC15428B2ABBEC8100BD806F /* ScheduleCollectionViewLayout.swift in Sources */,
 				AAC7CA1125F7753E00E6B5D5 /* PraiseModel.m in Sources */,
 				AA7ABAB22873EA5500BA6790 /* TopFollowView.m in Sources */,
+				FC9E3A8D2AB6CD4C00E3C65F /* ScheduleCollectionViewCell.swift in Sources */,
 				AAE3304D25E2A1C600324750 /* RemarkViewController.m in Sources */,
 				B0B1BA0A29E6E98000A1BB02 /* PickerDormitoryViewController.m in Sources */,
 				D0101D5C2433C885004337ED /* SDMaskGuidController.m in Sources */,
@@ -6345,8 +6637,11 @@
 				14B73F78281BED7B00D08ADD /* SystemMessageVC.m in Sources */,
 				AA7ABA232873EA4100BA6790 /* ReleaseDynamicModel.m in Sources */,
 				AA7ABAC02873EA5500BA6790 /* RecommentLabel.m in Sources */,
+				FC5279062AAC482700B09685 /* StudentSearchResultTableViewCell.swift in Sources */,
 				735BC53526D392D400F22678 /* FeedBackTableViewCell.m in Sources */,
+				FC52790F2AACB8D200B09685 /* RepeatNameVC.swift in Sources */,
 				D0101F64243587A1004337ED /* GKPhotoBrowser.m in Sources */,
+				FC5279112AACB92500B09685 /* RepeatNameTableViewCell.swift in Sources */,
 				AA19FCB82663A266004E9F5D /* DeviceUtils.swift in Sources */,
 				AA3F82E024E992C000B65042 /* LessonView.m in Sources */,
 				735BC53826D399DB00F22678 /* FeedBackModel.m in Sources */,
@@ -6357,14 +6652,17 @@
 				18CDF691257F91BD006E8E5C /* CQUPTMapStarPlaceItem.m in Sources */,
 				AA0DDB72286C8B1A00802324 /* PMPPickerView.m in Sources */,
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
+				FC42109D2AD5BC700044EEAA /* ArrangeMessageItem.swift in Sources */,
 				AA7ABA992873EA5400BA6790 /* GroupItem.m in Sources */,
 				B01AFD6A29EFE531004F82D7 /* ElectricityView.m in Sources */,
 				AA0DDB60286C8B1A00802324 /* SegmentedPageView.m in Sources */,
+				FC63434B2A891FD200DCD96C /* SearchResultVC.swift in Sources */,
 				FE2C136627AEF629001CF7AF /* TodoDataModel.m in Sources */,
 				AA7ABAFF2873EA6D00BA6790 /* DynamicSpecificCell.m in Sources */,
 				AA0DDB68286C8B1A00802324 /* FansTableViewCell.m in Sources */,
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,
 				AA0DDB62286C8B1A00802324 /* IDDisplayView.m in Sources */,
+				FC42109F2AD5C2F20044EEAA /* ArrangeMessageTableViewCell.swift in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
 				18CDF678257F91BD006E8E5C /* ChooseStudentListViewController.m in Sources */,
 				4931631226CD7B6800140412 /* StampCenterMainScrollView.m in Sources */,
@@ -6386,9 +6684,11 @@
 				B0B1B9FE29E69EB400A1BB02 /* PickerDormitoryModel.m in Sources */,
 				147842EE27F07A5A002359BA /* UIColor+Color.m in Sources */,
 				AA7ABAC12873EA5500BA6790 /* MGDStatusBarHeight.m in Sources */,
+				FC6343532A89294E00DCD96C /* SearchResultModel.swift in Sources */,
 				735BC53226D38EA600F22678 /* HistoricalFeedBackTableView.m in Sources */,
 				B0FE5F2A294C94540070E755 /* RisingFoundationExtention.m in Sources */,
 				AA536DDA258C3F7C00F69E73 /* TopBarBasicViewController.m in Sources */,
+				FC78F8122AD07FB100995C01 /* ArrangeMessageVC.swift in Sources */,
 				73AAA1CC26C918250084E44D /* DetailsGoodsModel.m in Sources */,
 				AA4CD61025EF7E0F002D9394 /* NothingStateView.m in Sources */,
 				DB4065002466D889006CE5BC /* DLHistodyButton.m in Sources */,
@@ -6401,6 +6701,7 @@
 				AA7ABA9E2873EA5400BA6790 /* ShieldModel.m in Sources */,
 				FE0D60472801702B00319A9E /* SchoolBusMapView.m in Sources */,
 				AA0DDB79286C8B1A00802324 /* PMPFansFollowsAndPraiseModel.m in Sources */,
+				FC06D0E62A9DC0EA00A974D8 /* CreateGroupModel.swift in Sources */,
 				D0101D5D2433C885004337ED /* SDMaskView.m in Sources */,
 				AA7AB96E2873E5EA00BA6790 /* SZHArchiveTool.m in Sources */,
 				B0F08FF828A24F9000986EB6 /* IDSController.m in Sources */,
@@ -6421,11 +6722,15 @@
 				B51C501D28A625330011465E /* LoginView.m in Sources */,
 				DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */,
 				B0F08FFA28A24F9000986EB6 /* IdsBindingView.m in Sources */,
+				FCEC87C22A8B69A2007EFBA4 /* SearchAlertVC.swift in Sources */,
 				FE2C135427AEF629001CF7AF /* ToDoDetailRemarkView.m in Sources */,
 				49628E3C26D52E6C00805A08 /* TypeButton.m in Sources */,
 				18CDF6A4257F91BD006E8E5C /* CollectionViewSpaceLayout.m in Sources */,
 				14E7E4B327F57FC800B67469 /* FeedBackSelectView.m in Sources */,
 				AA7ABAB12873EA5500BA6790 /* NewQAContentScrollView.m in Sources */,
+				FC20AA3A2AA3A11100A62BCB /* GroupManageVC.swift in Sources */,
+				FC1484672AD1D38500657191 /* ReceiveMessageVC.swift in Sources */,
+				FC06D0EC2A9E637000A974D8 /* GroupItem.swift in Sources */,
 				18CDF4B8257F8DBD006E8E5C /* setEmailViewController.m in Sources */,
 				AA0DDB52286C8B1900802324 /* MineUserInfoModel.m in Sources */,
 				AA7ABAA82873EA5500BA6790 /* NewQASelectorView.m in Sources */,
@@ -6433,8 +6738,10 @@
 				AA0DDB6A286C8B1A00802324 /* PMPFansAndFollowingViewController.m in Sources */,
 				18CDF4C5257F8DBD006E8E5C /* QuestionView.m in Sources */,
 				B0B1B9F529E69EAD00A1BB02 /* ElectricFeeItem.m in Sources */,
+				FCD622E62AB53CE3007094A2 /* BusyDetailVC.swift in Sources */,
 				AAAA1D9024FE39F500DB9A81 /* NextLessonFinder.m in Sources */,
 				AA0DDB5D286C8B1A00802324 /* PMPBasicActionView.m in Sources */,
+				FCB921502AAF816A00F373A7 /* AddArrangeCollectionViewCell.swift in Sources */,
 				646B199728311B0E0015DF28 /* StationGuideBar.m in Sources */,
 				B0FE5F2C294C94540070E755 /* UIView+Rising.m in Sources */,
 				73AAA1D426C918250084E44D /* PurchaseInfoGoodsInfoView.m in Sources */,
@@ -6461,6 +6768,7 @@
 				18CDF4C9257F8DBD006E8E5C /* safePopView.m in Sources */,
 				AA7ABABA2873EA5500BA6790 /* SelfFuncView.m in Sources */,
 				AA7ABAB92873EA5500BA6790 /* PostTableViewCellFrame.m in Sources */,
+				FC5279082AAC48D000B09685 /* ClassSearchResultTableViewCell.swift in Sources */,
 				18CDF4B9257F8DBD006E8E5C /* sendCodeViewController.m in Sources */,
 				FE2C134E27AEF629001CF7AF /* TODOMainViewController.m in Sources */,
 				735BC54426D3B64500F22678 /* FeedBackDetailsTableViewCell.m in Sources */,
