@@ -26,7 +26,7 @@ class ActivityTypePickerVC: UIViewController, UIPickerViewDelegate, UIPickerView
     var activityType: ActivityTypeSelection?
     
     lazy var pickerView: UIPickerView = {
-        let pickerView = UIPickerView(frame: CGRectMake(0, 10, UIScreen.main.bounds.width, 180))
+        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 10, width: UIScreen.main.bounds.width, height: 180))
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.showsSelectionIndicator = false
@@ -52,20 +52,20 @@ class ActivityTypePickerVC: UIViewController, UIPickerViewDelegate, UIPickerView
         setView()
         // Add pickerView to the view
         contentView.addSubview(pickerView)
-        confirmButton = GradientButton(frame: CGRectMake((UIScreen.main.bounds.width - 120)/2, 203, 120, 40))
+        confirmButton = GradientButton(frame: CGRect(x: (UIScreen.main.bounds.width - 120) / 2, y: 203, width: 120, height: 40))
         confirmButton.setTitle("确定", for: .normal)
         confirmButton.titleLabel?.font = UIFont(name: PingFangSCSemibold, size: 18)
         confirmButton.titleLabel?.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         confirmButton.layer.cornerRadius = 20
         contentView.addSubview(confirmButton)
         confirmButton.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
-        cancelButton = UIButton(frame: CGRectMake(UIScreen.main.bounds.width - 42, 15, 28, 20))
+        cancelButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - 42, y: 15, width: 28, height: 20))
         cancelButton.setTitle("取消", for: .normal)
         cancelButton.titleLabel?.font = UIFont(name: PingFangSCMedium, size: 12)
         cancelButton.setTitleColor(UIColor(red: 0.671, green: 0.71, blue: 0.769, alpha: 1), for: .normal)
         cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         contentView.addSubview(cancelButton)
-        let indicatorImgView = UIImageView(frame: CGRectMake(52, 96, 6, 8))
+        let indicatorImgView = UIImageView(frame: CGRect(x: 52, y: 96, width: 6, height: 8))
         indicatorImgView.image = UIImage(named: "指示标")
         contentView.addSubview(indicatorImgView)
         contentView.addSubview(separator)

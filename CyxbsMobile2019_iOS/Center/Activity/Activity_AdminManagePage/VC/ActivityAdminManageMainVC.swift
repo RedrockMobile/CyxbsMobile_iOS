@@ -59,7 +59,7 @@ class ActivityAdminManageMainVC: UIViewController {
     // MARK: - 懒加载
     //顶部视图
     lazy var topView: ActivityCenterTopView = {
-        let topView = ActivityCenterTopView(frame: CGRectMake(0, 0, view.bounds.width, 92+UIApplication.shared.statusBarFrame.height))
+        let topView = ActivityCenterTopView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 92 + UIApplication.shared.statusBarFrame.height))
         topView.backButton.addTarget(self, action: #selector(popController), for: .touchUpInside)
         topView.titleLab.text = "审核中心"
         return topView

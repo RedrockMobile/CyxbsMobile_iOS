@@ -34,7 +34,7 @@ class ActivityMainViewController: UIViewController {
     // MARK: - 懒加载
     //顶部视图
     lazy var topView: ActivityTopView = {
-        let topView = ActivityTopView(frame: CGRectMake(0, 0, view.bounds.width, 112+UIApplication.shared.statusBarFrame.height))
+        let topView = ActivityTopView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 112 + UIApplication.shared.statusBarFrame.height))
         topView.backButton.addTarget(self, action: #selector(popController), for: .touchUpInside)
         topView.searchButton.addTarget(self, action: #selector(pushSearchVC), for: .touchUpInside)
         topView.addActivityButton.addTarget(self, action: #selector(pushAddVC), for: .touchUpInside)

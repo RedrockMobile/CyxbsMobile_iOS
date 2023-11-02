@@ -16,7 +16,7 @@ class ActivityHUD: NSObject {
     private var swipeGesture: UISwipeGestureRecognizer?
     
     func addProgressHUDView(width: CGFloat, height: CGFloat, text: String, font: UIFont, textColor: UIColor, delay: CGFloat?, backGroundColor: UIColor, cornerRadius: CGFloat, yOffset: Float, completion: (() -> Void)? = nil) {
-        let customView = UIView(frame: CGRectMake(0, 0, width, height))
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height))
         customView.layer.backgroundColor = backGroundColor.cgColor
         customView.layer.cornerRadius = cornerRadius
         let label = UILabel()

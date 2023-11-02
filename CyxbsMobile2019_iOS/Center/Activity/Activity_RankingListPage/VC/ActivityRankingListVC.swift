@@ -45,14 +45,14 @@ class ActivityRankingListVC: UIViewController, UITableViewDataSource, UITableVie
     
     //顶部“排行榜”字样图片
     lazy var topImgView: UIImageView = {
-        let imageView = UIImageView(frame: CGRectMake(0, 0, UIScreen.main.bounds.width, 198))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 198))
         imageView.image = UIImage(named: "排行榜")
         return imageView
     }()
     
     //排行榜tableView
     lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: CGRectMake(0, 26, UIScreen.main.bounds.width, UIScreen.main.bounds.height-210))
+        let tableView = UITableView(frame: CGRect(x: 0, y: 26, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 210))
         tableView.register(ActivityHitTableViewCell.self, forCellReuseIdentifier: "hitCell")
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false

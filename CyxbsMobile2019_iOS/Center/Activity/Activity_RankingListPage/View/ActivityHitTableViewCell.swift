@@ -10,14 +10,14 @@ import UIKit
 
 class ActivityHitTableViewCell: UITableViewCell {
     lazy var coverImgView: UIImageView = {
-        let imageView = UIImageView(frame: CGRectMake(59, 17, 42, 42))
+        let imageView = UIImageView(frame: CGRect(x: 59, y: 17, width: 42, height: 42))
         imageView.layer.cornerRadius = 8
         imageView.layer.masksToBounds = true
         return imageView
     }()
     
     lazy var titleLabel: UILabel = {
-        let label = UILabel(frame: CGRectMake(106, 25, 146, 25))
+        let label = UILabel(frame: CGRect(x: 106, y: 25, width: 146, height: 25))
         label.textColor = UIColor(red: 0.067, green: 0.173, blue: 0.329, alpha: 1)
         label.font = UIFont(name: PingFangSCMedium, size: 18)
         return label
@@ -32,7 +32,7 @@ class ActivityHitTableViewCell: UITableViewCell {
     }()
     
     lazy var rankingLabel: UILabel = {
-        let label = UILabel(frame: CGRectMake(15, 25, 26, 28))
+        let label = UILabel(frame: CGRect(x: 15, y: 25, width: 26, height: 28))
         label.font = UIFont(name: PingFangSCSemibold, size: 20)
         label.textColor = UIColor(red: 0.29, green: 0.267, blue: 0.894, alpha: 0.6)
         label.textAlignment = .center
@@ -47,7 +47,7 @@ class ActivityHitTableViewCell: UITableViewCell {
     }()
     
     lazy var rankingImgView: UIImageView = {
-        let imageView = UIImageView(frame: CGRectMake(16, 23, 24, 29))
+        let imageView = UIImageView(frame: CGRect(x: 16, y: 23, width: 24, height: 29))
         return imageView
     }()
     

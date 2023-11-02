@@ -470,7 +470,7 @@ class ActivityDetailVC: UIViewController {
         detailScrollView.showsVerticalScrollIndicator = false
         detailScrollView.showsHorizontalScrollIndicator = false
         detailScrollView.contentSize = CGSizeMake(UIScreen.main.bounds.width, 571)
-        detailView = ActivityDetailView(frame: CGRectMake(0, 0, UIScreen.main.bounds.width, 571))
+        detailView = ActivityDetailView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 571))
         view.addSubview(detailScrollView)
         detailScrollView.addSubview(detailView)
         detailScrollView.snp.makeConstraints { make in

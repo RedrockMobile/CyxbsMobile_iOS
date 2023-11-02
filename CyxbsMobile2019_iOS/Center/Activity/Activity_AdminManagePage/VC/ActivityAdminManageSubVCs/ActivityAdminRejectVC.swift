@@ -18,7 +18,7 @@ class ActivityAdminRejectVC: UIViewController {
         let backGroundView = UIButton(frame: view.frame)
         backGroundView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         backGroundView.addTarget(self, action: #selector(cancel), for: .touchUpInside)
-        let contentView = UIView(frame: CGRectMake((UIScreen.main.bounds.width - 255) / 2, 150 + UIApplication.shared.statusBarFrame.height, 255, 207))
+        let contentView = UIView(frame: CGRect(x: (UIScreen.main.bounds.width - 255) / 2, y: 150 + UIApplication.shared.statusBarFrame.height, width: 255, height: 207))
         contentView.layer.cornerRadius = 8
         contentView.backgroundColor = .white
         view.addSubview(backGroundView)
@@ -30,7 +30,7 @@ class ActivityAdminRejectVC: UIViewController {
     }
     
     lazy var titleLabel: UILabel = {
-        let titleLabel = UILabel(frame: CGRectMake(84.5, 34, 86, 25))
+        let titleLabel = UILabel(frame: CGRect(x: 84.5, y: 34, width: 86, height: 25))
         titleLabel.font = UIFont(name: PingFangSCMedium, size: 18)
         titleLabel.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 1)
         titleLabel.text = "驳回理由"
