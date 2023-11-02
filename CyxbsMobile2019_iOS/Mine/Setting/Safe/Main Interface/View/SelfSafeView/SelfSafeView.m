@@ -38,7 +38,7 @@
         ///标题
         UILabel *barTitle = [[UILabel alloc] init];
         barTitle.text = @"账号与安全";
-        barTitle.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 21];
+        barTitle.font = [UIFont fontWithName:PingFangSCMedium size: 21];
         if (@available(iOS 11.0, *)) {
             barTitle.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
@@ -112,7 +112,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    cell.textLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
+    cell.textLabel.font = [UIFont fontWithName:PingFangSCMedium size:16];
     if (@available(iOS 11.0, *)) {
         cell.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#193866" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {

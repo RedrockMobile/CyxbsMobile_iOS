@@ -66,7 +66,7 @@
         
         UILabel *appNameLabel = [[UILabel alloc] init];
         appNameLabel.text = @"掌上重邮";
-        appNameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:20*fontSizeScaleRate_SE];
+        appNameLabel.font = [UIFont fontWithName:PingFangSCSemibold size:20*fontSizeScaleRate_SE];
         if (@available(iOS 11.0, *)) {
             appNameLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF2" alpha:1]];
         } else {

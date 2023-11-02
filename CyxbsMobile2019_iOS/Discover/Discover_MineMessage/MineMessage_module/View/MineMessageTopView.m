@@ -193,7 +193,7 @@
         _systemBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.width / 3, 30)];
         _systemBtn.bottom = self.safeView.SuperBottom - 10;
         [_systemBtn setTitle:@"系统通知" forState:UIControlStateNormal];
-        _systemBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC" size:18];
+        _systemBtn.titleLabel.font = [UIFont fontWithName:PingFangSC size:18];
         
         [_systemBtn setTitleColor:
          [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#112C54" alpha:1]
@@ -210,7 +210,7 @@
         _activeBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.systemBtn.right, 0, self.width / 3, 30)];
         _activeBtn.bottom = self.systemBtn.bottom;
         [_activeBtn setTitle:@"活动通知" forState:UIControlStateNormal];
-        _activeBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC" size:18];
+        _activeBtn.titleLabel.font = [UIFont fontWithName:PingFangSC size:18];
         
         [_activeBtn setTitleColor:
          [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#142C52" alpha:0.4]
@@ -227,7 +227,7 @@
         _arrangeBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.activeBtn.right, 0, self.width / 3, 30)];
         _arrangeBtn.bottom = self.activeBtn.bottom;
         [_arrangeBtn setTitle:@"行程通知" forState:UIControlStateNormal];
-        _arrangeBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC" size:18];
+        _arrangeBtn.titleLabel.font = [UIFont fontWithName:PingFangSC size:18];
         [_arrangeBtn setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#142C52" alpha:0.4] darkColor:[UIColor colorWithHexString:@"#F0F0F0" alpha:55]] forState:UIControlStateNormal];
         [_arrangeBtn addTarget:self action:@selector(selectBtn:) forControlEvents:UIControlEventTouchUpInside];
     }

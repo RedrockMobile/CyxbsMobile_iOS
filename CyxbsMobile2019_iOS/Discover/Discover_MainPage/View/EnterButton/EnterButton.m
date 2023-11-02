@@ -28,7 +28,7 @@
 - (void)addLabel {
     [self addSubview:self.label];
     self.label.contentMode = UIViewContentModeCenter;
-    self.label.font = [UIFont fontWithName:@"PingFang-SC-Regular" size:11];
+    self.label.font = [UIFont fontWithName:PingFangSCRegular size:11];
     self.label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
 }
 

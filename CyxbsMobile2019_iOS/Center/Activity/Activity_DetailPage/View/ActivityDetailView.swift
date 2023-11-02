@@ -211,7 +211,7 @@ class ActivityDetailView: UIView {
     lazy var startTimeLabel: JustifiedLabel = {
         let label = JustifiedLabel()
         label.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.8)
-        label.font = UIFont(name: "PingFangSC-Medium", size: 14)
+        label.font = UIFont(name: PingFangSCMedium, size: 14)
         informationLabels.append(label)
         return label
     }()
@@ -219,7 +219,7 @@ class ActivityDetailView: UIView {
     lazy var endTimeLabel: JustifiedLabel = {
         let label = JustifiedLabel()
         label.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.8)
-        label.font = UIFont(name: "PingFangSC-Medium", size: 14)
+        label.font = UIFont(name: PingFangSCMedium, size: 14)
         informationLabels.append(label)
         return label
     }()
@@ -233,7 +233,7 @@ class ActivityDetailView: UIView {
     lazy var detailLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(red: 0.067, green: 0.173, blue: 0.329, alpha: 0.4)
-        label.font = UIFont(name: "PingFangSC-Medium", size: 14)
+        label.font = UIFont(name: PingFangSCMedium, size: 14)
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         return label

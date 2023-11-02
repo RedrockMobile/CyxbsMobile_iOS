@@ -67,7 +67,7 @@
     ///标题
     UILabel *barTitle = [[UILabel alloc] init];
     barTitle.text = @"账号与安全";
-    barTitle.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 21];
+    barTitle.font = [UIFont fontWithName:PingFangSCMedium size: 21];
     if (@available(iOS 11.0, *)) {
         barTitle.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
@@ -129,10 +129,10 @@
 
     ///输入框
     UITextField *passwordField = [[UITextField alloc] init];
-    passwordField.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 18];
+    passwordField.font = [UIFont fontWithName:PingFangSCRegular size: 18];
     if (@available(iOS 11.0, *)) {
         passwordField.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"请输入旧密码" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:18], NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.36] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.36]]}];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"请输入旧密码" attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSCMedium size:18], NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.36] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.36]]}];
         passwordField.attributedPlaceholder = string;
     } else {
         // Fallback on earlier versions
@@ -156,9 +156,9 @@
     [forgetBtn setBackgroundColor:[UIColor clearColor]];
     forgetBtn.titleLabel.textAlignment = NSTextAlignmentLeft;
     if (IS_IPHONESE) {
-        forgetBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 11];
+        forgetBtn.titleLabel.font = [UIFont fontWithName:PingFangSCRegular size: 11];
     }else {
-        forgetBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 13];
+        forgetBtn.titleLabel.font = [UIFont fontWithName:PingFangSCRegular size: 13];
     }
     [forgetBtn setTintColor:[UIColor colorWithRed:171/255.0 green:188/255.0 blue:216/255.0 alpha:1.0]];
     [forgetBtn addTarget:self action:@selector(forgetPwd) forControlEvents:UIControlEventTouchUpInside];
@@ -176,7 +176,7 @@
     UIButton *nextBtn = [UIButton buttonWithType:UIButtonTypeSystem];
     [nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
     [nextBtn setTitle:@"下一步" forState:UIControlStateDisabled];
-    nextBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 18];
+    nextBtn.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size: 18];
     [nextBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [nextBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
     [nextBtn setEnabled:NO];
@@ -242,7 +242,7 @@
     } else {
         // Fallback on earlier versions
     }
-    findByEmail.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 18];
+    findByEmail.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size: 18];
     findByEmail.layer.cornerRadius = 8;
     [findByEmail addTarget:self action:@selector(findByEmail) forControlEvents:UIControlEventTouchUpInside];
     [popView addSubview:findByEmail];
@@ -255,7 +255,7 @@
     } else {
         // Fallback on earlier versions
     }
-    findByQuestion.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 18];
+    findByQuestion.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size: 18];
     findByQuestion.layer.cornerRadius = 8;
     [findByQuestion addTarget:self action:@selector(findByQuestion) forControlEvents:UIControlEventTouchUpInside];
     [popView addSubview:findByQuestion];

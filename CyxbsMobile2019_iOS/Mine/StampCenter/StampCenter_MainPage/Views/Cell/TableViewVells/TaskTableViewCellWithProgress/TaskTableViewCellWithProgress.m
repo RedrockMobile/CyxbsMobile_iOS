@@ -25,7 +25,7 @@
 - (UILabel *)mainLabel{
     if (!_mainLabel) {
         UILabel *mainLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.06*SCREEN_WIDTH, 8, 200, 22)];
-        mainLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
+        mainLabel.font = [UIFont fontWithName:PingFangSCMedium size:16];
         mainLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         mainLabel.text = @"逛逛邮问";
         _mainLabel = mainLabel;
@@ -36,7 +36,7 @@
 - (UILabel *)detailLabel{
     if (!_detailLabel) {
         UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.06*SCREEN_WIDTH, 30,200, 20)];
-        detailLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
+        detailLabel.font = [UIFont fontWithName:PingFangSCRegular size:14];
         detailLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.4] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.4]];;
         detailLabel.text = @"浏览5条动态 +15";
         _detailLabel = detailLabel;
@@ -75,7 +75,7 @@
 - (UILabel *)progressNumberLabel{
     if (!_progressNumberLabel) {
         UILabel *progressNumberLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.5*SCREEN_WIDTH, 55.5, 40, 17)];
-        progressNumberLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
+        progressNumberLabel.font = [UIFont fontWithName:PingFangSCRegular size:12];
         progressNumberLabel.textColor = [UIColor colorWithHexString:@"#7D8AFF"];
         progressNumberLabel.text = @"1/5";
         _progressNumberLabel = progressNumberLabel;

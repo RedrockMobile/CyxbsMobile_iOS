@@ -108,7 +108,7 @@ NSString *ID1 = @"Sport_cell";
         // Fallback on earlier versions
     }
     placeholder.alpha = 0.61;
-    placeholder.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 13*fontSizeScaleRate_SE];
+    placeholder.font = [UIFont fontWithName:PingFangSCRegular size: 13*fontSizeScaleRate_SE];
     [topView addSubview:placeholder];
     
     [placeholder mas_makeConstraints:^(MASConstraintMaker *make) {

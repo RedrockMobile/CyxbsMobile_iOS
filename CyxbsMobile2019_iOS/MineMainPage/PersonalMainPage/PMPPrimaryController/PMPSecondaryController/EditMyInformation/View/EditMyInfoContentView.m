@@ -11,8 +11,8 @@
 
 #define LABELCOLOR [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1]
 
-#define LABELFONT [UIFont fontWithName:@"PingFangSC-Semibold" size:15]
-#define PLACEHOLDERFONT [UIFont fontWithName:@"PingFangSC-Regular" size:15]
+#define LABELFONT [UIFont fontWithName:PingFangSCSemibold size:15]
+#define PLACEHOLDERFONT [UIFont fontWithName:PingFangSCRegular size:15]
 
 /**
  @property (nonatomic, weak) UIImageView *headerImageView;
@@ -330,7 +330,7 @@ PMPDatePickerDelegate
     
     myAcademyLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:1]];
     
-    myAcademyLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
+    myAcademyLabel.font = [UIFont fontWithName:PingFangSCRegular size:16];
     myAcademyLabel.numberOfLines = 0;
     [self.contentScrollView addSubview:myAcademyLabel];
     self.myAcademyLabel = myAcademyLabel;
@@ -340,7 +340,7 @@ PMPDatePickerDelegate
     UILabel *explainLabel = [[UILabel alloc] init];
     explainLabel.text = @"写下你的联系方式，便于我们与您联系";
     explainLabel.textColor = [UIColor colorWithRed:188/255.0 green:195/255.0 blue:206/255.0 alpha:0.9];
-    explainLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
+    explainLabel.font = [UIFont fontWithName:PingFangSCRegular size:12];
     [self.contentScrollView addSubview:explainLabel];
     self.explainLabel = explainLabel;
 }
@@ -353,7 +353,7 @@ PMPDatePickerDelegate
     
     [saveButton setTitle:@"保 存" forState:UIControlStateNormal];
     [saveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    saveButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18];
+    saveButton.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:18];
     [saveButton addTarget:self action:@selector(saveButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentScrollView addSubview:saveButton];
     self.saveButton = saveButton;

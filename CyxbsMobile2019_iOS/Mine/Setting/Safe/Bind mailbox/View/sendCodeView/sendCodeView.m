@@ -35,7 +35,7 @@
         
         ///标题
         if (@available(iOS 11.0, *)) {
-            UILabel *barTitle = [self creatLabelWithText:@"绑定邮箱" AndFont:[UIFont fontWithName:@"PingFangSC-Semibold" size: 21] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
+            UILabel *barTitle = [self creatLabelWithText:@"绑定邮箱" AndFont:[UIFont fontWithName:PingFangSCSemibold size: 21] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
             barTitle.textAlignment = NSTextAlignmentLeft;
             barTitle.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
             [self addSubview:barTitle];
@@ -56,7 +56,7 @@
         
         ///绑定邮箱描述 / 发送邮箱描述
         if (@available(iOS 11.0, *)) {
-            UILabel *sendCodeLab = [self creatLabelWithText:@"" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 16] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
+            UILabel *sendCodeLab = [self creatLabelWithText:@"" AndFont:[UIFont fontWithName:PingFangSCRegular size: 16] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
             sendCodeLab.numberOfLines = 0;
             sendCodeLab.textAlignment = NSTextAlignmentLeft;
             [self addSubview:sendCodeLab];
@@ -67,11 +67,11 @@
         
         ///输入框
         UITextField *codeField = [[UITextField alloc] init];
-        codeField.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 18];
+        codeField.font = [UIFont fontWithName:PingFangSCRegular size: 18];
         if (@available(iOS 11.0, *)) {
             codeField.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
             codeField.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F0FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]];
-            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@" 请输入验证码" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:15], NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.36] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.36]]}];
+            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@" 请输入验证码" attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSCMedium size:15], NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.36] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.36]]}];
             codeField.attributedPlaceholder = string;
         } else {
             // Fallback on earlier versions
@@ -91,9 +91,9 @@
         UITapGestureRecognizer *tapRecognizer=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(ClickedResend)];
         [resend addGestureRecognizer:tapRecognizer];
         if (IS_IPHONESE) {
-            resend.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 12];
+            resend.font = [UIFont fontWithName:PingFangSCMedium size: 12];
         }else {
-            resend.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 15];
+            resend.font = [UIFont fontWithName:PingFangSCMedium size: 15];
         }
         resend.backgroundColor = [UIColor clearColor];
         resend.textColor = [UIColor colorWithRed:75/255.0 green:69/255.0 blue:229/255.0 alpha:1.0];
@@ -105,9 +105,9 @@
         UIButton *contactBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         [contactBtn setTitle:@"验证失败？联系我们" forState:UIControlStateNormal];
         if (IS_IPHONESE) {
-            contactBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 10];
+            contactBtn.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size: 10];
         }else {
-            contactBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 12];
+            contactBtn.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size: 12];
         }
         [contactBtn setBackgroundColor:[UIColor clearColor]];
         [contactBtn setTitleColor:[UIColor colorWithRed:171/255.0 green:188/255.0 blue:216/255.0 alpha:1.0] forState:UIControlStateNormal];
@@ -118,7 +118,7 @@
         ///下一步按钮
         UIButton *sureBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         [sureBtn setTitle:@"确定" forState:UIControlStateNormal];
-        sureBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 18];
+        sureBtn.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size: 18];
         [sureBtn setBackgroundColor:[UIColor colorWithRed:72/255.0 green:65/255.0 blue:226/255.0 alpha:1.0]];
         [sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [sureBtn addTarget:self action:@selector(ClickedSure) forControlEvents:UIControlEventTouchUpInside];

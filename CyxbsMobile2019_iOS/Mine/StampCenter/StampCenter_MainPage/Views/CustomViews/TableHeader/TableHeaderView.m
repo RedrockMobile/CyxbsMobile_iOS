@@ -64,7 +64,7 @@
     if (!_mainLabel) {
         UILabel *mainLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.06*SCREEN_WIDTH, 24, 64, 22)];
         mainLabel.text = @"今日打卡";
-        mainLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:16];
+        mainLabel.font = [UIFont fontWithName:PingFangSCMedium size:16];
         mainLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         _mainLabel = mainLabel;
     }
@@ -75,7 +75,7 @@
     if (!_detailLabel) {
         UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.06*SCREEN_WIDTH, 50, 91, 20)];
         detailLabel.text = [NSString stringWithFormat:@"每日签到 +%d",  ([[UserItemTool defaultItem].checkInDay intValue]+2)*5];
-        detailLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:14];
+        detailLabel.font = [UIFont fontWithName:PingFangSCRegular size:14];
         detailLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.4] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.4]];
         _detailLabel = detailLabel;
     }

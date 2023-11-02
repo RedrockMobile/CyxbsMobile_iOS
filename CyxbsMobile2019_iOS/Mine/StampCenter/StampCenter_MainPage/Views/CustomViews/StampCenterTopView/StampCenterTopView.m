@@ -45,7 +45,7 @@
         _bigStampImage = [[UIImageView alloc]initWithFrame:CGRectMake(0.541*SCREEN_WIDTH, -25, 132, 119)];
         _bigStampImage.image = [UIImage imageNamed:@"BigStamp"];
         _wodeyoupiao = [[UILabel alloc]initWithFrame:CGRectMake(16, 16, 48, 17)];
-        _wodeyoupiao.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:12];
+        _wodeyoupiao.font = [UIFont fontWithName:PingFangSCSemibold size:12];
         _wodeyoupiao.textColor = [UIColor colorWithHexString:@"#FFFFFF"];
         _wodeyoupiao.text = @"我的邮票";
         _detailBtn = [[UIButton alloc]initWithFrame:CGRectMake(72, 20, 8.9, 8.9)];
@@ -99,7 +99,7 @@
 - (UILabel *)stampStoreLbl{
     if (!_stampStoreLbl) {
         _stampStoreLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.192*SCREEN_WIDTH, 18, 72, 25)];
-        _stampStoreLbl.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18];
+        _stampStoreLbl.font = [UIFont fontWithName:PingFangSCMedium size:18];
         _stampStoreLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         _stampStoreLbl.text = @"邮票小店";
         _stampStoreLbl.userInteractionEnabled = YES;
@@ -111,7 +111,7 @@
 - (UILabel *)stampTaskLbl{
     if (!_stampTaskLbl) {
         _stampTaskLbl = [[UILabel alloc]initWithFrame:CGRectMake(0.624*SCREEN_WIDTH,18,72,25)];
-        _stampTaskLbl.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18];
+        _stampTaskLbl.font = [UIFont fontWithName:PingFangSCMedium size:18];
         _stampTaskLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         _stampTaskLbl.text = @"邮票任务";
         _stampTaskLbl.userInteractionEnabled =YES;

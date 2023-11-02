@@ -60,8 +60,8 @@
             _selectedTitleColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         }
         
-        _titleFont = [UIFont fontWithName:@"PingFangSC" size:16];
-        _selectedTitleFont = [UIFont fontWithName:@"PingFangSC-Medium" size:18];
+        _titleFont = [UIFont fontWithName:PingFangSC size:16];
+        _selectedTitleFont = [UIFont fontWithName:PingFangSCMedium size:18];
         _titleView.backgroundColor = [UIColor clearColor];
         _currentX = 0;
 

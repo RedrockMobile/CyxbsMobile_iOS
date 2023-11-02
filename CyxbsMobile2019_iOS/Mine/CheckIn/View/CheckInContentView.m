@@ -60,18 +60,18 @@
         }
         UILabel *yearsLabel = [[UILabel alloc] init];
         yearsLabel.text = yearStr;
-        yearsLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:34];
+        yearsLabel.font = [UIFont fontWithName:PingFangSCSemibold size:34];
         if (IS_IPHONESE) {
-            yearsLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:28];
+            yearsLabel.font = [UIFont fontWithName:PingFangSCSemibold size:28];
         }
         yearsLabel.textColor = [UIColor whiteColor];
         [self.backgroundImageView addSubview:yearsLabel];
         self.yearsLabel = yearsLabel;
         
         UILabel *weekLabel = [[UILabel alloc] init];
-        weekLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:34];
+        weekLabel.font = [UIFont fontWithName:PingFangSCSemibold size:34];
         if (IS_IPHONESE) {
-            weekLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:28];
+            weekLabel.font = [UIFont fontWithName:PingFangSCSemibold size:28];
         }
         weekLabel.textColor = [UIColor whiteColor];
         [self.backgroundImageView addSubview:weekLabel];
@@ -79,9 +79,9 @@
 
         UILabel *daysLabel = [[UILabel alloc] init];
         daysLabel.text = [NSString stringWithFormat:@"已连续打卡%@天", [UserItemTool defaultItem].checkInDay];
-        daysLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:21];
+        daysLabel.font = [UIFont fontWithName:PingFangSCSemibold size:21];
         if (IS_IPHONESE) {
-            daysLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
+            daysLabel.font = [UIFont fontWithName:PingFangSCSemibold size:15];
         }
         daysLabel.textColor = [UIColor whiteColor];
         [self.backgroundImageView addSubview:daysLabel];
@@ -142,9 +142,9 @@
         checkInRankLabel.textColor = [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1.0];
     }
     checkInRankLabel.text = [NSString stringWithFormat:@"今日第%@位打卡", [UserItemTool defaultItem].rank];
-    checkInRankLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:21];
+    checkInRankLabel.font = [UIFont fontWithName:PingFangSCSemibold size:21];
     if (IS_IPHONESE) {
-        checkInRankLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:15];
+        checkInRankLabel.font = [UIFont fontWithName:PingFangSCSemibold size:15];
     }
     
 

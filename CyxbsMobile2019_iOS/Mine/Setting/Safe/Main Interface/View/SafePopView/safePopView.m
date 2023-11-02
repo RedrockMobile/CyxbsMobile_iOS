@@ -52,7 +52,7 @@
         UILabel *placeholderLab1 = [[UILabel alloc] init];
         placeholderLab1.text = @"温馨提示";
         placeholderLab1.textAlignment = NSTextAlignmentCenter;
-        placeholderLab1.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 18];
+        placeholderLab1.font = [UIFont fontWithName:PingFangSCMedium size: 18];
         if (@available(iOS 11.0, *)) {
             placeholderLab1.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
@@ -64,7 +64,7 @@
         UILabel *placeholderLab2 = [[UILabel alloc] init];
         placeholderLab2.text = @"为了您的账号安全，请设置密保/绑定邮箱";
         placeholderLab2.textAlignment = NSTextAlignmentCenter;
-        placeholderLab2.font = [UIFont fontWithName:@"PingFangSC-Regular" size: 11];
+        placeholderLab2.font = [UIFont fontWithName:PingFangSCRegular size: 11];
         if (@available(iOS 11.0, *)) {
             placeholderLab2.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
@@ -78,7 +78,7 @@
         [questionBtn setTitle:@"设置密保" forState:UIControlStateNormal];
         [questionBtn setBackgroundColor:[UIColor colorWithRed:195/255.0 green:212/255.0 blue:238/255.0 alpha:1.0]];
         [questionBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        questionBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 15];
+        questionBtn.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size: 15];
         [questionBtn addTarget:self action:@selector(setQuestion) forControlEvents:UIControlEventTouchUpInside];
         [_AlertView addSubview:questionBtn];
         _questionBtn = questionBtn;
@@ -88,7 +88,7 @@
         [emailBtn setTitle:@"绑定邮箱" forState:UIControlStateNormal];
         [emailBtn setBackgroundColor:[UIColor colorWithRed:72/255.0 green:65/255.0 blue:226/255.0 alpha:1.0]];
         [emailBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        emailBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 15];
+        emailBtn.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size: 15];
         [emailBtn addTarget:self action:@selector(setEmail) forControlEvents:UIControlEventTouchUpInside];
         [_AlertView addSubview:emailBtn];
         _emailBtn = emailBtn;

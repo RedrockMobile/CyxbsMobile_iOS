@@ -21,7 +21,7 @@
 - (UILabel *)mainLabel{
     if (!_mainLabel) {
         UILabel *mainLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.04*SCREEN_WIDTH, 24, 40, 28)];
-        mainLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:20];
+        mainLabel.font = [UIFont fontWithName:PingFangSCSemibold size:20];
         mainLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         mainLabel.text = @"装扮";
         _mainLabel = mainLabel;
@@ -32,7 +32,7 @@
 - (UILabel *)detailLabel{
     if (!_detailLabel) {
         UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(0.663*SCREEN_WIDTH, 28, 108, 16)];
-        detailLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
+        detailLabel.font = [UIFont fontWithName:PingFangSCRegular size:12];
         detailLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.4] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.4]];
         detailLabel.text = @"请在个人资料里查看";
         _detailLabel = detailLabel;
