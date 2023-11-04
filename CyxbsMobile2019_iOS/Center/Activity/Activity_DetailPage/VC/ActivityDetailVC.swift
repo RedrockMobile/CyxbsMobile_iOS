@@ -469,7 +469,7 @@ class ActivityDetailVC: UIViewController {
         detailScrollView.layer.cornerRadius = 16
         detailScrollView.showsVerticalScrollIndicator = false
         detailScrollView.showsHorizontalScrollIndicator = false
-        detailScrollView.contentSize = CGSizeMake(UIScreen.main.bounds.width, 571)
+        detailScrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 571)
         detailView = ActivityDetailView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 571))
         view.addSubview(detailScrollView)
         detailScrollView.addSubview(detailView)

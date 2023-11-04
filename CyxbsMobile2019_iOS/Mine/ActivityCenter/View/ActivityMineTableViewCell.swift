@@ -11,7 +11,7 @@ import UIKit
 class ActivityMineTableViewCell: UITableViewCell {
     
     lazy var coverImgView: UIImageView = {
-        let imageView = UIImageView(frame: CGRectMake(16, 16, 101, 101))
+        let imageView = UIImageView(frame: CGRect(x: 16, y: 16, width: 101, height: 101))
         imageView.layer.cornerRadius = 8
         imageView.layer.masksToBounds = true
         return imageView

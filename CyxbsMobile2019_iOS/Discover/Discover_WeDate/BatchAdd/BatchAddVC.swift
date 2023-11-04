@@ -172,6 +172,7 @@ class BatchAddVC: UIViewController {
         let textView = UITextView(frame: CGRect(x: 13, y: 13, width: textViewBackView.width - 13 * 2, height: textViewBackView.height - 13))
         textView.autocorrectionType = .no
         textView.autocapitalizationType = .none
+        textView.backgroundColor = .white
         textView.delegate = self
         return textView
     }()

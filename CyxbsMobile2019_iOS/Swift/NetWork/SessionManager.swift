@@ -202,7 +202,7 @@ struct NetError: Error, CustomStringConvertible {
             description += "未知URL "
         }
         
-        if let error {
+        if let error = error {
             description += "AF: \(error)"
         }
         

@@ -20,6 +20,7 @@ class StudentTableViewCell: UITableViewCell {
         contentView.addSubview(imgView)
         contentView.addSubview(nameLab)
         contentView.addSubview(stuNumLab)
+        contentView.backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {

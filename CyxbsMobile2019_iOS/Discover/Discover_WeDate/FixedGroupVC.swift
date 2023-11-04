@@ -154,6 +154,7 @@ class FixedGroupVC: UIViewController {
         tableView.estimatedRowHeight = 0
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.separatorStyle = .none
+        tableView.backgroundColor = .white
         tableView.register(GroupTableViewCell.self, forCellReuseIdentifier: GroupTableViewCellReuseIdentifier)
         tableView.dataSource = self
         tableView.delegate = self

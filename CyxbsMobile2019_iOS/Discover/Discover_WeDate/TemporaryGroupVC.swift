@@ -164,6 +164,7 @@ class TemporaryGroupVC: UIViewController {
         tableView.estimatedRowHeight = 0
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.separatorStyle = .none
+        tableView.backgroundColor = .white
         tableView.register(StudentTableViewCell.self, forCellReuseIdentifier: StudentTableViewCellReuseIdentifier)
         tableView.dataSource = self
         tableView.delegate = self

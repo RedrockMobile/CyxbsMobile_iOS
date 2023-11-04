@@ -19,6 +19,7 @@ class GroupTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(imgView)
         contentView.addSubview(nameLab)
+        contentView.backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {
