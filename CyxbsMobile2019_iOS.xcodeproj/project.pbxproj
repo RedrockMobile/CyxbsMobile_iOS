@@ -2336,7 +2336,7 @@
 			isa = PBXGroup;
 			children = (
 				7A64BFF22892826F007CCB1E /* Source */,
-				AA7ABA2D2873EA5300BA6790 /* NewQAMainView */,
+				AA7ABA892873EA5400BA6790 /* Tool */,
 			);
 			path = NewQA;
 			sourceTree = "<group>";
@@ -4181,14 +4181,6 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
-		AA7ABA2D2873EA5300BA6790 /* NewQAMainView */ = {
-			isa = PBXGroup;
-			children = (
-				AA7ABA892873EA5400BA6790 /* Tool */,
-			);
-			path = NewQAMainView;
-			sourceTree = "<group>";
-		};
 		AA7ABA892873EA5400BA6790 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
@@ -5857,9 +5849,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FC5110412AED2D010049EE43 /* WeDateHeader.swift in Sources */,
-				AA0DDB66286C8B1A00802324 /* BaseTableViewCell.m in Sources */,
 				145AF3E5281BDA0000AABC53 /* NSString+UILabel.m in Sources */,
-				AA0DDB83286C8B1A00802324 /* PMPHomePageViewController.m in Sources */,
 				FC4B3BD42A87B0EE003336C8 /* FixedGroupVC.swift in Sources */,
 				B01A9E322AB4590C0083C476 /* NetworkManager.m in Sources */,
 				B51C501128A5FFC00011465E /* LoginBaseVC.m in Sources */,
@@ -5870,7 +5860,6 @@
 				14B73F6F281BED7B00D08ADD /* MessageSettingVC.m in Sources */,
 				756C39492AE6BA6C0056A8D1 /* ActivityAdminReviewedVC.swift in Sources */,
 				73AAA1D326C918250084E44D /* PurchaseinfoViewController.m in Sources */,
-				AA7ABAAC2873EA5500BA6790 /* MGDClickLayer.m in Sources */,
 				FC5279002AAC46D500B09685 /* StudentResultItem.swift in Sources */,
 				756C39402AE6BA6C0056A8D1 /* AdminModel.swift in Sources */,
 				187DF4BA260310DD000BCDE9 /* LYEmptyBaseView.m in Sources */,
@@ -5924,8 +5913,6 @@
 				FE0D60442801702B00319A9E /* SchoolBusData.m in Sources */,
 				14B73F7F281BED7B00D08ADD /* DiscoverMineMessageVC.m in Sources */,
 				AA49098924F3BF5A007CB3BC /* TransitionManager.m in Sources */,
-				DB34EB28239BD4550052B65E /* DetailLessonController.m in Sources */,
-				AA7ABAAD2873EA5500BA6790 /* FunctionBtn.m in Sources */,
 				FC5279042AAC473E00B09685 /* GroupResultItem.swift in Sources */,
 				AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */,
 				FC5849B92A967F7F00D9BBDF /* CreateGroupVC.swift in Sources */,
@@ -5934,7 +5921,6 @@
 				D0101D592433C885004337ED /* SDMaskController.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
 				FC4B3BD02A8766F2003336C8 /* WeDateTopView.swift in Sources */,
-				AA7ABABF2873EA5500BA6790 /* NewQANoDataView.m in Sources */,
 				14B73F8B2823577600D08ADD /* SSRButton.m in Sources */,
 				DB34EACF239BD4550052B65E /* WYCClassAndRemindDataModel.m in Sources */,
 				FE2C136027AEF629001CF7AF /* DiscoverTodoSelectTimeView.m in Sources */,
@@ -5945,14 +5931,11 @@
 				756C39472AE6BA6C0056A8D1 /* ActivityAdminReviewingVC.swift in Sources */,
 				FE2C135327AEF629001CF7AF /* ToDoTableView.m in Sources */,
 				735BC55026D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.m in Sources */,
-				AA7ABAFE2873EA6D00BA6790 /* DynamicDetailTopBarView.m in Sources */,
 				FC1484692AD1D3AB00657191 /* SendMessageVC.swift in Sources */,
 				FCED76292AA9C51100A3D55C /* ChooseGroupCollectionViewCell.swift in Sources */,
-				AA7ABA9F2873EA5400BA6790 /* HotSearchModel.m in Sources */,
 				FE2C136527AEF629001CF7AF /* TodoDateTool.m in Sources */,
 				AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */,
 				B51C501028A5FFC00011465E /* ForgetPwdVC.m in Sources */,
-				AA7AB9632873E5EA00BA6790 /* CYSearchEndKnowledgeDetailModel.m in Sources */,
 				FC06D0EE2A9E637D00A974D8 /* FixedGroupModel.swift in Sources */,
 				FE2C136527AEF629001CF7AF /* TodoDateTool.m in Sources */,
 				AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */,
@@ -5982,15 +5965,11 @@
 				B0F71C922ABC71B200F8B1AC /* ExpressDeclareModel.m in Sources */,
 				756C39592AE6BA930056A8D1 /* ActivityMineTableViewCell.swift in Sources */,
 				646B1984282E8F000015DF28 /* StationGuideView.m in Sources */,
-				AA7AB96C2873E5EA00BA6790 /* QASearchResultTopView.m in Sources */,
 				FC7D381A2AAB867000DEAD50 /* BatchAddModel.swift in Sources */,
 				14B73F7C281BED7B00D08ADD /* MineMessageModel.m in Sources */,
 				B0F71C832ABC71B200F8B1AC /* AttitudeSelfPageViewController.m in Sources */,
 				AA0DDB58286C8B1A00802324 /* UIScrollView+JHContentExtension.m in Sources */,
-				AA7ABAFB2873EA6D00BA6790 /* zhPopupController.m in Sources */,
 				FC15428F2ABC221600BD806F /* CourseScheduleModel.swift in Sources */,
-				AA0DDB82286C8B1A00802324 /* IDCardTableViewCell.m in Sources */,
-				AA7AB9662873E5EA00BA6790 /* QASearchResultVC.m in Sources */,
 				B5B454FF29C0C0D900875DF7 /* CenterVC.m in Sources */,
 				DB4064F82466D889006CE5BC /* DLWeekButton.m in Sources */,
 				14B73F84281CCC3000D08ADD /* MessageDetailVC.m in Sources */,
@@ -6001,7 +5980,6 @@
 				73AAA1CE26C918250084E44D /* DetailsGoodsTableViewCell.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				AA4FA1DF25C2DE5F005139BA /* LearnMoreViewController.m in Sources */,
-				AA7AB9652873E5EA00BA6790 /* CYSearchEndKnowledgeDetailView.m in Sources */,
 				FCB39F2D2AB03B7400914462 /* AddArrangePlaceVC.swift in Sources */,
 				1893DC8926EA32A3007E871E /* MGDGCD.m in Sources */,
 				753792AA2AF1178E00B44270 /* GradientButton.swift in Sources */,
@@ -6012,7 +5990,6 @@
 				AA3F82DD24E9343A00B65042 /* DayBarView.m in Sources */,
 				18CDF4BA257F8DBD006E8E5C /* ChangePwdViewController.m in Sources */,
 				FCB39F2F2AB03F0E00914462 /* AddArrangeMemberVC.swift in Sources */,
-				AA7ABAFD2873EA6D00BA6790 /* NoComentView.m in Sources */,
 				B03DB39B2AF123E600307DE0 /* DarkMatteView.m in Sources */,
 				DB4064F92466D889006CE5BC /* DLTimeSelectView.m in Sources */,
 				18CDF4CA257F8DBD006E8E5C /* SelfSafeView.m in Sources */,
@@ -6096,9 +6073,7 @@
 				AA536DF5258C4F7600F69E73 /* IgnoreViewController.m in Sources */,
 				AA289B0F24EF9CFA00FDF70C /* NoteDataModel.m in Sources */,
 				18CDF4BD257F8DBD006E8E5C /* questionModel.m in Sources */,
-				AA0DDB7F286C8B1A00802324 /* PMPTextButton.m in Sources */,
 				FCBAC1DA2AD7D9B60010D85A /* CancelReminderAlertVC.swift in Sources */,
-				AA7ABAB62873EA5500BA6790 /* NewQAPostDetailLabel.m in Sources */,
 				14CED37E288A594600BADA8B /* RisingRouterResponse.m in Sources */,
 				7311328926CCEC2400EF88C1 /* PopupView.m in Sources */,
 				756B397D2AE6CF1A00B4E369 /* HttpManager.swift in Sources */,
@@ -6110,16 +6085,10 @@
 				73AAA1CF26C918250084E44D /* DetailsGoodsTableView.m in Sources */,
 				4931631326CD7B6800140412 /* TableHeaderView.m in Sources */,
 				1451EA58282BAF0C00A5BB55 /* MessageDetailTitleView.m in Sources */,
-				DB34EB24239BD4550052B65E /* LessonController.m in Sources */,
 				FC4B3BD22A878457003336C8 /* TemporaryGroupVC.swift in Sources */,
-				AA7ABAA72873EA5500BA6790 /* NewQACellCollectionView.m in Sources */,
 				FE2C136227AEF629001CF7AF /* TodoConflictStateView.m in Sources */,
-				AA0DDB77286C8B1A00802324 /* JHMenuView.m in Sources */,
-				AA7ABAFA2873EA6D00BA6790 /* DynamicDetailComentTableCell.m in Sources */,
 				FC9E3A922AB6CFF000E3C65F /* ScheduleFact.swift in Sources */,
-				AA0DDB78286C8B1A00802324 /* PMPPostItem.m in Sources */,
 				FC5279022AAC471400B09685 /* ClassResultItem.swift in Sources */,
-				AA7ABABD2873EA5500BA6790 /* RecommendedTableView.m in Sources */,
 				FE2C136227AEF629001CF7AF /* TodoConflictStateView.m in Sources */,
 				756C393A2AE6BA6C0056A8D1 /* ActivityTypePickerVC.swift in Sources */,
 				1893DC9526EA3887007E871E /* MGDTimer.m in Sources */,
@@ -6129,7 +6098,6 @@
 				AA0DDB71286C8B1A00802324 /* UserInformationIntorductionView.m in Sources */,
 				AA0DDB6E286C8B1A00802324 /* PMPDatePicker.m in Sources */,
 				FC51103F2AED06910049EE43 /* AddArrangeFlowLayout.swift in Sources */,
-				AA7ABAA52873EA5400BA6790 /* PostTableViewCell.m in Sources */,
 				18CDF68B257F91BD006E8E5C /* ChoosePeopleListView.m in Sources */,
 				AA57588C24EF5841002F6F6D /* NoticeWaySelectView.m in Sources */,
 				756C394D2AE6BA6C0056A8D1 /* ActivityAddVC.swift in Sources */,
@@ -6147,13 +6115,11 @@
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
 				1A5A5EE52360100B00543BAE /* UserItem.m in Sources */,
 				FC52790A2AAC490F00B09685 /* GroupSearchResultTableViewCell.swift in Sources */,
-				AA7ABAF22873EA6D00BA6790 /* DynamicDetailViewModel.m in Sources */,
 				FC9E3A992AB6D2F200E3C65F /* WeDateCourseScheduleVC.swift in Sources */,
 				73AAA1D026C918250084E44D /* DetailsTaskTableViewCell.m in Sources */,
 				B0F71C962ABC71B200F8B1AC /* ExpressDetailCell.m in Sources */,
 				B0B1BA0229E6A2E300A1BB02 /* DiscoverViewController.m in Sources */,
 				FC7EC7C22AA9000E009FC098 /* ChooseGroupVC.swift in Sources */,
-				AA7AB95A2873E5EA00BA6790 /* SZHSearchDataModel.m in Sources */,
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
 				756C393E2AE6BA6C0056A8D1 /* ActivitySelectBar.swift in Sources */,
 				18CDF4C0257F8DBD006E8E5C /* sendCodeModel.m in Sources */,
@@ -6166,7 +6132,6 @@
 				646B1978282CE0340015DF28 /* StationsGuideTableViewCell.m in Sources */,
 				1AFE535124F7571300F42A74 /* IntroductionController.m in Sources */,
 				735BC53C26D3B33E00F22678 /* FeedBackDetailsViewController.m in Sources */,
-				AA7AB95E2873E5EA00BA6790 /* SZHSearchTableViewCell.m in Sources */,
 				FC1542912ABC75E900BD806F /* WeekMaping.swift in Sources */,
 				18CDF68A257F91BD006E8E5C /* PeopleListTableViewCell.m in Sources */,
 				DB4065012466D889006CE5BC /* DLTimeSelectedButton.m in Sources */,
@@ -6175,10 +6140,8 @@
 				B0F71C852ABC71B200F8B1AC /* AttitudeSelfPageDataItem.m in Sources */,
 				AA4FA1F425C2E1E3005139BA /* PraiseViewController.m in Sources */,
 				14E7E4A927F5762500B67469 /* QuestionButton.m in Sources */,
-				AA7ABAF52873EA6D00BA6790 /* SHPopMenu.m in Sources */,
 				FC42109B2AD5BBA80044EEAA /* ArrangeMessageModel.swift in Sources */,
 				FC66D92B2A88B4C80024FB6A /* StudentTableViewCell.swift in Sources */,
-				AA7ABAAF2873EA5500BA6790 /* NewQARecommenTableView.m in Sources */,
 				B0F71C892ABC71B200F8B1AC /* AttitudeMainPageItem.m in Sources */,
 				FE2C135227AEF629001CF7AF /* ToDoMainBarView.m in Sources */,
 				18CDF721257F91BE006E8E5C /* FinderToolViewController.m in Sources */,
@@ -6239,7 +6202,6 @@
 				AA9ABE9324EB8ADB00D16BE0 /* LessonViewForAWeek.m in Sources */,
 				FE2C135A27AEF629001CF7AF /* TodoTitleInputTextField.m in Sources */,
 				1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */,
-				AA7ABABE2873EA5500BA6790 /* NewQAMainTableView.m in Sources */,
 				FC52790C2AAC6C3A00B09685 /* NormalStudentItem.swift in Sources */,
 				FE2C135927AEF629001CF7AF /* ToDoDetailReminderTimeView.m in Sources */,
 				756C394E2AE6BA6C0056A8D1 /* ActivityAddScrollView.swift in Sources */,
@@ -6263,14 +6225,12 @@
 				DB34EB22239BD4550052B65E /* AddRemindViewController.m in Sources */,
 				DB4064FD2466D889006CE5BC /* DLReminderSetTimeVC.m in Sources */,
 				AA0DDB6B286C8B1A00802324 /* EditMyInfoPresenter.m in Sources */,
-				AA0DDB7D286C8B1A00802324 /* PMPAvatarImgView.m in Sources */,
 				FC5849B62A9677BB00D9BBDF /* GroupTableViewCell.swift in Sources */,
 				735BC52A26D387C200F22678 /* HistoricalFeedBackViewController.m in Sources */,
 				73AAA1D126C918250084E44D /* DetailsTasksTableView.m in Sources */,
 				14CED37D288A594600BADA8B /* RisingRouter.m in Sources */,
 				FC15428B2ABBEC8100BD806F /* ScheduleCollectionViewLayout.swift in Sources */,
 				AAC7CA1125F7753E00E6B5D5 /* PraiseModel.m in Sources */,
-				AA7ABAB22873EA5500BA6790 /* TopFollowView.m in Sources */,
 				FC9E3A8D2AB6CD4C00E3C65F /* ScheduleCollectionViewCell.swift in Sources */,
 				AAE3304D25E2A1C600324750 /* RemarkViewController.m in Sources */,
 				B0B1BA0A29E6E98000A1BB02 /* PickerDormitoryViewController.m in Sources */,
@@ -6278,8 +6238,6 @@
 				6464F93426E4F6EE008562C5 /* BuyModel.m in Sources */,
 				AA5D39B824F74A9800AB2DF5 /* LocalNotiManager.m in Sources */,
 				14B73F78281BED7B00D08ADD /* SystemMessageVC.m in Sources */,
-				AA7ABA232873EA4100BA6790 /* ReleaseDynamicModel.m in Sources */,
-				AA7ABAC02873EA5500BA6790 /* RecommentLabel.m in Sources */,
 				FC5279062AAC482700B09685 /* StudentSearchResultTableViewCell.swift in Sources */,
 				B0F71C8D2ABC71B200F8B1AC /* AttitudeMainDefaultView.m in Sources */,
 				735BC53526D392D400F22678 /* FeedBackTableViewCell.m in Sources */,
@@ -6301,15 +6259,12 @@
 				B0F71C992ABC71B200F8B1AC /* PublishTableAddTagView.m in Sources */,
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
 				FC42109D2AD5BC700044EEAA /* ArrangeMessageItem.swift in Sources */,
-				AA7ABA992873EA5400BA6790 /* GroupItem.m in Sources */,
 				B01AFD6A29EFE531004F82D7 /* ElectricityView.m in Sources */,
-				AA0DDB60286C8B1A00802324 /* SegmentedPageView.m in Sources */,
 				FC63434B2A891FD200DCD96C /* SearchResultVC.swift in Sources */,
 				B01AFD6A29EFE531004F82D7 /* ElectricityView.m in Sources */,
 				756C39342AE6BA6C0056A8D1 /* ActivityRankingListVC.swift in Sources */,
 				FE2C136627AEF629001CF7AF /* TodoDataModel.m in Sources */,
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,
-				AA0DDB62286C8B1A00802324 /* IDDisplayView.m in Sources */,
 				FC42109F2AD5C2F20044EEAA /* ArrangeMessageTableViewCell.swift in Sources */,
 				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
 				18CDF678257F91BD006E8E5C /* ChooseStudentListViewController.m in Sources */,
@@ -6328,7 +6283,6 @@
 				14B73F74281BED7B00D08ADD /* SystemMsgModel.m in Sources */,
 				B0B1B9FE29E69EB400A1BB02 /* PickerDormitoryModel.m in Sources */,
 				147842EE27F07A5A002359BA /* UIColor+Color.m in Sources */,
-				AA7ABAC12873EA5500BA6790 /* MGDStatusBarHeight.m in Sources */,
 				FC6343532A89294E00DCD96C /* SearchResultModel.swift in Sources */,
 				75500E612AEE8FD200C2FC3A /* UIColorExtension.swift in Sources */,
 				735BC53226D38EA600F22678 /* HistoricalFeedBackTableView.m in Sources */,
@@ -6346,7 +6300,6 @@
 				738C15B126E0B35600E24F8C /* FeedBackDefaultView.m in Sources */,
 				756B39822AE7F31E00B4E369 /* SessionManager.swift in Sources */,
 				FE0D60472801702B00319A9E /* SchoolBusMapView.m in Sources */,
-				AA0DDB79286C8B1A00802324 /* PMPFansFollowsAndPraiseModel.m in Sources */,
 				FC06D0E62A9DC0EA00A974D8 /* CreateGroupModel.swift in Sources */,
 				D0101D5D2433C885004337ED /* SDMaskView.m in Sources */,
 				B0F08FF828A24F9000986EB6 /* IDSController.m in Sources */,
@@ -6375,7 +6328,6 @@
 				18CDF6A4257F91BD006E8E5C /* CollectionViewSpaceLayout.m in Sources */,
 				756C39422AE6BA6C0056A8D1 /* TitleContentView.swift in Sources */,
 				14E7E4B327F57FC800B67469 /* FeedBackSelectView.m in Sources */,
-				AA7ABAB12873EA5500BA6790 /* NewQAContentScrollView.m in Sources */,
 				FC20AA3A2AA3A11100A62BCB /* GroupManageVC.swift in Sources */,
 				FC1484672AD1D38500657191 /* ReceiveMessageVC.swift in Sources */,
 				FC06D0EC2A9E637000A974D8 /* GroupItem.swift in Sources */,
@@ -6417,8 +6369,6 @@
 				18CDF67C257F91BD006E8E5C /* ClassmatesList.m in Sources */,
 				7311328826CCEC2400EF88C1 /* ContentScrollView.m in Sources */,
 				18CDF4C9257F8DBD006E8E5C /* safePopView.m in Sources */,
-				AA7ABABA2873EA5500BA6790 /* SelfFuncView.m in Sources */,
-				AA7ABAB92873EA5500BA6790 /* PostTableViewCellFrame.m in Sources */,
 				FC5279082AAC48D000B09685 /* ClassSearchResultTableViewCell.swift in Sources */,
 				18CDF4B9257F8DBD006E8E5C /* sendCodeViewController.m in Sources */,
 				FE2C134E27AEF629001CF7AF /* TODOMainViewController.m in Sources */,
@@ -6605,7 +6555,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = Q739MKHL97;
+				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",
@@ -6682,7 +6632,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CyxbsMobile2019_iOS/掌上重邮.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = Q739MKHL97;
+				DEVELOPMENT_TEAM = 727CVV9PLJ;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/CyxbsMobile2019_iOS/Supporting\\ Files/OneSDK",

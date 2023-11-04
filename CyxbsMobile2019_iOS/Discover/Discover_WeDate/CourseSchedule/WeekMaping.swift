@@ -89,64 +89,76 @@ class WeekMaping {
                 array.append([])
             }
             mapWeekToAry(stuNumAry: stuNumAry, weekNum: weekNum) { weekAry in
-                for i in 0..<weekAry.count {
-                    var j = 0
-                    while j < weekAry[i].count {
-                        if !weekAry[i][j].isEmpty {
-                            let beginLesson = j + 1
-                            let student = weekAry[i][j]
-                            var count = 1
-                            var endLesson: Int = 0
-                            if beginLesson >= 1 && beginLesson <= 4 {
-                                endLesson = 4
-                            } else if beginLesson >= 5 && beginLesson <= 8 {
-                                endLesson = 8
-                            } else {
-                                endLesson = 12
-                            }
-                            while j + 1 < endLesson,
-                                  weekAry[i][j + 1] == weekAry[i][j] {
-                                j += 1
-                                count += 1
-                            }
-                            let startTime = timeAry[beginLesson * 2 - 1 - 1]
-                            let endTime = timeAry[(beginLesson * 2 - 1) + (count * 2 - 1) - 1]
-                            let element = [
-                                "beginLesson": beginLesson,
-                                "student": student,
-                                "length": count,
-                                "dayNum": i + 1,
-                                "timePeriod": startTime + "-" + endTime
-                            ] as [String : Any]
-                            array[weekNum].append(element)
-                        } else {
-                            let beginLesson = j + 1
-                            var count = 1
-                            if j + 1 < weekAry[i].count,
-                               weekAry[i][j + 1].isEmpty,
-                               beginLesson % 2 != 0 {
-                                j += 1
-                                count += 1
-                            }
-                            let startTime = timeAry[beginLesson * 2 - 1 - 1]
-                            let endTime = timeAry[(beginLesson * 2 - 1) + (count * 2 - 1) - 1]
-                            let element = [
-                                "beginLesson": beginLesson,
-                                "student": [],
-                                "length": count,
-                                "dayNum": i + 1,
-                                "timePeriod": startTime + "-" + endTime
-                            ] as [String : Any]
-                            array[weekNum].append(element)
-                        }
-                        j += 1
-                    }
-                }
+                processWeekArray(weekAry: weekAry, timeAry: timeAry, weekNum: weekNum, array: &array)
                 group.leave()
             }
         }
         group.notify(queue: .main) {
             completion(array)
         }
+        
+        func processWeekArray(weekAry: [[[StudentResultItem]]], timeAry: [String], weekNum: Int, array: inout [[[String: Any]]]) {
+            for i in 0..<weekAry.count {
+                var j = 0
+                while j < weekAry[i].count {
+                    if !weekAry[i][j].isEmpty {
+                        let beginLesson = j + 1
+                        let student = weekAry[i][j]
+                        var count = 1
+                        var endLesson: Int = 0
+                        
+                        if beginLesson >= 1 && beginLesson <= 4 {
+                            endLesson = 4
+                        } else if beginLesson >= 5 && beginLesson <= 8 {
+                            endLesson = 8
+                        } else {
+                            endLesson = 12
+                        }
+                        
+                        while j + 1 < endLesson, weekAry[i][j + 1] == weekAry[i][j] {
+                            j += 1
+                            count += 1
+                        }
+                        
+                        let startTime = timeAry[beginLesson * 2 - 1 - 1]
+                        let endTime = timeAry[(beginLesson * 2 - 1) + (count * 2 - 1) - 1]
+                        
+                        let element: [String: Any] = [
+                            "beginLesson": beginLesson,
+                            "student": student,
+                            "length": count,
+                            "dayNum": i + 1,
+                            "timePeriod": "\(startTime)-\(endTime)"
+                        ]
+                        
+                        array[weekNum].append(element)
+                    } else {
+                        let beginLesson = j + 1
+                        var count = 1
+                        
+                        if j + 1 < weekAry[i].count, weekAry[i][j + 1].isEmpty, beginLesson % 2 != 0 {
+                            j += 1
+                            count += 1
+                        }
+                        
+                        let startTime = timeAry[beginLesson * 2 - 1 - 1]
+                        let endTime = timeAry[(beginLesson * 2 - 1) + (count * 2 - 1) - 1]
+                        
+                        let element: [String: Any] = [
+                            "beginLesson": beginLesson,
+                            "student": [],
+                            "length": count,
+                            "dayNum": i + 1,
+                            "timePeriod": "\(startTime)-\(endTime)"
+                        ]
+                        
+                        array[weekNum].append(element)
+                    }
+                    
+                    j += 1
+                }
+            }
+        }
+
     }
 }
