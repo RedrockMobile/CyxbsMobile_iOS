@@ -160,7 +160,7 @@ class ActivityAdminReviewingVC: UIViewController, UITableViewDataSource, UITable
                                                       delay: 2,
                                                       backGroundColor: UIColor(hexString: "#2a4e84"),
                                                       cornerRadius: 18,
-                                                      yOffset: (Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)) {
+                                                      yOffset: (CGFloat(-UIScreen.main.bounds.height * 0.5 + Constants.statusBarHeight) + 90)) {
                 }
                 break
             case .failure(let error):

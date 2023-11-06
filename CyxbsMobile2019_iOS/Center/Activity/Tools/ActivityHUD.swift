@@ -15,7 +15,7 @@ class ActivityHUD: NSObject {
     private var tapGesture: UITapGestureRecognizer?
     private var swipeGesture: UISwipeGestureRecognizer?
     
-    func addProgressHUDView(width: CGFloat, height: CGFloat, text: String, font: UIFont, textColor: UIColor, delay: CGFloat?, backGroundColor: UIColor, cornerRadius: CGFloat, yOffset: Float, completion: (() -> Void)? = nil) {
+    func addProgressHUDView(width: CGFloat, height: CGFloat, text: String, font: UIFont, textColor: UIColor, delay: CGFloat?, backGroundColor: UIColor, cornerRadius: CGFloat, yOffset: CGFloat, completion: (() -> Void)? = nil) {
         let customView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: height))
         customView.layer.backgroundColor = backGroundColor.cgColor
         customView.layer.cornerRadius = cornerRadius
@@ -34,7 +34,7 @@ class ActivityHUD: NSObject {
             hud?.color = .clear
             hud?.mode = .customView
             hud?.customView = customView
-            hud?.yOffset = yOffset
+            hud?.yOffset = Float(yOffset)
             hud?.isUserInteractionEnabled = false
             hud?.hide(true, afterDelay: delay ?? 2)
         }
@@ -52,7 +52,7 @@ class ActivityHUD: NSObject {
                                               delay: 2,
                                               backGroundColor: UIColor(hexString: "#2a4e84"),
                                               cornerRadius: 18,
-                                              yOffset: Float(-UIScreen.main.bounds.height * 0.368 + UIApplication.shared.statusBarFrame.height))
+                                              yOffset: CGFloat(Float(-UIScreen.main.bounds.height * 0.368 + Constants.statusBarHeight)))
     }
     
     func showNoMoreData() {
@@ -64,6 +64,6 @@ class ActivityHUD: NSObject {
                                               delay: 2,
                                               backGroundColor: UIColor(hexString: "#2a4e84"),
                                               cornerRadius: 18,
-                                              yOffset: Float(-UIScreen.main.bounds.height * 0.368 + UIApplication.shared.statusBarFrame.height))
+                                              yOffset: CGFloat(Float(-UIScreen.main.bounds.height * 0.368 + Constants.statusBarHeight)))
     }
 }

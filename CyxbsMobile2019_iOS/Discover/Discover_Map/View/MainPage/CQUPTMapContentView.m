@@ -16,6 +16,7 @@
 #import "CQUPTMapSearchView.h"
 #import "CQUPTMapDetailView.h"
 #import "CQUPTMapViewController.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface CQUPTMapContentView () <UITextFieldDelegate, UIScrollViewDelegate, CALayerDelegate>
 

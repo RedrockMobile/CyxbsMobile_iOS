@@ -8,15 +8,16 @@
 
 #import "AppDelegate.h"
 #import <UMCommon/UMCommon.h>
-#import <UMPush/UMessage.h>
+//#import <UMPush/UMessage.h>
 #import <UMShare/UMShare.h>
-#import <UMAnalytics/MobClick.h>
+//#import <UMAnalytics/MobClick.h>
 #import <UMCommonLog/UMCommonLogHeaders.h>
 #import <AFNetworkReachabilityManager.h>
 #import <sqlite3.h>
 #import <Bugly/Bugly.h>
 #import "UserDefaultTool.h"
 #import "AliyunConfig.h"
+#import <UserNotifications/UserNotifications.h>
 
 #define BUGLY_APP_ID @"41e7a3c1b3"
 #define SQLITE_THREADSAFE 1
@@ -79,7 +80,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    [AliyunConfig setup];//启用阿里云HTTPDNS
+
     
     [Bugly startWithAppId:BUGLY_APP_ID];
     // Override point for customization after application launch.
@@ -91,9 +92,9 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     CCLog(@"%d", sqlite3_threadsafe());
     
     if (![[UserDefaultTool getStuNum] isEqualToString:@""]) {
-        [UMessage addAlias:[UserDefaultTool getStuNum] type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
-            NSLog(@"%@", responseObject);
-        }];
+//        [UMessage addAlias:[UserDefaultTool getStuNum] type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
+//            NSLog(@"%@", responseObject);
+//        }];
         [[UserItem defaultItem] getUserInfo];
     }
     
@@ -137,24 +138,24 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     [UMCommonLogManager setUpUMCommonLogManager];
     
     //配置统计场景，E_UM_NORMAL为普通场景
-    [MobClick setScenarioType:E_UM_NORMAL];//支持普通场景
+//    [MobClick setScenarioType:E_UM_NORMAL];//支持普通场景
     
     //umeng推送设置
-    UMessageRegisterEntity * entity = [[UMessageRegisterEntity alloc] init];
+//    UMessageRegisterEntity * entity = [[UMessageRegisterEntity alloc] init];
     //type是对推送的几个参数的选择，可以选择一个或者多个。默认是三个全部打开，即：声音，弹窗，角标
-    entity.types = UMessageAuthorizationOptionBadge|UMessageAuthorizationOptionSound|UMessageAuthorizationOptionAlert;
+//    entity.types = UMessageAuthorizationOptionBadge|UMessageAuthorizationOptionSound|UMessageAuthorizationOptionAlert;
     [UNUserNotificationCenter currentNotificationCenter].delegate=self;
-    [UMessage registerForRemoteNotificationsWithLaunchOptions:launchOptions Entity:entity completionHandler:^(BOOL granted, NSError * _Nullable error) {
-        if (granted) {
-            
-        } else {
-            
-        }
-    }];
+//    [UMessage registerForRemoteNotificationsWithLaunchOptions:launchOptions Entity:entity completionHandler:^(BOOL granted, NSError * _Nullable error) {
+//        if (granted) {
+//            
+//        } else {
+//            
+//        }
+//    }];
     
-    [UMessage openDebugMode:YES];
-    [UMessage setWebViewClassString:@"UMWebViewController"];
-    [UMessage addLaunchMessage];
+//    [UMessage openDebugMode:YES];
+//    [UMessage setWebViewClassString:@"UMWebViewController"];
+//    [UMessage addLaunchMessage];
     //请求获取通知权限
     UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
     [center requestAuthorizationWithOptions:(UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert) completionHandler:^(BOOL granted, NSError * _Nullable error) {
@@ -209,6 +210,9 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
         [NSUserDefaults.standardUserDefaults setObject:url forKey:@"baseURL"];
     }];
 #endif
+    
+    [AliyunConfig ipByHost: @"be-dev.redrock.cqupt.edu.cn"];//启用阿里云HTTPDNS
+    [AliyunConfig ipByHost:@"be-prod.redrock.cqupt.edu.cn"];
 }
 
 /// 完成创建文件/文件夹的操作
@@ -377,10 +381,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 //iOS10以下使用这两个方法接收通知
 -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-    [UMessage setAutoAlert:NO];
-    if([[[UIDevice currentDevice] systemVersion]intValue] < 10){
-        [UMessage didReceiveRemoteNotification:userInfo];
-    }
+//    [UMessage setAutoAlert:NO];
+//    if([[[UIDevice currentDevice] systemVersion]intValue] < 10){
+//        [UMessage didReceiveRemoteNotification:userInfo];
+//    }
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
@@ -390,10 +394,10 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     NSDictionary * userInfo = notification.request.content.userInfo;
     
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
-        [UMessage setAutoAlert:NO];
+//        [UMessage setAutoAlert:NO];
         //应用处于前台时的远程推送接受
         //必须加这句代码
-        [UMessage didReceiveRemoteNotification:userInfo];
+//        [UMessage didReceiveRemoteNotification:userInfo];
     }else{
         //应用处于前台时的本地推送接受
         
@@ -427,7 +431,7 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         //应用处于后台时的远程推送接受
         //必须加这句代码
-        [UMessage didReceiveRemoteNotification:userInfo];
+//        [UMessage didReceiveRemoteNotification:userInfo];
         
         
         // 当前选中的控制器（三个都是导航控制器）

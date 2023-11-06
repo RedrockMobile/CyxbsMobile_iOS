@@ -22,7 +22,7 @@ class JudgeArrangeMessage: NSObject {
             }
             if let window = UIApplication.shared.windows.first,
                let tabBarController = window.rootViewController as? UITabBarController {
-                tabBarController.viewControllers?.last?.tabBarItem.needShowBadgePoint = needRedPot
+//                tabBarController.viewControllers?.last?.tabBarItem.needShowBadgePoint = needRedPot
             }
             
         } failure: { error in

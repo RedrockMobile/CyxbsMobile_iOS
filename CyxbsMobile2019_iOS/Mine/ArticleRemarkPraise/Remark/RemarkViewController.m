@@ -9,6 +9,7 @@
 #import "RemarkViewController.h"
 #import "RemarkTableViewCell.h"
 #import "RemarkModel.h"
+#import <MJRefresh/MJRefresh.h>
 //是否开启CCLog
 #define CCLogEnable 0
 

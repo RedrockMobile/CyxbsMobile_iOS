@@ -13,6 +13,7 @@
 #import "HistoricalFBDefaultView.h"
 //model
 #import "FeedBackDetailsRequestDataModel.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface FeedBackDetailsViewController ()
 <UITableViewDelegate, UITableViewDataSource>

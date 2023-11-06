@@ -8,7 +8,7 @@
 
 #import "UserItemTool.h"
 #import "LoginVC.h"
-#import <UMPush/UMessage.h>
+#import <UMShare/UMShare.h>
 #import "UserDefaultTool.h"
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
 @interface UserItemTool ()
@@ -90,16 +90,16 @@
     [[NSFileManager defaultManager] removeItemAtPath:remAndLesDataDirectoryPath error:nil];
     
     //清除所有已有的本地通知
-    [[UNUserNotificationCenter currentNotificationCenter] removeAllDeliveredNotifications];
-    [[UNUserNotificationCenter currentNotificationCenter] removeAllPendingNotificationRequests];
+//    [[UNUserNotificationCenter currentNotificationCenter] removeAllDeliveredNotifications];
+//    [[UNUserNotificationCenter currentNotificationCenter] removeAllPendingNotificationRequests];
     
     // 退出后停止umeng统计发送数据
-    [MobClick profileSignOff];
+//    [MobClick profileSignOff];
     
     // 退出后移除友盟推送别名
-    [UMessage removeAlias:[UserItemTool defaultItem].stuNum type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
-        
-    }];
+//    [UMessage removeAlias:[UserItemTool defaultItem].stuNum type:@"cyxbs" response:^(id  _Nonnull responseObject, NSError * _Nonnull error) {
+//        
+//    }];
     
     // 退出后把隐私政策的已读设置成未读（有可能是另外的人和账号登录）
     [NSUserDefaults.standardUserDefaults setBool:NO forKey:@"ReadPrivacyTip"];

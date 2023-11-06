@@ -12,6 +12,7 @@
 #import "FeedBackDefaultView.h"
 // controller
 #import "FeedBackDetailsViewController.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface HistoricalFeedBackViewController ()
 <UITableViewDelegate, UITableViewDataSource>

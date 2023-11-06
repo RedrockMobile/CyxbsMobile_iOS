@@ -52,9 +52,8 @@ import SwiftyJSON
                         UserItem.mj_object(withKeyValues: userInfo.dictionaryObject ?? nil)
                         
                         success()
-                        //
                         UserDefaults.standard.setValue(getLastLogInTime(), forKey: LastLogInTimeKey_double)
-                        NotificationCenter.default.postNotificationOnMainThread(withName: "Login_LoginSuceeded", object: nil, userInfo: ["userItem": item])
+                        NotificationCenter.default.post(name: .init("Login_LoginSuceeded"), object: nil, userInfo: ["userItem": item])
                         
                         
                         

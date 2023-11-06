@@ -130,7 +130,7 @@ import SnapKit
                 break
             }
         } while (true)
-        attStr.color = UIColor(.dm ,light: UIColor(hexString: "#15315B")!, dark: UIColor(hexString: "#F0F0F2")!)
+        attStr.addAttribute(.foregroundColor, value: UIColor(.dm, light: UIColor(hexString: "#15315B")!, dark: UIColor(hexString: "#F0F0F2")!), range: NSRange(location: 0, length: attStr.length))
         txtView.delegate = self
         txtView.attributedText = attStr
         txtView.font = UIFont.init(name: PingFangSCMedium, size: 16)

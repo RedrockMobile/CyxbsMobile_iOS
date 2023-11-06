@@ -10,6 +10,7 @@
 #import "PraiseTableViewCell.h"
 #import "PraiseModel.h"
 #import "PraiseParseModel.h"
+#import <MJRefresh/MJRefresh.h>
 @interface PraiseViewController ()<UITableViewDelegate, UITableViewDataSource, MainPage2RequestModelDelegate>
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)PraiseModel *praiseModel;

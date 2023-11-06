@@ -10,7 +10,7 @@
 #import "IgnoreTableViewCell.h"
 #import "IgnoreModel.h"
 #import "IgnoreDataModel.h"
-
+#import <MJRefresh/MJRefresh.h>
 
 
 @interface IgnoreViewController ()<UITableViewDelegate,UITableViewDataSource,MainPageModelDelegate>

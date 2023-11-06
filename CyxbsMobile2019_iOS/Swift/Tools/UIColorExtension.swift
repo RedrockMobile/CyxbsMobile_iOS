@@ -35,7 +35,7 @@ extension UIColor {
         }
     }
     
-    convenience init?(hexString: String) {
+    /*convenience init?(hexString: String) {
         var cleanedString = hexString.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
 
         if cleanedString.hasPrefix("#") {
@@ -54,7 +54,7 @@ extension UIColor {
         let blue = CGFloat(rgbValue & 0x0000FF) / 255.0
 
         self.init(red: red, green: green, blue: blue, alpha: 1.0)
-    }
+    }*/
     
     convenience init(hexString: String, alpha: CGFloat = 1.0) {
         var formattedString = hexString.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
