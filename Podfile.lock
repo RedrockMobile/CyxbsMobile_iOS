@@ -61,8 +61,7 @@ PODS:
   - RxRelay (6.6.0):
     - RxSwift (= 6.6.0)
   - RxSwift (6.6.0)
-  - RYAngelWalker (0.1.0)
-  - RYTransitioningDelegateSwift (0.2.0)
+  - RYTransitioningDelegateSwift (0.2.2)
   - SDCycleScrollView (1.82):
     - SDWebImage (>= 5.0.0)
   - SDWebImage (5.18.3):
@@ -131,7 +130,6 @@ DEPENDENCIES:
   - NudeIn
   - ProgressHUD
   - RxCocoa
-  - RYAngelWalker
   - RYTransitioningDelegateSwift
   - SDCycleScrollView
   - SDWebImage
@@ -180,7 +178,6 @@ SPEC REPOS:
     - RxCocoa
     - RxRelay
     - RxSwift
-    - RYAngelWalker
     - RYTransitioningDelegateSwift
     - SDCycleScrollView
     - SDWebImage
@@ -226,8 +223,7 @@ SPEC CHECKSUMS:
   RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
   RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
   RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
-  RYAngelWalker: cb74daf62cf628394e7f843ba91d44e23de0aaf0
-  RYTransitioningDelegateSwift: aff6f8cc0567cb4b4596cf7cf1d9bc2477a2459d
+  RYTransitioningDelegateSwift: 64d34f12811b97688568e751947b3a83a6a7b444
   SDCycleScrollView: a0d74c3384caa72bdfc81470bdbc8c14b3e1fbcf
   SDWebImage: 96e0c18ef14010b7485210e92fac888587ebb958
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
@@ -243,6 +239,6 @@ SPEC CHECKSUMS:
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 6c1d4cb8dab07eb5dfcc88080f1bbd90c4dfcde8
+PODFILE CHECKSUM: 6c31f5014c47a4c3da4556dec6d96cda6fa279bb
 
 COCOAPODS: 1.12.1

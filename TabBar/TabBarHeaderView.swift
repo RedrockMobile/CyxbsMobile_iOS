@@ -7,9 +7,11 @@
 //
 
 import UIKit
-import RYAngelWalker
+//import RYAngelWalker
 
 class TabBarHeaderView: UIView {
+    
+    /*
     
     var spaceForItems: CGFloat { 16 }
     
@@ -99,15 +101,15 @@ class TabBarHeaderView: UIView {
         return bar
     }()
     
-    lazy var titleLab: TrotingLabel = {
-        let lab = TrotingLabel(frame: CGRect(x: spaceForItems, y: 16, width: bounds.width / 2 - 2 * spaceForItems, height: 22))
-        lab.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
-        lab.font = .systemFont(ofSize: 18, weight: .bold)
-        lab.textColor = .ry(light: "#15315B", dark: "#F0F0F2")
-        lab.pause = 2
-        lab.add("查找课表中...")
-        return lab
-    }()
+//    lazy var titleLab: TrotingLabel = {
+//        let lab = TrotingLabel(frame: CGRect(x: spaceForItems, y: 16, width: bounds.width / 2 - 2 * spaceForItems, height: 22))
+//        lab.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
+//        lab.font = .systemFont(ofSize: 18, weight: .bold)
+//        lab.textColor = .ry(light: "#15315B", dark: "#F0F0F2")
+//        lab.pause = 2
+//        lab.add("查找课表中...")
+//        return lab
+//    }()
     
     lazy var timeImgView: UIImageView = {
         let imgView = createImgView(imageName: "TabBar_place")
@@ -155,4 +157,5 @@ class TabBarHeaderView: UIView {
         imgView.image = image
         return imgView
     }
+     */
 }

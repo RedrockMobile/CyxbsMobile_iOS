@@ -22,7 +22,7 @@ open class TabBarController: UITabBarController {
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tabBar.ryTabBar?.headerView.handle_viewWillAppear()
+//        tabBar.ryTabBar?.headerView.handle_viewWillAppear()
     }
     
     lazy var finderVC = UIViewController()
@@ -91,7 +91,7 @@ extension TabBarController {
      一般用于错误信息的时候可以直接赋值，不用掉用一堆API
      */
     func reloadTabBarData(title: String?, time: String?, place: String?) {
-        tabBar.ryTabBar?.headerView.updateData(title: title, time: time, place: place)
+//        tabBar.ryTabBar?.headerView.updateData(title: title, time: time, place: place)
     }
     
     func reloadSubControllers() {
