@@ -191,6 +191,8 @@ extension ScheduleFact: UICollectionViewDataSource {
             
 //        case .pointHolder:
 //            break
+        default:
+            break
         }
         
         return cell
@@ -227,7 +229,10 @@ extension ScheduleFact: ScheduleCollectionViewLayoutDataSource {
 //            return 0
 //        case .pointHolder:
 //            return 0
+        default:
+            break
         }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, layout: ScheduleCollectionViewLayout, persentOfPointAtIndexPath indexPath: IndexPath) -> CGFloat {

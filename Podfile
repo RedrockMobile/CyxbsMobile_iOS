@@ -10,7 +10,7 @@ pod 'Alamofire'
 pod 'SwiftyJSON'
 
 target 'CyxbsMobile2019_iOS' do
-  pod 'ProgressHUD'
+  pod 'ProgressHUD',      '13.7.2'
 	pod 'TZImagePickerController'
 	pod 'YBImageBrowser'
 	pod 'NudeIn'
@@ -41,18 +41,18 @@ target 'CyxbsMobile2019_iOS' do
 	pod 'FluentDarkModeKit'
   pod 'MarkdownKit'
 	pod 'AlicloudHTTPDNS'
-      
-  # For Swift:
   
   # pod 'RxSwift'
   pod 'RxCocoa'
   pod 'SnapKit'
-  pod 'JXPagingView'
-  pod 'JXSegmentedView'
   pod 'TOCropViewController'
   
+  pod 'JXPagingView'
+  pod 'JXSegmentedView'
+  pod 'JXBanner'
+  
   pod 'RYTransitioningDelegateSwift'
-  # pod 'RYAngelWalker'
+  pod 'RYAngelWalker'
   
 end
 
@@ -69,12 +69,6 @@ post_install do |installer|
       
       if target == 'Pods-CyxbsMobile2019_iOS'
         config.build_settings['VALID_ARCHS'] = 'x86_64'
-      end
-      if target == 'YYKit'
-        config.build_settings['EXCLUDED_ARCHS'] = 'arm64'
-      end
-      if target == 'UMDevice'
-        config.build_settings['EXCLUDED_ARCHS'] = 'arm64'
       end
     end
   end

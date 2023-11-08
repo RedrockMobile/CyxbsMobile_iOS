@@ -24,29 +24,6 @@ protocol ScheduleCollectionViewLayoutDataSource {
     func collectionView(_ collectionView: UICollectionView, layout: ScheduleCollectionViewLayout, persentOfPointAtIndexPath indexPath: IndexPath) -> CGFloat
 }
 
-// MARK: UICollectionView.ElementKindSection
-
-extension UICollectionView {
-
-    public enum ElementKindSection: String {
-
-        case header = "Redrock.UICollectionView.ElementKindSection.header"
-
-        case leading = "Redrock.UICollectionView.ElementKindSection.leading"
-
-//        case placeHolder = "Redrock.UICollectionView.ElementKindSection.placeHolder"
-
-//        case pointHolder = "Redrock.UICollectionView.ElementKindSection.pointHolder"
-    }
-
-    public func register(_ viewClass: AnyClass?, forElementKindSection elementKind: ElementKindSection, withReuseIdentifier identifier: String) {
-        register(viewClass, forSupplementaryViewOfKind: elementKind.rawValue, withReuseIdentifier: identifier)
-        if let layout = collectionViewLayout as? ScheduleCollectionViewLayout {
-            layout.register(viewClass, forSupplementaryViewOfKind: elementKind.rawValue)
-        }
-    }
-}
-
 // MARK: ScheduleCollectionViewLayout
 
 open class ScheduleCollectionViewLayout: UICollectionViewLayout {
@@ -182,6 +159,9 @@ open class ScheduleCollectionViewLayout: UICollectionViewLayout {
                 y: heightForHeaderSupplementaryView + CGFloat(indexPath.item) * (lineSpacing + itemSize.height),
                 width: widthForLeadingSupplementaryView,
                 height: itemSize.height)
+            
+        default:
+            break
             
 //        case .pointHolder:
 ////            let persent = dataSource?.collectionView(ry_collectionView, layout: self, persentOfPointAtIndexPath: indexPath) ?? 0

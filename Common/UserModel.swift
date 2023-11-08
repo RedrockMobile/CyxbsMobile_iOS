@@ -14,7 +14,7 @@ struct UserModel: Codable {
     
     private init() { }
     
-    /*
+    
     // token
     lazy var token: TokenModel? = {
         CacheManager.shared.getCodable(TokenModel.self, in: .token)
@@ -47,7 +47,7 @@ struct UserModel: Codable {
             CacheManager.shared.cache(codable: customSchedule, in: .customSchedule)
         }
     }
-     */
+     
     
     lazy var start: Date? = {
         UserDefaultsManager.widget.dateForSemester

@@ -45,6 +45,52 @@
 		14E7E4A927F5762500B67469 /* QuestionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4A727F5762500B67469 /* QuestionButton.m */; };
 		14E7E4B227F57FC800B67469 /* FeedBackQuestionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4AE27F57FC800B67469 /* FeedBackQuestionButton.m */; };
 		14E7E4B327F57FC800B67469 /* FeedBackSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14E7E4AF27F57FC800B67469 /* FeedBackSelectView.m */; };
+		14F6F4CF2AFB8171007C7CA6 /* ConfidentialityQuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F48B2AFB8170007C7CA6 /* ConfidentialityQuestionModel.swift */; };
+		14F6F4D02AFB8171007C7CA6 /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F48C2AFB8170007C7CA6 /* TokenModel.swift */; };
+		14F6F4D12AFB8171007C7CA6 /* EmailBidingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F48E2AFB8170007C7CA6 /* EmailBidingViewController.swift */; };
+		14F6F4D22AFB8171007C7CA6 /* RYLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F48F2AFB8170007C7CA6 /* RYLoginViewController.swift */; };
+		14F6F4D32AFB8171007C7CA6 /* BaseTextFiledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4902AFB8170007C7CA6 /* BaseTextFiledViewController.swift */; };
+		14F6F4D42AFB8171007C7CA6 /* ForgotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4912AFB8170007C7CA6 /* ForgotViewController.swift */; };
+		14F6F4D52AFB8171007C7CA6 /* SearchStudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4952AFB8170007C7CA6 /* SearchStudentModel.swift */; };
+		14F6F4D62AFB8171007C7CA6 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4962AFB8170007C7CA6 /* ScheduleModel.swift */; };
+		14F6F4D72AFB8171007C7CA6 /* CurriculumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4972AFB8170007C7CA6 /* CurriculumModel.swift */; };
+		14F6F4D82AFB8171007C7CA6 /* RYScheduleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4992AFB8170007C7CA6 /* RYScheduleHeaderView.swift */; };
+		14F6F4D92AFB8171007C7CA6 /* RYScheduleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F49A2AFB8170007C7CA6 /* RYScheduleCollectionViewCell.swift */; };
+		14F6F4DA2AFB8171007C7CA6 /* RYScheduleSelectSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F49B2AFB8170007C7CA6 /* RYScheduleSelectSectionHeaderView.swift */; };
+		14F6F4DB2AFB8171007C7CA6 /* ScheduleDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F49D2AFB8170007C7CA6 /* ScheduleDataFetch.swift */; };
+		14F6F4DC2AFB8171007C7CA6 /* ScheduleDrawType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F49E2AFB8170007C7CA6 /* ScheduleDrawType.swift */; };
+		14F6F4DD2AFB8171007C7CA6 /* ScheduleCalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F49F2AFB8170007C7CA6 /* ScheduleCalModel.swift */; };
+		14F6F4DE2AFB8171007C7CA6 /* ScheduleCalModel+EX.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4A02AFB8170007C7CA6 /* ScheduleCalModel+EX.swift */; };
+		14F6F4DF2AFB8171007C7CA6 /* RYScheduleMaping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4A12AFB8170007C7CA6 /* RYScheduleMaping.swift */; };
+		14F6F4E02AFB8171007C7CA6 /* RYScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4A32AFB8170007C7CA6 /* RYScheduleViewController.swift */; };
+		14F6F4E12AFB8171007C7CA6 /* RYScheduleInteractionFact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4A42AFB8170007C7CA6 /* RYScheduleInteractionFact.swift */; };
+		14F6F4E22AFB8171007C7CA6 /* RYScheduleFact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4A52AFB8170007C7CA6 /* RYScheduleFact.swift */; };
+		14F6F4E32AFB8171007C7CA6 /* RYScheduleCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4A62AFB8170007C7CA6 /* RYScheduleCollectionViewLayout.swift */; };
+		14F6F4E42AFB8171007C7CA6 /* ScheduleDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4A92AFB8170007C7CA6 /* ScheduleDetailCollectionViewCell.swift */; };
+		14F6F4E52AFB8171007C7CA6 /* ScheduleDetailMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4AA2AFB8170007C7CA6 /* ScheduleDetailMessageTableViewCell.swift */; };
+		14F6F4E62AFB8171007C7CA6 /* ScheduleDetailTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4AB2AFB8170007C7CA6 /* ScheduleDetailTableHeaderView.swift */; };
+		14F6F4E72AFB8171007C7CA6 /* ScheduleDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4AD2AFB8170007C7CA6 /* ScheduleDetailsViewController.swift */; };
+		14F6F4E82AFB8171007C7CA6 /* ScheduleEditSectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4B02AFB8170007C7CA6 /* ScheduleEditSectionCollectionViewCell.swift */; };
+		14F6F4E92AFB8171007C7CA6 /* ScheduleCustomEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4B12AFB8170007C7CA6 /* ScheduleCustomEditView.swift */; };
+		14F6F4EA2AFB8171007C7CA6 /* ScheduleEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4B32AFB8170007C7CA6 /* ScheduleEditViewController.swift */; };
+		14F6F4EB2AFB8171007C7CA6 /* FinderToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4B62AFB8171007C7CA6 /* FinderToolsView.swift */; };
+		14F6F4EC2AFB8171007C7CA6 /* FinderToolsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4B72AFB8171007C7CA6 /* FinderToolsCollectionViewCell.swift */; };
+		14F6F4ED2AFB8171007C7CA6 /* FinderToolsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4B82AFB8171007C7CA6 /* FinderToolsModel.swift */; };
+		14F6F4EE2AFB8171007C7CA6 /* FinderTools in Resources */ = {isa = PBXBuildFile; fileRef = 14F6F4B92AFB8171007C7CA6 /* FinderTools */; };
+		14F6F4EF2AFB8171007C7CA6 /* FinderNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4BB2AFB8171007C7CA6 /* FinderNewsModel.swift */; };
+		14F6F4F02AFB8171007C7CA6 /* FinderNewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4BC2AFB8171007C7CA6 /* FinderNewsView.swift */; };
+		14F6F4F12AFB8171007C7CA6 /* FinderNewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4BD2AFB8171007C7CA6 /* FinderNewsCollectionViewCell.swift */; };
+		14F6F4F22AFB8171007C7CA6 /* RYFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4BF2AFB8171007C7CA6 /* RYFinderViewController.swift */; };
+		14F6F4F32AFB8171007C7CA6 /* RYFinderHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4C12AFB8171007C7CA6 /* RYFinderHeaderView.swift */; };
+		14F6F4F42AFB8171007C7CA6 /* FinderBannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4C32AFB8171007C7CA6 /* FinderBannerModel.swift */; };
+		14F6F4F52AFB8171007C7CA6 /* FinderBannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4C42AFB8171007C7CA6 /* FinderBannerCollectionViewCell.swift */; };
+		14F6F4F62AFB8171007C7CA6 /* FinderBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4C52AFB8171007C7CA6 /* FinderBannerView.swift */; };
+		14F6F4F72AFB8171007C7CA6 /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4C82AFB8171007C7CA6 /* PersonModel.swift */; };
+		14F6F4F82AFB8171007C7CA6 /* RYCarnieEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4CA2AFB8171007C7CA6 /* RYCarnieEntryView.swift */; };
+		14F6F4F92AFB8171007C7CA6 /* RYCarnieHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4CB2AFB8171007C7CA6 /* RYCarnieHeaderView.swift */; };
+		14F6F4FA2AFB8171007C7CA6 /* RYCarnieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4CD2AFB8171007C7CA6 /* RYCarnieViewController.swift */; };
+		14F6F4FB2AFB8171007C7CA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F6F4CE2AFB8171007C7CA6 /* AppDelegate.swift */; };
+		14F6F4FD2AFB81B9007C7CA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14F6F4FC2AFB81B9007C7CA6 /* LaunchScreen.storyboard */; };
 		14FBBD41280505CC00D5B05D /* SSRTextCycleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FBBD3F280505CC00D5B05D /* SSRTextCycleView.m */; };
 		14FBBD4E2805489A00D5B05D /* SSRTextCycleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14FBBD4D2805489A00D5B05D /* SSRTextCycleCell.m */; };
 		14FFFBE02AF8C0F3005A7EBD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14FFFBCB2AF8C0F3005A7EBD /* Constants.swift */; };
@@ -178,9 +224,6 @@
 		1A5A5EE52360100B00543BAE /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A5EE42360100B00543BAE /* UserItem.m */; };
 		1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A5EF02361A82E00543BAE /* UserItemTool.m */; };
 		1A79956C252B5BC300603253 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A79956B252B5BC300603253 /* LoginModel.swift */; };
-		1A9B766C235F50A600725937 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B766B235F50A600725937 /* AppDelegate.m */; };
-		1A9B7677235F50A800725937 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1A9B7675235F50A800725937 /* LaunchScreen.storyboard */; };
-		1A9B767A235F50A800725937 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B7679235F50A800725937 /* main.m */; };
 		1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B7683235F50A900725937 /* CyxbsMobile2019_iOSTests.m */; };
 		1A9B768F235F50A900725937 /* CyxbsMobile2019_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */; };
 		1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABE8025238D01EC00E88C4E /* CheckInViewController.m */; };
@@ -481,7 +524,6 @@
 		DB34EB3B239BD4550052B65E /* WeekChooseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EAC2239BD4540052B65E /* WeekChooseButton.m */; };
 		DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EAC9239BD4550052B65E /* DayLabel.m */; };
 		DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DB34EACC239BD4550052B65E /* ORWInputTextView.m */; };
-		DB34EB3F239BD4850052B65E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB34EB3E239BD4850052B65E /* Main.storyboard */; };
 		DB4064F62466D889006CE5BC /* DLReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064DC2466D888006CE5BC /* DLReminderViewController.m */; };
 		DB4064F72466D889006CE5BC /* DLReminderSetDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064DD2466D888006CE5BC /* DLReminderSetDetailVC.m */; };
 		DB4064F82466D889006CE5BC /* DLWeekButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DB4064DE2466D888006CE5BC /* DLWeekButton.m */; };
@@ -682,6 +724,52 @@
 		14E7E4AF27F57FC800B67469 /* FeedBackSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackSelectView.m; sourceTree = "<group>"; };
 		14E7E4B027F57FC800B67469 /* FeedBackQuestionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackQuestionButton.h; sourceTree = "<group>"; };
 		14E7E4B127F57FC800B67469 /* FeedBackSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackSelectView.h; sourceTree = "<group>"; };
+		14F6F48B2AFB8170007C7CA6 /* ConfidentialityQuestionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfidentialityQuestionModel.swift; sourceTree = "<group>"; };
+		14F6F48C2AFB8170007C7CA6 /* TokenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
+		14F6F48E2AFB8170007C7CA6 /* EmailBidingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailBidingViewController.swift; sourceTree = "<group>"; };
+		14F6F48F2AFB8170007C7CA6 /* RYLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYLoginViewController.swift; sourceTree = "<group>"; };
+		14F6F4902AFB8170007C7CA6 /* BaseTextFiledViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTextFiledViewController.swift; sourceTree = "<group>"; };
+		14F6F4912AFB8170007C7CA6 /* ForgotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotViewController.swift; sourceTree = "<group>"; };
+		14F6F4952AFB8170007C7CA6 /* SearchStudentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchStudentModel.swift; sourceTree = "<group>"; };
+		14F6F4962AFB8170007C7CA6 /* ScheduleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
+		14F6F4972AFB8170007C7CA6 /* CurriculumModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurriculumModel.swift; sourceTree = "<group>"; };
+		14F6F4992AFB8170007C7CA6 /* RYScheduleHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYScheduleHeaderView.swift; sourceTree = "<group>"; };
+		14F6F49A2AFB8170007C7CA6 /* RYScheduleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYScheduleCollectionViewCell.swift; sourceTree = "<group>"; };
+		14F6F49B2AFB8170007C7CA6 /* RYScheduleSelectSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYScheduleSelectSectionHeaderView.swift; sourceTree = "<group>"; };
+		14F6F49D2AFB8170007C7CA6 /* ScheduleDataFetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleDataFetch.swift; sourceTree = "<group>"; };
+		14F6F49E2AFB8170007C7CA6 /* ScheduleDrawType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleDrawType.swift; sourceTree = "<group>"; };
+		14F6F49F2AFB8170007C7CA6 /* ScheduleCalModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleCalModel.swift; sourceTree = "<group>"; };
+		14F6F4A02AFB8170007C7CA6 /* ScheduleCalModel+EX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ScheduleCalModel+EX.swift"; sourceTree = "<group>"; };
+		14F6F4A12AFB8170007C7CA6 /* RYScheduleMaping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYScheduleMaping.swift; sourceTree = "<group>"; };
+		14F6F4A32AFB8170007C7CA6 /* RYScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYScheduleViewController.swift; sourceTree = "<group>"; };
+		14F6F4A42AFB8170007C7CA6 /* RYScheduleInteractionFact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYScheduleInteractionFact.swift; sourceTree = "<group>"; };
+		14F6F4A52AFB8170007C7CA6 /* RYScheduleFact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYScheduleFact.swift; sourceTree = "<group>"; };
+		14F6F4A62AFB8170007C7CA6 /* RYScheduleCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYScheduleCollectionViewLayout.swift; sourceTree = "<group>"; };
+		14F6F4A92AFB8170007C7CA6 /* ScheduleDetailCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		14F6F4AA2AFB8170007C7CA6 /* ScheduleDetailMessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleDetailMessageTableViewCell.swift; sourceTree = "<group>"; };
+		14F6F4AB2AFB8170007C7CA6 /* ScheduleDetailTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleDetailTableHeaderView.swift; sourceTree = "<group>"; };
+		14F6F4AD2AFB8170007C7CA6 /* ScheduleDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleDetailsViewController.swift; sourceTree = "<group>"; };
+		14F6F4B02AFB8170007C7CA6 /* ScheduleEditSectionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleEditSectionCollectionViewCell.swift; sourceTree = "<group>"; };
+		14F6F4B12AFB8170007C7CA6 /* ScheduleCustomEditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleCustomEditView.swift; sourceTree = "<group>"; };
+		14F6F4B32AFB8170007C7CA6 /* ScheduleEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleEditViewController.swift; sourceTree = "<group>"; };
+		14F6F4B62AFB8171007C7CA6 /* FinderToolsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinderToolsView.swift; sourceTree = "<group>"; };
+		14F6F4B72AFB8171007C7CA6 /* FinderToolsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinderToolsCollectionViewCell.swift; sourceTree = "<group>"; };
+		14F6F4B82AFB8171007C7CA6 /* FinderToolsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinderToolsModel.swift; sourceTree = "<group>"; };
+		14F6F4B92AFB8171007C7CA6 /* FinderTools */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FinderTools; sourceTree = "<group>"; };
+		14F6F4BB2AFB8171007C7CA6 /* FinderNewsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinderNewsModel.swift; sourceTree = "<group>"; };
+		14F6F4BC2AFB8171007C7CA6 /* FinderNewsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinderNewsView.swift; sourceTree = "<group>"; };
+		14F6F4BD2AFB8171007C7CA6 /* FinderNewsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinderNewsCollectionViewCell.swift; sourceTree = "<group>"; };
+		14F6F4BF2AFB8171007C7CA6 /* RYFinderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYFinderViewController.swift; sourceTree = "<group>"; };
+		14F6F4C12AFB8171007C7CA6 /* RYFinderHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYFinderHeaderView.swift; sourceTree = "<group>"; };
+		14F6F4C32AFB8171007C7CA6 /* FinderBannerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinderBannerModel.swift; sourceTree = "<group>"; };
+		14F6F4C42AFB8171007C7CA6 /* FinderBannerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinderBannerCollectionViewCell.swift; sourceTree = "<group>"; };
+		14F6F4C52AFB8171007C7CA6 /* FinderBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinderBannerView.swift; sourceTree = "<group>"; };
+		14F6F4C82AFB8171007C7CA6 /* PersonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
+		14F6F4CA2AFB8171007C7CA6 /* RYCarnieEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYCarnieEntryView.swift; sourceTree = "<group>"; };
+		14F6F4CB2AFB8171007C7CA6 /* RYCarnieHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYCarnieHeaderView.swift; sourceTree = "<group>"; };
+		14F6F4CD2AFB8171007C7CA6 /* RYCarnieViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RYCarnieViewController.swift; sourceTree = "<group>"; };
+		14F6F4CE2AFB8171007C7CA6 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		14F6F4FC2AFB81B9007C7CA6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		14FBBD3E280505CC00D5B05D /* SSRTextCycleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSRTextCycleView.h; sourceTree = "<group>"; };
 		14FBBD3F280505CC00D5B05D /* SSRTextCycleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSRTextCycleView.m; sourceTree = "<group>"; };
 		14FBBD4C2805489A00D5B05D /* SSRTextCycleCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SSRTextCycleCell.h; sourceTree = "<group>"; };
@@ -915,11 +1003,7 @@
 		1A5A5EF02361A82E00543BAE /* UserItemTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserItemTool.m; sourceTree = "<group>"; };
 		1A79956B252B5BC300603253 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		1A9B7667235F50A600725937 /* 掌上重邮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "掌上重邮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1A9B766A235F50A600725937 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		1A9B766B235F50A600725937 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		1A9B7676235F50A800725937 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1A9B7678235F50A800725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1A9B7679235F50A800725937 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1A9B767F235F50A900725937 /* CyxbsMobile2019_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CyxbsMobile2019_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B7683235F50A900725937 /* CyxbsMobile2019_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CyxbsMobile2019_iOSTests.m; sourceTree = "<group>"; };
 		1A9B7685235F50A900725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1500,7 +1584,6 @@
 		DB34EAC9239BD4550052B65E /* DayLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayLabel.m; sourceTree = "<group>"; };
 		DB34EACB239BD4550052B65E /* ORWInputTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORWInputTextView.h; sourceTree = "<group>"; };
 		DB34EACC239BD4550052B65E /* ORWInputTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORWInputTextView.m; sourceTree = "<group>"; };
-		DB34EB3E239BD4850052B65E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		DB4064DB2466D888006CE5BC /* DLReminderSetTimeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLReminderSetTimeVC.h; sourceTree = "<group>"; };
 		DB4064DC2466D888006CE5BC /* DLReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLReminderViewController.m; sourceTree = "<group>"; };
 		DB4064DD2466D888006CE5BC /* DLReminderSetDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DLReminderSetDetailVC.m; sourceTree = "<group>"; };
@@ -2336,6 +2419,250 @@
 			path = FeedBackQuestionButton;
 			sourceTree = "<group>";
 		};
+		14F6F4892AFB8170007C7CA6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F48A2AFB8170007C7CA6 /* Model */,
+				14F6F48D2AFB8170007C7CA6 /* ViewController */,
+			);
+			name = Login;
+			path = "../../../../Downloads/SwiftCyxbsMobile-develop/CyxbsMobile2019_iOS/Login";
+			sourceTree = "<group>";
+		};
+		14F6F48A2AFB8170007C7CA6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F48B2AFB8170007C7CA6 /* ConfidentialityQuestionModel.swift */,
+				14F6F48C2AFB8170007C7CA6 /* TokenModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		14F6F48D2AFB8170007C7CA6 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F48E2AFB8170007C7CA6 /* EmailBidingViewController.swift */,
+				14F6F48F2AFB8170007C7CA6 /* RYLoginViewController.swift */,
+				14F6F4902AFB8170007C7CA6 /* BaseTextFiledViewController.swift */,
+				14F6F4912AFB8170007C7CA6 /* ForgotViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		14F6F4922AFB8170007C7CA6 /* Curriculum */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4932AFB8170007C7CA6 /* Schedule */,
+				14F6F4A72AFB8170007C7CA6 /* Details */,
+				14F6F4AE2AFB8170007C7CA6 /* Edit */,
+			);
+			name = Curriculum;
+			path = "../../../../Downloads/SwiftCyxbsMobile-develop/CyxbsMobile2019_iOS/Curriculum";
+			sourceTree = "<group>";
+		};
+		14F6F4932AFB8170007C7CA6 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4942AFB8170007C7CA6 /* Model */,
+				14F6F4982AFB8170007C7CA6 /* View */,
+				14F6F49C2AFB8170007C7CA6 /* Filter */,
+				14F6F4A22AFB8170007C7CA6 /* ViewController */,
+			);
+			path = Schedule;
+			sourceTree = "<group>";
+		};
+		14F6F4942AFB8170007C7CA6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4952AFB8170007C7CA6 /* SearchStudentModel.swift */,
+				14F6F4962AFB8170007C7CA6 /* ScheduleModel.swift */,
+				14F6F4972AFB8170007C7CA6 /* CurriculumModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		14F6F4982AFB8170007C7CA6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4992AFB8170007C7CA6 /* RYScheduleHeaderView.swift */,
+				14F6F49A2AFB8170007C7CA6 /* RYScheduleCollectionViewCell.swift */,
+				14F6F49B2AFB8170007C7CA6 /* RYScheduleSelectSectionHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		14F6F49C2AFB8170007C7CA6 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F49D2AFB8170007C7CA6 /* ScheduleDataFetch.swift */,
+				14F6F49E2AFB8170007C7CA6 /* ScheduleDrawType.swift */,
+				14F6F49F2AFB8170007C7CA6 /* ScheduleCalModel.swift */,
+				14F6F4A02AFB8170007C7CA6 /* ScheduleCalModel+EX.swift */,
+				14F6F4A12AFB8170007C7CA6 /* RYScheduleMaping.swift */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		14F6F4A22AFB8170007C7CA6 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4A32AFB8170007C7CA6 /* RYScheduleViewController.swift */,
+				14F6F4A42AFB8170007C7CA6 /* RYScheduleInteractionFact.swift */,
+				14F6F4A52AFB8170007C7CA6 /* RYScheduleFact.swift */,
+				14F6F4A62AFB8170007C7CA6 /* RYScheduleCollectionViewLayout.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		14F6F4A72AFB8170007C7CA6 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4A82AFB8170007C7CA6 /* View */,
+				14F6F4AC2AFB8170007C7CA6 /* ViewController */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		14F6F4A82AFB8170007C7CA6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4A92AFB8170007C7CA6 /* ScheduleDetailCollectionViewCell.swift */,
+				14F6F4AA2AFB8170007C7CA6 /* ScheduleDetailMessageTableViewCell.swift */,
+				14F6F4AB2AFB8170007C7CA6 /* ScheduleDetailTableHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		14F6F4AC2AFB8170007C7CA6 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4AD2AFB8170007C7CA6 /* ScheduleDetailsViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		14F6F4AE2AFB8170007C7CA6 /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4AF2AFB8170007C7CA6 /* View */,
+				14F6F4B22AFB8170007C7CA6 /* ViewController */,
+			);
+			path = Edit;
+			sourceTree = "<group>";
+		};
+		14F6F4AF2AFB8170007C7CA6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4B02AFB8170007C7CA6 /* ScheduleEditSectionCollectionViewCell.swift */,
+				14F6F4B12AFB8170007C7CA6 /* ScheduleCustomEditView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		14F6F4B22AFB8170007C7CA6 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4B32AFB8170007C7CA6 /* ScheduleEditViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		14F6F4B42AFB8171007C7CA6 /* Finder */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4B52AFB8171007C7CA6 /* Tools */,
+				14F6F4BA2AFB8171007C7CA6 /* News */,
+				14F6F4BE2AFB8171007C7CA6 /* ViewController */,
+				14F6F4C02AFB8171007C7CA6 /* Header */,
+				14F6F4C22AFB8171007C7CA6 /* Banner */,
+			);
+			name = Finder;
+			path = "../../../../Downloads/SwiftCyxbsMobile-develop/CyxbsMobile2019_iOS/Finder";
+			sourceTree = "<group>";
+		};
+		14F6F4B52AFB8171007C7CA6 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4B62AFB8171007C7CA6 /* FinderToolsView.swift */,
+				14F6F4B72AFB8171007C7CA6 /* FinderToolsCollectionViewCell.swift */,
+				14F6F4B82AFB8171007C7CA6 /* FinderToolsModel.swift */,
+				14F6F4B92AFB8171007C7CA6 /* FinderTools */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		14F6F4BA2AFB8171007C7CA6 /* News */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4BB2AFB8171007C7CA6 /* FinderNewsModel.swift */,
+				14F6F4BC2AFB8171007C7CA6 /* FinderNewsView.swift */,
+				14F6F4BD2AFB8171007C7CA6 /* FinderNewsCollectionViewCell.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
+		14F6F4BE2AFB8171007C7CA6 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4BF2AFB8171007C7CA6 /* RYFinderViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		14F6F4C02AFB8171007C7CA6 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4C12AFB8171007C7CA6 /* RYFinderHeaderView.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		14F6F4C22AFB8171007C7CA6 /* Banner */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4C32AFB8171007C7CA6 /* FinderBannerModel.swift */,
+				14F6F4C42AFB8171007C7CA6 /* FinderBannerCollectionViewCell.swift */,
+				14F6F4C52AFB8171007C7CA6 /* FinderBannerView.swift */,
+			);
+			path = Banner;
+			sourceTree = "<group>";
+		};
+		14F6F4C62AFB8171007C7CA6 /* Carnie */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4C72AFB8171007C7CA6 /* Model */,
+				14F6F4C92AFB8171007C7CA6 /* View */,
+				14F6F4CC2AFB8171007C7CA6 /* ViewController */,
+			);
+			name = Carnie;
+			path = "../../../../Downloads/SwiftCyxbsMobile-develop/CyxbsMobile2019_iOS/Carnie";
+			sourceTree = "<group>";
+		};
+		14F6F4C72AFB8171007C7CA6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4C82AFB8171007C7CA6 /* PersonModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		14F6F4C92AFB8171007C7CA6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4CA2AFB8171007C7CA6 /* RYCarnieEntryView.swift */,
+				14F6F4CB2AFB8171007C7CA6 /* RYCarnieHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		14F6F4CC2AFB8171007C7CA6 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				14F6F4CD2AFB8171007C7CA6 /* RYCarnieViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		14FBBD43280505E700D5B05D /* TextCycleView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3048,6 +3375,11 @@
 		1A9B7669235F50A600725937 /* CyxbsMobile2019_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				14F6F4CE2AFB8171007C7CA6 /* AppDelegate.swift */,
+				14F6F4C62AFB8171007C7CA6 /* Carnie */,
+				14F6F4922AFB8170007C7CA6 /* Curriculum */,
+				14F6F4B42AFB8171007C7CA6 /* Finder */,
+				14F6F4892AFB8170007C7CA6 /* Login */,
 				18CDF4D4257F91BC006E8E5C /* Discover */,
 				B5B454FC29C0C09F00875DF7 /* Center */,
 				1817F00C2594D5C500FE1304 /* NewQA */,
@@ -3064,6 +3396,7 @@
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				1A9B7678235F50A800725937 /* Info.plist */,
 				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
+				14F6F4FC2AFB81B9007C7CA6 /* LaunchScreen.storyboard */,
 				14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */,
 			);
 			path = CyxbsMobile2019_iOS;
@@ -5661,11 +5994,6 @@
 			isa = PBXGroup;
 			children = (
 				B047BF852AB323DD00616A5B /* HTTPDNS */,
-				1A9B7675235F50A800725937 /* LaunchScreen.storyboard */,
-				DB34EB3E239BD4850052B65E /* Main.storyboard */,
-				1A9B766A235F50A600725937 /* AppDelegate.h */,
-				1A9B766B235F50A600725937 /* AppDelegate.m */,
-				1A9B7679235F50A800725937 /* main.m */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -5804,12 +6132,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A3106312377173B00A56468 /* Impact.ttf in Resources */,
-				DB34EB3F239BD4850052B65E /* Main.storyboard in Resources */,
 				73A1588A26C2475A00287C9F /* DIN-Medium.otf in Resources */,
 				EE899DEA2367DB2600DDB0D9 /* Bahnschrift.ttf in Resources */,
+				14F6F4FD2AFB81B9007C7CA6 /* LaunchScreen.storyboard in Resources */,
+				14F6F4EE2AFB8171007C7CA6 /* FinderTools in Resources */,
 				DB34EB2C239BD4550052B65E /* DetailRemindTableViewCell.xib in Resources */,
 				DB34EB20239BD4550052B65E /* DetailPageController.xib in Resources */,
-				1A9B7677235F50A800725937 /* LaunchScreen.storyboard in Resources */,
 				DB34EB1F239BD4550052B65E /* DetailLessonController.xib in Resources */,
 				DB34EB27239BD4550052B65E /* AddRemindViewController.xib in Resources */,
 				DB34EB2B239BD4550052B65E /* RemindTableViewCell.xib in Resources */,
@@ -5948,6 +6276,7 @@
 				FC05B1CC2ADAF054008B245B /* JudgeArrangeMessage.swift in Sources */,
 				18CDF4C4257F8DBD006E8E5C /* SetQuestionView.m in Sources */,
 				D0101F62243587A1004337ED /* UIScrollView+GKGestureHandle.m in Sources */,
+				14F6F4DA2AFB8171007C7CA6 /* RYScheduleSelectSectionHeaderView.swift in Sources */,
 				D0101D5B2433C885004337ED /* SDMaskGuidBGView.m in Sources */,
 				AAE3307225E367E400324750 /* MainPageTableViewCell.m in Sources */,
 				73AAA1D726C918250084E44D /* DetailsCustomizeNavigationBar.m in Sources */,
@@ -5957,13 +6286,14 @@
 				FE2C135827AEF629001CF7AF /* ToDoDetailBar.m in Sources */,
 				49252DAA26D39CC9003A8A7F /* FeedBackMainPageViewController.m in Sources */,
 				49A50B6726D83B9600B25DDF /* CommonQuestionDetailVC.m in Sources */,
-				1A9B767A235F50A800725937 /* main.m in Sources */,
 				738C15B426E0BDFE00E24F8C /* HistoricalFBDefaultView.m in Sources */,
 				14FFFBE02AF8C0F3005A7EBD /* Constants.swift in Sources */,
 				AA289B1224EFC78C00FDF70C /* NoteDetailView.m in Sources */,
+				14F6F4E72AFB8171007C7CA6 /* ScheduleDetailsViewController.swift in Sources */,
 				B0F71C872ABC71B200F8B1AC /* AttitudeMainPageVC.m in Sources */,
 				1A141377235F524B0001417E /* SYCSegmentViewButton.m in Sources */,
 				DB34EB39239BD4550052B65E /* TimeChooseScrollView.m in Sources */,
+				14F6F4DD2AFB8171007C7CA6 /* ScheduleCalModel.swift in Sources */,
 				49C2E78326D563AF00AFBE6F /* TypeSelectView.m in Sources */,
 				1A2CEA8F250667C200A0EE0F /* ClassDetailModel.m in Sources */,
 				4975628A26D5975F004499E6 /* FeedBackView.m in Sources */,
@@ -5991,6 +6321,8 @@
 				AA57588924EE739F002F6F6D /* TimeBtnSelectedBackView.m in Sources */,
 				FC5849B92A967F7F00D9BBDF /* CreateGroupVC.swift in Sources */,
 				4931630D26CD7B6800140412 /* StampCenterCollectionHeaderView.m in Sources */,
+				14F6F4F92AFB8171007C7CA6 /* RYCarnieHeaderView.swift in Sources */,
+				14F6F4E52AFB8171007C7CA6 /* ScheduleDetailMessageTableViewCell.swift in Sources */,
 				B0FE5F29294C94540070E755 /* NSDate+Rising.m in Sources */,
 				D0101D592433C885004337ED /* SDMaskController.m in Sources */,
 				1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */,
@@ -6020,11 +6352,14 @@
 				646B1975282CDF840015DF28 /* StationsCollectionViewCell.m in Sources */,
 				756B39882AEDF8D900B4E369 /* JXSegmentViewCustom.swift in Sources */,
 				AA0DDB6D286C8B1A00802324 /* EditMyInfoViewController.m in Sources */,
+				14F6F4D82AFB8171007C7CA6 /* RYScheduleHeaderView.swift in Sources */,
 				B0FE5F2D294C94540070E755 /* UIColor+Rising.m in Sources */,
 				D0101F66243587A1004337ED /* GKWebImageManager.m in Sources */,
 				14B73F70281BED7B00D08ADD /* ActiveMessageModel.m in Sources */,
 				D0101D6A24352092004337ED /* UITextView+Placeholder.m in Sources */,
+				14F6F4EF2AFB8171007C7CA6 /* FinderNewsModel.swift in Sources */,
 				14B73F80281BED7B00D08ADD /* MessagePresentView.m in Sources */,
+				14F6F4D42AFB8171007C7CA6 /* ForgotViewController.swift in Sources */,
 				DB34EACD239BD4550052B65E /* WYCClassBookViewController.m in Sources */,
 				DB4064FE2466D889006CE5BC /* DLNextButton.m in Sources */,
 				735BC54726D3BF3000F22678 /* FeedBackDetailsModel.m in Sources */,
@@ -6032,11 +6367,13 @@
 				75500E632AEE8FD200C2FC3A /* TextManager.swift in Sources */,
 				D0101D5A2433C885004337ED /* SDMaskNotificationName.m in Sources */,
 				14FFFBEF2AF8C0F3005A7EBD /* PlaceholderCollectionViewCell.swift in Sources */,
+				14F6F4E92AFB8171007C7CA6 /* ScheduleCustomEditView.swift in Sources */,
 				18CDF690257F91BD006E8E5C /* CQUPTMapDataItem.m in Sources */,
 				AA3F82DA24E8E03C00B65042 /* ClassDetailView.m in Sources */,
 				B0F71C9E2ABC71B200F8B1AC /* PublishPageCell.m in Sources */,
 				AA5368F02589E28800236CB5 /* QuitTipView.m in Sources */,
 				B0F71C922ABC71B200F8B1AC /* ExpressDeclareModel.m in Sources */,
+				14F6F4DE2AFB8171007C7CA6 /* ScheduleCalModel+EX.swift in Sources */,
 				756C39592AE6BA930056A8D1 /* ActivityMineTableViewCell.swift in Sources */,
 				646B1984282E8F000015DF28 /* StationGuideView.m in Sources */,
 				FC7D381A2AAB867000DEAD50 /* BatchAddModel.swift in Sources */,
@@ -6046,6 +6383,7 @@
 				FC15428F2ABC221600BD806F /* CourseScheduleModel.swift in Sources */,
 				B5B454FF29C0C0D900875DF7 /* CenterVC.m in Sources */,
 				DB4064F82466D889006CE5BC /* DLWeekButton.m in Sources */,
+				14F6F4D52AFB8171007C7CA6 /* SearchStudentModel.swift in Sources */,
 				14B73F84281CCC3000D08ADD /* MessageDetailVC.m in Sources */,
 				756C39412AE6BA6C0056A8D1 /* ActivitiesModel.swift in Sources */,
 				756C39352AE6BA6C0056A8D1 /* ActivityHitTableViewCell.swift in Sources */,
@@ -6070,6 +6408,7 @@
 				18CDF4CA257F8DBD006E8E5C /* SelfSafeView.m in Sources */,
 				735BC54A26D3BF6400F22678 /* FeedBackReplyModel.m in Sources */,
 				1A14136F235F524B0001417E /* UserDefaultTool.m in Sources */,
+				14F6F4E22AFB8171007C7CA6 /* RYScheduleFact.swift in Sources */,
 				1A141366235F524B0001417E /* AESCipher.m in Sources */,
 				4931631026CD7B6800140412 /* StampCenterTopView.m in Sources */,
 				FE2C135C27AEF629001CF7AF /* DiscoverTodoView.m in Sources */,
@@ -6102,6 +6441,7 @@
 				B0F71C9D2ABC71B200F8B1AC /* PublishTextView.m in Sources */,
 				FE0D60462801702B00319A9E /* SchoolBusBottomView.m in Sources */,
 				DB4064FC2466D889006CE5BC /* DLReminderModel.m in Sources */,
+				14F6F4E62AFB8171007C7CA6 /* ScheduleDetailTableHeaderView.swift in Sources */,
 				AAC7CA0B25F7725200E6B5D5 /* MainPage2RequestModel.m in Sources */,
 				18CDF67D257F91BD006E8E5C /* PeopleListCellTableViewCell.m in Sources */,
 				AA4CD60A25EF6747002D9394 /* IgnoreDataModel.m in Sources */,
@@ -6143,6 +6483,7 @@
 				73AAA1D526C918250084E44D /* PurchaseInfoOrderIDView.m in Sources */,
 				14FBBD4E2805489A00D5B05D /* SSRTextCycleCell.m in Sources */,
 				B0F71C942ABC71B200F8B1AC /* ExpressPickPutItem.m in Sources */,
+				14F6F4F12AFB8171007C7CA6 /* FinderNewsCollectionViewCell.swift in Sources */,
 				14CED37F288A594600BADA8B /* RisingRouterRequest.m in Sources */,
 				D0101F69243587A1004337ED /* GKPhotoView.m in Sources */,
 				AA0DD8FB286C50E500802324 /* MineMsgCntView.m in Sources */,
@@ -6169,6 +6510,7 @@
 				FE2C136227AEF629001CF7AF /* TodoConflictStateView.m in Sources */,
 				756C393A2AE6BA6C0056A8D1 /* ActivityTypePickerVC.swift in Sources */,
 				1893DC9526EA3887007E871E /* MGDTimer.m in Sources */,
+				14F6F4F72AFB8171007C7CA6 /* PersonModel.swift in Sources */,
 				D0101D5E2433C885004337ED /* SDMaskModel.m in Sources */,
 				14FFFC032AF8C0FD005A7EBD /* SessionManager.swift in Sources */,
 				AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */,
@@ -6183,6 +6525,7 @@
 				756C39382AE6BA6C0056A8D1 /* ActivityDetailView.swift in Sources */,
 				646B199A28313CB20015DF28 /* StationScrollView.m in Sources */,
 				646B198D282FFC460015DF28 /* BusMAPointAnnotation.m in Sources */,
+				14F6F4DF2AFB8171007C7CA6 /* RYScheduleMaping.swift in Sources */,
 				AAC7CA2025F7797000E6B5D5 /* RemarkParseModel.m in Sources */,
 				493162DE26CD7B6300140412 /* StampTaskData.m in Sources */,
 				7FBF39F4257B79F30077494E /* ByPasswordViewController.m in Sources */,
@@ -6194,6 +6537,8 @@
 				DB34EB33239BD4550052B65E /* TickButton.m in Sources */,
 				14FFFBE12AF8C0F3005A7EBD /* UIColor+Theme.swift in Sources */,
 				1A5A5EE52360100B00543BAE /* UserItem.m in Sources */,
+				14F6F4E02AFB8171007C7CA6 /* RYScheduleViewController.swift in Sources */,
+				14F6F4E12AFB8171007C7CA6 /* RYScheduleInteractionFact.swift in Sources */,
 				FC52790A2AAC490F00B09685 /* GroupSearchResultTableViewCell.swift in Sources */,
 				FC9E3A992AB6D2F200E3C65F /* WeDateCourseScheduleVC.swift in Sources */,
 				73AAA1D026C918250084E44D /* DetailsTaskTableViewCell.m in Sources */,
@@ -6213,11 +6558,13 @@
 				1AFE535124F7571300F42A74 /* IntroductionController.m in Sources */,
 				735BC53C26D3B33E00F22678 /* FeedBackDetailsViewController.m in Sources */,
 				FC1542912ABC75E900BD806F /* WeekMaping.swift in Sources */,
+				14F6F4E32AFB8171007C7CA6 /* RYScheduleCollectionViewLayout.swift in Sources */,
 				18CDF68A257F91BD006E8E5C /* PeopleListTableViewCell.m in Sources */,
 				DB4065012466D889006CE5BC /* DLTimeSelectedButton.m in Sources */,
 				B09BB8342AADA35400FF88F7 /* FoodPraiseModel.m in Sources */,
 				18CDF699257F91BD006E8E5C /* CQUPTMapContentView.m in Sources */,
 				B0F71C852ABC71B200F8B1AC /* AttitudeSelfPageDataItem.m in Sources */,
+				14F6F4F22AFB8171007C7CA6 /* RYFinderViewController.swift in Sources */,
 				AA4FA1F425C2E1E3005139BA /* PraiseViewController.m in Sources */,
 				14E7E4A927F5762500B67469 /* QuestionButton.m in Sources */,
 				FC42109B2AD5BBA80044EEAA /* ArrangeMessageModel.swift in Sources */,
@@ -6234,6 +6581,7 @@
 				DB34EB36239BD4550052B65E /* ChooseButton.m in Sources */,
 				647AC3102828012F009A2E35 /* SchoolBusMapSideBar.m in Sources */,
 				B09BB8302AADA35400FF88F7 /* popUpInformationVC.m in Sources */,
+				14F6F4D62AFB8171007C7CA6 /* ScheduleModel.swift in Sources */,
 				AAC7CA0125F5130900E6B5D5 /* PraiseParseModel.m in Sources */,
 				14FFFC002AF8C0FD005A7EBD /* APIConfigEX.swift in Sources */,
 				18CDF69F257F91BD006E8E5C /* CQUPTMapSearchView.m in Sources */,
@@ -6256,12 +6604,17 @@
 				1A141375235F524B0001417E /* UIImage+ImageEffects.m in Sources */,
 				14FFFBE22AF8C0F3005A7EBD /* UIAlterControllerFast.swift in Sources */,
 				735BC54D26D3C05900F22678 /* FeedBackReplyTableViewCell.m in Sources */,
+				14F6F4FA2AFB8171007C7CA6 /* RYCarnieViewController.swift in Sources */,
 				FE2C136327AEF629001CF7AF /* YearBtnsView.m in Sources */,
+				14F6F4ED2AFB8171007C7CA6 /* FinderToolsModel.swift in Sources */,
 				B0F71C9B2ABC71B200F8B1AC /* PublishTopView.m in Sources */,
+				14F6F4D22AFB8171007C7CA6 /* RYLoginViewController.swift in Sources */,
 				1A79956C252B5BC300603253 /* LoginModel.swift in Sources */,
+				14F6F4F62AFB8171007C7CA6 /* FinderBannerView.swift in Sources */,
 				18FE64F625FDA186008748AE /* UIControl+MGD.m in Sources */,
 				756C39582AE6BA930056A8D1 /* ActivityCenterTopView.swift in Sources */,
 				AA0DDB87286C8E8100802324 /* AFHTTPSessionManager+compatibility.m in Sources */,
+				14F6F4D72AFB8171007C7CA6 /* CurriculumModel.swift in Sources */,
 				73AAA1D226C918250084E44D /* SegmentView.m in Sources */,
 				B0F08FF928A24F9000986EB6 /* IdsBinding.m in Sources */,
 				7311328B26CCEC2400EF88C1 /* BottomView.m in Sources */,
@@ -6278,6 +6631,7 @@
 				14FBBD41280505CC00D5B05D /* SSRTextCycleView.m in Sources */,
 				18CDF66F257F91BD006E8E5C /* FinderView.m in Sources */,
 				B0F71C842ABC71B200F8B1AC /* AttitudeSelfPageDataModel.m in Sources */,
+				14F6F4D32AFB8171007C7CA6 /* BaseTextFiledViewController.swift in Sources */,
 				DB34EB23239BD4550052B65E /* TimeChooseViewController.m in Sources */,
 				756C393D2AE6BA6C0056A8D1 /* ActivityTopView.swift in Sources */,
 				B0F71C932ABC71B200F8B1AC /* ExpressPickGetItem.m in Sources */,
@@ -6286,6 +6640,7 @@
 				FE2C135A27AEF629001CF7AF /* TodoTitleInputTextField.m in Sources */,
 				1AC2550523C9AB3700DF0475 /* CheckedInDot.m in Sources */,
 				FC52790C2AAC6C3A00B09685 /* NormalStudentItem.swift in Sources */,
+				14F6F4CF2AFB8171007C7CA6 /* ConfidentialityQuestionModel.swift in Sources */,
 				FE2C135927AEF629001CF7AF /* ToDoDetailReminderTimeView.m in Sources */,
 				756C394E2AE6BA6C0056A8D1 /* ActivityAddScrollView.swift in Sources */,
 				D0101F63243587A1004337ED /* GKScrollView.m in Sources */,
@@ -6293,11 +6648,14 @@
 				49628E3226D52C6000805A08 /* FeedBackVC.m in Sources */,
 				18CDF697257F91BD006E8E5C /* CQUPTVRMapController.m in Sources */,
 				FEBA676427E9BAC000C4D231 /* updatePopView.m in Sources */,
+				14F6F4F42AFB8171007C7CA6 /* FinderBannerModel.swift in Sources */,
 				14FFFBEE2AF8C0F3005A7EBD /* MarkDownViewController.swift in Sources */,
+				14F6F4EC2AFB8171007C7CA6 /* FinderToolsCollectionViewCell.swift in Sources */,
 				18CDF6A2257F91BD006E8E5C /* CQUPTMapImageLayout.m in Sources */,
 				B0F71C8E2ABC71B200F8B1AC /* AttitudeNetWrong.m in Sources */,
 				1490FC8B28031BC200958892 /* FinderTopView.m in Sources */,
 				756C394B2AE6BA6C0056A8D1 /* ActivityReviewedTableViewCell.swift in Sources */,
+				14F6F4D92AFB8171007C7CA6 /* RYScheduleCollectionViewCell.swift in Sources */,
 				DB34EB38239BD4550052B65E /* MainView.m in Sources */,
 				1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */,
 				75500E622AEE8FD200C2FC3A /* SwiftyClient.swift in Sources */,
@@ -6305,6 +6663,8 @@
 				DB34EB3A239BD4550052B65E /* CoverView.m in Sources */,
 				18CDF68F257F91BD006E8E5C /* CQUPTMapPlaceRect.m in Sources */,
 				B51C500F28A5FFC00011465E /* ModifyVC.m in Sources */,
+				14F6F4E42AFB8171007C7CA6 /* ScheduleDetailCollectionViewCell.swift in Sources */,
+				14F6F4D02AFB8171007C7CA6 /* TokenModel.swift in Sources */,
 				AA4CD60425EF6311002D9394 /* IgnoreModel.m in Sources */,
 				647AC30A2826CCB0009A2E35 /* StationData.m in Sources */,
 				DB34EB22239BD4550052B65E /* AddRemindViewController.m in Sources */,
@@ -6330,6 +6690,7 @@
 				735BC53526D392D400F22678 /* FeedBackTableViewCell.m in Sources */,
 				FC52790F2AACB8D200B09685 /* RepeatNameVC.swift in Sources */,
 				14FFFBE72AF8C0F3005A7EBD /* ConstantsMain.swift in Sources */,
+				14F6F4D12AFB8171007C7CA6 /* EmailBidingViewController.swift in Sources */,
 				D0101F64243587A1004337ED /* GKPhotoBrowser.m in Sources */,
 				FC5279112AACB92500B09685 /* RepeatNameTableViewCell.swift in Sources */,
 				AA19FCB82663A266004E9F5D /* DeviceUtils.swift in Sources */,
@@ -6342,6 +6703,7 @@
 				B0F71C8A2ABC71B200F8B1AC /* AttitudeSelfPageItem.m in Sources */,
 				1A141365235F524B0001417E /* UIFont+AdaptiveFont.m in Sources */,
 				1A344BB723E96AD80014A3B4 /* MineAboutController.m in Sources */,
+				14F6F4E82AFB8171007C7CA6 /* ScheduleEditSectionCollectionViewCell.swift in Sources */,
 				B09BB8372AADA35400FF88F7 /* FoodMainPageCollectionViewCell.m in Sources */,
 				18CDF691257F91BD006E8E5C /* CQUPTMapStarPlaceItem.m in Sources */,
 				AA0DDB72286C8B1A00802324 /* PMPPickerView.m in Sources */,
@@ -6349,6 +6711,7 @@
 				1A141320235F521C0001417E /* BaseTableViewController.m in Sources */,
 				FC42109D2AD5BC700044EEAA /* ArrangeMessageItem.swift in Sources */,
 				14FFFBEB2AF8C0F3005A7EBD /* CacheManager.swift in Sources */,
+				14F6F4F32AFB8171007C7CA6 /* RYFinderHeaderView.swift in Sources */,
 				B01AFD6A29EFE531004F82D7 /* ElectricityView.m in Sources */,
 				FC63434B2A891FD200DCD96C /* SearchResultVC.swift in Sources */,
 				B01AFD6A29EFE531004F82D7 /* ElectricityView.m in Sources */,
@@ -6356,7 +6719,6 @@
 				FE2C136627AEF629001CF7AF /* TodoDataModel.m in Sources */,
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,
 				FC42109F2AD5C2F20044EEAA /* ArrangeMessageTableViewCell.swift in Sources */,
-				1A9B766C235F50A600725937 /* AppDelegate.m in Sources */,
 				18CDF678257F91BD006E8E5C /* ChooseStudentListViewController.m in Sources */,
 				4931631226CD7B6800140412 /* StampCenterMainScrollView.m in Sources */,
 				18CDF4BC257F8DBD006E8E5C /* selfSafeViewController.m in Sources */,
@@ -6385,6 +6747,7 @@
 				AA0DDB51286C8B1900802324 /* MineViewController.m in Sources */,
 				18CDF4BF257F8DBD006E8E5C /* questionAndAnswerModel.m in Sources */,
 				DB4064F62466D889006CE5BC /* DLReminderViewController.m in Sources */,
+				14F6F4EA2AFB8171007C7CA6 /* ScheduleEditViewController.swift in Sources */,
 				FE2C135B27AEF629001CF7AF /* DiscoverTodoTableViewCell.m in Sources */,
 				AA86E38B2635B04A00756F05 /* ColorManager.m in Sources */,
 				738C15B126E0B35600E24F8C /* FeedBackDefaultView.m in Sources */,
@@ -6401,6 +6764,7 @@
 				DB34EB2E239BD4550052B65E /* RemindTableViewCell.m in Sources */,
 				7311328626CCEC2400EF88C1 /* Goods.m in Sources */,
 				AAE3308725E3AD5E00324750 /* MainPageNumBtn.m in Sources */,
+				14F6F4F82AFB8171007C7CA6 /* RYCarnieEntryView.swift in Sources */,
 				1A141368235F524B0001417E /* HttpClient.m in Sources */,
 				646B19A02833983E0015DF28 /* NextStationBtn.m in Sources */,
 				AA0DDB55286C8B1900802324 /* MineTableViewCell.m in Sources */,
@@ -6428,6 +6792,7 @@
 				AA536DFC258C544800F69E73 /* IgnoreTableViewCell.m in Sources */,
 				18CDF4C5257F8DBD006E8E5C /* QuestionView.m in Sources */,
 				B0B1B9F529E69EAD00A1BB02 /* ElectricFeeItem.m in Sources */,
+				14F6F4F02AFB8171007C7CA6 /* FinderNewsView.swift in Sources */,
 				FCD622E62AB53CE3007094A2 /* BusyDetailVC.swift in Sources */,
 				AAAA1D9024FE39F500DB9A81 /* NextLessonFinder.m in Sources */,
 				AA0DDB5D286C8B1A00802324 /* PMPBasicActionView.m in Sources */,
@@ -6437,6 +6802,7 @@
 				756C393F2AE6BA6C0056A8D1 /* ActivityCollectionViewCell.swift in Sources */,
 				B09BB8332AADA35400FF88F7 /* FoodRefreshModel.m in Sources */,
 				73AAA1D426C918250084E44D /* PurchaseInfoGoodsInfoView.m in Sources */,
+				14F6F4DB2AFB8171007C7CA6 /* ScheduleDataFetch.swift in Sources */,
 				B0F71C9C2ABC71B200F8B1AC /* PublishMakeSureView.m in Sources */,
 				B5B4551A29C19DE200875DF7 /* CenterPromptBoxView.m in Sources */,
 				756C39452AE6BA6C0056A8D1 /* ActivitySearchVC.swift in Sources */,
@@ -6451,13 +6817,17 @@
 				49343A2326D4EAB2001A2892 /* CommonQuestionCell.m in Sources */,
 				14B73F71281BED7B00D08ADD /* ActiveMessage.m in Sources */,
 				753792A62AF0CEB400B44270 /* ActivityDetailVCExtension.swift in Sources */,
+				14F6F4EB2AFB8171007C7CA6 /* FinderToolsView.swift in Sources */,
 				AA0DDB5B286C8B1A00802324 /* PMPBasicNavBarController.m in Sources */,
+				14F6F4DC2AFB8171007C7CA6 /* ScheduleDrawType.swift in Sources */,
 				756C394C2AE6BA6C0056A8D1 /* ActivityReviewingTableViewCell.swift in Sources */,
 				73AAA1CB26C918250084E44D /* DetailsTaskModel.m in Sources */,
 				B0F71C912ABC71B200F8B1AC /* ExpressPickGetModel.m in Sources */,
+				14F6F4FB2AFB8171007C7CA6 /* AppDelegate.swift in Sources */,
 				D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */,
 				18CDF4BB257F8DBD006E8E5C /* ResetPwdViewController.m in Sources */,
 				14FFFBF02AF8C0F3005A7EBD /* UserModel.swift in Sources */,
+				14F6F4F52AFB8171007C7CA6 /* FinderBannerCollectionViewCell.swift in Sources */,
 				18CDF67C257F91BD006E8E5C /* ClassmatesList.m in Sources */,
 				7311328826CCEC2400EF88C1 /* ContentScrollView.m in Sources */,
 				18CDF4C9257F8DBD006E8E5C /* safePopView.m in Sources */,
@@ -6509,17 +6879,6 @@
 			targetProxy = 1A9B768B235F50A900725937 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		1A9B7675235F50A800725937 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1A9B7676235F50A800725937 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1A9B7691235F50A900725937 /* Debug */ = {
