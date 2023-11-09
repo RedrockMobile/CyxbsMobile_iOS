@@ -292,6 +292,8 @@
         WeDateVC *vc = [[WeDateVC alloc] init];
         
         [self.navigationController pushViewController:vc animated:YES];
+        
+        NSLog(@"点击了没课约");
     }
 }
 

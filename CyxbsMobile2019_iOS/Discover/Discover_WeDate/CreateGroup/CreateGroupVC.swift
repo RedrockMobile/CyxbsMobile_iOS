@@ -66,12 +66,14 @@ class CreateGroupVC: UIViewController {
             containerView.addSubview(emptyLab)
             showShakeAnimation(label: emptyLab)
             repeatLab.removeFromSuperview()
+            limitedLab.removeFromSuperview()
         } else if textField.text!.count <= 10 {
             CreateGroupModel.requestWith(name: textField.text!, studentID: studentIDAry) { createGroupModel in
                 if createGroupModel.isRepeat {
                     self.containerView.addSubview(self.repeatLab)
                     self.showShakeAnimation(label: self.repeatLab)
                     self.emptyLab.removeFromSuperview()
+                    self.limitedLab.removeFromSuperview()
                 } else {
                     self.delegate?.updateGroupData()
                     self.dismiss(animated: true, completion: nil)
@@ -79,6 +81,11 @@ class CreateGroupVC: UIViewController {
             } failure: { error in
                 print(error)
             }
+        } else if textField.text!.count > 10 {
+            containerView.addSubview(limitedLab)
+            showShakeAnimation(label: limitedLab)
+            self.repeatLab.removeFromSuperview()
+            self.emptyLab.removeFromSuperview()
         }
     }
     
@@ -186,5 +193,13 @@ class CreateGroupVC: UIViewController {
         repeatLab.font = .systemFont(ofSize: 10)
         repeatLab.textColor = UIColor(.dm, light: UIColor(hexString: "#4A44E4", alpha: 1), dark: UIColor(hexString: "#4A44E4", alpha: 1))
         return repeatLab
+    }()
+    /// 字数超限提示文本
+    private lazy var limitedLab: UILabel = {
+        let limitedLab = UILabel(frame: CGRect(x: emptyLab.left, y: emptyLab.top, width: 103, height: emptyLab.height))
+        limitedLab.text = "名称不能超过十个字符"
+        limitedLab.font = .systemFont(ofSize: 10)
+        limitedLab.textColor = UIColor(.dm, light: UIColor(hexString: "#4A44E4", alpha: 1), dark: UIColor(hexString: "#4A44E4", alpha: 1))
+        return limitedLab
     }()
 }

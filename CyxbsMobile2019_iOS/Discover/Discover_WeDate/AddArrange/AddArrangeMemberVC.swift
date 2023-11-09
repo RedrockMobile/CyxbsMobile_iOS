@@ -100,7 +100,7 @@ class AddArrangeMemberVC: UIViewController {
     }()
     /// 展示人员类型
     private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
+        let layout = AddArrangeFlowLayout()
         layout.minimumLineSpacing = 5.75
         layout.minimumInteritemSpacing = 5.75
         layout.scrollDirection = .vertical
