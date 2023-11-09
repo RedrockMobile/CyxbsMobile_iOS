@@ -25,6 +25,7 @@ class ActivityRankingListVC: UIViewController, UITableViewDataSource, UITableVie
         setPosition()
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.backgroundColor = .clear
         hitActivities.requestHitActivity { activities in
             print("活动数量\(self.hitActivities.activities.count)")
             self.tableView.reloadData()
