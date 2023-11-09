@@ -346,7 +346,7 @@ class ActivityDetailVC: UIViewController {
                                                                 delay: 2,
                                                                 backGroundColor: UIColor(hexString: "#2a4e84"),
                                                                 cornerRadius: 18,
-                                                          yOffset: CGFloat(-UIScreen.main.bounds.height * 0.5 + Constants.statusBarHeight) + 90)
+                                                                yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)
                     self.delegate?.updateModel(indexPathNum: self.numOfIndexPath, wantToWatch: true)
                 } else {
                     ActivityHUD.shared.addProgressHUDView(width: 138,
@@ -357,7 +357,7 @@ class ActivityDetailVC: UIViewController {
                                                                 delay: 2,
                                                                 backGroundColor: UIColor(hexString: "#2a4e84"),
                                                                 cornerRadius: 18,
-                                                                yOffset: CGFloat(-UIScreen.main.bounds.height * 0.5 + Constants.statusBarHeight) + 90)
+                                                                yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)
                 }
                 break
             case .failure(let error):
@@ -469,8 +469,8 @@ class ActivityDetailVC: UIViewController {
         detailScrollView.layer.cornerRadius = 16
         detailScrollView.showsVerticalScrollIndicator = false
         detailScrollView.showsHorizontalScrollIndicator = false
-        detailScrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: 571)
-        detailView = ActivityDetailView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 571))
+        detailScrollView.contentSize = CGSizeMake(UIScreen.main.bounds.width, 571)
+        detailView = ActivityDetailView(frame: CGRectMake(0, 0, UIScreen.main.bounds.width, 571))
         view.addSubview(detailScrollView)
         detailScrollView.addSubview(detailView)
         detailScrollView.snp.makeConstraints { make in
@@ -515,7 +515,7 @@ class ActivityDetailVC: UIViewController {
         minuteNumLabel.removeFromSuperview()
         secondNumLabel.removeFromSuperview()
         statusLabel = UILabel()
-        statusLabel?.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.8)
+        statusLabel?.textColor = UIColor(hexString: "#15315B", alpha: 0.8)
         statusLabel?.font = UIFont(name: PingFangSCMedium, size: 16)
         statusLabel?.textAlignment = .center
         view.addSubview(statusLabel!)
@@ -528,17 +528,17 @@ class ActivityDetailVC: UIViewController {
         }
         if isEnded {
             for label in detailView.informationViews {
-                label.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.3)
+                label.textColor = UIColor(hexString: "#15315B", alpha: 0.3)
             }
             for label in detailView.informationLabels {
-                label.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.6)
+                label.textColor = UIColor(hexString: "#15315B", alpha: 0.6)
             }
-            detailView.placeLabel.textColor = UIColor(red: 0.29, green: 0.267, blue: 0.894, alpha: 0.6)
+            detailView.placeLabel.textColor = UIColor(hexString: "#4A44E4", alpha: 0.6)
             detailView.placeImg.alpha = 0.4
             statusImgView.image = UIImage(named: "activityEnded")
-            detailView.detailLabel . textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.3)
-            detailView.informationView.textColor = UIColor(red: 0.067, green: 0.173, blue: 0.329, alpha: 0.6)
-            detailView.detailView.textColor = UIColor(red: 0.067, green: 0.173, blue: 0.329, alpha: 0.6)
+            detailView.detailLabel . textColor = UIColor(hexString: "#15315B", alpha: 0.3)
+            detailView.informationView.textColor = UIColor(hexString: "#112C54", alpha: 0.6)
+            detailView.detailView.textColor = UIColor(hexString: "#112C54", alpha: 0.6)
             wantToWatchButton.removeFromSuperview()
         }
     }

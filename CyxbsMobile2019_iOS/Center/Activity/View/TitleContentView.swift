@@ -53,14 +53,14 @@ class TitleContentView: UIView {
         titleLabel = UILabel()
         titleLabel.numberOfLines = 1 // Display in a single line
         titleLabel.setContentCompressionResistancePriority(.required, for: .horizontal) // Required horizontal compression resistance
-        titleLabel.textColor = UIColor(red: 0.08, green: 0.19, blue: 0.36, alpha: 0.4)
+        titleLabel.textColor = UIColor(hexString: "#15315B", alpha: 0.4)
         titleLabel.font = UIFont(name: PingFangSCMedium, size: 14)
         addSubview(titleLabel)
 
         contentLabel = UILabel()
         contentLabel.numberOfLines = 1 // Display in a single line
         contentLabel.setContentCompressionResistancePriority(.required, for: .horizontal) // Required horizontal compression resistance
-        contentLabel.textColor = UIColor(red: 0.08, green: 0.19, blue: 0.36, alpha: 0.6)
+        contentLabel.textColor = UIColor(hexString: "#15315B", alpha: 0.6)
         contentLabel.font = UIFont(name: PingFangSCMedium, size: 14)
         addSubview(contentLabel)
     }

@@ -138,7 +138,7 @@ class ActivityCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         footer.setTitle("", for: .idle)
         footer.setTitle("正在加载...", for: .refreshing)
         footer.setTitle("已经加载到最底部", for: .noMoreData)
-        footer.stateLabel?.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.3)
+        footer.stateLabel?.textColor = UIColor(hexString: "#15315B", alpha: 0.3)
         collectionView.mj_footer = footer
     }
     

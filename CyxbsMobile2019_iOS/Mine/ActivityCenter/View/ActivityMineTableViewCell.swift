@@ -11,7 +11,7 @@ import UIKit
 class ActivityMineTableViewCell: UITableViewCell {
     
     lazy var coverImgView: UIImageView = {
-        let imageView = UIImageView(frame: CGRect(x: 16, y: 16, width: 101, height: 101))
+        let imageView = UIImageView(frame: CGRectMake(16, 16, 101, 101))
         imageView.layer.cornerRadius = 8
         imageView.layer.masksToBounds = true
         return imageView
@@ -39,14 +39,14 @@ class ActivityMineTableViewCell: UITableViewCell {
     
     let clockImgView: UIImageView = {
         let imgView = UIImageView()
-        imgView.frame = CGRect(x: 128, y: 102, width: 16, height: 16)
+        imgView.frame = CGRectMake(128, 102, 16, 16)
         imgView.image = UIImage(named: "activityTime")
         return imgView
     }()
     
     let startTimeLabel: UILabel = {
         let label = UILabel()
-        label.frame = CGRect(x: 149, y: 101, width: 94, height: 17)
+        label.frame = CGRectMake(149, 101, 94, 17)
         label.textAlignment = .left
         label.font = UIFont(name: PingFangSCMedium, size: 12)
         label.textColor = UIColor(hexString: "#15315B", alpha: 0.6)

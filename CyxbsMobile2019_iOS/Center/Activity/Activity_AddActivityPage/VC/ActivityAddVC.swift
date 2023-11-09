@@ -73,7 +73,7 @@ class ActivityAddVC: UIViewController,
     
     lazy var confirmButton: GradientButton = {
         let button = GradientButton()
-        button.frame = CGRect(x: (UIScreen.main.bounds.width - 315)/2, y: UIScreen.main.bounds.height - 86, width: 315, height: 51)
+        button.frame = CGRectMake((UIScreen.main.bounds.width - 315)/2, UIScreen.main.bounds.height - 86, 315, 51)
         button.setTitle("创建活动", for: .normal)
         button.titleLabel?.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
         button.titleLabel?.font = UIFont(name: PingFangSCSemibold, size: 18)
@@ -106,7 +106,7 @@ class ActivityAddVC: UIViewController,
                                                                             delay: 2,
                                                                             backGroundColor: UIColor(hexString: "#2a4e84"),
                                                                             cornerRadius: 18,
-                                                                            yOffset: CGFloat(-UIScreen.main.bounds.height * 0.5 + Constants.statusBarHeight) + 90) {
+                                                                            yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90) {
                                     self.popController()
                                 }
                             }
@@ -128,7 +128,7 @@ class ActivityAddVC: UIViewController,
                                                         delay: 2,
                                                         backGroundColor: UIColor(hexString: "#2a4e84"),
                                                         cornerRadius: 18,
-                                                        yOffset: CGFloat(-UIScreen.main.bounds.height * 0.5 + Constants.statusBarHeight) + 90)
+                                                        yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)
         }
         self.confirmButton.isEnabled = true
     }

@@ -26,7 +26,7 @@ class ActivityTypePickerVC: UIViewController, UIPickerViewDelegate, UIPickerView
     var activityType: ActivityTypeSelection?
     
     lazy var pickerView: UIPickerView = {
-        let pickerView = UIPickerView(frame: CGRect(x: 0, y: 10, width: UIScreen.main.bounds.width, height: 180))
+        let pickerView = UIPickerView(frame: CGRectMake(0, 10, UIScreen.main.bounds.width, 180))
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.showsSelectionIndicator = false
@@ -37,7 +37,7 @@ class ActivityTypePickerVC: UIViewController, UIPickerViewDelegate, UIPickerView
         var view = UIView()
         view.frame = CGRect(x: 16, y: 185, width: UIScreen.main.bounds.width - 32, height: 1)
         view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor(red: 0.165, green: 0.306, blue: 0.518, alpha: 0.1).cgColor
+        view.layer.borderColor = UIColor(hexString: "#2A4E84", alpha: 0.1).cgColor
         return view
     }()
     
@@ -52,20 +52,20 @@ class ActivityTypePickerVC: UIViewController, UIPickerViewDelegate, UIPickerView
         setView()
         // Add pickerView to the view
         contentView.addSubview(pickerView)
-        confirmButton = GradientButton(frame: CGRect(x: (UIScreen.main.bounds.width - 120) / 2, y: 203, width: 120, height: 40))
+        confirmButton = GradientButton(frame: CGRectMake((UIScreen.main.bounds.width - 120)/2, 203, 120, 40))
         confirmButton.setTitle("确定", for: .normal)
         confirmButton.titleLabel?.font = UIFont(name: PingFangSCSemibold, size: 18)
-        confirmButton.titleLabel?.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        confirmButton.titleLabel?.textColor = .white
         confirmButton.layer.cornerRadius = 20
         contentView.addSubview(confirmButton)
         confirmButton.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
-        cancelButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - 42, y: 15, width: 28, height: 20))
+        cancelButton = UIButton(frame: CGRectMake(UIScreen.main.bounds.width - 42, 15, 28, 20))
         cancelButton.setTitle("取消", for: .normal)
         cancelButton.titleLabel?.font = UIFont(name: PingFangSCMedium, size: 12)
-        cancelButton.setTitleColor(UIColor(red: 0.671, green: 0.71, blue: 0.769, alpha: 1), for: .normal)
+        cancelButton.setTitleColor(UIColor(hexString: "#ABB5C4", alpha: 1), for: .normal)
         cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         contentView.addSubview(cancelButton)
-        let indicatorImgView = UIImageView(frame: CGRect(x: 52, y: 96, width: 6, height: 8))
+        let indicatorImgView = UIImageView(frame: CGRectMake(52, 96, 6, 8))
         indicatorImgView.image = UIImage(named: "指示标")
         contentView.addSubview(indicatorImgView)
         contentView.addSubview(separator)
@@ -76,7 +76,7 @@ class ActivityTypePickerVC: UIViewController, UIPickerViewDelegate, UIPickerView
         contentView.transform = CGAffineTransform(translationX: 0, y: 285)
         contentView.transform = CGAffineTransform(translationX: 0, y: 285)
         UIView.animate(withDuration: 0.3) {
-            self.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.47)
+            self.view.backgroundColor = UIColor(hexString: "#000000", alpha: 0.47)
             self.contentView.transform = .identity
         }
         selectDefaultRows()
@@ -97,7 +97,7 @@ class ActivityTypePickerVC: UIViewController, UIPickerViewDelegate, UIPickerView
     
     @objc func cancelButtonTapped() {
         UIView.animate(withDuration: 0.3) {
-            self.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+            self.view.backgroundColor = .clear
             self.contentView.transform = .identity
             self.contentView.frame.origin.y = self.view.frame.height
         } completion: { _ in
@@ -110,7 +110,7 @@ class ActivityTypePickerVC: UIViewController, UIPickerViewDelegate, UIPickerView
         let selectedType = activityTypes[selectedRow]
         delegate?.didSelectActivityType(selectedType)
         UIView.animate(withDuration: 0.3) {
-            self.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+            self.view.backgroundColor = .clear
             self.contentView.transform = .identity
             self.contentView.frame.origin.y = self.view.frame.height
         } completion: { _ in
@@ -140,7 +140,7 @@ class ActivityTypePickerVC: UIViewController, UIPickerViewDelegate, UIPickerView
         } //去除选中行的默认背景
         let label = UILabel()
         label.text = activityTypes[row]
-        label.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 1)
+        label.textColor = UIColor(hexString: "#15315B", alpha: 1)
         label.textAlignment = .center
         label.font = UIFont(name: PingFangSCSemibold, size: 20)
         return label

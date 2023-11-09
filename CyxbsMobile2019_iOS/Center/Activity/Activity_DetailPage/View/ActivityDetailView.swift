@@ -98,7 +98,7 @@ class ActivityDetailView: UIView {
     lazy var organizerView: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 16, y: 24, width: 48, height: 22)
-        label.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.6)
+        label.textColor = UIColor(hexString: "#15315B", alpha: 0.6)
         label.font = UIFont(name: PingFangSCMedium, size: 16)
         label.text = "主办方"
         informationViews.append(label)
@@ -108,7 +108,7 @@ class ActivityDetailView: UIView {
     lazy var creatorView: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 16, y: 65, width: 48, height: 22)
-        label.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.6)
+        label.textColor = UIColor(hexString: "#15315B", alpha: 0.6)
         label.font = UIFont(name: PingFangSCMedium, size: 16)
         label.text = "创建者"
         informationViews.append(label)
@@ -118,7 +118,7 @@ class ActivityDetailView: UIView {
     lazy var registrationView:UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 16, y: 106, width: 64, height: 22)
-        label.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.6)
+        label.textColor = UIColor(hexString: "#15315B", alpha: 0.6)
         label.font = UIFont(name: PingFangSCMedium, size: 16)
         label.text = "报名方式"
         informationViews.append(label)
@@ -128,7 +128,7 @@ class ActivityDetailView: UIView {
     lazy var placeView: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 16, y: 147, width: 64, height: 22)
-        label.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.6)
+        label.textColor = UIColor(hexString: "#15315B", alpha: 0.6)
         label.font = UIFont(name: PingFangSCMedium, size: 16)
         label.text = "活动地点"
         informationViews.append(label)
@@ -138,7 +138,7 @@ class ActivityDetailView: UIView {
     lazy var informationView :UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 16, y: 199, width: 64, height: 22)
-        label.textColor = UIColor(red: 0.067, green: 0.173, blue: 0.329, alpha: 1)
+        label.textColor = UIColor(hexString: "#112C54", alpha: 1)
         label.font = UIFont(name: PingFangSCMedium, size: 16)
         label.text = "活动信息"
         return label
@@ -147,7 +147,7 @@ class ActivityDetailView: UIView {
     lazy var detailView: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 16, y: 305, width: 64, height: 22)
-        label.textColor = UIColor(red: 0.067, green: 0.173, blue: 0.329, alpha: 1)
+        label.textColor = UIColor(hexString: "#112C54", alpha: 1)
         label.font = UIFont(name: PingFangSCMedium, size: 16)
         label.text = "活动介绍"
         return label
@@ -155,7 +155,7 @@ class ActivityDetailView: UIView {
     
     lazy var organizerLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.8)
+        label.textColor = UIColor(hexString: "#15315B", alpha: 0.8)
         label.font = UIFont(name: PingFangSCMedium, size: 16)
         label.textAlignment = .right
         informationLabels.append(label)
@@ -164,7 +164,7 @@ class ActivityDetailView: UIView {
     
     lazy var creatorLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.8)
+        label.textColor = UIColor(hexString: "#15315B", alpha: 0.8)
         label.font = UIFont(name: PingFangSCMedium, size: 16)
         label.textAlignment = .right
         informationLabels.append(label)
@@ -173,7 +173,7 @@ class ActivityDetailView: UIView {
     
     lazy var registrationLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.8)
+        label.textColor = UIColor(hexString: "#15315B", alpha: 0.8)
         label.font = UIFont(name: PingFangSCMedium, size: 16)
         label.textAlignment = .right
         informationLabels.append(label)
@@ -182,7 +182,7 @@ class ActivityDetailView: UIView {
     
     lazy var placeLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(red: 0.29, green: 0.267, blue: 0.894, alpha: 0.7)
+        label.textColor = UIColor(hexString: "#4A44E4", alpha: 0.7)
         label.font = UIFont(name: PingFangSCMedium, size: 16)
         label.textAlignment = .right
         return label
@@ -191,7 +191,7 @@ class ActivityDetailView: UIView {
     lazy var startTimeView: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 16, y: 231, width: 56, height: 20)
-        label.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.6)
+        label.textColor = UIColor(hexString: "#15315B", alpha: 0.6)
         label.font = UIFont(name: PingFangSCMedium, size: 14)
         label.text = "开始时间"
         informationViews.append(label)
@@ -201,7 +201,7 @@ class ActivityDetailView: UIView {
     lazy var endTimeView: UILabel = {
         let label = UILabel()
         label.frame = CGRect(x: 16, y: 255, width: 56, height: 20)
-        label.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.6)
+        label.textColor = UIColor(hexString: "#15315B", alpha: 0.6)
         label.font = UIFont(name: PingFangSCMedium, size: 14)
         label.text = "结束时间"
         informationViews.append(label)
@@ -210,16 +210,16 @@ class ActivityDetailView: UIView {
     
     lazy var startTimeLabel: JustifiedLabel = {
         let label = JustifiedLabel()
-        label.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.8)
-        label.font = UIFont(name: PingFangSCMedium, size: 14)
+        label.textColor = UIColor(hexString: "#15315B", alpha: 0.8)
+        label.font = UIFont(name: "PingFangSC-Medium", size: 14)
         informationLabels.append(label)
         return label
     }()
     
     lazy var endTimeLabel: JustifiedLabel = {
         let label = JustifiedLabel()
-        label.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.8)
-        label.font = UIFont(name: PingFangSCMedium, size: 14)
+        label.textColor = UIColor(hexString: "#15315B", alpha: 0.8)
+        label.font = UIFont(name: "PingFangSC-Medium", size: 14)
         informationLabels.append(label)
         return label
     }()
@@ -232,8 +232,8 @@ class ActivityDetailView: UIView {
     
     lazy var detailLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor(red: 0.067, green: 0.173, blue: 0.329, alpha: 0.4)
-        label.font = UIFont(name: PingFangSCMedium, size: 14)
+        label.textColor = UIColor(hexString: "#112C54", alpha: 0.4)
+        label.font = UIFont(name: "PingFangSC-Medium", size: 14)
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         return label

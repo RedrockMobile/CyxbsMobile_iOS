@@ -42,7 +42,7 @@ class ActivityDatePickerVC: UIViewController, UIPickerViewDelegate, UIPickerView
     
     
     lazy var pickerView: UIPickerView = {
-        let pickerView = UIPickerView(frame: CGRect(x: 40, y: 10, width: UIScreen.main.bounds.width - 56, height: 180))
+        let pickerView = UIPickerView(frame: CGRectMake(40, 10, UIScreen.main.bounds.width - 56, 180))
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.showsSelectionIndicator = false
@@ -53,7 +53,7 @@ class ActivityDatePickerVC: UIViewController, UIPickerViewDelegate, UIPickerView
         var view = UIView()
         view.frame = CGRect(x: 16, y: 185, width: UIScreen.main.bounds.width - 32, height: 1)
         view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor(red: 0.165, green: 0.306, blue: 0.518, alpha: 0.1).cgColor
+        view.layer.borderColor = UIColor(hexString: "#2A4E84", alpha: 0.1).cgColor
         return view
     }()
     
@@ -73,20 +73,20 @@ class ActivityDatePickerVC: UIViewController, UIPickerViewDelegate, UIPickerView
         setView()
         // Add pickerView to the view
         contentView.addSubview(pickerView)
-        confirmButton = GradientButton(frame: CGRect(x: (UIScreen.main.bounds.width - 120) / 2, y: 203, width: 120, height: 40))
+        confirmButton = GradientButton(frame: CGRectMake((UIScreen.main.bounds.width - 120)/2, 203, 120, 40))
         confirmButton.setTitle("确定", for: .normal)
         confirmButton.titleLabel?.font = UIFont(name: PingFangSCSemibold, size: 18)
-        confirmButton.titleLabel?.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1)
+        confirmButton.titleLabel?.textColor = .white
         confirmButton.layer.cornerRadius = 20
         contentView.addSubview(confirmButton)
         confirmButton.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
-        cancelButton = UIButton(frame: CGRect(x: UIScreen.main.bounds.width - 42, y: 15, width: 28, height: 20))
+        cancelButton = UIButton(frame: CGRectMake(UIScreen.main.bounds.width - 42, 15, 28, 20))
         cancelButton.setTitle("取消", for: .normal)
         cancelButton.titleLabel?.font = UIFont(name: PingFangSCMedium, size: 12)
-        cancelButton.setTitleColor(UIColor(red: 0.671, green: 0.71, blue: 0.769, alpha: 1), for: .normal)
+        cancelButton.setTitleColor(UIColor(hexString: "#ABB5C4", alpha: 1), for: .normal)
         cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
         contentView.addSubview(cancelButton)
-        let indicatorImgView = UIImageView(frame: CGRect(x: 35, y: 96, width: 6, height: 8))
+        let indicatorImgView = UIImageView(frame: CGRectMake(35, 96, 6, 8))
         indicatorImgView.image = UIImage(named: "指示标")
         contentView.addSubview(indicatorImgView)
         contentView.addSubview(separator)
@@ -96,7 +96,7 @@ class ActivityDatePickerVC: UIViewController, UIPickerViewDelegate, UIPickerView
         super.viewWillAppear(animated)
         contentView.transform = CGAffineTransform(translationX: 0, y: 285)
         UIView.animate(withDuration: 0.3) {
-            self.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.47)
+            self.view.backgroundColor = UIColor(hexString: "#000000", alpha: 0.47)
             self.contentView.transform = .identity
         }
         selectDefaultRows()
@@ -119,7 +119,7 @@ class ActivityDatePickerVC: UIViewController, UIPickerViewDelegate, UIPickerView
         UIView.animate(withDuration: 0.3) {
             self.contentView.transform = .identity
             self.contentView.frame.origin.y = self.view.frame.height
-            self.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+            self.view.backgroundColor = .clear
         } completion: { _ in
             // After the animation completes, remove contentView from the view hierarchy
             self.dismiss(animated: false, completion: nil)
@@ -143,7 +143,7 @@ class ActivityDatePickerVC: UIViewController, UIPickerViewDelegate, UIPickerView
             UIView.animate(withDuration: 0.3) {
                 self.contentView.transform = .identity
                 self.contentView.frame.origin.y = self.view.frame.height
-                self.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+                self.view.backgroundColor = .clear
             } completion: { _ in
                 self.dismiss(animated: false, completion: nil)
             }
@@ -247,7 +247,7 @@ class ActivityDatePickerVC: UIViewController, UIPickerViewDelegate, UIPickerView
         default:
             label.text = nil
         }
-        label.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 1)
+        label.textColor = UIColor(hexString: "#15315B", alpha: 1)
         label.textAlignment = .center
         label.font = UIFont(name: PingFangSCSemibold, size: 20)
         return label

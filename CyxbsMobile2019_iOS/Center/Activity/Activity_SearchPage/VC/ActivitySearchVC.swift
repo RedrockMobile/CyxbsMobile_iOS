@@ -17,7 +17,7 @@ class ActivitySearchVC: UIViewController, UITableViewDataSource, UITableViewDele
     var detailParagraphStyle = NSMutableParagraphStyle()
     
     override func viewDidLoad() {
-        view.backgroundColor = UIColor(red: 0.984, green: 0.988, blue: 1, alpha: 1)
+        view.backgroundColor = UIColor(hexString: "#FAFBFF", alpha: 1)
         view.addSubview(backButton)
         view.addSubview(searchTextField)
         view.addSubview(searchButton)
@@ -66,7 +66,7 @@ class ActivitySearchVC: UIViewController, UITableViewDataSource, UITableViewDele
     
     //活动类型选择bar
     lazy var selectBar: ActivitySelectBar = {
-        let selectBar = ActivitySelectBar(frame: CGRect(x: 0, y: UIApplication.shared.statusBarFrame.height + 39, width: view.bounds.width, height: 51))
+        let selectBar = ActivitySelectBar(frame: CGRectMake(0, UIApplication.shared.statusBarFrame.height+39, view.bounds.width, 51))
         selectBar.buttons.forEach({ button in
             button.addTarget(self, action: #selector(catagoryButtonTapped(_:)), for: .touchUpInside)
         })
@@ -75,7 +75,7 @@ class ActivitySearchVC: UIViewController, UITableViewDataSource, UITableViewDele
     
     //活动展示tableView
     lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: CGRect(x: 0, y: UIApplication.shared.statusBarFrame.height + 106, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - UIApplication.shared.statusBarFrame.height - 106))
+        let tableView = UITableView(frame: CGRectMake(0, UIApplication.shared.statusBarFrame.height + 106, UIScreen.main.bounds.width, UIScreen.main.bounds.height - UIApplication.shared.statusBarFrame.height - 106))
         tableView.backgroundColor = .white
         tableView.register(ActivitySearchTableViewCell.self, forCellReuseIdentifier: "searchCell")
         tableView.separatorStyle = .none

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MJRefresh
 import JXSegmentedView
 
 class ActivityAdminReviewedVC: UIViewController, UITableViewDataSource, UITableViewDelegate {

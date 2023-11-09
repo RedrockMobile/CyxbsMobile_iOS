@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 
 struct AdminResponseData: Codable {
-    var data: AdminDataItem
+    var data: AdminDataItem?
     var info: String
     var status: Int
 }
@@ -24,12 +24,12 @@ extension AdminResponseData {
 }
 
 struct AdminDataItem: Codable {
-    var admin: Bool
+    var admin: Bool?
 }
 
 extension AdminDataItem {
     init(from json: JSON) {
-        admin = json["admin"].bool!
+        admin = json["admin"].bool
     }
 }
 

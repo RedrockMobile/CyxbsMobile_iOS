@@ -34,7 +34,7 @@ class ActivityMainViewController: UIViewController {
     // MARK: - 懒加载
     //顶部视图
     lazy var topView: ActivityTopView = {
-        let topView = ActivityTopView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 112 + UIApplication.shared.statusBarFrame.height))
+        let topView = ActivityTopView(frame: CGRectMake(0, 0, view.bounds.width, 112+UIApplication.shared.statusBarFrame.height))
         topView.backButton.addTarget(self, action: #selector(popController), for: .touchUpInside)
         topView.searchButton.addTarget(self, action: #selector(pushSearchVC), for: .touchUpInside)
         topView.addActivityButton.addTarget(self, action: #selector(pushAddVC), for: .touchUpInside)
@@ -91,7 +91,7 @@ class ActivityMainViewController: UIViewController {
             switch response {
             case .success(let jsonData):
                 let adminResponseData = AdminResponseData(from: jsonData)
-                if (adminResponseData.data.admin) {
+                if (adminResponseData.data?.admin ?? false) {
                     self.topView.adAdminButton()
                 }
                 break
@@ -108,16 +108,16 @@ class ActivityMainViewController: UIViewController {
         segmentedDataSource = JXSegmentedActivityCustomDataSource()
         segmentedDataSource.titles = ["全部","文娱活动","体育活动","教育活动"]
         segmentedDataSource.titleNormalFont = UIFont(name: PingFangSCMedium, size: 14)!
-        segmentedDataSource.titleNormalColor = UIColor(red: 0.165, green: 0.306, blue: 0.518, alpha: 0.5)
-        segmentedDataSource.titleSelectedColor = UIColor(red: 0.31, green: 0.29, blue: 0.914, alpha: 1)
+        segmentedDataSource.titleNormalColor = UIColor(hexString: "#2A4E84", alpha: 0.5)
+        segmentedDataSource.titleSelectedColor = UIColor(hexString: "#4F4AE9", alpha: 1)
         segmentedDataSource.isTitleColorGradientEnabled = true
         segmentedDataSource.isBackGroundColorGradientEnabled = true
         segmentedDataSource.isItemSpacingAverageEnabled = true
         segmentedDataSource.itemWidthIncrement = 28
         segmentedDataSource.itemSpacing = 12
         segmentedDataSource.cornerRadius = 15
-        segmentedDataSource.backGroundNormalColor = UIColor(red: 0.37, green: 0.48, blue: 0.64, alpha: 0.05)
-        segmentedDataSource.backGroundSelectedColor = UIColor(red: 0.32, green: 0.305, blue: 0.93, alpha: 0.1)
+        segmentedDataSource.backGroundNormalColor = UIColor(hexString: "#5F7AA2", alpha: 0.05)
+        segmentedDataSource.backGroundSelectedColor = UIColor(hexString: "#514DED", alpha: 0.1)
         segmentedView.delegate = self
         segmentedView.dataSource = segmentedDataSource
         //不需要配置指示器，这里仅改变backgroundcolor

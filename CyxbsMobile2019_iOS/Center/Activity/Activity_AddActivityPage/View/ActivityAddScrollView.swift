@@ -216,10 +216,10 @@ class ActivityAddScrollView: UIScrollView {
         let attributedPlaceholder = NSMutableAttributedString(string: "关于活动的简介(不超过100个字）")
 
         // 设置字体
-        if let customFont = UIFont(name: PingFangSCMedium, size: 14) {
+        if let customFont = UIFont(name: "PingFangSC-Medium", size: 14) {
             attributedPlaceholder.addAttribute(.font, value: customFont, range: NSRange(location: 0, length: 7))
         }
-        if let customFont = UIFont(name: PingFangSCMedium, size: 12) {
+        if let customFont = UIFont(name: "PingFangSC-Medium", size: 12) {
             attributedPlaceholder.addAttribute(.font, value: customFont, range: NSRange(location: 7, length: 10))
         }
         // 设置颜色

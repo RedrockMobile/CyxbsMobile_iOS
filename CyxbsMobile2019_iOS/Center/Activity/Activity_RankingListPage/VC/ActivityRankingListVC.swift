@@ -45,14 +45,14 @@ class ActivityRankingListVC: UIViewController, UITableViewDataSource, UITableVie
     
     //顶部“排行榜”字样图片
     lazy var topImgView: UIImageView = {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 198))
+        let imageView = UIImageView(frame: CGRectMake(0, 0, UIScreen.main.bounds.width, 198))
         imageView.image = UIImage(named: "排行榜")
         return imageView
     }()
     
     //排行榜tableView
     lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: CGRect(x: 0, y: 26, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - 210))
+        let tableView = UITableView(frame: CGRectMake(0, 26, UIScreen.main.bounds.width, UIScreen.main.bounds.height-210))
         tableView.register(ActivityHitTableViewCell.self, forCellReuseIdentifier: "hitCell")
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
@@ -65,14 +65,14 @@ class ActivityRankingListVC: UIViewController, UITableViewDataSource, UITableVie
     
     func setContentView() {
         contentView = UIView()
-        contentView.frame = CGRect(x: 0, y: 184, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        contentView.frame = CGRectMake(0, 184, UIScreen.main.bounds.width, UIScreen.main.bounds.height)
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 18
         view.addSubview(contentView)
         let shadowPath0 = UIBezierPath(roundedRect: contentView.bounds, cornerRadius: 18)
         let layer0 = CALayer()
         layer0.shadowPath = shadowPath0.cgPath
-        layer0.shadowColor = UIColor(red: 0.176, green: 0.325, blue: 0.553, alpha: 0.03).cgColor
+        layer0.shadowColor = UIColor(hexString: "#2C528D",alpha: 0.03).cgColor
         layer0.shadowOpacity = 1
         layer0.shadowRadius = 101
         layer0.shadowOffset = CGSize(width: 0, height: 13)
