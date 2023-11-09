@@ -333,7 +333,8 @@ UICollectionViewDelegateFlowLayout
 
 - (void)getInfo {
     popFoodResultVC *vc = [[popFoodResultVC alloc] init];
-    vc.praiseBlock = ^(NSString *_Nonnull foodNameText, BOOL isPraise) {
+    vc.praiseBlock = ^(NSInteger praiseNum, BOOL isPraise) {
+        self.resultModel.dataArr[self.foodNum].praise_num = praiseNum;
         self.resultModel.dataArr[self.foodNum].praise_is = isPraise;
     };
     vc.foodNameText = self.resultModel.dataArr[self.foodNum].name;

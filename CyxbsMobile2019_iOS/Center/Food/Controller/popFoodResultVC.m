@@ -172,11 +172,11 @@
 }
 
 - (void)praiseFood {
-    [self.praiseModel getName:_foodNameText requestSuccess:^{
+    [self.praiseModel getName:self.foodNameText requestSuccess:^{
         if (self.praiseModel.status == 10000) {
             self.praiseNum = self.praiseModel.praise_num;
             self.isPraise = self.praiseModel.praise_is;
-            self->_praiseBlock(self.foodNameText, self.isPraise);
+            self->_praiseBlock( self.praiseNum ,self.isPraise);
         }
     } failure:^(NSError * _Nonnull error) {
         NSLog(@"美食点赞失败");

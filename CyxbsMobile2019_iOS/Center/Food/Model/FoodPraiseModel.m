@@ -13,7 +13,7 @@
 
 - (void)getName:(NSString *)name requestSuccess:(void (^)(void))success failure:(void (^)(NSError *_Nonnull))failure {
     NSDictionary *paramters = @{
-            @"name": @"千喜鹤烤盘饭"
+        @"name": name
     };
 
     [HttpTool.shareTool
@@ -27,9 +27,9 @@
         self.status = [object[@"status"] intValue];
         if (self.status == 10000) {
             NSDictionary *data = object[@"data"];
-            self.name = [data[@"name"] stringValue];
-            self.pictureURL = [data[@"picture"] stringValue];
-            self.introduce = [data[@"introduce"] stringValue];
+            self.name = [NSString stringWithFormat:@"%@", data[@"name"]];
+            self.pictureURL = [NSString stringWithFormat:@"%@", data[@"picture"]];
+            self.introduce = [NSString stringWithFormat:@"%@", data[@"introduce"]];
             self.praise_num = [data[@"praise_num"] intValue];
             self.praise_is = [data[@"praise_is"] boolValue];
         }
@@ -43,18 +43,6 @@
             failure(error);
         }
     }];
-}
-
-- (instancetype)initWithDictionary:(NSDictionary *)data {
-    self = [super init];
-    if (self) {
-        self.name = [data[@"name"] stringValue];
-        self.pictureURL = [data[@"picture"] stringValue];
-        self.introduce = [data[@"introduce"] stringValue];
-        self.praise_num = [data[@"praise_num"] intValue];
-        self.praise_is = [data[@"praise_is"] boolValue];
-    }
-    return self;
 }
 
 @end

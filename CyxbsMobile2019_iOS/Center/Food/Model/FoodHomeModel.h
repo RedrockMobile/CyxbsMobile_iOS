@@ -26,9 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 //餐饮特征，返回数量固定八个
 @property (nonatomic, copy) NSArray *eat_propertyAry;
 
-/// Item数据传递
-//@property (nonatomic, strong, nonnull) SportAttendanceItemModel *sAItemModel;
-
 /// 网络请求
 - (void)requestSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 
