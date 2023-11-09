@@ -7,11 +7,9 @@
 //
 
 import UIKit
-//import RYAngelWalker
+import RYAngelWalker
 
 class TabBarHeaderView: UIView {
-    
-    /*
     
     var spaceForItems: CGFloat { 16 }
     
@@ -27,7 +25,6 @@ class TabBarHeaderView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        stop()
     }
     
     override func layoutSubviews() {
@@ -37,27 +34,21 @@ class TabBarHeaderView: UIView {
     
     // MARK: Method
     
-    func stop() {
-        titleLab.stop()
-        placeLab.stop()
-    }
-    
     func handle_viewWillAppear() {
         titleLab.walk()
         placeLab.walk()
     }
     
     func updateData(title: String?, time: String?, place: String?) {
-        titleLab.stop()
-        titleLab.removeAll()
-        titleLab.add(title)
+        
+        titleLab.setup { aLab in
+            aLab.text = title
+        }
         titleLab.walk()
-        
         timeLab.text = time
-        
-        placeLab.stop()
-        placeLab.removeAll()
-        placeLab.add(place)
+        placeLab.setup { aLab in
+            aLab.text = place
+        }
         placeLab.walk()
         
         updateUI()
@@ -101,15 +92,18 @@ class TabBarHeaderView: UIView {
         return bar
     }()
     
-//    lazy var titleLab: TrotingLabel = {
-//        let lab = TrotingLabel(frame: CGRect(x: spaceForItems, y: 16, width: bounds.width / 2 - 2 * spaceForItems, height: 22))
-//        lab.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
-//        lab.font = .systemFont(ofSize: 18, weight: .bold)
-//        lab.textColor = .ry(light: "#15315B", dark: "#F0F0F2")
-//        lab.pause = 2
-//        lab.add("查找课表中...")
-//        return lab
-//    }()
+    lazy var titleLab: TrotingLabel = {
+        let lab = TrotingLabel(contentWidth: bounds.width / 2 - 2 * spaceForItems)
+        lab.frame.origin = CGPoint(x: spaceForItems, y: 16)
+        lab.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleTopMargin, .flexibleBottomMargin]
+        lab.setup { aLab in
+            aLab.font = .systemFont(ofSize: 18, weight: .bold)
+            aLab.textColor = .ry(light: "#15315B", dark: "#F0F0F2")
+            aLab.text = "查找课表中..."
+        }
+        
+        return lab
+    }()
     
     lazy var timeImgView: UIImageView = {
         let imgView = createImgView(imageName: "TabBar_place")
@@ -139,11 +133,15 @@ class TabBarHeaderView: UIView {
     lazy var placeLab: TrotingLabel = {
         let x = placeImgView.frame.maxX + 3
         let width = bounds.width - x - spaceForItems
-        let lab = TrotingLabel(frame: CGRect(x: x, y: 0, width: width, height: timeLab.bounds.height))
+        let lab = TrotingLabel(contentWidth: width)
+        lab.frame.origin = CGPoint(x: x, y: 0)
         lab.center.y = bounds.height / 2
-        lab.font = .systemFont(ofSize: 12)
-        lab.textColor = .ry(light: "#15315B", dark: "#FFFFFF")
-        lab.add("课程地点...")
+        lab.setup { aLab in
+            aLab.font = .systemFont(ofSize: 12)
+            aLab.textColor = .ry(light: "#15315B", dark: "#FFFFFF")
+            aLab.text = "课程地点..."
+        }
+        
         return lab
     }()
     
@@ -157,5 +155,4 @@ class TabBarHeaderView: UIView {
         imgView.image = image
         return imgView
     }
-     */
 }

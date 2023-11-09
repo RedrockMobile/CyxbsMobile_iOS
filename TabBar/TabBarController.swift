@@ -19,17 +19,11 @@ open class TabBarController: UITabBarController {
         setupLogin()
     }
     
-    open override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-//        tabBar.ryTabBar?.headerView.handle_viewWillAppear()
-    }
+    lazy var finderVC = RYFinderViewController()
     
-    lazy var finderVC = UIViewController()
+    lazy var carnieVC = RYCarnieViewController()
     
-    lazy var carnieVC = UIViewController()
-    
-    lazy var mineVC = UIViewController()
+    lazy var mineVC = MineViewController()
 }
 
 // MARK: reload
@@ -40,17 +34,17 @@ extension TabBarController {
      会判断缓存，没缓存走请求法
      */
     func reloadData() {
-//        if let sno = UserModel.defualt.token?.stuNum,
-//           var scheduleModel = CacheManager.shared.getCodable(ScheduleModel.self, in: .schedule(sno: sno)) {
-//
-//            let date = UserDefaultsManager.shared.latestRequestDate ?? Date()
-//            let days = Calendar.current.dateComponents([.day], from: Date(), to: date).day ?? 0
-//            scheduleModel.nowWeek += days / 7
-//
-//            reloadWith(scheduleModel: scheduleModel)
-//        } else {
-//            request()
-//        }
+        if let sno = UserModel.defualt.token?.stuNum,
+           var scheduleModel = CacheManager.shared.getCodable(ScheduleModel.self, in: .schedule(sno: sno)) {
+
+            let date = UserDefaultsManager.shared.latestRequestDate ?? Date()
+            let days = Calendar.current.dateComponents([.day], from: Date(), to: date).day ?? 0
+            scheduleModel.nowWeek += days / 7
+
+            reloadWith(scheduleModel: scheduleModel)
+        } else {
+            request()
+        }
         
         reloadSubControllers()
     }
@@ -59,43 +53,43 @@ extension TabBarController {
      一般来说不主动掉用
      */
     func request() {
-//        if let sno = UserModel.defualt.token?.stuNum {
-//            ScheduleModel.request(sno: sno) { model in
-//                if let model {
-//                    UserDefaultsManager.shared.latestRequestDate = Date()
-//                    self.reloadWith(scheduleModel: model)
-//                } else {
-//                    self.reloadTabBarData(title: "网络连接失败", time: "请连接网络", place: "或开启流量")
-//                }
-//            }
-//        }
+        if let sno = UserModel.defualt.token?.stuNum {
+            ScheduleModel.request(sno: sno) { model in
+                if let model {
+                    UserDefaultsManager.shared.latestRequestDate = Date()
+                    self.reloadWith(scheduleModel: model)
+                } else {
+                    self.reloadTabBarData(title: "网络连接失败", time: "请连接网络", place: "或开启流量")
+                }
+            }
+        }
     }
     
     /* 根据数据源刷新
      给定一个ScheduleModel进行刷新
      */
-//    func reloadWith(scheduleModel: ScheduleModel) {
-//        if scheduleModel.customType == .system {
-//            UserModel.defualt.start = scheduleModel.start
-//        }
-//        
-//        let calModels = scheduleModel.calModels
-//        if let cur = ScheduleModel.calCourseWillBeTaking(with: calModels) {
-//            reloadTabBarData(title: cur.curriculum.course, time: cur.time, place: cur.curriculum.classRoom)
-//        } else {
-//            reloadTabBarData(title: "今天已经没课了", time: "好好休息吧", place: "明天新一天")
-//        }
-//    }
+    func reloadWith(scheduleModel: ScheduleModel) {
+        if scheduleModel.customType == .system {
+            UserModel.defualt.start = scheduleModel.start
+        }
+        
+        let calModels = scheduleModel.calModels
+        if let cur = ScheduleModel.calCourseWillBeTaking(with: calModels) {
+            reloadTabBarData(title: cur.curriculum.course, time: cur.time, place: cur.curriculum.classRoom)
+        } else {
+            reloadTabBarData(title: "今天已经没课了", time: "好好休息吧", place: "明天新一天")
+        }
+    }
     
     /* 直接赋值法
      一般用于错误信息的时候可以直接赋值，不用掉用一堆API
      */
     func reloadTabBarData(title: String?, time: String?, place: String?) {
-//        tabBar.ryTabBar?.headerView.updateData(title: title, time: time, place: place)
+        tabBar.ryTabBar?.headerView.updateData(title: title, time: time, place: place)
     }
     
     func reloadSubControllers() {
-//        finderVC.reloadData()
+        finderVC.reloadData()
     }
 }
 
@@ -125,18 +119,18 @@ extension TabBarController {
     }
     
     func setupLogin() {
-//        LoginViewController.check { shouldPresent, optionVC in
-//            if shouldPresent, let vc = optionVC {
-//                let nav = self.createVC(root: vc)
-//                nav.modalPresentationStyle = .fullScreen
-//                self.present(nav, animated: true)
-//            } else {
-//                self.reloadData()
-//                if UserDefaultsManager.shared.presentScheduleWhenOpenApp {
-//                    self.presentSchedule()
-//                }
-//            }
-//        }
+        RYLoginViewController.check { shouldPresent, optionVC in
+            if shouldPresent, let vc = optionVC {
+                let nav = self.createVC(root: vc)
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true)
+            } else {
+                self.reloadData()
+                if UserDefaultsManager.shared.presentScheduleWhenOpenApp {
+                    self.presentSchedule()
+                }
+            }
+        }
     }
 }
 

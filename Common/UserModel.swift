@@ -23,6 +23,15 @@ struct UserModel: Codable {
             if let token {
                 CacheManager.shared.cache(codable: token, in: .token)
                 SessionManager.shared.token = token.token
+                
+                let item = UserItemTool.defaultItem()
+                item.stuNum = token.stuNum
+                item.gender = token.gender
+                item.redid = token.redid
+                item.exp = "\(token.exp)"
+                item.iat = "\(token.iat)"
+                item.token = token.token
+                item.refreshToken = token.refreshToken
             }
         }
     }

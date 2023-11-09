@@ -44,6 +44,8 @@ extension AppDelegate {
     
     func setupAlicloudSDK() {
         AliyunConfig.ip(byHost: APIConfig.current.environment.host)
+        let baseURL = APIConfig.current.environment.url + "/"
+        UserDefaultsManager.shared.set(baseURL, forKey: "baseURL")
     }
     
     func setupEnd() {

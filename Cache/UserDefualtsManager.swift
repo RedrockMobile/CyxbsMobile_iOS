@@ -29,11 +29,11 @@ class UserDefaultsManager {
 
 extension UserDefaultsManager {
     
-    private func set(_ obj: Any?, forKey key: String) {
+    public func set(_ obj: Any?, forKey key: String) {
         userDefaults.set(obj, forKey: key)
     }
     
-    private func get(key: String) -> Any? {
+    public func get(key: String) -> Any? {
         userDefaults.object(forKey: key)
     }
 }

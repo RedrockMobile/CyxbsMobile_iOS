@@ -396,3 +396,17 @@ typedef NS_ENUM(NSInteger, ScheduleType) {
 
 //记录最后一次登录的时间戳，类型是Double，用来避免后端出问题后的强制退出登录
 #define LastLogInTimeKey_double @"LastLogInTimeKey_TimeInterval"
+
+
+#import "UserItem.h"
+#import "MineMessageVC.h"
+#import "CheckInViewController.h"
+#import "ScheduleInquiryViewController.h"
+#import "SchoolBusVC.h"
+#import "CalendarViewController.h"
+#import "CQUPTMapViewController.h"
+#import "TODOMainViewController.h"
+#import "FinderToolViewController.h"
+#import "FoodVC.h"
+#import "MineViewController.h"
+#import "ElectricViewController.h"

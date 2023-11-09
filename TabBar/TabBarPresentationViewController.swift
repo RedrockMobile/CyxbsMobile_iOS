@@ -15,7 +15,7 @@ class TabBarPresentationViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-//        addChild(scheduleVC)
+        addChild(scheduleVC)
     }
     
     required init?(coder: NSCoder) {
@@ -28,25 +28,25 @@ class TabBarPresentationViewController: UIViewController {
         view.clipsToBounds = true
         view.backgroundColor = .clear
         
-//        scheduleVC.view.layer.cornerRadius = 16
-//        scheduleVC.collectionView.frame.size.height -= Constants.statusBarHeight
-//        view.addSubview(scheduleVC.view)
-//        
-//        let pan = UIPanGestureRecognizer(target: self, action: #selector(response(pan:)))
-//        scheduleVC.headerView.addGestureRecognizer(pan)
+        scheduleVC.view.layer.cornerRadius = 16
+        scheduleVC.collectionView.frame.size.height -= Constants.statusBarHeight
+        view.addSubview(scheduleVC.view)
+        
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(response(pan:)))
+        scheduleVC.headerView.addGestureRecognizer(pan)
     }
     
     
-//    lazy var scheduleVC: ScheduleViewController = {
-//        let vc = ScheduleViewController()
-//        if let mainSno = UserModel.defualt.token?.stuNum {
-//            vc.uuidToPriority = [
-//                .init(sno: mainSno, customType: .system): .mainly,
-//                .init(sno: mainSno, customType: .custom): .custom
-//            ]
-//        }
-//        return vc
-//    }()
+    lazy var scheduleVC: RYScheduleViewController = {
+        let vc = RYScheduleViewController()
+        if let mainSno = UserModel.defualt.token?.stuNum {
+            vc.uuidToPriority = [
+                .init(sno: mainSno, customType: .system): .mainly,
+                .init(sno: mainSno, customType: .custom): .custom
+            ]
+        }
+        return vc
+    }()
 }
 
 extension TabBarPresentationViewController {
@@ -71,7 +71,7 @@ extension TabBarPresentationViewController {
                 from.view.frame.size.height = headerView.bounds.height
                 headerView.alpha = 1
                 if let presentationVC = from as? TabBarPresentationViewController {
-//                    presentationVC.scheduleVC.headerView.alpha = 0
+                    presentationVC.scheduleVC.headerView.alpha = 0
                 }
             }
         }
