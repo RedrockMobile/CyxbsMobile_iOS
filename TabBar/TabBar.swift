@@ -52,10 +52,15 @@ class TabBar: UITabBar {
         }
     }
     
+    var originMaxHeight: CGFloat = 0
+    
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         var sizeThatFits = super.sizeThatFits(size)
+        originMaxHeight = max(originMaxHeight, sizeThatFits.height)
         if !isHeaderViewHidden {
-            sizeThatFits.height += heightForMoreSpace
+            sizeThatFits.height = originMaxHeight + heightForMoreSpace
+        } else {
+            sizeThatFits.height = originMaxHeight
         }
         return sizeThatFits
     }

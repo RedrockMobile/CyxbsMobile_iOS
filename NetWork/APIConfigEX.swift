@@ -15,7 +15,9 @@ extension APIConfig {
         // IP 直连
         let host = environment.host
         if let ip = AliyunConfig.ip(byHost: host) {
-            ipToHost[ip] = host
+            DispatchQueue.global().async { [weak self] in
+                self?.ipToHost[ip] = host
+            }
             return "https://" + ip + api
         }
         

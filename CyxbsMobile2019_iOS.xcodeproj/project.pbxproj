@@ -2599,13 +2599,6 @@
 			path = Banner;
 			sourceTree = "<group>";
 		};
-		14F6F5342AFB8CDA007C7CA6 /* Curriculum Details */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Curriculum Details";
-			sourceTree = "<group>";
-		};
 		14F6F5352AFB8CDA007C7CA6 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -3386,7 +3379,6 @@
 				14F6F4CE2AFB8171007C7CA6 /* AppDelegate.swift */,
 				14F6F53E2AFB8CDA007C7CA6 /* Carnie */,
 				14F6F5002AFB8CDA007C7CA6 /* Curriculum */,
-				14F6F5342AFB8CDA007C7CA6 /* Curriculum Details */,
 				14F6F5222AFB8CDA007C7CA6 /* Finder */,
 				14F6F5352AFB8CDA007C7CA6 /* Login */,
 				18CDF4D4257F91BC006E8E5C /* Discover */,

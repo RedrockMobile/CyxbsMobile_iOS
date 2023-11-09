@@ -38,9 +38,7 @@
 + (void)logout {
     LoginVC *loginVC = [[LoginVC alloc] init];
     loginVC.modalPresentationStyle = UIModalPresentationFullScreen;
-//    LoginViewController *loginVC = [[LoginViewController alloc] init];
-//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:loginVC];
-//    navController.modalPresentationStyle = UIModalPresentationFullScreen;
+
     UITabBarController *tabBarVC = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
     if (tabBarVC.presentedViewController) {
         [tabBarVC dismissViewControllerAnimated:YES completion:^{

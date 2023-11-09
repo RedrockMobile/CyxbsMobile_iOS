@@ -8,14 +8,19 @@
 
 #import "AliyunConfig.h"
 #import <AlicloudHttpDNS/AlicloudHttpDNS.h>
+#import <掌上重邮-Swift.h>
 
 static HttpDnsService *httpdns = nil;
 
 @implementation AliyunConfig
 
 + (NSString *)ipByHost:(NSString *)host {
-    NSString *res = [[AliyunConfig getHttpDNS] getIpByHostAsyncInURLFormat:host];
-    return res;
+    id res = [[AliyunConfig getHttpDNS] performSelector:@selector(getIpByHostAsyncInURLFormat:) withObject:host];
+    if ([res isKindOfClass:NSString.class]) {
+        return (NSString *)res;
+    } else {
+        return nil;
+    }
 }
 
 + (HttpDnsService *)getHttpDNS {

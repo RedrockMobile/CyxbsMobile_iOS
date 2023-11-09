@@ -215,7 +215,7 @@ extension TabBarController {
                 to.view.frame.size.height = copyHeader.bounds.height
                 to.view.addSubview(copyHeader)
                 if let presentationVC = to as? TabBarPresentationViewController {
-//                    presentationVC.scheduleVC.headerView.alpha = 0
+                    presentationVC.scheduleVC.headerView.alpha = 0
                 }
             }
             transition.finishAnimationAction = { context in
@@ -225,7 +225,7 @@ extension TabBarController {
                 to.view.frame.size.height = height
                 to.view.subviews.last?.alpha = 0
                 if let presentationVC = to as? TabBarPresentationViewController {
-//                    presentationVC.scheduleVC.headerView.alpha = 1
+                    presentationVC.scheduleVC.headerView.alpha = 1
                 }
             }
             transition.completionAnimationAction = { context in
