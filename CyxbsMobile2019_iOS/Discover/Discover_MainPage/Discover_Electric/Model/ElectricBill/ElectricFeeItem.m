@@ -18,7 +18,12 @@
             self.money = [NSString stringWithFormat:@"%@.%@", dict[@"elec_inf"][@"elec_cost"][0], dict[@"elec_inf"][@"elec_cost"][1]];
         }
         
-        self.buildAndRoom = [NSString stringWithFormat:@"%@", [dict[@"elec_inf"][@"room"] stringValue]];
+        id room = dict[@"elec_inf"][@"room"];
+        if ([room isKindOfClass:NSString.class]) {
+            self.buildAndRoom = (NSString *)room;
+        } else {
+            self.buildAndRoom = [NSString stringWithFormat:@"%@", [dict[@"elec_inf"][@"room"] stringValue]];
+        }
         self.consume = [NSString stringWithFormat:@"%@", [dict[@"elec_inf"][@"elec_spend"] stringValue]];
         
         NSString *returnTime = [NSString stringWithFormat:@"%@", dict[@"elec_inf"][@"record_time"]];
