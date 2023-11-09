@@ -65,7 +65,7 @@ class SessionManager: Session {
     
     static let shared = SessionManager(serverTrustManager: TrustPlicyManager(allHostsMustBeEvaluated: true, evaluators: [:]))
     
-    var token: String? = UserItemTool.defaultItem().token
+    var token: String?
     
     @discardableResult
     open func ry_request(_ convertible: URLConvertible,

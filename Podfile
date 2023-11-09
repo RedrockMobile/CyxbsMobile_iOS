@@ -56,6 +56,10 @@ target 'CyxbsMobile2019_iOS' do
   
 end
 
+target 'CyxbsWidgetExtension' do
+  
+end
+
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     puts "target #{target}"
@@ -67,6 +71,7 @@ post_install do |installer|
       config.build_settings['CODE_SIGNING_REQUIRED'] = "NO"
       config.build_settings['CODE_SIGNING_ALLOWED'] = "NO"
       
+      config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
       if target == 'Pods-CyxbsMobile2019_iOS'
         config.build_settings['VALID_ARCHS'] = 'x86_64'
       end

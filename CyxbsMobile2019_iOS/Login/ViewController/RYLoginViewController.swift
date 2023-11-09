@@ -149,7 +149,7 @@ extension RYLoginViewController {
                     let token = model["data"]["token"].stringValue
                     let refreshToken = model["data"]["refreshToken"].stringValue
                     
-                    UserModel.defualt.token = TokenModel(token: token, refreshToken: refreshToken)
+                    UserModel.defualt.setingTokenToOC(token: TokenModel(token: token, refreshToken: refreshToken))
                     
                     ProgressHUD.showSucceed("登录成功")
                     
@@ -324,7 +324,7 @@ extension RYLoginViewController {
                 let token = model["data"]["token"].stringValue
                 let refreshToken = model["data"]["refreshToken"].stringValue
                 
-                UserModel.defualt.token = TokenModel(token: token, refreshToken: refreshToken)
+                UserModel.defualt.setingTokenToOC(token: TokenModel(token: token, refreshToken: refreshToken))
                 
                 success(true)
                 
