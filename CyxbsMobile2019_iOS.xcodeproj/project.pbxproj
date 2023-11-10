@@ -52,7 +52,6 @@
 		147842EA27F0758F002359BA /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842E927F0758F002359BA /* UIView+Frame.m */; };
 		147842EE27F07A5A002359BA /* UIColor+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842ED27F07A59002359BA /* UIColor+Color.m */; };
 		147842F227F080A7002359BA /* NSDate+Day.m in Sources */ = {isa = PBXBuildFile; fileRef = 147842F127F080A7002359BA /* NSDate+Day.m */; };
-		1490FC8B28031BC200958892 /* FinderTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1490FC8A28031BC200958892 /* FinderTopView.m */; };
 		14B73F27281BE6C200D08ADD /* CyxbsMobileImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */; };
 		14B73F6E281BED7B00D08ADD /* MessageSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F2C281BED7B00D08ADD /* MessageSettingCell.m */; };
 		14B73F6F281BED7B00D08ADD /* MessageSettingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B73F30281BED7B00D08ADD /* MessageSettingVC.m */; };
@@ -195,8 +194,6 @@
 		18CDF4C8257F8DBD006E8E5C /* ResetPwdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4B1257F8DBD006E8E5C /* ResetPwdView.m */; };
 		18CDF4C9257F8DBD006E8E5C /* safePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4B3257F8DBD006E8E5C /* safePopView.m */; };
 		18CDF4CA257F8DBD006E8E5C /* SelfSafeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4B6257F8DBD006E8E5C /* SelfSafeView.m */; };
-		18CDF66E257F91BD006E8E5C /* EnterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F8257F91BC006E8E5C /* EnterButton.m */; };
-		18CDF66F257F91BD006E8E5C /* FinderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF4F9257F91BC006E8E5C /* FinderView.m */; };
 		18CDF678257F91BD006E8E5C /* ChooseStudentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF515257F91BC006E8E5C /* ChooseStudentListViewController.m */; };
 		18CDF679257F91BD006E8E5C /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF516257F91BC006E8E5C /* ScheduleViewController.m */; };
 		18CDF67A257F91BD006E8E5C /* ScheduleInquiryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CDF518257F91BC006E8E5C /* ScheduleInquiryViewController.m */; };
@@ -264,7 +261,6 @@
 		1A4A466C24C97E2A0033734E /* UserProtocolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A466B24C97E2A0033734E /* UserProtocolViewController.m */; };
 		1A5A5EE52360100B00543BAE /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A5EE42360100B00543BAE /* UserItem.m */; };
 		1A5A5EF12361A82E00543BAE /* UserItemTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A5A5EF02361A82E00543BAE /* UserItemTool.m */; };
-		1A79956C252B5BC300603253 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A79956B252B5BC300603253 /* LoginModel.swift */; };
 		1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B7683235F50A900725937 /* CyxbsMobile2019_iOSTests.m */; };
 		1A9B768F235F50A900725937 /* CyxbsMobile2019_iOSUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9B768E235F50A900725937 /* CyxbsMobile2019_iOSUITests.m */; };
 		1ABE8026238D01EC00E88C4E /* CheckInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABE8025238D01EC00E88C4E /* CheckInViewController.m */; };
@@ -409,7 +405,6 @@
 		AAE3305925E2A42B00324750 /* RemarkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3305825E2A42B00324750 /* RemarkTableViewCell.m */; };
 		AAE3307225E367E400324750 /* MainPageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3307125E367E400324750 /* MainPageTableViewCell.m */; };
 		AAE3308725E3AD5E00324750 /* MainPageNumBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE3308625E3AD5E00324750 /* MainPageNumBtn.m */; };
-		AAE87797286B304F0091656B /* PrivacyTipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE87796286B304E0091656B /* PrivacyTipView.swift */; };
 		AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */; };
 		B00C3C342AF243D60057DDBA /* RemindHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B00C3C332AF243D60057DDBA /* RemindHUD.m */; };
 		B01A9E322AB4590C0083C476 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B01A9E312AB4590C0083C476 /* NetworkManager.m */; };
@@ -470,7 +465,6 @@
 		B0B1B9F529E69EAD00A1BB02 /* ElectricFeeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B1B9F129E69EAD00A1BB02 /* ElectricFeeItem.m */; };
 		B0B1B9F629E69EAD00A1BB02 /* ElectricFeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B1B9F229E69EAD00A1BB02 /* ElectricFeeModel.m */; };
 		B0B1B9FE29E69EB400A1BB02 /* PickerDormitoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B1B9F929E69EB400A1BB02 /* PickerDormitoryModel.m */; };
-		B0B1BA0229E6A2E300A1BB02 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B1BA0129E6A2E300A1BB02 /* DiscoverViewController.m */; };
 		B0B1BA0729E6B4FD00A1BB02 /* ElectricViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B1BA0629E6B4FD00A1BB02 /* ElectricViewController.m */; };
 		B0B1BA0A29E6E98000A1BB02 /* PickerDormitoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B1BA0929E6E98000A1BB02 /* PickerDormitoryViewController.m */; };
 		B0F08FF828A24F9000986EB6 /* IDSController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FF028A24F9000986EB6 /* IDSController.m */; };
@@ -510,14 +504,6 @@
 		B0FE5F2B294C94540070E755 /* RisingUIKitExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FE5F25294C94540070E755 /* RisingUIKitExtension.m */; };
 		B0FE5F2C294C94540070E755 /* UIView+Rising.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FE5F26294C94540070E755 /* UIView+Rising.m */; };
 		B0FE5F2D294C94540070E755 /* UIColor+Rising.m in Sources */ = {isa = PBXBuildFile; fileRef = B0FE5F27294C94540070E755 /* UIColor+Rising.m */; };
-		B51C500E28A5FFC00011465E /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500828A5FFBF0011465E /* LoginVC.m */; };
-		B51C500F28A5FFC00011465E /* ModifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500928A5FFBF0011465E /* ModifyVC.m */; };
-		B51C501028A5FFC00011465E /* ForgetPwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500A28A5FFBF0011465E /* ForgetPwdVC.m */; };
-		B51C501128A5FFC00011465E /* LoginBaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500D28A5FFC00011465E /* LoginBaseVC.m */; };
-		B51C501628A5FFCE0011465E /* LoginTextFieldView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501228A5FFCE0011465E /* LoginTextFieldView.m */; };
-		B51C501728A5FFCE0011465E /* LoginBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501428A5FFCE0011465E /* LoginBaseView.m */; };
-		B51C501D28A625330011465E /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C501C28A625330011465E /* LoginView.m */; };
-		B51C502D28A6493D0011465E /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B51C500828A5FFBF0011465E /* LoginVC.m */; };
 		D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */; };
 		D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D422433C885004337ED /* UIResponder+SDMask.m */; };
 		D0101D592433C885004337ED /* SDMaskController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0101D452433C885004337ED /* SDMaskController.m */; };
@@ -742,8 +728,6 @@
 		147842F027F080A6002359BA /* NSDate+Day.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Day.h"; sourceTree = "<group>"; };
 		147842F127F080A7002359BA /* NSDate+Day.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Day.m"; sourceTree = "<group>"; };
 		147E2CE928240C3A00DCC312 /* HttpTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HttpTool.h; sourceTree = "<group>"; };
-		1490FC8928031BC200958892 /* FinderTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinderTopView.h; sourceTree = "<group>"; };
-		1490FC8A28031BC200958892 /* FinderTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinderTopView.m; sourceTree = "<group>"; };
 		14B73F26281BE6C200D08ADD /* CyxbsMobileImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CyxbsMobileImage.xcassets; sourceTree = "<group>"; };
 		14B73F2C281BED7B00D08ADD /* MessageSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageSettingCell.m; sourceTree = "<group>"; };
 		14B73F2D281BED7B00D08ADD /* MessageSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageSettingCell.h; sourceTree = "<group>"; };
@@ -947,10 +931,6 @@
 		18CDF4B4257F8DBD006E8E5C /* SelfSafeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelfSafeView.h; sourceTree = "<group>"; };
 		18CDF4B5257F8DBD006E8E5C /* safePopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = safePopView.h; sourceTree = "<group>"; };
 		18CDF4B6257F8DBD006E8E5C /* SelfSafeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelfSafeView.m; sourceTree = "<group>"; };
-		18CDF4F8257F91BC006E8E5C /* EnterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterButton.m; sourceTree = "<group>"; };
-		18CDF4F9257F91BC006E8E5C /* FinderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FinderView.m; sourceTree = "<group>"; };
-		18CDF4FD257F91BC006E8E5C /* EnterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterButton.h; sourceTree = "<group>"; };
-		18CDF4FF257F91BC006E8E5C /* FinderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderView.h; sourceTree = "<group>"; };
 		18CDF514257F91BC006E8E5C /* ScheduleInquiryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleInquiryViewController.h; sourceTree = "<group>"; };
 		18CDF515257F91BC006E8E5C /* ChooseStudentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseStudentListViewController.m; sourceTree = "<group>"; };
 		18CDF516257F91BC006E8E5C /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
@@ -1086,7 +1066,6 @@
 		1A5A5EE42360100B00543BAE /* UserItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserItem.m; sourceTree = "<group>"; };
 		1A5A5EEF2361A82E00543BAE /* UserItemTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserItemTool.h; sourceTree = "<group>"; };
 		1A5A5EF02361A82E00543BAE /* UserItemTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserItemTool.m; sourceTree = "<group>"; };
-		1A79956B252B5BC300603253 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		1A9B7667235F50A600725937 /* 掌上重邮.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "掌上重邮.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A9B7678235F50A800725937 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A9B767F235F50A900725937 /* CyxbsMobile2019_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CyxbsMobile2019_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1392,7 +1371,6 @@
 		AAE3307125E367E400324750 /* MainPageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainPageTableViewCell.m; sourceTree = "<group>"; };
 		AAE3308525E3AD5E00324750 /* MainPageNumBtn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainPageNumBtn.h; sourceTree = "<group>"; };
 		AAE3308625E3AD5E00324750 /* MainPageNumBtn.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainPageNumBtn.m; sourceTree = "<group>"; };
-		AAE87796286B304E0091656B /* PrivacyTipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyTipView.swift; sourceTree = "<group>"; };
 		AAFD87CE24F50DB800CBBD11 /* FakeTabBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FakeTabBarView.h; sourceTree = "<group>"; };
 		AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FakeTabBarView.m; sourceTree = "<group>"; };
 		AE9B2A72E2CE641D87ABF235 /* Pods-CyxbsMobile2019_iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyxbsMobile2019_iOS.debug.xcconfig"; path = "Target Support Files/Pods-CyxbsMobile2019_iOS/Pods-CyxbsMobile2019_iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1477,8 +1455,6 @@
 		B0B1B9F429E69EAD00A1BB02 /* ElectricFeeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElectricFeeModel.h; sourceTree = "<group>"; };
 		B0B1B9F929E69EB400A1BB02 /* PickerDormitoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerDormitoryModel.m; sourceTree = "<group>"; };
 		B0B1B9FA29E69EB400A1BB02 /* PickerDormitoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerDormitoryModel.h; sourceTree = "<group>"; };
-		B0B1BA0129E6A2E300A1BB02 /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
-		B0B1BA0329E6A2F100A1BB02 /* DiscoverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		B0B1BA0529E6B4FD00A1BB02 /* ElectricViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricViewController.h; sourceTree = "<group>"; };
 		B0B1BA0629E6B4FD00A1BB02 /* ElectricViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElectricViewController.m; sourceTree = "<group>"; };
 		B0B1BA0829E6E98000A1BB02 /* PickerDormitoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PickerDormitoryViewController.h; sourceTree = "<group>"; };
@@ -1561,20 +1537,6 @@
 		B0FE5F27294C94540070E755 /* UIColor+Rising.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Rising.m"; sourceTree = "<group>"; };
 		B0FE5F28294C94540070E755 /* RisingUIKitExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RisingUIKitExtension.h; sourceTree = "<group>"; };
 		B0FE5F2E294C958E0070E755 /* RisingScheduleHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RisingScheduleHeader.h; sourceTree = "<group>"; };
-		B51C500628A5FFBF0011465E /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
-		B51C500728A5FFBF0011465E /* LoginBaseVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginBaseVC.h; sourceTree = "<group>"; };
-		B51C500828A5FFBF0011465E /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
-		B51C500928A5FFBF0011465E /* ModifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyVC.m; sourceTree = "<group>"; };
-		B51C500A28A5FFBF0011465E /* ForgetPwdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPwdVC.m; sourceTree = "<group>"; };
-		B51C500B28A5FFBF0011465E /* ModifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyVC.h; sourceTree = "<group>"; };
-		B51C500C28A5FFC00011465E /* ForgetPwdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPwdVC.h; sourceTree = "<group>"; };
-		B51C500D28A5FFC00011465E /* LoginBaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginBaseVC.m; sourceTree = "<group>"; };
-		B51C501228A5FFCE0011465E /* LoginTextFieldView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginTextFieldView.m; sourceTree = "<group>"; };
-		B51C501328A5FFCE0011465E /* LoginBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginBaseView.h; sourceTree = "<group>"; };
-		B51C501428A5FFCE0011465E /* LoginBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginBaseView.m; sourceTree = "<group>"; };
-		B51C501528A5FFCE0011465E /* LoginTextFieldView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginTextFieldView.h; sourceTree = "<group>"; };
-		B51C501B28A625330011465E /* LoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
-		B51C501C28A625330011465E /* LoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		B5A4532B2AA4C3A500356128 /* CenterHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CenterHeader.h; sourceTree = "<group>"; };
 		CDEA1F98570FFFC0D6A8C14E /* Pods_CyxbsWidgetExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyxbsWidgetExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0101D3F2433C885004337ED /* NSLayoutConstraint+SDMask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+SDMask.m"; sourceTree = "<group>"; };
@@ -1958,15 +1920,6 @@
 				147842F127F080A7002359BA /* NSDate+Day.m */,
 			);
 			path = "NSDate+Day";
-			sourceTree = "<group>";
-		};
-		1490FC8C28032A2100958892 /* FinderTopView */ = {
-			isa = PBXGroup;
-			children = (
-				1490FC8928031BC200958892 /* FinderTopView.h */,
-				1490FC8A28031BC200958892 /* FinderTopView.m */,
-			);
-			path = FinderTopView;
 			sourceTree = "<group>";
 		};
 		14B3F21427F16DE3007B421C /* Controller */ = {
@@ -3023,23 +2976,10 @@
 		18CDF4D5257F91BC006E8E5C /* Discover_MainPage */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF4F6257F91BC006E8E5C /* View */,
-				B0B1BA0029E6A2E300A1BB02 /* Controller */,
 				B0B1B9DB29E69E7B00A1BB02 /* Discover_Electric */,
 				14B73F29281BED7B00D08ADD /* Discover_MineMessage */,
 			);
 			path = Discover_MainPage;
-			sourceTree = "<group>";
-		};
-		18CDF4F6257F91BC006E8E5C /* View */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF4FF257F91BC006E8E5C /* FinderView.h */,
-				18CDF4F9257F91BC006E8E5C /* FinderView.m */,
-				B58F51FA298E58320008F85A /* EnterButton */,
-				1490FC8C28032A2100958892 /* FinderTopView */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		18CDF512257F91BC006E8E5C /* Discover_FindScheduleInquiry */ = {
@@ -3295,10 +3235,6 @@
 		1A0AC602252B259B00221514 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				B51C502728A626CE0011465E /* Base */,
-				B51C501F28A625DA0011465E /* Login */,
-				B51C502328A6264C0011465E /* ForgetPassword */,
-				B51C502528A6268C0011465E /* ModifyPassword */,
 				B51C502E28A7A4950011465E /* User */,
 			);
 			path = Login;
@@ -3516,8 +3452,8 @@
 				B0FE5F1A294C94540070E755 /* Rising Extension */,
 				14CED380288A594E00BADA8B /* RisingRouter */,
 				FE87CE1A27E876FE008D7148 /* Marco */,
-				FE87CE1B27E98F82008D7148 /* Supporting Files */,
 				1451EA55282A294200A5BB55 /* CyxbsMobileTool */,
+				FE87CE1B27E98F82008D7148 /* Supporting Files */,
 				D09081DB23F4573B00D5342D /* 掌上重邮.entitlements */,
 				1A9B7678235F50A800725937 /* Info.plist */,
 				AA4496F7260625B5004B4E1A /* PrefixHeader.pch */,
@@ -5027,15 +4963,6 @@
 			path = PickerDormitoryModel;
 			sourceTree = "<group>";
 		};
-		B0B1BA0029E6A2E300A1BB02 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				B0B1BA0329E6A2F100A1BB02 /* DiscoverViewController.h */,
-				B0B1BA0129E6A2E300A1BB02 /* DiscoverViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		B0B1BA0429E6B4DA00A1BB02 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -5344,106 +5271,6 @@
 			path = "UIKit Extension";
 			sourceTree = "<group>";
 		};
-		B51C501F28A625DA0011465E /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				B51C502028A625EE0011465E /* Controller */,
-				B51C502128A6260D0011465E /* View */,
-				B51C502228A626170011465E /* Model */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		B51C502028A625EE0011465E /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				B51C500628A5FFBF0011465E /* LoginVC.h */,
-				B51C500828A5FFBF0011465E /* LoginVC.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		B51C502128A6260D0011465E /* View */ = {
-			isa = PBXGroup;
-			children = (
-				B51C501B28A625330011465E /* LoginView.h */,
-				B51C501C28A625330011465E /* LoginView.m */,
-				AAE87796286B304E0091656B /* PrivacyTipView.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		B51C502228A626170011465E /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1A79956B252B5BC300603253 /* LoginModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B51C502328A6264C0011465E /* ForgetPassword */ = {
-			isa = PBXGroup;
-			children = (
-				B51C502428A626710011465E /* Controller */,
-			);
-			path = ForgetPassword;
-			sourceTree = "<group>";
-		};
-		B51C502428A626710011465E /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				B51C500C28A5FFC00011465E /* ForgetPwdVC.h */,
-				B51C500A28A5FFBF0011465E /* ForgetPwdVC.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		B51C502528A6268C0011465E /* ModifyPassword */ = {
-			isa = PBXGroup;
-			children = (
-				B51C502628A626A80011465E /* Controller */,
-			);
-			path = ModifyPassword;
-			sourceTree = "<group>";
-		};
-		B51C502628A626A80011465E /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				B51C500B28A5FFBF0011465E /* ModifyVC.h */,
-				B51C500928A5FFBF0011465E /* ModifyVC.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		B51C502728A626CE0011465E /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				B51C502828A626D40011465E /* Controller */,
-				B51C502928A626DE0011465E /* View */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
-		B51C502828A626D40011465E /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				B51C500728A5FFBF0011465E /* LoginBaseVC.h */,
-				B51C500D28A5FFC00011465E /* LoginBaseVC.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		B51C502928A626DE0011465E /* View */ = {
-			isa = PBXGroup;
-			children = (
-				B51C501328A5FFCE0011465E /* LoginBaseView.h */,
-				B51C501428A5FFCE0011465E /* LoginBaseView.m */,
-				B51C501528A5FFCE0011465E /* LoginTextFieldView.h */,
-				B51C501228A5FFCE0011465E /* LoginTextFieldView.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		B51C502E28A7A4950011465E /* User */ = {
 			isa = PBXGroup;
 			children = (
@@ -5451,15 +5278,6 @@
 				1A5A5EE223600FE600543BAE /* Item */,
 			);
 			path = User;
-			sourceTree = "<group>";
-		};
-		B58F51FA298E58320008F85A /* EnterButton */ = {
-			isa = PBXGroup;
-			children = (
-				18CDF4FD257F91BC006E8E5C /* EnterButton.h */,
-				18CDF4F8257F91BC006E8E5C /* EnterButton.m */,
-			);
-			path = EnterButton;
 			sourceTree = "<group>";
 		};
 		B5A4532A2AA4C39900356128 /* Source */ = {
@@ -6426,7 +6244,6 @@
 				FC4B3BD42A87B0EE003336C8 /* FixedGroupVC.swift in Sources */,
 				B01A9E322AB4590C0083C476 /* NetworkManager.m in Sources */,
 				14F6F5652AFB8CDB007C7CA6 /* FinderBannerModel.swift in Sources */,
-				B51C501128A5FFC00011465E /* LoginBaseVC.m in Sources */,
 				B0F71C862ABC71B200F8B1AC /* AttitudeSelfPageDefaultView.m in Sources */,
 				DB34EB3B239BD4550052B65E /* WeekChooseButton.m in Sources */,
 				14FFFBE32AF8C0F3005A7EBD /* CyxbsSegmentedIndicatorLineView.swift in Sources */,
@@ -6453,7 +6270,6 @@
 				FE2C135027AEF629001CF7AF /* TodoTableViewCell.m in Sources */,
 				14D03A0B27FE69A800D6AE93 /* SSRTopBarBaseView.m in Sources */,
 				B074C03B2AFD20F00086AB07 /* ActivityCenterVC.swift in Sources */,
-				18CDF66E257F91BD006E8E5C /* EnterButton.m in Sources */,
 				14FFFBE52AF8C0F3005A7EBD /* UIView+Cyxbs.swift in Sources */,
 				FC05B1CC2ADAF054008B245B /* JudgeArrangeMessage.swift in Sources */,
 				18CDF4C4257F8DBD006E8E5C /* SetQuestionView.m in Sources */,
@@ -6517,7 +6333,6 @@
 				14B73F73281BED7B00D08ADD /* ActiveMessageVC.m in Sources */,
 				FE11E82027E8712B00C4B90B /* QAListSegmentView.m in Sources */,
 				B074C0312AFD20D00086AB07 /* ActivityAddVC.swift in Sources */,
-				B51C500E28A5FFC00011465E /* LoginVC.m in Sources */,
 				FE2C135327AEF629001CF7AF /* ToDoTableView.m in Sources */,
 				735BC55026D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.m in Sources */,
 				FC1484692AD1D3AB00657191 /* SendMessageVC.swift in Sources */,
@@ -6525,12 +6340,10 @@
 				14F6F5692AFB8CDB007C7CA6 /* TokenModel.swift in Sources */,
 				FE2C136527AEF629001CF7AF /* TodoDateTool.m in Sources */,
 				AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */,
-				B51C501028A5FFC00011465E /* ForgetPwdVC.m in Sources */,
 				FC06D0EE2A9E637D00A974D8 /* FixedGroupModel.swift in Sources */,
 				FE2C136527AEF629001CF7AF /* TodoDateTool.m in Sources */,
 				14FFFBF12AF8C0F3005A7EBD /* BaseButton.swift in Sources */,
 				AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */,
-				B51C501028A5FFC00011465E /* ForgetPwdVC.m in Sources */,
 				B074C0162AFD20D00086AB07 /* ActivityHUD.swift in Sources */,
 				B09BB8312AADA35400FF88F7 /* FoodVC.m in Sources */,
 				18CDF68D257F91BD006E8E5C /* CQUPTMapPresenter.m in Sources */,
@@ -6566,7 +6379,6 @@
 				DB4064F82466D889006CE5BC /* DLWeekButton.m in Sources */,
 				14B73F84281CCC3000D08ADD /* MessageDetailVC.m in Sources */,
 				18CDF6A0257F91BD006E8E5C /* CQUPTMapMoreImageViewController.m in Sources */,
-				B51C501628A5FFCE0011465E /* LoginTextFieldView.m in Sources */,
 				73AAA1CE26C918250084E44D /* DetailsGoodsTableViewCell.m in Sources */,
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				14FFFC052AF8C0FD005A7EBD /* AliyunConfig.m in Sources */,
@@ -6602,7 +6414,6 @@
 				1451EA53282A09B800A5BB55 /* UserPublishModel.m in Sources */,
 				D0101F6A243587A1004337ED /* GKPanGestureRecognizer.m in Sources */,
 				18CDF4B7257F8DBD006E8E5C /* SetQuestionViewController.m in Sources */,
-				B51C501728A5FFCE0011465E /* LoginBaseView.m in Sources */,
 				FE2C135127AEF629001CF7AF /* ToDoEmptyCell.m in Sources */,
 				4931630B26CD7B6800140412 /* GoodsCollectionViewCell.m in Sources */,
 				DB4065032466D889006CE5BC /* DLReminderView.m in Sources */,
@@ -6633,7 +6444,6 @@
 				B074C0212AFD20D00086AB07 /* ActivityTopView.swift in Sources */,
 				B09BB82F2AADA35400FF88F7 /* popFoodResultVC.m in Sources */,
 				B0F08FFD28A2509900986EB6 /* RisingRouter+Extension.m in Sources */,
-				AAE87797286B304F0091656B /* PrivacyTipView.swift in Sources */,
 				B0F71C952ABC71B200F8B1AC /* ExpressDeclareItem.m in Sources */,
 				18CDF4BE257F8DBD006E8E5C /* questionItem.m in Sources */,
 				18CDF69C257F91BD006E8E5C /* CQUPTMapViewController.m in Sources */,
@@ -6724,7 +6534,6 @@
 				FC9E3A992AB6D2F200E3C65F /* WeDateCourseScheduleVC.swift in Sources */,
 				73AAA1D026C918250084E44D /* DetailsTaskTableViewCell.m in Sources */,
 				B0F71C962ABC71B200F8B1AC /* ExpressDetailCell.m in Sources */,
-				B0B1BA0229E6A2E300A1BB02 /* DiscoverViewController.m in Sources */,
 				14F6F55A2AFB8CDB007C7CA6 /* ScheduleCustomEditView.swift in Sources */,
 				FC7EC7C22AA9000E009FC098 /* ChooseGroupVC.swift in Sources */,
 				1AF4B6072362EBFE00A0823A /* NSDate+Timestamp.m in Sources */,
@@ -6787,7 +6596,6 @@
 				14F6F5662AFB8CDB007C7CA6 /* FinderBannerCollectionViewCell.swift in Sources */,
 				FE2C136327AEF629001CF7AF /* YearBtnsView.m in Sources */,
 				B0F71C9B2ABC71B200F8B1AC /* PublishTopView.m in Sources */,
-				1A79956C252B5BC300603253 /* LoginModel.swift in Sources */,
 				18FE64F625FDA186008748AE /* UIControl+MGD.m in Sources */,
 				AA0DDB87286C8E8100802324 /* AFHTTPSessionManager+compatibility.m in Sources */,
 				73AAA1D226C918250084E44D /* SegmentView.m in Sources */,
@@ -6806,7 +6614,6 @@
 				B074C0262AFD20D00086AB07 /* TitleContentView.swift in Sources */,
 				DB34EB3D239BD4550052B65E /* ORWInputTextView.m in Sources */,
 				14FBBD41280505CC00D5B05D /* SSRTextCycleView.m in Sources */,
-				18CDF66F257F91BD006E8E5C /* FinderView.m in Sources */,
 				B0F71C842ABC71B200F8B1AC /* AttitudeSelfPageDataModel.m in Sources */,
 				DB34EB23239BD4550052B65E /* TimeChooseViewController.m in Sources */,
 				14F6F5682AFB8CDB007C7CA6 /* ConfidentialityQuestionModel.swift in Sources */,
@@ -6829,7 +6636,6 @@
 				18CDF6A2257F91BD006E8E5C /* CQUPTMapImageLayout.m in Sources */,
 				B0F71C8E2ABC71B200F8B1AC /* AttitudeNetWrong.m in Sources */,
 				14F6F5612AFB8CDB007C7CA6 /* FinderNewsView.swift in Sources */,
-				1490FC8B28031BC200958892 /* FinderTopView.m in Sources */,
 				DB34EB38239BD4550052B65E /* MainView.m in Sources */,
 				1A14136D235F524B0001417E /* UIImage+Helper.m in Sources */,
 				75500E622AEE8FD200C2FC3A /* SwiftyClient.swift in Sources */,
@@ -6837,7 +6643,6 @@
 				14FFFC062AF8C0FD005A7EBD /* TabBar.swift in Sources */,
 				DB34EB3A239BD4550052B65E /* CoverView.m in Sources */,
 				18CDF68F257F91BD006E8E5C /* CQUPTMapPlaceRect.m in Sources */,
-				B51C500F28A5FFC00011465E /* ModifyVC.m in Sources */,
 				AA4CD60425EF6311002D9394 /* IgnoreModel.m in Sources */,
 				647AC30A2826CCB0009A2E35 /* StationData.m in Sources */,
 				DB34EB22239BD4550052B65E /* AddRemindViewController.m in Sources */,
@@ -6945,7 +6750,6 @@
 				AA0DDB55286C8B1900802324 /* MineTableViewCell.m in Sources */,
 				B00C3C342AF243D60057DDBA /* RemindHUD.m in Sources */,
 				AAE3305925E2A42B00324750 /* RemarkTableViewCell.m in Sources */,
-				B51C501D28A625330011465E /* LoginView.m in Sources */,
 				DB34EB3C239BD4550052B65E /* DayLabel.m in Sources */,
 				B0F71C8C2ABC71B200F8B1AC /* AttitudeHomeCell.m in Sources */,
 				B0F08FFA28A24F9000986EB6 /* IdsBindingView.m in Sources */,
@@ -7024,7 +6828,6 @@
 				1893DC8E26EA32F1007E871E /* MGDQueue.m in Sources */,
 				1A9B7684235F50A900725937 /* CyxbsMobile2019_iOSTests.m in Sources */,
 				1893DC9626EA3887007E871E /* MGDTimer.m in Sources */,
-				B51C502D28A6493D0011465E /* LoginVC.m in Sources */,
 				1893DC9226EA3375007E871E /* MGDGroup.m in Sources */,
 				1893DC8A26EA32A3007E871E /* MGDGCD.m in Sources */,
 			);

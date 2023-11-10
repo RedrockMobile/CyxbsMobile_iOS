@@ -30,7 +30,6 @@
 #import "NoteDataModel.h"
 
 #import "NewQAHud.h"
-#import "UserPublishModel.h"
 #import "UIColor+Color.h"
 #import "SSRTopBarBaseView.h"
 #import "HttpTool.h"

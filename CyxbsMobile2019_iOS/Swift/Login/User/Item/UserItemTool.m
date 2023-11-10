@@ -7,7 +7,6 @@
 //
 
 #import "UserItemTool.h"
-#import "LoginVC.h"
 #import <UMShare/UMShare.h>
 #import "UserDefaultTool.h"
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
@@ -36,7 +35,7 @@
 
 /// 退出登录（清除用户缓存）
 + (void)logout {
-    LoginVC *loginVC = [[LoginVC alloc] init];
+    RYLoginViewController *loginVC = [[RYLoginViewController alloc] init];
     loginVC.modalPresentationStyle = UIModalPresentationFullScreen;
 
     UITabBarController *tabBarVC = (UITabBarController *)[UIApplication sharedApplication].delegate.window.rootViewController;
