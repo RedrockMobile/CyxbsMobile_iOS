@@ -20,18 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获取缓存路径
 + (NSString *)userItemPath;
 
-/// 归档对象
-+ (void)archive:(UserItem *)item;
-
 /// 退出登录
 + (void)logout;
-
-/// 刷新Token
-+ (void)refresh;
-
-+ (void)checkVisibleAPI:(void (^)(NSString *url))success;
-
-+ (BOOL)tokenExpired;
 
 @end
 
