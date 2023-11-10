@@ -16,8 +16,7 @@
 
 @end
 
-
-@implementation UserItemTool
+@implementation UserItemTool 
 
 #pragma mark - 工具类方法
 + (NSString *)userItemPath {
@@ -94,6 +93,10 @@
 //        
 //    }];
     
+}
+
++ (BOOL)supportsSecureCoding {
+    return YES;
 }
 
 @end

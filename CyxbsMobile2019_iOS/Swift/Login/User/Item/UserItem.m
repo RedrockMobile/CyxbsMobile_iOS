@@ -292,4 +292,9 @@ static UserItem *item = nil;
     _firstLogin = nil;
     _idsBindingSuccess = NULL;
 }
+
++ (BOOL)supportsSecureCoding {
+    return YES;
+}
+
 @end

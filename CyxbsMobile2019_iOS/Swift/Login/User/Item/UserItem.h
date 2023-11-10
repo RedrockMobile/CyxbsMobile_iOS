@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 //DEPRECATED_MSG_ATTRIBUTE("\n不要使用UserItem来获取你需要的信息，使用UserDefaultTool")
-@interface UserItem : NSObject<NSCoding>
+@interface UserItem : NSObject<NSCoding, NSSecureCoding>
 //MARK: - 个人信息/登录相关的
 /// Token
 @property (nonatomic, copy) NSString *__nullable token;
