@@ -20,11 +20,31 @@ static UserItem *item = nil;
 + (UserItem *)defaultItem {
     if (!item) {
         NSString *filePath = [UserItemTool userItemPath];
-        item = [NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
-
+        NSURL *fileURL = [NSURL fileURLWithPath:filePath];
+        NSError *error = nil;
+        NSData *archivedData = [NSData dataWithContentsOfURL:fileURL options:NSDataReadingMappedIfSafe error:&error];
+        if (error) {
+            // 处理错误
+            NSLog(@"Reading file failed with error: %@", error);
+        }
+        item = [NSKeyedUnarchiver unarchivedObjectOfClass:[UserItem class] fromData:archivedData error:&error];
+        
         if (!item) {
             item = [[UserItem alloc] init];
-            [NSKeyedArchiver archiveRootObject:item toFile:filePath];
+            NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject:item requiringSecureCoding:YES error:&error];
+            if (error) {
+                // 处理错误
+                NSLog(@"Archiving failed with error: %@", error);
+            } else {
+                BOOL success = [archivedData writeToURL:fileURL options:NSDataWritingAtomic error:&error];
+                if (!success) {
+                    // 处理错误
+                    NSLog(@"Writing to file failed with error: %@", error);
+                }
+            }
+        } else if (error) {
+            // 处理错误
+            NSLog(@"Unarchiving failed with error: %@", error);
         }
     }
     return item;
@@ -87,139 +107,156 @@ static UserItem *item = nil;
     return item;
 }
 
+- (void)_archiveRootObject:(id)rootObject toFile:(NSString *)path {
+    NSError *error = nil;
+    NSData *archivedData = [NSKeyedArchiver archivedDataWithRootObject:rootObject requiringSecureCoding:YES error:&error];
+    if (error) {
+        // 处理错误
+        NSLog(@"Archiving failed with error: %@", error);
+        return;
+    }
+    
+    NSURL *fileURL = [NSURL fileURLWithPath:path];
+    BOOL success = [archivedData writeToURL:fileURL options:NSDataWritingAtomic error:&error];
+    if (!success) {
+        // 处理错误
+        NSLog(@"Writing to file failed with error: %@", error);
+    }
+}
+
 - (void)setToken:(NSString *)token {
     _token = token;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setIat:(NSString *)iat {
     _iat = iat;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setExp:(NSString *)exp {
     _exp = exp;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setRefreshToken:(NSString *)refreshToken {
     _refreshToken = refreshToken;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setRealName:(NSString *)realName {
     _realName = realName;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setGender:(NSString *)gender {
     _gender = gender;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setBirthday:(NSString *)birthday {
     _birthday = birthday;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setRedid:(NSString *)redid {
     _redid = redid;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setStuNum:(NSString *)stuNum {
     _stuNum = stuNum;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setNickname:(NSString *)nickname {
     _nickname = nickname;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setIntroduction:(NSString *)introduction {
     _introduction = introduction;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setHeadImgUrl:(NSString *)headImgUrl {
     _headImgUrl = headImgUrl;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setPhone:(NSString *)phone {
     _phone = phone;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setQq:(NSString *)qq {
     _qq = qq;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setCheckInDay:(NSString *)checkInDay {
     _checkInDay = checkInDay;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setIntegral:(NSString *)integral {
     _integral = integral;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setRank:(NSString *)rank {
     _rank = rank;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setRank_Persent:(NSString *)rank_Persent {
     _rank_Persent = rank_Persent;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setWeek_info:(NSString *)week_info {
     _week_info = week_info;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setCanCheckIn:(BOOL)canCheckIn {
     _canCheckIn = canCheckIn;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setIsCheckedToday:(BOOL)isCheckedToday {
     _isCheckedToday = isCheckedToday;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setBuilding:(NSString *)building {
     _building = building;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setRoom:(NSString *)room {
     _room = room;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setVolunteerUserName:(NSString *)volunteerUserName {
     _volunteerUserName = volunteerUserName;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 - (void)setVolunteerPassword:(NSString *)volunteerPassword {
     _volunteerPassword = volunteerPassword;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 
 - (void)setIdsBindingSuccess:(BOOL)idsBindingSuccess {
     _idsBindingSuccess = idsBindingSuccess;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 
 - (void)setFirstLogin:(BOOL)firstLogin {
     _firstLogin = firstLogin;
-    [NSKeyedArchiver archiveRootObject:self toFile:[UserItemTool userItemPath]];
+    [self _archiveRootObject:self toFile:[UserItemTool userItemPath]];
 }
 - (NSString *)description
 {
