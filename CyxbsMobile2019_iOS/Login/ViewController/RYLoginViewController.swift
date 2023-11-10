@@ -42,6 +42,7 @@ class RYLoginViewController: BaseTextFiledViewController {
     lazy var pwdTextField: UITextField = {
         let textField = createLoginTypeTextFiled(placeholder: "身份证/统一认证码后6位", leftImgName: "login_authentication")
         textField.keyboardType = .asciiCapable
+        textField.isSecureTextEntry = true
         return textField
     }()
     
@@ -190,9 +191,11 @@ extension RYLoginViewController {
     }
     
     func showAgreement(url: URL? = nil) {
-        let vc = MarkDownViewController()
+//        let vc = MarkDownViewController()
+        let vc = WebAllowController()
         vc.delegate = self
-        vc.url = url ?? RYLoginViewController.agreementURL
+//        vc.url = url ?? RYLoginViewController.agreementURL
+        vc.url = URL(string: "https://fe-prod.redrock.cqupt.edu.cn/privacy-policy/")
         let nav = UINavigationController(rootViewController: vc)
         present(nav, animated: true)
     }
@@ -283,6 +286,22 @@ extension RYLoginViewController: MarkDownViewControllerDelegate {
         }
     }
 }
+
+extension RYLoginViewController: WebAllowControllerDelegate{
+    func webAllowControllerDidCancel(_ controller: WebAllowController) {
+        controller.dismiss(animated: true)
+        UserDefaultsManager.shared.didReadUserAgreementBefore = false
+    }
+    
+    func webAllowControllerDidConfirm(_ controller: WebAllowController) {
+        controller.dismiss(animated: true)
+        UserDefaultsManager.shared.didReadUserAgreementBefore = true
+        if !agreementView.isSelected {
+            agreementView.toggleControl()
+        }
+    }
+}
+
 
 // MARK: static
 

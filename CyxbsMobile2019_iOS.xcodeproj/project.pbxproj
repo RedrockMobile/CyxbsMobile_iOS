@@ -418,6 +418,7 @@
 		B047BF8A2AB3240F00616A5B /* AliyunEmasServices-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B047BF872AB3240F00616A5B /* AliyunEmasServices-Info.plist */; };
 		B047BF8D2AB34EF700616A5B /* ReduceAFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = B047BF8C2AB34EF700616A5B /* ReduceAFSecurityPolicy.m */; };
 		B05DE7862ABB226700A6A6F6 /* CustomSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B05DE7852ABB226700A6A6F6 /* CustomSessionManager.m */; };
+		B06965DD2AFE0A0A0096D1A8 /* WebAllowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06965DC2AFE0A0A0096D1A8 /* WebAllowController.swift */; };
 		B074C0162AFD20D00086AB07 /* ActivityHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = B074BFE22AFD20CF0086AB07 /* ActivityHUD.swift */; };
 		B074C0172AFD20D00086AB07 /* ActivityRankingListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B074BFE52AFD20CF0086AB07 /* ActivityRankingListVC.swift */; };
 		B074C0182AFD20D00086AB07 /* ActivityHitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B074BFE72AFD20CF0086AB07 /* ActivityHitTableViewCell.swift */; };
@@ -1392,6 +1393,7 @@
 		B047BF8C2AB34EF700616A5B /* ReduceAFSecurityPolicy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReduceAFSecurityPolicy.m; sourceTree = "<group>"; };
 		B05DE7842ABB226700A6A6F6 /* CustomSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSessionManager.h; sourceTree = "<group>"; };
 		B05DE7852ABB226700A6A6F6 /* CustomSessionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSessionManager.m; sourceTree = "<group>"; };
+		B06965DC2AFE0A0A0096D1A8 /* WebAllowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebAllowController.swift; sourceTree = "<group>"; };
 		B074BFE22AFD20CF0086AB07 /* ActivityHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityHUD.swift; sourceTree = "<group>"; };
 		B074BFE52AFD20CF0086AB07 /* ActivityRankingListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityRankingListVC.swift; sourceTree = "<group>"; };
 		B074BFE72AFD20CF0086AB07 /* ActivityHitTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityHitTableViewCell.swift; sourceTree = "<group>"; };
@@ -2796,6 +2798,7 @@
 			children = (
 				14FFFBDB2AF8C0F3005A7EBD /* RYAgreementView.swift */,
 				14FFFBDC2AF8C0F3005A7EBD /* MarkDownViewController.swift */,
+				B06965DC2AFE0A0A0096D1A8 /* WebAllowController.swift */,
 				14FFFBDD2AF8C0F3005A7EBD /* PlaceholderCollectionViewCell.swift */,
 				14FFFBDE2AF8C0F3005A7EBD /* UserModel.swift */,
 				1476CA6D2AFCD3FD00635848 /* UserModelEX.swift */,
@@ -6239,6 +6242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B06965DD2AFE0A0A0096D1A8 /* WebAllowController.swift in Sources */,
 				FC5110412AED2D010049EE43 /* WeDateHeader.swift in Sources */,
 				145AF3E5281BDA0000AABC53 /* NSString+UILabel.m in Sources */,
 				FC4B3BD42A87B0EE003336C8 /* FixedGroupVC.swift in Sources */,
