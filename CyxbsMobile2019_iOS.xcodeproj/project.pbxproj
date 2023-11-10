@@ -409,6 +409,7 @@
 		B00C3C342AF243D60057DDBA /* RemindHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B00C3C332AF243D60057DDBA /* RemindHUD.m */; };
 		B01A9E322AB4590C0083C476 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B01A9E312AB4590C0083C476 /* NetworkManager.m */; };
 		B01AFD6A29EFE531004F82D7 /* ElectricityView.m in Sources */ = {isa = PBXBuildFile; fileRef = B01AFD6929EFE531004F82D7 /* ElectricityView.m */; };
+		B0275A032AFE4F9E007E3D02 /* SwiftToOC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0275A022AFE4F9E007E3D02 /* SwiftToOC.swift */; };
 		B033366E294C971D004D141D /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B033366D294C971D004D141D /* HttpTool.m */; };
 		B03DB39B2AF123E600307DE0 /* DarkMatteView.m in Sources */ = {isa = PBXBuildFile; fileRef = B03DB39A2AF123E600307DE0 /* DarkMatteView.m */; };
 		B03FAB882AB9DD2500609124 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B03FAB872AB9DD2500609124 /* libsqlite3.0.tbd */; };
@@ -1381,6 +1382,7 @@
 		B01A9E312AB4590C0083C476 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
 		B01AFD6829EFE531004F82D7 /* ElectricityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElectricityView.h; sourceTree = "<group>"; };
 		B01AFD6929EFE531004F82D7 /* ElectricityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ElectricityView.m; sourceTree = "<group>"; };
+		B0275A022AFE4F9E007E3D02 /* SwiftToOC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftToOC.swift; sourceTree = "<group>"; };
 		B033366D294C971D004D141D /* HttpTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTool.m; sourceTree = "<group>"; };
 		B03DB3992AF123E600307DE0 /* DarkMatteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DarkMatteView.h; sourceTree = "<group>"; };
 		B03DB39A2AF123E600307DE0 /* DarkMatteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DarkMatteView.m; sourceTree = "<group>"; };
@@ -2799,6 +2801,7 @@
 				14FFFBDB2AF8C0F3005A7EBD /* RYAgreementView.swift */,
 				14FFFBDC2AF8C0F3005A7EBD /* MarkDownViewController.swift */,
 				B06965DC2AFE0A0A0096D1A8 /* WebAllowController.swift */,
+				B0275A022AFE4F9E007E3D02 /* SwiftToOC.swift */,
 				14FFFBDD2AF8C0F3005A7EBD /* PlaceholderCollectionViewCell.swift */,
 				14FFFBDE2AF8C0F3005A7EBD /* UserModel.swift */,
 				1476CA6D2AFCD3FD00635848 /* UserModelEX.swift */,
@@ -6699,6 +6702,7 @@
 				14F6F55D2AFB8CDB007C7CA6 /* FinderToolsCollectionViewCell.swift in Sources */,
 				FC42109D2AD5BC700044EEAA /* ArrangeMessageItem.swift in Sources */,
 				14FFFBEB2AF8C0F3005A7EBD /* CacheManager.swift in Sources */,
+				B0275A032AFE4F9E007E3D02 /* SwiftToOC.swift in Sources */,
 				B074C02E2AFD20D00086AB07 /* ActivityAdminManageMainVC.swift in Sources */,
 				B01AFD6A29EFE531004F82D7 /* ElectricityView.m in Sources */,
 				FC63434B2A891FD200DCD96C /* SearchResultVC.swift in Sources */,

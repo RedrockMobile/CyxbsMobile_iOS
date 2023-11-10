@@ -69,4 +69,10 @@ struct UserModel: Codable {
         
         return days / 7 + 1
     }
+    
+    mutating func logout() {
+        token = nil
+        CacheManager.shared.delete(path: .token)
+        SessionManager.shared.token = nil
+    }
 }
