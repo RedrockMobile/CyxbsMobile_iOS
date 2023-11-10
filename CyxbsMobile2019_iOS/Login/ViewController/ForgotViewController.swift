@@ -76,7 +76,7 @@ class ForgotViewController: BaseTextFiledViewController {
     
     lazy var codeTextField: UITextField = {
         let textField = createForgotTypeTextFiled(placeholder: "请输入验证码", leftImgName: nil, countDown: true)
-        textField.keyboardType = .numberPad
+        textField.keyboardType = .default
         return textField
     }()
     
