@@ -60,7 +60,7 @@ target 'CyxbsWidgetExtension' do
   
 end
 
-M1_arm64 = ['Pods-CyxbsMobile2019_iOS', 'YYKit']
+M1_arm64 = ['Pods-CyxbsMobile2019_iOS', 'YYKit', 'UMDevice']
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
