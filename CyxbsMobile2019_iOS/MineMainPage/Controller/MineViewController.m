@@ -326,7 +326,7 @@
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backBoardView).offset(0.04266666667*SCREEN_WIDTH);
-        make.top.equalTo(self.backBoardView).offset(0.3*SCREEN_HEIGHT);
+        make.top.equalTo(self.backBoardView).offset(0.37497537*SCREEN_HEIGHT);
     }];
     
     [view.signBtn addTarget:self action:@selector(signBtnClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -348,7 +348,7 @@
     
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.backBoardView);
-        make.top.equalTo(self.backBoardView).offset(0.4*SCREEN_HEIGHT);
+        make.top.equalTo(self.backBoardView).offset(0.49674877*SCREEN_HEIGHT);
         
     }];
 }
