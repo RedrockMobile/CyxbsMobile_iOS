@@ -523,7 +523,7 @@ PMPDatePickerDelegate
     //    NSLog(@"%zd", sender.text.length);
     if ([sender isEqual:self.nicknameTextField]) {
         self.nicknameLabel.text = [NSString stringWithFormat:@"昵称(%zd/10)", sender.text.length];
-    } else if ([sender isEqual:self.introductionLabel]) {
+    } else if ([sender isEqual:self.introductionTextField]) {
         self.introductionLabel.text = [NSString stringWithFormat:@"个性签名(%zd/20)", sender.text.length];
     }
 }
