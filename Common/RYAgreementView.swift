@@ -92,7 +92,7 @@ open class RYAgreementView: UIView {
         } selectedAction: { ryBtn in
             
             let length = ryBtn.frame.width
-            let delay = 0.25
+            let duration = 0.25
             let insert = 0.15
             
             let path = UIBezierPath()
@@ -102,11 +102,11 @@ open class RYAgreementView: UIView {
 
             let strokeAnimation = CABasicAnimation(keyPath: "strokeEnd")
             strokeAnimation.fillMode = .forwards
-            strokeAnimation.duration = 0.25
+            strokeAnimation.duration = duration
             strokeAnimation.fromValue = 0
             strokeAnimation.toValue = 1
             strokeAnimation.isRemovedOnCompletion = false
-            strokeAnimation.beginTime = CACurrentMediaTime() + delay
+            strokeAnimation.beginTime = CACurrentMediaTime()
             
             let layer = CAShapeLayer()
             layer.path = path.cgPath
@@ -134,9 +134,9 @@ open class RYAgreementView: UIView {
     
     // lazy
     
-    private lazy var checkoutButton: UIButton = {
+    private lazy var checkoutButton: UIControl = {
         let sideLength = bounds.height
-        let btn = UIButton()
+        let btn = UIControl()
         btn.frame.size = CGSize(width: sideLength, height: sideLength)
         btn.autoresizingMask = [.flexibleTopMargin, .flexibleBottomMargin]
         btn.backgroundColor = .clear

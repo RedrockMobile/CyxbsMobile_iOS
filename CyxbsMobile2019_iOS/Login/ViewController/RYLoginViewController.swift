@@ -241,8 +241,6 @@ extension RYLoginViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
-    
 }
 
 // MARK: BaseAgreementViewDelegate
