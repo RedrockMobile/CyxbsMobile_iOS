@@ -61,7 +61,7 @@ NSString *FoodHeaderCollectionReusableViewCellReuseIdentifier = @"FoodHeaderColl
     if (!_refreshBtn) {
         _refreshBtn = [[UIButton alloc] init];
         [_refreshBtn setImage:[UIImage imageNamed:@"美食刷新"] forState:UIControlStateNormal];
-        _refreshBtn.frame = CGRectMake(SCREEN_WIDTH - 30, 29.5, 15, 14);
+        _refreshBtn.frame = CGRectMake(SCREEN_WIDTH - 30, 29.5, 18, 16);
     }
     return _refreshBtn;
 }
