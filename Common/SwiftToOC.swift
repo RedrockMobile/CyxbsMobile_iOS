@@ -32,8 +32,6 @@ class SwiftToOC: NSObject {
         // 假销毁单例
         UserItem.default().attemptDealloc()
         
-        let filePath = "\(NSTemporaryDirectory())" + "UserItem.data"
-        
         // 删除偏好设置，删除时保留baseURL的偏好信息
         let dic = UserDefaults.standard.dictionaryRepresentation()
         for (key, _) in dic {
@@ -43,6 +41,7 @@ class SwiftToOC: NSObject {
         }
         
         // 删除归档
+        let filePath = "\(NSTemporaryDirectory())" + "UserItem.data"
         let fileManager = FileManager.default
         if fileManager.fileExists(atPath: filePath) {
             do {

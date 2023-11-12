@@ -253,6 +253,9 @@ extension RYLoginViewController: RYAgreementViewDelegate {
     
     func agreementView(_ agreementView: RYAgreementView, didToggle control: UIControl) {
         guard let didRead = UserDefaultsManager.shared.didReadUserAgreementBefore, didRead else {
+            if agreementView.isSelected {
+                agreementView.toggleControl()
+            }
             self.showAgreement()
             return
         }
