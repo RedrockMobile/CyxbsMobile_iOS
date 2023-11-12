@@ -376,6 +376,11 @@ class ActivityAddVC: UIViewController,
 extension ActivityAddVC: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         shouldConfirmButtonEnabled()
+        if scrollView.contactTextfield.text?.count == 11 {
+            scrollView.contactTextfield.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 1)
+        } else {
+            scrollView.contactTextfield.textColor = .red
+        }
     }
 }
 

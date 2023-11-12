@@ -197,7 +197,7 @@ class ActivityAddScrollView: UIScrollView {
     
     lazy var contactTextfield: UITextField = {
         let textField = UITextField()
-        textField.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 1)
+        textField.textColor = .red
         textField.backgroundColor = UIColor(red: 0.946, green: 0.954, blue: 0.962, alpha: 1)
         textField.font = UIFont(name: PingFangSCMedium, size: 14)
         textField.layer.cornerRadius = 4

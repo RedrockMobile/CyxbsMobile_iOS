@@ -40,10 +40,10 @@ class ActivityReviewedTableViewCell: UITableViewCell {
         return label
     }()
     
-    let typeView: TitleContentView = {
+    let creatorView: TitleContentView = {
         let view = TitleContentView()
         view.frame = CGRectMake(21, 55, 126, 20)
-        view.titleLabel.text = "活动类型:"
+        view.titleLabel.text = "创建人:"
         return view
     }()
     
@@ -54,14 +54,22 @@ class ActivityReviewedTableViewCell: UITableViewCell {
         return view
     }()
     
+    let statusView : UIImageView = {
+        let imgView = UIImageView()
+        imgView.size = CGSize(width: 52, height: 21)
+        imgView.translatesAutoresizingMaskIntoConstraints = false
+        return imgView
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = UIColor(red: 0.973, green: 0.976, blue: 0.988, alpha: 1)
         contentView.addSubview(cardView)
         cardView.addSubview(titleLabel)
         cardView.addSubview(startTimeLabel)
-        cardView.addSubview(typeView)
+        cardView.addSubview(creatorView)
         cardView.addSubview(phoneView)
+        cardView.addSubview(statusView)
         setPosition()
     }
     
@@ -82,5 +90,8 @@ class ActivityReviewedTableViewCell: UITableViewCell {
         //startTimeLabel位置设定
         startTimeLabel.rightAnchor.constraint(equalTo: cardView.rightAnchor, constant: -21).isActive = true
         startTimeLabel.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 22).isActive = true
+        //statusView位置设定
+        statusView.rightAnchor.constraint(equalTo: cardView.rightAnchor, constant: -21).isActive = true
+        statusView.topAnchor.constraint(equalTo: cardView.topAnchor, constant: 71).isActive = true
     }
 }

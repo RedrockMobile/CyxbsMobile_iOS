@@ -47,13 +47,17 @@ class ActivityAdminReviewedVC: UIViewController, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "reviewedCell", for: indexPath) as! ActivityReviewedTableViewCell
         cell.titleLabel.attributedText = NSMutableAttributedString(string: activities[indexPath.item].activityTitle, attributes: [NSAttributedString.Key.paragraphStyle: titleParagraphStyle])
         cell.startTimeLabel.text = DateConvert.dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(activities[indexPath.item].activityStartAt)))
-        switch activities[indexPath.item].activityType {
-        case "culture": cell.typeView.contentLabel.text = "文娱活动"
-        case "sports": cell.typeView.contentLabel.text = "体育活动"
-        case "education": cell.typeView.contentLabel.text = "教育活动"
+        cell.creatorView.contentLabel.text = activities[indexPath.item].activityCreator
+        cell.phoneView.contentLabel.text = activities[indexPath.item].phone
+        switch activities[indexPath.item].state {
+        case "published":
+            cell.statusView.image = UIImage(named: "accepted")
+            break
+        case "rejected":
+            cell.statusView.image = UIImage(named: "rejected")
+            break
         default: break
         }
-        cell.phoneView.contentLabel.text = activities[indexPath.item].phone
         return cell
     }
     
