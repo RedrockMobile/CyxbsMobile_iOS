@@ -44,7 +44,7 @@ class CreateGroupVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        UIView.animate(withDuration: 0.1) {
+        UIView.animate(withDuration: 0.15) {
             self.view.backgroundColor = UIColor(hexString: "000000", alpha: 0.47)
         }
     }
