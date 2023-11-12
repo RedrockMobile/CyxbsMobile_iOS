@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)CheckInSucceeded:(void (^)(void)) succeded Failed:(void (^)(NSError *err)) failed;
 
++ (void)requestCheckInInfoSucceeded:(void (^)(void))succeded Failed:(void (^)(NSError * _Nonnull))failed;
+
 @end
 
 NS_ASSUME_NONNULL_END

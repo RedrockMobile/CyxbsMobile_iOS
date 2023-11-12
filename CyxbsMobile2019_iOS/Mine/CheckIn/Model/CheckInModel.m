@@ -11,38 +11,27 @@
 @implementation CheckInModel
 
 + (void)CheckInSucceeded:(void (^)(void))succeded Failed:(void (^)(NSError * _Nonnull))failed {
-    if (UserItemTool.defaultItem.stuNum && [NSUserDefaults.standardUserDefaults stringForKey:@"idNum"]) {
-        NSDictionary *params = @{
-            @"stunum": UserItemTool.defaultItem.stuNum,
-            @"idnum": [NSUserDefaults.standardUserDefaults stringForKey:@"idNum"]
-        };
-        
-        [HttpTool.shareTool
-         request:Mine_POST_checkIn_API
-         type:HttpToolRequestTypePost
-         serializer:HttpToolRequestSerializerHTTP
-         bodyParameters:params
-         progress:nil
-         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-            [self requestCheckInInfoWithParams:params succeeded:succeded];
-        }
-         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            failed(error);
-        }];
-    } else {
-        // 处理参数为nil的情况
-        NSError *error = [NSError errorWithDomain:@"CheckIn" code:0 userInfo:@{NSLocalizedDescriptionKey: @"参数为空"}];
-        failed(error);
+    [HttpTool.shareTool
+     request:Mine_POST_checkIn_API
+     type:HttpToolRequestTypePost
+     serializer:HttpToolRequestSerializerHTTP
+     bodyParameters:nil
+     progress:nil
+     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
+        [self requestCheckInInfoSucceeded:succeded Failed:failed];
     }
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failed(error);
+    }];
 }
 
-+ (void)requestCheckInInfoWithParams:(NSDictionary *)params succeeded:(void (^)(void))succeded {
++ (void)requestCheckInInfoSucceeded:(void (^)(void))succeded Failed:(void (^)(NSError * _Nonnull))failed {
     
     [HttpTool.shareTool
      request:Mine_POST_checkInInfo_API
      type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerHTTP
-     bodyParameters:params
+     bodyParameters:nil
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         [UserItemTool defaultItem].checkInDay = object[@"data"][@"check_in_days"];
@@ -55,7 +44,7 @@
         succeded();
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        failed(error);
     }];
 }
 
