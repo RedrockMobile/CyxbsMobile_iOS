@@ -221,9 +221,9 @@
     }];
     
     [blurView.headImgBtn addTarget:self action:@selector(homePageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [blurView.blogBtn addTarget:self action:@selector(blogBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [blurView.remarkBtn addTarget:self action:@selector(remarkBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [blurView.praiseBtn addTarget:self action:@selector(praiseBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    [blurView.blogBtn addTarget:self action:@selector(homePageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    [blurView.remarkBtn addTarget:self action:@selector(homePageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    [blurView.praiseBtn addTarget:self action:@selector(homePageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     [blurView.homePageBtn addTarget:self action:@selector(homePageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(homePageBtnClicked)];
     [blurView.blurImgView setUserInteractionEnabled:YES];
