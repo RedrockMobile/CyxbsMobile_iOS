@@ -29,7 +29,7 @@
 #import "HttpTool.h"
 #import "NoteDataModel.h"
 
-#import "NewQAHud.h"
+//#import "NewQAHud.h"
 #import "UIColor+Color.h"
 #import "SSRTopBarBaseView.h"
 #import "HttpTool.h"

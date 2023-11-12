@@ -12,6 +12,8 @@
 #import "PickerDormitoryModel.h"
 #import "PickerDormitoryViewController.h"
 
+#import "RemindHUD.h"
+
 @interface ElectricViewController ()
 
 /// 电费View
@@ -110,12 +112,7 @@
 }
 
 - (void)requestElectricFeeFailed {
-//    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    [hud setMode:(MBProgressHUDModeText)];
-//    hud.labelText = @"电费查询服务器开小差了哦，请稍后重试";
-//    [hud hide:YES afterDelay:1];
-//    return;
-//    [NewQAHud showHudWith:@"电费查询服务器开小差了哦，请稍后重试" AddView:self.view];
+    [RemindHUD.shared showDefaultHUDWithText:@"电费查询服务器开小差了哦，请稍后重试" completion:nil];
 }
 
 - (void)updateElectricFeeUI {

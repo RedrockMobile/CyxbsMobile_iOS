@@ -14,6 +14,8 @@
 
 #import "MessageDetailVC.h"
 
+#import "RemindHUD.h"
+
 #pragma mark - SystemMessageVC ()
 
 @interface SystemMessageVC () <
@@ -81,10 +83,10 @@
     [self.sysMsgModel
      requestReadForIndexSet:set
      success:^{
-        [NewQAHud showHudWith:@"已全部已读" AddView:self.view];
+        [RemindHUD.shared showDefaultHUDWithText:@"已全部已读" completion:nil];
      }
      failure:^(NSError * _Nonnull error) {
-        [NewQAHud showHudWith:@"无法连接网络" AddView:self.view];
+        [RemindHUD.shared showDefaultHUDWithText:@"无法连接网络" completion:nil];
      }];
     [self.messageView reloadData];
     if (self.delegate) {

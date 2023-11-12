@@ -8,6 +8,7 @@
 
 #import "CalendarViewController.h"
 
+#import "RemindHUD.h"
 @interface CalendarViewController ()
 
 @property (strong, nonatomic) UIScrollView *scrollView;
@@ -27,7 +28,7 @@
      sd_setImageWithURL:url
      completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
         if (image == nil) {
-            [NewQAHud showHudWith:@"加载失败～" AddView:self.view];
+            [RemindHUD.shared showDefaultHUDWithText:@"加载失败～" completion:nil];
             return;
         }
         imageView.width = MAIN_SCREEN_W;

@@ -10,6 +10,8 @@
 #import "StampTaskData.h"
 #import "CheckInModel.h"
 
+#import "RemindHUD.h"
+
 @implementation TableHeaderView
 
 -(instancetype)initWithFrame:(CGRect)frame{
@@ -36,12 +38,12 @@
        GotoButton *button = [[GotoButton alloc]initWithFrame:CGRectMake(0.781*SCREEN_WIDTH, 32, 66, 28) AndTitle:@"去签到"];
         [StampTaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
             if (!array || array.count <= 0) {
-                [NewQAHud showHudWith:@"Token失效了，重新登录掌邮试试吧" AddView:self];
+                [RemindHUD.shared showDefaultHUDWithText:@"Token失效了，重新登录掌邮试试吧" completion:nil];
                 return;
             }
             StampTaskData *data = array[0];
             if ([data.title isEqualToString:@"NULL"]) {
-                [NewQAHud showHudWith:@"Token失效了，重新登录掌邮试试吧" AddView:self];
+                [RemindHUD.shared showDefaultHUDWithText:@"Token失效了，重新登录掌邮试试吧" completion:nil];
                 return;
             }
             if (data.current_progress == data.max_progress) {

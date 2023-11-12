@@ -20,6 +20,7 @@
 #import "StampGoodsData.h"
 #import "StampTaskData.h"
 
+#import "RemindHUD.h"
 
 ///邮票中心主界面
 @interface StampCenterVC () <UITableViewDelegate,UICollectionViewDelegate,UIScrollViewDelegate,UITableViewDataSource,UICollectionViewDataSource,TopViewDelegate>
@@ -633,19 +634,19 @@
     [StampTaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
         self.taskAry = array;
     } error:^{
-        [NewQAHud showHudWith:@"网络异常" AddView:self.view];
+        [self netWorkAlert];
     }];
     
     [StampGoodsData GoodsDataWithSuccess:^(NSArray * _Nonnull array) {
         self.goodsAry = array;
     } error:^{
-        [NewQAHud showHudWith:@"网络异常" AddView:self.view];
+        [self netWorkAlert];
     }];
 }
 
 //网络异常警告
 - (void)netWorkAlert{
-    [NewQAHud showHudWith:@"网络异常" AddView:self.view];
+    [RemindHUD.shared showDefaultHUDWithText:@"网络异常" completion:nil];
 }
 
 //跳转至QA
@@ -665,7 +666,7 @@
     [StampTaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
         self.taskAry = array;
     } error:^{
-        [NewQAHud showHudWith:@"网络异常" AddView:self.view];
+        [self netWorkAlert];
     }];
     
     [HttpTool.shareTool

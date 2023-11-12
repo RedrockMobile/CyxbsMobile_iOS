@@ -15,6 +15,7 @@
 #import "ToDoDetailReminderTimeView.h"
 #import "ToDoDetailRepeatView.h"
 #import "ToDoDetailRemarkView.h"
+#import "RemindHUD.h"
 
 @interface ToDoDetaileViewController ()
 <
@@ -110,7 +111,7 @@ self.model = self.temporaryModel;
     //删除model
     [[TodoSyncTool share] deleteTodoWithTodoID:self.model.todoIDStr needRecord:YES];
     self.block();   //刷新上个界面
-    [NewQAHud showHudWith:@"已成功删除数据" AddView:self.view];
+    [RemindHUD.shared showDefaultHUDWithText:@"已成功删除数据" completion:nil];
     //延迟1.5秒后跳回到上个界面
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.navigationController popViewControllerAnimated:YES];
@@ -368,7 +369,7 @@ self.model = self.temporaryModel;
     [self.model setIsDoneForUserActivity:self.instialState];
     if ((self.isChangeStatuBtn || self.isChange) && !self.isTitleNil) {
         if (self.popNum == 0) {
-            [NewQAHud showHudWith:@"掌友，你的修改还未保存" AddView:self.view];
+            [RemindHUD.shared showDefaultHUDWithText:@"掌友，你的修改还未保存" completion:nil];
             self.popNum++;
         }else{
             [self.navigationController popViewControllerAnimated:YES];
@@ -414,8 +415,7 @@ self.model = self.temporaryModel;
     
     //回调，使上个界面刷新
     self.block();
-
-    [NewQAHud showHudWith:@"已成功修改数据" AddView:self.view];
+    [RemindHUD.shared showDefaultHUDWithText:@"已成功修改数据" completion:nil];
     //延迟1.5秒后跳回到上个界面
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         [self.navigationController popViewControllerAnimated:YES];
@@ -435,7 +435,7 @@ self.model = self.temporaryModel;
 }
 ///已完成状态下点击弹出无法更改的提示
 - (void)changeInvaliePrompt{
-    [NewQAHud showHudWith:@"掌友，无法对已完成事项进行修改哦！\nTip：点击待办勾选框即可改变状态嚎！" AddView:self.scrollView];
+    [RemindHUD.shared showDefaultHUDWithText:@"掌友，无法对已完成事项进行修改哦！\nTip：点击待办勾选框即可改变状态嚎！" completion:nil];
 }
 
 //MARK:ToDoDetailReminderTimeViewDelegate

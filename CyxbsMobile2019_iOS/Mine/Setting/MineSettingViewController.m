@@ -9,7 +9,6 @@
 #import "MineSettingViewController.h"
 #import "selfSafeViewController.h"
 #import "QuitTipView.h"
-#import "IgnoreViewController.h"
 #import <UserNotifications/UserNotifications.h>
 
 
@@ -171,17 +170,11 @@
         case 3:
             [self selectedSafeCell];
             break;
-        case 4:
-//            [self selectPeopleIgnoreCell];
-            break;
         default:
             break;
     }
 
 }
-
-
-
 
 
 //MARK:- 按钮、cell选中后调用的方法：
@@ -191,11 +184,6 @@
     selfSafeViewController *vc = [[selfSafeViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)selectPeopleIgnoreCell {
-    IgnoreViewController *vc = [[IgnoreViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

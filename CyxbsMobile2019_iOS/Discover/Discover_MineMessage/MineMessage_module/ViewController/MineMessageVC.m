@@ -26,6 +26,8 @@
 // 模型
 #import "MineMessageModel.h"
 
+#import "RemindHUD.h"
+
 #import "掌上重邮-Swift.h"
 
 #pragma mark - MineMessageVC ()
@@ -102,11 +104,11 @@
         
         if (self.contentView.left < self.view.width / 3) {
             if (!self.systemMessageVC.sysMsgModel || !self.systemMessageVC.sysMsgModel.msgAry.count) {
-                [NewQAHud showHudWith:@"没有系统消息了" AddView:self.systemMessageVC.view];
+                [RemindHUD.shared showDefaultHUDWithText:@"没有系统消息了" completion:nil];
             }
         } else if (self.contentView.left < (self.view.width * 2 / 3)) {
             if (!self.activeMessageVC.sysModel || !self.systemMessageVC.sysMsgModel.msgAry.count) {
-                [NewQAHud showHudWith:@"没有活动消息了" AddView:self.activeMessageVC.view];
+                [RemindHUD.shared showDefaultHUDWithText:@"没有活动消息了" completion:nil];
             }
         }
     }
@@ -119,7 +121,7 @@
         } else {
             view = self.arrangeMessageVC.view;
         }
-        [NewQAHud showHudWith:@"网络异常" AddView:view];
+        [RemindHUD.shared showDefaultHUDWithText:@"网络异常" completion:nil];
     }];
 }
 
