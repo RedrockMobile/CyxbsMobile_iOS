@@ -169,9 +169,11 @@
 //    vc.VCTitleStr = @"掌上重邮";
     [self.viewController.navigationController pushViewController:vc animated:YES];
 }
-- (void)rightBtnClicked{
-    LearnMoreViewController *vc = [[LearnMoreViewController alloc] initWithType:LMVCTypePrivacyClause];
-    [self.viewController.navigationController pushViewController:vc animated:YES];
+- (void)rightBtnClicked {
+    NSURL *url = [NSURL URLWithString:@"https://fe-prod.redrock.cqupt.edu.cn/privacy-policy/"];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+    }
 }
 - (UIButton*)getLearnMoreBtn{
     UIButton *btn = [[UIButton alloc] init];

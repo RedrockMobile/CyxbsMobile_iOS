@@ -11,7 +11,8 @@ import ProgressHUD
 
 class RYLoginViewController: BaseTextFiledViewController {
     
-    static let agreementURL = Bundle.main.url(forResource: "掌上重邮用户协议", withExtension: "md")!
+//    static let agreementURL = Bundle.main.url(forResource: "掌上重邮用户协议", withExtension: "md")!
+    static let agreementURL = URL(string: "https://fe-prod.redrock.cqupt.edu.cn/privacy-policy/")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -194,8 +195,7 @@ extension RYLoginViewController {
 //        let vc = MarkDownViewController()
         let vc = WebAllowController()
         vc.delegate = self
-//        vc.url = url ?? RYLoginViewController.agreementURL
-        vc.url = URL(string: "https://fe-prod.redrock.cqupt.edu.cn/privacy-policy/")
+        vc.url = url ?? RYLoginViewController.agreementURL
         let nav = UINavigationController(rootViewController: vc)
         present(nav, animated: true)
     }
