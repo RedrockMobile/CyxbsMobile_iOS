@@ -534,7 +534,7 @@ PMPDatePickerDelegate
     
     for (int i = 0; i < self.genderAry.count; i++) {
         if ([self.genderTextField.placeholder isEqualToString:self.genderAry[i]]) {
-            [self.genderPickerView.pickerView selectedRowInComponent:i];
+            [self.genderPickerView.pickerView selectRow:i inComponent:0 animated:YES];
             break;
         }
     }
