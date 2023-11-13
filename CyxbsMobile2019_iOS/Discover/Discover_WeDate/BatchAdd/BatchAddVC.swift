@@ -113,6 +113,7 @@ class BatchAddVC: UIViewController {
             
         } failure: { error in
             print(error)
+            NetworkException.showNetworkErrorPrompt(to: self.view, frame: CGRect(x: (SCREEN_WIDTH - 173) / 2, y: self.inquireBtn.top - 81, width: 173, height: 36))
         }
     }
     

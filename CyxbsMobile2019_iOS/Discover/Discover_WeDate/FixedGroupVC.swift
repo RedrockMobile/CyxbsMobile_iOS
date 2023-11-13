@@ -47,7 +47,6 @@ class FixedGroupVC: UIViewController {
             make.bottom.equalTo(view).inset(98)
         }
         foundBtn.frame = CGRect(x: (SCREEN_WIDTH - 120) / 2, y: tableView.bottom + 28, width: 120, height: 42)
-        promptLab.frame = CGRect(x: (SCREEN_WIDTH - 173) / 2, y: foundBtn.top - 81, width: 173, height: 36)
 
         // 为按钮添加线性渐变
         let gradientLayer = CAGradientLayer()
@@ -85,6 +84,7 @@ class FixedGroupVC: UIViewController {
                 }
             } failure: { error in
                 print(error)
+                NetworkException.showNetworkErrorPrompt(to: self.view, frame: CGRect(x: (SCREEN_WIDTH - 173) / 2, y: self.foundBtn.top - 81, width: 173, height: 36))
             }
         } else {
             view.endEditing(true)
@@ -117,10 +117,7 @@ class FixedGroupVC: UIViewController {
             self.tableView.reloadData()
         } failure: { error in
             print(error)
-            self.view.addSubview(self.promptLab)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                self.promptLab.isHidden = true
-            }
+            NetworkException.showNetworkErrorPrompt(to: self.view, frame: CGRect(x: (SCREEN_WIDTH - 173) / 2, y: self.foundBtn.top - 81, width: 173, height: 36))
         }
     }
     
@@ -169,18 +166,6 @@ class FixedGroupVC: UIViewController {
         foundBtn.titleLabel?.font = .boldSystemFont(ofSize: 18)
         foundBtn.addTarget(self, action: #selector(clickFoundBtn), for: .touchUpInside)
         return foundBtn
-    }()
-    /// 网络异常的提示语
-    private lazy var promptLab: UILabel = {
-        let promptLab = UILabel()
-        promptLab.text = "网络异常请检查网络"
-        promptLab.font = .systemFont(ofSize: 13)
-        promptLab.textAlignment = .center
-        promptLab.layer.cornerRadius = 18
-        promptLab.clipsToBounds = true
-        promptLab.textColor = .white
-        promptLab.backgroundColor = UIColor(.dm, light: UIColor(hexString: "#2D4D80", alpha: 1), dark: UIColor(hexString: "#2D4D80", alpha: 1))
-        return promptLab
     }()
 }
 

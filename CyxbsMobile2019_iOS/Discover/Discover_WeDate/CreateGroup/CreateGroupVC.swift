@@ -63,40 +63,40 @@ class CreateGroupVC: UIViewController {
     @objc private func clickFinishBtn() {
         if let text = textField.text,
            text.isEmpty {
-            containerView.addSubview(emptyLab)
-            showShakeAnimation(label: emptyLab)
-            repeatLab.removeFromSuperview()
-            limitedLab.removeFromSuperview()
+            containerView.addSubview(promptLab)
+            promptLab.text = "名称不能为空"
+            showShakeAnimation()
         } else if textField.text!.count <= 10 {
             CreateGroupModel.requestWith(name: textField.text!, studentID: studentIDAry) { createGroupModel in
                 if createGroupModel.isRepeat {
-                    self.containerView.addSubview(self.repeatLab)
-                    self.showShakeAnimation(label: self.repeatLab)
-                    self.emptyLab.removeFromSuperview()
-                    self.limitedLab.removeFromSuperview()
+                    self.containerView.addSubview(self.promptLab)
+                    self.promptLab.text = "名称重复，请重新输入"
+                    self.showShakeAnimation()
                 } else {
                     self.delegate?.updateGroupData()
                     self.dismiss(animated: true, completion: nil)
                 }
             } failure: { error in
                 print(error)
+                self.containerView.addSubview(self.promptLab)
+                self.promptLab.text = "网络异常, 请检查网络"
+                self.showShakeAnimation()
             }
         } else if textField.text!.count > 10 {
-            containerView.addSubview(limitedLab)
-            showShakeAnimation(label: limitedLab)
-            self.repeatLab.removeFromSuperview()
-            self.emptyLab.removeFromSuperview()
+            containerView.addSubview(promptLab)
+            promptLab.text = "名称不能超过十个字符"
+            showShakeAnimation()
         }
     }
     
-    private func showShakeAnimation(label: UILabel) {
+    private func showShakeAnimation() {
         let animation = CABasicAnimation(keyPath: "position")
         animation.duration = 0.1
         animation.repeatCount = 10
         animation.autoreverses = true
-        animation.fromValue = NSValue(cgPoint: CGPoint(x: label.center.x - 1, y: label.center.y))
-        animation.toValue = NSValue(cgPoint: CGPoint(x: label.center.x + 1, y: label.center.y))
-        label.layer.add(animation, forKey: "position")
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: promptLab.center.x - 1, y: promptLab.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: promptLab.center.x + 1, y: promptLab.center.y))
+        promptLab.layer.add(animation, forKey: "position")
     }
     
     // MARK: - Lazy
@@ -178,28 +178,11 @@ class CreateGroupVC: UIViewController {
         finishBtn.layer.insertSublayer(gradientLayer, at: 0)
         return finishBtn
     }()
-    /// 分组名为空提示文本
-    private lazy var emptyLab: UILabel = {
-        let emptyLab = UILabel(frame: CGRect(x: textFieldBackView.left + 21, y: textFieldBackView.bottom + 10, width: 62, height: 15))
-        emptyLab.text = "名称不能为空"
-        emptyLab.font = .systemFont(ofSize: 10)
-        emptyLab.textColor = UIColor(.dm, light: UIColor(hexString: "#4A44E4", alpha: 1), dark: UIColor(hexString: "#4A44E4", alpha: 1))
-        return emptyLab
-    }()
-    /// 分组名重复提示文本
-    private lazy var repeatLab: UILabel = {
-        let repeatLab = UILabel(frame: CGRect(x: textFieldBackView.left + 21, y: textFieldBackView.bottom + 10, width: 103, height: 15))
-        repeatLab.text = "名称重复，请重新输入"
-        repeatLab.font = .systemFont(ofSize: 10)
-        repeatLab.textColor = UIColor(.dm, light: UIColor(hexString: "#4A44E4", alpha: 1), dark: UIColor(hexString: "#4A44E4", alpha: 1))
-        return repeatLab
-    }()
-    /// 字数超限提示文本
-    private lazy var limitedLab: UILabel = {
-        let limitedLab = UILabel(frame: CGRect(x: emptyLab.left, y: emptyLab.top, width: 103, height: emptyLab.height))
-        limitedLab.text = "名称不能超过十个字符"
-        limitedLab.font = .systemFont(ofSize: 10)
-        limitedLab.textColor = UIColor(.dm, light: UIColor(hexString: "#4A44E4", alpha: 1), dark: UIColor(hexString: "#4A44E4", alpha: 1))
-        return limitedLab
+    /// 提示文本
+    private lazy var promptLab: UILabel = {
+        let promptLab = UILabel(frame: CGRect(x: textFieldBackView.left + 21, y: textFieldBackView.bottom + 10, width: 200, height: 15))
+        promptLab.font = .systemFont(ofSize: 10)
+        promptLab.textColor = UIColor(.dm, light: UIColor(hexString: "#4A44E4", alpha: 1), dark: UIColor(hexString: "#4A44E4", alpha: 1))
+        return promptLab
     }()
 }

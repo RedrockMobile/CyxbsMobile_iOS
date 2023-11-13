@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -519,6 +519,7 @@
 		FC63434B2A891FD200DCD96C /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC63434A2A891FD200DCD96C /* SearchResultVC.swift */; };
 		FC6343532A89294E00DCD96C /* SearchResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6343522A89294E00DCD96C /* SearchResultModel.swift */; };
 		FC66D92B2A88B4C80024FB6A /* StudentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC66D92A2A88B4C80024FB6A /* StudentTableViewCell.swift */; };
+		FC6BEAF32B01CF0200755BD5 /* NetworkException.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC6BEAF22B01CF0200755BD5 /* NetworkException.swift */; };
 		FC78F80F2AD036E500995C01 /* AddArrangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC78F80E2AD036E500995C01 /* AddArrangeModel.swift */; };
 		FC78F8122AD07FB100995C01 /* ArrangeMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC78F8112AD07FB100995C01 /* ArrangeMessageVC.swift */; };
 		FC7D381A2AAB867000DEAD50 /* BatchAddModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7D38192AAB867000DEAD50 /* BatchAddModel.swift */; };
@@ -1537,6 +1538,7 @@
 		FC63434A2A891FD200DCD96C /* SearchResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
 		FC6343522A89294E00DCD96C /* SearchResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultModel.swift; sourceTree = "<group>"; };
 		FC66D92A2A88B4C80024FB6A /* StudentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentTableViewCell.swift; sourceTree = "<group>"; };
+		FC6BEAF22B01CF0200755BD5 /* NetworkException.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkException.swift; sourceTree = "<group>"; };
 		FC78F80E2AD036E500995C01 /* AddArrangeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArrangeModel.swift; sourceTree = "<group>"; };
 		FC78F8112AD07FB100995C01 /* ArrangeMessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrangeMessageVC.swift; sourceTree = "<group>"; };
 		FC7D38192AAB867000DEAD50 /* BatchAddModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchAddModel.swift; sourceTree = "<group>"; };
@@ -2556,6 +2558,7 @@
 				FC06D0EF2A9E643A00A974D8 /* StudentItem.swift */,
 				FC66D92A2A88B4C80024FB6A /* StudentTableViewCell.swift */,
 				FC5849B52A9677BB00D9BBDF /* GroupTableViewCell.swift */,
+				FC6BEAF22B01CF0200755BD5 /* NetworkException.swift */,
 				FCD622E72AB53CE8007094A2 /* BusyDetail */,
 				FCB39F322AB08C1000914462 /* CreateGroupAlert */,
 				FCB9214C2AAF780F00F373A7 /* AddArrange */,
@@ -5910,6 +5913,7 @@
 				AA0DDB53286C8B1900802324 /* MineMSSEnterBtn.m in Sources */,
 				14B73F7B281BED7B00D08ADD /* MineMessageMoreVC.m in Sources */,
 				1A344BBA23E96BF50014A3B4 /* MineAboutContentView.m in Sources */,
+				FC6BEAF32B01CF0200755BD5 /* NetworkException.swift in Sources */,
 				FE0D60442801702B00319A9E /* SchoolBusData.m in Sources */,
 				14B73F7F281BED7B00D08ADD /* DiscoverMineMessageVC.m in Sources */,
 				AA49098924F3BF5A007CB3BC /* TransitionManager.m in Sources */,
