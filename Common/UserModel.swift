@@ -10,7 +10,7 @@ import Foundation
 
 struct UserModel: Codable {
     
-    static var `defualt` = UserModel()
+    static var `default` = UserModel()
     
     private init() { }
     

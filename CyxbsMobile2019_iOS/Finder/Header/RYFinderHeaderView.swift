@@ -89,7 +89,7 @@ extension RYFinderHeaderView {
 extension RYFinderHeaderView {
     
     func reloadData() {
-        if let nowWeek = UserModel.defualt.nowWeek() {
+        if let nowWeek = UserModel.default.nowWeek() {
             
             if nowWeek >= 0 {
                 

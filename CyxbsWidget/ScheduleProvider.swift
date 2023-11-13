@@ -32,7 +32,7 @@ struct ScheduleProvider: IntentTimelineProvider {
     
     func getTimeline(for configuration: ScheduleWidgetConfiguration, in context: Context, completion: @escaping (Timeline<ScheduleTimelineEntry>) -> ()) {
         
-        guard let mainSno = UserModel.defualt.token?.stuNum else { return }
+        guard let mainSno = UserModel.default.token?.stuNum else { return }
         
         ScheduleModel.request(sno: mainSno) { response in
             let currentDate = Date()

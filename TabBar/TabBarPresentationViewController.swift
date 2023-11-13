@@ -39,7 +39,7 @@ class TabBarPresentationViewController: UIViewController {
     
     lazy var scheduleVC: RYScheduleViewController = {
         let vc = RYScheduleViewController()
-        if let mainSno = UserModel.defualt.token?.stuNum {
+        if let mainSno = UserModel.default.token?.stuNum {
             vc.uuidToPriority = [
                 .init(sno: mainSno, customType: .system): .mainly,
                 .init(sno: mainSno, customType: .custom): .custom

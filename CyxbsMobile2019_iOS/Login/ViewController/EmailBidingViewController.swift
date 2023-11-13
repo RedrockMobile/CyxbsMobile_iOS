@@ -203,7 +203,7 @@ extension EmailBidingViewController {
     }
     
     static func isBiding(sno: String? = nil, handle: @escaping (BidingType?) -> ()) {
-        HttpManager.shared.user_secret_user_bind_is(stu_num: sno ?? UserModel.defualt.token?.stuNum ?? "").ry_JSON { response in
+        HttpManager.shared.user_secret_user_bind_is(stu_num: sno ?? UserModel.default.token?.stuNum ?? "").ry_JSON { response in
             switch response {
             case .success(let model):
                 let status = model["status"].intValue

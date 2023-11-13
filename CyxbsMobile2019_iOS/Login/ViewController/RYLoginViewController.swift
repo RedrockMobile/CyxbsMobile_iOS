@@ -151,7 +151,7 @@ extension RYLoginViewController {
                     let token = model["data"]["token"].stringValue
                     let refreshToken = model["data"]["refreshToken"].stringValue
                     
-                    UserModel.defualt.setingTokenToOC(token: TokenModel(token: token, refreshToken: refreshToken))
+                    UserModel.default.setingTokenToOC(token: TokenModel(token: token, refreshToken: refreshToken))
                     
                     ProgressHUD.showSucceed("登录成功")
                     
@@ -318,7 +318,7 @@ extension RYLoginViewController {
         
         #endif
         
-        if let tokenModel = UserModel.defualt.token {
+        if let tokenModel = UserModel.default.token {
             if let didRead = UserDefaultsManager.shared.didReadUserAgreementBefore, didRead {
                 if (Date().timeIntervalSince1970 - tokenModel.iat) <= (tokenModel.exp - tokenModel.iat) / 2 {
                     
@@ -344,12 +344,12 @@ extension RYLoginViewController {
                 let token = model["data"]["token"].stringValue
                 let refreshToken = model["data"]["refreshToken"].stringValue
                 
-                UserModel.defualt.setingTokenToOC(token: TokenModel(token: token, refreshToken: refreshToken))
+                UserModel.default.setingTokenToOC(token: TokenModel(token: token, refreshToken: refreshToken))
                 
                 success(true)
                 
             } else {
-                if let old = UserModel.defualt.token, old.isTokenExpired {
+                if let old = UserModel.default.token, old.isTokenExpired {
                     success(true)
                     return
                 }

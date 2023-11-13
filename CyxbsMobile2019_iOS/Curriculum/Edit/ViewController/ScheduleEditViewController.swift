@@ -175,7 +175,7 @@ extension ScheduleEditViewController {
                 fallthrough
                 
             case .failure(_):
-                UserModel.defualt.customSchedule.curriculum.append(self.modelCalculate)
+                UserModel.default.customSchedule.curriculum.append(self.modelCalculate)
             }
             ProgressHUD.showSucceed("添加事项成功")
             self.dismissTodo()
@@ -196,8 +196,8 @@ extension ScheduleEditViewController {
                 fallthrough
                 
             case .failure(_):
-                if let index = UserModel.defualt.customSchedule.curriculum.firstIndex(where: { $0.courseID == self.modelCalculate.courseID }) {
-                    UserModel.defualt.customSchedule.curriculum.remove(at: index)
+                if let index = UserModel.default.customSchedule.curriculum.firstIndex(where: { $0.courseID == self.modelCalculate.courseID }) {
+                    UserModel.default.customSchedule.curriculum.remove(at: index)
                 }
             }
             ProgressHUD.showSucceed("删除事项成功")
@@ -219,8 +219,8 @@ extension ScheduleEditViewController {
                 fallthrough
                 
             case .failure(_):
-                if let index = UserModel.defualt.customSchedule.curriculum.firstIndex(where: { $0.courseID == self.modelCalculate.courseID }) {
-                    UserModel.defualt.customSchedule.curriculum[index] = self.modelCalculate
+                if let index = UserModel.default.customSchedule.curriculum.firstIndex(where: { $0.courseID == self.modelCalculate.courseID }) {
+                    UserModel.default.customSchedule.curriculum[index] = self.modelCalculate
                     ProgressHUD.showSucceed("本地修改成功")
                     self.dismissTodo()
                 } else {

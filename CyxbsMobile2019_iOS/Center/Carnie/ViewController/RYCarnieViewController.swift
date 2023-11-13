@@ -103,13 +103,13 @@ extension RYCarnieViewController {
                 }
             }
             
-            if let person = UserModel.defualt.person {
+            if let person = UserModel.default.person {
                 self.setupData(person: person)
             } else {
                 HttpManager.shared.magipoke_Person_Search().ry_JSON { response in
                     if case .success(let model) = response, model["status"].stringValue == "10000" {
                         let person = PersonModel(json: model["data"])
-                        UserModel.defualt.person = person
+                        UserModel.default.person = person
                         self.setupData(person: person)
                     }
                 }

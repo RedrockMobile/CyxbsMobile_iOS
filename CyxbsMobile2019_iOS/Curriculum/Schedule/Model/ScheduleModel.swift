@@ -56,7 +56,7 @@ struct ScheduleModel: Codable {
             let start = calendar.date(byAdding: .day, value: -((calculateWeek - 1) * 7 + todayWeekDay - 1), to: currentDate) ?? currentDate
             
             self.start = start
-            UserModel.defualt.start = start
+            UserModel.default.start = start
         }
     }
     
@@ -189,7 +189,7 @@ extension ScheduleModel {
     
     static func requestCustom(handle: @escaping (NetResponse<ScheduleModel>) -> Void) {
         
-        var scheduleModel = UserModel.defualt.customSchedule
+        var scheduleModel = UserModel.default.customSchedule
         
         let que = DispatchQueue(label: "ScheduleModel.magipoke_reminder_Person_getTransaction", qos: .unspecified, attributes: .concurrent)
         
@@ -197,7 +197,7 @@ extension ScheduleModel {
         
         que.async {
             
-            SearchStudentModel.request(info: UserModel.defualt.token?.stuNum ?? "") { response in
+            SearchStudentModel.request(info: UserModel.default.token?.stuNum ?? "") { response in
                 switch response {
                 case .success(let model):
                     scheduleModel.student = model.first
@@ -211,7 +211,7 @@ extension ScheduleModel {
             HttpManager.shared.magipoke_reminder_Person_getTransaction().ry_JSON { response in
                 if case .success(let model) = response {
                     scheduleModel.sno = model["stuNum"].stringValue
-                    scheduleModel.nowWeek = UserModel.defualt.nowWeek() ?? 0
+                    scheduleModel.nowWeek = UserModel.default.nowWeek() ?? 0
                     if let ary = model["data"].array?.map(CurriculumModel.init(cus:)) {
                         scheduleModel.curriculum = ary
                     }
@@ -225,7 +225,7 @@ extension ScheduleModel {
         }
         
         que.async(flags: .barrier) {
-            UserModel.defualt.customSchedule = scheduleModel
+            UserModel.default.customSchedule = scheduleModel
             DispatchQueue.main.async {
                 handle(.success(scheduleModel))
             }

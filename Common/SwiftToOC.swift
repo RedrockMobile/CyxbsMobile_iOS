@@ -12,7 +12,7 @@ class SwiftToOC: NSObject {
 
     @objc
     class func loginOut() {
-        UserModel.defualt.logout()
+        UserModel.default.logout()
         
         let loginVC = RYLoginViewController()
         loginVC.modalPresentationStyle = .fullScreen
