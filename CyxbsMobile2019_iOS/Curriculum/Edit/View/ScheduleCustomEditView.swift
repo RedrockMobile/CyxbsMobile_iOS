@@ -198,12 +198,14 @@ extension ScheduleCustomEditView {
             sectionCollectionView.selectItem(at: IndexPath(item: max(0, section - 1), section: 0), animated: true, scrollPosition: .right)
         }
         let inWeek = min(max(1, inWeek), 7)
-        periodPicker.selectRow(inWeek - 1, inComponent: 0, animated: true)
+        periodPicker.selectRow(inWeek - 1, inComponent: 0, animated: false)
+        
         let location = min(max(1, location), 12)
-        periodPicker.selectRow(location - 1, inComponent: 1, animated: true)
+        periodPicker.selectRow(location - 1, inComponent: 1, animated: false)
         periodPicker.reloadComponent(2)
+        
         let lenth = min(max(1, lenth), periodPicker.numberOfRows(inComponent: 2))
-        periodPicker.selectRow(lenth - 1, inComponent: 2, animated: true)
+        periodPicker.selectRow(lenth - 1, inComponent: 2, animated: false)
     }
     
     var isInfoVisable: Bool {
