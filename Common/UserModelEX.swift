@@ -21,5 +21,8 @@ extension UserModel {
         item.iat = "\(token.iat)"
         item.token = token.token
         item.refreshToken = token.refreshToken
+        
+        // UserDefaults写入stuNum,有可能OC里面会用到
+        UserDefaults.standard.set(token.stuNum, forKey: "stuNum")
     }
 }
