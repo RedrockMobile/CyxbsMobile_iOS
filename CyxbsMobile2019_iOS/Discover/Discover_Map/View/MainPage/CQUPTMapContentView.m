@@ -308,7 +308,7 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    textField.text = @"";
+//    textField.text = @"";
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
