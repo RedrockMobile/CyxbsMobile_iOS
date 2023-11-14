@@ -117,16 +117,15 @@
 }
 
 - (void)updateUserInfoInUserItem {
+    [CheckInModel requestCheckInInfo];
     UserItem *item = [UserItem defaultItem];
     MineTopBlurView *blurView = self.blurView;
     [blurView.headImgBtn sd_setImageWithURL:[NSURL URLWithString:item.headImgUrl] forState:UIControlStateNormal];
     blurView.nickNameLabel.text = item.nickname;
     blurView.mottoLabel.text = item.introduction;
     [self.signView setSignDay:item.checkInDay];
-    BOOL canCheckIn = item.isCheckedToday==NO;
-    // item.canCheckIn 是之前老版本的东西，用来判断是否可以签到，现在取消这个了
+    BOOL canCheckIn = !item.isCheckedToday;
     [self.signView setSignBtnEnable:canCheckIn];
-    CCLog(@"%@", [UserItem defaultItem]);
 }
 
 - (void)updateUserInfoInUserInfoModel {

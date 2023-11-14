@@ -20,6 +20,8 @@
         [self addSubview:self.button];
         [self addSubview:self.mainLabel];
         [self addSubview:self.detailLabel];
+        //检查签到情况
+        [CheckInModel requestCheckInInfo];
     }
     return self;
 }

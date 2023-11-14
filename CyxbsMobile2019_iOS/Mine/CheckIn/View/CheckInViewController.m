@@ -36,6 +36,9 @@
     }];
     contentView.delegate = self;
     self.contentView = contentView;
+    
+    //检查签到情况
+    [CheckInModel requestCheckInInfo];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -65,11 +68,6 @@
     
     // 过场动画
     [self animationForViewWillAppear];
-}
-
-- (void)dealloc
-{
-    NSLog(@"dealloc");
 }
 
 - (void)animationForViewWillAppear {
