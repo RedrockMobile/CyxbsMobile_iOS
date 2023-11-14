@@ -225,6 +225,8 @@ extension ScheduleModel {
         }
         
         que.async(flags: .barrier) {
+            scheduleModel.customType = .custom
+            scheduleModel.sno = UserModel.default.token?.stuNum ?? scheduleModel.sno
             UserModel.default.customSchedule = scheduleModel
             DispatchQueue.main.async {
                 handle(.success(scheduleModel))
