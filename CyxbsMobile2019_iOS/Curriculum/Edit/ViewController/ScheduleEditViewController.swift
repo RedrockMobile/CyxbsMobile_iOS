@@ -126,7 +126,7 @@ extension ScheduleEditViewController {
     func setupData() {
         let title = modelCalculate.course.count > 0 ? modelCalculate.course : nil
         let place = modelCalculate.classRoom.count > 0 ? modelCalculate.classRoom : nil
-        editView.prepare(title: title, place: place, sections: modelCalculate.inSections, inWeek: modelCalculate.inWeek, location: modelCalculate.period.lowerBound, lenth: modelCalculate.period.count - 1)
+        editView.prepare(title: title, place: place, sections: modelCalculate.inSections, inWeek: modelCalculate.inWeek, location: modelCalculate.period.lowerBound, lenth: modelCalculate.period.count)
     }
 }
 

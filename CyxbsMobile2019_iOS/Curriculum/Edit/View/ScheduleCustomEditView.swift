@@ -223,6 +223,7 @@ extension ScheduleCustomEditView {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         endEditing(true)
+        checkInfoVisable()
     }
     
     @objc
@@ -280,10 +281,10 @@ extension ScheduleCustomEditView: UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch component {
-        case 0: return 7
-        case 1: return 12
-        case 2: return 12 - pickerView.selectedRow(inComponent: 1)
-        default: return 0
+            case 0: return 7
+            case 1: return 12
+            case 2: return 12 - pickerView.selectedRow(inComponent: 1)
+            default: return 0
         }
     }
 }
@@ -295,22 +296,22 @@ extension ScheduleCustomEditView: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         var str: String? = nil
         switch component {
-        case 0:
-            switch row {
-            case 0: str = "星期一"
-            case 1: str = "星期二"
-            case 2: str = "星期三"
-            case 3: str = "星期四"
-            case 4: str = "星期五"
-            case 5: str = "星期六"
-            case 6: str = "星期天"
+            case 0:
+                switch row {
+                    case 0: str = "星期一"
+                    case 1: str = "星期二"
+                    case 2: str = "星期三"
+                    case 3: str = "星期四"
+                    case 4: str = "星期五"
+                    case 5: str = "星期六"
+                    case 6: str = "星期天"
+                    default: break
+                }
+            case 1:
+                str = "从第\(row + 1)节"
+            case 2:
+                str = "到第\(pickerView.selectedRow(inComponent: 1) + row + 1)节"
             default: break
-            }
-        case 1:
-            str = "从第\(row + 1)节"
-        case 2:
-            str = "到第\(pickerView.selectedRow(inComponent: 1) + row + 1)节"
-        default: break
         }
         guard let str else { return nil }
         return NSAttributedString(string: str, attributes: [

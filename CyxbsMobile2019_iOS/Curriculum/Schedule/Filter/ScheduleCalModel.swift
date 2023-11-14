@@ -45,6 +45,7 @@ class ScheduleCalModel {
     }
     
     init(sno: String, start: Date?, inSection: Int, stu: SearchStudentModel?, curriculum: CurriculumModel, customType: ScheduleModel.CustomType = .system) {
+        let start = start ?? UserModel.default.start
         self.sno = sno
         self.start = start
         self.inSection = inSection
