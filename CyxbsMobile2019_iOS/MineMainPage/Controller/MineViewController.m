@@ -474,6 +474,7 @@
         [self.signView setSignBtnEnable:NO];
         [self.signView setSignDay:[UserItemTool defaultItem].checkInDay];
         [NewQAHud showHudAtWindowWithStr:@"签到成功" enableInteract:YES];
+        [self.signView setSignDay:UserItem.defaultItem.checkInDay];
     } Failed:^(NSError * _Nonnull err) {
         [NewQAHud showHudAtWindowWithStr:@"签到失败" enableInteract:YES];
     }];

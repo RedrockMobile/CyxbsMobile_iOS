@@ -19,6 +19,7 @@
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
         [self requestCheckInInfo];
+        succeded();
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failed(error);
