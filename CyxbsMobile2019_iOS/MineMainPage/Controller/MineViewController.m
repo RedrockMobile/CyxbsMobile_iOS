@@ -24,7 +24,7 @@
 #import "CheckInModel.h" //签到的网络请求
 
 #import "MineMessageVC.h"//消息中心模块by ssr，将接入router技术
-
+#import "RemindHUD.h"
 #import "掌上重邮-Swift.h"
 
 //获取用户关注的人和粉丝的个人信息
@@ -149,7 +149,7 @@
 - (void)requestUserInfoFailure {
     self.failureCnt++;
     if (self.failureCnt==2) {
-        [NewQAHud showHudAtWindowWithStr:@"加载数据失败" enableInteract:YES];
+        [RemindHUD.shared showDefaultHUDWithText:@"加载数据失败" completion:nil];
         self.failureCnt = 0;
         self.canRequestUserInfo = NO;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -473,10 +473,9 @@
     [CheckInModel CheckInSucceeded:^{
         [self.signView setSignBtnEnable:NO];
         [self.signView setSignDay:[UserItemTool defaultItem].checkInDay];
-        [NewQAHud showHudAtWindowWithStr:@"签到成功" enableInteract:YES];
-        [self.signView setSignDay:UserItem.defaultItem.checkInDay];
+        [RemindHUD.shared showDefaultHUDWithText:@"签到成功" completion:nil];
     } Failed:^(NSError * _Nonnull err) {
-        [NewQAHud showHudAtWindowWithStr:@"签到失败" enableInteract:YES];
+        [RemindHUD.shared showDefaultHUDWithText:@"签到失败" completion:nil];
     }];
 }
 

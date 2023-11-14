@@ -18,8 +18,11 @@
      bodyParameters:nil
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-        [self requestCheckInInfo];
-        succeded();
+        NSInteger status = [object[@"status"] intValue];
+        if (status == 10000) {
+            [self requestCheckInInfo];
+            succeded();
+        }
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failed(error);
