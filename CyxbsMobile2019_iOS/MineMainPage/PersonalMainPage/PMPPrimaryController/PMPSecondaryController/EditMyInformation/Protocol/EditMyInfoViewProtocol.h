@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol EditMyInfoViewProtocol <NSObject>
 
-- (void)profileUploadSuccess;
+- (void)profileUploadSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)userInfoUploadSuccess;
 - (void)userInfoOrProfileUploadFailure;
 

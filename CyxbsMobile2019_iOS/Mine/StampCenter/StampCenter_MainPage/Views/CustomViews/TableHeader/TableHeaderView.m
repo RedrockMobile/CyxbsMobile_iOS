@@ -14,7 +14,7 @@
 
 @implementation TableHeaderView
 
--(instancetype)initWithFrame:(CGRect)frame{
+- (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self setup];
         [self addSubview:self.button];
@@ -37,7 +37,7 @@
 
 - (GotoButton *)button{
     if (!_button) {
-       GotoButton *button = [[GotoButton alloc]initWithFrame:CGRectMake(0.781*SCREEN_WIDTH, 32, 66, 28) AndTitle:@"去签到"];
+        GotoButton *button = [[GotoButton alloc]initWithFrame:CGRectMake(0.781*SCREEN_WIDTH, 32, 66, 28) AndTitle:@"去签到"];
         [StampTaskData TaskDataWithSuccess:^(NSArray * _Nonnull array) {
             if (!array || array.count <= 0) {
                 [RemindHUD.shared showDefaultHUDWithText:@"Token失效了，重新登录掌邮试试吧" completion:nil];
@@ -55,9 +55,9 @@
                 [self.button setTitle:@"已签到" forState:UIControlStateNormal];
                 self.detailLabel.text = [NSString stringWithFormat:@"明日签到 +%d",  ([[UserItemTool defaultItem].checkInDay intValue]+2)*5];
             }
-                } error:^{
+        } error:^{
             
-                }];
+        }];
         [button addTarget:self action:@selector(checkIn) forControlEvents:UIControlEventTouchUpInside];
         _button = button;
     }
@@ -94,9 +94,9 @@
         [self.button setTitle:@"已签到" forState:UIControlStateNormal];
         self.detailLabel.text = [NSString stringWithFormat:@"明日签到 +%d",  ([[UserItemTool defaultItem].checkInDay intValue]+2)*5];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
-        } Failed:^(NSError * _Nonnull err) {
-            NSLog(@"出错了");
-        }];
-
+    } Failed:^(NSError * _Nonnull err) {
+        NSLog(@"出错了");
+    }];
+    
 }
 @end

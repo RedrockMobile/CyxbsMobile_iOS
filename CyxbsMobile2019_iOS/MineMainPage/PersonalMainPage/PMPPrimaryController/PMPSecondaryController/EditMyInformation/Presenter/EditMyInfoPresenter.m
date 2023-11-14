@@ -11,20 +11,20 @@
 
 @implementation EditMyInfoPresenter
 
-- (void)uploadProfile:(UIImage *)profile {
+- (void)uploadProfile:(UIImage *)profile Success:(void (^)(void))success failure:(void (^)(NSError *error))failure {
     
     [EditMyInfoModel uploadProfile:profile success:^(NSDictionary * _Nonnull responseObject) {
         if ([responseObject[@"status"] intValue] == 200) {
             [UserItemTool defaultItem].headImgUrl = responseObject[@"data"][@"photosrc"];
-            [self.attachedView profileUploadSuccess];
+            success();
         }
     } failure:^(NSError * _Nonnull error) {
-        [self.attachedView userInfoOrProfileUploadFailure];
+        failure(error);
     }];
 
 }
 
-- (void)uploadUserInfo:(NSDictionary *)userInfo {
+- (void)uploadUserInfo:(NSDictionary *)userInfo Success:(void (^)(void))success failure:(void (^)(NSError *error))failure {
     [UserItemTool defaultItem].nickname = userInfo[@"nickname"];
     [UserItemTool defaultItem].introduction = userInfo[@"introduction"];
     [UserItemTool defaultItem].qq = userInfo[@"qq"];
@@ -33,13 +33,10 @@
     [UserItemTool defaultItem].gender = userInfo[@"gender"];
     [UserItemTool defaultItem].birthday = userInfo[@"birthday"];
     
-    [EditMyInfoModel
-     uploadUserInfo:userInfo
-     success:^(NSDictionary * _Nonnull responseObject) {
-        [self.attachedView userInfoUploadSuccess];
-    }
-     failure:^(NSError * _Nonnull error) {
-        [self.attachedView userInfoOrProfileUploadFailure];
+    [EditMyInfoModel uploadUserInfo:userInfo success:^(NSDictionary * _Nonnull responseObject) {
+        success();
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
     }];
 }
 

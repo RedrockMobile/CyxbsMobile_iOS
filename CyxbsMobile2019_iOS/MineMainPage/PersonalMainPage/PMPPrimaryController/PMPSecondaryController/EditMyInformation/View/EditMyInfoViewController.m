@@ -66,17 +66,30 @@ UIImagePickerControllerDelegate
 
 #pragma mark - contentView代理回调
 - (void)saveButtonClicked:(UIButton *)sender {
-    [sender setTitle:@"上传中" forState:UIControlStateNormal];
-    sender.userInteractionEnabled = NO;
+    [self.contentView.saveButton setTitle:@"上传中" forState:UIControlStateNormal];
+    self.contentView.saveButton.userInteractionEnabled = NO;
     
     // 头像改变了才上传头像
     if (self.profileChanged) {
-        [self.presenter uploadProfile:self.contentView.headerImageView.image];
+        [self.presenter uploadProfile:self.contentView.headerImageView.image Success:^{
+            [self profileUploadSuccess:^{
+                [self.presenter.attachedView userInfoUploadSuccess];
+            } failure:^(NSError * _Nonnull error) {
+                [self.presenter.attachedView userInfoOrProfileUploadFailure];
+            }];
+        } failure:^(NSError * _Nonnull error) {
+            [self.presenter.attachedView userInfoOrProfileUploadFailure];
+            [self profileUploadSuccess:^{} failure:^(NSError * _Nonnull error) {}];
+        }];
+    } else {
+        // 头像没有改变，直接执行下一个任务
+        [self profileUploadSuccess:^{
+            [self.presenter.attachedView userInfoUploadSuccess];
+        } failure:^(NSError * _Nonnull error) {
+            [self.presenter.attachedView userInfoOrProfileUploadFailure];
+        }];
     }
-    // 直接上传其他信息
-    [self profileUploadSuccess];  // 这个方法是头像上传成功的回调，里面的内容就是上传个人信息
     
-
     if ([[UserItem defaultItem].qq isEqualToString:@"完善你的个人信息哦"]) {
         return;
     }
@@ -110,19 +123,6 @@ UIImagePickerControllerDelegate
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"失败了");
     }];
-//   HttpClient *client = [HttpClient defaultClient];
-//    //完成完善个人信息任务
-//    [client.httpSessionManager.requestSerializer setValue:[NSString stringWithFormat:@"Bearer %@",[UserItem defaultItem].token] forHTTPHeaderField:@"authorization"];
-//    [client.httpSessionManager POST:Mine_POST_task_API parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-//        NSString *target = @"完善个人信息";
-//        NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
-//        [formData appendPartWithFormData:data name:@"title"];
-//        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-//            NSLog(@"成功了");
-//            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
-//        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-//            NSLog(@"失败了");
-//        }];
 }
 
 - (void)headerImageTapped:(UIImageView *)sender {
@@ -153,7 +153,7 @@ UIImagePickerControllerDelegate
 
 
 #pragma mark - Presenter回调
-- (void)profileUploadSuccess {
+- (void)profileUploadSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure {
     NSDictionary *uploadData = @{
         // 这三个字段不用了
         //@"stuNum": [UserDefaultTool getStuNum],
@@ -167,7 +167,11 @@ UIImagePickerControllerDelegate
         @"birthday": self.contentView.birthdayTextField.text.length != 0 ? self.contentView.birthdayTextField.text : self.contentView.birthdayTextField.placeholder,
     };
     
-    [self.presenter uploadUserInfo:uploadData];
+    [self.presenter uploadUserInfo:uploadData Success:^{
+        success();
+    } failure:^(NSError * _Nonnull error) {
+        failure(error);
+    }];
 }
 
 /// 修改数据失败之后执行这个方法
@@ -177,7 +181,7 @@ UIImagePickerControllerDelegate
     hud.labelText = @"上传失败了...";
     [hud hide:YES afterDelay:1];
     
-    self.contentView.saveButton.titleLabel.text = @"保 存";
+    [self.contentView.saveButton setTitle:@"保 存" forState:UIControlStateNormal];
     self.contentView.saveButton.userInteractionEnabled = YES;
 }
 
