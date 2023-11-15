@@ -137,7 +137,7 @@
         switch (indexPath.row) {
             case 0:
                 s = @selector(switchedLaunchingWithClassScheduleView:);
-                settingSwitch.on = ![NSUserDefaults.standardUserDefaults valueForKey:@"Mine_LaunchingWithClassScheduleView"];
+            settingSwitch.on = ![NSUserDefaults.standardUserDefaults valueForKey:@"PRSENT_SCHEDULE_WHEN_OPEN_APP"];
                 break;
             case 1:
                 s = @selector(switchedRemindBeforeClass:);
@@ -231,14 +231,10 @@
 
 /// 滑动 “启动时优先显示课表” 开关后调用
 /// @param sender 开关
-- (void)switchedLaunchingWithClassScheduleView:(UISwitch *)sender{
-    if (sender.on) {            // 打开开关
-        [NSUserDefaults.standardUserDefaults removeObjectForKey:@"Mine_LaunchingWithClassScheduleView"];
-        [NSUserDefaults.standardUserDefaults synchronize];
-    } else {                    // 关闭开关
-        [NSUserDefaults.standardUserDefaults setValue:@"test" forKey:@"Mine_LaunchingWithClassScheduleView"];
-        [NSUserDefaults.standardUserDefaults synchronize];
-    }
+- (void)switchedLaunchingWithClassScheduleView:(UISwitch *)sender {
+    BOOL presentScheduleWhenOpenApp = sender.on;
+    [[NSUserDefaults standardUserDefaults] setBool:presentScheduleWhenOpenApp forKey:@"PRSENT_SCHEDULE_WHEN_OPEN_APP"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
