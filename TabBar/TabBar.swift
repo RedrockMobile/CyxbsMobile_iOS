@@ -50,6 +50,9 @@ class TabBar: UITabBar {
         } else {
             createMoreTopBezierPath.stroke()
         }
+        // 在这里执行绘制操作
+        shapeLayer.frame = bounds
+        shapeLayer.path = createBezierPath.cgPath
     }
     
     var originMaxHeight: CGFloat = 0
@@ -71,7 +74,7 @@ class TabBar: UITabBar {
         for subview in subviews {
             if let tabBarButtonClass = NSClassFromString("UITabBarButton"),
                 subview.isKind(of: tabBarButtonClass) {
-
+                
                 if !isHeaderViewHidden {
                     subview.frame.origin.y += heightForMoreSpace
                     subview.frame.size.height -= heightForMoreSpace
@@ -83,8 +86,7 @@ class TabBar: UITabBar {
             }
         }
         
-        shapeLayer.frame = bounds
-        shapeLayer.path = createBezierPath.cgPath
+        setNeedsDisplay() // 调用drawRect方法进行绘制
     }
     
     // MARK: Lazy
