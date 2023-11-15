@@ -60,4 +60,8 @@ class SwiftToOC: NSObject {
     
     }
     
+    @objc
+    class func getNowWeek() -> Int {
+        return UserModel.default.nowWeek() ?? 0
+    }
 }
