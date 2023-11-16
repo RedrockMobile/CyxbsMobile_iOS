@@ -113,11 +113,7 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.textLabel.font = [UIFont fontWithName:PingFangSCMedium size:16];
-    if (@available(iOS 11.0, *)) {
-        cell.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#193866" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-    } else {
-        // Fallback on earlier versions
-    }
+    cell.textLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#193866" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     

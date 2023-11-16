@@ -153,7 +153,7 @@
         [passwordRight2 setBackgroundImage:[UIImage imageNamed:@"眼睛1"] forState:UIControlStateNormal];
         [passwordRight2 setBackgroundImage:[UIImage imageNamed:@"眼睛2"] forState:UIControlStateSelected];
         passwordRight2.selected = YES;
-        [passwordRight2 addTarget:self action:@selector(securityPassword2) forControlEvents:UIControlEventTouchUpInside];
+        [passwordRight2 addTarget:self action:@selector(securityPassword1) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:passwordRight2];
         _passwordRight2 = passwordRight2;
         

@@ -19,7 +19,14 @@ MJExtensionCodingImplementation
 }
 
 - (void)archiveItem {
-    [NSKeyedArchiver archiveRootObject:self toFile:[CQUPTMapStarPlaceItem archivePath]];
+    NSError *error = nil;
+    NSData *archiveData = [NSKeyedArchiver archivedDataWithRootObject:self requiringSecureCoding:YES error:&error];
+    if (error) {
+        // 处理错误情况
+        NSLog(@"CQUPTMapStarPlaceItem Error: %@", error);
+    } else {
+        [archiveData writeToFile:[CQUPTMapStarPlaceItem archivePath] atomically:YES];
+    }
 }
 
 - (instancetype)initWithDice:(NSDictionary *)dict {
@@ -34,8 +41,18 @@ MJExtensionCodingImplementation
 }
 
 + (NSArray<CQUPTMapPlaceItem *> *)starPlaceDetail {
-    CQUPTMapStarPlaceItem *starItem = [NSKeyedUnarchiver unarchiveObjectWithFile:[CQUPTMapStarPlaceItem archivePath]];
-    CQUPTMapDataItem *mapData = [NSKeyedUnarchiver unarchiveObjectWithFile:[CQUPTMapDataItem archivePath]];
+    NSError *error = nil;
+    CQUPTMapStarPlaceItem *starItem = [NSKeyedUnarchiver unarchivedObjectOfClass:[CQUPTMapStarPlaceItem class] fromData:[NSData dataWithContentsOfFile:[CQUPTMapStarPlaceItem archivePath]] error:&error];
+    if (error) {
+        // 处理错误情况
+        NSLog(@"CQUPTMapStarPlaceItem Error: %@", error);
+    }
+
+    CQUPTMapDataItem *mapData = [NSKeyedUnarchiver unarchivedObjectOfClass:[CQUPTMapDataItem class] fromData:[NSData dataWithContentsOfFile:[CQUPTMapDataItem archivePath]] error:&error];
+    if (error) {
+        // 处理错误情况
+        NSLog(@"CQUPTMapStarPlaceItem Error: %@", error);
+    }
     
     NSMutableArray *tmpArray = [@[] mutableCopy];
     for (NSString *placeID in starItem.starPlaceArray) {

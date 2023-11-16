@@ -237,7 +237,7 @@
         {
         UILabel *tipsLable = [[UILabel alloc]init];
         tipsLable.text = @"请至少输入两个字符";
-        tipsLable.font =[UIFont fontWithName:nil size:12];
+        tipsLable.font =[UIFont fontWithName:PingFangSC size:12];
         tipsLable.textColor = [UIColor colorWithRed:11/225.0 green:204/225.0 blue:240/225.0 alpha:1.0];
         [self.view addSubview:tipsLable];
         [tipsLable mas_makeConstraints:^(MASConstraintMaker *make) {

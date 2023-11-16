@@ -158,7 +158,13 @@
 
 
 - (void)searchPlaceSuccess:(NSArray<CQUPTMapSearchItem *> *)placeIDArray {
-    CQUPTMapDataItem *mapData = [NSKeyedUnarchiver unarchiveObjectWithFile:[CQUPTMapDataItem archivePath]];
+    NSError *error = nil;
+    NSData *archiveData = [NSData dataWithContentsOfFile:[CQUPTMapDataItem archivePath]];
+    CQUPTMapDataItem *mapData = [NSKeyedUnarchiver unarchivedObjectOfClass:[CQUPTMapDataItem class] fromData:archiveData error:&error];
+    if (error) {
+        // 处理错误情况
+        NSLog(@"Unarchive Error: %@", error);
+    }
     
     NSMutableArray *tmpArray = [NSMutableArray array];
     for (NSString *placeID in placeIDArray) {
