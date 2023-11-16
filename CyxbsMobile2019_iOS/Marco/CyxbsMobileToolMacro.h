@@ -149,11 +149,7 @@ fprintf(stderr,"\n");\
 //状态栏高度
 #define getStatusBarHeight_Double ^(void){\
     double statusBarH = 0;\
-    if (@available(iOS 13.0, *)) {\
-        statusBarH = [[UIApplication sharedApplication].windows objectAtIndex:0].windowScene.statusBarManager.statusBarFrame.size.height;\
-    } else {\
-        statusBarH = [UIApplication sharedApplication].statusBarFrame.size.height;\
-    }\
+    statusBarH = [[UIApplication sharedApplication].windows objectAtIndex:0].windowScene.statusBarManager.statusBarFrame.size.height;\
     return statusBarH;\
 }()
 

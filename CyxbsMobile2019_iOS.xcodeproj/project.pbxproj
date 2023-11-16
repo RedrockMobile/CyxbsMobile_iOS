@@ -3029,9 +3029,9 @@
 		18CDF542257F91BC006E8E5C /* Discover_Map */ = {
 			isa = PBXGroup;
 			children = (
+				18CDF548257F91BC006E8E5C /* Model */,
 				18CDF544257F91BC006E8E5C /* Presenter */,
 				18CDF55A257F91BD006E8E5C /* View */,
-				18CDF548257F91BC006E8E5C /* Model */,
 			);
 			path = Discover_Map;
 			sourceTree = "<group>";
@@ -3039,9 +3039,9 @@
 		18CDF544257F91BC006E8E5C /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF545257F91BC006E8E5C /* CQUPTMapViewProtocol.h */,
 				18CDF547257F91BC006E8E5C /* CQUPTMapPresenter.h */,
 				18CDF546257F91BC006E8E5C /* CQUPTMapPresenter.m */,
+				18CDF545257F91BC006E8E5C /* CQUPTMapViewProtocol.h */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -3059,20 +3059,20 @@
 		18CDF54B257F91BC006E8E5C /* Items */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF54C257F91BC006E8E5C /* CQUPTMapStarPlaceItem.h */,
-				18CDF54D257F91BC006E8E5C /* CQUPTMapSearchItem.h */,
-				18CDF54E257F91BC006E8E5C /* CQUPTMapHotPlaceItem.h */,
-				18CDF54F257F91BC006E8E5C /* CQUPTMapPlaceDetailItem.h */,
-				18CDF550257F91BC006E8E5C /* CQUPTMapPlaceRect.m */,
-				18CDF551257F91BC006E8E5C /* CQUPTMapDataItem.m */,
-				18CDF552257F91BC006E8E5C /* CQUPTMapPlaceItem.h */,
-				18CDF553257F91BC006E8E5C /* CQUPTMapStarPlaceItem.m */,
-				18CDF554257F91BC006E8E5C /* CQUPTMapPlaceRect.h */,
-				18CDF555257F91BD006E8E5C /* CQUPTMapPlaceDetailItem.m */,
-				18CDF556257F91BD006E8E5C /* CQUPTMapHotPlaceItem.m */,
-				18CDF557257F91BD006E8E5C /* CQUPTMapSearchItem.m */,
-				18CDF558257F91BD006E8E5C /* CQUPTMapPlaceItem.m */,
 				18CDF559257F91BD006E8E5C /* CQUPTMapDataItem.h */,
+				18CDF551257F91BC006E8E5C /* CQUPTMapDataItem.m */,
+				18CDF54E257F91BC006E8E5C /* CQUPTMapHotPlaceItem.h */,
+				18CDF556257F91BD006E8E5C /* CQUPTMapHotPlaceItem.m */,
+				18CDF54F257F91BC006E8E5C /* CQUPTMapPlaceDetailItem.h */,
+				18CDF555257F91BD006E8E5C /* CQUPTMapPlaceDetailItem.m */,
+				18CDF552257F91BC006E8E5C /* CQUPTMapPlaceItem.h */,
+				18CDF558257F91BD006E8E5C /* CQUPTMapPlaceItem.m */,
+				18CDF554257F91BC006E8E5C /* CQUPTMapPlaceRect.h */,
+				18CDF550257F91BC006E8E5C /* CQUPTMapPlaceRect.m */,
+				18CDF54D257F91BC006E8E5C /* CQUPTMapSearchItem.h */,
+				18CDF557257F91BD006E8E5C /* CQUPTMapSearchItem.m */,
+				18CDF54C257F91BC006E8E5C /* CQUPTMapStarPlaceItem.h */,
+				18CDF553257F91BC006E8E5C /* CQUPTMapStarPlaceItem.m */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -3104,14 +3104,14 @@
 			isa = PBXGroup;
 			children = (
 				18CDF560257F91BD006E8E5C /* CQUPTMapContentView.h */,
-				18CDF561257F91BD006E8E5C /* CQUPTMapMyStarButton.h */,
-				18CDF562257F91BD006E8E5C /* CQUPTMapHotPlaceButton.m */,
-				18CDF563257F91BD006E8E5C /* CQUPTMapProgressView.h */,
-				18CDF564257F91BD006E8E5C /* CQUPTMapViewController.h */,
 				18CDF565257F91BD006E8E5C /* CQUPTMapContentView.m */,
 				18CDF566257F91BD006E8E5C /* CQUPTMapHotPlaceButton.h */,
-				18CDF567257F91BD006E8E5C /* CQUPTMapProgressView.m */,
+				18CDF562257F91BD006E8E5C /* CQUPTMapHotPlaceButton.m */,
+				18CDF561257F91BD006E8E5C /* CQUPTMapMyStarButton.h */,
 				18CDF568257F91BD006E8E5C /* CQUPTMapMyStarButton.m */,
+				18CDF563257F91BD006E8E5C /* CQUPTMapProgressView.h */,
+				18CDF567257F91BD006E8E5C /* CQUPTMapProgressView.m */,
+				18CDF564257F91BD006E8E5C /* CQUPTMapViewController.h */,
 				18CDF569257F91BD006E8E5C /* CQUPTMapViewController.m */,
 			);
 			path = MainPage;
@@ -3120,12 +3120,12 @@
 		18CDF56A257F91BD006E8E5C /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF56B257F91BD006E8E5C /* CQUPTMapSearchView.h */,
-				18CDF56E257F91BD006E8E5C /* CQUPTMapSearchView.m */,
-				18CDF56F257F91BD006E8E5C /* CQUPTMapSearchResultCell.h */,
-				18CDF56C257F91BD006E8E5C /* CQUPTMapSearchResultCell.m */,
 				18CDF570257F91BD006E8E5C /* CQUPTMapBeforeSearchCell.h */,
 				18CDF56D257F91BD006E8E5C /* CQUPTMapBeforeSearchCell.m */,
+				18CDF56F257F91BD006E8E5C /* CQUPTMapSearchResultCell.h */,
+				18CDF56C257F91BD006E8E5C /* CQUPTMapSearchResultCell.m */,
+				18CDF56B257F91BD006E8E5C /* CQUPTMapSearchView.h */,
+				18CDF56E257F91BD006E8E5C /* CQUPTMapSearchView.m */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -3133,12 +3133,12 @@
 		18CDF571257F91BD006E8E5C /* MoreImage */ = {
 			isa = PBXGroup;
 			children = (
+				18CDF574257F91BD006E8E5C /* CQUPTMapAllImageCollectionViewCell.h */,
+				18CDF575257F91BD006E8E5C /* CQUPTMapAllImageCollectionViewCell.m */,
 				18CDF573257F91BD006E8E5C /* CQUPTMapImageLayout.h */,
 				18CDF576257F91BD006E8E5C /* CQUPTMapImageLayout.m */,
 				18CDF577257F91BD006E8E5C /* CQUPTMapMoreImageViewController.h */,
 				18CDF572257F91BD006E8E5C /* CQUPTMapMoreImageViewController.m */,
-				18CDF574257F91BD006E8E5C /* CQUPTMapAllImageCollectionViewCell.h */,
-				18CDF575257F91BD006E8E5C /* CQUPTMapAllImageCollectionViewCell.m */,
 			);
 			path = MoreImage;
 			sourceTree = "<group>";
@@ -3146,12 +3146,12 @@
 		18CDF579257F91BD006E8E5C /* PlaceDetail */ = {
 			isa = PBXGroup;
 			children = (
-				18CDF57C257F91BD006E8E5C /* CQUPTMapDetailView.h */,
-				18CDF57F257F91BD006E8E5C /* CQUPTMapDetailView.m */,
-				18CDF57D257F91BD006E8E5C /* CQUPTMapDetailTagsCollectionViewCell.h */,
-				18CDF57A257F91BD006E8E5C /* CQUPTMapDetailTagsCollectionViewCell.m */,
 				18CDF57B257F91BD006E8E5C /* CollectionViewSpaceLayout.h */,
 				18CDF57E257F91BD006E8E5C /* CollectionViewSpaceLayout.m */,
+				18CDF57D257F91BD006E8E5C /* CQUPTMapDetailTagsCollectionViewCell.h */,
+				18CDF57A257F91BD006E8E5C /* CQUPTMapDetailTagsCollectionViewCell.m */,
+				18CDF57C257F91BD006E8E5C /* CQUPTMapDetailView.h */,
+				18CDF57F257F91BD006E8E5C /* CQUPTMapDetailView.m */,
 			);
 			path = PlaceDetail;
 			sourceTree = "<group>";
