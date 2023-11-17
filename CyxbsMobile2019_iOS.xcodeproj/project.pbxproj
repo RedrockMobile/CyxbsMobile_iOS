@@ -337,6 +337,9 @@
 		73AAA1D526C918250084E44D /* PurchaseInfoOrderIDView.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1C226C918240084E44D /* PurchaseInfoOrderIDView.m */; };
 		73AAA1D626C918250084E44D /* DetailsBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1C726C918240084E44D /* DetailsBaseTableViewCell.m */; };
 		73AAA1D726C918250084E44D /* DetailsCustomizeNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 73AAA1C826C918240084E44D /* DetailsCustomizeNavigationBar.m */; };
+		752A03EC2B0796C1003256C1 /* ActivityMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752A03EB2B0796C1003256C1 /* ActivityMessageModel.swift */; };
+		752A03EE2B0796CF003256C1 /* ActivityMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752A03ED2B0796CF003256C1 /* ActivityMessageCell.swift */; };
+		752A03F02B0796D9003256C1 /* ActivityMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752A03EF2B0796D9003256C1 /* ActivityMessageVC.swift */; };
 		75500E612AEE8FD200C2FC3A /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75500E5E2AEE8FD200C2FC3A /* UIColorExtension.swift */; };
 		75500E622AEE8FD200C2FC3A /* SwiftyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75500E5F2AEE8FD200C2FC3A /* SwiftyClient.swift */; };
 		75500E632AEE8FD200C2FC3A /* TextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75500E602AEE8FD200C2FC3A /* TextManager.swift */; };
@@ -1211,6 +1214,9 @@
 		73AAA1C726C918240084E44D /* DetailsBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsBaseTableViewCell.m; sourceTree = "<group>"; };
 		73AAA1C826C918240084E44D /* DetailsCustomizeNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsCustomizeNavigationBar.m; sourceTree = "<group>"; };
 		73AAA1C926C918240084E44D /* DetailsBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsBaseTableViewCell.h; sourceTree = "<group>"; };
+		752A03EB2B0796C1003256C1 /* ActivityMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityMessageModel.swift; sourceTree = "<group>"; };
+		752A03ED2B0796CF003256C1 /* ActivityMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityMessageCell.swift; sourceTree = "<group>"; };
+		752A03EF2B0796D9003256C1 /* ActivityMessageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityMessageVC.swift; sourceTree = "<group>"; };
 		75500E5E2AEE8FD200C2FC3A /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		75500E5F2AEE8FD200C2FC3A /* SwiftyClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyClient.swift; sourceTree = "<group>"; };
 		75500E602AEE8FD200C2FC3A /* TextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextManager.swift; sourceTree = "<group>"; };
@@ -2119,6 +2125,7 @@
 		14B73F29281BED7B00D08ADD /* Discover_MineMessage */ = {
 			isa = PBXGroup;
 			children = (
+				752A03E72B079671003256C1 /* ActivityMessage_module */,
 				14B73F64281BED7B00D08ADD /* DiscoverMineMessage_module */,
 				14B73F5A281BED7B00D08ADD /* MineMessage_module */,
 				14B73F40281BED7B00D08ADD /* SystemMessage_module */,
@@ -4088,6 +4095,40 @@
 				73AAA1C726C918240084E44D /* DetailsBaseTableViewCell.m */,
 			);
 			path = "GenericClass  ";
+			sourceTree = "<group>";
+		};
+		752A03E72B079671003256C1 /* ActivityMessage_module */ = {
+			isa = PBXGroup;
+			children = (
+				752A03EA2B0796B0003256C1 /* Model */,
+				752A03E92B0796AB003256C1 /* View */,
+				752A03E82B079699003256C1 /* VC */,
+			);
+			path = ActivityMessage_module;
+			sourceTree = "<group>";
+		};
+		752A03E82B079699003256C1 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				752A03EF2B0796D9003256C1 /* ActivityMessageVC.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		752A03E92B0796AB003256C1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				752A03ED2B0796CF003256C1 /* ActivityMessageCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		752A03EA2B0796B0003256C1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				752A03EB2B0796C1003256C1 /* ActivityMessageModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		75500E5D2AEE8FD200C2FC3A /* Tools */ = {
@@ -6288,6 +6329,7 @@
 				AA3F82DA24E8E03C00B65042 /* ClassDetailView.m in Sources */,
 				B0F71C9E2ABC71B200F8B1AC /* PublishPageCell.m in Sources */,
 				AA5368F02589E28800236CB5 /* QuitTipView.m in Sources */,
+				752A03EE2B0796CF003256C1 /* ActivityMessageCell.swift in Sources */,
 				B0F71C922ABC71B200F8B1AC /* ExpressDeclareModel.m in Sources */,
 				646B1984282E8F000015DF28 /* StationGuideView.m in Sources */,
 				B0C9F22F2B0126E1006F4286 /* ActivityRankingListVC.swift in Sources */,
@@ -6311,6 +6353,7 @@
 				B09BB8362AADA35400FF88F7 /* FoodDetailsModel.m in Sources */,
 				B0C9F2362B0126E1006F4286 /* ActivityCollectionVC.swift in Sources */,
 				B0C9F2432B0126E1006F4286 /* ActivityAdminReviewingVC.swift in Sources */,
+				752A03EC2B0796C1003256C1 /* ActivityMessageModel.swift in Sources */,
 				FE2C135527AEF629001CF7AF /* ToDoDetailTitleView.m in Sources */,
 				14B73F79281BED7B00D08ADD /* MessageMoreModel.m in Sources */,
 				14F6F56C2AFB8CDB007C7CA6 /* BaseTextFiledViewController.swift in Sources */,
@@ -6712,6 +6755,7 @@
 				D0101D572433C885004337ED /* NSLayoutConstraint+SDMask.m in Sources */,
 				18CDF4BB257F8DBD006E8E5C /* ResetPwdViewController.m in Sources */,
 				B0C9F2412B0126E1006F4286 /* ActivitySearchVC.swift in Sources */,
+				752A03F02B0796D9003256C1 /* ActivityMessageVC.swift in Sources */,
 				14F6F5492AFB8CDA007C7CA6 /* RYScheduleHeaderView.swift in Sources */,
 				14FFFBF02AF8C0F3005A7EBD /* UserModel.swift in Sources */,
 				B0C9F2352B0126E1006F4286 /* ActivityDetailVCExtension.swift in Sources */,
