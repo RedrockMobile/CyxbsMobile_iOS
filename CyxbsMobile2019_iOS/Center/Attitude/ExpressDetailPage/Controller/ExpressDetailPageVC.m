@@ -191,7 +191,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // MARK: TODO:修改cell个数
+    // 修改cell个数
     return self.detailItem.choices.count;
 //    return 2;
 }
@@ -204,7 +204,7 @@
     }
     // 展示已投票数据
     if (self.detailItem != NULL) {
-        // MARK: TODO:cell的标题
+        // cell的标题
         cell.titleLab.text = self.detailItem.choices[indexPath.row];
         // 如果已经投票
         if (self.detailItem.getVoted != NULL) {
@@ -238,7 +238,7 @@
     ExpressDetailCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [self putAnimation:indexPath];
     [self tapFeedback];
-    // DELETE 撤销投票
+    // MARK: DELETE 撤销投票
     // 只有没有投过票才不用撤销投票
     if (self.votedRow != -1) {
         [self.declareModel requestDeclareDataWithId:self.theId Success:^(bool declareSuccess) {
@@ -253,7 +253,7 @@
     }
     // 更新投票选项
     self.votedRow = indexPath.row;
-    // PUT 投票
+    // MARK: PUT 投票
     [self.pickModel requestPickDataWithId:self.theId Choice:cell.titleLab.text Success:^(ExpressPickPutItem * _Nonnull model) {
         NSLog(@"发布成功");
         // 更新百分比数组
@@ -263,8 +263,8 @@
     } Failure:^(NSError * _Nonnull error) {
         NSLog(@"发布失败");
         // 网络错误页面
-        [self.view removeAllSubviews];
-        [self.view addSubview:self.netWrong];
+//        [self.view removeAllSubviews];
+//        [self.view addSubview:self.netWrong];
     }];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -311,7 +311,7 @@
         _detailTitle.textAlignment = NSTextAlignmentLeft;
         _detailTitle.textColor = [UIColor whiteColor];
         _detailTitle.font = [UIFont fontWithName:PingFangSCSemibold size:18];
-        // MARK: TODO:修改标题名
+        // 修改标题名
 //        _detailTitle.text = @"你是否支持iPhone的接口将要被统—为接口你是否支持iPhone的接口将要被统";
         _detailTitle.text = self.detailItem.title;
     }
@@ -339,6 +339,27 @@
         _detailModel = [[ExpressPickGetModel alloc] init];
     }
     return _detailModel;
+}
+
+- (ExpressPickPutModel *)pickModel {
+    if (!_pickModel) {
+        _pickModel = [[ExpressPickPutModel alloc] init];
+    }
+    return _pickModel;
+}
+
+- (ExpressPickPutItem *)pickItem {
+    if (!_pickItem) {
+        _pickItem = [[ExpressPickPutItem alloc] init];
+    }
+    return _pickItem;
+}
+
+- (ExpressDeclareModel *)declareModel {
+    if (!_declareModel) {
+        _declareModel = [[ExpressDeclareModel alloc] init];
+    }
+    return _declareModel;
 }
 
 - (AttitudeNetWrong *)netWrong {

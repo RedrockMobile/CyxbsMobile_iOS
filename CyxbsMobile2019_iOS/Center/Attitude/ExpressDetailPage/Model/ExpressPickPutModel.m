@@ -26,14 +26,18 @@
      bodyParameters:params
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-        ExpressPickPutItem *pickModel = [[ExpressPickPutItem alloc] initWithDictionary:object];
-        [pickModel votedPercenteCalculateToNSNumber:pickModel.putStatistic];
-        if (success) {
-            success(pickModel);
+        NSInteger status = [object[@"status"] intValue];
+        if (status == 10000) {
+            ExpressPickPutItem *pickModel = [[ExpressPickPutItem alloc] initWithDictionary:object];
+            [pickModel votedPercenteCalculateToNSNumber:pickModel.putStatistic];
+            if (success) {
+                success(pickModel);
+            }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {
             failure(error);
+            NSLog(@"%@",error);
         }
     }];
 }

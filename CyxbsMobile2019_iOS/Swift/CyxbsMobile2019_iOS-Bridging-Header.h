@@ -409,3 +409,4 @@ typedef NS_ENUM(NSInteger, ScheduleType) {
 #import "FoodVC.h"
 #import "MineViewController.h"
 #import "ElectricViewController.h"
+#import "AttitudeMainPageVC.h"
