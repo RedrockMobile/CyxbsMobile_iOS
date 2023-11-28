@@ -460,6 +460,7 @@
 		B0C9F2492B0126E1006F4286 /* ActivityAddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C9F22B2B0126E1006F4286 /* ActivityAddVC.swift */; };
 		B0C9F24A2B0126E1006F4286 /* ActivityAddScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C9F22D2B0126E1006F4286 /* ActivityAddScrollView.swift */; };
 		B0C9F24C2B01270A006F4286 /* CyxbsMobileImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0C9F24B2B01270A006F4286 /* CyxbsMobileImage.xcassets */; };
+		B0D1A8D62B15E3C9005B858F /* PopUpInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D1A8D52B15E3C9005B858F /* PopUpInformationVC.swift */; };
 		B0F08FF828A24F9000986EB6 /* IDSController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FF028A24F9000986EB6 /* IDSController.m */; };
 		B0F08FF928A24F9000986EB6 /* IdsBinding.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FF428A24F9000986EB6 /* IdsBinding.m */; };
 		B0F08FFA28A24F9000986EB6 /* IdsBindingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FF728A24F9000986EB6 /* IdsBindingView.m */; };
@@ -1433,6 +1434,7 @@
 		B0C9F22B2B0126E1006F4286 /* ActivityAddVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityAddVC.swift; sourceTree = "<group>"; };
 		B0C9F22D2B0126E1006F4286 /* ActivityAddScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityAddScrollView.swift; sourceTree = "<group>"; };
 		B0C9F24B2B01270A006F4286 /* CyxbsMobileImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CyxbsMobileImage.xcassets; sourceTree = "<group>"; };
+		B0D1A8D52B15E3C9005B858F /* PopUpInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpInformationVC.swift; sourceTree = "<group>"; };
 		B0F08FF028A24F9000986EB6 /* IDSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDSController.m; sourceTree = "<group>"; };
 		B0F08FF128A24F9000986EB6 /* IDSController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDSController.h; sourceTree = "<group>"; };
 		B0F08FF328A24F9000986EB6 /* IdsBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdsBinding.h; sourceTree = "<group>"; };
@@ -2777,6 +2779,7 @@
 				14FFFBDE2AF8C0F3005A7EBD /* UserModel.swift */,
 				1476CA6D2AFCD3FD00635848 /* UserModelEX.swift */,
 				14FFFBDF2AF8C0F3005A7EBD /* BaseButton.swift */,
+				B0D1A8D52B15E3C9005B858F /* PopUpInformationVC.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -6295,6 +6298,7 @@
 				14F6F5462AFB8CDA007C7CA6 /* SearchStudentModel.swift in Sources */,
 				14B73F73281BED7B00D08ADD /* ActiveMessageVC.m in Sources */,
 				FE11E82027E8712B00C4B90B /* QAListSegmentView.m in Sources */,
+				B0D1A8D62B15E3C9005B858F /* PopUpInformationVC.swift in Sources */,
 				FE2C135327AEF629001CF7AF /* ToDoTableView.m in Sources */,
 				735BC55026D3C6EB00F22678 /* FeedBackDetailsRequestDataModel.m in Sources */,
 				FC1484692AD1D3AB00657191 /* SendMessageVC.swift in Sources */,

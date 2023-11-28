@@ -193,11 +193,14 @@ extension RYLoginViewController {
     
     func showAgreement(url: URL? = nil) {
 //        let vc = MarkDownViewController()
-        let vc = WebAllowController()
+//        let vc = WebAllowController()
+//        vc.delegate = self
+//        vc.url = url ?? RYLoginViewController.agreementURL
+        let vc = PopUpInformationVC()
         vc.delegate = self
-        vc.url = url ?? RYLoginViewController.agreementURL
-        let nav = UINavigationController(rootViewController: vc)
-        present(nav, animated: true)
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .overCurrentContext
+        present(vc, animated: true)
     }
     
     // forgot
@@ -288,7 +291,7 @@ extension RYLoginViewController: MarkDownViewControllerDelegate {
     }
 }
 
-extension RYLoginViewController: WebAllowControllerDelegate{
+extension RYLoginViewController: WebAllowControllerDelegate {
     func webAllowControllerDidCancel(_ controller: WebAllowController) {
         controller.dismiss(animated: true)
         UserDefaultsManager.shared.didReadUserAgreementBefore = false
@@ -303,6 +306,20 @@ extension RYLoginViewController: WebAllowControllerDelegate{
     }
 }
 
+extension RYLoginViewController: PopUpInformationVCDelegate {
+    func PopUpInformationVCDidCancel(_ controller: PopUpInformationVC) {
+        controller.dismiss(animated: true)
+        UserDefaultsManager.shared.didReadUserAgreementBefore = false
+    }
+    
+    func PopUpInformationVCDidConfirm(_ controller: PopUpInformationVC) {
+        controller.dismiss(animated: true)
+        UserDefaultsManager.shared.didReadUserAgreementBefore = true
+        if !agreementView.isSelected {
+            agreementView.toggleControl()
+        }
+    }
+}
 
 // MARK: static
 
