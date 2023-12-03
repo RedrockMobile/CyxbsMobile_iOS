@@ -42,6 +42,10 @@ class ScheduleFact: NSObject {
 
 extension ScheduleFact {
     
+    var currentPage: Int {
+        Int(collectionView.contentOffset.x / collectionView.bounds.width / CGFloat(collectionView.ry_layout?.pageShows ?? 1) + 0.5)
+    }
+    
     @objc
     func createCollectionView() -> UICollectionView {
         let layout = ScheduleCollectionViewLayout()
@@ -61,7 +65,8 @@ extension ScheduleFact {
         let elementKinds: [UICollectionView.ElementKindSection] =
         [.header, .leading]
         for elementKind in elementKinds {
-            collectionView.register(ScheduleCollectionViewCell.self, forElementKindSection: elementKind, withReuseIdentifier: ScheduleCollectionViewCell.supplementaryReuseIdentifier)
+            collectionView.register(ScheduleCollectionViewCell.self, forSupplementaryViewOfKind: elementKind.rawValue, withReuseIdentifier: ScheduleCollectionViewCell.supplementaryReuseIdentifier)
+            layout.register(ScheduleCollectionViewCell.self, forSupplementaryViewOfKind: elementKind.rawValue)
         }
         self.collectionView = collectionView
         return collectionView
@@ -244,6 +249,11 @@ extension ScheduleFact: ScheduleCollectionViewLayoutDataSource {
 
 extension ScheduleFact: UICollectionViewDelegate {
     
+    func reloadHeaderView() {
+        let page = currentPage
+        delegate?.updateCpllectionViewPageNum(page)
+    }
+    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         let collectionView = scrollView as! UICollectionView
         let layout = collectionView.collectionViewLayout as! ScheduleCollectionViewLayout
@@ -254,12 +264,7 @@ extension ScheduleFact: UICollectionViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        if scrollView.contentOffset.x / SCREEN_WIDTH == 0 {
-            delegate?.updateCpllectionViewPageNum(0)
-        } else {
-            let weekNum = Int(scrollView.contentOffset.x / SCREEN_WIDTH)
-            delegate?.updateCpllectionViewPageNum(weekNum)
-        }
+        reloadHeaderView()
         
         if scrollDirection == 0 {
             if abs(scrollViewStartPosPoint.x - scrollView.contentOffset.x) <

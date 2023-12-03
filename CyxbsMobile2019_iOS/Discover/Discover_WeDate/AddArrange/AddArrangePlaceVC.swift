@@ -44,12 +44,13 @@ class AddArrangePlaceVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        HttpRequest()
         view.addSubview(returnBtn)
         view.addSubview(label)
         view.addSubview(collectionView)
         view.addSubview(nextBtn)
         view.backgroundColor = .white
+        
+        HttpRequest()
     }
     
     // MARK: - Method
@@ -89,8 +90,9 @@ class AddArrangePlaceVC: UIViewController {
     
     /// 返回按钮
     private lazy var returnBtn: UIButton = {
-        let returnBtn = UIButton(frame: CGRect(x: 16, y: statusBarHeight + 12, width: 9, height: 17))
+        let returnBtn = UIButton(frame: CGRect(x: 12, y: statusBarHeight + 8, width: 17, height: 25))
         returnBtn.setImage(UIImage(named: "空教室返回"), for: .normal)
+        returnBtn.imageEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
         returnBtn.addTarget(self, action: #selector(clickReturnBtn), for: .touchUpInside)
         return returnBtn
     }()

@@ -211,6 +211,43 @@ extension RYScheduleFact: UICollectionViewDelegate { }
 
 extension RYScheduleFact: UIScrollViewDelegate {
     
+    /*
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        guard let layout = scrollView.as_collectionView?.ry_layout else { return }
+        layout.pageCalculation = Int(scrollView.contentOffset.x / scrollView.bounds.size.width) * layout.pageShows
+        scrollViewStartPosPoint = scrollView.contentOffset
+        scrollDirection = 0
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        currentBackgroundView.frame.origin.y = scrollView.contentOffset.y - scrollView.bounds.height / 2
+        
+        if scrollDirection == 0 {
+            if abs(scrollViewStartPosPoint.x - scrollView.contentOffset.x) <
+                abs(scrollViewStartPosPoint.y - scrollView.contentOffset.y) {
+                
+                scrollDirection = 1     // Vertical Scrolling
+            } else {
+                scrollDirection = 2     // Horitonzal Scrolling
+            }
+        }
+        // Update scroll position of the scrollview according to detected direction.
+        if scrollDirection == 1 {
+            scrollView.contentOffset = CGPoint(x: scrollViewStartPosPoint.x, y: scrollView.contentOffset.y)
+        } else {
+            scrollView.contentOffset = CGPoint(x: scrollView.contentOffset.x, y: scrollViewStartPosPoint.y)
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if decelerate { scrollDirection = 0 }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        scrollDirection = 0
+    }
+     */
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         guard let layout = scrollView.as_collectionView?.ry_layout else { return }
         layout.pageCalculation = Int(scrollView.contentOffset.x / scrollView.bounds.size.width) * layout.pageShows
