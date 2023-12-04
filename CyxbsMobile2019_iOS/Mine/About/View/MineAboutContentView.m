@@ -136,14 +136,12 @@
     UIButton *leftBtn = [self getLearnMoreBtn];
     [backView addSubview:leftBtn];
     
-    [leftBtn setTitle:@"服务协议 " forState:UIControlStateNormal];
+    [leftBtn setTitle:@"用户协议 " forState:UIControlStateNormal];
     [leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(backView);
         make.bottom.equalTo(backView);
     }];
     [leftBtn addTarget:self action:@selector(leftBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    
-    
     
     UIButton *rightBtn = [self getLearnMoreBtn];
     [backView addSubview:rightBtn];
@@ -163,14 +161,22 @@
     }];
     
 }
+
+//用户协议
 - (void)leftBtnClicked{
-    LearnMoreViewController *vc = [[LearnMoreViewController alloc] initWithType:LMVCTypeServiceAgreement];
-//    TopBarBasicViewController *vc = [[TopBarBasicViewController alloc] init];
-//    vc.VCTitleStr = @"掌上重邮";
-    [self.viewController.navigationController pushViewController:vc animated:YES];
+//    LearnMoreViewController *vc = [[LearnMoreViewController alloc] initWithType:LMVCTypeServiceAgreement];
+////    TopBarBasicViewController *vc = [[TopBarBasicViewController alloc] init];
+////    vc.VCTitleStr = @"掌上重邮";
+//    [self.viewController.navigationController pushViewController:vc animated:YES];
+    NSURL *url = [NSURL URLWithString:@"https://fe-prod.redrock.cqupt.edu.cn/redrock-cqapp-protocol/user-agreement/index.html"];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+    }
 }
+
+//隐私条款
 - (void)rightBtnClicked {
-    NSURL *url = [NSURL URLWithString:@"https://fe-prod.redrock.cqupt.edu.cn/privacy-policy/"];
+    NSURL *url = [NSURL URLWithString:@"https://fe-prod.redrock.cqupt.edu.cn/redrock-cqapp-protocol/privacy-notice/index.html"];
     if ([[UIApplication sharedApplication] canOpenURL:url]) {
         [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
     }
