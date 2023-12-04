@@ -23,7 +23,7 @@ protocol PopUpInformationVCDelegate: AnyObject {
 class PopUpInformationVC: UIViewController {
     private var informationContentView: UIButton!
     var titleText: String?
-    var contentText: String?
+    var contentText: NSMutableAttributedString?
     
     /// 代理
     weak var delegate: PopUpInformationVCDelegate?
@@ -43,24 +43,26 @@ class PopUpInformationVC: UIViewController {
         let learnView = UIView()
         learnView.translatesAutoresizingMaskIntoConstraints = false
         learnView.layer.cornerRadius = 16
-        learnView.backgroundColor = .white
+        learnView.backgroundColor = .ry(light: "#FFFFFF", dark: "#2C2C2C")
         view.addSubview(learnView)
         
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = "温馨提示"
         titleLabel.font = UIFont(name: PingFangSCSemibold, size: 18)
-        titleLabel.textColor = UIColor(red: 0.08, green: 0.19, blue: 0.36, alpha: 1)
+        titleLabel.textColor = .ry(light: "#1e4e84", dark: "#FFFFFF")
         learnView.addSubview(titleLabel)
         
-        let contentLabel = UILabel()
-        contentLabel.translatesAutoresizingMaskIntoConstraints = false
-        contentLabel.text = "contentText"
-        contentLabel.font = UIFont(name: PingFangSC, size: 14)
-        contentLabel.numberOfLines = 0
-        contentLabel.textAlignment = .center
-        contentLabel.textColor = UIColor(red: 0.08, green: 0.19, blue: 0.36, alpha: 0.6)
-        learnView.addSubview(contentLabel)
+        let contentTextView = UITextView()
+        contentTextView.translatesAutoresizingMaskIntoConstraints = false
+        contentTextView.attributedText = contentText
+        contentTextView.font = UIFont(name: PingFangSC, size: 14)
+        contentTextView.isEditable = false
+        contentTextView.isScrollEnabled = false
+        contentTextView.textAlignment = .center
+        contentTextView.backgroundColor = .clear
+//        contentTextView.textColor = UIColor(red: 0.08, green: 0.19, blue: 0.36, alpha: 0.6)
+        learnView.addSubview(contentTextView)
         
         let line = UIView()
         line.translatesAutoresizingMaskIntoConstraints = false
@@ -72,7 +74,7 @@ class PopUpInformationVC: UIViewController {
         cancelButton.setTitle("不同意", for: .normal)
         cancelButton.setTitleColor(.white, for: .normal)
         cancelButton.titleLabel?.font = UIFont(name: PingFangSC, size: 14)
-        cancelButton.backgroundColor = UIColor(red: 0.28, green: 0.25, blue: 0.89, alpha: 1)
+        cancelButton.backgroundColor = UIColor.hex("#BFD5F1")
         cancelButton.layer.cornerRadius = 16
         cancelButton.layer.masksToBounds = true
         cancelButton.addTarget(self, action: #selector(cancelLearnAbout), for: .touchUpInside)
@@ -98,11 +100,11 @@ class PopUpInformationVC: UIViewController {
             titleLabel.topAnchor.constraint(equalTo: learnView.topAnchor, constant: 20),
             titleLabel.centerXAnchor.constraint(equalTo: learnView.centerXAnchor),
             
-            contentLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            contentLabel.leadingAnchor.constraint(equalTo: learnView.leadingAnchor, constant: 18),
-            contentLabel.trailingAnchor.constraint(equalTo: learnView.trailingAnchor, constant: -18),
+            contentTextView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            contentTextView.leadingAnchor.constraint(equalTo: learnView.leadingAnchor, constant: 18),
+            contentTextView.trailingAnchor.constraint(equalTo: learnView.trailingAnchor, constant: -18),
             
-            line.topAnchor.constraint(equalTo: contentLabel.bottomAnchor, constant: 10),
+            line.topAnchor.constraint(equalTo: contentTextView.bottomAnchor, constant: 10),
             line.leadingAnchor.constraint(equalTo: learnView.leadingAnchor),
             line.trailingAnchor.constraint(equalTo: learnView.trailingAnchor),
             line.heightAnchor.constraint(equalToConstant: 1),
@@ -115,7 +117,8 @@ class PopUpInformationVC: UIViewController {
             confirmButton.topAnchor.constraint(equalTo: line.bottomAnchor, constant: 26),
             confirmButton.trailingAnchor.constraint(equalTo: learnView.trailingAnchor, constant: -20),
             confirmButton.widthAnchor.constraint(equalToConstant: 100),
-            confirmButton.heightAnchor.constraint(equalToConstant: 37)
+            confirmButton.heightAnchor.constraint(equalToConstant: 37),
+            confirmButton.leadingAnchor.constraint(equalTo: cancelButton.trailingAnchor, constant: 10)
         ])
         
         learnView.bottomAnchor.constraint(greaterThanOrEqualTo: cancelButton.bottomAnchor, constant: 20).isActive = true

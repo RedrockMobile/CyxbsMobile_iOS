@@ -10,9 +10,8 @@ import UIKit
 import ProgressHUD
 
 class RYLoginViewController: BaseTextFiledViewController {
-    
-//    static let agreementURL = Bundle.main.url(forResource: "掌上重邮用户协议", withExtension: "md")!
-    static let agreementURL = URL(string: "https://fe-prod.redrock.cqupt.edu.cn/privacy-policy/")
+    static let agreementURL = URL(string: "https://fe-prod.redrock.cqupt.edu.cn/redrock-cqapp-protocol/user-agreement/index.html")
+    static let privacyURL = URL(string: "https://fe-prod.redrock.cqupt.edu.cn/redrock-cqapp-protocol/privacy-notice/index.html")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,11 +68,14 @@ class RYLoginViewController: BaseTextFiledViewController {
     }()
     
     lazy var agreementView: RYAgreementView = {
-        let url = RYLoginViewController.agreementURL
+        let agreementURL = RYLoginViewController.agreementURL
+        let privacyURL = RYLoginViewController.privacyURL
         let agreementView = RYAgreementView()
         agreementView.frame.origin = CGPoint(x: 10, y: 80)
         agreementView.add(normalTip: "请阅读并同意")
-        agreementView.add(urlTip: "《掌上重邮用户协议》", url: url)
+        agreementView.add(urlTip: "《用户协议》", url: agreementURL)
+        agreementView.add(normalTip: "和")
+        agreementView.add(urlTip: "《隐私权政策》", url: privacyURL)
         agreementView.checkoutControl.frame.size = CGSize(width: 15, height: 15)
         agreementView.checkoutControl.center.y = agreementView.bounds.height / 2
         agreementView.sizeToFit()
@@ -192,14 +194,12 @@ extension RYLoginViewController {
     }
     
     func showAgreement(url: URL? = nil) {
-//        let vc = MarkDownViewController()
-//        let vc = WebAllowController()
-//        vc.delegate = self
-//        vc.url = url ?? RYLoginViewController.agreementURL
         let vc = PopUpInformationVC()
         vc.delegate = self
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .overCurrentContext
+        // 将富文本赋值给 contentText 属性
+        vc.contentText = promptWords()
         present(vc, animated: true)
     }
     
@@ -244,6 +244,44 @@ extension RYLoginViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
+    func promptWords() -> NSMutableAttributedString {
+        let normalTipAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 14),
+            .foregroundColor: UIColor.gray
+        ]
+        
+        let urlTipAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 14),
+            .foregroundColor: UIColor.blue
+        ]
+        
+        let agreementURL = RYLoginViewController.agreementURL
+        let privacyURL = RYLoginViewController.privacyURL
+
+        let str = NSMutableAttributedString()
+        let plainText = "友友，欢迎使用掌上重邮！在您使用掌上重邮前，请认真阅读"
+        str.append(NSAttributedString(string: plainText, attributes: normalTipAttributes))
+
+        let agreementLinkText = "《用户协议》"
+        var attributes = urlTipAttributes
+        attributes[.link] = agreementURL!
+        str.append(NSAttributedString(string: agreementLinkText, attributes: attributes))
+        
+        let plainText2 = "和"
+        str.append(NSAttributedString(string: plainText2, attributes: normalTipAttributes))
+        
+        let privacyLinkText = "《隐私权政策》"
+        var attributes2 = urlTipAttributes
+        attributes2[.link] = privacyURL!
+        str.append(NSAttributedString(string: privacyLinkText, attributes: attributes2))
+        
+        let plainText3 = "它们将帮助您了解我们所采集的个人信息与用途的对应关系。如您同意，请点击下方同意并继续按钮开始接受我们的服务。"
+        str.append(NSAttributedString(string: plainText3, attributes: normalTipAttributes))
+       
+        return str
+    }
+    
 }
 
 // MARK: BaseAgreementViewDelegate
