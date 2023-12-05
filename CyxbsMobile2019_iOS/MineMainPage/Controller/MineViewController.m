@@ -25,7 +25,6 @@
 
 #import "MineMessageVC.h"//消息中心模块by ssr，将接入router技术
 #import "RemindHUD.h"
-#import "掌上重邮-Swift.h"
 
 //获取用户关注的人和粉丝的个人信息
 #define fansAndFollowsInfo @"/magipoke-loop/user/fansAndFollowsInfo"

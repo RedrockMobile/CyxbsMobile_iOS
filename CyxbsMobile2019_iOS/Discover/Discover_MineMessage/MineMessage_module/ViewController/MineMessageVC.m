@@ -228,7 +228,7 @@
             [self.systemMessageVC readAllMessage];
         } else {
             // 活动通知
-//            [self.activeMessageVC readAllMessage];
+            [self.activityMessageVC readAllMessage];
         }
     } else if ([title isEqualToString:@"删除已读"]) {
         // 只有sysVC有

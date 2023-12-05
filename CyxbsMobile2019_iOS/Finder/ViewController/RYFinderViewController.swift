@@ -25,6 +25,12 @@ class RYFinderViewController: UIViewController {
         setupElectric()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //刷新消息中心小圆点
+        reloadData()
+    }
+    
     lazy var contentScrollView: UIScrollView = {
         let scrollView = UIScrollView(frame: view.bounds)
         scrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

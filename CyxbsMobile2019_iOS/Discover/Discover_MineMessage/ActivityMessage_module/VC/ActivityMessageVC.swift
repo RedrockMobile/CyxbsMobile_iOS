@@ -18,7 +18,7 @@ class ActivityMessageVC: UIViewController, UITableViewDelegate, UITableViewDataS
         super.viewDidLoad()
         view.backgroundColor = UIColor(light: UIColor(hexString: "#F8F9FC"), dark: .black)
         view.addSubview(tableView)
-        tableView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - UIApplication.shared.statusBarFrame.size.height - 94)
+        tableView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - Constants.statusBarHeight - 94)
         tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
         tableView.backgroundColor = UIColor(light: UIColor(hexString: "#F8F9FC"), dark: .black)
         tableView.register(ActivityMessageCell.self, forCellReuseIdentifier: "messageCell")
@@ -120,7 +120,27 @@ class ActivityMessageVC: UIViewController, UITableViewDelegate, UITableViewDataS
         activityMessageModel.requestActivityMessages(lower_id: nil) {
             self.tableView.reloadData()
         } failure: { error in
-            print(error)
+            print(error as Any)
+        }
+    }
+    
+    @objc func readAllMessage() {
+        for message in activityMessageModel.activityMessages {
+            HttpManager.shared.magipoke_ufield_action_click(message_id: message.messageId).ry_JSON { response in
+                switch response {
+                case .success(let jsonData):
+                    if(jsonData["status"].intValue == 10000) {
+                        print("ID:\(message.messageId)消息已读成功")
+                    } else {
+                        print("ID:\(message.messageId)消息已经已读")
+                    }
+                    break
+                case .failure(let error):
+                    print("ID:\(message.messageId)消息已读失败")
+                    print(error)
+                    break
+                }
+            }
         }
     }
     

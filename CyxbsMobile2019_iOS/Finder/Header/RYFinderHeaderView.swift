@@ -13,6 +13,9 @@ class RYFinderHeaderView: UIView {
     var messageBtnTouched: ((RYFinderHeaderView) -> ())?
     
     var attendanceBtnTouched: ((RYFinderHeaderView) -> ())?
+    
+    //活动通知model，用于获取是否有未读活动通知
+    var activityMsgModel: ActivityMessageModel!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -121,6 +124,13 @@ extension RYFinderHeaderView {
                     tabBarVC?.viewControllers?.last?.tabBarItem.needShowBadgePoint = hasMessage
                 }
             }
+        }
+        
+        activityMsgModel = ActivityMessageModel()
+        activityMsgModel.requestActivityMessages(lower_id: nil) {
+            self.messageBtn.setImage(self.messageImage(read: !self.activityMsgModel.needDot), for: .normal)
+        } failure: { error in
+            print(error)
         }
     }
 }
