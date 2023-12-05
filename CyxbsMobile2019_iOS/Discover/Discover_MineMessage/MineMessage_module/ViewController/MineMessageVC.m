@@ -61,6 +61,9 @@
 /// 总的一个模型，用来请求，和其他骚操作
 @property (nonatomic, strong) MineMessageModel *mineMsgModel;
 
+/// 活动通知模型
+@property (nonatomic, strong) ActivityMessageModel *activityMsgModel;
+
 @property (nonatomic, strong) UIView *arrangeBackView;
 
 @end
@@ -77,6 +80,7 @@
     [UIColor dm_colorWithLightColor:[UIColor xFF_R:248 G:249 B:252 Alpha:1]
                           darkColor:[UIColor xFF_R:0 G:1 B:1 Alpha:1]];
     self.mineMsgModel = [[MineMessageModel alloc] init];
+    self.activityMsgModel = [[ActivityMessageModel alloc] init];
     
     [self.view addSubview:self.topView];
     [self addChildViewController:self.systemMessageVC];
@@ -101,10 +105,6 @@
         BOOL needSysBall = [self.systemMessageVC hadReadAfterReloadData];
         self.topView.systemHadMsg = needSysBall;
         
-//        self.activeMessageVC.sysModel = self.mineMsgModel.activeMsgModel;
-//        BOOL needActBall = [self.activeMessageVC hadReadAfterReloadData];
-//        self.topView.activeHadMsg = needActBall;
-        
         if (self.contentView.left < self.view.width / 3) {
             if (!self.systemMessageVC.sysMsgModel || !self.systemMessageVC.sysMsgModel.msgAry.count) {
                 [RemindHUD.shared showDefaultHUDWithText:@"没有系统消息了" completion:nil];
@@ -125,6 +125,13 @@
             view = self.arrangeMessageVC.view;
         }
         [RemindHUD.shared showDefaultHUDWithText:@"网络异常" completion:nil];
+    }];
+    
+    [self.activityMsgModel requestActivityMessagesWithLower_id:nil success:^(void){
+        NSLog(@"success");
+        BOOL needActBall = self.activityMsgModel.needDot;
+        self.topView.activeHadMsg = needActBall;
+        } failure:^(NSError * _Nullable error) {
     }];
 }
 
@@ -300,6 +307,7 @@
     if (_activityMessageVC == nil) {
         _activityMessageVC = [[ActivityMessageVC alloc] init];
         _activityMessageVC.view.frame = CGRectMake(self.systemMessageVC.view.right, 0, self.view.width, self.contentView.height);
+        _activityMessageVC.activityMessageModel = self.activityMsgModel;
     }
     return _activityMessageVC;
 }
@@ -315,7 +323,8 @@
 - (UIView *)arrangeBackView {
     if (_arrangeBackView == nil) {
         _arrangeBackView = [[UIView alloc] initWithFrame:CGRectMake(0, self.topView.bottom - 20, SCREEN_WIDTH, 30)];
-        _arrangeBackView.backgroundColor = [UIColor colorWithHexString:@"#FCFCFD" alpha:1];
+//        _arrangeBackView.backgroundColor = [UIColor colorWithHexString:@"#FCFCFD" alpha:1];
+        _arrangeBackView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FCFCFD" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
     }
     return _arrangeBackView;
 }

@@ -11,16 +11,16 @@ import SnapKit
 
 class ActivityMessageVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    let activityMessageModel = ActivityMessageModel()
+    @objc var activityMessageModel: ActivityMessageModel!
     let tableView = UITableView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(hexString: "#F8F9FC")
+        view.backgroundColor = UIColor(light: UIColor(hexString: "#F8F9FC"), dark: .black)
         view.addSubview(tableView)
         tableView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - UIApplication.shared.statusBarFrame.size.height - 94)
         tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
-        tableView.backgroundColor = UIColor(hexString: "#F8F9FC")
+        tableView.backgroundColor = UIColor(light: UIColor(hexString: "#F8F9FC"), dark: .black)
         tableView.register(ActivityMessageCell.self, forCellReuseIdentifier: "messageCell")
         tableView.dataSource = self
         tableView.delegate = self

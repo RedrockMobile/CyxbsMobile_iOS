@@ -22,7 +22,7 @@ class ActivityMessageCell: UITableViewCell {
     lazy var messageTypeLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 1)
+        label.textColor = UIColor(light: UIColor(hexString: "#15315B"), dark: UIColor(hexString: "#F0F0F2"))
         label.font = UIFont(name: PingFangSCMedium, size: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.lineBreakMode = .byTruncatingTail
@@ -40,7 +40,7 @@ class ActivityMessageCell: UITableViewCell {
     
     lazy var firstLabel: UILabel = {
         let view = UILabel()
-        view.textColor = UIColor(hexString: "#15315B", alpha: 0.8)
+        view.textColor = UIColor(light: UIColor(hexString: "#15315B", alpha: 0.8), dark: UIColor(hexString: "#F0F0F2", alpha: 0.8))
         view.font = UIFont.systemFont(ofSize: 14)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -48,7 +48,7 @@ class ActivityMessageCell: UITableViewCell {
     
     lazy var secondLabel: UILabel = {
         let view = UILabel()
-        view.textColor = UIColor(hexString: "#15315B", alpha: 0.8)
+        view.textColor = UIColor(light: UIColor(hexString: "#15315B", alpha: 0.8), dark: UIColor(hexString: "#F0F0F2", alpha: 0.8))
         view.font = UIFont.systemFont(ofSize: 14)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -98,7 +98,7 @@ class ActivityMessageCell: UITableViewCell {
     }
     
     func commonInit() {
-        contentView.backgroundColor = UIColor(red: 0.973, green: 0.976, blue: 0.988, alpha: 1)
+        contentView.backgroundColor = UIColor(light: UIColor(hexString: "#F8F9FC"), dark: .black)
         contentView.addSubview(messageTypeLabel)
         contentView.addSubview(dateLabel)
         contentView.addSubview(firstLabel)

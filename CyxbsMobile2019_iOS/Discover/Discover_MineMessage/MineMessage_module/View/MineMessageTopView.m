@@ -246,7 +246,7 @@
 - (UIView *)activeBall {
     if (_activeBall == nil) {
         _activeBall = [[UIView alloc] initWithFrame:CGRectMake(_activeBtn.titleLabel.right, -1, 6, 6)];
-        _activeBall.layer.cornerRadius = _systemBall.width / 2;
+        _activeBall.layer.cornerRadius = _activeBall.width / 2;
         _activeBall.backgroundColor = [UIColor xFF_R:255 G:98 B:98 Alpha:1];
     }
     return _activeBall;

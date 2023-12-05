@@ -10,8 +10,17 @@ import Foundation
 import SwiftyJSON
 
 @objc class ActivityMessageModel: NSObject {
-    var activityMessages: [ActivityMessage] = []
-    @objc var activityMessagesCount : NSNumber = 0
+    var activityMessages: [ActivityMessage] = [] {
+        didSet {
+            needDot = false
+            for message in activityMessages {
+                if !message.clicked {
+                    needDot = true
+                }
+            }
+        }
+    }
+    @objc var needDot : Bool = false
     
     @objc func requestActivityMessages(lower_id: NSNumber?, success: @escaping () -> Void, failure: @escaping (Error?) -> Void) {
         HttpManager.shared.magipoke_ufield_message_list(lower_id: lower_id?.intValue).ry_JSON { response in
@@ -32,7 +41,6 @@ import SwiftyJSON
             }
         }
         print(activityMessages.count)
-        activityMessagesCount = NSNumber(value: activityMessages.count)
     }
 }
 

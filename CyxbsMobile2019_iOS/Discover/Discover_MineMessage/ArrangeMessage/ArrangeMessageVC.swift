@@ -39,7 +39,7 @@ class ArrangeMessageVC: UIViewController {
         let gradientView = UIView(frame: CGRect(x: 0, y: 23, width: SCREEN_WIDTH, height: 21))
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = gradientView.bounds
-        gradientLayer.colors = [UIColor(hexString: "#EBF0F5", alpha: 1).cgColor, UIColor(hexString: "#EBF0F5", alpha: 0).cgColor]
+        gradientLayer.colors = [UIColor(light: UIColor(hexString: "#EBF0F5", alpha: 1), dark: .black).cgColor, UIColor(light: UIColor(hexString: "#EBF0F5", alpha: 0), dark: .black).cgColor]
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
         gradientLayer.endPoint = CGPoint(x: 0, y: 1)
         gradientView.layer.addSublayer(gradientLayer)
@@ -54,7 +54,8 @@ class ArrangeMessageVC: UIViewController {
         segmentedView.dataSource = segmentedDataSource
         segmentedView.listContainer = listContainerView
         segmentedView.defaultSelectedIndex = 0
-        segmentedView.backgroundColor = UIColor(hexString: "#FCFCFD", alpha: 1)
+        segmentedView.backgroundColor = UIColor(light: UIColor(hexString: "#FCFCFD", alpha: 1), dark: UIColor(hexString: "#1D1D1D", alpha: 1))
+//        segmentedView.backgroundColor = UIColor(hexString: "#FCFCFD", alpha: 1)
         return segmentedView
     }()
 
