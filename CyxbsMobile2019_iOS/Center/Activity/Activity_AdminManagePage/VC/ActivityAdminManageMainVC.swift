@@ -46,7 +46,7 @@ class ActivityAdminManageMainVC: UIViewController {
         segmentedView.snp.makeConstraints { (make) in
             make.width.equalToSuperview()
             make.height.equalTo(50)
-            make.top.equalTo(46+UIApplication.shared.statusBarFrame.height)
+            make.top.equalTo(46 + Constants.statusBarHeight)
         }
         listContainerView.snp.makeConstraints { (make) in
             //可以滑动的容器,在tab的下面,宽度屏幕宽,底部在安全区的最下边
@@ -59,7 +59,7 @@ class ActivityAdminManageMainVC: UIViewController {
     // MARK: - 懒加载
     //顶部视图
     lazy var topView: ActivityCenterTopView = {
-        let topView = ActivityCenterTopView(frame: CGRectMake(0, 0, view.bounds.width, 92+UIApplication.shared.statusBarFrame.height))
+        let topView = ActivityCenterTopView(frame: CGRectMake(0, 0, view.bounds.width, 92 + Constants.statusBarHeight))
         topView.backButton.addTarget(self, action: #selector(popController), for: .touchUpInside)
         topView.titleLab.text = "审核中心"
         return topView

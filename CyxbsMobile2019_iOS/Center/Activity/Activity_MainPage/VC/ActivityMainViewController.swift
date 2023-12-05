@@ -34,7 +34,7 @@ class ActivityMainViewController: UIViewController {
     // MARK: - 懒加载
     //顶部视图
     lazy var topView: ActivityTopView = {
-        let topView = ActivityTopView(frame: CGRectMake(0, 0, view.bounds.width, 112+UIApplication.shared.statusBarFrame.height))
+        let topView = ActivityTopView(frame: CGRectMake(0, 0, view.bounds.width, 112 + Constants.statusBarHeight))
         topView.backButton.addTarget(self, action: #selector(popController), for: .touchUpInside)
         topView.searchButton.addTarget(self, action: #selector(pushSearchVC), for: .touchUpInside)
         topView.addActivityButton.addTarget(self, action: #selector(pushAddVC), for: .touchUpInside)
@@ -129,7 +129,7 @@ class ActivityMainViewController: UIViewController {
         segmentedView.snp.makeConstraints { (make) in
             make.width.equalToSuperview()
             make.height.equalTo(30)
-            make.top.equalTo(135+UIApplication.shared.statusBarFrame.height)
+            make.top.equalTo(135 + Constants.statusBarHeight)
         }
         listContainerView.snp.makeConstraints { (make) in
             //可以滑动的容器,在tab的下面,宽度屏幕宽,底部在安全区的最下边

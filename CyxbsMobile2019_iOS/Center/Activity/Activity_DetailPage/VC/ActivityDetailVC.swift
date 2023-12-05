@@ -211,87 +211,87 @@ class ActivityDetailVC: UIViewController {
     func setPosition() {
         self.backButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+6)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 6)
             make.width.equalTo(30)
             make.height.equalTo(31)
         }
         
         self.coverImgView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+52)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 52)
             make.width.equalTo(106)
             make.height.equalTo(106)
         }
         
         self.statusImgView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(138)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+59)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 59)
             make.width.equalTo(42)
             make.height.equalTo(18)
         }
         
         self.titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(138)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+78)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 78)
             make.height.equalTo(25)
         }
         
         self.typeImgView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(138)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+106)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 106)
             make.width.equalTo(20)
             make.height.equalTo(20)
         }
         
         self.typeLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(163)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+106)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 106)
             make.height.equalTo(20)
         }
         
         self.activityWatchNumLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(138)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+136)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 136)
             make.height.equalTo(17)
         }
         
         self.wantToWatchButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-16)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+132)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 132)
             make.width.equalTo(70)
             make.height.equalTo(26)
         }
         
         self.distanceStartTimeLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(29)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+181)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 181)
             make.height.equalTo(20)
         }
         
         self.dayLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(156)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+183)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 183)
             make.width.equalTo(12)
             make.height.equalTo(17)
         }
         
         self.hourLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(211)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+183)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 183)
             make.width.equalTo(24)
             make.height.equalTo(17)
         }
         
         self.minuteLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(278)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+183)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 183)
             make.width.equalTo(12)
             make.height.equalTo(17)
         }
         
         self.secondLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(333)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+183)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 183)
             make.width.equalTo(12)
             make.height.equalTo(17)
         }
@@ -346,7 +346,7 @@ class ActivityDetailVC: UIViewController {
                                                                 delay: 2,
                                                                 backGroundColor: UIColor(hexString: "#2a4e84"),
                                                                 cornerRadius: 18,
-                                                                yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)
+                                                                yOffset: Float(-UIScreen.main.bounds.height * 0.5 + Constants.statusBarHeight) + 90)
                     self.delegate?.updateModel(indexPathNum: self.numOfIndexPath, wantToWatch: true)
                 } else {
                     ActivityHUD.shared.addProgressHUDView(width: 138,
@@ -357,7 +357,7 @@ class ActivityDetailVC: UIViewController {
                                                                 delay: 2,
                                                                 backGroundColor: UIColor(hexString: "#2a4e84"),
                                                                 cornerRadius: 18,
-                                                                yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)
+                                                                yOffset: Float(-UIScreen.main.bounds.height * 0.5 + Constants.statusBarHeight) + 90)
                 }
                 break
             case .failure(let error):
@@ -431,25 +431,25 @@ class ActivityDetailVC: UIViewController {
         
         backGroundView1.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(123)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+176)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 176)
             make.width.equalTo(30)
             make.height.equalTo(30)
         }
         backGroundView2.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(178)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+176)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 176)
             make.width.equalTo(30)
             make.height.equalTo(30)
         }
         backGroundView3.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(245)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+176)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 176)
             make.width.equalTo(30)
             make.height.equalTo(30)
         }
         backGroundView4.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(300)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+176)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 176)
             make.width.equalTo(30)
             make.height.equalTo(30)
         }
@@ -522,7 +522,7 @@ class ActivityDetailVC: UIViewController {
         statusLabel?.text = statusText
         statusLabel?.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+179)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 179)
             make.width.equalTo(120)
             make.height.equalTo(22)
         }

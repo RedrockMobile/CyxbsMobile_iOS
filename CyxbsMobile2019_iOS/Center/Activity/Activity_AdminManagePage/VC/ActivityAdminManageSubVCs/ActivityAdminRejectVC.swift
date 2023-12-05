@@ -18,7 +18,7 @@ class ActivityAdminRejectVC: UIViewController {
         let backGroundView = UIButton(frame: view.frame)
         backGroundView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         backGroundView.addTarget(self, action: #selector(cancel), for: .touchUpInside)
-        let contentView = UIView(frame: CGRectMake((UIScreen.main.bounds.width - 255) / 2, 150 + UIApplication.shared.statusBarFrame.height, 255, 207))
+        let contentView = UIView(frame: CGRectMake((UIScreen.main.bounds.width - 255) / 2, 150 + Constants.statusBarHeight, 255, 207))
         contentView.layer.cornerRadius = 8
         contentView.backgroundColor = .white
         view.addSubview(backGroundView)
@@ -100,7 +100,7 @@ class ActivityAdminRejectVC: UIViewController {
                                                           delay: 2,
                                                           backGroundColor: UIColor(hexString: "#2a4e84"),
                                                           cornerRadius: 18,
-                                                          yOffset: (Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)) {
+                                                          yOffset: (Float(-UIScreen.main.bounds.height * 0.5 + Constants.statusBarHeight) + 90)) {
                         self.dismiss(animated: true)
                     }
                     break
@@ -119,7 +119,7 @@ class ActivityAdminRejectVC: UIViewController {
                                                         delay: 2,
                                                         backGroundColor: UIColor(hexString: "#2a4e84"),
                                                         cornerRadius: 18,
-                                                        yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)
+                                                        yOffset: Float(-UIScreen.main.bounds.height * 0.5 + Constants.statusBarHeight) + 90)
         }
     }
 }

@@ -66,7 +66,7 @@ class ActivitySearchVC: UIViewController, UITableViewDataSource, UITableViewDele
     
     //活动类型选择bar
     lazy var selectBar: ActivitySelectBar = {
-        let selectBar = ActivitySelectBar(frame: CGRectMake(0, UIApplication.shared.statusBarFrame.height+39, view.bounds.width, 51))
+        let selectBar = ActivitySelectBar(frame: CGRectMake(0, Constants.statusBarHeight + 39, view.bounds.width, 51))
         selectBar.buttons.forEach({ button in
             button.addTarget(self, action: #selector(catagoryButtonTapped(_:)), for: .touchUpInside)
         })
@@ -75,7 +75,7 @@ class ActivitySearchVC: UIViewController, UITableViewDataSource, UITableViewDele
     
     //活动展示tableView
     lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: CGRectMake(0, UIApplication.shared.statusBarFrame.height + 106, UIScreen.main.bounds.width, UIScreen.main.bounds.height - UIApplication.shared.statusBarFrame.height - 106))
+        let tableView = UITableView(frame: CGRectMake(0, Constants.statusBarHeight + 106, UIScreen.main.bounds.width, UIScreen.main.bounds.height - Constants.statusBarHeight - 106))
         tableView.backgroundColor = .white
         tableView.register(ActivitySearchTableViewCell.self, forCellReuseIdentifier: "searchCell")
         tableView.separatorStyle = .none
@@ -86,7 +86,7 @@ class ActivitySearchVC: UIViewController, UITableViewDataSource, UITableViewDele
     func setPosition() {
         self.backButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+9)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 9)
             make.width.equalTo(30)
             make.height.equalTo(31)
         }
@@ -94,13 +94,13 @@ class ActivitySearchVC: UIViewController, UITableViewDataSource, UITableViewDele
         self.searchTextField.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(35)
             make.trailing.equalToSuperview().offset(-52)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+6)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 6)
             make.height.equalTo(38)
         }
         
         self.searchButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-8)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+18)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 18)
             make.width.equalTo(36)
             make.height.equalTo(14)
         }

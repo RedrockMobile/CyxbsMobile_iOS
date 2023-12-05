@@ -52,7 +52,7 @@ class ActivityHUD: NSObject {
                                               delay: 2,
                                               backGroundColor: UIColor(hexString: "#2a4e84"),
                                               cornerRadius: 18,
-                                              yOffset: Float(-UIScreen.main.bounds.height * 0.368 + UIApplication.shared.statusBarFrame.height))
+                                              yOffset: Float(-UIScreen.main.bounds.height * 0.368 + Constants.statusBarHeight))
     }
     
     func showNoMoreData() {
@@ -64,6 +64,6 @@ class ActivityHUD: NSObject {
                                               delay: 2,
                                               backGroundColor: UIColor(hexString: "#2a4e84"),
                                               cornerRadius: 18,
-                                              yOffset: Float(-UIScreen.main.bounds.height * 0.368 + UIApplication.shared.statusBarFrame.height))
+                                              yOffset: Float(-UIScreen.main.bounds.height * 0.368 + Constants.statusBarHeight))
     }
 }

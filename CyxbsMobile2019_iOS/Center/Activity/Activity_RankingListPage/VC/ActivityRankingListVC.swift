@@ -87,7 +87,7 @@ class ActivityRankingListVC: UIViewController, UITableViewDataSource, UITableVie
         // 返回按钮
         self.backButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(17)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+13)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 13)
             make.width.equalTo(30)
             make.height.equalTo(30)
         }

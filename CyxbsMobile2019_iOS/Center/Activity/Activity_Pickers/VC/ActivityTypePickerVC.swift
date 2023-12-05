@@ -29,7 +29,7 @@ class ActivityTypePickerVC: UIViewController, UIPickerViewDelegate, UIPickerView
         let pickerView = UIPickerView(frame: CGRectMake(0, 10, UIScreen.main.bounds.width, 180))
         pickerView.delegate = self
         pickerView.dataSource = self
-        pickerView.showsSelectionIndicator = false
+//        pickerView.showsSelectionIndicator = false
         return pickerView
     }()
     

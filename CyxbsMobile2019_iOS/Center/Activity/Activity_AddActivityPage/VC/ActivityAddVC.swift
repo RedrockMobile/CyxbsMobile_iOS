@@ -106,7 +106,7 @@ class ActivityAddVC: UIViewController,
                                                                             delay: 2,
                                                                             backGroundColor: UIColor(hexString: "#2a4e84"),
                                                                             cornerRadius: 18,
-                                                                            yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90) {
+                                                                            yOffset: Float(-UIScreen.main.bounds.height * 0.5 + Constants.statusBarHeight) + 90) {
                                     self.popController()
                                 }
                             }
@@ -128,7 +128,7 @@ class ActivityAddVC: UIViewController,
                                                         delay: 2,
                                                         backGroundColor: UIColor(hexString: "#2a4e84"),
                                                         cornerRadius: 18,
-                                                        yOffset: Float(-UIScreen.main.bounds.height * 0.5 + UIApplication.shared.statusBarFrame.height) + 90)
+                                                        yOffset: Float(-UIScreen.main.bounds.height * 0.5 + Constants.statusBarHeight) + 90)
         }
         self.confirmButton.isEnabled = true
     }
@@ -137,7 +137,7 @@ class ActivityAddVC: UIViewController,
     func setPosition() {
         self.backButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.top.equalToSuperview().offset(UIApplication.shared.statusBarFrame.height+6)
+            make.top.equalToSuperview().offset(Constants.statusBarHeight + 6)
             make.width.equalTo(30)
             make.height.equalTo(31)
         }
