@@ -126,7 +126,8 @@ extension RYScheduleFact: UICollectionViewDataSource {
                 if indexPath.section == 0 {
                     title = "学期"
                 } else {
-                    title = currenDay.string(locale: .cn, format: "M月")
+                    let currenMonth = Calendar.current.date(byAdding: .day, value: 1, to: currenDay) ?? Date()
+                    title = currenMonth.string(locale: .cn, format: "M月")
                 }
             } else {
                 title = currenDay.string(locale: .cn, format: "EEE")
