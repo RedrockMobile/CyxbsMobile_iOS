@@ -32,10 +32,10 @@ class SwiftToOC: NSObject {
         // 假销毁单例
         UserItem.default().attemptDealloc()
         
-        // 删除偏好设置，删除时保留baseURL的偏好信息
+        // 删除偏好设置，删除时保留 baseURL 和 版本号 的偏好信息
         let dic = UserDefaults.standard.dictionaryRepresentation()
         for (key, _) in dic {
-            if key != "baseURL" {
+            if key != "baseURL" && key != "BUNDLE_SHORT_VERSION" {
                 UserDefaults.standard.removeObject(forKey: key)
             }
         }
@@ -58,6 +58,8 @@ class SwiftToOC: NSObject {
         // 清除课表数据和备忘数据
         try? FileManager.default.removeItem(atPath: remAndLesDataDirectoryPath)
     
+        // 标记为未读
+//        UserDefaultsManager.shared.didReadUserAgreementBefore = false
     }
     
     @objc
