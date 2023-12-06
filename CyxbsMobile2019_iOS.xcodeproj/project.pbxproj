@@ -370,7 +370,6 @@
 		AA19FCB82663A266004E9F5D /* DeviceUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA19FCB72663A266004E9F5D /* DeviceUtils.swift */; };
 		AA289B0F24EF9CFA00FDF70C /* NoteDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B0E24EF9CFA00FDF70C /* NoteDataModel.m */; };
 		AA289B1224EFC78C00FDF70C /* NoteDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B1124EFC78C00FDF70C /* NoteDetailView.m */; };
-		AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B1424F29F7600FDF70C /* ClassSchedulPresentingAnimater.m */; };
 		AA3F82DA24E8E03C00B65042 /* ClassDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3F82D924E8E03C00B65042 /* ClassDetailView.m */; };
 		AA3F82DD24E9343A00B65042 /* DayBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3F82DC24E9343A00B65042 /* DayBarView.m */; };
 		AA3F82E024E992C000B65042 /* LessonView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3F82DF24E992C000B65042 /* LessonView.m */; };
@@ -398,7 +397,6 @@
 		AAFD87D024F50DB800CBBD11 /* FakeTabBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAFD87CF24F50DB800CBBD11 /* FakeTabBarView.m */; };
 		B00C3C342AF243D60057DDBA /* RemindHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B00C3C332AF243D60057DDBA /* RemindHUD.m */; };
 		B01A9E322AB4590C0083C476 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B01A9E312AB4590C0083C476 /* NetworkManager.m */; };
-		B01AFD6A29EFE531004F82D7 /* ElectricityView.m in Sources */ = {isa = PBXBuildFile; fileRef = B01AFD6929EFE531004F82D7 /* ElectricityView.m */; };
 		B0275A032AFE4F9E007E3D02 /* SwiftToOC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0275A022AFE4F9E007E3D02 /* SwiftToOC.swift */; };
 		B033366E294C971D004D141D /* HttpTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B033366D294C971D004D141D /* HttpTool.m */; };
 		B03DB39B2AF123E600307DE0 /* DarkMatteView.m in Sources */ = {isa = PBXBuildFile; fileRef = B03DB39A2AF123E600307DE0 /* DarkMatteView.m */; };
@@ -414,6 +412,10 @@
 		B074C03B2AFD20F00086AB07 /* ActivityCenterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B074C0362AFD20F00086AB07 /* ActivityCenterVC.swift */; };
 		B074C03C2AFD20F00086AB07 /* ActivityCenterTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B074C0382AFD20F00086AB07 /* ActivityCenterTopView.swift */; };
 		B074C03D2AFD20F00086AB07 /* ActivityMineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B074C0392AFD20F00086AB07 /* ActivityMineTableViewCell.swift */; };
+		B07597282B2037E00004AC3C /* TodoDateTool.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C134627AEF629001CF7AF /* TodoDateTool.m */; };
+		B07597292B20381D0004AC3C /* ClassSchedulPresentingAnimater.m in Sources */ = {isa = PBXBuildFile; fileRef = AA289B1424F29F7600FDF70C /* ClassSchedulPresentingAnimater.m */; };
+		B075972A2B20383F0004AC3C /* ElectricityView.m in Sources */ = {isa = PBXBuildFile; fileRef = B01AFD6929EFE531004F82D7 /* ElectricityView.m */; };
+		B075972B2B2038440004AC3C /* TodoConflictStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C134227AEF629001CF7AF /* TodoConflictStateView.m */; };
 		B09BB82F2AADA35400FF88F7 /* popFoodResultVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B09BB8182AADA35400FF88F7 /* popFoodResultVC.m */; };
 		B09BB8302AADA35400FF88F7 /* popUpInformationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B09BB8192AADA35400FF88F7 /* popUpInformationVC.m */; };
 		B09BB8312AADA35400FF88F7 /* FoodVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B09BB81B2AADA35400FF88F7 /* FoodVC.m */; };
@@ -637,9 +639,7 @@
 		FE2C135F27AEF629001CF7AF /* DiscoverTodoSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C133E27AEF629001CF7AF /* DiscoverTodoSheetView.m */; };
 		FE2C136027AEF629001CF7AF /* DiscoverTodoSelectTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C133F27AEF629001CF7AF /* DiscoverTodoSelectTimeView.m */; };
 		FE2C136127AEF629001CF7AF /* DiscoverTodoSetRemindBasicView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C134027AEF629001CF7AF /* DiscoverTodoSetRemindBasicView.m */; };
-		FE2C136227AEF629001CF7AF /* TodoConflictStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C134227AEF629001CF7AF /* TodoConflictStateView.m */; };
 		FE2C136327AEF629001CF7AF /* YearBtnsView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C134327AEF629001CF7AF /* YearBtnsView.m */; };
-		FE2C136527AEF629001CF7AF /* TodoDateTool.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C134627AEF629001CF7AF /* TodoDateTool.m */; };
 		FE2C136627AEF629001CF7AF /* TodoDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C134727AEF629001CF7AF /* TodoDataModel.m */; };
 		FE2C136727AEF629001CF7AF /* TodoSyncTool.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C134827AEF629001CF7AF /* TodoSyncTool.m */; };
 		FE2C136827AEF629001CF7AF /* TodoSyncMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2C134927AEF629001CF7AF /* TodoSyncMsg.m */; };
@@ -6205,6 +6205,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B075972B2B2038440004AC3C /* TodoConflictStateView.m in Sources */,
+				B075972A2B20383F0004AC3C /* ElectricityView.m in Sources */,
+				B07597292B20381D0004AC3C /* ClassSchedulPresentingAnimater.m in Sources */,
+				B07597282B2037E00004AC3C /* TodoDateTool.m in Sources */,
 				B06965DD2AFE0A0A0096D1A8 /* WebAllowController.swift in Sources */,
 				FC5110412AED2D010049EE43 /* WeDateHeader.swift in Sources */,
 				145AF3E5281BDA0000AABC53 /* NSString+UILabel.m in Sources */,
@@ -6304,12 +6308,8 @@
 				FC1484692AD1D3AB00657191 /* SendMessageVC.swift in Sources */,
 				FCED76292AA9C51100A3D55C /* ChooseGroupCollectionViewCell.swift in Sources */,
 				14F6F5692AFB8CDB007C7CA6 /* TokenModel.swift in Sources */,
-				FE2C136527AEF629001CF7AF /* TodoDateTool.m in Sources */,
-				AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */,
 				FC06D0EE2A9E637D00A974D8 /* FixedGroupModel.swift in Sources */,
-				FE2C136527AEF629001CF7AF /* TodoDateTool.m in Sources */,
 				14FFFBF12AF8C0F3005A7EBD /* BaseButton.swift in Sources */,
-				AA289B1524F29F7600FDF70C /* ClassSchedulPresentingAnimater.m in Sources */,
 				B09BB8312AADA35400FF88F7 /* FoodVC.m in Sources */,
 				18CDF68D257F91BD006E8E5C /* CQUPTMapPresenter.m in Sources */,
 				646B1975282CDF840015DF28 /* StationsCollectionViewCell.m in Sources */,
@@ -6465,10 +6465,8 @@
 				14FFFBE42AF8C0F3005A7EBD /* PodEX.swift in Sources */,
 				1451EA58282BAF0C00A5BB55 /* MessageDetailTitleView.m in Sources */,
 				FC4B3BD22A878457003336C8 /* TemporaryGroupVC.swift in Sources */,
-				FE2C136227AEF629001CF7AF /* TodoConflictStateView.m in Sources */,
 				FC9E3A922AB6CFF000E3C65F /* ScheduleFact.swift in Sources */,
 				FC5279022AAC471400B09685 /* ClassResultItem.swift in Sources */,
-				FE2C136227AEF629001CF7AF /* TodoConflictStateView.m in Sources */,
 				B074C03D2AFD20F00086AB07 /* ActivityMineTableViewCell.swift in Sources */,
 				1893DC9526EA3887007E871E /* MGDTimer.m in Sources */,
 				D0101D5E2433C885004337ED /* SDMaskModel.m in Sources */,
@@ -6654,9 +6652,7 @@
 				B0C9F2312B0126E1006F4286 /* ActivityDetailVC.swift in Sources */,
 				14FFFBEB2AF8C0F3005A7EBD /* CacheManager.swift in Sources */,
 				B0275A032AFE4F9E007E3D02 /* SwiftToOC.swift in Sources */,
-				B01AFD6A29EFE531004F82D7 /* ElectricityView.m in Sources */,
 				FC63434B2A891FD200DCD96C /* SearchResultVC.swift in Sources */,
-				B01AFD6A29EFE531004F82D7 /* ElectricityView.m in Sources */,
 				FE2C136627AEF629001CF7AF /* TodoDataModel.m in Sources */,
 				DB34EADA239BD4550052B65E /* RemindNotification.m in Sources */,
 				FC42109F2AD5C2F20044EEAA /* ArrangeMessageTableViewCell.swift in Sources */,
