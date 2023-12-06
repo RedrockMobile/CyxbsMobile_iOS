@@ -68,6 +68,7 @@ class AddArrangeTitleVC: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    
     private func httpRequest() {
         HttpTool.share().request(Reminder_GET_titleHotWord,
                                  type: .get,

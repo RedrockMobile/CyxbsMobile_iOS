@@ -311,38 +311,38 @@ extension RYLoginViewController: RYAgreementViewDelegate {
     }
 }
 
-// MARK: MarkDownViewControllerDelegate
-
-extension RYLoginViewController: MarkDownViewControllerDelegate {
-    
-    func mdViewControllerDidCancel(_ controller: MarkDownViewController) {
-        controller.dismiss(animated: true)
-        UserDefaultsManager.shared.didReadUserAgreementBefore = false
-    }
-    
-    func mdViewControllerDidDown(_ controller: MarkDownViewController) {
-        controller.dismiss(animated: true)
-        UserDefaultsManager.shared.didReadUserAgreementBefore = true
-        if !agreementView.isSelected {
-            agreementView.toggleControl()
-        }
-    }
-}
-
-extension RYLoginViewController: WebAllowControllerDelegate {
-    func webAllowControllerDidCancel(_ controller: WebAllowController) {
-        controller.dismiss(animated: true)
-        UserDefaultsManager.shared.didReadUserAgreementBefore = false
-    }
-    
-    func webAllowControllerDidConfirm(_ controller: WebAllowController) {
-        controller.dismiss(animated: true)
-        UserDefaultsManager.shared.didReadUserAgreementBefore = true
-        if !agreementView.isSelected {
-            agreementView.toggleControl()
-        }
-    }
-}
+//// MARK: MarkDownViewControllerDelegate
+//
+//extension RYLoginViewController: MarkDownViewControllerDelegate {
+//    
+//    func mdViewControllerDidCancel(_ controller: MarkDownViewController) {
+//        controller.dismiss(animated: true)
+//        UserDefaultsManager.shared.didReadUserAgreementBefore = false
+//    }
+//    
+//    func mdViewControllerDidDown(_ controller: MarkDownViewController) {
+//        controller.dismiss(animated: true)
+//        UserDefaultsManager.shared.didReadUserAgreementBefore = true
+//        if !agreementView.isSelected {
+//            agreementView.toggleControl()
+//        }
+//    }
+//}
+//
+//extension RYLoginViewController: WebAllowControllerDelegate {
+//    func webAllowControllerDidCancel(_ controller: WebAllowController) {
+//        controller.dismiss(animated: true)
+//        UserDefaultsManager.shared.didReadUserAgreementBefore = false
+//    }
+//    
+//    func webAllowControllerDidConfirm(_ controller: WebAllowController) {
+//        controller.dismiss(animated: true)
+//        UserDefaultsManager.shared.didReadUserAgreementBefore = true
+//        if !agreementView.isSelected {
+//            agreementView.toggleControl()
+//        }
+//    }
+//}
 
 extension RYLoginViewController: PopUpInformationVCDelegate {
     func PopUpInformationVCDidCancel(_ controller: PopUpInformationVC) {
