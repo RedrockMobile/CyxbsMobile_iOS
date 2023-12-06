@@ -5,7 +5,7 @@ platform :ios, '13.0'
 use_frameworks!
 
 # 是否为模拟器环境，真机/发版请改为 false
-IS_SIMULATOR = true
+IS_SIMULATOR = false
 
 inhibit_all_warnings!
 
@@ -58,9 +58,9 @@ target 'CyxbsMobile2019_iOS' do
   pod 'RYAngelWalker'  # 友盟行为统计库
 end
 
-target 'CyxbsWidgetExtension' do
-  # 这里可以添加扩展目标的 Pods 配置
-end
+#target 'CyxbsWidgetExtension' do
+#  # 这里可以添加扩展目标的 Pods 配置
+#end
 
 # 定义 M1 芯片相关的宏定义变量
 M1_VALID_ARCHS = ['Pods-CyxbsMobile2019_iOS']

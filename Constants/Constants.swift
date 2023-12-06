@@ -116,11 +116,11 @@ public extension _constants {
     
     func getAssociatedObject(_ object: Any, _ key: UnsafeRawPointer) -> Any? {
         if #available(iOS 13.0, *) {
-            withUnsafePointer(to: key) {
+            return withUnsafePointer(to: key) {
                 objc_getAssociatedObject(self, $0)
             }
         } else {
-            objc_getAssociatedObject(self, key)
+            return objc_getAssociatedObject(self, key)
         }
     }
 }
