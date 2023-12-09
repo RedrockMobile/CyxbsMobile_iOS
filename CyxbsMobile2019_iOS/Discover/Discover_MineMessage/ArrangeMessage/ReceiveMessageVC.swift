@@ -78,29 +78,8 @@ class ReceiveMessageVC: UIViewController {
         ArrangeMessageModel.getReceivedMessage { groupModel in
             for message in groupModel.messageAry {
                 if message.messageID == sender.tag {
-                    let week = "第" + WeDateCourseScheduleVC.numberToChinese(message.dateDic["week"]!) + "周"
-                    
-                    let beginLesson = message.dateDic["beginLesson"]
-                    var lesson: String
-                    if let _ = message.dateDic["period"] {
-                        lesson = WeDateCourseScheduleVC.numberToChinese(beginLesson!) + WeDateCourseScheduleVC.numberToChinese(beginLesson! + 1)
-                    } else {
-                        lesson = WeDateCourseScheduleVC.numberToChinese(beginLesson!)
+                    HttpManager.shared.magipoke_reminder_Person_addTransaction(begin_lesson: message.dateDic["beginLesson"]!, period: message.dateDic["period"]! + 1, day: message.dateDic["day"]! - 1, week: [message.dateDic["week"]!], title: message.title, content: message.content).ry_JSON { response in
                     }
-                    let weekdays = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
-                    let weekStr = weekdays[message.dateDic["day"]! - 1]
-                    let time = ["lessonString": lesson + "节课", "weekString": weekStr]
-                    
-                    let dataDic = [
-                        "weeksStrArray": [week],
-                        "timeStrDictArray": [time],
-                        "notiBeforeTime": "不提醒",
-                        "noteTitleStr": message.title,
-                        "noteDetailStr": message.content,
-                        "weekNameStr": week
-                    ] as [String : Any]
-                    let modal = NoteDataModel(noteDataDict: dataDic)
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "LessonViewShouldAddNote"), object: modal)
                 }
             }
         } failure: { error in
