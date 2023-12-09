@@ -101,7 +101,7 @@ extension SendMessageVC: UITableViewDataSource {
         let sequence = messageAry.count - indexPath.section - 1
         let message = messageAry[sequence]
         let titleTextColor: UIColor
-        let statusImageName: String
+        var statusImageName: String = ""
         let buttonImageName: String
         let contentTextColor: UIColor
         let timeTextColor: UIColor
@@ -117,8 +117,14 @@ extension SendMessageVC: UITableViewDataSource {
                 statusImageName = "已结束"
                 cell.button.isUserInteractionEnabled = false
             // 若行程未开始
-            } else {
+            } else if !message.hasStart {
                 statusImageName = "未开始"
+                cell.button.isUserInteractionEnabled = true
+                cell.button.addTarget(self, action: #selector(clickCancelReminderBtn(_:)), for: .touchUpInside)
+                cell.button.tag = message.messageID
+            // 若行程进行中
+            } else if message.hasStart && !message.hasEnd {
+                statusImageName = "进行中"
                 cell.button.isUserInteractionEnabled = true
                 cell.button.addTarget(self, action: #selector(clickCancelReminderBtn(_:)), for: .touchUpInside)
                 cell.button.tag = message.messageID

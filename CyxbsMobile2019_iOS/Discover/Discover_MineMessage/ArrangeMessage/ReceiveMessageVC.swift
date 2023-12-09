@@ -133,8 +133,8 @@ extension ReceiveMessageVC: UITableViewDataSource {
         let message = messageAry[sequence]
         let titleText: String
         let titleTextColor: UIColor
-        let statusImageName: String
-        let buttonImageName: String
+        var statusImageName: String = ""
+        var buttonImageName: String = ""
         let contentTextColor: UIColor
         let timeTextColor: UIColor
         
@@ -155,13 +155,19 @@ extension ReceiveMessageVC: UITableViewDataSource {
                 buttonImageName = message.hasAdd ? "已添加日程_灰色" : "添加日程_灰色"
                 cell.button.isUserInteractionEnabled = false
             // 若行程未开始
-            } else {
+            } else if !message.hasStart {
                 statusImageName = "未开始"
                 buttonImageName = message.hasAdd ? "已添加日程" : "添加日程"
                 cell.button.isUserInteractionEnabled = message.hasAdd ? false : true
                 cell.button.addTarget(self, action: #selector(clickAddArrangeBtn), for: .touchUpInside)
                 cell.button.tag = message.messageID
-                
+            // 若行程进行中
+            } else if message.hasStart && !message.hasEnd {
+                statusImageName = "进行中"
+                buttonImageName = message.hasAdd ? "已添加日程" : "添加日程"
+                cell.button.isUserInteractionEnabled = message.hasAdd ? false : true
+                cell.button.addTarget(self, action: #selector(clickAddArrangeBtn), for: .touchUpInside)
+                cell.button.tag = message.messageID
             }
         // 若行程已取消
         } else {
