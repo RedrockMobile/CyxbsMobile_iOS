@@ -58,13 +58,13 @@
     
     NudeIn *introductionTextView = [NudeIn make:^(NUDTextMaker *make) {
         make.text(@"功能介绍\n")
-        .fontName(PingFangSCBold, titleFontSize)
+        .fontName(PingFangSCSemibold, titleFontSize)
         .aligment(NUDAliCenter)
         .paraSpacing(0, titleRowSpace)
         .attach();
         
         make.text(@"版本号：V6.0.0\n")
-        .fontName(PingFangSCBold, subTitleFontSize)
+        .fontName(PingFangSCSemibold, subTitleFontSize)
         .paraSpacing(0, rowSpace)
         .attach();
         
@@ -74,7 +74,7 @@
         .attach();
         
         make.text(@"1.课表\n")
-        .fontName(PingFangSCBold, subTitleFontSize)
+        .fontName(PingFangSCSemibold, subTitleFontSize)
         .paraSpacing(0, rowSpace)
         .attach();
         
@@ -84,7 +84,7 @@
         .attach();
         
         make.text(@"2.发现\n")
-        .fontName(PingFangSCBold, subTitleFontSize)
+        .fontName(PingFangSCSemibold, subTitleFontSize)
         .paraSpacing(0, rowSpace)
         .attach();
         
@@ -94,7 +94,7 @@
         .attach();
         
         make.text(@"3.深色模式\n")
-        .fontName(PingFangSCBold, subTitleFontSize)
+        .fontName(PingFangSCSemibold, subTitleFontSize)
         .paraSpacing(0, rowSpace)
         .attach();
         
@@ -104,7 +104,7 @@
         .attach();
         
         make.text(@"4.更多\n")
-        .fontName(PingFangSCBold, subTitleFontSize)
+        .fontName(PingFangSCSemibold, subTitleFontSize)
         .paraSpacing(0, rowSpace)
         .attach();
         
@@ -120,7 +120,7 @@
         
         make.text(@"\n\n更多功能介绍详见掌上重邮官方网站")
         .aligment(NUDAliCenter)
-        .fontName(PingFangSCBold, subTitleFontSize)
+        .fontName(PingFangSCSemibold, subTitleFontSize)
         .paraSpacing(0, rowSpace)
         .attach();
     }];

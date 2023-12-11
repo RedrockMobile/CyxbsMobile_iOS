@@ -87,7 +87,7 @@
     [self.view addSubview:label];
     
     self.titleLabel.text = @"没课约";
-    label.font = [UIFont fontWithName:PingFangSCBold size:21];
+    label.font = [UIFont fontWithName:PingFangSCSemibold size:21];
     //蓝白
     if (@available(iOS 11.0, *)) {
         label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];

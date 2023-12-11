@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "标签-已回复 2.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -11,10 +12,12 @@
           "value" : "dark"
         }
       ],
+      "filename" : "标签-已回复 (1) 2.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "标签-已回复 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -25,6 +28,7 @@
           "value" : "dark"
         }
       ],
+      "filename" : "标签-已回复 (1) 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

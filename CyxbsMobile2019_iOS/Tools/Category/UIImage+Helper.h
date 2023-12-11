@@ -83,17 +83,10 @@
  */
 + (UIImage *)captureWithView:(UIView *)view;
 
-/**
- *  给图片加水印
- *
- *  @param image     背景image(想要加水印的image)
- *  @param logoImage 水印image
- *  @param logoFrame 水印image想要加到的位置
- *
- *  @return 加了水印logoimage的image
- */
+/// 给图片加水印
+/// @param image 背景image(想要加水印的image)
+/// @param logoImage 水印image
 + (UIImage *)waterImageWith:(UIImage *)image logo:(UIImage *)logoImage;
-
 
 /**
  *  生成指定大小的image

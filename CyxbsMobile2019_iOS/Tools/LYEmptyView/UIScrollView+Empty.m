@@ -141,7 +141,7 @@ static char kEmptyViewKey;
     
     self.ly_emptyView = [LYEmptyView emptyViewWithImageStr:imageName titleStr:str detailStr:detailStr];
     self.ly_emptyView.contentViewOffset = offset;
-    self.ly_emptyView.titleLabFont = [UIFont fontWithName:@"PingFangSC-Medium" size: 13];
+    self.ly_emptyView.titleLabFont = [UIFont fontWithName:PingFangSCMedium size: 13];
     
     self.ly_emptyView.titleLabTextColor =
     [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#556C89" alpha:1]

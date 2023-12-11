@@ -23,7 +23,13 @@
 
 - (void)requestMapData {
     [CQUPTMapModel requestMapDataSuccess:^(CQUPTMapDataItem * _Nonnull mapDataItem, NSArray<CQUPTMapHotPlaceItem *> * _Nonnull hotPlaceItemArray) {
-        CQUPTMapDataItem *oldMap = [NSKeyedUnarchiver unarchiveObjectWithFile:[CQUPTMapDataItem archivePath]];
+        NSError *error = nil;
+        NSData *archiveData = [NSData dataWithContentsOfFile:[CQUPTMapDataItem archivePath]];
+        CQUPTMapDataItem *oldMap = [NSKeyedUnarchiver unarchivedObjectOfClass:[CQUPTMapDataItem class] fromData:archiveData error:&error];
+        if (error) {
+            // 处理错误情况
+            NSLog(@"Unarchive Error: %@", error);
+        }
         if ([mapDataItem.mapVersion intValue] > [oldMap.mapVersion intValue]) {
             [[SDImageCache sharedImageCache] removeImageForKey:oldMap.mapURL withCompletion:nil];
         }
@@ -42,7 +48,13 @@
 }
 
 - (void)searchPlaceWithString:(NSString *)string {
-    CQUPTMapDataItem *mapData = [NSKeyedUnarchiver unarchiveObjectWithFile:[CQUPTMapDataItem archivePath]];
+    NSError *error = nil;
+    NSData *archiveData = [NSData dataWithContentsOfFile:[CQUPTMapDataItem archivePath]];
+    CQUPTMapDataItem *mapData = [NSKeyedUnarchiver unarchivedObjectOfClass:[CQUPTMapDataItem class] fromData:archiveData error:&error];
+    if (error) {
+        // 处理错误情况
+        NSLog(@"Unarchive Error: %@", error);
+    }
     NSArray<CQUPTMapPlaceItem *> *placeArray = mapData.placeList;
     
     NSMutableArray *tmpArray = [@[] mutableCopy];

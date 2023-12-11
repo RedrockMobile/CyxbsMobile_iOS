@@ -132,7 +132,7 @@
         if(fontSize<17){
             fontSize=17;
         }
-        [self.lessonNameLabel setFont:[UIFont fontWithName:PingFangSCBold size:fontSize]];
+        [self.lessonNameLabel setFont:[UIFont fontWithName:PingFangSCSemibold size:fontSize]];
     }
 
     self.classroomNameLabel.text = dataDict[@"classroom"];
@@ -215,9 +215,9 @@
     //字号
     UIFont *regu13 = [UIFont fontWithName:PingFangSCRegular size: 13];
     UIFont *regu15 = [UIFont fontWithName:PingFangSCRegular size: 15];
-    UIFont *semi15 = [UIFont fontWithName:PingFangSCBold size:15];
+    UIFont *semi15 = [UIFont fontWithName:PingFangSCSemibold size:15];
     
-    self.lessonNameLabel.font = [UIFont fontWithName:PingFangSCBold size: 22];
+    self.lessonNameLabel.font = [UIFont fontWithName:PingFangSCSemibold size: 22];
     self.weekRangeLabel.font = semi15;
     self.classTimeLabel.font = semi15;
     self.typeLabel.font = semi15;

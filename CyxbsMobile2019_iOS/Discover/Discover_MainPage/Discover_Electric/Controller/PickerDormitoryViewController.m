@@ -60,7 +60,7 @@
     [self.bindingView addSubview:self.pickerView];
     
     UILabel *roomNumberLabel = [[UILabel alloc] init];
-    roomNumberLabel.font = [UIFont fontWithName:PingFangSCBold size:24];
+    roomNumberLabel.font = [UIFont fontWithName:PingFangSCSemibold size:24];
     roomNumberLabel.text = @"宿舍号：";
 
     roomNumberLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#5E5F64" alpha:1]];
@@ -159,7 +159,7 @@
             _roomTextField.text = [UserItemTool defaultItem].room;
         }
         _roomTextField.inputAccessoryView = [self addToolbar];
-        _roomTextField.font = [UIFont fontWithName:PingFangSCBold size:24];
+        _roomTextField.font = [UIFont fontWithName:PingFangSCSemibold size:24];
         _roomTextField.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#5E5F64" alpha:1]];
     }
     return _roomTextField;
@@ -269,7 +269,10 @@
 
     NSInteger row0 = [pickerView selectedRowInComponent:0];
     NSInteger row1 = [pickerView selectedRowInComponent:1];
-    self.buildingNumberLabel.text = [self.pickerDormitoryModel getNumberOfDormitoryWith:self.pickerDormitoryModel.placeArray[row0] andPlace:self.pickerDormitoryModel.allArray[row0][row1]];
+
+    if (row0 >= 0 && row0 < self.pickerDormitoryModel.placeArray.count && row1 >= 0 && row1 < self.pickerDormitoryModel.allArray[row0].count) {
+        self.buildingNumberLabel.text = [self.pickerDormitoryModel getNumberOfDormitoryWith:self.pickerDormitoryModel.placeArray[row0] andPlace:self.pickerDormitoryModel.allArray[row0][row1]];
+    }
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {

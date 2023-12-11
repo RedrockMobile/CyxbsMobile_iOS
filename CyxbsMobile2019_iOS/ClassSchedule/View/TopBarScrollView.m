@@ -370,7 +370,7 @@
             //更改新按钮的的字体
             NSNumber *newIndex = change[@"new"];
             UIButton *newBtn = self.weekChooseBtnArray[newIndex.intValue];
-            newBtn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size: 18];
+            newBtn.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size: 18];
             newBtn.alpha = 1;
         //------------------------------------------------------------------------------
            

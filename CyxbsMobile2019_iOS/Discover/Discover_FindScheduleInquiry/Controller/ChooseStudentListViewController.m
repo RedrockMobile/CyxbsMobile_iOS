@@ -54,6 +54,7 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [tableView registerClass:[PeopleListCellTableViewCell class] forCellReuseIdentifier:@"PeopleListCell"];
     [self.view addSubview:tableView];
 }
 
@@ -82,7 +83,7 @@
     }else{
         label.text = @"老师课表";
     }
-    label.font = [UIFont fontWithName:PingFangSCBold size:21];
+    label.font = [UIFont fontWithName:PingFangSCSemibold size:21];
     if (@available(iOS 11.0, *)) {
         label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {

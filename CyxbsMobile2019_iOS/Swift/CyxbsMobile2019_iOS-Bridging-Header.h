@@ -7,9 +7,7 @@
 
 #import <AFNetworking.h>
 #import <FluentDarkModeKit.h>
-#import <MJRefresh.h>
 #import <UIImageView+WebCache.h>
-#import <YYKit.h>
 #import <Masonry.h>
 #import <MBProgressHUD.h>
 #import <MJExtension.h>
@@ -20,7 +18,6 @@
 #import "BaseViewController.h"
 #import "NSDate+Timestamp.h"
 #import "URLController.h"
-#import <UMAnalytics/MobClick.h>
 #import "SDMask.h"
 #import "CQUPTMapPlaceRect.h"   // 重邮地图里用的，很多文件都要导入这个，太麻烦了，直接写这里好了
 #import "AESCipher.h"           // AES加密算法
@@ -28,6 +25,19 @@
 #import "ByWordViewController.h"
 #import "ByPasswordViewController.h"
 #import "TodoSyncTool.h"
+#import "UIColor+Color.h"
+#import "HttpTool.h"
+#import "NoteDataModel.h"
+
+//#import "NewQAHud.h"
+#import "UIColor+Color.h"
+#import "SSRTopBarBaseView.h"
+#import "HttpTool.h"
+#import "NSObject+YYAdd.h"
+#import "NSString+UILabel.h"
+#import "SSRButton.h"
+#import "AliyunConfig.h"
+#import "UserItemTool.h"
 
 #pragma mark - Group共享
 
@@ -89,8 +99,9 @@
 
 
 #pragma mark - 字体
+#define PingFangSC @"PingFang SC"
 //苹方-简 极细体
-#define PingFangSCUltralight    @"PingFangSC-Ultralight"
+#define PingFangSCUltralight @"PingFangSC-Ultralight"
 //苹方-简 纤细体
 #define PingFangSCThin @"PingFangSC-Thin"
 //苹方-简 细体
@@ -101,6 +112,7 @@
 #define PingFangSCMedium @"PingFangSC-Medium"
 //苹方-简 中粗体
 #define PingFangSCSemibold @"PingFangSC-Semibold"
+//#define PingFangSCSemibold @"PingFangSC-Semibold"
 /*
  下面这个for，可以打印出现有的所有字体
 for(NSString *fontFamilyName in [UIFont familyNames]){
@@ -112,7 +124,7 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 }
 */
 
-#define PingFangSCBold @"PingFangSC-Semibold"
+
 
 
 // Bahnschrift字体
@@ -214,7 +226,7 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 #define Discover_POST_schoolBus_API @"https://cyxbsmobile.redrock.team/wxapi/schoolbus/status"
 
 /// banner
-#define Discover_GET_bannerView_API @"http://api-234.redrock.team/magipoke-text/banner/get"
+//#define Discover_GET_bannerView_API @"http://api-234.redrock.team/magipoke-text/banner/get"
 
 /// 志愿查询
 #define Discover_POST_volunteerBind_API @"https://cyxbsmobile.redrock.team/wxapi/volunteer/binding"
@@ -274,79 +286,6 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
 
 
 
-#pragma mark - “邮问”接口
-
-/*
- 问题部分
- */
-
-//全部问题列表
-#define QA_GET_allQuestions_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/getQuestionList"
-
-//添加新问题
-#define QA_GET_addQuestion_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/add"
-
-//问题图片上传
-#define QA_GET_uploadPic_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/uploadPicture"
-
-//取消提问
-#define QA_GET_cancelQuestion_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/cancelQuestion"
-
-//问题详情
-#define QA_GET_questionDetail_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/getDetailedInfo"
-
-// 阅读量统计
-#define QA_GET_browseNumber_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/addView"
-
-//问题回答列表
-#define QA_GET_questionAnswerList_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/getAnswerlist"
-
-//忽略问题
-#define QA_GET_ignoreQuestion_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Question/ignore"
-
-
-
-/*
- 回答部分
- */
-
-//回答问题
-#define QA_GET_answerQuestion_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/add"
-
-//上传答案图片
-#define QA_GET_answerAnswerImageUpload_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/uploadPicture"
-//某个问题下的回答列表
-#define QA_GET_questionAnswerLIST_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/add"
-
-//采纳答案
-#define QA_GET_adoptAnswer_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/adopt"
-
-//赞接口
-#define QA_GET_addLike_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/praise"
-
-//取消赞接口
-#define QA_GET_cancelLike_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/cancelPraise"
-
-//某个回答下的评论列表
-#define QA_GET_questionDiscuss_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/getRemarkList"
-
-//在回答下添加评论
-#define QA_GET_addDiscuss_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Answer/remark"
-
-/*
-举报部分
-*/
-#define QA_GET_addReport_API @"https://cyxbsmobile.redrock.team/app/index.php/QA/Feedback/addReport"
-
-/*
- 草稿箱
- */
-//添加到草稿箱
-#define QA_GET_addDraft_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/addItemInDraft"
-//更新草稿箱内容
-#define QA_GET_updateDraft_API @"https://cyxbsmobile.redrock.team/wxapi/magipoke-draft/User/updateItemInDraft"
-
-
 typedef NS_ENUM(NSInteger, PeopleType) {
     /**代表传入的是学生相关*/
     PeopleTypeStudent,
@@ -383,3 +322,18 @@ typedef NS_ENUM(NSInteger, ScheduleType) {
 
 //记录最后一次登录的时间戳，类型是Double，用来避免后端出问题后的强制退出登录
 #define LastLogInTimeKey_double @"LastLogInTimeKey_TimeInterval"
+
+
+#import "UserItem.h"
+#import "MineMessageVC.h"
+#import "CheckInViewController.h"
+#import "ScheduleInquiryViewController.h"
+#import "SchoolBusVC.h"
+#import "CalendarViewController.h"
+#import "CQUPTMapViewController.h"
+#import "TODOMainViewController.h"
+#import "FinderToolViewController.h"
+#import "FoodVC.h"
+#import "MineViewController.h"
+#import "ElectricViewController.h"
+#import "AttitudeMainPageVC.h"

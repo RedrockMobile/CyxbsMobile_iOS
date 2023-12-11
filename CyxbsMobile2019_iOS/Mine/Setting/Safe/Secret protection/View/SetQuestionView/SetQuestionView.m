@@ -38,7 +38,7 @@
         
         ///标题
         if (@available(iOS 11.0, *)) {
-            UILabel *barTitle = [self creatLabelWithText:@"重设密保" AndFont:[UIFont fontWithName:@"PingFangSC-Semibold" size: 21] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
+            UILabel *barTitle = [self creatLabelWithText:@"重设密保" AndFont:[UIFont fontWithName:PingFangSCSemibold size: 21] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
             barTitle.textAlignment = NSTextAlignmentLeft;
             [self addSubview:barTitle];
             _barTitle = barTitle;
@@ -58,7 +58,7 @@
         
         ///密保问题描述
         if (@available(iOS 11.0, *)) {
-            UILabel *questionLab = [self creatLabelWithText:@"你的密保问题是:" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 15] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
+            UILabel *questionLab = [self creatLabelWithText:@"你的密保问题是:" AndFont:[UIFont fontWithName:PingFangSCMedium size: 15] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
             questionLab.alpha = 0.64;
             questionLab.textAlignment = NSTextAlignmentLeft;
             [self addSubview:questionLab];
@@ -72,7 +72,7 @@
             questionLabel.layer.masksToBounds = YES;
             questionLabel.layer.cornerRadius = 8;
             questionLabel.text = @"请选择一个密保问题";
-            questionLab.font = [UIFont fontWithName:@"PingFangSC-Semibold" size: 16];
+            questionLab.font = [UIFont fontWithName:PingFangSCSemibold size: 16];
             [questionLabel setBackgroundColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#E8F0FC" alpha:1] darkColor:[UIColor colorWithHexString:@"#2D2D2D" alpha:1]]];
             questionLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
             questionLabel.textAlignment = NSTextAlignmentCenter;
@@ -81,7 +81,7 @@
             
             
             ///密保答案描述
-            UILabel *answerLab = [self creatLabelWithText:@"你的密保答案是:" AndFont:[UIFont fontWithName:@"PingFangSC-Medium" size: 15] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
+            UILabel *answerLab = [self creatLabelWithText:@"你的密保答案是:" AndFont:[UIFont fontWithName:PingFangSCMedium size: 15] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
             answerLab.alpha = 0.64;
             questionLab.textAlignment = NSTextAlignmentLeft;
             [self addSubview:answerLab];
@@ -89,9 +89,9 @@
             
             ///答案输入框
             UITextView *textView = [[UITextView alloc] init];
-            textView.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 16];
+            textView.font = [UIFont fontWithName:PingFangSCMedium size: 16];
             textView.dataDetectorTypes = UIDataDetectorTypeAll;
-            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@" 请输入密保问题的答案（由2-16位字符组成）" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:16], NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.36] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.36]]}];
+            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@" 请输入密保问题的答案（由2-16位字符组成）" attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSCMedium size:16], NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.36] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.36]]}];
             textView.attributedPlaceholder = string;
             textView.layer.cornerRadius = 8;
             textView.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
@@ -105,12 +105,12 @@
     
         
         ///提示文字（少）
-        UILabel *placeholderLabLess = [self creatLabelWithText:@"请至少输入两个字符" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 12] AndTextColor:[UIColor colorWithRed:11/255.0 green:204/255.0 blue:240/255.0 alpha:1.0]];
+        UILabel *placeholderLabLess = [self creatLabelWithText:@"请至少输入两个字符" AndFont:[UIFont fontWithName:PingFangSCRegular size: 12] AndTextColor:[UIColor colorWithRed:11/255.0 green:204/255.0 blue:240/255.0 alpha:1.0]];
         [self addSubview:placeholderLabLess];
         _placeholderLabLess = placeholderLabLess;
         
         ///提示文字（多）
-        UILabel *placeholderLabMore = [self creatLabelWithText:@"字数不能超过16个" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 12] AndTextColor:[UIColor colorWithRed:11/255.0 green:204/255.0 blue:240/255.0 alpha:1.0]];
+        UILabel *placeholderLabMore = [self creatLabelWithText:@"字数不能超过16个" AndFont:[UIFont fontWithName:PingFangSCRegular size: 12] AndTextColor:[UIColor colorWithRed:11/255.0 green:204/255.0 blue:240/255.0 alpha:1.0]];
         [self addSubview:placeholderLabMore];
         _placeholderLabMore = placeholderLabMore;
         
@@ -118,7 +118,7 @@
         UIButton *sureBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         [sureBtn setTitle:@"确定" forState:UIControlStateNormal];
         [sureBtn setTitle:@"确定" forState:UIControlStateDisabled];
-        sureBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 18];
+        sureBtn.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size: 18];
         [sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [sureBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
         sureBtn.backgroundColor = [UIColor colorWithRed:194/255.0 green:203/255.0 blue:254/255.0 alpha:1.0];

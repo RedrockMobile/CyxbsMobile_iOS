@@ -15,7 +15,7 @@
 /// 控制器标题
 @property (nonatomic,strong)UILabel *VCTitleLabel;
 /// 返回按钮
-@property (nonatomic,strong)UIButton *backBtn;
+//@property (nonatomic,strong)UIButton *backBtn;
 /// 导航条底部的黑线
 @property (nonatomic,strong)UIView *splitLine;
 

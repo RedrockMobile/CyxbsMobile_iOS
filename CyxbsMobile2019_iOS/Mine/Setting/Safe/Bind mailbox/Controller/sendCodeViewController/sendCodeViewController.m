@@ -117,42 +117,43 @@
 
 ///弹窗：提示成功
 - (void)sendCodeSuccessful {
-    self.successHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    self.successHud.mode = MBProgressHUDModeText;
-    self.successHud.labelText = @"验证成功";
-    [self.successHud hide:YES afterDelay:1.2];
-    [self.successHud setYOffset:-SCREEN_HEIGHT * 0.3704];
-    [self.successHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
+//    self.successHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    self.successHud.mode = MBProgressHUDModeText;
+//    self.successHud.label.text = @"验证成功";
+//
+//    [self.successHud hide:YES afterDelay:1.2];
+//    [self.successHud setYOffset:-SCREEN_HEIGHT * 0.3704];
+//    [self.successHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
 }
 
 ///弹窗：提示失败
 - (void)sendCodeFailure{
-    self.failureHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    self.failureHud.mode = MBProgressHUDModeText;
-    self.failureHud.labelText = @"验证码已失效";
-    [self.failureHud hide:YES afterDelay:1.2];
-    [self.failureHud setYOffset:-SCREEN_HEIGHT * 0.3704];
-    [self.failureHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
+//    self.failureHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    self.failureHud.mode = MBProgressHUDModeText;
+//    self.failureHud.labelText = @"验证码已失效";
+//    [self.failureHud hide:YES afterDelay:1.2];
+//    [self.failureHud setYOffset:-SCREEN_HEIGHT * 0.3704];
+//    [self.failureHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
 }
 
 ///弹窗：提示没有网络，无法绑定邮箱
 - (void)NoNetWorkToBindingEmail {
-    MBProgressHUD *noNetHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    noNetHud.mode = MBProgressHUDModeText;
-    noNetHud.labelText = @"没有网络，请检查网络连接";
-    [noNetHud hide:YES afterDelay:1.2];
-    [noNetHud setYOffset:-SCREEN_HEIGHT * 0.3704];
-    [noNetHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
+//    MBProgressHUD *noNetHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    noNetHud.mode = MBProgressHUDModeText;
+//    noNetHud.labelText = @"没有网络，请检查网络连接";
+//    [noNetHud hide:YES afterDelay:1.2];
+//    [noNetHud setYOffset:-SCREEN_HEIGHT * 0.3704];
+//    [noNetHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
 }
 
 ///弹窗：验证码错误
 - (void)codeWrong {
-    MBProgressHUD *codeWrongHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    codeWrongHud.mode = MBProgressHUDModeText;
-    codeWrongHud.labelText = @"验证码错误";
-    [codeWrongHud hide:YES afterDelay:1.2];
-    [codeWrongHud setYOffset:-SCREEN_HEIGHT * 0.3704];
-    [codeWrongHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
+//    MBProgressHUD *codeWrongHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    codeWrongHud.mode = MBProgressHUDModeText;
+//    codeWrongHud.labelText = @"验证码错误";
+//    [codeWrongHud hide:YES afterDelay:1.2];
+//    [codeWrongHud setYOffset:-SCREEN_HEIGHT * 0.3704];
+//    [codeWrongHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
 }
 
 - (NSString *)getNowTimeTimestamp {

@@ -121,30 +121,30 @@
 
 ///弹窗：提示没有网络，无法绑定邮箱
 - (void)NoNetWorkToBindingEmail {
-    MBProgressHUD *noNetHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    noNetHud.mode = MBProgressHUDModeText;
-    noNetHud.labelText = @"没有网络，请检查网络连接";
-    [noNetHud hide:YES afterDelay:1.2];
-    [noNetHud setYOffset:-SCREEN_HEIGHT * 0.3704];
-    [noNetHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
+//    MBProgressHUD *noNetHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    noNetHud.mode = MBProgressHUDModeText;
+//    noNetHud.labelText = @"没有网络，请检查网络连接";
+//    [noNetHud hide:YES afterDelay:1.2];
+//    [noNetHud setYOffset:-SCREEN_HEIGHT * 0.3704];
+//    [noNetHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
 }
 
 - (void)EmailPatternWrong {
-    MBProgressHUD *emailWrongHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    emailWrongHud.mode = MBProgressHUDModeText;
-    emailWrongHud.labelText = @"邮箱格式有问题";
-    [emailWrongHud hide:YES afterDelay:1.2];
-    [emailWrongHud setYOffset:-SCREEN_HEIGHT * 0.3704];
-    [emailWrongHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
+//    MBProgressHUD *emailWrongHud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    emailWrongHud.mode = MBProgressHUDModeText;
+//    emailWrongHud.labelText = @"邮箱格式有问题";
+//    [emailWrongHud hide:YES afterDelay:1.2];
+//    [emailWrongHud setYOffset:-SCREEN_HEIGHT * 0.3704];
+//    [emailWrongHud setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
 }
 
 - (void)EmailLimited {
-    MBProgressHUD *emailLimited = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    emailLimited.mode = MBProgressHUDModeText;
-    emailLimited.labelText = @"今日发送次数已经用完~";
-    [emailLimited hide:YES afterDelay:1.2];
-    [emailLimited setYOffset:-SCREEN_HEIGHT * 0.3704];
-    [emailLimited setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
+//    MBProgressHUD *emailLimited = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    emailLimited.mode = MBProgressHUDModeText;
+//    emailLimited.labelText = @"今日发送次数已经用完~";
+//    [emailLimited hide:YES afterDelay:1.2];
+//    [emailLimited setYOffset:-SCREEN_HEIGHT * 0.3704];
+//    [emailLimited setColor:[UIColor colorWithRed:42/255.0 green:78/255.0 blue:132/255.0 alpha:1.0]];
 }
 
 

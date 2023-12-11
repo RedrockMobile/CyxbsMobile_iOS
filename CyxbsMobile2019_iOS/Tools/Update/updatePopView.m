@@ -157,7 +157,7 @@
         UILabel *remindLbl = [[UILabel alloc] init];
         remindLbl.text = [NSString stringWithFormat:@"%@ 新版本已上线 ",self.info[@"version"]];
         remindLbl.textAlignment = NSTextAlignmentCenter;
-        remindLbl.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 17];
+        remindLbl.font = [UIFont fontWithName:PingFangSCMedium size: 17];
         if (@available(iOS 11.0, *)) {
             remindLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
         } else {
@@ -184,7 +184,7 @@
         [cancelBtn setTitle:@"暂时不用" forState:UIControlStateNormal];
         [cancelBtn setBackgroundColor:[UIColor colorWithRed:195/255.0 green:212/255.0 blue:238/255.0 alpha:1.0]];
         [cancelBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        cancelBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 15];
+        cancelBtn.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size: 15];
         [cancelBtn addTarget:self action:@selector(Cancel) forControlEvents:UIControlEventTouchUpInside];
         _cancelBtn = cancelBtn;
     }
@@ -197,7 +197,7 @@
         [updateBtn setTitle:@"立即更新" forState:UIControlStateNormal];
         [updateBtn setBackgroundColor:[UIColor colorWithRed:72/255.0 green:65/255.0 blue:226/255.0 alpha:1.0]];
         [updateBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        updateBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 15];
+        updateBtn.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size: 15];
         [updateBtn addTarget:self action:@selector(Update) forControlEvents:UIControlEventTouchUpInside];
         _updateBtn = updateBtn;
     }

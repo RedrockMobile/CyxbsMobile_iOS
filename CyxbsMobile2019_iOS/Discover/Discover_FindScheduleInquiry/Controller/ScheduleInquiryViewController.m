@@ -58,7 +58,7 @@
     UILabel *titleLabel = [[UILabel alloc]init];
     self.titleLabel = titleLabel;
     titleLabel.text = @"查课表";
-    titleLabel.font = [UIFont fontWithName:PingFangSCBold size:21];
+    titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:21];
     [self.backgroundView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.view);

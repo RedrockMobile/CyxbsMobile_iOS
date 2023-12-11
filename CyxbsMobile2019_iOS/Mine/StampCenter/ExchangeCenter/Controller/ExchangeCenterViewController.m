@@ -49,7 +49,7 @@
     self.VCTitleStr = @"";
     self.titlePosition = TopBarViewTitlePositionLeft;
     self.splitLineHidden = YES;
-    self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
+    self.titleFont = [UIFont fontWithName:PingFangSCSemibold size:22];
     self.titleColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
     
     [self.view addSubview:self.contentView];

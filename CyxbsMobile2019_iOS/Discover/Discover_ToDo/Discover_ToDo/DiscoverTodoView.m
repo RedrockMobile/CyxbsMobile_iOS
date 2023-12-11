@@ -165,7 +165,7 @@
     }];
     
     label.text = @"邮子清单";
-    label.font = [UIFont fontWithName:PingFangSCBold size:18];
+    label.font = [UIFont fontWithName:PingFangSCSemibold size:18];
     label.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
 }
 

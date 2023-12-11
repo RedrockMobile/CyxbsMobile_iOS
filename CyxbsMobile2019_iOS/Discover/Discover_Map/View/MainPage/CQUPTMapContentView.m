@@ -16,6 +16,7 @@
 #import "CQUPTMapSearchView.h"
 #import "CQUPTMapDetailView.h"
 #import "CQUPTMapViewController.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface CQUPTMapContentView () <UITextFieldDelegate, UIScrollViewDelegate, CALayerDelegate>
 
@@ -98,7 +99,7 @@
         } else {
             [cancelButton setTitleColor:[UIColor colorWithHexString:@"788AAA"] forState:UIControlStateNormal];
         }
-        cancelButton.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:16];
+        cancelButton.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:16];
         [cancelButton addTarget:self action:@selector(cancelSearch) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:cancelButton];
         self.cancelButton = cancelButton;
@@ -307,7 +308,7 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-    textField.text = @"";
+//    textField.text = @"";
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {

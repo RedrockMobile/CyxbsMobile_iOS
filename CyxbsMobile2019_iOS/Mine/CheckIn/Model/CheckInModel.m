@@ -11,45 +11,46 @@
 @implementation CheckInModel
 
 + (void)CheckInSucceeded:(void (^)(void))succeded Failed:(void (^)(NSError * _Nonnull))failed {
-    NSDictionary *params = @{
-        @"stunum": UserItemTool.defaultItem.stuNum,
-        @"idnum": [NSUserDefaults.standardUserDefaults stringForKey:@"idNum"]
-    };
-    
     [HttpTool.shareTool
      request:Mine_POST_checkIn_API
      type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerHTTP
-     bodyParameters:params
+     bodyParameters:nil
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-        [self requestCheckInInfoWithParams:params succeeded:succeded];
+        NSInteger status = [object[@"status"] intValue];
+        if (status == 10000) {
+            [self requestCheckInInfo];
+            succeded();
+        }
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failed(error);
     }];
 }
 
-+ (void)requestCheckInInfoWithParams:(NSDictionary *)params succeeded:(void (^)(void))succeded {
-    
++ (void)requestCheckInInfo{
     [HttpTool.shareTool
      request:Mine_POST_checkInInfo_API
      type:HttpToolRequestTypePost
      serializer:HttpToolRequestSerializerHTTP
-     bodyParameters:params
+     bodyParameters:nil
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-        [UserItemTool defaultItem].checkInDay = object[@"data"][@"check_in_days"];
-        [UserItemTool defaultItem].integral = object[@"data"][@"integral"];
-        [UserItemTool defaultItem].rank = object[@"data"][@"rank"];
-        [UserItemTool defaultItem].rank_Persent = object[@"data"][@"percent"];
-        [UserItemTool defaultItem].week_info = object[@"data"][@"week_info"];
-        [UserItemTool defaultItem].canCheckIn = [object[@"data"][@"can_check_in"] boolValue];
-        [UserItemTool defaultItem].isCheckedToday = [object[@"data"][@"is_check_today"] boolValue];
-        succeded();
+        NSInteger status = [object[@"status"] intValue];
+        if (status == 10000) {
+//            NSLog(@"检查签到成功");
+            [UserItemTool defaultItem].checkInDay = object[@"data"][@"check_in_days"];
+            [UserItemTool defaultItem].integral = object[@"data"][@"integral"];
+            [UserItemTool defaultItem].rank = object[@"data"][@"rank"];
+            [UserItemTool defaultItem].rank_Persent = object[@"data"][@"percent"];
+            [UserItemTool defaultItem].week_info = object[@"data"][@"week_info"];
+            [UserItemTool defaultItem].canCheckIn = [object[@"data"][@"can_check_in"] boolValue];
+            [UserItemTool defaultItem].isCheckedToday = [object[@"data"][@"is_check_today"] boolValue];
+        }
     }
      failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        NSLog(@"检查签到失败!%@",error);
     }];
 }
 

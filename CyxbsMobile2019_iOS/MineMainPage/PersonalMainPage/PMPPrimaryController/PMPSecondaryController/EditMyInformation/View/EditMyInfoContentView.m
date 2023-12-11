@@ -8,11 +8,12 @@
 //
 
 #import "EditMyInfoContentView.h"
+#import "RemindHUD.h"
 
 #define LABELCOLOR [UIColor colorWithRed:21/255.0 green:49/255.0 blue:91/255.0 alpha:1]
 
-#define LABELFONT [UIFont fontWithName:@"PingFangSC-Semibold" size:15]
-#define PLACEHOLDERFONT [UIFont fontWithName:@"PingFangSC-Regular" size:15]
+#define LABELFONT [UIFont fontWithName:PingFangSCSemibold size:15]
+#define PLACEHOLDERFONT [UIFont fontWithName:PingFangSCRegular size:15]
 
 /**
  @property (nonatomic, weak) UIImageView *headerImageView;
@@ -74,7 +75,7 @@ PMPDatePickerDelegate
     self.contentScrollView = scrollView;
     self.contentScrollView.transform = CGAffineTransformMakeScale(0.9, 0.95);
     
-    [self addGestureView];
+//    [self addGestureView];
     [self addHeaderImageView];
     [self addIntroductionButton];
     [self addNicknameLabel];
@@ -269,16 +270,15 @@ PMPDatePickerDelegate
 - (void)addQQTextField{
     MineEditTextField *QQTextField = [[MineEditTextField alloc] init];
     NSString *oldQQ = [UserItemTool defaultItem].qq;
-    if (oldQQ==nil || [oldQQ isEqualToString:@""]) {
+    if (![oldQQ isNotBlank]) {
         
         NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
         QQTextField.attributedPlaceholder = string;
         
-        
     } else {
         
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldQQ attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
-        QQTextField.attributedPlaceholder = string;
+//        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldQQ attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
+        QQTextField.text = oldQQ;
         
     }
     [self.contentScrollView addSubview:QQTextField];
@@ -299,15 +299,15 @@ PMPDatePickerDelegate
 - (void)addPhoneNumberTextField{
     MineEditTextField *phoneNumberTextField = [[MineEditTextField alloc] init];
     NSString *oldPhoneNumber = [UserItemTool defaultItem].phone;
-    if (oldPhoneNumber==nil || [oldPhoneNumber isEqualToString:@""]) {
+    if (![oldPhoneNumber isNotBlank]) {
         
         NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"完善你的个人信息哦" attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
         phoneNumberTextField.attributedPlaceholder = string;
         
     } else {
         
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldPhoneNumber attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
-        phoneNumberTextField.attributedPlaceholder = string;
+//        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:oldPhoneNumber attributes:@{NSFontAttributeName: PLACEHOLDERFONT, NSForegroundColorAttributeName: [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:0.44] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:0.44]]}];
+        phoneNumberTextField.text = oldPhoneNumber;
         
     }
     [self.contentScrollView addSubview:phoneNumberTextField];
@@ -331,7 +331,7 @@ PMPDatePickerDelegate
     
     myAcademyLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#DEDEE2" alpha:1]];
     
-    myAcademyLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:16];
+    myAcademyLabel.font = [UIFont fontWithName:PingFangSCRegular size:16];
     myAcademyLabel.numberOfLines = 0;
     [self.contentScrollView addSubview:myAcademyLabel];
     self.myAcademyLabel = myAcademyLabel;
@@ -341,7 +341,7 @@ PMPDatePickerDelegate
     UILabel *explainLabel = [[UILabel alloc] init];
     explainLabel.text = @"写下你的联系方式，便于我们与您联系";
     explainLabel.textColor = [UIColor colorWithRed:188/255.0 green:195/255.0 blue:206/255.0 alpha:0.9];
-    explainLabel.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
+    explainLabel.font = [UIFont fontWithName:PingFangSCRegular size:12];
     [self.contentScrollView addSubview:explainLabel];
     self.explainLabel = explainLabel;
 }
@@ -354,7 +354,7 @@ PMPDatePickerDelegate
     
     [saveButton setTitle:@"保 存" forState:UIControlStateNormal];
     [saveButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    saveButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:18];
+    saveButton.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size:18];
     [saveButton addTarget:self action:@selector(saveButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentScrollView addSubview:saveButton];
     self.saveButton = saveButton;
@@ -524,7 +524,7 @@ PMPDatePickerDelegate
     //    NSLog(@"%zd", sender.text.length);
     if ([sender isEqual:self.nicknameTextField]) {
         self.nicknameLabel.text = [NSString stringWithFormat:@"昵称(%zd/10)", sender.text.length];
-    } else if ([sender isEqual:self.introductionLabel]) {
+    } else if ([sender isEqual:self.introductionTextField]) {
         self.introductionLabel.text = [NSString stringWithFormat:@"个性签名(%zd/20)", sender.text.length];
     }
 }
@@ -534,7 +534,7 @@ PMPDatePickerDelegate
     
     for (int i = 0; i < self.genderAry.count; i++) {
         if ([self.genderTextField.placeholder isEqualToString:self.genderAry[i]]) {
-            [self.genderPickerView.pickerView selectedRowInComponent:i];
+            [self.genderPickerView.pickerView selectRow:i inComponent:0 animated:YES];
             break;
         }
     }
@@ -562,7 +562,7 @@ PMPDatePickerDelegate
     }
     
     if (textField.text.length + string.length > len) {
-        [NewQAHud showHudWith:tipStr AddView:self];
+        [RemindHUD.shared showDefaultHUDWithText:tipStr completion:nil];
         //截取，当用户粘贴了一个长度大于10的名字时，在交互上体验更好(个人觉得)
         textField.text = [[textField.text stringByAppendingString:string] substringToIndex:len];
         return NO;

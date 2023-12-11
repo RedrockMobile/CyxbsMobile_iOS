@@ -77,8 +77,7 @@
 - (void)layoutSubviews {
     [self.hintLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(20);
-        make.top.equalTo(self.mas_top).offset(86)
-        ;
+        make.top.equalTo(self.mas_top).offset(86);
     }];
     [self.accountIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.hintLabel);

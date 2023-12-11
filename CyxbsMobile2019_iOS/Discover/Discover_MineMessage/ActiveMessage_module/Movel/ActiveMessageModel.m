@@ -26,7 +26,7 @@
 
 - (instancetype)initWithArray:(NSArray <NSDictionary *> *)ary {
     self = [super init];
-    if (self) {
+    if (self && ![ary isKindOfClass:[NSNull class]]) {
         NSMutableArray <ActiveMessage *> *ma = NSMutableArray.array;
         for (NSDictionary *dic in ary) {
             ActiveMessage *msg = [[ActiveMessage alloc] initWithDictionary:dic];

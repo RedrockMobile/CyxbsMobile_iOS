@@ -36,7 +36,7 @@
         
         ///bar标题
         if (@available(iOS 11.0, *)) {
-            UILabel *barTitle = [self creatLabelWithText:@"重设密码" AndFont:[UIFont fontWithName:@"PingFangSC-Semibold" size: 21] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
+            UILabel *barTitle = [self creatLabelWithText:@"重设密码" AndFont:[UIFont fontWithName:PingFangSCSemibold size: 21] AndTextColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]]];
             barTitle.textAlignment = NSTextAlignmentLeft;
             [self addSubview:barTitle];
             _barTitle = barTitle;
@@ -55,7 +55,7 @@
         _line = line;
         
         ///密码输入框
-        UITextField *passwordField1=[self createTextFieldWithFont:[UIFont fontWithName:PingFangSCBold size:18] placeholder:@"请输入6位以上新密码"];
+        UITextField *passwordField1=[self createTextFieldWithFont:[UIFont fontWithName:PingFangSCSemibold size:18] placeholder:@"请输入6位以上新密码"];
         passwordField1.secureTextEntry = YES;
         passwordField1.clearButtonMode = UITextFieldViewModeNever;
         passwordField1.secureTextEntry = YES;
@@ -63,32 +63,32 @@
         _passwordField1 = passwordField1;
         
         ///密码确认框
-        UITextField *passwordField2=[self createTextFieldWithFont:[UIFont fontWithName:PingFangSCBold size:18] placeholder:@"请再次输入6位以上新密码"];
+        UITextField *passwordField2=[self createTextFieldWithFont:[UIFont fontWithName:PingFangSCSemibold size:18] placeholder:@"请再次输入6位以上新密码"];
         passwordField2.clearButtonMode = UITextFieldViewModeNever;
         passwordField2.secureTextEntry = YES;
         [self addSubview:passwordField2];
         _passwordField2 = passwordField2;
         
         ///密码提示语（少）
-        UILabel *placeholder1Error = [self creatLabelWithText:@"新密码不符合要求，请重新输入" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 12] AndTextColor:[UIColor colorWithRed:11/255.0 green:204/255.0 blue:240/255.0 alpha:1.0]];
+        UILabel *placeholder1Error = [self creatLabelWithText:@"新密码不符合要求，请重新输入" AndFont:[UIFont fontWithName:PingFangSCRegular size: 12] AndTextColor:[UIColor colorWithRed:11/255.0 green:204/255.0 blue:240/255.0 alpha:1.0]];
         placeholder1Error.textAlignment = NSTextAlignmentLeft;
         [self addSubview:placeholder1Error];
         _placeholder1Error = placeholder1Error;
         
         ///密码提示语（空）
-        UILabel *placeholder1Empty = [self creatLabelWithText:@"新密码不能为空" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 12] AndTextColor:[UIColor colorWithRed:11/255.0 green:204/255.0 blue:240/255.0 alpha:1.0]];
+        UILabel *placeholder1Empty = [self creatLabelWithText:@"新密码不能为空" AndFont:[UIFont fontWithName:PingFangSCRegular size: 12] AndTextColor:[UIColor colorWithRed:11/255.0 green:204/255.0 blue:240/255.0 alpha:1.0]];
         placeholder1Empty.textAlignment = NSTextAlignmentLeft;
         [self addSubview:placeholder1Empty];
         _placeholder1Empty = placeholder1Empty;
         
         ///确认密码提示语（少）
-        UILabel *placeholder2Error = [self creatLabelWithText:@"确认密码和新密码不符，请重新输入" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 12] AndTextColor:[UIColor colorWithRed:11/255.0 green:204/255.0 blue:240/255.0 alpha:1.0]];
+        UILabel *placeholder2Error = [self creatLabelWithText:@"确认密码和新密码不符，请重新输入" AndFont:[UIFont fontWithName:PingFangSCRegular size: 12] AndTextColor:[UIColor colorWithRed:11/255.0 green:204/255.0 blue:240/255.0 alpha:1.0]];
         placeholder2Error.textAlignment = NSTextAlignmentLeft;
         [self addSubview:placeholder2Error];
         _placeholder2Error = placeholder2Error;
         
         ///确认密码提示语（空）
-        UILabel *placeholder2Empty = [self creatLabelWithText:@"确认新密码不能为空" AndFont:[UIFont fontWithName:@"PingFangSC-Regular" size: 12] AndTextColor:[UIColor colorWithRed:11/255.0 green:204/255.0 blue:240/255.0 alpha:1.0]];
+        UILabel *placeholder2Empty = [self creatLabelWithText:@"确认新密码不能为空" AndFont:[UIFont fontWithName:PingFangSCRegular size: 12] AndTextColor:[UIColor colorWithRed:11/255.0 green:204/255.0 blue:240/255.0 alpha:1.0]];
         placeholder1Empty.textAlignment = NSTextAlignmentLeft;
         [self addSubview:placeholder2Empty];
         _placeholder2Empty = placeholder2Empty;
@@ -125,7 +125,7 @@
         UIButton *nextBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         [nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
         [nextBtn setTitle:@"下一步" forState:UIControlStateDisabled];
-        nextBtn.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size: 18];
+        nextBtn.titleLabel.font = [UIFont fontWithName:PingFangSCMedium size: 18];
         [nextBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [nextBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateDisabled];
         nextBtn.backgroundColor = [UIColor colorWithRed:72/255.0 green:65/255.0 blue:226/255.0 alpha:1.0];
@@ -153,7 +153,7 @@
         [passwordRight2 setBackgroundImage:[UIImage imageNamed:@"眼睛1"] forState:UIControlStateNormal];
         [passwordRight2 setBackgroundImage:[UIImage imageNamed:@"眼睛2"] forState:UIControlStateSelected];
         passwordRight2.selected = YES;
-        [passwordRight2 addTarget:self action:@selector(securityPassword2) forControlEvents:UIControlEventTouchUpInside];
+        [passwordRight2 addTarget:self action:@selector(securityPassword1) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:passwordRight2];
         _passwordRight2 = passwordRight2;
         
@@ -302,7 +302,7 @@
     textField.placeholder = placeholder;
     if (@available(iOS 11.0, *)) {
         textField.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:placeholder attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFangSC-Medium" size:18], NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.36] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.36]]}];
+        NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:placeholder attributes:@{NSFontAttributeName: [UIFont fontWithName:PingFangSCMedium size:18], NSForegroundColorAttributeName:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:0.36] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:0.36]]}];
         textField.attributedPlaceholder = string;
     } else {
         // Fallback on earlier versions

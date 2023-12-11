@@ -75,7 +75,7 @@
     self.VCTitleStr = @"邮票明细";
     self.titlePosition = TopBarViewTitlePositionLeft;
     self.splitLineColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:0.1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
-    self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
+    self.titleFont = [UIFont fontWithName:PingFangSCSemibold size:22];
     
     CGSize size = self.view.frame.size;
 

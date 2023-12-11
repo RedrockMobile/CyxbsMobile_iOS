@@ -51,7 +51,7 @@
     } else {
         // Fallback on earlier versions
     }
-    label.font = [UIFont fontWithName:PingFangSCBold size:24];
+    label.font = [UIFont fontWithName:PingFangSCSemibold size:24];
     [self addSubview:label];
 }
 - (void) addDetailLabel {

@@ -116,7 +116,7 @@
         _titleLbl = [[UILabel alloc] initWithFrame:CGRectZero];
         _titleLbl.text = @"邮子清单";
         _titleLbl.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
-        _titleLbl.font = [UIFont fontWithName:PingFangSCBold  size:21];
+        _titleLbl.font = [UIFont fontWithName:PingFangSCSemibold  size:21];
     }
     return _titleLbl;
 }

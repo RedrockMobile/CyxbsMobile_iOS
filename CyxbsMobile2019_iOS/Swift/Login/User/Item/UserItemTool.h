@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 //DEPRECATED_MSG_ATTRIBUTE("\n不要使用UserItemTool来获取你需要的信息，使用UserDefaultTool");
-@interface UserItemTool : NSObject
+@interface UserItemTool : NSObject <NSSecureCoding>
 
 /// 获取UserItem单例对象
 + (UserItem *)defaultItem;
@@ -20,16 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获取缓存路径
 + (NSString *)userItemPath;
 
-/// 归档对象
-+ (void)archive:(UserItem *)item;
-
 /// 退出登录
 + (void)logout;
-
-/// 刷新Token
-+ (void)refresh;
-
-+ (void)checkVisibleAPI:(void (^)(NSString *url))success;
 
 @end
 

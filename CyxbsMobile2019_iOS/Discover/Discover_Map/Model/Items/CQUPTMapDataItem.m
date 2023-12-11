@@ -18,7 +18,14 @@ MJExtensionCodingImplementation
 }
 
 - (void)archiveItem {
-    [NSKeyedArchiver archiveRootObject:self toFile:[CQUPTMapDataItem archivePath]];
+    NSError *error = nil;
+    NSData *archiveData = [NSKeyedArchiver archivedDataWithRootObject:self requiringSecureCoding:YES error:&error];
+    if (error) {
+        // 处理错误情况
+        NSLog(@"Archive Error: %@", error);
+    } else {
+        [archiveData writeToFile:[CQUPTMapDataItem archivePath] atomically:YES];
+    }
 }
 
 - (instancetype)initWithDict:(NSDictionary *)dict {

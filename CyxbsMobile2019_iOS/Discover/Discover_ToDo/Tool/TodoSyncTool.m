@@ -305,7 +305,7 @@ static TodoSyncTool* _instance;
     __block int mark = 0;
     CCLog(@"%d", [FMDatabase isSQLiteThreadSafe]);
     dispatch_async(que, ^{
-        NSString *token = [UserItem defaultItem].token;
+//        NSString *token = [UserItem defaultItem].token;
         NSDictionary* paramDict;
         NSArray *todoDataArr = [self getAddAndAlterDataToPush];
         if (todoDataArr.count!=0) {

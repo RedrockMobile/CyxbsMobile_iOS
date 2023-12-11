@@ -33,7 +33,7 @@
         
         UILabel *starLabel = [[UILabel alloc] init];
         starLabel.text = @"我的收藏";
-        starLabel.font = [UIFont fontWithName:PingFangSCBold size:14];
+        starLabel.font = [UIFont fontWithName:PingFangSCSemibold size:14];
         if (@available(iOS 11.0, *)) {
             starLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#0E2A53" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF1" alpha:1]];
         } else {

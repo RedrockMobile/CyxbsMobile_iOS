@@ -41,7 +41,7 @@
         } else {
             titleLabel.textColor = [UIColor colorWithHexString:@"15305C"];
         }
-        titleLabel.font = [UIFont fontWithName:PingFangSCBold size:18];
+        titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:18];
         [self.backgroundView addSubview:titleLabel];
         self.titleLabel = titleLabel;
         

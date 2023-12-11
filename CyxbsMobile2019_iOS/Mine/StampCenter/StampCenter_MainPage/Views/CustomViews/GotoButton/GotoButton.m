@@ -14,7 +14,7 @@
         self.backgroundColor = [UIColor colorWithHexString:@"#4A44E4"];
         self.layer.cornerRadius = frame.size.height * 0.5;
         [self setTitle:title forState:UIControlStateNormal];
-        self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:14];
+        self.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:14];
     }
     return self;
 }

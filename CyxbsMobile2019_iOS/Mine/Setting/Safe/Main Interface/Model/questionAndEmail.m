@@ -12,7 +12,7 @@
 
 ///请求判断用户是否绑定了密保或者邮箱
 - (void)isBindEmailAndQuestion {
-    NSDictionary *param = @{@"stu_num":[NSUserDefaults.standardUserDefaults stringForKey:@"stuNum"]};
+    NSDictionary *param = @{@"stu_num":UserItemTool.defaultItem.stuNum};
     
     [HttpTool.shareTool
      request:Mine_POST_bindingEmailAndQuestion_API

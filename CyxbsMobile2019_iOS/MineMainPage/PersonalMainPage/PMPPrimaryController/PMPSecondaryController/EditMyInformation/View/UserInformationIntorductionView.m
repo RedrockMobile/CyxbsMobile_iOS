@@ -73,7 +73,7 @@
             .attach();
             
             make
-            .text(@"      若您已经通过微信绑定了红岩网校工作站的微信公众号：重邮小帮手\n      那么您的头像信息也将会被我们所知,且您如果没有对掌。上重邮APP上的头像进行自主修改的话，那么您的默认头像将会是您的微信头像，您可以自主修改您的头像，您自主修改的头像我们将会优先设置为您在掌上重邮APP上的头像。\n      若您并没有通过微信绑定红岩网校工作站的微信公众号：重邮小帮手\n      如果您没有设置您的掌上重邮APP头像，那么我们将会使用默认头像作为您的账户头像，您可以自定义修改您的头像。\n")
+            .text(@"      若您已经通过微信绑定了红岩网校工作站的微信公众号：重邮小帮手\n      那么您的头像信息也将会被我们所知,且您如果没有对掌。掌上重邮APP上的头像进行自主修改的话，那么您的默认头像将会是您的微信头像，您可以自主修改您的头像，您自主修改的头像我们将会优先设置为您在掌上重邮APP上的头像。\n      若您并没有通过微信绑定红岩网校工作站的微信公众号：重邮小帮手\n      如果您没有设置您的掌上重邮APP头像，那么我们将会使用默认头像作为您的账户头像，您可以自定义修改您的头像。\n")
             .fontName(@"PingFangSC-Regular", textFontSize)
             .paraSpacing(0, rowSpace)
             .attach();
@@ -108,8 +108,8 @@
         
         UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
         [backButton setTitle:@"知道了" forState:UIControlStateNormal];
-        backButton.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:17];
-        backButton.frame = CGRectMake(frame.size.width / 2.0 - 40, self.frame.size.height - 50, 80, 35);
+        backButton.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:17];
+        backButton.frame = CGRectMake(frame.size.width / 2.0 - 40, self.frame.size.height - 50-30, 80, 35);
         if (@available(iOS 11.0, *)) {
             [backButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#14305B" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFEF" alpha:1]] forState:UIControlStateNormal];
         } else {

@@ -15,22 +15,21 @@
 #import "MineMSSEnterBtn.h" //消息中心、邮票中心、消息中心的按钮
 #import "MineTableViewCell.h" //底部的cell(关于我们/设置)
 #import "EditMyInfoModel.h" //编辑个人信息
-#import "ArticleViewController.h" //动态
-#import "PraiseViewController.h" //获赞
-#import "RemarkViewController.h" //评论
 #import "MineAboutController.h" //关于我们
 #import "MineSettingViewController.h" //设置
-#import "PMPHomePageViewController.h" //个人主页
+#import "EditMyInfoViewController.h" //个人信息编辑
 #import "MineUserInfoModel.h" //点赞获赞评论新消息个数相关
 #import "StampCenterVC.h" //邮票中心
 #import "FeedBackMainPageViewController.h" //意见反馈
 #import "CheckInModel.h" //签到的网络请求
 
 #import "MineMessageVC.h"//消息中心模块by ssr，将接入router技术
+#import "RemindHUD.h"
 
 //获取用户关注的人和粉丝的个人信息
 #define fansAndFollowsInfo @"/magipoke-loop/user/fansAndFollowsInfo"
-
+// swift (将Swift中的类暴露给OC)
+#import "掌上重邮-Swift.h"
 
 @interface MineViewController ()<
     UITableViewDelegate,
@@ -56,11 +55,18 @@
 /// 消息中心入口按钮
 @property(nonatomic, strong)MineMSSEnterBtn *msgCenterBtn;
 
+@property(nonatomic, strong)UIView *redDotView;
+
+@property(nonatomic, strong)UILabel *messageCountLabel;
+
 /// 邮票中心入口按钮
 @property(nonatomic, strong)MineMSSEnterBtn *stampCenterBtn;
 
 /// 意见与反馈入口按钮
 @property(nonatomic, strong)MineMSSEnterBtn *suggesstionBtn;
+
+/// 活动中心按钮
+@property(nonatomic, strong)MineMSSEnterBtn *activityCenterBtn;
 
 /// 签到相关的一块 view
 @property(nonatomic, strong)MineSignView *signView;
@@ -99,6 +105,7 @@
     [self addMsgCenterBtn];
     [self addStampCenterBtn];
     [self addSuggesstionBtn];
+    [self addActivityCenterBtn];
     [self addTableView];
     [self addSignView];
     
@@ -109,16 +116,15 @@
 }
 
 - (void)updateUserInfoInUserItem {
+    [CheckInModel requestCheckInInfo];
     UserItem *item = [UserItem defaultItem];
     MineTopBlurView *blurView = self.blurView;
     [blurView.headImgBtn sd_setImageWithURL:[NSURL URLWithString:item.headImgUrl] forState:UIControlStateNormal];
     blurView.nickNameLabel.text = item.nickname;
     blurView.mottoLabel.text = item.introduction;
     [self.signView setSignDay:item.checkInDay];
-    BOOL canCheckIn = item.isCheckedToday==NO;
-    // item.canCheckIn 是之前老版本的东西，用来判断是否可以签到，现在取消这个了
+    BOOL canCheckIn = !item.isCheckedToday;
     [self.signView setSignBtnEnable:canCheckIn];
-    CCLog(@"%@", [UserItem defaultItem]);
 }
 
 - (void)updateUserInfoInUserInfoModel {
@@ -142,7 +148,7 @@
 - (void)requestUserInfoFailure {
     self.failureCnt++;
     if (self.failureCnt==2) {
-        [NewQAHud showHudAtWindowWithStr:@"加载数据失败" enableInteract:YES];
+        [RemindHUD.shared showDefaultHUDWithText:@"加载数据失败" completion:nil];
         self.failureCnt = 0;
         self.canRequestUserInfo = NO;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -154,15 +160,19 @@
 /// 在这里刷新数据
 - (void)viewWillAppear:(BOOL)animated {
     if (self.canRequestUserInfo) {
-        [self.userInfoModel updateUserInfoCompletion:^(MineUserInfoModelUpdateUserInfoState state) {
-            
-            if (state==MineUserInfoModelUpdateUserInfoStateError) {
-                [self requestUserInfoFailure];
-            }
-            [self updateUserInfoInUserInfoModel];
-        }];
+//        [self.userInfoModel updateUserInfoCompletion:^(MineUserInfoModelUpdateUserInfoState state) {
+//
+//            if (state==MineUserInfoModelUpdateUserInfoStateError) {
+//                [self requestUserInfoFailure];
+//            }
+//            [self updateUserInfoInUserInfoModel];
+//        }];
         [[UserItem defaultItem] getUserInfo];
     }
+    
+    [JudgeArrangeMessage needRedDotNumberWithCompletion:^(NSInteger num) {
+        [self addRedDot:num];
+    }];
 }
 
 //MARK: - UI
@@ -174,7 +184,8 @@
     scrollView.showsVerticalScrollIndicator = NO;
     
     [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.bottom.right.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-150);
         make.top.equalTo(self.view).offset(getStatusBarHeight_Double);
     }];
 }
@@ -208,9 +219,9 @@
     }];
     
     [blurView.headImgBtn addTarget:self action:@selector(homePageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [blurView.blogBtn addTarget:self action:@selector(blogBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [blurView.remarkBtn addTarget:self action:@selector(remarkBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [blurView.praiseBtn addTarget:self action:@selector(praiseBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    [blurView.blogBtn addTarget:self action:@selector(homePageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    [blurView.remarkBtn addTarget:self action:@selector(homePageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    [blurView.praiseBtn addTarget:self action:@selector(homePageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     [blurView.homePageBtn addTarget:self action:@selector(homePageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(homePageBtnClicked)];
     [blurView.blurImgView setUserInteractionEnabled:YES];
@@ -290,6 +301,22 @@
     [btn addTarget:self action:@selector(suggesstionBtnClicked) forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)addActivityCenterBtn {
+    MineMSSEnterBtn *btn = [[MineMSSEnterBtn alloc] init];
+    self.suggesstionBtn = btn;
+    [self.backBoardView addSubview:btn];
+    
+    [btn.iconImgView setImage:[UIImage imageNamed:@"活动中心"]];
+    [btn.nameLabel setText:@"活动中心"];
+    
+    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.backBoardView).offset(0.136*SCREEN_WIDTH);
+        make.top.equalTo(self.backBoardView).offset(0.39543186*SCREEN_WIDTH);
+    }];
+    
+    [btn addTarget:self action:@selector(activityCenterBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+}
+
 - (void)addSignView {
     MineSignView *view = [[MineSignView alloc] init];
     self.signView = view;
@@ -297,7 +324,7 @@
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backBoardView).offset(0.04266666667*SCREEN_WIDTH);
-        make.top.equalTo(self.backBoardView).offset(0.1773399015*SCREEN_HEIGHT);
+        make.top.equalTo(self.backBoardView).offset(0.37497537*SCREEN_HEIGHT);
     }];
     
     [view.signBtn addTarget:self action:@selector(signBtnClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -319,7 +346,7 @@
     
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.backBoardView);
-        make.top.equalTo(self.backBoardView).offset(0.3091133005*SCREEN_HEIGHT);
+        make.top.equalTo(self.backBoardView).offset(0.49674877*SCREEN_HEIGHT);
         
     }];
 }
@@ -336,6 +363,50 @@
         make.left.right.bottom.equalTo(self.view);
         make.height.mas_equalTo(0.5*SCREEN_HEIGHT);
     }];
+}
+
+- (void)addRedDot:(NSInteger)messageCount {
+//    self.redDotView = [[UIView alloc] initWithFrame:CGRectMake(self.msgCenterBtn.right, self.msgCenterBtn.top - 6, 15, 15)];
+//    self.redDotView = redView;
+//    self.redDotView.layer.cornerRadius = 7.5;
+//    [self.redDotView setClipsToBounds:YES];
+//    self.redDotView.backgroundColor = [UIColor colorWithHexString:@"#FF6262" alpha:1];
+    
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(1, 1, 13, 13)];
+//    label.text = [NSString stringWithFormat:@"%ld", messageCount];
+//    label.textColor = [UIColor whiteColor];
+//    label.font = [UIFont systemFontOfSize:10];
+//    label.textAlignment = NSTextAlignmentCenter;
+    
+    self.messageCountLabel.text = [NSString stringWithFormat:@"%ld", messageCount];
+    [self.redDotView addSubview:self.messageCountLabel];
+    [self.backBoardView addSubview:self.redDotView];
+    if (messageCount > 0) {
+        self.redDotView.hidden = NO;
+    } else {
+        self.redDotView.hidden = YES;
+    }
+}
+
+- (UIView *)redDotView {
+    if (_redDotView == nil) {
+//        _redDotView = [[UIView alloc] initWithFrame:CGRectMake(self.msgCenterBtn.right, self.msgCenterBtn.top - 6, 15, 15)];
+        _redDotView = [[UIView alloc] initWithFrame:CGRectMake(self.msgCenterBtn.right - 2, self.msgCenterBtn.top - 4, 15, 15)];
+        _redDotView.layer.cornerRadius = 7.5;
+        [_redDotView setClipsToBounds:YES];
+        _redDotView.backgroundColor = [UIColor colorWithHexString:@"#FF6262" alpha:1];
+    }
+    return _redDotView;
+}
+
+- (UILabel *)messageCountLabel {
+    if (_messageCountLabel == nil) {
+        _messageCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(1, 1, 13, 13)];
+        _messageCountLabel.textColor = [UIColor whiteColor];
+        _messageCountLabel.font = [UIFont systemFontOfSize:10];
+        _messageCountLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _messageCountLabel;
 }
 
 //MARK: - tableView 的代理方法
@@ -367,35 +438,6 @@
 
 //MARK: - 按钮点击事件：
 
-/// 点击动态按钮后调用
-- (void)blogBtnClicked {
-//    ArticleViewController *vc = [[ArticleViewController alloc] init];
-//    
-//    vc.hidesBottomBarWhenPushed = YES;
-//    
-//    [self.navigationController pushViewController:vc animated:YES];
-}
-
-/// 点击评论按钮后调用
-- (void)remarkBtnClicked {
-//    [NSUserDefaults.standardUserDefaults setInteger:(NSInteger)([NSDate date].timeIntervalSince1970) forKey:remarkLastClickTimeKey_NSInteger];
-//    RemarkViewController *vc = [[RemarkViewController alloc] init];
-//
-//    vc.hidesBottomBarWhenPushed = YES;
-//
-//    [self.navigationController pushViewController:vc animated:YES];
-}
-
-/// 点击获赞按钮后调用
-- (void)praiseBtnClicked {
-//    [NSUserDefaults.standardUserDefaults setInteger:(NSInteger)([NSDate date].timeIntervalSince1970) forKey:praiseLastClickTimeKey_NSInteger];
-//    PraiseViewController *vc = [[PraiseViewController alloc] init];
-//
-//    vc.hidesBottomBarWhenPushed = YES;
-//
-//    [self.navigationController pushViewController:vc animated:YES];
-}
-
 /// 点击消息中心按钮后调用
 - (void)msgCenterBtnClicked {
 //    CCLog(@"%s",__func__);
@@ -411,6 +453,13 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+/// 点击活动中心按钮后调用
+- (void)activityCenterBtnClicked {
+    ActivityCenterVC *avc = [[ActivityCenterVC alloc]init];
+    avc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:avc animated:YES];
+}
+
 /// 点击意见与反馈按钮后调用
 - (void)suggesstionBtnClicked {
     FeedBackMainPageViewController *fvc = [[FeedBackMainPageViewController alloc]init];
@@ -423,16 +472,16 @@
     [CheckInModel CheckInSucceeded:^{
         [self.signView setSignBtnEnable:NO];
         [self.signView setSignDay:[UserItemTool defaultItem].checkInDay];
-        [NewQAHud showHudAtWindowWithStr:@"签到成功" enableInteract:YES];
+        [RemindHUD.shared showDefaultHUDWithText:@"签到成功" completion:nil];
     } Failed:^(NSError * _Nonnull err) {
-        [NewQAHud showHudAtWindowWithStr:@"签到失败" enableInteract:YES];
+        [RemindHUD.shared showDefaultHUDWithText:@"签到失败" completion:nil];
     }];
 }
 
 /// 点击进入个人主页的按钮后调用
 - (void)homePageBtnClicked {
-    CCLog(@"%s",__func__);
-    PMPHomePageViewController * vc = [[PMPHomePageViewController alloc] initWithRedid:[UserItem defaultItem].redid];
+    NSLog(@"editing");
+    EditMyInfoViewController *vc = [[EditMyInfoViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

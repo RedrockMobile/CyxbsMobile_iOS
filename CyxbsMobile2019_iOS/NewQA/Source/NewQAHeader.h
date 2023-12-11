@@ -41,7 +41,6 @@
 #define QA_GET_ignoreQuestion_API [CyxbsMobileBaseURL_2 stringByAppendingString:@"QA/Question/ignore"]
 
 
-
 /*
  回答部分
  */

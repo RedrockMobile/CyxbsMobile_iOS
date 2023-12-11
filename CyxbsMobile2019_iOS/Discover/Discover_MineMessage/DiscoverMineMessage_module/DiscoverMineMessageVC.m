@@ -12,6 +12,8 @@
 
 #import "SystemMsgModel.h"
 
+#import "掌上重邮-Swift.h"
+
 #pragma mark - MineMessageViewController ()
 
 @interface DiscoverMineMessageVC ()
@@ -39,6 +41,18 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self reloadData];
+    
+    [JudgeArrangeMessage isNeedRedDotWithCompletion:^(BOOL need) {
+        if (need) {
+            [self->_messageBtn
+             setImage:[UIImage imageNamed:@"message_c"]
+             forState:UIControlStateNormal];
+        } else {
+            [self->_messageBtn
+             setImage:[UIImage imageNamed:@"message_d"]
+             forState:UIControlStateNormal];
+        }
+    }];
 }
 
 #pragma mark - Method
@@ -90,7 +104,7 @@
         return;
     }
     if (hadRead) {
-        [self.messageBtn setImage:[UIImage imageNamed:@"message_s"] forState:UIControlStateNormal];
+        [self.messageBtn setImage:[UIImage imageNamed:@"message_c"] forState:UIControlStateNormal];
     } else {
         [self.messageBtn setImage:[UIImage imageNamed:@"message_d"] forState:UIControlStateNormal];
     }

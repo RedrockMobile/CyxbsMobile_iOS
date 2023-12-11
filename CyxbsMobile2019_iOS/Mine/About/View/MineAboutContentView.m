@@ -66,7 +66,7 @@
         
         UILabel *appNameLabel = [[UILabel alloc] init];
         appNameLabel.text = @"掌上重邮";
-        appNameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:20*fontSizeScaleRate_SE];
+        appNameLabel.font = [UIFont fontWithName:PingFangSCSemibold size:20*fontSizeScaleRate_SE];
         if (@available(iOS 11.0, *)) {
             appNameLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#2A4E84" alpha:1] darkColor:[UIColor colorWithHexString:@"#EFEFF2" alpha:1]];
         } else {
@@ -136,14 +136,12 @@
     UIButton *leftBtn = [self getLearnMoreBtn];
     [backView addSubview:leftBtn];
     
-    [leftBtn setTitle:@"服务协议 " forState:UIControlStateNormal];
+    [leftBtn setTitle:@"用户协议 " forState:UIControlStateNormal];
     [leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(backView);
         make.bottom.equalTo(backView);
     }];
     [leftBtn addTarget:self action:@selector(leftBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    
-    
     
     UIButton *rightBtn = [self getLearnMoreBtn];
     [backView addSubview:rightBtn];
@@ -163,15 +161,25 @@
     }];
     
 }
+
+//用户协议
 - (void)leftBtnClicked{
-    LearnMoreViewController *vc = [[LearnMoreViewController alloc] initWithType:LMVCTypeServiceAgreement];
-//    TopBarBasicViewController *vc = [[TopBarBasicViewController alloc] init];
-//    vc.VCTitleStr = @"掌上重邮";
-    [self.viewController.navigationController pushViewController:vc animated:YES];
+//    LearnMoreViewController *vc = [[LearnMoreViewController alloc] initWithType:LMVCTypeServiceAgreement];
+////    TopBarBasicViewController *vc = [[TopBarBasicViewController alloc] init];
+////    vc.VCTitleStr = @"掌上重邮";
+//    [self.viewController.navigationController pushViewController:vc animated:YES];
+    NSURL *url = [NSURL URLWithString:@"https://fe-prod.redrock.cqupt.edu.cn/redrock-cqapp-protocol/user-agreement/index.html"];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+    }
 }
-- (void)rightBtnClicked{
-    LearnMoreViewController *vc = [[LearnMoreViewController alloc] initWithType:LMVCTypePrivacyClause];
-    [self.viewController.navigationController pushViewController:vc animated:YES];
+
+//隐私条款
+- (void)rightBtnClicked {
+    NSURL *url = [NSURL URLWithString:@"https://fe-prod.redrock.cqupt.edu.cn/redrock-cqapp-protocol/privacy-notice/index.html"];
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+    }
 }
 - (UIButton*)getLearnMoreBtn{
     UIButton *btn = [[UIButton alloc] init];

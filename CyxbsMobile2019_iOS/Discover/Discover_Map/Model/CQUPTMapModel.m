@@ -129,7 +129,13 @@
      bodyParameters:params
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-        CQUPTMapStarPlaceItem *item = [NSKeyedUnarchiver unarchiveObjectWithFile:[CQUPTMapStarPlaceItem archivePath]];
+        NSError *error = nil;
+        NSData *archiveData = [NSData dataWithContentsOfFile:[CQUPTMapStarPlaceItem archivePath]];
+        CQUPTMapStarPlaceItem *item = [NSKeyedUnarchiver unarchivedObjectOfClass:[CQUPTMapStarPlaceItem class] fromData:archiveData error:&error];
+        if (error) {
+            // 处理错误情况
+            NSLog(@"Unarchive Error: %@", error);
+        }
         [item.starPlaceArray addObject:placeID];
         [item archiveItem];
     }
@@ -150,7 +156,13 @@
      bodyParameters:params
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-        CQUPTMapStarPlaceItem *item = [NSKeyedUnarchiver unarchiveObjectWithFile:[CQUPTMapStarPlaceItem archivePath]];
+        NSError *error = nil;
+        NSData *archiveData = [NSData dataWithContentsOfFile:[CQUPTMapStarPlaceItem archivePath]];
+        CQUPTMapStarPlaceItem *item = [NSKeyedUnarchiver unarchivedObjectOfClass:[CQUPTMapStarPlaceItem class] fromData:archiveData error:&error];
+        if (error) {
+            // 处理错误情况
+            NSLog(@"Unarchive Error: %@", error);
+        }
         [item.starPlaceArray removeObject:placeID];
         [item archiveItem];
     }

@@ -18,7 +18,7 @@
  * // 修改分割线颜色，设置这个属性
  * self.splitLineColor = [UIColor colorNamed:@"42_78_132_0.1"];
  * // 修改标题的字体、大小，设置这个属性
- * self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
+ * self.titleFont = [UIFont fontWithName:PingFangSCSemibold size:22];
  * // 分割线的隐藏于否，设置这个属性
  * self.splitLineHidden = YES;
  */
@@ -62,6 +62,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) TopBarViewTitlePosition titlePosition;
 /// 分割线的颜色
 @property (nonatomic, strong) UIColor * splitLineColor;
+/// 返回按钮
+@property (nonatomic,strong)UIButton *backBtn;
 
 /// 整个导航栏的高度，包括状态栏和内容的高度
 /// 状态栏是根据机型不同而变化

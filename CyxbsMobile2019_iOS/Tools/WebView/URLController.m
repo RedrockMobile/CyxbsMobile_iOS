@@ -31,7 +31,9 @@
     //获取导航栏高度
     double navHeight = self.navigationController.navigationBar.frame.size.height;
     //获取状态栏高度
-    double statusHeight = UIApplication.sharedApplication.statusBarFrame.size.height;
+    double statusHeight = 0;
+    UIStatusBarManager *statusBarManager = [UIApplication sharedApplication].windows.firstObject.windowScene.statusBarManager;
+    statusHeight = statusBarManager.statusBarFrame.size.height;
     WKWebView * webView = [[WKWebView alloc]initWithFrame:CGRectMake(0, statusHeight + navHeight, self.view.width, self.view.height - statusHeight - navHeight - 44)];
     self.webView = webView;
     self.webView.navigationDelegate = self;

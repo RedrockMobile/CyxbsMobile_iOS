@@ -17,6 +17,7 @@
 #import <UserNotifications/UserNotifications.h>
 #import "LocalNotiManager.h"
 #import "updatePopView.h"
+#import "RemindHUD.h"
 #define LEFTBARW (MAIN_SCREEN_W*0.088)
 //某节课详情弹窗的高度
 #import "掌上重邮-Swift.h"        // 将Swift中的类暴露给OC
@@ -296,7 +297,8 @@
 /// WYCClassAndRemindDataModel模型加载失败后调用
 - (void)ModelDataLoadFailure{
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    [NewQAHud showHudWith:@"数据加载失败了～" AddView:self.view];
+//    [NewQAHud showHudWith:@"数据加载失败了～" AddView:self.view];
+    [RemindHUD.shared showDefaultHUDWithText:@"数据加载失败了～\n正在使用本地数据,不能保证正确性" completion:nil];
     [self ModelDataLoadSuccess];
 }
 
@@ -461,7 +463,7 @@
 /// @param info 包含了发送网络请求时的参数，具体参数格式看课表.h的init方法处的说明
 - (void)modelLoadDataWithInfo:(id)info{
     if (info==nil) {
-        [_model getPersonalClassBookArrayWithStuNum:[NSUserDefaults.standardUserDefaults stringForKey:@"stuNum"]];
+        [_model getPersonalClassBookArrayWithStuNum:UserItemTool.defaultItem.stuNum];
         return;
     }
     switch (self.schedulType) {
@@ -483,28 +485,40 @@
             break;
     }
 }
-/// 加上下拉dismiss手势
+/// 在个人课表类型下添加下拉dismiss手势
 - (void)addGesture{
+    // 如果课表类型为个人课表
     if(self.schedulType==ScheduleTypePersonal){
+        // 初始化一个下拉手势识别器，并设置其目标动作为dissMissSelf方法
         UIPanGestureRecognizer *PGR = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dissMissSelf)];
+        // 将手势识别器存储在self.PGR中
         self.PGR = PGR;
+        // 将手势识别器添加到视图中
         [self.view addGestureRecognizer:PGR];
     }
 }
 
-/// 自己课表页下拉收回后调用
+/// 当个人课表页下拉收回后调用此方法
 - (void)dissMissSelf{
+    // 如果手势识别器的状态为开始状态
     if(self.PGR.state==UIGestureRecognizerStateBegan){
+        // 获取转场代理对象
         TransitionManager *TM =  (TransitionManager*)self.transitioningDelegate;
+        // 将手势识别器传递给转场代理对象
         TM.PGRToInitTransition = self.PGR;
         
+        // 执行模态视图的dismiss操作
         [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+            // dismiss完成后，将转场代理对象的手势识别器置空
             TM.PGRToInitTransition=nil;
+            // 获取当前的课表索引
             int nowIndex = [self.index intValue];
+            // 遍历课表视图字典
             [self.scBackViewDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                // 获取课表视图的索引
                 int intIndex = [key intValue];
-                //移除 除以当前下标为中心的三个课表 的所有课表
-                //如：假设index==3， 那么移除key不等于2、3、4的所有课表
+                // 如果课表视图的父视图存在，且课表视图的索引不在当前索引的前后1位范围内则移除该课表视图
+                // 例如：假设当前索引为3，那么将移除索引不等于2、3、4的所有课表视图
                 if ([obj superview]!=nil&&!(nowIndex-1<= intIndex&&intIndex <=nowIndex+1)) {
                     [obj removeFromSuperview];
 //                    CLog(@"remove %d",intIndex);

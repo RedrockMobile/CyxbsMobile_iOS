@@ -1,63 +1,127 @@
-source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
+source 'https://github.com/CocoaPods/specs'
+source 'https://github.com/aliyun/aliyun-specs.git'
 
-platform :ios,'11.0'
+platform :ios, '13.0'
 use_frameworks!
 
-# 请阅读《Pod & 第三方库》
+# 是否为模拟器环境，真机/发版请改为 false
+IS_SIMULATOR = false
+
+inhibit_all_warnings!
+
+pod 'Alamofire'  # 网络请求库
+pod 'SwiftyJSON'  # JSON解析库
+
 target 'CyxbsMobile2019_iOS' do
-	pod 'TZImagePickerController','~> 3.3.2'
-	pod 'YBImageBrowser',:inhibit_warnings => true
-	pod 'NudeIn'
-	pod 'SDWebImage'
-	pod 'AFNetworking'
-	pod 'FMDB'
-	pod 'MBProgressHUD', '~> 0.9.2'
-	pod 'YYKit',:inhibit_warnings => true
-	pod 'YYImage',:inhibit_warnings => true
-	pod 'Masonry'
-	pod 'MJRefresh'
-	pod 'AMapLocation-NO-IDFA'
-	pod 'AMap3DMap-NO-IDFA'
-	pod 'MJExtension'
-	pod 'SDCycleScrollView'
-	#umeng
-	pod 'UMCCommon','~> 2.1.1'
-    	pod 'UMCSecurityPlugins','~> 1.0.6'
-    	pod 'UMCCommonLog','~> 1.0.0'
-    	pod 'UMCPush','~> 3.2.4'
-	pod 'UMCAnalytics','~> 6.0.5'
-	pod 'UMCErrorCatch','~> 1.0.0'
-	# U-Share SDK UI模块（分享面板，建议添加）
-    	pod 'UMCShare/UI','~> 6.9.6'
-	# 集成微信(精简版0.2M)
-    	pod 'UMCShare/Social/ReducedWeChat','~> 6.9.6'
-	# 集成QQ/QZone/TIM(精简版0.5M)
-    	pod 'UMCShare/Social/ReducedQQ','~> 6.9.6'
-	pod 'IQKeyboardManager'
-	pod 'Bugly'
-	pod 'LookinServer', :configurations => ['Debug']
-
-	# 基于iOS11.0的黑暗适配
-	pod 'FluentDarkModeKit'
-
-	pod 'IGListKit' # SSR引入，暂时无项目使用
-	pod 'WCDB'
-      
-  # For Swift:
+  pod 'ProgressHUD',      '13.7.2'  # 进度指示器库
+  pod 'TZImagePickerController'  # 图片选择器库
+  pod 'YBImageBrowser'  # 图片浏览器库
+  pod 'NudeIn'  # 图片隐私处理库
+  pod 'SDWebImage'  # 异步加载网络图片库
+  pod 'AFNetworking'  # 网络请求库
+  pod 'FMDB'  # SQLite数据库封装库
+  pod 'MBProgressHUD', '~> 0.9.2'  # 提示框库
+  pod 'YYKit'  # iOS开发工具集合
+  pod 'YYImage'  # 图片处理库
+  pod 'Masonry'  # 自动布局库
+  pod 'MJRefresh'  # 下拉刷新库
+  pod 'AMapLocation-NO-IDFA'  # 高德地图定位库
+  pod 'AMap3DMap-NO-IDFA'  # 高德地图3D库
+  pod 'MJExtension'  # 字典和模型之间的转换库
+  pod 'SDCycleScrollView'  # 轮播图库
   
-  pod 'Alamofire', '~> 5.2'
-  pod 'SwiftyJSON', '~> 4.0'
-  pod 'RxSwift', '~> 5.1.1'
-  pod 'RxCocoa', '~> 5.1.1'
-  pod 'SnapKit'
-
-    post_install do |installer|
-    installer.pods_project.build_configurations.each do |config|
-    config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
-    config.build_settings['VALID_ARCHS'] = 'arm64 arm64e armv7 armv7s x86_64 i386'
-    config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'
-    config.build_settings['HEADER_SEARCH_PATHS'] = '$(PROJECT_DIR)/**'
-    end
-    end
+  pod 'UMCommon'  # 友盟统计库
+  pod 'UMDevice'  # 友盟设备信息库
+  pod 'UMVerify'  # 友盟一键登录库
+  pod 'UMCCommonLog',           :configurations => ['Debug']  # 友盟日志库
+  pod 'UMShare/Social/WeChat'  # 友盟微信分享库
+  pod 'UMShare/Social/QQ'  # 友盟QQ分享库
   
+  pod 'IQKeyboardManager'  # 键盘管理库
+  pod 'Bugly'  # 腾讯Bugly崩溃日志上报库
+  pod 'LookinServer',           :configurations => ['Debug']  # Lookin调试工具库
+
+  pod 'FluentDarkModeKit'  # 暗黑模式适配库
+  pod 'MarkdownKit'  # Markdown解析库
+  pod 'AlicloudHTTPDNS'  # 阿里云HTTPDNS解析库
+  
+  # pod 'RxSwift'
+  pod 'RxCocoa'  # ReactiveX Cocoa扩展库
+  pod 'SnapKit'  # 约束布局库
+  pod 'TOCropViewController'  # 图片裁剪库
+  
+  pod 'JXPagingView'  # 分页视图库
+  pod 'JXSegmentedView'  # 分段视图库
+  pod 'JXBanner'  # 轮播图库
+  
+  pod 'RYTransitioningDelegateSwift'  # 自定义过渡动画库
+  pod 'RYAngelWalker'  # 友盟行为统计库
 end
+
+target 'CyxbsWidgetExtension' do
+  # 这里可以添加扩展目标的 Pods 配置
+end
+
+# 定义 M1 芯片相关的宏定义变量
+M1_VALID_ARCHS = ['Pods-CyxbsMobile2019_iOS']
+M1_EXCLUDED_ARCHS_iphonesimulator = ['YYKit', 'UMDevice']
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    # 打印目标名称，仅用于调试目的
+    puts "target #{target}"
+    
+    target.build_configurations.each do |config|
+      config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'  # 不仅仅针对当前激活的架构编译，适用于多架构编译
+      config.build_settings['HEADER_SEARCH_PATHS'] = '$(PROJECT_DIR)/**'  # 头文件搜索路径
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '13.0'  # 部署目标版本注释补全的部分：
+
+      config.build_settings['EXPANDED_CODE_SIGN_IDENTITY'] = ""  # 扩展代码签名标识
+      config.build_settings['CODE_SIGNING_REQUIRED'] = "NO"  # 不要求代码签名
+      config.build_settings['CODE_SIGNING_ALLOWED'] = "NO"  # 不允许代码签名
+      
+      #如果是模拟器运行
+      if IS_SIMULATOR
+        if M1_VALID_ARCHS.include?(target.name)
+          config.build_settings['VALID_ARCHS'] = 'x86_64'  # 在模拟器上仅使用 x86_64 架构
+        end
+        
+        if M1_EXCLUDED_ARCHS_iphonesimulator.include?(target.name)
+          config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'  # 在模拟器上排除 arm64 架构
+        end
+
+      else
+        # 在模拟器上排除 arm64 架构
+        config.build_settings['EXCLUDED_ARCHS[sdk=iphonesimulator*]'] = 'arm64'  
+      end
+    end
+  end
+end
+
+=begin
+如果你是 M1 芯片:
+每次 pod install 之前，删除 podfile.lock 后再执行
+真机子/发版: 
+修改 IS_Simulator 为 false
+然后删除 podfile.lock 后再执行 pod install 就行，这样，你就可以正常在真机和发版的时候跑了
+
+备注 XC 的 Ruby 来源：
+https://www.rubydoc.info/github/CocoaPods/Xcodeproj/Xcodeproj/Project/Object/XCBuildConfiguration
+这个文档对应的是下面这个 config 的属性
+
+target.build_configurations.each do |config|
+  ...
+end
+
+!!!: 适配指南
+
+1. if target.name == 'Release'
+  这个方法将导致 YYKit 内部判断出错
+
+2. M1_EXCLUDED_ARCHS_iphonesimulator = [...]
+  这个方法无法使 UMCommon 正常编译
+
+3. M1_VALID_ARCHS = [...]
+  这个方法只对 主.project 有用，并不对第三方库 Pods.project 有用
+
+=end

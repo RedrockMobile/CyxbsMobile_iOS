@@ -9,7 +9,6 @@
 #import "MineSettingViewController.h"
 #import "selfSafeViewController.h"
 #import "QuitTipView.h"
-#import "IgnoreViewController.h"
 #import <UserNotifications/UserNotifications.h>
 
 
@@ -37,7 +36,7 @@
     } else {
         self.view.backgroundColor = [UIColor colorWithRed:248/255.0 green:249/255.0 blue:252/255.0 alpha:1];
     }
-    self.cellTitleStrArr = @[@"启动APP时最先显示课表页面", @"上课前提醒我", @"每天晚上推送课表给我", @"账号与安全", @"屏蔽的人"];
+    self.cellTitleStrArr = @[@"启动APP时最先显示课表页面", @"上课前提醒我", @"每天晚上推送课表给我", @"账号与安全"];
     
     [NSUserDefaults.standardUserDefaults removeObjectForKey:@"zxsd"];
     //父类是TopBarBasicViewController，调用父类的vcTitleStr的set方法，自动完成顶部的bar的设置
@@ -96,7 +95,7 @@
     
     btn.layer.cornerRadius = 20.006*HScaleRate_SE;
     
-    btn.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:18*fontSizeScaleRate_SE];
+    btn.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:18*fontSizeScaleRate_SE];
     
     [btn.titleLabel setTextAlignment:NSTextAlignmentCenter];
     
@@ -138,7 +137,7 @@
         switch (indexPath.row) {
             case 0:
                 s = @selector(switchedLaunchingWithClassScheduleView:);
-                settingSwitch.on = ![NSUserDefaults.standardUserDefaults valueForKey:@"Mine_LaunchingWithClassScheduleView"];
+            settingSwitch.on = ![NSUserDefaults.standardUserDefaults valueForKey:@"PRSENT_SCHEDULE_WHEN_OPEN_APP"];
                 break;
             case 1:
                 s = @selector(switchedRemindBeforeClass:);
@@ -171,17 +170,11 @@
         case 3:
             [self selectedSafeCell];
             break;
-        case 4:
-            [self selectPeopleIgnoreCell];
-            break;
         default:
             break;
     }
 
 }
-
-
-
 
 
 //MARK:- 按钮、cell选中后调用的方法：
@@ -191,11 +184,6 @@
     selfSafeViewController *vc = [[selfSafeViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)selectPeopleIgnoreCell {
-    IgnoreViewController *vc = [[IgnoreViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -243,14 +231,10 @@
 
 /// 滑动 “启动时优先显示课表” 开关后调用
 /// @param sender 开关
-- (void)switchedLaunchingWithClassScheduleView:(UISwitch *)sender{
-    if (sender.on) {            // 打开开关
-        [NSUserDefaults.standardUserDefaults removeObjectForKey:@"Mine_LaunchingWithClassScheduleView"];
-        [NSUserDefaults.standardUserDefaults synchronize];
-    } else {                    // 关闭开关
-        [NSUserDefaults.standardUserDefaults setValue:@"test" forKey:@"Mine_LaunchingWithClassScheduleView"];
-        [NSUserDefaults.standardUserDefaults synchronize];
-    }
+- (void)switchedLaunchingWithClassScheduleView:(UISwitch *)sender {
+    BOOL presentScheduleWhenOpenApp = sender.on;
+    [[NSUserDefaults standardUserDefaults] setBool:presentScheduleWhenOpenApp forKey:@"PRSENT_SCHEDULE_WHEN_OPEN_APP"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 

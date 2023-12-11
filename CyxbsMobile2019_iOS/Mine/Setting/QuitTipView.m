@@ -7,6 +7,7 @@
 // 在设置页面点击 “退出登录按钮” 后弹出的弹窗就是这个类
 
 #import "QuitTipView.h"
+#import "掌上重邮-Swift.h"
 @interface QuitTipView ()
 /// 弹窗本体
 @property(nonatomic,strong)UIView *tipView;
@@ -156,7 +157,7 @@
 
 /// 点击 退出登录按钮后调用的方法
 - (void)quitBtnClicked{
-    [UserItemTool logout];
+    [SwiftToOC loginOut];
     [self.viewController.navigationController popViewControllerAnimated:NO];
 }
 /// 点击 图标为“叉叉” 的取消按钮 后调用的方法

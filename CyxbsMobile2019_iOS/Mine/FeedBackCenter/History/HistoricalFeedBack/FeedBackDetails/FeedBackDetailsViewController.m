@@ -13,6 +13,7 @@
 #import "HistoricalFBDefaultView.h"
 //model
 #import "FeedBackDetailsRequestDataModel.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface FeedBackDetailsViewController ()
 <UITableViewDelegate, UITableViewDataSource>
@@ -65,7 +66,7 @@
     self.VCTitleStr = @"历史反馈";
     self.titlePosition = TopBarViewTitlePositionLeft;
     self.splitLineColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#DDE6F4" alpha:1] darkColor:[UIColor colorWithHexString:@"#2B2C2D" alpha:0.8]];
-    self.titleFont = [UIFont fontWithName:PingFangSCBold size:22];
+    self.titleFont = [UIFont fontWithName:PingFangSCSemibold size:22];
     self.titleColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     
     // config feedBackDetailsTableView

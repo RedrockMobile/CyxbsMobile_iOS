@@ -14,67 +14,121 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
-  - Alamofire (5.5.0)
-  - AMap3DMap-NO-IDFA (9.0.0):
-    - AMapFoundation-NO-IDFA (~> 1.6.9)
-  - AMapFoundation-NO-IDFA (1.6.9)
-  - AMapLocation-NO-IDFA (2.8.0):
-    - AMapFoundation-NO-IDFA (~> 1.6.9)
-  - Bugly (2.5.91)
+  - Alamofire (5.8.1)
+  - AlicloudHTTPDNS (2.1.0):
+    - AlicloudSender
+    - AlicloudUT
+    - AlicloudUtils
+  - AlicloudSender (1.0.0.3):
+    - AlicloudUTDID
+    - EMASRest
+  - AlicloudUT (5.2.0.16):
+    - AlicloudUTDID
+  - AlicloudUTDID (1.5.0.94)
+  - AlicloudUtils (1.4.1):
+    - AlicloudUTDID
+  - AMap3DMap-NO-IDFA (9.7.0):
+    - AMapFoundation-NO-IDFA (>= 1.8.0)
+  - AMapFoundation-NO-IDFA (1.8.2)
+  - AMapLocation-NO-IDFA (2.10.0):
+    - AMapFoundation-NO-IDFA (>= 1.8.0)
+  - Bugly (2.5.93)
+  - EMASRest (11.1.1.2)
   - FluentDarkModeKit (1.0.4)
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
-  - IGListDiffKit (4.0.0)
-  - IGListKit (4.0.0):
-    - IGListDiffKit (= 4.0.0)
-  - IQKeyboardManager (6.5.9)
-  - LookinServer (1.0.4)
+  - IQKeyboardManager (6.5.16)
+  - JXBanner (0.3.6):
+    - JXBanner/Banner (= 0.3.6)
+    - JXBanner/PageControl (= 0.3.6)
+  - JXBanner/Banner (0.3.6):
+    - JXBanner/Banner/API (= 0.3.6)
+    - JXBanner/Banner/Banner (= 0.3.6)
+    - JXBanner/Banner/Cell (= 0.3.6)
+    - JXBanner/Banner/Common (= 0.3.6)
+    - JXBanner/Banner/Transform (= 0.3.6)
+  - JXBanner/Banner/API (0.3.6):
+    - JXBanner/Banner/Cell
+    - JXBanner/PageControl
+  - JXBanner/Banner/Banner (0.3.6):
+    - JXBanner/Banner/API
+    - JXBanner/Banner/Common
+    - JXBanner/Banner/Transform
+  - JXBanner/Banner/Cell (0.3.6)
+  - JXBanner/Banner/Common (0.3.6)
+  - JXBanner/Banner/Transform (0.3.6):
+    - JXBanner/Banner/API
+  - JXBanner/PageControl (0.3.6):
+    - JXPageControl
+  - JXPageControl (0.1.5):
+    - JXPageControl/Common (= 0.1.5)
+    - JXPageControl/Jump (= 0.1.5)
+    - JXPageControl/Transform (= 0.1.5)
+  - JXPageControl/Common (0.1.5)
+  - JXPageControl/Jump (0.1.5):
+    - JXPageControl/Common
+  - JXPageControl/Transform (0.1.5):
+    - JXPageControl/Common
+  - JXPagingView (2.1.2):
+    - JXPagingView/Pager (= 2.1.2)
+    - JXPagingView/Paging (= 2.1.2)
+  - JXPagingView/Pager (2.1.2)
+  - JXPagingView/Paging (2.1.2)
+  - JXSegmentedView (1.3.0)
+  - LookinServer (1.2.5):
+    - LookinServer/Core (= 1.2.5)
+  - LookinServer/Core (1.2.5)
+  - MarkdownKit (1.7.1)
   - Masonry (1.1.0)
   - MBProgressHUD (0.9.2)
   - MJExtension (3.4.1)
-  - MJRefresh (3.7.5)
+  - MJRefresh (3.7.6)
   - NudeIn (1.2.8)
-  - RxCocoa (5.1.3):
-    - RxRelay (~> 5)
-    - RxSwift (~> 5)
-  - RxRelay (5.1.3):
-    - RxSwift (~> 5)
-  - RxSwift (5.1.3)
+  - ProgressHUD (13.7.2)
+  - RxCocoa (6.6.0):
+    - RxRelay (= 6.6.0)
+    - RxSwift (= 6.6.0)
+  - RxRelay (6.6.0):
+    - RxSwift (= 6.6.0)
+  - RxSwift (6.6.0)
+  - RYAngelWalker (0.2.2)
+  - RYTransitioningDelegateSwift (0.2.3)
   - SDCycleScrollView (1.82):
     - SDWebImage (>= 5.0.0)
-  - SDWebImage (5.12.2):
-    - SDWebImage/Core (= 5.12.2)
-  - SDWebImage/Core (5.12.2)
-  - SnapKit (5.0.1)
-  - SQLiteRepairKit (1.2.2):
-    - WCDBOptimizedSQLCipher (~> 1.2.0)
-  - SwiftyJSON (4.3.0)
-  - TZImagePickerController (3.3.2)
-  - UMCAnalytics (6.0.5):
-    - UMCCommon
-  - UMCCommon (2.1.4)
-  - UMCCommonLog (1.0.0)
-  - UMCErrorCatch (1.0.0):
-    - UMCCommon
-  - UMCPush (3.2.5):
-    - UMCCommon
-  - UMCSecurityPlugins (1.0.6)
-  - UMCShare/Core (6.9.10):
-    - UMCCommon
-  - UMCShare/Social/ReducedQQ (6.9.10):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/Social/ReducedWeChat (6.9.10):
-    - UMCCommon
-    - UMCShare/Core
-  - UMCShare/UI (6.9.10):
-    - UMCCommon
-    - UMCShare/Core
-  - WCDB (1.0.7.5):
-    - SQLiteRepairKit (~> 1.2.0)
-    - WCDBOptimizedSQLCipher (~> 1.2.0)
-  - WCDBOptimizedSQLCipher (1.2.1)
+  - SDWebImage (5.18.7):
+    - SDWebImage/Core (= 5.18.7)
+  - SDWebImage/Core (5.18.7)
+  - SnapKit (5.6.0)
+  - SwiftyJSON (5.0.1)
+  - TOCropViewController (2.6.1)
+  - TZImagePickerController (3.8.4):
+    - TZImagePickerController/Basic (= 3.8.4)
+    - TZImagePickerController/Location (= 3.8.4)
+  - TZImagePickerController/Basic (3.8.4)
+  - TZImagePickerController/Location (3.8.4)
+  - UMCCommonLog (2.0.2)
+  - UMCommon (7.4.3):
+    - UMDevice
+  - UMDevice (3.3.0)
+  - UMShare/Core (6.10.9):
+    - UMCommon
+  - UMShare/Social/QQ (6.10.9):
+    - UMCommon
+    - UMShare/Core
+    - UMShare/Social/ReducedQQ
+  - UMShare/Social/ReducedQQ (6.10.9):
+    - UMCommon
+    - UMShare/Core
+  - UMShare/Social/ReducedWeChat (6.10.9):
+    - UMCommon
+    - UMShare/Core
+  - UMShare/Social/WeChat (6.10.9):
+    - UMCommon
+    - UMShare/Core
+    - UMShare/Social/ReducedWeChat
+  - UMVerify (2.7.0):
+    - UMCommon
   - YBImageBrowser (3.0.9):
     - YBImageBrowser/Core (= 3.0.9)
   - YBImageBrowser/Core (3.0.9):
@@ -89,43 +143,53 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
-  - Alamofire (~> 5.2)
+  - Alamofire
+  - AlicloudHTTPDNS
   - AMap3DMap-NO-IDFA
   - AMapLocation-NO-IDFA
   - Bugly
   - FluentDarkModeKit
   - FMDB
-  - IGListKit
   - IQKeyboardManager
+  - JXBanner
+  - JXPagingView
+  - JXSegmentedView
   - LookinServer
+  - MarkdownKit
   - Masonry
   - MBProgressHUD (~> 0.9.2)
   - MJExtension
   - MJRefresh
   - NudeIn
-  - RxCocoa (~> 5.1.1)
-  - RxSwift (~> 5.1.1)
+  - ProgressHUD (= 13.7.2)
+  - RxCocoa
+  - RYAngelWalker
+  - RYTransitioningDelegateSwift
   - SDCycleScrollView
   - SDWebImage
   - SnapKit
-  - SwiftyJSON (~> 4.0)
-  - TZImagePickerController (~> 3.3.2)
-  - UMCAnalytics (~> 6.0.5)
-  - UMCCommon (~> 2.1.1)
-  - UMCCommonLog (~> 1.0.0)
-  - UMCErrorCatch (~> 1.0.0)
-  - UMCPush (~> 3.2.4)
-  - UMCSecurityPlugins (~> 1.0.6)
-  - UMCShare/Social/ReducedQQ (~> 6.9.6)
-  - UMCShare/Social/ReducedWeChat (~> 6.9.6)
-  - UMCShare/UI (~> 6.9.6)
-  - WCDB
+  - SwiftyJSON
+  - TOCropViewController
+  - TZImagePickerController
+  - UMCCommonLog
+  - UMCommon
+  - UMDevice
+  - UMShare/Social/QQ
+  - UMShare/Social/WeChat
+  - UMVerify
   - YBImageBrowser
   - YYImage
   - YYKit
 
 SPEC REPOS:
-  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
+  https://github.com/aliyun/aliyun-specs.git:
+    - AlicloudHTTPDNS
+    - AlicloudSender
+    - AlicloudUT
+    - AlicloudUTDID
+    - AlicloudUtils
+    - EMASRest
+  https://github.com/CocoaPods/Specs.git:
     - AFNetworking
     - Alamofire
     - AMap3DMap-NO-IDFA
@@ -134,77 +198,87 @@ SPEC REPOS:
     - Bugly
     - FluentDarkModeKit
     - FMDB
-    - IGListDiffKit
-    - IGListKit
     - IQKeyboardManager
+    - JXBanner
+    - JXPageControl
+    - JXPagingView
+    - JXSegmentedView
     - LookinServer
+    - MarkdownKit
     - Masonry
     - MBProgressHUD
     - MJExtension
     - MJRefresh
     - NudeIn
+    - ProgressHUD
     - RxCocoa
     - RxRelay
     - RxSwift
+    - RYAngelWalker
+    - RYTransitioningDelegateSwift
     - SDCycleScrollView
     - SDWebImage
     - SnapKit
-    - SQLiteRepairKit
     - SwiftyJSON
+    - TOCropViewController
     - TZImagePickerController
-    - UMCAnalytics
-    - UMCCommon
     - UMCCommonLog
-    - UMCErrorCatch
-    - UMCPush
-    - UMCSecurityPlugins
-    - UMCShare
-    - WCDB
-    - WCDBOptimizedSQLCipher
+    - UMCommon
+    - UMDevice
+    - UMShare
+    - UMVerify
     - YBImageBrowser
     - YYImage
     - YYKit
 
 SPEC CHECKSUMS:
-  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
-  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
-  AMap3DMap-NO-IDFA: cd412831292adbfb27a9e1fe9c46a6762e838aac
-  AMapFoundation-NO-IDFA: cc2ec7a2828ef292358ad594b7ee0ae21a7f097b
-  AMapLocation-NO-IDFA: 9d7ec9b052405356600b59fe0a9a65261bacc54e
-  Bugly: afe841bba2ea6de6d432a3c125240a5e75949c55
+  AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
+  Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
+  AlicloudHTTPDNS: fc256d8741c8163a8f3171d63fec30e5b5cf410d
+  AlicloudSender: 1f468b6bd962a099ffc19d45e3608b0fe98f259d
+  AlicloudUT: 6d1cf30d57d096b7e9bb4b069dd0ba6ad59a3338
+  AlicloudUTDID: 7323c443dcdf9a73e2224dc6ce51703671d7a765
+  AlicloudUtils: 873a76615bebcee8b1996f20820d366e433c3eab
+  AMap3DMap-NO-IDFA: a3516859f2e82eda9fe9309c57d862f1543c2de4
+  AMapFoundation-NO-IDFA: 6ce0ef596d4eb8d934ff498e56747b6de1247b05
+  AMapLocation-NO-IDFA: 735791aeb1ba52dff666e4158b86caf4b68b5be7
+  Bugly: b8715e6ec4004b7f7fbffab0643ba80545aee3da
+  EMASRest: 8df6f87836767a9415ad5cc4af739bc9d215b475
   FluentDarkModeKit: b6317653a00329564582884772ec57c4eaad1a1f
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  IGListDiffKit: 665d6cf43ce726e676013db9c7d6c4294259b6b2
-  IGListKit: fd5a5d21935298f5849fa49d426843cff97b77c7
-  IQKeyboardManager: 241cc94ccabc9deb8f8bd7d12f00d73288d13ecc
-  LookinServer: 743c1681771d0a8dcc38825325a080c3186404a5
+  IQKeyboardManager: 024b54d7dcb765c5bc99882cb4d5ea24a8cb7c3c
+  JXBanner: 348dbef856e786494cbf30fb45d6b84826f2d3c5
+  JXPageControl: e9487b39e2e58fc17790833214f3b8e935bef98b
+  JXPagingView: 90924b364a2ff7e94db534fad1fa50925ff69ee4
+  JXSegmentedView: fec0d335355b6e019c494fe2e030bde8a36d2df6
+  LookinServer: 6805292e8d2ff9ddfcfaa9357fc5c1f277c90afd
+  MarkdownKit: 0b15195c63cf3e39387949c4bdeccde0055e252a
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
-  MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
+  MJRefresh: 2fe7fb43a5167ceda20bb7e63f130c04fd1814a5
   NudeIn: e428b516a60a241d47c9d8882a8a00d0f42cfcb4
-  RxCocoa: e2ed092d5432e4296aa818021d27de4090ac0354
-  RxRelay: 5a18c2eb2d68326ebaf0112f80d837ae41b92b97
-  RxSwift: 915abbdfb62214aa89ccd0b194d44fb478019b27
+  ProgressHUD: 093d24ca970f191744017bee2649e37d0cd1c5b9
+  RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
+  RxRelay: 45eaa5db8ee4fb50e5ebd57deec0159e97fa51e6
+  RxSwift: a4b44f7d24599f674deebd1818eab82e58410632
+  RYAngelWalker: e5314ea021ca43de12bc4f86d086936caf4b7bdf
+  RYTransitioningDelegateSwift: 72dee49a78fa4c2747b4d92ba3ed6b2e493e1df7
   SDCycleScrollView: a0d74c3384caa72bdfc81470bdbc8c14b3e1fbcf
-  SDWebImage: 240e5c12b592fb1268c1d03b8c90d90e8c2ffe82
-  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  SQLiteRepairKit: 35aaae5a8838adb85f5b1eb4d796055be6060a4b
-  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
-  TZImagePickerController: 36ca728ec681228918aa82e993aaab1962281b72
-  UMCAnalytics: 045be2cd1ec05aa95ad62405a850757f932e2d59
-  UMCCommon: b0703b0053323f598e01670ea702b8eb1e66e611
-  UMCCommonLog: 05a2d5de21858e3d870551562cff405c1366d244
-  UMCErrorCatch: 51f1b68f920233e90a3fa6d51f0456174507ec78
-  UMCPush: 078b5818e0e47c4cf8ab42a5a30e8b54a0854077
-  UMCSecurityPlugins: 0831a08f3988f3cea9f1d3a7626cd9bee4fef150
-  UMCShare: a4a95fbdd61ecce5b6751d8c9ed9b519e80fcbc9
-  WCDB: 8e90babdeb7784c569353a4bd22a66c0a175a882
-  WCDBOptimizedSQLCipher: baf44493b0c7a3d49e97bc5b64a3856f6428ddd1
+  SDWebImage: f9258c58221ed854cfa0e2b80ee4033710b1c6d3
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
+  TZImagePickerController: f1c9f1cae6ac0e30b31aaa9698f9bf4a7cf5b84f
+  UMCCommonLog: bea707e50c85cef4b0eb47cc5c7226bb843245ca
+  UMCommon: 8fc989e90fc40a8b100bef3ffe21f7a59fe439ea
+  UMDevice: f67106f8f1a8bc465ba20d376d896e178be66ba7
+  UMShare: 199fc08bdc742d9eaed454e8f6e7e422959ea68b
+  UMVerify: 4f973edfe5f001305a854df7a0de9f1bb013d4db
   YBImageBrowser: 7ecc8bf33ffa5f3b94c397c29b4f3638dd37f527
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
 
-PODFILE CHECKSUM: 8d140718e505e69e914c3699fc1d03f420f3087d
+PODFILE CHECKSUM: 3a53bd7cc0d2b9bec205dc100ff768deaa6dfd04
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1

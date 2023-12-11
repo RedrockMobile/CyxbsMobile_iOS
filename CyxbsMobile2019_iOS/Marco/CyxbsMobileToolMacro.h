@@ -11,17 +11,17 @@
 
 
 #pragma mark - 自定义Log
-#ifdef DEBUG
-    #define NSLog(format, ...) do {                                                                          \
-    fprintf(stderr, "<%s : %d> | %s\n",                                           \
-    [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],  \
-    __LINE__, __func__);                                                        \
-    (NSLog)((format), ##__VA_ARGS__);                                           \
-    fprintf(stderr, "-------\n");                                               \
-    } while (0)
-#else
-    #define NSLog(format, ...) ;
-#endif
+//#ifdef DEBUG
+//    #define NSLog(format, ...) do {                                                                          \
+//    fprintf(stderr, "<%s : %d> | %s\n",                                           \
+//    [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String],  \
+//    __LINE__, __func__);                                                        \
+//    (NSLog)((format), ##__VA_ARGS__);                                           \
+//    fprintf(stderr, "-------\n");                                               \
+//    } while (0)
+//#else
+//    #define NSLog(format, ...) ;
+//#endif
 
 //++++++++++++++++++Stove的自定义Log˙++++++++++++++++++++  Begain
 #ifdef DEBUG
@@ -144,16 +144,12 @@ fprintf(stderr,"\n");\
 #define TABBARHEIGHT (IS_IPHONEX ? (49.f + SAFE_AREA_BOTTOM) : (49.f))
 
 /* 状态栏高度 */
-#define STATUSBARHEIGHT [MGDStatusBarHeight getStatusBarHight]
+#define STATUSBARHEIGHT getStatusBarHeight_Double
 
 //状态栏高度
 #define getStatusBarHeight_Double ^(void){\
-    double statusBarH;\
-    if (@available(iOS 13.0, *)) {\
-        statusBarH = [[UIApplication sharedApplication].windows objectAtIndex:0].windowScene.statusBarManager.statusBarFrame.size.height;\
-    } else {\
-        statusBarH = [UIApplication sharedApplication].statusBarFrame.size.height;\
-    }\
+    double statusBarH = 0;\
+    statusBarH = [[UIApplication sharedApplication].windows objectAtIndex:0].windowScene.statusBarManager.statusBarFrame.size.height;\
     return statusBarH;\
 }()
 
@@ -233,7 +229,7 @@ fprintf(stderr,"\n");\
 
 #define PingFangSC @"PingFang SC"
 //苹方-简 极细体
-#define PingFangSCUltralight    @"PingFangSC-Ultralight"
+#define PingFangSCUltralight @"PingFangSC-Ultralight"
 //苹方-简 纤细体
 #define PingFangSCThin @"PingFangSC-Thin"
 //苹方-简 细体
@@ -253,9 +249,17 @@ for(NSString *fontFamilyName in [UIFont familyNames]){
         }
         NSLog(@"-------------");
 }
+ 
+ family:'PingFang SC'
+     font:'PingFangSC-Regular'
+     font:'PingFangSC-Ultralight'
+     font:'PingFangSC-Thin'
+     font:'PingFangSC-Light'
+     font:'PingFangSC-Medium'
+     font:'PingFangSC-Semibold'
 */
 
-#define PingFangSCBold @"PingFangSC-Semibold"
+//#define PingFangSCSemibold PingFangSCSemibold
 
 
 // Bahnschrift字体

@@ -30,7 +30,6 @@
      type:HttpToolRequestTypeGet
      serializer:HttpToolRequestSerializerHTTP bodyParameters:nil progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-        NSLog(@"🟢%@:\n%@", self.class, object);
         NSDictionary *data = object[@"data"];
         if (!data) {
             NSError *error = [[NSError alloc] init];

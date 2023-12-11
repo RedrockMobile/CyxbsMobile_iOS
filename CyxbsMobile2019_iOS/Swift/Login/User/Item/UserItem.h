@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 //DEPRECATED_MSG_ATTRIBUTE("\n不要使用UserItem来获取你需要的信息，使用UserDefaultTool")
-@interface UserItem : NSObject<NSCoding>
+@interface UserItem : NSObject<NSCoding, NSSecureCoding>
 //MARK: - 个人信息/登录相关的
 /// Token
 @property (nonatomic, copy) NSString *__nullable token;
@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 该token什么时候过期（Unix时间戳）
 @property (nonatomic, copy) NSString *exp;
 
-/// 用来刷新token的凭证，有效时间45天，只可以使用一次
+/// 用来刷新token的凭证，有效时间45天，且只可以使用一次
 @property (nonatomic, copy) NSString *refreshToken;
 
 /// 真实姓名

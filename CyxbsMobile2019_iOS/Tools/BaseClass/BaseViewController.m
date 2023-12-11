@@ -15,12 +15,12 @@
 @implementation BaseViewController
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [MobClick beginLogPageView:NSStringFromClass([self class])];
+//    [MobClick beginLogPageView:NSStringFromClass([self class])];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    [MobClick endLogPageView:NSStringFromClass([self class])];
+//    [MobClick endLogPageView:NSStringFromClass([self class])];
 }
 
 - (void)viewDidLoad {

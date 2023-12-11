@@ -52,7 +52,7 @@
     
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.text = @"所有图片";
-    titleLabel.font = [UIFont fontWithName:PingFangSCBold size:23];
+    titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:23];
     if (@available(iOS 11.0, *)) {
         titleLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15305C" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     } else {
@@ -66,7 +66,7 @@
     self.shareImageView = shareImageView;
     
     UIButton *shareButton = [UIButton buttonWithType:UIButtonTypeSystem];
-    shareButton.titleLabel.font = [UIFont fontWithName:PingFangSCBold size:13];
+    shareButton.titleLabel.font = [UIFont fontWithName:PingFangSCSemibold size:13];
     [shareButton setTitle:@"与大家分享你拍摄的此地点" forState:UIControlStateNormal];
     if (@available(iOS 11.0, *)) {
         [shareButton setTitleColor:[UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#01CAF0" alpha:1] darkColor:[UIColor colorWithHexString:@"#47DAFA" alpha:1]] forState:UIControlStateNormal];

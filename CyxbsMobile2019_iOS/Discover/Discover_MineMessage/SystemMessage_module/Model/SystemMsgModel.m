@@ -22,7 +22,7 @@
 
 - (instancetype)initWithArray:(NSArray<NSDictionary *> *)ary {
     self = [super init];
-    if (self) {
+    if (self && ![ary isKindOfClass:[NSNull class]]) {
         NSMutableArray <SystemMessage *> *ma = NSMutableArray.array;
         for (NSDictionary *dic in ary) {
             SystemMessage *msg = [[SystemMessage alloc] initWithDictionary:dic];

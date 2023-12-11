@@ -226,7 +226,7 @@
     if (!_electricFeeTitle) {
         _electricFeeTitle = [[UILabel alloc] initWithFrame:CGRectMake(14, 23, 80, 20)];
         _electricFeeTitle.text = @"电费查询";
-        _electricFeeTitle.font = [UIFont fontWithName:PingFangSCBold size:18];
+        _electricFeeTitle.font = [UIFont fontWithName:PingFangSCSemibold size:18];
         _electricFeeTitle.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#F0F0F2" alpha:1]];
     }
     return _electricFeeTitle;
