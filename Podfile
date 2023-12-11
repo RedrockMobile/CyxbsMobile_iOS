@@ -5,7 +5,7 @@ platform :ios, '13.0'
 use_frameworks!
 
 # 是否为模拟器环境，真机/发版请改为 false
-IS_SIMULATOR = true
+IS_SIMULATOR = false
 
 inhibit_all_warnings!
 

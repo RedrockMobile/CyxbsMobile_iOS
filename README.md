@@ -1,23 +1,26 @@
 # README
 
-## 【必读】仓库clone后应执行操作
+## 掌上重邮
 
-本项目中绝大多数导入的第三方库都已经加入到.gtignore文件，所以导入后应进行相关pod操作，重新集成项目工作区
+#### 所属
 
-执行命令：`pod install --verbose --no-repo-update`
+[**红岩网校工作站 **](https://redrock.team)
 
-解释：
 
-- `pod install`：根据Podfile中描述需要引入的第三方库以及Podfile.lock文件中描述的第三方库版本导入第三方库
-- `--verbose`：加上可以显示详细的检测过程，出错时会有详细的错误信息
-- `--no-repo-update`：可以禁止更新本地的repos库文件,进而提高pod update速度.
 
-## 版本对应内容【线上版本】
+#### 介绍
 
-### 6.2.9
+掌上重邮是应用于重邮校内的APP，为重邮学子带来了更具校园特色的互联网服务，提供包括课表查询、没课约、校历、空教室等功能。让广大邮子享受到线上快捷便利的校园生活。
 
-- 修复因token失效导致积分商城数组越界的闪退
-- 修复积分商城的滑动卡死问题
-- 修复版本更新提示
-- 修复退出登录失败、闪退的问题
+
+
+#### 官网 [掌上重邮](https://m.app.redrock.team)
+
+
+
+
+
+<img src="https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/1a/05/33/1a05333c-5e87-6158-9da5-8ad42ae43565/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/246x0w.webp" width = "300">
+
+
 
