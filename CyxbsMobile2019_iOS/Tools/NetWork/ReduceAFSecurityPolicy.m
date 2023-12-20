@@ -29,10 +29,16 @@
      * 官方建议在result = kSecTrustResultUnspecified 或 kSecTrustResultProceed
      * 的情况下serverTrust可以被验证通过，https://developer.apple.com/library/ios/technotes/tn2232/_index.html
      * 关于SecTrustResultType的详细信息请参考SecTrust.h
+     *
+     * iOS 13 更新:使用SecTrustEvaluateWithError
      */
-    SecTrustResultType result;
-    SecTrustEvaluate(serverTrust, &result);
-    return (result == kSecTrustResultUnspecified || result == kSecTrustResultProceed);
+//    SecTrustResultType result;
+//    SecTrustEvaluate(serverTrust, &result);
+//    return (result == kSecTrustResultUnspecified || result == kSecTrustResultProceed);
+    
+    return SecTrustEvaluateWithError(serverTrust, nil);
+    
+
 }
 
 
