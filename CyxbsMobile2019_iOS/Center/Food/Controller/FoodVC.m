@@ -447,12 +447,14 @@ UICollectionViewDelegateFlowLayout
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.goBackView addSubview:backButton];
     [backButton setImage:[UIImage imageNamed:@"空教室返回"] forState:UIControlStateNormal];
+    backButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [backButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(17);
+        make.left.equalTo(self.view).offset(10);
         make.centerY.equalTo(self.titleLabel);
-        make.width.equalTo(@9);
+        make.width.equalTo(@23);
         make.height.equalTo(@19);
     }];
+    backButton.imageEdgeInsets = UIEdgeInsetsMake(0, 7, 0, 7);
     [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
 }
 
