@@ -53,9 +53,10 @@
     NSMutableArray *tempMa = [NSMutableArray array];
     for (int j = 0; j < valueArray.count; ++j) {
         double percentInteger = (double)[(NSNumber *)valueArray[j] longValue] / total;
-        NSNumber *percentNum = [NSNumber numberWithInteger:percentInteger];
+        NSNumber *percentNum = [NSNumber numberWithDouble:percentInteger];
         [tempMa addObject:percentNum];
     }
+//    NSLog(@"percentNum-tempMa-get:%@",tempMa);
     self.percentNumArray = tempMa;
 }
 

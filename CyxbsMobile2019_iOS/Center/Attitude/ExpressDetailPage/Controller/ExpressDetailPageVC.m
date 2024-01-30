@@ -43,15 +43,15 @@
 @property (nonatomic, strong) UIImageView *backgroundImage;
 
 /// 详细信息
-@property (nonatomic, strong) ExpressPickGetModel *detailModel;
+@property (nonatomic, strong) ExpressPickGetModel *getDetailModel;
 
-@property (nonatomic, strong) ExpressPickGetItem *detailItem;
+@property (nonatomic, strong) ExpressPickGetItem *getDetailItem;
 
 /// PUT 投票
-@property (nonatomic, strong) ExpressPickPutModel *pickModel;
+@property (nonatomic, strong) ExpressPickPutModel *putPickModel;
 
 /// 发布投票
-@property (nonatomic, strong) ExpressPickPutItem *pickItem;
+@property (nonatomic, strong) ExpressPickPutItem *putPickItem;
 
 /// 撤销投票
 @property (nonatomic, strong) ExpressDeclareModel *declareModel;
@@ -102,11 +102,12 @@
 /// 首先请求获取详情信息
 - (void)requestDetails {
     
-    [self.detailModel requestGetDetailDataWithId:self.theId Success:^(ExpressPickGetItem * _Nonnull model) {
-        self.detailItem = model;
+    [self.getDetailModel requestGetDetailDataWithId:self.theId Success:^(ExpressPickGetItem * _Nonnull model) {
+        self.getDetailItem = model;
+        NSLog(@"self.getDetailItem = model;");
         // 标题
         self.detailTitle.text = model.title;
-        self.putPercentArray = self.detailItem.percentStrArray;
+        self.putPercentArray = self.getDetailItem.percentStrArray;
         // 重新加载tableView
         [self.tableView reloadData];
         NSLog(@"detailModel---%@", model.title);
@@ -135,7 +136,9 @@
         // 先全部恢复原始状态
         [cell backToOriginState];
         // 分别得到gradientWidth
-        gradientWidth = cellWidth * [self.pickItem.percentNumArray[indexPath.row] floatValue];
+        gradientWidth = cellWidth * [self.putPickItem.percentNumArray[indexPath.row] doubleValue];
+        NSLog(@"动画-numarray:%@",self.putPickItem.percentNumArray);
+        NSLog(@"动画占比颜色长度:%f",gradientWidth);
         if (indexPath == selectIndexPath) {
             // 是选中的cell
             [cell selectCell];
@@ -192,7 +195,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // 修改cell个数
-    return self.detailItem.choices.count;
+    return self.getDetailItem.choices.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -202,19 +205,19 @@
         cell = [[ExpressDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
     }
     // 展示已投票数据
-    if (self.detailItem != NULL) {
+    if (self.getDetailItem != NULL) {
         // cell的标题
-        cell.titleLab.text = self.detailItem.choices[indexPath.row];
+        cell.titleLab.text = self.getDetailItem.choices[indexPath.row];
         // 如果已经投票
-        if (self.detailItem.getVoted != NULL) {
-            cell.percent.text = self.detailItem.percentStrArray[indexPath.row];
+        if (self.getDetailItem.getVoted != NULL) {
+            cell.percent.text = self.getDetailItem.percentStrArray[indexPath.row];
             NSLog(@"cell百分比:%@",cell.percent.text);
             // 没有数据情况.空值或不为字符串
             if (cell.percent.text == NULL || ![cell.percent.text isKindOfClass:[NSString class]]) {
                 cell.percent.text = @"nil";
             }
             // 动画
-            if ([cell.titleLab.text isEqual:self.detailItem.getVoted]) {
+            if ([cell.titleLab.text isEqual:self.getDetailItem.getVoted]) {
                 // 记录投票的选项
                 self.votedRow = indexPath.row;
                 [self putAnimation:indexPath];
@@ -256,14 +259,15 @@
     // 更新投票选项
     self.votedRow = indexPath.row;
     // MARK: PUT 投票
-    [self.pickModel requestPickDataWithId:self.theId Choice:cell.titleLab.text Success:^(ExpressPickPutItem * _Nonnull model) {
+    [self.putPickModel requestPickDataWithId:self.theId Choice:cell.titleLab.text Success:^(ExpressPickPutItem * _Nonnull model) {
+        self.putPickItem = model;// 传入model，使用percentNumArray
         NSLog(@"发布成功");
         // 更新百分比数组
         self.putPercentArray = model.percentStrArray;
         NSLog(@"百分比array:%@",self.putPercentArray);
         [self putAnimation:indexPath];  // 动画
         [self tapFeedback];  // 雷达效果
-//        [tableView reloadData];
+
         
     } Failure:^(NSError * _Nonnull error) {
         NSLog(@"发布失败");
@@ -317,7 +321,7 @@
         _detailTitle.textAlignment = NSTextAlignmentLeft;
         _detailTitle.textColor = [UIColor whiteColor];
         _detailTitle.font = [UIFont fontWithName:PingFangSCSemibold size:18];
-        _detailTitle.text = self.detailItem.title;
+        _detailTitle.text = self.getDetailItem.title;
     }
     return _detailTitle;
 }
@@ -331,32 +335,32 @@
 }
 
 
-- (ExpressPickGetItem *)detailItem {
-    if (!_detailItem) {
-        _detailItem = [[ExpressPickGetItem alloc] init];
+- (ExpressPickGetItem *)getDetailItem {
+    if (!_getDetailItem) {
+        _getDetailItem = [[ExpressPickGetItem alloc] init];
     }
-    return _detailItem;
+    return _getDetailItem;
 }
 
-- (ExpressPickGetModel *)detailModel {
-    if (!_detailModel) {
-        _detailModel = [[ExpressPickGetModel alloc] init];
+- (ExpressPickGetModel *)getDetailModel {
+    if (!_getDetailModel) {
+        _getDetailModel = [[ExpressPickGetModel alloc] init];
     }
-    return _detailModel;
+    return _getDetailModel;
 }
 
-- (ExpressPickPutModel *)pickModel {
-    if (!_pickModel) {
-        _pickModel = [[ExpressPickPutModel alloc] init];
+- (ExpressPickPutModel *)putPickModel {
+    if (!_putPickModel) {
+        _putPickModel = [[ExpressPickPutModel alloc] init];
     }
-    return _pickModel;
+    return _putPickModel;
 }
 
-- (ExpressPickPutItem *)pickItem {
-    if (!_pickItem) {
-        _pickItem = [[ExpressPickPutItem alloc] init];
+- (ExpressPickPutItem *)putPickItem {
+    if (!_putPickItem) {
+        _putPickItem = [[ExpressPickPutItem alloc] init];
     }
-    return _pickItem;
+    return _putPickItem;
 }
 
 - (ExpressDeclareModel *)declareModel {

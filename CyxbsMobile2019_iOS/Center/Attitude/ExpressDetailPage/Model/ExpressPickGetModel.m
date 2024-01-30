@@ -29,6 +29,7 @@
             model.percentStrArray = [model votedPercentCalculateToString:model.getStatistic];
             [model votedPercenteCalculateToNSNumber:model.getStatistic];
             NSLog(@"百分比:%@",model.percentStrArray);
+            NSLog(@"get-NumArray:%@",model.percentNumArray);
             if (success) {
                 success(model);
             }

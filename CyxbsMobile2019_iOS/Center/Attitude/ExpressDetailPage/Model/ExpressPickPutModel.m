@@ -40,6 +40,7 @@
             NSLog(@"%@",object);
             [pickModel votedPercenteCalculateToNSNumber:pickModel.putStatistic];
             pickModel.percentStrArray = [pickModel votedPercentCalculateToString:pickModel.putStatistic];
+            NSLog(@"put-numArray:%@",pickModel.percentNumArray);
             if (success) {
                 success(pickModel);
             }
