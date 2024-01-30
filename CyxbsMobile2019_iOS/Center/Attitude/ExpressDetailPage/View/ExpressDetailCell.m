@@ -40,6 +40,7 @@
     self.percent.textColor = [UIColor colorWithHexString:@"#FFFFFF" alpha:1.0];
     self.contentView.backgroundColor = [UIColor colorWithHexString:@"#6C68EE" alpha:1.0];
     [self.contentView addSubview:self.gradientView];
+    [self.contentView addSubview:self.percent];
     [self addViewsAndPosition];
 }
 
@@ -50,6 +51,7 @@
     self.titleLab.textColor = [UIColor colorWithHexString:@"#15315B" alpha:0.7];
     self.percent.textColor = [UIColor colorWithHexString:@"#15315B" alpha:0.5];
     [self.contentView addSubview:self.gradientView];
+    [self.contentView addSubview:self.percent];
     [self addViewsAndPosition];
 }
 
@@ -67,7 +69,7 @@
     [self.percent mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView);
         make.right.equalTo(self.contentView).mas_offset(-15);
-        make.size.mas_equalTo(CGSizeMake(27, 17));
+        make.size.mas_equalTo(CGSizeMake(35, 17));
     }];
 }
 

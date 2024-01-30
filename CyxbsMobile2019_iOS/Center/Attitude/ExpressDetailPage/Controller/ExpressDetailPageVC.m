@@ -123,6 +123,7 @@
 
 /// 投票动画
 - (void)putAnimation:(NSIndexPath *)selectIndexPath {
+    NSLog(@"当前cell的index：%@",selectIndexPath);
     ExpressDetailCell *cell = [self.tableView cellForRowAtIndexPath:selectIndexPath];
     // 获取cell的宽度
     CGFloat cellWidth = cell.bounds.size.width;
@@ -134,8 +135,7 @@
         // 先全部恢复原始状态
         [cell backToOriginState];
         // 分别得到gradientWidth
-//        gradientWidth = cellWidth * [self.pickItem.percentNumArray[indexPath.row] floatValue];
-        gradientWidth = 160;  // test
+        gradientWidth = cellWidth * [self.pickItem.percentNumArray[indexPath.row] floatValue];
         if (indexPath == selectIndexPath) {
             // 是选中的cell
             [cell selectCell];
@@ -193,7 +193,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // 修改cell个数
     return self.detailItem.choices.count;
-//    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -209,6 +208,7 @@
         // 如果已经投票
         if (self.detailItem.getVoted != NULL) {
             cell.percent.text = self.detailItem.percentStrArray[indexPath.row];
+            NSLog(@"cell百分比:%@",cell.percent.text);
             // 没有数据情况.空值或不为字符串
             if (cell.percent.text == NULL || ![cell.percent.text isKindOfClass:[NSString class]]) {
                 cell.percent.text = @"nil";
@@ -241,14 +241,16 @@
     // MARK: DELETE 撤销投票
     // 只有没有投过票才不用撤销投票
     if (self.votedRow != -1) {
+        [cell backToOriginState];// cell撤销动画
         [self.declareModel requestDeclareDataWithId:self.theId Success:^(bool declareSuccess) {
             if (declareSuccess) {
                 NSLog(@"撤销成功");
             }
         } Failure:^(NSError * _Nonnull error) {
             // 网络错误页面
-            [self.view removeAllSubviews];
-            [self.view addSubview:self.netWrong];
+            [NewQAHud showHudAtWindowWithStr:@"撤销投票失败" enableInteract:YES];
+//            [self.view removeAllSubviews];
+//            [self.view addSubview:self.netWrong];
         }];
     }
     // 更新投票选项
@@ -258,11 +260,15 @@
         NSLog(@"发布成功");
         // 更新百分比数组
         self.putPercentArray = model.percentStrArray;
+        NSLog(@"百分比array:%@",self.putPercentArray);
         [self putAnimation:indexPath];  // 动画
         [self tapFeedback];  // 雷达效果
+//        [tableView reloadData];
+        
     } Failure:^(NSError * _Nonnull error) {
         NSLog(@"发布失败");
         // 网络错误页面
+        [NewQAHud showHudAtWindowWithStr:@"投票失败" enableInteract:YES];
 //        [self.view removeAllSubviews];
 //        [self.view addSubview:self.netWrong];
     }];
@@ -311,8 +317,6 @@
         _detailTitle.textAlignment = NSTextAlignmentLeft;
         _detailTitle.textColor = [UIColor whiteColor];
         _detailTitle.font = [UIFont fontWithName:PingFangSCSemibold size:18];
-        // 修改标题名
-//        _detailTitle.text = @"你是否支持iPhone的接口将要被统—为接口你是否支持iPhone的接口将要被统";
         _detailTitle.text = self.detailItem.title;
     }
     return _detailTitle;

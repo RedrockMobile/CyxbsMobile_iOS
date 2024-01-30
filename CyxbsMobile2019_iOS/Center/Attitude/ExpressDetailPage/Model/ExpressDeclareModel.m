@@ -15,9 +15,7 @@
 - (void)requestDeclareDataWithId:(NSNumber *)theId
                          Success:(void(^)(bool declareSuccess))success
                          Failure:(void(^)(NSError * _Nonnull))failure {
-//    NSDictionary *param = @{
-//        @"id": theId
-//    };
+
     [HttpTool.shareTool
     request:Center_DELETE_AttitudeCancelPick_API
      type:HttpToolRequestTypeDelete
