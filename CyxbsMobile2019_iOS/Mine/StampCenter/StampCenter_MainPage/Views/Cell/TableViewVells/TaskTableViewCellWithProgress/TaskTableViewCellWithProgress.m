@@ -107,7 +107,15 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToZhiyuan" object:nil];
     }else if ([sender.target isEqualToString:@"完善个人信息"]){
         [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToProfile" object:nil];
-    }else{
+    }else if ([sender.target isEqualToString:@"在表态广场完成一次表态"]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToProfile" object:nil];
+    }else if ([sender.target isEqualToString:@"使用一次美食咨询处"]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToProfile" object:nil];
+    }else if ([sender.target isEqualToString:@"使用没课约查询课表"]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToProfile" object:nil];
+    }else if ([sender.target isEqualToString:@"在活动布告栏参加一次活动"]){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToProfile" object:nil];
+    }else {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToNewQA" object:nil];
     }
 }

@@ -70,10 +70,10 @@
                 [mArray addObject:data];
             }
         }
-    if (mArray.count == 0) {
-        self.mainScrollView.collectionHeaderView.detailLabel.text = @"敬请期待";
-        self.mainScrollView.collectionHeaderView.detailLabel.x = 0.8*SCREEN_WIDTH;
-    }
+//    if (mArray.count == 0) {
+//        self.mainScrollView.collectionHeaderView.detailLabel.text = @"敬请期待";
+//        self.mainScrollView.collectionHeaderView.detailLabel.x = 0.8*SCREEN_WIDTH;
+//    }
         _goodsAry = mArray;
     self.section2GoodsAry = mArray2;
     //刷新控件
@@ -295,32 +295,21 @@
 #pragma mark - collection数据源
 //组数
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 2;
+    return 1;
 }
 
 //每组的个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    if (section == 0) {
-        return self.goodsAry.count;
-    }else{
-        return self.section2GoodsAry.count;
-    }
+    return self.section2GoodsAry.count;
 }
 
 //Cell
 -(UICollectionViewCell *)collectionView:(UICollectionView*)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
     GoodsCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    if (indexPath.section == 0) {
-        StampGoodsData *data = self.goodsAry[indexPath.item];
-        cell.data = data;
-        [cell.exchangeBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.showBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
-    }else{
-        StampGoodsData *data =self.section2GoodsAry[(indexPath.item)];
-        cell.data = data;
-        [cell.exchangeBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.showBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
-    }
+    StampGoodsData *data =self.section2GoodsAry[(indexPath.item)];
+    cell.data = data;
+    [cell.exchangeBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.showBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
@@ -332,29 +321,25 @@
 }
 
 //HeaderView
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    if (kind == UICollectionElementKindSectionHeader) {
-        StampCenterSecondHeaderView *collectionheader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"header" forIndexPath:indexPath];
-        collectionheader.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FBFCFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
-        if (indexPath.section == 0) {
-            collectionheader.height = 0;
-        }
-        else{
-            collectionheader.height = 54;
-        }
-        return collectionheader;
-    }
-    return nil;
-}
+//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+//    if (kind == UICollectionElementKindSectionHeader) {
+//        StampCenterSecondHeaderView *collectionheader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"header" forIndexPath:indexPath];
+//        collectionheader.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FBFCFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
+////        if (indexPath.section == 0) {
+////            collectionheader.height = 0;
+////        }
+////        else{
+////            collectionheader.height = 54;
+////        }
+//        collectionheader.height = 54;
+//        return collectionheader;
+//    }
+//    return nil;
+//}
 
 //内边距
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    if (section == 0) {
-        return UIEdgeInsetsMake(215+65, 0.042*SCREEN_WIDTH, 10, 0.042*SCREEN_WIDTH);
-    }
-    else{
-        return UIEdgeInsetsMake(54, 0.042*SCREEN_WIDTH, 0.09*SCREEN_WIDTH, 0.042*SCREEN_WIDTH);
-    }
+    return UIEdgeInsetsMake(215+54, 0.042*SCREEN_WIDTH, 10, 0.042*SCREEN_WIDTH);
 }
 
 //后面有时间详细说明滚动逻辑（核心）

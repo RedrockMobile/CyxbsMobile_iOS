@@ -66,4 +66,10 @@ class SwiftToOC: NSObject {
     class func getNowWeek() -> Int {
         return UserModel.default.nowWeek() ?? 0
     }
+    
+    @objc 
+    class func getStartDate() -> NSDate {
+        let nsDate = NSDate(timeIntervalSince1970: UserModel.default.start?.timeIntervalSince1970 ?? 0)
+        return nsDate
+    }
 }
