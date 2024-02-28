@@ -97,7 +97,7 @@
 }
 // 请求数据
 - (void)getRequestData {
-    [self.attitudeModel requestAttitudeDataWithOffset:0 Limit:20 Success:^(NSArray * _Nonnull array) {
+    [self.attitudeModel requestAttitudeDataWithOffset:0 Limit:30 Success:^(NSArray * _Nonnull array) {
             self.dataArray = array;
             [self.tableView reloadData];
             // 缺省页
