@@ -16,10 +16,13 @@
 #import "EditMyInfoViewController.h"
 #import "TableHeaderView.h"
 #import "FoodVC.h"
+#import "AttitudeMainPageVC.h"
+#import "掌上重邮-Swift.h"
 
 //Model
 #import "StampGoodsData.h"
 #import "StampTaskData.h"
+#import "CheckInModel.h"
 
 #import "RemindHUD.h"
 
@@ -170,6 +173,7 @@
     }
    
     [self checkAlertLbl];
+    [self refreshPage];
 
 }
 
@@ -705,7 +709,36 @@
 //跳转至中心->美食版块
 - (void)jumpToFood{
     FoodVC *FVC = [[FoodVC alloc]init];
-    [self.navigationController presentViewController:FVC animated:YES completion:nil];
+    [self.navigationController pushViewController:FVC animated:YES];
+}
+
+//跳转至中心->活动布告栏
+- (void)jumpToActivity{
+    ActivityMainViewController *AVC = [[ActivityMainViewController alloc]init];
+    [self.navigationController pushViewController:AVC animated:YES];
+}
+
+//跳转至中心->表态
+- (void)jumpToAttitude{
+    AttitudeMainPageVC *AVC = [[AttitudeMainPageVC alloc]init];
+    [self.navigationController pushViewController:AVC animated:YES];
+}
+
+//跳转至没课约
+- (void)jumpToWeDate{
+    WeDateVC *WVC = [[WeDateVC alloc]init];
+    [self.navigationController pushViewController:WVC animated:YES];
+}
+
+//每日签到
+- (void)checkInToday{
+    [CheckInModel CheckInSucceeded:^{
+        [RemindHUD.shared showDefaultHUDWithText:@"签到成功，邮票+10" completion:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+        }];
+    } Failed:^(NSError * _Nonnull err) {
+        NSLog(@"出错了");
+    }];
 }
 
 
@@ -744,14 +777,6 @@
 
 }
 
-//签到成功
-- (void)checkInSucceeded{
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeText;
-    hud.labelText = @"签到成功";
-    [hud hide:YES afterDelay:1];
-}
-
 //设置通知中心
 - (void)setupNotification{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netWorkAlert) name:@"networkerror" object:nil];
@@ -761,8 +786,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkAlertLbl) name:@"checkAlertLbl" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToZhiyuan) name:@"jumpToZhiyuan" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToProfile) name:@"jumpToProfile" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkInSucceeded) name:@"checkInSucceeded" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToFood) name:@"jumpToFood" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToActivity) name:@"jumpToActivity" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToWeDate) name:@"jumpToWeDate" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToAttitude) name:@"jumpToAttitude" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkInToday) name:@"checkInToday" object:nil];
 }
 
 @end
