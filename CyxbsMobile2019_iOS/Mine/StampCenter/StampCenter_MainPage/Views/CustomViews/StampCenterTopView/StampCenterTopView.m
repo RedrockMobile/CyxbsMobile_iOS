@@ -40,7 +40,7 @@
 
 - (UIImageView *)bannerImage{
     if (!_bannerImage) {
-        _bannerImage = [[UIImageView alloc]initWithFrame:CGRectMake(0.042*SCREEN_WIDTH, 23, 0.914*SCREEN_WIDTH, 129)];
+        _bannerImage = [[UIImageView alloc]initWithFrame:CGRectMake(0.042*SCREEN_WIDTH, 18, 0.914*SCREEN_WIDTH, 129)];
         _bannerImage.image = [UIImage imageNamed:@"Banner"];
         _bigStampImage = [[UIImageView alloc]initWithFrame:CGRectMake(0.541*SCREEN_WIDTH, -25, 132, 119)];
         _bigStampImage.image = [UIImage imageNamed:@"BigStamp"];
@@ -166,7 +166,7 @@
 
 - (UIView *)holder{
     if (!_holder) {
-        _holder = [[UIView alloc]initWithFrame:CGRectMake(0, 138, SCREEN_WIDTH, 50)];
+        _holder = [[UIView alloc]initWithFrame:CGRectMake(0, 150, SCREEN_WIDTH, 50)];
         _holder.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
     }
     return _holder;

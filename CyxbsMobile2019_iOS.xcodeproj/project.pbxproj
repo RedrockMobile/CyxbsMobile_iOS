@@ -343,6 +343,7 @@
 		75500E612AEE8FD200C2FC3A /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75500E5E2AEE8FD200C2FC3A /* UIColorExtension.swift */; };
 		75500E622AEE8FD200C2FC3A /* SwiftyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75500E5F2AEE8FD200C2FC3A /* SwiftyClient.swift */; };
 		75500E632AEE8FD200C2FC3A /* TextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75500E602AEE8FD200C2FC3A /* TextManager.swift */; };
+		75B7AFB72B8F35F30028E4DC /* TaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B7AFB62B8F35F30028E4DC /* TaskTableViewCell.m */; };
 		7FBF39F4257B79F30077494E /* ByPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF39EB257B79F20077494E /* ByPasswordViewController.m */; };
 		7FBF39F6257B79F30077494E /* ByWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF39EF257B79F30077494E /* ByWordViewController.m */; };
 		AA0DD8FB286C50E500802324 /* MineMsgCntView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0DD8FA286C50E400802324 /* MineMsgCntView.m */; };
@@ -1221,6 +1222,8 @@
 		75500E5E2AEE8FD200C2FC3A /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		75500E5F2AEE8FD200C2FC3A /* SwiftyClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyClient.swift; sourceTree = "<group>"; };
 		75500E602AEE8FD200C2FC3A /* TextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextManager.swift; sourceTree = "<group>"; };
+		75B7AFB62B8F35F30028E4DC /* TaskTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskTableViewCell.m; sourceTree = "<group>"; };
+		75B7AFB82B8F35FD0028E4DC /* TaskTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskTableViewCell.h; sourceTree = "<group>"; };
 		7A64BFF32892826F007CCB1E /* NewQAHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAHeader.h; sourceTree = "<group>"; };
 		7AA4C469288D23A700E204C8 /* MineHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MineHeader.h; sourceTree = "<group>"; };
 		7AA4C46E288FCEA800E204C8 /* ClassScheduleHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassScheduleHeader.h; sourceTree = "<group>"; };
@@ -3562,6 +3565,7 @@
 		493162D226CD7B6300140412 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				75B7AFB92B8F3F4F0028E4DC /* TaskDataModelNew */,
 				493162DA26CD7B6300140412 /* GoodsDataModel */,
 				493162D726CD7B6300140412 /* TaskDataModel */,
 			);
@@ -3598,6 +3602,7 @@
 		493162E426CD7B6800140412 /* TableViewVells */ = {
 			isa = PBXGroup;
 			children = (
+				75B7AFB22B8F35900028E4DC /* TaskTableViewCell */,
 				493162E526CD7B6800140412 /* TaskTableViewCellWithProgress */,
 			);
 			path = TableViewVells;
@@ -4142,6 +4147,22 @@
 				75500E602AEE8FD200C2FC3A /* TextManager.swift */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		75B7AFB22B8F35900028E4DC /* TaskTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				75B7AFB82B8F35FD0028E4DC /* TaskTableViewCell.h */,
+				75B7AFB62B8F35F30028E4DC /* TaskTableViewCell.m */,
+			);
+			path = TaskTableViewCell;
+			sourceTree = "<group>";
+		};
+		75B7AFB92B8F3F4F0028E4DC /* TaskDataModelNew */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TaskDataModelNew;
 			sourceTree = "<group>";
 		};
 		7A64BFF22892826F007CCB1E /* Source */ = {
@@ -6387,6 +6408,7 @@
 				18CDF4B7257F8DBD006E8E5C /* SetQuestionViewController.m in Sources */,
 				FE2C135127AEF629001CF7AF /* ToDoEmptyCell.m in Sources */,
 				4931630B26CD7B6800140412 /* GoodsCollectionViewCell.m in Sources */,
+				75B7AFB72B8F35F30028E4DC /* TaskTableViewCell.m in Sources */,
 				DB4065032466D889006CE5BC /* DLReminderView.m in Sources */,
 				DB4064F72466D889006CE5BC /* DLReminderSetDetailVC.m in Sources */,
 				B0C9F2402B0126E1006F4286 /* GradientButton.swift in Sources */,

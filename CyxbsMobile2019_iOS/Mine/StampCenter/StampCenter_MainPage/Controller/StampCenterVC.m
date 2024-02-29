@@ -12,7 +12,7 @@
 #import "ExchangeCenterViewController.h"
 #import "GoodsCollectionViewCell.h"
 #import "StampCenterSecondHeaderView.h"
-#import "TaskTableViewCellWithProgress.h"
+#import "TaskTableViewCell.h"
 #import "EditMyInfoViewController.h"
 #import "TableHeaderView.h"
 
@@ -93,9 +93,9 @@
             [mArray2 addObject:data];
         }
     }
-    if (mArray.count > 0) {
-        [mArray removeObjectAtIndex:0];
-    }
+//    if (mArray.count > 0) {
+//        [mArray removeObjectAtIndex:0];
+//    }
     _taskAry = mArray;
     _extraTaskAry = mArray2;
     //刷新控件
@@ -169,7 +169,7 @@
     }
    
     [self checkAlertLbl];
-    
+
 }
 
 #pragma mark - viewDidLoad
@@ -226,13 +226,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
         
     if (indexPath.section == 0) {
-        TaskTableViewCellWithProgress *cell = [[TaskTableViewCellWithProgress alloc]init];
+        TaskTableViewCell *cell = [[TaskTableViewCell alloc]init];
         StampTaskData *data = self.taskAry[indexPath.row];
         cell.row = indexPath.row;
         cell.data = data;
         return cell;
     }if (indexPath.section == 1){
-        TaskTableViewCellWithProgress *cell = [[TaskTableViewCellWithProgress alloc]init];
+        TaskTableViewCell *cell = [[TaskTableViewCell alloc]init];
         StampTaskData *data = self.extraTaskAry[indexPath.row];
         cell.row = indexPath.row;
         cell.data = data;
@@ -246,7 +246,7 @@
 #pragma mark - table代理
 //高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 75;
+    return 41;
 }
 
 
@@ -263,17 +263,29 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 280)];
+        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 270.0)];
         view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
-        TableHeaderView *headerView = [[TableHeaderView alloc]initWithFrame:CGRectMake(0, 217, SCREEN_WIDTH, 78)];
-        [view addSubview:headerView];
+        UIView* contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 217, SCREEN_WIDTH, 53)];
+        contentView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
+        UIBezierPath  *maskPath = [UIBezierPath bezierPathWithRoundedRect:contentView.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(20, 20)];
+        CAShapeLayer *maskLayer = [[CAShapeLayer alloc]init];
+        maskLayer.frame = contentView.bounds;
+        maskLayer.path = maskPath.CGPath;
+        contentView.layer.mask = maskLayer;
+        UILabel *la = [[UILabel alloc]init];
+        la.frame = CGRectMake(0.0427*SCREEN_WIDTH, 24, SCREEN_WIDTH - 40 , 28);
+        la.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
+        la.text = @"今日任务";
+        la.font = [UIFont fontWithName:PingFangSCSemibold size:20];
+        [view addSubview:contentView];
+        [contentView addSubview:la];
         return view;
     }
     if (section == 1) {
         UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 60.0)];
         footerView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         UILabel *la = [[UILabel alloc]init];
-        la.frame = CGRectMake(20, 20, SCREEN_WIDTH- 40 , 28);
+        la.frame = CGRectMake(0.0427*SCREEN_WIDTH, 20, SCREEN_WIDTH- 40 , 28);
         la.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         la.text = @"更多任务";
         la.font = [UIFont fontWithName:PingFangSCSemibold size:20];
@@ -285,10 +297,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return 290;
+        return 270;
     }
     if (section == 1) {
-        return 50;
+        return 60;
     }
     return 0.001;
 }
