@@ -15,6 +15,7 @@
 #import "TaskTableViewCell.h"
 #import "EditMyInfoViewController.h"
 #import "TableHeaderView.h"
+#import "FoodVC.h"
 
 //Model
 #import "StampGoodsData.h"
@@ -701,6 +702,12 @@
     [self.navigationController presentViewController:EVC animated:YES completion:nil];
 }
 
+//跳转至中心->美食版块
+- (void)jumpToFood{
+    FoodVC *FVC = [[FoodVC alloc]init];
+    [self.navigationController presentViewController:FVC animated:YES completion:nil];
+}
+
 
 //检查是否有未领取的货物
 - (void)checkAlertLbl {
@@ -755,6 +762,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToZhiyuan) name:@"jumpToZhiyuan" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToProfile) name:@"jumpToProfile" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkInSucceeded) name:@"checkInSucceeded" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToFood) name:@"jumpToFood" object:nil];
 }
 
 @end

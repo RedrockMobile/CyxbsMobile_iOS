@@ -460,7 +460,12 @@ UICollectionViewDelegateFlowLayout
 
 //返回的方法
 - (void)back {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.navigationController != nil) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if (self.presentingViewController != nil) {
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 //添加查看更多的按钮
