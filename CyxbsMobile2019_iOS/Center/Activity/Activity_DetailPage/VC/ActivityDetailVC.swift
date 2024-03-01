@@ -339,14 +339,16 @@ class ActivityDetailVC: UIViewController {
                 if (wantToWatchResponseData.status == 10000) {
                     self.wantToWatchButton.isEnabled = false
                     ActivityHUD.shared.addProgressHUDView(width: 138,
-                                                                height: 36,
-                                                                text: "添加成功",
-                                                                font: UIFont(name: PingFangSCMedium, size: 13)!,
-                                                                textColor: .white,
-                                                                delay: 2,
-                                                                backGroundColor: UIColor(hexString: "#2a4e84"),
-                                                                cornerRadius: 18,
-                                                                yOffset: Float(-UIScreen.main.bounds.height * 0.5 + Constants.statusBarHeight) + 90)
+                                                          height: 36,
+                                                          text: "添加成功",
+                                                          font: UIFont(name: PingFangSCMedium, size: 13)!,
+                                                          textColor: .white,
+                                                          delay: 2,
+                                                          backGroundColor: UIColor(hexString: "#2a4e84"),
+                                                          cornerRadius: 18,
+                                                          yOffset: Float(-UIScreen.main.bounds.height * 0.5 + Constants.statusBarHeight) + 90) {
+                        RemindHUD.shared().showDefaultHUD(withText: "完成任务，邮票+10")
+                    }
                     self.delegate?.updateModel(indexPathNum: self.numOfIndexPath, wantToWatch: true)
                 } else {
                     ActivityHUD.shared.addProgressHUDView(width: 138,
