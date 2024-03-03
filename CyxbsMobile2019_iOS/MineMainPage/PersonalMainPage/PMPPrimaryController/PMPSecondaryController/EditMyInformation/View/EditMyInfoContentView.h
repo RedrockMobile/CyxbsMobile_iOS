@@ -31,8 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) UIScrollView *contentScrollView;
 @property (nonatomic, weak) UIImageView *headerImageView;
 
-/// 编辑昵称的TextField
-@property (nonatomic, weak) MineEditTextField *nicknameTextField;
+/// 显示真实姓名的TextField
+@property (nonatomic, weak) MineEditTextField *realNameTextField;
 
 /// 编辑个性签名的TextField
 @property (nonatomic, weak) MineEditTextField *introductionTextField;
@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) MineEditTextField *genderTextField;
 
 /// 编辑手机号码的TextField
-@property (nonatomic, weak) MineEditTextField *birthdayTextField;
+@property (nonatomic, weak) MineEditTextField *collegeTextField;
 
 /// 编辑QQ的TextField
 @property (nonatomic, weak) MineEditTextField *QQTextField;

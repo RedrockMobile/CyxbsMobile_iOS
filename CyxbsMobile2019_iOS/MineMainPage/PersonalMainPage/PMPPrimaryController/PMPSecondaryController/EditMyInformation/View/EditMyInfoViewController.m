@@ -11,6 +11,7 @@
 #import "EditMyInfoPresenter.h"
 #import "MineViewController.h"
 #import "UserInformationIntorductionView.h"
+#import "RemindHud.h"
 
 @interface EditMyInfoViewController ()
 <
@@ -38,7 +39,7 @@ UIImagePickerControllerDelegate
     
     self.titleColor = [UIColor dm_colorWithLightColor:RGBColor(21, 49, 91, 1) darkColor:KUIColorFromRGB(0xf0f0f2)];
     self.VCTitleStr = @"资料详情";
-    self.view.backgroundColor = [UIColor dm_colorWithLightColor:RGBColor(251, 252, 255, 1) darkColor:UIColor.blackColor];
+    self.view.backgroundColor = [UIColor dm_colorWithLightColor:UIColor.whiteColor darkColor:UIColor.blackColor];
     self.backBtnImage = [UIImage imageNamed:@"navBar_back"];
     
     EditMyInfoContentView *contentView = [[EditMyInfoContentView alloc] init];
@@ -138,7 +139,19 @@ UIImagePickerControllerDelegate
     UIImage *image = info[UIImagePickerControllerEditedImage];
     self.contentView.headerImageView.image = image;
     self.profileChanged = YES;
-    [self dismissViewControllerAnimated:YES completion:nil];
+    self.backBtn.enabled = NO;
+    [self.presenter uploadProfile:self.contentView.headerImageView.image Success:^{
+        self.backBtn.enabled = YES;
+        [RemindHUD.shared showDefaultHUDWithText:@"头像上传成功" completion:^{
+                    [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+    } failure:^(NSError * _Nonnull error) {
+        self.backBtn.enabled = YES;
+        [RemindHUD.shared showDefaultHUDWithText:@"头像上传失败" completion:^{
+                    [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+    }];
+    
 }
 
 - (void)showUserInformationIntroduction:(UIButton *)sender {
@@ -159,12 +172,12 @@ UIImagePickerControllerDelegate
         //@"stuNum": [UserDefaultTool getStuNum],
         //@"idNum": [UserDefaultTool getIdNum],
         //@"photo_src": [UserItemTool defaultItem].headImgUrl ? [UserItemTool defaultItem].headImgUrl : @"",
-        @"nickname": self.contentView.nicknameTextField.text.length != 0 ? self.contentView.nicknameTextField.text : self.contentView.nicknameTextField.placeholder,
+        @"nickname": self.contentView.realNameTextField.text.length != 0 ? self.contentView.realNameTextField.text : self.contentView.realNameTextField.placeholder,
         @"introduction": self.contentView.introductionTextField.text,
         @"qq": self.contentView.QQTextField.text,
         @"phone": self.contentView.phoneNumberTextField.text,
         @"gender": self.contentView.genderTextField.text.length != 0 ? self.contentView.genderTextField.text : self.contentView.genderTextField.placeholder,
-        @"birthday": self.contentView.birthdayTextField.text.length != 0 ? self.contentView.birthdayTextField.text : self.contentView.birthdayTextField.placeholder,
+        @"birthday": self.contentView.collegeTextField.text.length != 0 ? self.contentView.collegeTextField.text : self.contentView.collegeTextField.placeholder,
     };
     
     [self.presenter uploadUserInfo:uploadData Success:^{
