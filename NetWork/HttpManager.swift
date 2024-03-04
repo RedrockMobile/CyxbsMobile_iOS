@@ -380,6 +380,7 @@ extension HttpManager {
         return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-ufield/message/list/"), method: .get, parameters: excludeOptionalParameter(parameters))
     }
     
+    ///活动详情
     func magipoke_ufield_activity(activity_id: Int) -> DataRequest {
         let parameters: [String: Any] = [
             "activity_id": activity_id
@@ -387,6 +388,7 @@ extension HttpManager {
         return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-ufield/activity/"), method: .get, parameters: parameters)
     }
     
+    ///已读活动消息
     func magipoke_ufield_action_click(message_id: Int) -> DataRequest {
         let parameters: [String: Any] = [
             "message_id": message_id
