@@ -18,19 +18,19 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong)UIButton *headImgBtn;
 
 /// 昵称label
-@property (nonatomic, strong)UILabel *nickNameLabel;
+@property (nonatomic, strong)UILabel *realNameLabel;
 
 /// 个性签名label
 @property (nonatomic, strong)UILabel *mottoLabel;
 
 /// 动态
-@property (nonatomic, strong)MainPageNumBtn *blogBtn;
+//@property (nonatomic, strong)MainPageNumBtn *blogBtn;
 
 /// 评论
-@property (nonatomic, strong)MainPageNumBtn *remarkBtn;
+//@property (nonatomic, strong)MainPageNumBtn *remarkBtn;
 
 /// 获赞
-@property (nonatomic, strong)MainPageNumBtn *praiseBtn;
+//@property (nonatomic, strong)MainPageNumBtn *praiseBtn;
 
 /// 点击后进入个人主页的小箭头按钮
 @property (nonatomic, strong)UIButton *homePageBtn;

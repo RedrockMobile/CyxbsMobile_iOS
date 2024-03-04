@@ -26,9 +26,9 @@
         [self addBlurImgView];
         [self addHeadImgBtn];
         [self addBackview];
-        [self addBlogBtn];
-        [self addRemarkBtn];
-        [self addPraiseBtn];
+//        [self addBlogBtn];
+//        [self addRemarkBtn];
+//        [self addPraiseBtn];
         [self addHomePageBtn];
     }
     return self;
@@ -81,98 +81,98 @@
 }
 
 - (void)addBackview {
-    //++++++++++++++++++添加昵称label++++++++++++++++++++  Begain
-    UILabel *nicknameLabel = [[UILabel alloc] init];
-    [self addSubview:nicknameLabel];
-    self.nickNameLabel = nicknameLabel;
+    //++++++++++++++++++添加姓名label++++++++++++++++++++  Begain
+    UILabel *realNameLabel = [[UILabel alloc] init];
+    [self addSubview:realNameLabel];
+    self.realNameLabel = realNameLabel;
     
-    nicknameLabel.font = [UIFont fontWithName:PingFangSCMedium size:22];
-    nicknameLabel.textColor = [UIColor dm_colorWithLightColor:RGBColor(17, 44, 84, 1) darkColor:RGBColor(240, 240, 242, 1)];
-    [nicknameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    realNameLabel.font = [UIFont boldSystemFontOfSize:22];
+    realNameLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B"] darkColor:[UIColor colorWithHexString:@"#FFFFFF"]];
+    [realNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.headImgBtn.mas_right).offset(0.01866666667*SCREEN_WIDTH);
-        make.top.equalTo(self.headImgBtn).offset(0.02133333333*SCREEN_WIDTH);
+        make.centerY.equalTo(self.headWhiteEdgeView);
         make.width.lessThanOrEqualTo(@(0.5*SCREEN_WIDTH));
     }];
     
     //++++++++++++++++++添加昵称label++++++++++++++++++++  End
     
     
-    //++++++++++++++++++添加显示个性签名的label++++++++++++++++++++  Begain
+    //++++++++++++++++++添加快来红岩网校和我一起玩吧⁓的label++++++++++++++++++++  Begain
     UILabel *introductionLabel = [[UILabel alloc] init];
     [self addSubview:introductionLabel];
     self.mottoLabel = introductionLabel;
-    introductionLabel.font = [UIFont fontWithName:PingFangSCMedium size:13];
-    introductionLabel.textColor = [UIColor dm_colorWithLightColor:RGBColor(17, 44, 84, 1) darkColor:RGBColor(240, 240, 242, 1)];
+    introductionLabel.font = [UIFont boldSystemFontOfSize:15];
+    introductionLabel.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B"] darkColor:[UIColor colorWithHexString:@"#FFFFFF"]];
     introductionLabel.numberOfLines = 2;
     [self.mottoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(nicknameLabel);
-        make.top.equalTo(nicknameLabel.mas_bottom).offset(0.006*SCREEN_HEIGHT);
-        make.width.lessThanOrEqualTo(@(0.5*SCREEN_WIDTH));
+        make.left.equalTo(self.headWhiteEdgeView.mas_left).offset(10);
+        make.top.equalTo(realNameLabel.mas_bottom).offset(0.04679802955665*SCREEN_HEIGHT);
+        make.width.lessThanOrEqualTo(@(0.6*SCREEN_WIDTH));
     }];
-    //++++++++++++++++++添加显示个性签名的label++++++++++++++++++++  End
+    //++++++++++++++++++添加快来红岩网校和我一起玩吧⁓的label++++++++++++++++++++  End
     
 //    nicknameLabel.text = @"鱼鱼鱼鱼鱼鱼鱼鱼1";
 //    introductionLabel.text = @"这是一条不普通的签名这是一条不普通的给这是一条不普通的签名这是一条不普通的给";
     
 }
 
-- (void)addBlogBtn {
-    MainPageNumBtn *btn = [[MainPageNumBtn alloc] init];
-    [self addSubview:btn];
-    self.blogBtn = btn;
-    
-    btn.hideTipView = YES;
-    
-    //按钮标题，用来显示动态/评论/获赞的总数
-//    [btn setTitle:@"9999" forState:UIControlStateNormal];
-    
-    //按钮的名字
-    btn.btnNameLabel.text = @"动态";
-    
-    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self).mas_equalTo(0.03466666667*SCREEN_WIDTH);
-        make.top.equalTo(self).mas_equalTo(0.336*SCREEN_WIDTH);
-    }];
-}
+//- (void)addBlogBtn {
+//    MainPageNumBtn *btn = [[MainPageNumBtn alloc] init];
+//    [self addSubview:btn];
+//    self.blogBtn = btn;
+//    
+//    btn.hideTipView = YES;
+//    
+//    //按钮标题，用来显示动态/评论/获赞的总数
+////    [btn setTitle:@"9999" forState:UIControlStateNormal];
+//    
+//    //按钮的名字
+//    btn.btnNameLabel.text = @"动态";
+//    
+//    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self).mas_equalTo(0.03466666667*SCREEN_WIDTH);
+//        make.top.equalTo(self).mas_equalTo(0.336*SCREEN_WIDTH);
+//    }];
+//}
 
 
-- (void)addRemarkBtn {
-    MainPageNumBtn *btn = [[MainPageNumBtn alloc] init];
-    [self addSubview:btn];
-    self.remarkBtn = btn;
-    
-    btn.hideTipView = YES;
-    
-    //按钮标题，用来显示动态/评论/获赞的总数
-//    [btn setTitle:@"9999" forState:UIControlStateNormal];
-    
-    //按钮的名字
-    btn.btnNameLabel.text = @"评论";
-    
-    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.blogBtn.mas_right).offset(0.128*SCREEN_WIDTH);
-        make.top.mas_equalTo(0.336*SCREEN_WIDTH);
-    }];
-}
+//- (void)addRemarkBtn {
+//    MainPageNumBtn *btn = [[MainPageNumBtn alloc] init];
+//    [self addSubview:btn];
+//    self.remarkBtn = btn;
+//    
+//    btn.hideTipView = YES;
+//    
+//    //按钮标题，用来显示动态/评论/获赞的总数
+////    [btn setTitle:@"9999" forState:UIControlStateNormal];
+//    
+//    //按钮的名字
+//    btn.btnNameLabel.text = @"评论";
+//    
+//    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.blogBtn.mas_right).offset(0.128*SCREEN_WIDTH);
+//        make.top.mas_equalTo(0.336*SCREEN_WIDTH);
+//    }];
+//}
 
-- (void)addPraiseBtn {
-    MainPageNumBtn *btn = [[MainPageNumBtn alloc] init];
-    [self addSubview:btn];
-    self.praiseBtn = btn;
-    
-    btn.hideTipView = YES;
-    
-    //按钮标题，用来显示动态/评论/获赞的总数
-//    [btn setTitle:@"9999" forState:UIControlStateNormal];
-    
-    //按钮的名字
-    btn.btnNameLabel.text = @"获赞";
-    
-    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.remarkBtn.mas_right).offset(0.128*SCREEN_WIDTH);
-        make.top.mas_equalTo(0.336*SCREEN_WIDTH);
-    }];
-}
+//- (void)addPraiseBtn {
+//    MainPageNumBtn *btn = [[MainPageNumBtn alloc] init];
+//    [self addSubview:btn];
+//    self.praiseBtn = btn;
+//    
+//    btn.hideTipView = YES;
+//    
+//    //按钮标题，用来显示动态/评论/获赞的总数
+////    [btn setTitle:@"9999" forState:UIControlStateNormal];
+//    
+//    //按钮的名字
+//    btn.btnNameLabel.text = @"获赞";
+//    
+//    [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.remarkBtn.mas_right).offset(0.128*SCREEN_WIDTH);
+//        make.top.mas_equalTo(0.336*SCREEN_WIDTH);
+//    }];
+//}
 - (void)addHomePageBtn {
     UIButton *btn = [[UIButton alloc] init];
     self.homePageBtn = btn;

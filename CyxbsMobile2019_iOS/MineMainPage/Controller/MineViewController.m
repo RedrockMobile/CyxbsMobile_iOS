@@ -111,7 +111,7 @@
     
     self.userInfoModel = [MineUserInfoModel shareModel];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userItemDidUpdate:) name:@"UserItemGetUserInfo" object:nil];
-    [self updateUserInfoInUserInfoModel];
+//    [self updateUserInfoInUserInfoModel];
     [self updateUserInfoInUserItem];
 }
 
@@ -120,22 +120,22 @@
     UserItem *item = [UserItem defaultItem];
     MineTopBlurView *blurView = self.blurView;
     [blurView.headImgBtn sd_setImageWithURL:[NSURL URLWithString:item.headImgUrl] forState:UIControlStateNormal];
-    blurView.nickNameLabel.text = item.nickname;
-    blurView.mottoLabel.text = item.introduction;
+    blurView.realNameLabel.text = item.realName;
+    blurView.mottoLabel.text = @"快来红岩网校和我一起玩吧⁓";
     [self.signView setSignDay:item.checkInDay];
     BOOL canCheckIn = !item.isCheckedToday;
     [self.signView setSignBtnEnable:canCheckIn];
 }
 
-- (void)updateUserInfoInUserInfoModel {
-    MineUserInfoModel *model = self.userInfoModel;
-    [self.blurView.blogBtn setTitle:[NSString stringWithFormat:@"%ld", model.blogCnt] forState:UIControlStateNormal];
-    [self.blurView.remarkBtn setTitle:[NSString stringWithFormat:@"%ld", model.remarkCnt] forState:UIControlStateNormal];
-    [self.blurView.praiseBtn setTitle:[NSString stringWithFormat:@"%ld", model.praiseCnt] forState:UIControlStateNormal];
-    
-    self.blurView.remarkBtn.hideTipView = !model.hasNewRemark;
-    self.blurView.praiseBtn.hideTipView = !model.hasNewPraise;
-}
+//- (void)updateUserInfoInUserInfoModel {
+//    MineUserInfoModel *model = self.userInfoModel;
+//    [self.blurView.blogBtn setTitle:[NSString stringWithFormat:@"%ld", model.blogCnt] forState:UIControlStateNormal];
+//    [self.blurView.remarkBtn setTitle:[NSString stringWithFormat:@"%ld", model.remarkCnt] forState:UIControlStateNormal];
+//    [self.blurView.praiseBtn setTitle:[NSString stringWithFormat:@"%ld", model.praiseCnt] forState:UIControlStateNormal];
+//    
+//    self.blurView.remarkBtn.hideTipView = !model.hasNewRemark;
+//    self.blurView.praiseBtn.hideTipView = !model.hasNewPraise;
+//}
 
 
 - (void)userItemDidUpdate:(NSNotification*)noti {
@@ -215,13 +215,13 @@
     
     [blurView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backImgView).offset(0.04533333333*SCREEN_WIDTH);
-        make.top.equalTo(self.backImgView).offset(0.07512315271*SCREEN_HEIGHT);
+        make.top.equalTo(self.backImgView).offset(0.07512315*SCREEN_HEIGHT);
     }];
     
     [blurView.headImgBtn addTarget:self action:@selector(homePageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [blurView.blogBtn addTarget:self action:@selector(homePageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [blurView.remarkBtn addTarget:self action:@selector(homePageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [blurView.praiseBtn addTarget:self action:@selector(homePageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+//    [blurView.blogBtn addTarget:self action:@selector(homePageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+//    [blurView.remarkBtn addTarget:self action:@selector(homePageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+//    [blurView.praiseBtn addTarget:self action:@selector(homePageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     [blurView.homePageBtn addTarget:self action:@selector(homePageBtnClicked) forControlEvents:UIControlEventTouchUpInside];
     UITapGestureRecognizer *tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(homePageBtnClicked)];
     [blurView.blurImgView setUserInteractionEnabled:YES];
@@ -247,7 +247,7 @@
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.contentView);
-        make.top.equalTo(self.blurView.mas_bottom).offset(-0.02216748768*SCREEN_HEIGHT);
+        make.top.equalTo(self.blurView.mas_bottom).offset(-0.06216748768*SCREEN_HEIGHT);
         make.width.mas_equalTo(SCREEN_WIDTH);
         make.height.mas_equalTo(0.6896551724*SCREEN_HEIGHT);
     }];
@@ -324,7 +324,7 @@
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.backBoardView).offset(0.04266666667*SCREEN_WIDTH);
-        make.top.equalTo(self.backBoardView).offset(0.37497537*SCREEN_HEIGHT);
+        make.top.equalTo(self.backBoardView).offset(0.30325123*SCREEN_HEIGHT);
     }];
     
     [view.signBtn addTarget:self action:@selector(signBtnClicked) forControlEvents:UIControlEventTouchUpInside];
@@ -346,7 +346,7 @@
     
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.equalTo(self.backBoardView);
-        make.top.equalTo(self.backBoardView).offset(0.49674877*SCREEN_HEIGHT);
+        make.top.equalTo(self.backBoardView).offset(0.41162562*SCREEN_HEIGHT);
         
     }];
 }
