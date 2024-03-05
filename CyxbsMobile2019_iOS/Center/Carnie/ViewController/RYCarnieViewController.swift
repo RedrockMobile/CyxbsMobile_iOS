@@ -19,6 +19,9 @@ class RYCarnieViewController: UIViewController {
         view.addSubview(contentScrollView)
         
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         request()
     }
     

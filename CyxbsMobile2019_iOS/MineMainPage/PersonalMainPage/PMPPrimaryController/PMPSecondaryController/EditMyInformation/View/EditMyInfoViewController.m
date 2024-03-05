@@ -12,6 +12,7 @@
 #import "MineViewController.h"
 #import "UserInformationIntorductionView.h"
 #import "RemindHud.h"
+#import "掌上重邮-Swift.h"
 
 @interface EditMyInfoViewController ()
 <
@@ -145,6 +146,7 @@ UIImagePickerControllerDelegate
         [RemindHUD.shared showDefaultHUDWithText:@"头像上传成功" completion:^{
                     [self dismissViewControllerAnimated:YES completion:nil];
         }];
+        [UpdatePersonModelTool.shared update];
     } failure:^(NSError * _Nonnull error) {
         self.backBtn.enabled = YES;
         [RemindHUD.shared showDefaultHUDWithText:@"头像上传失败" completion:^{

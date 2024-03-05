@@ -344,6 +344,7 @@
 		75500E622AEE8FD200C2FC3A /* SwiftyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75500E5F2AEE8FD200C2FC3A /* SwiftyClient.swift */; };
 		75500E632AEE8FD200C2FC3A /* TextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75500E602AEE8FD200C2FC3A /* TextManager.swift */; };
 		7591F1AF2B95D61E001890D2 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7591F1AE2B95D61E001890D2 /* TaskManager.swift */; };
+		7591F1B22B96FDB5001890D2 /* UpdatePersonModelTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7591F1B12B96FDB5001890D2 /* UpdatePersonModelTool.swift */; };
 		75B7AFB72B8F35F30028E4DC /* TaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B7AFB62B8F35F30028E4DC /* TaskTableViewCell.m */; };
 		7FBF39F4257B79F30077494E /* ByPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF39EB257B79F20077494E /* ByPasswordViewController.m */; };
 		7FBF39F6257B79F30077494E /* ByWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF39EF257B79F30077494E /* ByWordViewController.m */; };
@@ -1224,6 +1225,7 @@
 		75500E5F2AEE8FD200C2FC3A /* SwiftyClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyClient.swift; sourceTree = "<group>"; };
 		75500E602AEE8FD200C2FC3A /* TextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextManager.swift; sourceTree = "<group>"; };
 		7591F1AE2B95D61E001890D2 /* TaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
+		7591F1B12B96FDB5001890D2 /* UpdatePersonModelTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePersonModelTool.swift; sourceTree = "<group>"; };
 		75B7AFB62B8F35F30028E4DC /* TaskTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskTableViewCell.m; sourceTree = "<group>"; };
 		75B7AFB82B8F35FD0028E4DC /* TaskTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskTableViewCell.h; sourceTree = "<group>"; };
 		7A64BFF32892826F007CCB1E /* NewQAHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAHeader.h; sourceTree = "<group>"; };
@@ -4160,6 +4162,14 @@
 			path = TaskManager;
 			sourceTree = "<group>";
 		};
+		7591F1B02B96FD85001890D2 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				7591F1B12B96FDB5001890D2 /* UpdatePersonModelTool.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		75B7AFB22B8F35900028E4DC /* TaskTableViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -4367,6 +4377,7 @@
 				AA0DDB15286C8B1900802324 /* Protocol */,
 				AA0DDB17286C8B1900802324 /* Model */,
 				AA0DDB1A286C8B1900802324 /* View */,
+				7591F1B02B96FD85001890D2 /* Tools */,
 			);
 			path = EditMyInformation;
 			sourceTree = "<group>";
@@ -6700,6 +6711,7 @@
 				D0101D582433C885004337ED /* UIResponder+SDMask.m in Sources */,
 				B0B1B9F629E69EAD00A1BB02 /* ElectricFeeModel.m in Sources */,
 				AA0DDB56286C8B1900802324 /* MineTopBlurView.m in Sources */,
+				7591F1B22B96FDB5001890D2 /* UpdatePersonModelTool.swift in Sources */,
 				B0C9F23C2B0126E1006F4286 /* AdminModel.swift in Sources */,
 				14B73F7E281BED7B00D08ADD /* MineMessageVC.m in Sources */,
 				B0B1BA0729E6B4FD00A1BB02 /* ElectricViewController.m in Sources */,
