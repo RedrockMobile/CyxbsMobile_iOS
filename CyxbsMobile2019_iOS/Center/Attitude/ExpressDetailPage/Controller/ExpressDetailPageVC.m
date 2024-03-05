@@ -20,6 +20,9 @@
 #import "ExpressDetailCell.h"
 #import "AttitudeNetWrong.h"
 
+//swift桥接头文件（需要用swift的邮票任务管理类）
+#import "掌上重邮-Swift.h"
+
 @interface ExpressDetailPageVC () <
     UITableViewDelegate,
     UITableViewDataSource
@@ -251,6 +254,8 @@
 
 // 选中
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //邮票任务进度上传
+    [TaskManager.shared uploadTaskProgressWithTitle:@"发表一次动态" stampCount:10 remindText:@"今日已完成表态1次，获得10张邮票"];
     ExpressDetailCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [self putAnimation:indexPath];
     [self tapFeedback];
