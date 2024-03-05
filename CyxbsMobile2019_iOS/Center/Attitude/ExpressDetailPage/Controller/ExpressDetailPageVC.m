@@ -29,6 +29,8 @@
 
 /// 投票选项的NSInteger，未投票时是-1，每一次更改投票都会随之改变
 @property (nonatomic, assign) NSInteger votedRow;
+/// 投票选项的indexPath，在进入页面时用来加载动画
+@property (nonatomic, strong) NSIndexPath* votedIndex;
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -85,7 +87,19 @@
     [self requestDetails];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self loadAnimate];
+}
+
 #pragma mark - Method
+
+- (void)loadAnimate {
+    if (self.votedRow != -1) {
+        [UIView setAnimationsEnabled:YES];
+        [self putAnimation:self.votedIndex];
+    }
+}
 
 - (void)addViews {
     [self.view addSubview:self.backgroundImage];
@@ -124,7 +138,6 @@
 
 /// 投票动画
 - (void)putAnimation:(NSIndexPath *)selectIndexPath {
-    NSLog(@"当前cell的index：%@",selectIndexPath);
     ExpressDetailCell *cell = [self.tableView cellForRowAtIndexPath:selectIndexPath];
     // 获取cell的宽度
     CGFloat cellWidth = cell.bounds.size.width;
@@ -137,8 +150,6 @@
         [cell backToOriginState];
         // 分别得到gradientWidth
         gradientWidth = cellWidth * [self.putPickItem.percentNumArray[indexPath.row] doubleValue];
-        NSLog(@"动画-numarray:%@",self.putPickItem.percentNumArray);
-        NSLog(@"动画占比颜色长度:%f",gradientWidth);
         if (indexPath == selectIndexPath) {
             // 是选中的cell
             [cell selectCell];
@@ -146,7 +157,7 @@
             [cell otherCell];
         }
         // 渐变动画
-        [UIView animateWithDuration:1.0 animations:^{
+        [UIView animateWithDuration:2.0 animations:^{
             cell.gradientView.frame = CGRectMake(0, 0, gradientWidth, cell.bounds.size.height);
         } completion:^(BOOL finished) {
             cell.gradientView.frame = CGRectMake(0, 0, gradientWidth, cell.bounds.size.height);
@@ -220,15 +231,17 @@
             if ([cell.titleLab.text isEqual:self.getDetailItem.getVoted]) {
                 // 记录投票的选项
                 self.votedRow = indexPath.row;
-                [self putAnimation:indexPath];
+                self.votedIndex = indexPath;
+//                [self putAnimation:indexPath];
+                NSLog(@"记录投票的选项:%ld",(long)self.votedRow);
             }
         } else {
             self.votedRow = -1;
         }
-        
     }
     return cell;
 }
+
 
 // MARK: <UITableViewDelegate>
 
