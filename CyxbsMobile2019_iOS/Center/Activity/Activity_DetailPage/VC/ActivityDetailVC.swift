@@ -347,7 +347,7 @@ class ActivityDetailVC: UIViewController {
                                                           backGroundColor: UIColor(hexString: "#2a4e84"),
                                                           cornerRadius: 18,
                                                           yOffset: Float(-UIScreen.main.bounds.height * 0.5 + Constants.statusBarHeight) + 90) {
-                        RemindHUD.shared().showDefaultHUD(withText: "完成任务，邮票+10")
+                        TaskManager.shared.uploadTaskProgress(title: "参加一次活动", stampCount: 10, remindText: "已参加活动1次，获得50张邮票")
                     }
                     self.delegate?.updateModel(indexPathNum: self.numOfIndexPath, wantToWatch: true)
                 } else {

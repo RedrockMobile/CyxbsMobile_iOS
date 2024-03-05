@@ -396,4 +396,11 @@ extension HttpManager {
         return SessionManager.shared.ry_request(APIConfig.current.api("/magipoke-ufield/message/action/click/"), method: .put, parameters: parameters, encoding: URLEncoding.queryString)
     }
     
+    ///完成任务接口
+    func magipoke_intergral_integral_progress(title: String) -> DataRequest {
+        let parameters: [String: Any] = [
+            "title": title
+        ]
+        return SessionManager.shared.ry_upload(APIConfig.current.api("/magipoke-intergral/Integral/progress"), method: .post, parameters: parameters)
+    }
 }

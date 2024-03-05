@@ -109,7 +109,7 @@ class GroupManageVC: UIViewController {
         for student in memberAry {
             studentIDAry.append(student.studentID)
         }
-        
+        TaskManager.shared.uploadTaskProgress(title: "使用一次没课约", stampCount: 10, remindText: "今日已使用没课约1次，获得10张邮票")
         let vc = WeDateCourseScheduleVC(stuNumAry: studentIDAry)
         self.navigationController?.present(vc, animated: true, completion: nil)
     }
