@@ -121,7 +121,7 @@ extension RYCarnieViewController {
     }
     
     func setupData(person: PersonModel) {
-        headerView.update(imgURL: person.photo_src, title: "Hi~，\(person.nickname)（\(person.username)）", days: UserDefaultsManager.shared.daysOfEntryCarnie)
+        headerView.update(imgURL: person.photo_src, title: "Hi~，\(person.username)", days: UserDefaultsManager.shared.daysOfEntryCarnie)
     }
 }
 
