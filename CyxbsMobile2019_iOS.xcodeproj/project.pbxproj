@@ -345,6 +345,7 @@
 		75500E632AEE8FD200C2FC3A /* TextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75500E602AEE8FD200C2FC3A /* TextManager.swift */; };
 		7591F1AF2B95D61E001890D2 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7591F1AE2B95D61E001890D2 /* TaskManager.swift */; };
 		7591F1B22B96FDB5001890D2 /* UpdatePersonModelTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7591F1B12B96FDB5001890D2 /* UpdatePersonModelTool.swift */; };
+		75B1D7752B9EC71100BBC794 /* NSDictionaryExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B1D7742B9EC71100BBC794 /* NSDictionaryExtension.m */; };
 		75B7AFB72B8F35F30028E4DC /* TaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B7AFB62B8F35F30028E4DC /* TaskTableViewCell.m */; };
 		7FBF39F4257B79F30077494E /* ByPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF39EB257B79F20077494E /* ByPasswordViewController.m */; };
 		7FBF39F6257B79F30077494E /* ByWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FBF39EF257B79F30077494E /* ByWordViewController.m */; };
@@ -1226,6 +1227,8 @@
 		75500E602AEE8FD200C2FC3A /* TextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextManager.swift; sourceTree = "<group>"; };
 		7591F1AE2B95D61E001890D2 /* TaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
 		7591F1B12B96FDB5001890D2 /* UpdatePersonModelTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePersonModelTool.swift; sourceTree = "<group>"; };
+		75B1D7732B9EC70400BBC794 /* NSDictionaryExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDictionaryExtension.h; sourceTree = "<group>"; };
+		75B1D7742B9EC71100BBC794 /* NSDictionaryExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSDictionaryExtension.m; sourceTree = "<group>"; };
 		75B7AFB62B8F35F30028E4DC /* TaskTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskTableViewCell.m; sourceTree = "<group>"; };
 		75B7AFB82B8F35FD0028E4DC /* TaskTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskTableViewCell.h; sourceTree = "<group>"; };
 		7A64BFF32892826F007CCB1E /* NewQAHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewQAHeader.h; sourceTree = "<group>"; };
@@ -2748,6 +2751,7 @@
 				14FFFBCD2AF8C0F3005A7EBD /* UIKitEX */,
 				14FFFBD42AF8C0F3005A7EBD /* UIImageExtensions.swift */,
 				14FFFBD52AF8C0F3005A7EBD /* SwiftEX.swift */,
+				75B1D7722B9EC62800BBC794 /* NSDictionaryExtension */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -4168,6 +4172,15 @@
 				7591F1B12B96FDB5001890D2 /* UpdatePersonModelTool.swift */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		75B1D7722B9EC62800BBC794 /* NSDictionaryExtension */ = {
+			isa = PBXGroup;
+			children = (
+				75B1D7732B9EC70400BBC794 /* NSDictionaryExtension.h */,
+				75B1D7742B9EC71100BBC794 /* NSDictionaryExtension.m */,
+			);
+			path = NSDictionaryExtension;
 			sourceTree = "<group>";
 		};
 		75B7AFB22B8F35900028E4DC /* TaskTableViewCell */ = {
@@ -6320,6 +6333,7 @@
 				187DF4BE260310DD000BCDE9 /* FTEmptyView.m in Sources */,
 				B074C03C2AFD20F00086AB07 /* ActivityCenterTopView.swift in Sources */,
 				14B73F81281BED7B00D08ADD /* MessagePresentController.m in Sources */,
+				75B1D7752B9EC71100BBC794 /* NSDictionaryExtension.m in Sources */,
 				AA4FF36525879CD500C31286 /* MineSettingViewController.m in Sources */,
 				14B73F76281BED7B00D08ADD /* SystemMessageCell.m in Sources */,
 				AA0DDB53286C8B1900802324 /* MineMSSEnterBtn.m in Sources */,
