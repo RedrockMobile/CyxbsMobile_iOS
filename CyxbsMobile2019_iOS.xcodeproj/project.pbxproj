@@ -343,6 +343,9 @@
 		75500E612AEE8FD200C2FC3A /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75500E5E2AEE8FD200C2FC3A /* UIColorExtension.swift */; };
 		75500E622AEE8FD200C2FC3A /* SwiftyClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75500E5F2AEE8FD200C2FC3A /* SwiftyClient.swift */; };
 		75500E632AEE8FD200C2FC3A /* TextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75500E602AEE8FD200C2FC3A /* TextManager.swift */; };
+		757A58EE2BA1EAD0003D95F0 /* ExpressDetailPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 757A58ED2BA1EAD0003D95F0 /* ExpressDetailPageVC.m */; };
+		758C7E4F2BA456AF002CA3F4 /* MXBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758C7E4E2BA456AF002CA3F4 /* MXBackButton.swift */; };
+		758C7E522BA4700F002CA3F4 /* MXObjCBackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 758C7E512BA4700F002CA3F4 /* MXObjCBackButton.m */; };
 		7591F1AF2B95D61E001890D2 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7591F1AE2B95D61E001890D2 /* TaskManager.swift */; };
 		7591F1B22B96FDB5001890D2 /* UpdatePersonModelTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7591F1B12B96FDB5001890D2 /* UpdatePersonModelTool.swift */; };
 		75B1D7752B9EC71100BBC794 /* NSDictionaryExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 75B1D7742B9EC71100BBC794 /* NSDictionaryExtension.m */; };
@@ -483,7 +486,6 @@
 		B0F71C8C2ABC71B200F8B1AC /* AttitudeHomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F71C532ABC71B200F8B1AC /* AttitudeHomeCell.m */; };
 		B0F71C8D2ABC71B200F8B1AC /* AttitudeMainDefaultView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F71C542ABC71B200F8B1AC /* AttitudeMainDefaultView.m */; };
 		B0F71C8E2ABC71B200F8B1AC /* AttitudeNetWrong.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F71C552ABC71B200F8B1AC /* AttitudeNetWrong.m */; };
-		B0F71C8F2ABC71B200F8B1AC /* ExpressDetailPageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F71C5C2ABC71B200F8B1AC /* ExpressDetailPageVC.m */; };
 		B0F71C902ABC71B200F8B1AC /* ExpressPickPutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F71C5F2ABC71B200F8B1AC /* ExpressPickPutModel.m */; };
 		B0F71C912ABC71B200F8B1AC /* ExpressPickGetModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F71C602ABC71B200F8B1AC /* ExpressPickGetModel.m */; };
 		B0F71C922ABC71B200F8B1AC /* ExpressDeclareModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F71C622ABC71B200F8B1AC /* ExpressDeclareModel.m */; };
@@ -1225,6 +1227,10 @@
 		75500E5E2AEE8FD200C2FC3A /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		75500E5F2AEE8FD200C2FC3A /* SwiftyClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyClient.swift; sourceTree = "<group>"; };
 		75500E602AEE8FD200C2FC3A /* TextManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextManager.swift; sourceTree = "<group>"; };
+		757A58ED2BA1EAD0003D95F0 /* ExpressDetailPageVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExpressDetailPageVC.m; sourceTree = "<group>"; };
+		758C7E4E2BA456AF002CA3F4 /* MXBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MXBackButton.swift; sourceTree = "<group>"; };
+		758C7E502BA4700F002CA3F4 /* MXObjCBackButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MXObjCBackButton.h; sourceTree = "<group>"; };
+		758C7E512BA4700F002CA3F4 /* MXObjCBackButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MXObjCBackButton.m; sourceTree = "<group>"; };
 		7591F1AE2B95D61E001890D2 /* TaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
 		7591F1B12B96FDB5001890D2 /* UpdatePersonModelTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePersonModelTool.swift; sourceTree = "<group>"; };
 		75B1D7732B9EC70400BBC794 /* NSDictionaryExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSDictionaryExtension.h; sourceTree = "<group>"; };
@@ -1479,7 +1485,6 @@
 		B0F71C572ABC71B200F8B1AC /* AttitudeNetWrong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttitudeNetWrong.h; sourceTree = "<group>"; };
 		B0F71C582ABC71B200F8B1AC /* AttitudeMainDefaultView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttitudeMainDefaultView.h; sourceTree = "<group>"; };
 		B0F71C5B2ABC71B200F8B1AC /* ExpressDetailPageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressDetailPageVC.h; sourceTree = "<group>"; };
-		B0F71C5C2ABC71B200F8B1AC /* ExpressDetailPageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressDetailPageVC.m; sourceTree = "<group>"; };
 		B0F71C5E2ABC71B200F8B1AC /* ExpressDeclareModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressDeclareModel.h; sourceTree = "<group>"; };
 		B0F71C5F2ABC71B200F8B1AC /* ExpressPickPutModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressPickPutModel.m; sourceTree = "<group>"; };
 		B0F71C602ABC71B200F8B1AC /* ExpressPickGetModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpressPickGetModel.m; sourceTree = "<group>"; };
@@ -2439,6 +2444,7 @@
 		14E7E4A327F5760D00B67469 /* Encapsulation */ = {
 			isa = PBXGroup;
 			children = (
+				758C7E482BA4548D002CA3F4 /* MXBackButton */,
 				14FBBD43280505E700D5B05D /* TextCycleView */,
 				14D03A0C27FE6BE200D6AE93 /* SSRTopBarBaseView */,
 				14E7E4AB27F5763700B67469 /* QuestionSelectView */,
@@ -4158,6 +4164,16 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
+		758C7E482BA4548D002CA3F4 /* MXBackButton */ = {
+			isa = PBXGroup;
+			children = (
+				758C7E4E2BA456AF002CA3F4 /* MXBackButton.swift */,
+				758C7E502BA4700F002CA3F4 /* MXObjCBackButton.h */,
+				758C7E512BA4700F002CA3F4 /* MXObjCBackButton.m */,
+			);
+			path = MXBackButton;
+			sourceTree = "<group>";
+		};
 		7591F1AD2B95D5EF001890D2 /* TaskManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -5160,7 +5176,7 @@
 			isa = PBXGroup;
 			children = (
 				B0F71C5B2ABC71B200F8B1AC /* ExpressDetailPageVC.h */,
-				B0F71C5C2ABC71B200F8B1AC /* ExpressDetailPageVC.m */,
+				757A58ED2BA1EAD0003D95F0 /* ExpressDetailPageVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -6408,6 +6424,7 @@
 				1A30F3AF23D33F8800FBBD83 /* TodaysDot.m in Sources */,
 				14FFFC052AF8C0FD005A7EBD /* AliyunConfig.m in Sources */,
 				AA4FA1DF25C2DE5F005139BA /* LearnMoreViewController.m in Sources */,
+				757A58EE2BA1EAD0003D95F0 /* ExpressDetailPageVC.m in Sources */,
 				FCB39F2D2AB03B7400914462 /* AddArrangePlaceVC.swift in Sources */,
 				1893DC8926EA32A3007E871E /* MGDGCD.m in Sources */,
 				AA0DDB6C286C8B1A00802324 /* EditMyInfoModel.m in Sources */,
@@ -6514,6 +6531,7 @@
 				7311328926CCEC2400EF88C1 /* PopupView.m in Sources */,
 				AA0DDB64286C8B1A00802324 /* SQLCodeCreater.m in Sources */,
 				14FFFBE62AF8C0F3005A7EBD /* UIButton+Cyxbs.swift in Sources */,
+				758C7E522BA4700F002CA3F4 /* MXObjCBackButton.m in Sources */,
 				1A15DF97238D03B3005E0843 /* CheckInContentView.m in Sources */,
 				1A4A466C24C97E2A0033734E /* UserProtocolViewController.m in Sources */,
 				B0F71C902ABC71B200F8B1AC /* ExpressPickPutModel.m in Sources */,
@@ -6622,7 +6640,6 @@
 				B0F08FF928A24F9000986EB6 /* IdsBinding.m in Sources */,
 				7311328B26CCEC2400EF88C1 /* BottomView.m in Sources */,
 				AA4B0FB324D3E09B00221B5A /* TopBarScrollView.m in Sources */,
-				B0F71C8F2ABC71B200F8B1AC /* ExpressDetailPageVC.m in Sources */,
 				18CDF696257F91BD006E8E5C /* FYHCycleLabel.m in Sources */,
 				18CDF4C8257F8DBD006E8E5C /* ResetPwdView.m in Sources */,
 				B0F71C8B2ABC71B200F8B1AC /* AttitudeSelfPageModel.m in Sources */,
@@ -6822,6 +6839,7 @@
 				14F6F5502AFB8CDA007C7CA6 /* RYScheduleMaping.swift in Sources */,
 				18CDF67C257F91BD006E8E5C /* ClassmatesList.m in Sources */,
 				7311328826CCEC2400EF88C1 /* ContentScrollView.m in Sources */,
+				758C7E4F2BA456AF002CA3F4 /* MXBackButton.swift in Sources */,
 				B0C9F2322B0126E1006F4286 /* ActivityDetailView.swift in Sources */,
 				18CDF4C9257F8DBD006E8E5C /* safePopView.m in Sources */,
 				FC5279082AAC48D000B09685 /* ClassSearchResultTableViewCell.swift in Sources */,
