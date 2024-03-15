@@ -48,9 +48,7 @@ class ActivityTopView: UIView {
     }()
     // 返回按钮
     lazy var backButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "activityBack"), for: .normal)
-        button.imageView?.contentMode = .scaleAspectFit
+        let button = MXBackButton(frame: .zero, isAutoHotspotExpand: true)
         return button
     }()
     //管理员审核按钮
@@ -91,17 +89,10 @@ class ActivityTopView: UIView {
     func setPosition() {
         // 返回按钮
         self.backButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(17)
+            make.leading.equalToSuperview().offset(16)
             make.top.equalToSuperview().offset(Constants.statusBarHeight + 13)
-            make.width.equalTo(30)
-            make.height.equalTo(30)
-        }
-        //返回按钮图片
-        self.backButton.imageView?.snp.makeConstraints { make in
-            make.leading.equalTo(self.searchButton)
-            make.width.equalTo(7)
-            make.height.equalTo(16)
-            make.centerY.equalTo(self.backButton)
+            make.width.equalTo(9)
+            make.height.equalTo(18)
         }
         // 标题栏
         self.titleLab.snp.makeConstraints { make in

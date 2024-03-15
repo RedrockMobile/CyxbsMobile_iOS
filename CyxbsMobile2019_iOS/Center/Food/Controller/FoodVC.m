@@ -39,6 +39,7 @@
 #import "popUpInformationVC.h"
 #import "popFoodResultVC.h"
 #import "UDScrollAnimationView.h"
+#import "MXObjCBackButton.h"
 //需要使用swift的邮票任务管理类
 #import "掌上重邮-Swift.h"
 
@@ -448,17 +449,15 @@ UICollectionViewDelegateFlowLayout
 
 //添加退出的按钮
 - (void)addBackButton {
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *backButton = [[MXObjCBackButton alloc] initWithFrame:CGRectZero isAutoHotspotExpand:YES];
     [self.goBackView addSubview:backButton];
     [backButton setImage:[UIImage imageNamed:@"空教室返回"] forState:UIControlStateNormal];
-    backButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [backButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view).offset(10);
+        make.left.equalTo(self.view).offset(17);
         make.centerY.equalTo(self.titleLabel);
-        make.width.equalTo(@23);
+        make.width.equalTo(@9);
         make.height.equalTo(@19);
     }];
-    backButton.imageEdgeInsets = UIEdgeInsetsMake(0, 7, 0, 7);
     [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
 }
 
