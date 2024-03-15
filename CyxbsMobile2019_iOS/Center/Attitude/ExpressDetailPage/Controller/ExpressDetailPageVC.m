@@ -30,11 +30,16 @@
 /// id
 @property (nonatomic, copy) NSNumber *theId;
 
-/// 投票选项的NSInteger，未投票时是-1，每一次更改投票都会随之改变
-@property (nonatomic, assign) NSInteger votedRow;
-/// 投票选项的indexPath，在进入页面时用来加载动画
-@property (nonatomic, strong) NSIndexPath* votedIndex;
+///标题
+@property (nonatomic, strong) NSString *attitudeTitle;
 
+///投票选项数组
+@property (nonatomic, strong) NSArray *choices;
+
+///被投票的选项名
+@property (nonatomic, strong) NSString *votedChoice;
+
+///展示投票选项的表格视图
 @property (nonatomic, strong) UITableView *tableView;
 
 /// 返回按钮
@@ -50,19 +55,17 @@
 /// 详细信息
 @property (nonatomic, strong) ExpressPickGetModel *getDetailModel;
 
-@property (nonatomic, strong) ExpressPickGetItem *getDetailItem;
-
 /// PUT 投票
 @property (nonatomic, strong) ExpressPickPutModel *putPickModel;
-
-/// 发布投票
-@property (nonatomic, strong) ExpressPickPutItem *putPickItem;
 
 /// 撤销投票
 @property (nonatomic, strong) ExpressDeclareModel *declareModel;
 
-/// 投票百分比数组
-@property (nonatomic, strong) NSArray *putPercentArray;  // 放票数百分比的数组
+/// 投票百分比字符串数组
+@property (nonatomic, strong) NSArray *percentStringArray;
+
+/// 投票比例（NSNumber）数组
+@property (nonatomic, strong) NSArray *percentNumArray;
 
 /// 网络错误页面
 @property (nonatomic, strong) AttitudeNetWrong *netWrong;
@@ -74,7 +77,7 @@
     self = [super init];
     if (self) {
         self.theId = theId;
-        self.putPercentArray = [NSArray array];
+        self.percentStringArray = [NSArray array];
     }
     return self;
 }
@@ -98,9 +101,11 @@
 #pragma mark - Method
 
 - (void)loadAnimate {
-    if (self.votedRow != -1) {
+    NSLog(@"%@", self.votedChoice);
+    //如果已投票
+    if (![self.votedChoice isEqualToString:@""]) {
         [UIView setAnimationsEnabled:YES];
-        [self putAnimation:self.votedIndex];
+        [self putAnimation];
     }
 }
 
@@ -120,11 +125,13 @@
 - (void)requestDetails {
     
     [self.getDetailModel requestGetDetailDataWithId:self.theId Success:^(ExpressPickGetItem * _Nonnull model) {
-        self.getDetailItem = model;
-        NSLog(@"self.getDetailItem = model;");
         // 标题
         self.detailTitle.text = model.title;
-        self.putPercentArray = self.getDetailItem.percentStrArray;
+        self.attitudeTitle = model.title;
+        self.choices = model.choices;
+        self.percentStringArray = model.percentStrArray;
+        self.percentNumArray = model.percentNumArray;
+        self.votedChoice = model.getVoted;
         // 重新加载tableView
         [self.tableView reloadData];
         NSLog(@"detailModel---%@", model.title);
@@ -140,8 +147,8 @@
 }
 
 /// 投票动画
-- (void)putAnimation:(NSIndexPath *)selectIndexPath {
-    ExpressDetailCell *cell = [self.tableView cellForRowAtIndexPath:selectIndexPath];
+- (void)putAnimation {
+    ExpressDetailCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
     // 获取cell的宽度
     CGFloat cellWidth = cell.bounds.size.width;
     // 占比宽度
@@ -152,19 +159,21 @@
         // 先全部恢复原始状态
         [cell backToOriginState];
         // 分别得到gradientWidth
-        gradientWidth = cellWidth * [self.putPickItem.percentNumArray[indexPath.row] doubleValue];
-        if (indexPath == selectIndexPath) {
+        gradientWidth = cellWidth * [self.percentNumArray[indexPath.row] doubleValue];
+        if (cell.titleLab.text == self.votedChoice) {
             // 是选中的cell
             [cell selectCell];
         } else {
             [cell otherCell];
         }
-        // 渐变动画
-        [UIView animateWithDuration:2.0 animations:^{
-            cell.gradientView.frame = CGRectMake(0, 0, gradientWidth, cell.bounds.size.height);
-        } completion:^(BOOL finished) {
-            cell.gradientView.frame = CGRectMake(0, 0, gradientWidth, cell.bounds.size.height);
-        }];
+        if (![self.votedChoice isEqualToString:@""]) {
+            // 渐变动画
+            [UIView animateWithDuration:2.0 animations:^{
+                cell.gradientView.frame = CGRectMake(0, 0, gradientWidth, cell.bounds.size.height);
+            } completion:^(BOOL finished) {
+                cell.gradientView.frame = CGRectMake(0, 0, gradientWidth, cell.bounds.size.height);
+            }];
+        }
     }
 }
 
@@ -209,7 +218,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // 修改cell个数
-    return self.getDetailItem.choices.count;
+    return self.choices.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -219,27 +228,19 @@
         cell = [[ExpressDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
     }
     // 展示已投票数据
-    if (self.getDetailItem != NULL) {
+    if (self.attitudeTitle != nil) {
         // cell的标题
-        cell.titleLab.text = self.getDetailItem.choices[indexPath.row];
+        cell.titleLab.text = self.choices[indexPath.row];
         // 如果已经投票
-        if (self.getDetailItem.getVoted != NULL) {
-            cell.percent.text = self.getDetailItem.percentStrArray[indexPath.row];
+        if (![self.votedChoice isEqualToString:@""]) {
+            cell.percent.text = self.percentStringArray[indexPath.row];
             NSLog(@"cell百分比:%@",cell.percent.text);
             // 没有数据情况.空值或不为字符串
             if (cell.percent.text == NULL || ![cell.percent.text isKindOfClass:[NSString class]]) {
                 cell.percent.text = @"nil";
             }
-            // 动画
-            if ([cell.titleLab.text isEqual:self.getDetailItem.getVoted]) {
-                // 记录投票的选项
-                self.votedRow = indexPath.row;
-                self.votedIndex = indexPath;
-//                [self putAnimation:indexPath];
-                NSLog(@"记录投票的选项:%ld",(long)self.votedRow);
-            }
         } else {
-            self.votedRow = -1;
+            cell.percent.text = @"";
         }
     }
     return cell;
@@ -257,11 +258,11 @@
     //邮票任务进度上传
     [TaskManager.shared uploadTaskProgressWithTitle:@"发表一次动态" stampCount:10 remindText:@"今日已完成表态1次，获得10张邮票"];
     ExpressDetailCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [self putAnimation:indexPath];
     [self tapFeedback];
     // MARK: DELETE 撤销投票
-    // 只有没有投过票才不用撤销投票
-    if (self.votedRow != -1) {
+    // 如果已经投票
+    if (![self.votedChoice isEqualToString:@""]) {
+        //撤销投票
         [cell backToOriginState];// cell撤销动画
         [self.declareModel requestDeclareDataWithId:self.theId Success:^(bool declareSuccess) {
             if (declareSuccess) {
@@ -274,26 +275,36 @@
 //            [self.view addSubview:self.netWrong];
         }];
     }
-    // 更新投票选项
-    self.votedRow = indexPath.row;
-    // MARK: PUT 投票
-    [self.putPickModel requestPickDataWithId:self.theId Choice:cell.titleLab.text Success:^(ExpressPickPutItem * _Nonnull model) {
-        self.putPickItem = model;// 传入model，使用percentNumArray
-        NSLog(@"发布成功");
-        // 更新百分比数组
-        self.putPercentArray = model.percentStrArray;
-        NSLog(@"百分比array:%@",self.putPercentArray);
-        [self putAnimation:indexPath];  // 动画
-        [self tapFeedback];  // 雷达效果
-
-        
-    } Failure:^(NSError * _Nonnull error) {
-        NSLog(@"发布失败");
-        // 网络错误页面
-        [NewQAHud showHudAtWindowWithStr:@"投票失败" enableInteract:YES];
-//        [self.view removeAllSubviews];
-//        [self.view addSubview:self.netWrong];
-    }];
+    if (![self.votedChoice isEqualToString:cell.titleLab.text]) {
+        // 选中选项不为之前选中的选项
+        // 更新投票选项
+        // MARK: PUT 投票
+        [self.putPickModel requestPickDataWithId:self.theId Choice:cell.titleLab.text Success:^(ExpressPickPutItem * _Nonnull model) {
+            self.votedChoice = cell.titleLab.text;
+            self.percentNumArray = model.percentNumArray;
+            NSLog(@"发布成功");
+            // 更新百分比数组
+            self.percentStringArray = model.percentStrArray;
+            NSLog(@"百分比array:%@",self.percentStringArray);
+            [self.tableView reloadData];
+            [self putAnimation];  // 动画
+            [self tapFeedback];  // 雷达效果
+            
+        } Failure:^(NSError * _Nonnull error) {
+            NSLog(@"发布失败");
+            // 网络错误页面
+            [NewQAHud showHudAtWindowWithStr:@"投票失败" enableInteract:YES];
+    //        [self.view removeAllSubviews];
+    //        [self.view addSubview:self.netWrong];
+        }];
+    } else {
+        // 选中选项为之前选中的选项
+        // 仅取消投票
+        self.votedChoice = @"";
+        [self.tableView reloadData];
+        [self putAnimation];
+    }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -339,7 +350,7 @@
         _detailTitle.textAlignment = NSTextAlignmentLeft;
         _detailTitle.textColor = [UIColor whiteColor];
         _detailTitle.font = [UIFont fontWithName:PingFangSCSemibold size:18];
-        _detailTitle.text = self.getDetailItem.title;
+        _detailTitle.text = self.attitudeTitle;
     }
     return _detailTitle;
 }
@@ -350,14 +361,6 @@
         _backgroundImage.image = [UIImage imageNamed:@"Express_detailBackground"];
     }
     return _backgroundImage;
-}
-
-
-- (ExpressPickGetItem *)getDetailItem {
-    if (!_getDetailItem) {
-        _getDetailItem = [[ExpressPickGetItem alloc] init];
-    }
-    return _getDetailItem;
 }
 
 - (ExpressPickGetModel *)getDetailModel {
@@ -372,13 +375,6 @@
         _putPickModel = [[ExpressPickPutModel alloc] init];
     }
     return _putPickModel;
-}
-
-- (ExpressPickPutItem *)putPickItem {
-    if (!_putPickItem) {
-        _putPickItem = [[ExpressPickPutItem alloc] init];
-    }
-    return _putPickItem;
 }
 
 - (ExpressDeclareModel *)declareModel {
