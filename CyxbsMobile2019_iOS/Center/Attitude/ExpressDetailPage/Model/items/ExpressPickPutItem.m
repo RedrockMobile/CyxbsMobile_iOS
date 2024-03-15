@@ -7,6 +7,7 @@
 //
 
 #import "ExpressPickPutItem.h"
+#import "NSDictionaryExtension.h"
 
 @implementation ExpressPickPutItem
 - (instancetype)initWithDictionary:(NSDictionary *)dic {
@@ -14,8 +15,8 @@
     if (self) {
         self.percentStrArray = [NSArray array];
         self.percentNumArray = [NSArray array];
-        self.putStatistic = dic[@"statistic"]; // 字典 { string: number }
-        self.putVoted = dic[@"voted"];
+        self.putStatistic = [dic cm_dictionaryValueForKey:@"statistic"]; // 字典 { string: number }
+        self.putVoted = [dic cm_stringValueForKey:@"voted"];
     }
     return self;
 }
