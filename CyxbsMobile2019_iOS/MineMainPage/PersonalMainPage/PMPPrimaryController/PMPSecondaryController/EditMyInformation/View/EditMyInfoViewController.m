@@ -24,8 +24,6 @@ UIImagePickerControllerDelegate
 
 @property (nonatomic, strong) EditMyInfoPresenter *presenter;
 
-//@property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
-
 @property (nonatomic, assign) BOOL profileChanged;
 
 @end
@@ -65,68 +63,6 @@ UIImagePickerControllerDelegate
     [self.view endEditing:YES];
 }
 
-
-#pragma mark - contentView代理回调
-- (void)saveButtonClicked:(UIButton *)sender {
-    [self.contentView.saveButton setTitle:@"上传中" forState:UIControlStateNormal];
-    self.contentView.saveButton.userInteractionEnabled = NO;
-    
-    // 头像改变了才上传头像
-    if (self.profileChanged) {
-        [self.presenter uploadProfile:self.contentView.headerImageView.image Success:^{
-            [self profileUploadSuccess:^{
-                [self.presenter.attachedView userInfoUploadSuccess];
-            } failure:^(NSError * _Nonnull error) {
-                [self.presenter.attachedView userInfoOrProfileUploadFailure];
-            }];
-        } failure:^(NSError * _Nonnull error) {
-            [self.presenter.attachedView userInfoOrProfileUploadFailure];
-            [self profileUploadSuccess:^{} failure:^(NSError * _Nonnull error) {}];
-        }];
-    } else {
-        // 头像没有改变，直接执行下一个任务
-        [self profileUploadSuccess:^{
-            [self.presenter.attachedView userInfoUploadSuccess];
-        } failure:^(NSError * _Nonnull error) {
-            [self.presenter.attachedView userInfoOrProfileUploadFailure];
-        }];
-    }
-    
-    if ([[UserItem defaultItem].qq isEqualToString:@"完善你的个人信息哦"]) {
-        return;
-    }
-    if ([[UserItem defaultItem].nickname isEqualToString:@"student"]) {
-        return;
-    }
-    if ([[UserItem defaultItem].introduction isEqualToString:@"完善你的个人信息哦"]) {
-        return;
-    }
-    if ([[UserItem defaultItem].phone isEqualToString:@"完善你的个人信息哦"]) {
-        return;
-    }
-
-    NSLog(@"完成完善个人信息任务");
-    
-    // 完成完善个人信息任务
-    [HttpTool.shareTool
-     form:Mine_POST_task_API
-     type:HttpToolRequestTypePost
-     parameters:nil
-     bodyConstructing:^(id<AFMultipartFormData>  _Nonnull body) {
-        NSString *target = @"完善个人信息";
-        NSData *data = [target dataUsingEncoding:NSUTF8StringEncoding];
-        [body appendPartWithFormData:data name:@"title"];
-    }
-     progress:nil
-     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-        NSLog(@"成功了");
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
-    }
-     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"失败了");
-    }];
-}
-
 - (void)headerImageTapped:(UIImageView *)sender {
     UIImagePickerController *controller = [[UIImagePickerController alloc] init];
     controller.allowsEditing = YES;
@@ -164,58 +100,6 @@ UIImagePickerControllerDelegate
     [UIView animateWithDuration:0.3 animations:^{
         introductionView.alpha = 1;
     }];
-}
-
-
-#pragma mark - Presenter回调
-- (void)profileUploadSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure {
-    NSDictionary *uploadData = @{
-        // 这三个字段不用了
-        //@"stuNum": [UserDefaultTool getStuNum],
-        //@"idNum": [UserDefaultTool getIdNum],
-        //@"photo_src": [UserItemTool defaultItem].headImgUrl ? [UserItemTool defaultItem].headImgUrl : @"",
-        @"nickname": self.contentView.realNameTextField.text.length != 0 ? self.contentView.realNameTextField.text : self.contentView.realNameTextField.placeholder,
-        @"introduction": self.contentView.introductionTextField.text,
-        @"qq": self.contentView.QQTextField.text,
-        @"phone": self.contentView.phoneNumberTextField.text,
-        @"gender": self.contentView.genderTextField.text.length != 0 ? self.contentView.genderTextField.text : self.contentView.genderTextField.placeholder,
-        @"birthday": self.contentView.collegeTextField.text.length != 0 ? self.contentView.collegeTextField.text : self.contentView.collegeTextField.placeholder,
-    };
-    
-    [self.presenter uploadUserInfo:uploadData Success:^{
-        success();
-    } failure:^(NSError * _Nonnull error) {
-        failure(error);
-    }];
-}
-
-/// 修改数据失败之后执行这个方法
-- (void)userInfoOrProfileUploadFailure {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeText;
-    hud.labelText = @"上传失败了...";
-    [hud hide:YES afterDelay:1];
-    
-    [self.contentView.saveButton setTitle:@"保 存" forState:UIControlStateNormal];
-    self.contentView.saveButton.userInteractionEnabled = YES;
-}
-
-/// 修改数据成功之后执行这个方法
-- (void)userInfoUploadSuccess {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-
-#pragma mark - 手势调用
-- (void)slideToDismiss:(UIPanGestureRecognizer *)sender {
-    CGPoint translatedPoint = [self.contentView.contentScrollView.panGestureRecognizer locationInView:self.view];
-    if (translatedPoint.y > 0) {
-        //让我的页面控制器刷新数据
-//        [((MineViewController *)self.transitioningDelegate) loadUserData];
-//        ((MineViewController *)self.transitioningDelegate).panGesture = sender;
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
-//    self.contentView.contentScrollView
 }
 
 @end

@@ -368,7 +368,7 @@
 		AA0DDB6C286C8B1A00802324 /* EditMyInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0DDB19286C8B1900802324 /* EditMyInfoModel.m */; };
 		AA0DDB6D286C8B1A00802324 /* EditMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0DDB1C286C8B1900802324 /* EditMyInfoViewController.m */; };
 		AA0DDB6E286C8B1A00802324 /* PMPDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0DDB1D286C8B1900802324 /* PMPDatePicker.m */; };
-		AA0DDB6F286C8B1A00802324 /* MineEditTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0DDB1E286C8B1900802324 /* MineEditTextField.m */; };
+		AA0DDB6F286C8B1A00802324 /* MineInformationLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0DDB1E286C8B1900802324 /* MineInformationLabel.m */; };
 		AA0DDB70286C8B1A00802324 /* EditMyInfoContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0DDB21286C8B1900802324 /* EditMyInfoContentView.m */; };
 		AA0DDB71286C8B1A00802324 /* UserInformationIntorductionView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0DDB25286C8B1900802324 /* UserInformationIntorductionView.m */; };
 		AA0DDB72286C8B1A00802324 /* PMPPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA0DDB26286C8B1900802324 /* PMPPickerView.m */; };
@@ -1286,13 +1286,13 @@
 		AA0DDB1B286C8B1900802324 /* EditMyInfoContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditMyInfoContentView.h; sourceTree = "<group>"; };
 		AA0DDB1C286C8B1900802324 /* EditMyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoViewController.m; sourceTree = "<group>"; };
 		AA0DDB1D286C8B1900802324 /* PMPDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPDatePicker.m; sourceTree = "<group>"; };
-		AA0DDB1E286C8B1900802324 /* MineEditTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineEditTextField.m; sourceTree = "<group>"; };
+		AA0DDB1E286C8B1900802324 /* MineInformationLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineInformationLabel.m; sourceTree = "<group>"; };
 		AA0DDB1F286C8B1900802324 /* PMPPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPPickerView.h; sourceTree = "<group>"; };
 		AA0DDB20286C8B1900802324 /* UserInformationIntorductionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInformationIntorductionView.h; sourceTree = "<group>"; };
 		AA0DDB21286C8B1900802324 /* EditMyInfoContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditMyInfoContentView.m; sourceTree = "<group>"; };
 		AA0DDB22286C8B1900802324 /* PMPDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMPDatePicker.h; sourceTree = "<group>"; };
 		AA0DDB23286C8B1900802324 /* EditMyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditMyInfoViewController.h; sourceTree = "<group>"; };
-		AA0DDB24286C8B1900802324 /* MineEditTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineEditTextField.h; sourceTree = "<group>"; };
+		AA0DDB24286C8B1900802324 /* MineInformationLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineInformationLabel.h; sourceTree = "<group>"; };
 		AA0DDB25286C8B1900802324 /* UserInformationIntorductionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInformationIntorductionView.m; sourceTree = "<group>"; };
 		AA0DDB26286C8B1900802324 /* PMPPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMPPickerView.m; sourceTree = "<group>"; };
 		AA0DDB85286C8E8100802324 /* AFHTTPSessionManager+compatibility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AFHTTPSessionManager+compatibility.h"; sourceTree = "<group>"; };
@@ -4444,8 +4444,8 @@
 				AA0DDB21286C8B1900802324 /* EditMyInfoContentView.m */,
 				AA0DDB23286C8B1900802324 /* EditMyInfoViewController.h */,
 				AA0DDB1C286C8B1900802324 /* EditMyInfoViewController.m */,
-				AA0DDB24286C8B1900802324 /* MineEditTextField.h */,
-				AA0DDB1E286C8B1900802324 /* MineEditTextField.m */,
+				AA0DDB24286C8B1900802324 /* MineInformationLabel.h */,
+				AA0DDB1E286C8B1900802324 /* MineInformationLabel.m */,
 				AA0DDB22286C8B1900802324 /* PMPDatePicker.h */,
 				AA0DDB1D286C8B1900802324 /* PMPDatePicker.m */,
 				AA0DDB1F286C8B1900802324 /* PMPPickerView.h */,
@@ -6502,7 +6502,7 @@
 				FE2C135F27AEF629001CF7AF /* DiscoverTodoSheetView.m in Sources */,
 				FE2C136727AEF629001CF7AF /* TodoSyncTool.m in Sources */,
 				EE131C212471362E00B6ED97 /* URLController.m in Sources */,
-				AA0DDB6F286C8B1A00802324 /* MineEditTextField.m in Sources */,
+				AA0DDB6F286C8B1A00802324 /* MineInformationLabel.m in Sources */,
 				14E7E4A827F5762500B67469 /* QuestionSelectView.m in Sources */,
 				FCB9214E2AAF782B00F373A7 /* AddArrangeTitleVC.swift in Sources */,
 				14FFFBE82AF8C0F3005A7EBD /* UIImageExtensions.swift in Sources */,

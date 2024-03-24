@@ -7,12 +7,11 @@
 //
 
 #import "PMPBasicNavBarController.h"
-#import "EditMyInfoViewProtocol.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class EditMyInfoContentView;
-@interface EditMyInfoViewController : PMPBasicNavBarController <EditMyInfoViewProtocol>
+@interface EditMyInfoViewController : PMPBasicNavBarController
 
 @property (nonatomic, weak) EditMyInfoContentView *contentView;
 
