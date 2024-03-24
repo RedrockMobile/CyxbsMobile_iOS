@@ -12,6 +12,65 @@ import SnapKit
 
 class ActivityTopView: UIView {
     
+    //标题
+    let titleLab: UILabel = {
+        let label = UILabel()
+        label.text = "活动布告栏"
+        label.font = UIFont(name: PingFangSCSemibold, size: 22)
+        if #available(iOS 11.0, *) {
+            label.textColor = UIColor.dm_color(withLightColor: UIColor(hexString: "#15315B")!, darkColor: UIColor(hexString: "#15315B")!, alpha: 1)
+        }
+        else {
+            label.textColor = UIColor.dm_color(withLightColor: UIColor(hexString: "#15315B")!, darkColor: UIColor(hexString: "#15315B")!, alpha: 1)
+        }
+        
+        return label
+    }()
+    
+    // 返回按钮
+    let backButton: UIButton = {
+        let button = MXBackButton(frame: .zero, isAutoHotspotExpand: true)
+        return button
+    }()
+    
+    //管理员审核按钮
+    lazy var adminButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "admin"), for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        return button
+    }()
+    
+    //搜索按钮
+    let searchButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor(hexString: "#15315B", alpha: 0.05)
+        button.layer.cornerRadius = 19
+        button.setTitle("查看更多活动...", for: .normal)
+        button.titleLabel?.font = UIFont(name: PingFangSCMedium, size: 16)
+        button.setTitleColor(UIColor.dm_color(withLightColor: UIColor(hexString: "#15315B", alpha: 0.2), darkColor: UIColor(hexString: "#15315B", alpha: 0.2)), for: .normal)
+        button.setImage(UIImage(named: "放大镜"), for: .normal)
+        button.imageView?.size = CGSize(width: 17, height: 18)
+        button.titleEdgeInsets = UIEdgeInsets(top: 6, left: 12, bottom: 7, right: 146)
+        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 14, bottom: 11, right: UIScreen.main.bounds.width - 105)
+        button.imageView?.contentMode = .scaleAspectFit
+        return button
+    }()
+    
+    //添加活动按钮
+    let addActivityButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(named: "add"), for: .normal)
+        return button
+    }()
+    
+    //排行榜按钮
+    let activityHitButton: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(named: "activityHit"), for: .normal)
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         if #available(iOS 11.0, *) {
@@ -31,60 +90,6 @@ class ActivityTopView: UIView {
     required init?(coder aDecoder: NSCoder) {
             super.init(coder: aDecoder)
     }
-    
-    //标题
-    lazy var titleLab: UILabel = {
-        let label = UILabel()
-        label.text = "活动布告栏"
-        label.font = UIFont(name: PingFangSCSemibold, size: 22)
-        if #available(iOS 11.0, *) {
-            label.textColor = UIColor.dm_color(withLightColor: UIColor(hexString: "#15315B")!, darkColor: UIColor(hexString: "#15315B")!, alpha: 1)
-        }
-        else {
-            label.textColor = UIColor.dm_color(withLightColor: UIColor(hexString: "#15315B")!, darkColor: UIColor(hexString: "#15315B")!, alpha: 1)
-        }
-        
-        return label
-    }()
-    // 返回按钮
-    lazy var backButton: UIButton = {
-        let button = MXBackButton(frame: .zero, isAutoHotspotExpand: true)
-        return button
-    }()
-    //管理员审核按钮
-    lazy var adminButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "admin"), for: .normal)
-        button.imageView?.contentMode = .scaleAspectFit
-        return button
-    }()
-    //搜索按钮
-    lazy var searchButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor(hexString: "#15315B", alpha: 0.05)
-        button.layer.cornerRadius = 19
-        button.setTitle("查看更多活动...", for: .normal)
-        button.titleLabel?.font = UIFont(name: PingFangSCMedium, size: 16)
-        button.setTitleColor(UIColor.dm_color(withLightColor: UIColor(hexString: "#15315B", alpha: 0.2), darkColor: UIColor(hexString: "#15315B", alpha: 0.2)), for: .normal)
-        button.setImage(UIImage(named: "放大镜"), for: .normal)
-        button.imageView?.size = CGSize(width: 17, height: 18)
-        button.titleEdgeInsets = UIEdgeInsets(top: 6, left: 12, bottom: 7, right: 146)
-        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 14, bottom: 11, right: UIScreen.main.bounds.width - 105)
-        button.imageView?.contentMode = .scaleAspectFit
-        return button
-    }()
-    //添加活动按钮
-    lazy var addActivityButton: UIButton = {
-        let button = UIButton()
-        button.setBackgroundImage(UIImage(named: "add"), for: .normal)
-        return button
-    }()
-    //排行榜按钮
-    lazy var activityHitButton: UIButton = {
-        let button = UIButton()
-        button.setBackgroundImage(UIImage(named: "activityHit"), for: .normal)
-        return button
-    }()
     
     func setPosition() {
         // 返回按钮
