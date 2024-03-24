@@ -10,16 +10,9 @@
 #import "掌上重邮-Swift.h"
 
 @implementation DateModle
-+(instancetype)initWithStartDate:(NSString *)startDate{
++(instancetype)initWithStartDate {
     DateModle *dateModel = [[DateModle alloc]init];
-    
-    //从字符串转换日期
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = DateFormat;
-    NSDate *resDate = [formatter dateFromString:startDate];
-    
-    
-    [dateModel initCalculateDate:resDate];
+    [dateModel initCalculateDate:[SwiftToOC getStartDate]];
     return dateModel;
 }
 

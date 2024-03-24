@@ -39,6 +39,9 @@
 #import "popUpInformationVC.h"
 #import "popFoodResultVC.h"
 #import "UDScrollAnimationView.h"
+#import "MXObjCBackButton.h"
+//需要使用swift的邮票任务管理类
+#import "掌上重邮-Swift.h"
 
 #define singleFoodDuration 0.18//单个食物滚动时间
 
@@ -290,6 +293,8 @@ UICollectionViewDelegateFlowLayout
 
 //获取美食数据
 - (void)getResult {
+    NSLog(@"上传邮票任务进度");
+    [TaskManager.shared uploadTaskProgressWithTitle:@"使用美食板块" stampCount:10 remindText:@"今日已使用美食咨询处1次，获得10张邮票"];
     NSLog(@"获取随机美食结果");
     NSDictionary *selection = [self getSelection];
     self.selectLabelDictionary = selection;
@@ -444,7 +449,7 @@ UICollectionViewDelegateFlowLayout
 
 //添加退出的按钮
 - (void)addBackButton {
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton *backButton = [[MXObjCBackButton alloc] initWithFrame:CGRectZero isAutoHotspotExpand:YES];
     [self.goBackView addSubview:backButton];
     [backButton setImage:[UIImage imageNamed:@"空教室返回"] forState:UIControlStateNormal];
     [backButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -458,7 +463,12 @@ UICollectionViewDelegateFlowLayout
 
 //返回的方法
 - (void)back {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.navigationController != nil) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if (self.presentingViewController != nil) {
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 //添加查看更多的按钮

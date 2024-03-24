@@ -43,23 +43,7 @@ class ActivityCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         case .education:
             activityTypeString = "education"
         }
-        activitiesModel.requestNoticeboardActivities(activityType: activityTypeString) { activities in
-            print("活动数量：\(activities.count)")
-            self.collectionViewCount = activities.count
-            //这里是做伪分页的逻辑
-            if(self.activitiesModel.activities.count < self.refreshNum) {
-                self.collectionViewCount = self.activitiesModel.activities.count
-            } else {
-                self.collectionViewCount = self.refreshNum
-            }
-            self.collectionView.reloadData()
-            if (self.collectionViewCount != 0) {
-                self.addMJFooter()
-            } else {
-            }
-        } failure: { error in
-            ActivityHUD.shared.showNetworkError()
-        }
+        self.requestActivity()
         // 创建一个UICollectionViewFlowLayout实例作为集合视图的布局
         let layout = UICollectionViewFlowLayout()
         //计算cell的宽度
@@ -85,10 +69,31 @@ class ActivityCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+        self.addMJHeader()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         collectionView.frame = self.view.bounds
+    }
+    
+    @objc func requestActivity() {
+        activitiesModel.requestNoticeboardActivities(activityType: activityTypeString) { activities in
+            print("活动数量：\(activities.count)")
+            self.collectionViewCount = activities.count
+            //这里是做伪分页的逻辑
+            if(self.activitiesModel.activities.count < self.refreshNum) {
+                self.collectionViewCount = self.activitiesModel.activities.count
+            } else {
+                self.collectionViewCount = self.refreshNum
+            }
+            self.collectionView.mj_header?.endRefreshing()
+            self.collectionView.reloadData()
+            if (self.collectionViewCount != 0) {
+                self.addMJFooter()
+            }
+        } failure: { error in
+            ActivityHUD.shared.showNetworkError()
+        }
     }
     
     
@@ -133,13 +138,22 @@ class ActivityCollectionVC: UIViewController, UICollectionViewDataSource, UIColl
         }()
     }
     
+    func addMJHeader() {
+        let header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(requestActivity))
+        collectionView.mj_header = header
+    }
+    
     func addMJFooter() {
-        let footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(refreshCollectionView))
-        footer.setTitle("", for: .idle)
-        footer.setTitle("正在加载...", for: .refreshing)
-        footer.setTitle("已经加载到最底部", for: .noMoreData)
-        footer.stateLabel?.textColor = UIColor(hexString: "#15315B", alpha: 0.3)
-        collectionView.mj_footer = footer
+        if let footer = collectionView.mj_footer {
+            footer.endRefreshing()
+        }else {
+            let footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(refreshCollectionView))
+            footer.setTitle("", for: .idle)
+            footer.setTitle("正在加载...", for: .refreshing)
+            footer.setTitle("已经加载到最底部", for: .noMoreData)
+            footer.stateLabel?.textColor = UIColor(hexString: "#15315B", alpha: 0.3)
+            collectionView.mj_footer = footer
+        }
     }
     
     @objc func refreshCollectionView() {

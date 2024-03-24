@@ -12,13 +12,17 @@
 #import "ExchangeCenterViewController.h"
 #import "GoodsCollectionViewCell.h"
 #import "StampCenterSecondHeaderView.h"
-#import "TaskTableViewCellWithProgress.h"
+#import "TaskTableViewCell.h"
 #import "EditMyInfoViewController.h"
 #import "TableHeaderView.h"
+#import "FoodVC.h"
+#import "AttitudeMainPageVC.h"
+#import "掌上重邮-Swift.h"
 
 //Model
 #import "StampGoodsData.h"
 #import "StampTaskData.h"
+#import "CheckInModel.h"
 
 #import "RemindHUD.h"
 
@@ -70,10 +74,10 @@
                 [mArray addObject:data];
             }
         }
-    if (mArray.count == 0) {
-        self.mainScrollView.collectionHeaderView.detailLabel.text = @"敬请期待";
-        self.mainScrollView.collectionHeaderView.detailLabel.x = 0.8*SCREEN_WIDTH;
-    }
+//    if (mArray.count == 0) {
+//        self.mainScrollView.collectionHeaderView.detailLabel.text = @"敬请期待";
+//        self.mainScrollView.collectionHeaderView.detailLabel.x = 0.8*SCREEN_WIDTH;
+//    }
         _goodsAry = mArray;
     self.section2GoodsAry = mArray2;
     //刷新控件
@@ -93,9 +97,9 @@
             [mArray2 addObject:data];
         }
     }
-    if (mArray.count > 0) {
-        [mArray removeObjectAtIndex:0];
-    }
+//    if (mArray.count > 0) {
+//        [mArray removeObjectAtIndex:0];
+//    }
     _taskAry = mArray;
     _extraTaskAry = mArray2;
     //刷新控件
@@ -169,7 +173,8 @@
     }
    
     [self checkAlertLbl];
-    
+    [self refreshPage];
+
 }
 
 #pragma mark - viewDidLoad
@@ -226,13 +231,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
         
     if (indexPath.section == 0) {
-        TaskTableViewCellWithProgress *cell = [[TaskTableViewCellWithProgress alloc]init];
+        TaskTableViewCell *cell = [[TaskTableViewCell alloc]init];
         StampTaskData *data = self.taskAry[indexPath.row];
         cell.row = indexPath.row;
         cell.data = data;
         return cell;
     }if (indexPath.section == 1){
-        TaskTableViewCellWithProgress *cell = [[TaskTableViewCellWithProgress alloc]init];
+        TaskTableViewCell *cell = [[TaskTableViewCell alloc]init];
         StampTaskData *data = self.extraTaskAry[indexPath.row];
         cell.row = indexPath.row;
         cell.data = data;
@@ -246,7 +251,7 @@
 #pragma mark - table代理
 //高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 75;
+    return 41;
 }
 
 
@@ -263,17 +268,29 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 280)];
+        UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 270.0)];
         view.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
-        TableHeaderView *headerView = [[TableHeaderView alloc]initWithFrame:CGRectMake(0, 217, SCREEN_WIDTH, 78)];
-        [view addSubview:headerView];
+        UIView* contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 217, SCREEN_WIDTH, 53)];
+        contentView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
+        UIBezierPath  *maskPath = [UIBezierPath bezierPathWithRoundedRect:contentView.bounds byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(20, 20)];
+        CAShapeLayer *maskLayer = [[CAShapeLayer alloc]init];
+        maskLayer.frame = contentView.bounds;
+        maskLayer.path = maskPath.CGPath;
+        contentView.layer.mask = maskLayer;
+        UILabel *la = [[UILabel alloc]init];
+        la.frame = CGRectMake(0.0427*SCREEN_WIDTH, 24, SCREEN_WIDTH - 40 , 28);
+        la.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
+        la.text = @"今日任务";
+        la.font = [UIFont fontWithName:PingFangSCSemibold size:20];
+        [view addSubview:contentView];
+        [contentView addSubview:la];
         return view;
     }
     if (section == 1) {
         UIView* footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 60.0)];
         footerView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         UILabel *la = [[UILabel alloc]init];
-        la.frame = CGRectMake(20, 20, SCREEN_WIDTH- 40 , 28);
+        la.frame = CGRectMake(0.0427*SCREEN_WIDTH, 20, SCREEN_WIDTH- 40 , 28);
         la.textColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#15315B" alpha:1] darkColor:[UIColor colorWithHexString:@"#FFFFFF" alpha:1]];
         la.text = @"更多任务";
         la.font = [UIFont fontWithName:PingFangSCSemibold size:20];
@@ -285,42 +302,31 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return 290;
+        return 270;
     }
     if (section == 1) {
-        return 50;
+        return 60;
     }
     return 0.001;
 }
 #pragma mark - collection数据源
 //组数
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 2;
+    return 1;
 }
 
 //每组的个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    if (section == 0) {
-        return self.goodsAry.count;
-    }else{
-        return self.section2GoodsAry.count;
-    }
+    return self.section2GoodsAry.count;
 }
 
 //Cell
 -(UICollectionViewCell *)collectionView:(UICollectionView*)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
     GoodsCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    if (indexPath.section == 0) {
-        StampGoodsData *data = self.goodsAry[indexPath.item];
-        cell.data = data;
-        [cell.exchangeBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.showBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
-    }else{
-        StampGoodsData *data =self.section2GoodsAry[(indexPath.item)];
-        cell.data = data;
-        [cell.exchangeBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
-        [cell.showBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
-    }
+    StampGoodsData *data =self.section2GoodsAry[(indexPath.item)];
+    cell.data = data;
+    [cell.exchangeBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.showBtn addTarget:self action:@selector(jump:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
@@ -332,29 +338,25 @@
 }
 
 //HeaderView
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    if (kind == UICollectionElementKindSectionHeader) {
-        StampCenterSecondHeaderView *collectionheader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"header" forIndexPath:indexPath];
-        collectionheader.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FBFCFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
-        if (indexPath.section == 0) {
-            collectionheader.height = 0;
-        }
-        else{
-            collectionheader.height = 54;
-        }
-        return collectionheader;
-    }
-    return nil;
-}
+//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+//    if (kind == UICollectionElementKindSectionHeader) {
+//        StampCenterSecondHeaderView *collectionheader = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"header" forIndexPath:indexPath];
+//        collectionheader.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FBFCFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
+////        if (indexPath.section == 0) {
+////            collectionheader.height = 0;
+////        }
+////        else{
+////            collectionheader.height = 54;
+////        }
+//        collectionheader.height = 54;
+//        return collectionheader;
+//    }
+//    return nil;
+//}
 
 //内边距
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    if (section == 0) {
-        return UIEdgeInsetsMake(215+65, 0.042*SCREEN_WIDTH, 10, 0.042*SCREEN_WIDTH);
-    }
-    else{
-        return UIEdgeInsetsMake(54, 0.042*SCREEN_WIDTH, 0.09*SCREEN_WIDTH, 0.042*SCREEN_WIDTH);
-    }
+    return UIEdgeInsetsMake(215+54, 0.042*SCREEN_WIDTH, 10, 0.042*SCREEN_WIDTH);
 }
 
 //后面有时间详细说明滚动逻辑（核心）
@@ -704,6 +706,41 @@
     [self.navigationController presentViewController:EVC animated:YES completion:nil];
 }
 
+//跳转至中心->美食版块
+- (void)jumpToFood{
+    FoodVC *FVC = [[FoodVC alloc]init];
+    [self.navigationController pushViewController:FVC animated:YES];
+}
+
+//跳转至中心->活动布告栏
+- (void)jumpToActivity{
+    ActivityMainViewController *AVC = [[ActivityMainViewController alloc]init];
+    [self.navigationController pushViewController:AVC animated:YES];
+}
+
+//跳转至中心->表态
+- (void)jumpToAttitude{
+    AttitudeMainPageVC *AVC = [[AttitudeMainPageVC alloc]init];
+    [self.navigationController pushViewController:AVC animated:YES];
+}
+
+//跳转至没课约
+- (void)jumpToWeDate{
+    WeDateVC *WVC = [[WeDateVC alloc]init];
+    [self.navigationController pushViewController:WVC animated:YES];
+}
+
+//每日签到
+- (void)checkInToday{
+    [CheckInModel CheckInSucceeded:^{
+        [RemindHUD.shared showDefaultHUDWithText:@"签到成功，邮票+10" completion:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"refreshPage" object:nil];
+        }];
+    } Failed:^(NSError * _Nonnull err) {
+        NSLog(@"出错了");
+    }];
+}
+
 
 //检查是否有未领取的货物
 - (void)checkAlertLbl {
@@ -740,14 +777,6 @@
 
 }
 
-//签到成功
-- (void)checkInSucceeded{
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeText;
-    hud.labelText = @"签到成功";
-    [hud hide:YES afterDelay:1];
-}
-
 //设置通知中心
 - (void)setupNotification{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netWorkAlert) name:@"networkerror" object:nil];
@@ -757,7 +786,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkAlertLbl) name:@"checkAlertLbl" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToZhiyuan) name:@"jumpToZhiyuan" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToProfile) name:@"jumpToProfile" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkInSucceeded) name:@"checkInSucceeded" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToFood) name:@"jumpToFood" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToActivity) name:@"jumpToActivity" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToWeDate) name:@"jumpToWeDate" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jumpToAttitude) name:@"jumpToAttitude" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkInToday) name:@"checkInToday" object:nil];
 }
 
 @end

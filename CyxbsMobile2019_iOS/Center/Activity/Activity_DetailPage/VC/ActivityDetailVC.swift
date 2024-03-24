@@ -338,26 +338,12 @@ class ActivityDetailVC: UIViewController {
                 let wantToWatchResponseData = StandardResponse(from: jsonData)
                 if (wantToWatchResponseData.status == 10000) {
                     self.wantToWatchButton.isEnabled = false
-                    ActivityHUD.shared.addProgressHUDView(width: 138,
-                                                                height: 36,
-                                                                text: "添加成功",
-                                                                font: UIFont(name: PingFangSCMedium, size: 13)!,
-                                                                textColor: .white,
-                                                                delay: 2,
-                                                                backGroundColor: UIColor(hexString: "#2a4e84"),
-                                                                cornerRadius: 18,
-                                                                yOffset: Float(-UIScreen.main.bounds.height * 0.5 + Constants.statusBarHeight) + 90)
+                    RemindHUD.shared().showDefaultHUD(withText: "添加成功") {
+                        TaskManager.shared.uploadTaskProgress(title: "参加一次活动", stampCount: 10, remindText: "已参加活动1次，获得50张邮票")
+                    }
                     self.delegate?.updateModel(indexPathNum: self.numOfIndexPath, wantToWatch: true)
                 } else {
-                    ActivityHUD.shared.addProgressHUDView(width: 138,
-                                                                height: 36,
-                                                                text: wantToWatchResponseData.info,
-                                                                font: UIFont(name: PingFangSCMedium, size: 13)!,
-                                                                textColor: .white,
-                                                                delay: 2,
-                                                                backGroundColor: UIColor(hexString: "#2a4e84"),
-                                                                cornerRadius: 18,
-                                                                yOffset: Float(-UIScreen.main.bounds.height * 0.5 + Constants.statusBarHeight) + 90)
+                    RemindHUD.shared().showDefaultHUD(withText: wantToWatchResponseData.info)
                 }
                 break
             case .failure(let error):

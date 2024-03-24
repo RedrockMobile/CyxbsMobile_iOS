@@ -16,7 +16,7 @@
 /**当前是第几周，0为整学期*/
 @property (nonatomic, strong, readonly) NSNumber *nowWeek;
 
-+(instancetype)initWithStartDate:(NSString *)startDate;
++(instancetype)initWithStartDate;
 
 @end
 

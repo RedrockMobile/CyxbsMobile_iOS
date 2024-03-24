@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MineEditTextField.h"
+#import "MineInformationLabel.h"
 #import "PMPPickerView.h"
 #import "PMPDatePicker.h"
 
@@ -15,41 +15,30 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol EditMyInfoContentViewDelegate <NSObject>
 
-- (void)saveButtonClicked:(UIButton *)sender;
-- (void)backButtonClicked:(UIButton *)sender;
 - (void)headerImageTapped:(UIImageView *)sender;
 - (void)showUserInformationIntroduction:(UIButton *)sender;
-- (void)slideToDismiss:(UIPanGestureRecognizer *)sender;
+
 @end
 
 @interface EditMyInfoContentView : UIView
 
 @property (nonatomic, weak) id<EditMyInfoContentViewDelegate> delegate;
 
-@property (nonatomic, weak) UIView *gestureView;
 
 @property (nonatomic, weak) UIScrollView *contentScrollView;
 @property (nonatomic, weak) UIImageView *headerImageView;
 
-/// 编辑昵称的TextField
-@property (nonatomic, weak) MineEditTextField *nicknameTextField;
+/// 显示真实姓名的Label
+@property (nonatomic, weak) MineInformationLabel *realNameDetailLabel;
 
-/// 编辑个性签名的TextField
-@property (nonatomic, weak) MineEditTextField *introductionTextField;
+/// 显示学号的Label
+@property (nonatomic, weak) MineInformationLabel *stuNumDetailLabel;
 
-/// 编辑性别的TextField
-@property (nonatomic, weak) MineEditTextField *genderTextField;
+/// 显示性别的Label
+@property (nonatomic, weak) MineInformationLabel *genderDetailLabel;
 
-/// 编辑手机号码的TextField
-@property (nonatomic, weak) MineEditTextField *birthdayTextField;
-
-/// 编辑QQ的TextField
-@property (nonatomic, weak) MineEditTextField *QQTextField;
-
-/// 编辑手机号码的TextField
-@property (nonatomic, weak) MineEditTextField *phoneNumberTextField;
-@property (nonatomic, weak) UILabel *myAcademyLabel;
-@property (nonatomic, weak) UIButton *saveButton;
+/// 显示学院的Label
+@property (nonatomic, weak) MineInformationLabel *collegeDetailLabel;
 
 @end
 

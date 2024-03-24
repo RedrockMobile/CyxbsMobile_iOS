@@ -107,7 +107,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToZhiyuan" object:nil];
     }else if ([sender.target isEqualToString:@"完善个人信息"]){
         [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToProfile" object:nil];
-    }else{
+    }else {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"jumpToNewQA" object:nil];
     }
 }

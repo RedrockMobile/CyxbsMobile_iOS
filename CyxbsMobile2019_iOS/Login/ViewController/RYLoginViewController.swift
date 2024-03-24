@@ -158,6 +158,7 @@ extension RYLoginViewController {
                     ProgressHUD.showSucceed("登录成功")
                     
                     self.checktoutEmailBiding()
+                    self.updatePersonModel()
                     
                 } else { // status == "20004"
                     ProgressHUD.showError("账号或密码出错")
@@ -280,6 +281,15 @@ extension RYLoginViewController {
         str.append(NSAttributedString(string: plainText3, attributes: normalTipAttributes))
        
         return str
+    }
+    
+    func updatePersonModel() {
+        HttpManager.shared.magipoke_Person_Search().ry_JSON { response in
+            if case .success(let model) = response, model["status"].stringValue == "10000" {
+                let person = PersonModel(json: model["data"])
+                UserModel.default.person = person
+            }
+        }
     }
     
 }

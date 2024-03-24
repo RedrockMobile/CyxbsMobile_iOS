@@ -15,22 +15,29 @@
 - (void)requestDeclareDataWithId:(NSNumber *)theId
                          Success:(void(^)(bool declareSuccess))success
                          Failure:(void(^)(NSError * _Nonnull))failure {
-//    NSDictionary *param = @{
-//        @"id": theId
-//    };
+    
     [HttpTool.shareTool
-    request:Center_DELETE_AttitudeCancelPick_API
+    form:Center_DELETE_AttitudeCancelPick_API
      type:HttpToolRequestTypeDelete
-     serializer:HttpToolRequestSerializerJSON
-     bodyParameters:theId
+     parameters:nil
+     bodyConstructing:^(id<AFMultipartFormData>  _Nonnull body) {
+        //数据转二进制
+        NSData *iData = [[theId stringValue] dataUsingEncoding:NSUTF8StringEncoding];
+        //往表单添加数据
+        [body appendPartWithFormData:iData name:@"id"];
+    }
      progress:nil
      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable object) {
-        if (object[@"id"] == theId) {
-            if (success) {
-                success(true);
+        NSInteger status = [object[@"status"] intValue];
+        if (status == 10000) {
+            if (object[@"id"] == theId) {
+                if (success) {
+                    success(true);
+                }
             }
         }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    } 
+     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {
             failure(error);
         }

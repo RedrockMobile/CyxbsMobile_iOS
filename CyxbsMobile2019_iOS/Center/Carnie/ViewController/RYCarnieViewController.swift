@@ -19,6 +19,9 @@ class RYCarnieViewController: UIViewController {
         view.addSubview(contentScrollView)
         
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         request()
     }
     
@@ -118,7 +121,7 @@ extension RYCarnieViewController {
     }
     
     func setupData(person: PersonModel) {
-        headerView.update(imgURL: person.photo_src, title: "Hi~，\(person.nickname)（\(person.username)）", days: UserDefaultsManager.shared.daysOfEntryCarnie)
+        headerView.update(imgURL: person.photo_src, title: "Hi~，\(person.username)", days: UserDefaultsManager.shared.daysOfEntryCarnie)
     }
 }
 
@@ -137,10 +140,10 @@ extension RYCarnieViewController {
     @objc
     func tapStatementEntry() {
         // 表态
-        ProgressHUD.showError("正在加紧建设中...")
-//        let vc = AttitudeMainPageVC()
-//        vc.hidesBottomBarWhenPushed = true
-//        navigationController?.pushViewController(vc, animated: true)
+//        ProgressHUD.showError("正在加紧建设中...")
+        let vc = AttitudeMainPageVC()
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc

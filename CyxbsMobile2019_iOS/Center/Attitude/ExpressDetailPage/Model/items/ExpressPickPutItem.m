@@ -7,14 +7,16 @@
 //
 
 #import "ExpressPickPutItem.h"
+#import "NSDictionaryExtension.h"
 
 @implementation ExpressPickPutItem
 - (instancetype)initWithDictionary:(NSDictionary *)dic {
     self = [super init];
     if (self) {
+        self.percentStrArray = [NSArray array];
         self.percentNumArray = [NSArray array];
-        self.putStatistic = dic[@"statistic"]; // 字典 { string: number }
-        self.putVoted = dic[@"voted"];
+        self.putStatistic = [dic cm_dictionaryValueForKey:@"statistic"]; // 字典 { string: number }
+        self.putVoted = [dic cm_stringValueForKey:@"voted"];
     }
     return self;
 }
@@ -24,15 +26,16 @@
     NSInteger total = 0;
     NSArray *valueArray = [staticDic allValues];
     for (int i = 0; i < valueArray.count; ++i) {
-        total += (long)valueArray[i];
+        total += [(NSNumber *)valueArray[i] longLongValue];
     }
     NSMutableArray *tempMa = [NSMutableArray array];
     for (int j = 0; j < valueArray.count; ++j) {
-        NSInteger percentInteger = (long)valueArray[j] / total;
-        CGFloat percentFloat = percentInteger / 100.0; // 将 NSInteger 转换为浮点数类型
-        NSString *formattedString = [NSString stringWithFormat:@"%.2f%%", percentFloat * 100]; // 将浮点数格式化为带两位小数的字符串，并拼接上百分号
+        double percentInteger = (double) [(NSNumber *)valueArray[j] longLongValue] / total;
+        CGFloat percentFloat = percentInteger; // 将 NSInteger 转换为浮点数类型
+        NSString *formattedString = [NSString stringWithFormat:@"%.0f%%", percentFloat * 100]; // 将浮点数格式化为带两位小数的字符串，并拼接上百分号
         [tempMa addObject:formattedString];
     }
+    NSLog(@"static:%@",tempMa);
     valueArray = tempMa;
     return valueArray;
 }
@@ -42,14 +45,15 @@
     NSInteger total = 0;
     NSArray *valueArray = [staticDic allValues];
     for (int i = 0; i < valueArray.count; ++i) {
-        total += (long)valueArray[i];
+        total += [(NSNumber *)valueArray[i] longLongValue];
     }
     NSMutableArray *tempMa = [NSMutableArray array];
     for (int j = 0; j < valueArray.count; ++j) {
-        NSInteger percentInteger = (long)valueArray[j] / total;
-        NSNumber *percentNum = [NSNumber numberWithInteger:percentInteger];
+        double percentInteger = (double)[(NSNumber *)valueArray[j] longLongValue] / total;
+        NSNumber *percentNum = [NSNumber numberWithDouble:percentInteger];
         [tempMa addObject:percentNum];
     }
+//    NSLog(@"percentNum-tempMa-put:%@",tempMa);
     self.percentNumArray = tempMa;
 }
 @end

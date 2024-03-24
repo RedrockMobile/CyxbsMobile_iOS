@@ -158,17 +158,37 @@ bodyConstructing:(void (^)(id<AFMultipartFormData> _Nonnull))block
             methodType = @"PATCH";
             break;
     }
-    
-    [self.sessionManager
-     POST:URLString
+
+    //多表单(multipart request):POST＆PUT
+    NSMutableURLRequest *request =[self.sessionManager.requestSerializer
+     multipartFormRequestWithMethod:methodType
+     URLString:URLString
      parameters:parameters
-     headers:@{
-        @"App-Version" : @"100000"
-    }
      constructingBodyWithBlock:block
-     progress:uploadProgress
-     success:success
-     failure:failure];
+     error:nil];
+    
+    __block NSURLSessionDataTask *task = [self.sessionManager dataTaskWithRequest:request uploadProgress:nil downloadProgress:nil completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
+            if (error) {
+                failure(task, error);
+                return;
+        }else
+            if (success) {
+                success(task, responseObject);
+            }
+        }];
+    
+        [task resume];
+    
+//    [self.sessionManager
+//     POST:URLString
+//     parameters:parameters
+//     headers:@{
+//        @"App-Version" : @"100000"
+//    }
+//     constructingBodyWithBlock:block
+//     progress:uploadProgress
+//     success:success
+//     failure:failure];
 }
 
 #pragma mark - Getter

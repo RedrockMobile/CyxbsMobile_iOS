@@ -34,23 +34,29 @@
 
 /// 选中的cell的UI情况
 - (void)selectCell {
-    self.gradientView.backgroundColor = [UIColor colorWithHexString:@"#534EF3" alpha:1.0];
-    [self setCheckImagePosition];  // 加入对勾
-    self.titleLab.textColor = [UIColor colorWithHexString:@"#FFFFFF" alpha:1.0];
-    self.percent.textColor = [UIColor colorWithHexString:@"#FFFFFF" alpha:1.0];
-    self.contentView.backgroundColor = [UIColor colorWithHexString:@"#6C68EE" alpha:1.0];
     [self.contentView addSubview:self.gradientView];
+    [self.contentView addSubview:self.percent];
     [self addViewsAndPosition];
+    [UIView animateWithDuration:0.3 animations:^{
+            self.gradientView.backgroundColor = [UIColor colorWithHexString:@"#534EF3" alpha:1.0];
+            [self setCheckImagePosition];  // 加入对勾
+            self.titleLab.textColor = [UIColor colorWithHexString:@"#FFFFFF" alpha:1.0];
+            self.percent.textColor = [UIColor colorWithHexString:@"#FFFFFF" alpha:1.0];
+            self.contentView.backgroundColor = [UIColor colorWithHexString:@"#6C68EE" alpha:1.0];
+    }];
 }
 
 /// 其他cell的UI情况
 - (void)otherCell {
-    self.gradientView.backgroundColor = [UIColor colorWithHexString:@"#4A44E4" alpha:0.1];
-    // 颜色改变
-    self.titleLab.textColor = [UIColor colorWithHexString:@"#15315B" alpha:0.7];
-    self.percent.textColor = [UIColor colorWithHexString:@"#15315B" alpha:0.5];
     [self.contentView addSubview:self.gradientView];
+    [self.contentView addSubview:self.percent];
     [self addViewsAndPosition];
+    [UIView animateWithDuration:0.3 animations:^{
+            self.gradientView.backgroundColor = [UIColor colorWithHexString:@"#4A44E4" alpha:0.1];
+            // 颜色改变
+            self.titleLab.textColor = [UIColor colorWithHexString:@"#15315B" alpha:0.7];
+            self.percent.textColor = [UIColor colorWithHexString:@"#15315B" alpha:0.5];
+    }];
 }
 
 /// title与百分比
@@ -67,7 +73,7 @@
     [self.percent mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self.contentView);
         make.right.equalTo(self.contentView).mas_offset(-15);
-        make.size.mas_equalTo(CGSizeMake(27, 17));
+        make.size.mas_equalTo(CGSizeMake(35, 17));
     }];
 }
 

@@ -37,8 +37,8 @@
         _collectionView.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#FBFCFF" alpha:1] darkColor:[UIColor colorWithHexString:@"#1D1D1D" alpha:1]];
         [_collectionView registerClass:[GoodsCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
         [_collectionView registerClass:[StampCenterSecondHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header"];
-        _collectionHeaderView = [[StampCenterCollectionHeaderView alloc]initWithFrame:CGRectMake(0, 215, SCREEN_WIDTH, COLLECTIONHEADER_H)];
-        UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 215+65)];
+        _collectionHeaderView = [[StampCenterCollectionHeaderView alloc]initWithFrame:CGRectMake(0, 215, SCREEN_WIDTH, 54)];
+        UIView *v = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 215+54)];
         v.backgroundColor = [UIColor dm_colorWithLightColor:[UIColor colorWithHexString:@"#F2F3F8" alpha:1] darkColor:[UIColor colorWithHexString:@"#000000" alpha:1]];
         [v addSubview:_collectionHeaderView];
         [_collectionView addSubview: v];
