@@ -12,34 +12,18 @@
 @implementation NSDictionary (CyxbsExtension)
 
 - (NSInteger)cm_integerValueForKey:(id)key {
-    id value = [self notNullValueForKey:key];
-    if ([value isKindOfClass:[NSNumber class]]) {
-        return [(NSNumber *)value integerValue];
-    } else if ([value isKindOfClass:[NSString class]]) {
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        NSNumber *number = [formatter numberFromString:(NSString *)value];
-        if (number != nil) {
-            return [number integerValue];
-        } else {
-            return 0;
-        }
+    id value = [self objectForKey:key];
+    if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+        return [value integerValue];
     } else {
         return 0;
     }
 }
 
 - (int)cm_intValueForKey:(id)key {
-    id value = [self notNullValueForKey:key];
-    if ([value isKindOfClass:[NSNumber class]]) {
-        return [(NSNumber *)value intValue];
-    } else if ([value isKindOfClass:[NSString class]]) {
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        NSNumber *number = [formatter numberFromString:(NSString *)value];
-        if (number != nil) {
-            return [number intValue];
-        } else {
-            return 0;
-        }
+    id value = [self objectForKey:key];
+    if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+        return [value intValue];
     } else {
         return 0;
     }
@@ -47,24 +31,16 @@
 
 
 - (long long)cm_longlongValueForKey:(id)key {
-    id value = [self notNullValueForKey:key];
-    if ([value isKindOfClass:[NSNumber class]]) {
-        return [(NSNumber *)value longLongValue];
-    } else if ([value isKindOfClass:[NSString class]]) {
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        NSNumber *number = [formatter numberFromString:(NSString *)value];
-        if (number != nil) {
-            return [number longLongValue];
-        } else {
-            return 0;
-        }
+    id value = [self objectForKey:key];
+    if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+        return [value longLongValue];
     } else {
         return 0;
     }
 }
 
 - (BOOL)cm_boolValueForKey:(id)key {
-    id value = [self notNullValueForKey:key];
+    id value = [self objectForKey:key];
     if ([value isKindOfClass:[NSNumber class]]) {
         return [(NSNumber *)value boolValue];
     } else if ([value isKindOfClass:[NSString class]]) {
@@ -80,24 +56,16 @@
 }
 
 - (float)cm_floatValueForKey:(id)key {
-    id value = [self notNullValueForKey:key];
-    if ([value isKindOfClass:[NSNumber class]]) {
-        return [(NSNumber *)value floatValue];
-    } else if ([value isKindOfClass:[NSString class]]) {
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        NSNumber *number = [formatter numberFromString:(NSString *)value];
-        if (number != nil) {
-            return [number floatValue];
-        } else {
-            return 0;
-        }
+    id value = [self objectForKey:key];
+    if ([value isKindOfClass:[NSNumber class]] || [value isKindOfClass:[NSString class]]) {
+        return [value floatValue];
     } else {
         return 0;
     }
 }
 
 - (NSNumber *)cm_nsNumberValueForKey:(id)key {
-    id value = [self notNullValueForKey:key];
+    id value = [self objectForKey:key];
     if ([value isKindOfClass:[NSNumber class]]) {
         return (NSNumber *)value;
     } else if ([value isKindOfClass:[NSString class]]) {
@@ -114,7 +82,7 @@
 }
 
 - (NSString *)cm_stringValueForKey:(id)key {
-    id value = [self notNullValueForKey:key];
+    id value = [self objectForKey:key];
     if ([value isKindOfClass:[NSString class]]) {
         return (NSString *)value;
     } else {
@@ -123,7 +91,7 @@
 }
 
 - (NSArray *)cm_arrayValueForKey:(id)key {
-    id value = [self notNullValueForKey:key];
+    id value = [self objectForKey:key];
     if(![value isKindOfClass:[NSArray class]]) {
         return nil;
     }
@@ -131,7 +99,7 @@
 }
 
 - (NSMutableArray*)cm_mutableArrayValueForKey:(NSString *)key {
-    id value = [self notNullValueForKey:key];
+    id value = [self objectForKey:key];
     if(![value isKindOfClass:[NSMutableArray class]]) {
         return nil;
     }
@@ -139,7 +107,7 @@
 }
 
 - (NSDictionary *)cm_dictionaryValueForKey:(id)key {
-    id value = [self notNullValueForKey:key];
+    id value = [self objectForKey:key];
     if(![value isKindOfClass:[NSDictionary class]]) {
         return nil;
     }
@@ -151,14 +119,5 @@
 //判断是否null
 - (BOOL)isNullValue:(id)value {
     return [value isEqual:[NSNull null]];
-}
-
-//获取非null值
-- (id)notNullValueForKey:(id)key {
-    id value = [self objectForKey:key];
-    if([self isNullValue:value]) {
-        return nil;
-    }
-    return value;
 }
 @end
