@@ -10,7 +10,7 @@ import UIKit
 
 class MXBackButton: UIButton {
     
-    private var isAutoHotspotExpand: Bool?
+    let isAutoHotspotExpand: Bool
     
     
     /**
@@ -19,8 +19,8 @@ class MXBackButton: UIButton {
      边长的点击范围设置为44
      */
     init(frame: CGRect, isAutoHotspotExpand: Bool? = false) {
+        self.isAutoHotspotExpand = isAutoHotspotExpand ?? false
         super.init(frame: frame)
-        self.isAutoHotspotExpand = isAutoHotspotExpand
         setImage(UIImage(named: "activityBack"), for: .normal)
         imageView?.contentMode = .scaleAspectFit
         contentHorizontalAlignment = .center
@@ -34,30 +34,27 @@ class MXBackButton: UIButton {
     ///参考SSR的SSRButton类思路重写UIButton的point方法
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         super.point(inside: point, with: event)
-        var top: CGFloat?
-        var bottom: CGFloat?
-        var left: CGFloat?
-        var right: CGFloat?
-        if(isAutoHotspotExpand ?? false) {
-            if (frame.size.height < 44) {
-                top = (44 - self.frame.size.height)/2.0
-                bottom = (44 - self.frame.size.height)/2.0
-            }
-            if (frame.size.width < 44) {
-                left = (44 - self.frame.size.width)/2.0
-                right = (44 - self.frame.size.width)/2.0
-            }
-            let hotSpotExpandEdge = UIEdgeInsets(top: -(top ?? 0), left: -(left ?? 0), bottom: -(bottom ?? 0), right: -(right ?? 0))
-            if hotSpotExpandEdge == .zero || !isEnabled || isHidden {
-                return super.point(inside: point, with: event)
-            } else {
-                // 获取按钮相对于其父视图的边界
-                let relativeBounds = self.bounds
-                let hotSpotExpand = relativeBounds.inset(by: hotSpotExpandEdge)
-                return hotSpotExpand.contains(point)
-            }
-        } else {
+        var top: CGFloat = 0
+        var bottom: CGFloat = 0
+        var left: CGFloat = 0
+        var right: CGFloat = 0
+        guard isAutoHotspotExpand else { return super.point(inside: point, with: event) }
+        if (frame.size.height < 44) {
+            top = (44 - self.frame.size.height)/2.0
+            bottom = (44 - self.frame.size.height)/2.0
+        }
+        if (frame.size.width < 44) {
+            left = (44 - self.frame.size.width)/2.0
+            right = (44 - self.frame.size.width)/2.0
+        }
+        let hotSpotExpandEdge = UIEdgeInsets(top: -top, left: -left, bottom: -bottom, right: -right)
+        if hotSpotExpandEdge == .zero || !isEnabled || isHidden {
             return super.point(inside: point, with: event)
+        } else {
+            // 获取按钮相对于其父视图的边界
+            let relativeBounds = self.bounds
+            let hotSpotExpand = relativeBounds.inset(by: hotSpotExpandEdge)
+            return hotSpotExpand.contains(point)
         }
     }
     
