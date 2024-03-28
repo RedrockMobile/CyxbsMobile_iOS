@@ -1,5 +1,5 @@
 //
-//  MXBackButtonObjC.m
+//  MXObjCBackButton.m
 //  CyxbsMobile2019_iOS
 //
 //  Created by Max Xu on 2024/3/15.
@@ -12,6 +12,18 @@
 
 - (instancetype)initWithFrame:(CGRect)frame isAutoHotspotExpand:(BOOL)isAutoHotspotExpand {
     self = [super initWithFrame:frame];
+    if (self) {
+        self.isAutoHotspotExpand = isAutoHotspotExpand;
+        [self setImage:[UIImage imageNamed:@"activityBack"] forState:UIControlStateNormal];
+        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        self.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    }
+    return self;
+}
+
+- (instancetype)initWithIsAutoHotspotExpand:(BOOL)isAutoHotspotExpand {
+    self = [super init];
     if (self) {
         self.isAutoHotspotExpand = isAutoHotspotExpand;
         [self setImage:[UIImage imageNamed:@"activityBack"] forState:UIControlStateNormal];

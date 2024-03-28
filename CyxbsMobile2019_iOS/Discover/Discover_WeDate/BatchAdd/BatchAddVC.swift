@@ -139,7 +139,7 @@ class BatchAddVC: UIViewController {
     
     /// 返回按钮
     private lazy var returnBtn: UIButton = {
-        let returnBtn = UIButton(frame: CGRect(x: 16, y: statusBarHeight + 16, width: 9, height: 17))
+        let returnBtn = MXBackButton(frame: CGRect(x: 16, y: statusBarHeight + 16, width: 9, height: 17), isAutoHotspotExpand: true)
         returnBtn.setImage(UIImage(named: "空教室返回"), for: .normal)
         returnBtn.addTarget(self, action: #selector(clickReturnBtn), for: .touchUpInside)
         return returnBtn

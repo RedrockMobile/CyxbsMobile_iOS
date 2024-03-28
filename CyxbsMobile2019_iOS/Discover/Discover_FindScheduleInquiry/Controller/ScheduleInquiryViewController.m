@@ -9,6 +9,7 @@
 #import "ScheduleInquiryViewController.h"
 #import "QAListSegmentView.h"
 #import "ScheduleViewController.h"
+#import "MXObjCBackButton.h"
 #define STU_FIND_HISTORY @"FindStudentSchedule_historyArray"
 #define TEA_FIND_HISTORY @"FindTeacherSchedule_historyArray"
 
@@ -73,7 +74,7 @@
 
 //添加推出查课表页的按钮
 - (void)addBackButton {
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    UIButton *backButton = [[MXObjCBackButton alloc] initWithIsAutoHotspotExpand:YES];
     [self.view addSubview:backButton];
     [backButton setImage:[UIImage imageNamed:@"空教室返回"] forState:UIControlStateNormal];
     [backButton mas_makeConstraints:^(MASConstraintMaker *make) {

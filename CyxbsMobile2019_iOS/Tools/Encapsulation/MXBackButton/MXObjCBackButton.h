@@ -1,5 +1,5 @@
 //
-//  MXBackButtonObjC.h
+//  MXObjCBackButton.h
 //  CyxbsMobile2019_iOS
 //
 //  Created by Max Xu on 2024/3/15.
@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
  边长的点击范围设置为44
  */
 - (instancetype)initWithFrame:(CGRect)frame isAutoHotspotExpand:(BOOL)isAutoHotspotExpand;
+
+- (instancetype)initWithIsAutoHotspotExpand:(BOOL)isAutoHotspotExpand;
 
 @end
 

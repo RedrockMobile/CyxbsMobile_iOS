@@ -9,6 +9,7 @@
 #import "ChooseStudentListViewController.h"
 #import "PeopleListCellTableViewCell.h"
 #import "WYCClassBookViewController.h"
+#import "MXObjCBackButton.h"
 //#import "WYCClassAndRemindDataModel.h"
 
 @interface ChooseStudentListViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -17,7 +18,7 @@
 
 @property (nonatomic, weak)UITableView *tableView;
 /**返回按钮*/
-@property (nonatomic, weak)UIButton *backButton;
+@property (nonatomic, weak)MXObjCBackButton *backButton;
 /**显示“同学课表”四个字的label*/
 @property (nonatomic, weak)UILabel *titleLabel;
 @end
@@ -60,7 +61,7 @@
 
 //添加返回按钮
 - (void)addBackButton {
-    UIButton *button = [[UIButton alloc]init];
+    MXObjCBackButton *button = [[MXObjCBackButton alloc] initWithIsAutoHotspotExpand:YES];
     [self.view addSubview:button];
     self.backButton = button;
     [button setImage:[UIImage imageNamed:@"LQQBackButton"] forState:normal];

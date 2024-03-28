@@ -27,8 +27,8 @@ class WeDateTopView: UIView {
     // MARK: - Lazy
     
     /// 返回按钮
-    lazy var returnBtn: UIButton = {
-        let returnBtn = UIButton(frame: CGRect(x: 16, y: 7, width: 7, height: 16))
+    lazy var returnBtn: MXBackButton = {
+        let returnBtn = MXBackButton(frame: CGRect(x: 16, y: 7, width: 7, height: 16), isAutoHotspotExpand: true)
         returnBtn.setImage(UIImage(named: "空教室返回"), for: .normal)
         return returnBtn
     }()
