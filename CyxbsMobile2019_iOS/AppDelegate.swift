@@ -22,6 +22,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    // 当应用程序从后台进入前台时调用的方法
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        //检查token是否过期
+        RYLoginViewController.checkToken(rootVC: window?.rootViewController)
+        //更新Tabbar上方的课表topView显示的课程信息
+        if let vc = window?.rootViewController as? TabBarController {
+            vc.reloadData()
+        }
+    }
+    
     // 当应用程序进入后台时调用的方法
     func applicationDidEnterBackground(_ application: UIApplication) {
         setupEnd() // 设置结束操作

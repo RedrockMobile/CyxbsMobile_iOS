@@ -154,6 +154,7 @@ extension RYLoginViewController {
                     let refreshToken = model["data"]["refreshToken"].stringValue
                     
                     UserModel.default.setingTokenToOC(token: TokenModel(token: token, refreshToken: refreshToken))
+                    UserDefaultsManager.shared.latestRequestToken = Date()
                     
                     ProgressHUD.showSucceed("登录成功")
                     
@@ -410,6 +411,7 @@ extension RYLoginViewController {
                 let refreshToken = model["data"]["refreshToken"].stringValue
                 
                 UserModel.default.setingTokenToOC(token: TokenModel(token: token, refreshToken: refreshToken))
+                UserDefaultsManager.shared.latestRequestToken = Date()
                 
                 success(true)
                 
@@ -429,6 +431,20 @@ extension RYLoginViewController {
                 }
                 
                 Constants.keyWindow?.rootViewController?.present(alertVC, animated: true)
+            }
+        }
+    }
+    
+    // 检查token是否过期，如果过期则刷新
+    static func checkToken(rootVC: UIViewController?) {
+        RYLoginViewController.check { shouldPresent, optionVC in
+            if let currentVC = rootVC {
+                if shouldPresent, let loginVC = optionVC {
+                    let nav = UINavigationController(rootViewController: loginVC)
+                    nav.isNavigationBarHidden = true
+                    nav.modalPresentationStyle = .fullScreen
+                    currentVC.present(nav, animated: true)
+                }
             }
         }
     }

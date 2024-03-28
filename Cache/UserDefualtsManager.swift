@@ -111,4 +111,10 @@ extension UserDefaultsManager {
         set { set(newValue, forKey: "DATE_FOR_SEMESTER") }
         get { get(key: "DATE_FOR_SEMESTER") as? Date }
     }
+    
+    /// 上一次成功请求/刷新Token时间
+    var latestRequestToken: Date? {
+        set { set(newValue, forKey: "LATEST_REQUEST_TOKEN") }
+        get { get(key: "LATEST_REQUEST_TOKEN") as? Date }
+    }
 }
