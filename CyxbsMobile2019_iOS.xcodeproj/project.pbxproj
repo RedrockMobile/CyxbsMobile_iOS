@@ -466,8 +466,8 @@
 		B0C9F2462B0126E1006F4286 /* ActivityAdminManageMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C9F2252B0126E1006F4286 /* ActivityAdminManageMainVC.swift */; };
 		B0C9F2472B0126E1006F4286 /* ActivityReviewedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C9F2272B0126E1006F4286 /* ActivityReviewedTableViewCell.swift */; };
 		B0C9F2482B0126E1006F4286 /* ActivityReviewingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C9F2282B0126E1006F4286 /* ActivityReviewingTableViewCell.swift */; };
-		B0C9F2492B0126E1006F4286 /* ActivityAddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C9F22B2B0126E1006F4286 /* ActivityAddVC.swift */; };
-		B0C9F24A2B0126E1006F4286 /* ActivityAddScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C9F22D2B0126E1006F4286 /* ActivityAddScrollView.swift */; };
+		B0C9F2492B0126E1006F4286 /* ActivityUploadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C9F22B2B0126E1006F4286 /* ActivityUploadVC.swift */; };
+		B0C9F24A2B0126E1006F4286 /* ActivityUploadScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C9F22D2B0126E1006F4286 /* ActivityUploadScrollView.swift */; };
 		B0C9F24C2B01270A006F4286 /* CyxbsMobileImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0C9F24B2B01270A006F4286 /* CyxbsMobileImage.xcassets */; };
 		B0D1A8D62B15E3C9005B858F /* PopUpInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D1A8D52B15E3C9005B858F /* PopUpInformationVC.swift */; };
 		B0F08FF828A24F9000986EB6 /* IDSController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F08FF028A24F9000986EB6 /* IDSController.m */; };
@@ -1447,8 +1447,8 @@
 		B0C9F2252B0126E1006F4286 /* ActivityAdminManageMainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityAdminManageMainVC.swift; sourceTree = "<group>"; };
 		B0C9F2272B0126E1006F4286 /* ActivityReviewedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityReviewedTableViewCell.swift; sourceTree = "<group>"; };
 		B0C9F2282B0126E1006F4286 /* ActivityReviewingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityReviewingTableViewCell.swift; sourceTree = "<group>"; };
-		B0C9F22B2B0126E1006F4286 /* ActivityAddVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityAddVC.swift; sourceTree = "<group>"; };
-		B0C9F22D2B0126E1006F4286 /* ActivityAddScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityAddScrollView.swift; sourceTree = "<group>"; };
+		B0C9F22B2B0126E1006F4286 /* ActivityUploadVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityUploadVC.swift; sourceTree = "<group>"; };
+		B0C9F22D2B0126E1006F4286 /* ActivityUploadScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityUploadScrollView.swift; sourceTree = "<group>"; };
 		B0C9F24B2B01270A006F4286 /* CyxbsMobileImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CyxbsMobileImage.xcassets; sourceTree = "<group>"; };
 		B0D1A8D52B15E3C9005B858F /* PopUpInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpInformationVC.swift; sourceTree = "<group>"; };
 		B0F08FF028A24F9000986EB6 /* IDSController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDSController.m; sourceTree = "<group>"; };
@@ -4999,7 +4999,7 @@
 		B0C9F22A2B0126E1006F4286 /* VC */ = {
 			isa = PBXGroup;
 			children = (
-				B0C9F22B2B0126E1006F4286 /* ActivityAddVC.swift */,
+				B0C9F22B2B0126E1006F4286 /* ActivityUploadVC.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -5007,7 +5007,7 @@
 		B0C9F22C2B0126E1006F4286 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B0C9F22D2B0126E1006F4286 /* ActivityAddScrollView.swift */,
+				B0C9F22D2B0126E1006F4286 /* ActivityUploadScrollView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6592,7 +6592,7 @@
 				B0F71C852ABC71B200F8B1AC /* AttitudeSelfPageDataItem.m in Sources */,
 				14E7E4A927F5762500B67469 /* QuestionButton.m in Sources */,
 				FC42109B2AD5BBA80044EEAA /* ArrangeMessageModel.swift in Sources */,
-				B0C9F24A2B0126E1006F4286 /* ActivityAddScrollView.swift in Sources */,
+				B0C9F24A2B0126E1006F4286 /* ActivityUploadScrollView.swift in Sources */,
 				FC66D92B2A88B4C80024FB6A /* StudentTableViewCell.swift in Sources */,
 				B0F71C892ABC71B200F8B1AC /* AttitudeMainPageItem.m in Sources */,
 				FE2C135227AEF629001CF7AF /* ToDoMainBarView.m in Sources */,
@@ -6633,7 +6633,7 @@
 				14F6F5662AFB8CDB007C7CA6 /* FinderBannerCollectionViewCell.swift in Sources */,
 				FE2C136327AEF629001CF7AF /* YearBtnsView.m in Sources */,
 				B0F71C9B2ABC71B200F8B1AC /* PublishTopView.m in Sources */,
-				B0C9F2492B0126E1006F4286 /* ActivityAddVC.swift in Sources */,
+				B0C9F2492B0126E1006F4286 /* ActivityUploadVC.swift in Sources */,
 				18FE64F625FDA186008748AE /* UIControl+MGD.m in Sources */,
 				AA0DDB87286C8E8100802324 /* AFHTTPSessionManager+compatibility.m in Sources */,
 				73AAA1D226C918250084E44D /* SegmentView.m in Sources */,

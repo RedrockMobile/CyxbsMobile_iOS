@@ -10,7 +10,7 @@ import UIKit
 import TOCropViewController
 import Alamofire
 
-class ActivityAddVC: UIViewController,
+class ActivityUploadVC: UIViewController,
                      UIImagePickerControllerDelegate,
                      UINavigationControllerDelegate,
                      TOCropViewControllerDelegate,
@@ -47,8 +47,8 @@ class ActivityAddVC: UIViewController,
         return button
     }()
     
-    lazy var scrollView: ActivityAddScrollView = {
-        let scrollView = ActivityAddScrollView()
+    lazy var scrollView: ActivityUploadScrollView = {
+        let scrollView = ActivityUploadScrollView()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(showImagePickerAlert))
         scrollView.coverImgView.addGestureRecognizer(tapGesture)
         scrollView.typeButton.addTarget(self, action: #selector(showTypePicker), for: .touchUpInside)
@@ -373,7 +373,7 @@ class ActivityAddVC: UIViewController,
     
 }
 
-extension ActivityAddVC: UITextFieldDelegate {
+extension ActivityUploadVC: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
         shouldConfirmButtonEnabled()
         if scrollView.contactTextfield.text?.count == 11 {
@@ -384,7 +384,7 @@ extension ActivityAddVC: UITextFieldDelegate {
     }
 }
 
-extension ActivityAddVC: UITextViewDelegate {
+extension ActivityUploadVC: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         shouldConfirmButtonEnabled()
     }

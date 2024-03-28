@@ -48,7 +48,7 @@ class ActivityMainViewController: UIViewController {
     }
     //跳转添加活动页面
     @objc func pushAddVC() {
-        let addVC = ActivityAddVC()
+        let addVC = ActivityUploadVC()
         self.navigationController?.pushViewController(addVC, animated: true)
     }
     //跳转排行榜页面

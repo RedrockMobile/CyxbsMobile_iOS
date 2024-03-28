@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class ActivityAddScrollView: UIScrollView {
+class ActivityUploadScrollView: UIScrollView {
     
     var textFields: [UITextField] = []
     
@@ -213,26 +213,14 @@ class ActivityAddScrollView: UIScrollView {
     
     lazy var detailTextView: UITextView = {
         let textView = UITextView()
-        let attributedPlaceholder = NSMutableAttributedString(string: "关于活动的简介(不超过100个字）")
-
-        // 设置字体
-        if let customFont = UIFont(name: "PingFangSC-Medium", size: 14) {
-            attributedPlaceholder.addAttribute(.font, value: customFont, range: NSRange(location: 0, length: 7))
-        }
-        if let customFont = UIFont(name: "PingFangSC-Medium", size: 12) {
-            attributedPlaceholder.addAttribute(.font, value: customFont, range: NSRange(location: 7, length: 10))
-        }
-        // 设置颜色
-        let customColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.4)
-        attributedPlaceholder.addAttribute(.foregroundColor, value: customColor, range: NSRange(location: 0, length: attributedPlaceholder.length))
-        // 将自定义样式应用于placeholder
-        textView.attributedPlaceholder = attributedPlaceholder
         textView.font = UIFont(name: PingFangSCMedium, size: 14)
         textView.backgroundColor = UIColor(red: 0.946, green: 0.954, blue: 0.962, alpha: 1)
         textView.textColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 1)
         textView.layer.cornerRadius = 4
         textView.clipsToBounds = true
         textView.textContainerInset = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 12)
+        textView.placeholder = "关于活动的简介(不超过100个字）"
+        textView.placeholderColor = UIColor(red: 0.082, green: 0.192, blue: 0.357, alpha: 0.4)
         return textView
     }()
     
